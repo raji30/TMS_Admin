@@ -1,0 +1,672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="postgresModel.Store" Provider="Npgsql" ProviderManifestToken="10.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int8" Nullable="false" />
+          <Property Name="addressee" Type="varchar" MaxLength="50" />
+          <Property Name="addressline1" Type="varchar" MaxLength="200" />
+          <Property Name="addressline3" Type="varchar" MaxLength="300" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="varchar" MaxLength="50" />
+          <Property Name="zip" Type="varchar" MaxLength="10" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+          <Property Name="addrtype" Type="int4" />
+        </EntityType>
+        <EntityType Name="addresstypes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="typename" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="deliveryorder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int8" Nullable="false" />
+          <Property Name="createdon" Type="timestamp" Nullable="false" />
+          <Property Name="status" Type="int4" Nullable="false" />
+          <Property Name="fbrno" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="isediorder" Type="bool" />
+          <Property Name="billtoaddrid" Type="int4" Nullable="false" />
+          <Property Name="pickupaddrid" Type="int4" Nullable="false" />
+          <Property Name="consigneeaddrid" Type="int4" Nullable="false" />
+          <Property Name="returnaddrid" Type="int4" />
+          <Property Name="brokername" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="brokerrefno" Type="varchar" MaxLength="25" />
+          <Property Name="portoforigin" Type="varchar" MaxLength="25" />
+          <Property Name="shipmentweight" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="freightcharges" Type="varchar" MaxLength="15" />
+          <Property Name="vesselname" Type="varchar" MaxLength="200" />
+          <Property Name="bookingno" Type="varchar" MaxLength="250" />
+          <Property Name="cutoffdate" Type="timestamp" />
+          <Property Name="boxes" Type="int4" />
+          <Property Name="customernotes" Type="varchar" MaxLength="500" />
+          <Property Name="modifiedon" Type="timestamp" />
+          <Property Name="modifiedby" Type="int8" />
+        </EntityType>
+        <EntityType Name="doaddressdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int8" Nullable="false" />
+          <Property Name="addressid" Type="int8" />
+        </EntityType>
+        <EntityType Name="dodriverdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int8" Nullable="false" />
+          <Property Name="doid" Type="int8" />
+          <Property Name="driverno" Type="varchar" MaxLength="10" />
+          <Property Name="actiondate" Type="date" />
+          <Property Name="loadstatus" Type="varchar" MaxLength="20" />
+          <Property Name="drivermoney" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="specialnotes" Type="varchar" MaxLength="100" />
+          <Property Name="islocked" Type="bool" />
+          <Property Name="userlogin" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="driverdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="drivername" Type="varchar" MaxLength="50" />
+          <Property Name="driverno" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int8" Nullable="false" />
+          <Property Name="invoiceno" Type="varchar" MaxLength="50" />
+          <Property Name="invoicedate" Type="date" />
+          <Property Name="doid" Type="int8" />
+          <Property Name="customernotes" Type="varchar" MaxLength="500" />
+          <Property Name="exceptions" Type="varchar" MaxLength="500" />
+          <Property Name="baserate" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="xfactor" Type="int4" />
+          <Property Name="stopoff" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="demurrage" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="forklift" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="incomingfreight" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="outgoingfreight" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="dropnpull" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="overwt" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="warehousestorage" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="chassisfee" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="overnightfee" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="perdiemfee" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="transloadfee" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="waitingfee" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="hazardousfee" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="extrafee1" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="extrafee2" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="extrafee3" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="extrafee4" Type="numeric" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="shipmentdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int8" Nullable="false" />
+          <Property Name="doid" Type="int8" />
+          <Property Name="iscomplete" Type="bool" />
+          <Property Name="containerno" Type="varchar" MaxLength="50" />
+          <Property Name="size" Type="varchar" MaxLength="50" />
+          <Property Name="seano" Type="varchar" MaxLength="50" />
+          <Property Name="apptdate" Type="date" />
+          <Property Name="appttime" Type="time" Precision="6" />
+          <Property Name="drivernotes" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="createdon" Type="date" />
+          <Property Name="createdby" Type="int4" />
+          <Property Name="modifiedon" Type="date" />
+          <Property Name="modifiedby" Type="int4" />
+        </EntityType>
+        <Association Name="doaddressdetail_addressid_fkey">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="doaddressdetail" Type="Self.doaddressdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="doaddressdetail">
+              <PropertyRef Name="addressid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="dodriverdetail_doid_fkey">
+          <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="0..1" />
+          <End Role="dodriverdetail" Type="Self.dodriverdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deliveryorder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="dodriverdetail">
+              <PropertyRef Name="doid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="dodriverdetail_driverno_fkey">
+          <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="0..1" />
+          <End Role="dodriverdetail" Type="Self.dodriverdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deliveryorder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="dodriverdetail">
+              <PropertyRef Name="doid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="invoice_doid_fkey">
+          <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="0..1" />
+          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deliveryorder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice">
+              <PropertyRef Name="doid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="shipmentdetail_doid_fkey">
+          <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="0..1" />
+          <End Role="shipmentdetail" Type="Self.shipmentdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deliveryorder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shipmentdetail">
+              <PropertyRef Name="doid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="postgresModelStoreContainer">
+          <EntitySet Name="address" EntityType="Self.address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="addresstypes" EntityType="Self.addresstypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="deliveryorder" EntityType="Self.deliveryorder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="doaddressdetail" EntityType="Self.doaddressdetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dodriverdetail" EntityType="Self.dodriverdetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="driverdetail" EntityType="Self.driverdetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoice" EntityType="Self.invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shipmentdetail" EntityType="Self.shipmentdetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="doaddressdetail_addressid_fkey" Association="Self.doaddressdetail_addressid_fkey">
+            <End Role="address" EntitySet="address" />
+            <End Role="doaddressdetail" EntitySet="doaddressdetail" />
+          </AssociationSet>
+          <AssociationSet Name="dodriverdetail_doid_fkey" Association="Self.dodriverdetail_doid_fkey">
+            <End Role="deliveryorder" EntitySet="deliveryorder" />
+            <End Role="dodriverdetail" EntitySet="dodriverdetail" />
+          </AssociationSet>
+          <AssociationSet Name="dodriverdetail_driverno_fkey" Association="Self.dodriverdetail_driverno_fkey">
+            <End Role="deliveryorder" EntitySet="deliveryorder" />
+            <End Role="dodriverdetail" EntitySet="dodriverdetail" />
+          </AssociationSet>
+          <AssociationSet Name="invoice_doid_fkey" Association="Self.invoice_doid_fkey">
+            <End Role="deliveryorder" EntitySet="deliveryorder" />
+            <End Role="invoice" EntitySet="invoice" />
+          </AssociationSet>
+          <AssociationSet Name="shipmentdetail_doid_fkey" Association="Self.shipmentdetail_doid_fkey">
+            <End Role="deliveryorder" EntitySet="deliveryorder" />
+            <End Role="shipmentdetail" EntitySet="shipmentdetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="postgresModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="addressee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="addressline1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="addressline3" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="addrtype" Type="Int32" />
+          <NavigationProperty Name="doaddressdetails" Relationship="Self.doaddressdetail_addressid_fkey" FromRole="address" ToRole="doaddressdetail" />
+        </EntityType>
+        <EntityType Name="addresstype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="typename" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="deliveryorder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="createdon" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="fbrno" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isediorder" Type="Boolean" />
+          <Property Name="billtoaddrid" Type="Int32" Nullable="false" />
+          <Property Name="pickupaddrid" Type="Int32" Nullable="false" />
+          <Property Name="consigneeaddrid" Type="Int32" Nullable="false" />
+          <Property Name="returnaddrid" Type="Int32" />
+          <Property Name="brokername" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="brokerrefno" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="portoforigin" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="shipmentweight" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="freightcharges" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="vesselname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="bookingno" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="cutoffdate" Type="DateTime" Precision="6" />
+          <Property Name="boxes" Type="Int32" />
+          <Property Name="customernotes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="modifiedon" Type="DateTime" Precision="6" />
+          <Property Name="modifiedby" Type="Int64" />
+          <NavigationProperty Name="dodriverdetails" Relationship="Self.dodriverdetail_doid_fkey" FromRole="deliveryorder" ToRole="dodriverdetail" />
+          <NavigationProperty Name="dodriverdetails1" Relationship="Self.dodriverdetail_driverno_fkey" FromRole="deliveryorder" ToRole="dodriverdetail" />
+          <NavigationProperty Name="invoices" Relationship="Self.invoice_doid_fkey" FromRole="deliveryorder" ToRole="invoice" />
+          <NavigationProperty Name="shipmentdetails" Relationship="Self.shipmentdetail_doid_fkey" FromRole="deliveryorder" ToRole="shipmentdetail" />
+        </EntityType>
+        <EntityType Name="doaddressdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="addressid" Type="Int64" />
+          <NavigationProperty Name="address" Relationship="Self.doaddressdetail_addressid_fkey" FromRole="doaddressdetail" ToRole="address" />
+        </EntityType>
+        <EntityType Name="dodriverdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="doid" Type="Int64" />
+          <Property Name="driverno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="actiondate" Type="DateTime" Precision="0" />
+          <Property Name="loadstatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="drivermoney" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="specialnotes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="islocked" Type="Boolean" />
+          <Property Name="userlogin" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="deliveryorder" Relationship="Self.dodriverdetail_doid_fkey" FromRole="dodriverdetail" ToRole="deliveryorder" />
+          <NavigationProperty Name="deliveryorder1" Relationship="Self.dodriverdetail_driverno_fkey" FromRole="dodriverdetail" ToRole="deliveryorder" />
+        </EntityType>
+        <EntityType Name="driverdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="drivername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="driverno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="invoiceno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invoicedate" Type="DateTime" Precision="0" />
+          <Property Name="doid" Type="Int64" />
+          <Property Name="customernotes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="exceptions" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="baserate" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="xfactor" Type="Int32" />
+          <Property Name="stopoff" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="demurrage" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="forklift" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="incomingfreight" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="outgoingfreight" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="dropnpull" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="overwt" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="warehousestorage" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="chassisfee" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="overnightfee" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="perdiemfee" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="transloadfee" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="waitingfee" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="hazardousfee" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="extrafee1" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="extrafee2" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="extrafee3" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="extrafee4" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="deliveryorder" Relationship="Self.invoice_doid_fkey" FromRole="invoice" ToRole="deliveryorder" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="shipmentdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="doid" Type="Int64" />
+          <Property Name="iscomplete" Type="Boolean" />
+          <Property Name="containerno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="seano" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apptdate" Type="DateTime" Precision="0" />
+          <Property Name="appttime" Type="Time" Precision="6" />
+          <Property Name="drivernotes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="deliveryorder" Relationship="Self.shipmentdetail_doid_fkey" FromRole="shipmentdetail" ToRole="deliveryorder" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="createdon" Type="DateTime" Precision="0" />
+          <Property Name="createdby" Type="Int32" />
+          <Property Name="modifiedon" Type="DateTime" Precision="0" />
+          <Property Name="modifiedby" Type="Int32" />
+        </EntityType>
+        <Association Name="doaddressdetail_addressid_fkey">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="doaddressdetail" Type="Self.doaddressdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="doaddressdetail">
+              <PropertyRef Name="addressid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="dodriverdetail_doid_fkey">
+          <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="0..1" />
+          <End Role="dodriverdetail" Type="Self.dodriverdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deliveryorder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="dodriverdetail">
+              <PropertyRef Name="doid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="dodriverdetail_driverno_fkey">
+          <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="0..1" />
+          <End Role="dodriverdetail" Type="Self.dodriverdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deliveryorder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="dodriverdetail">
+              <PropertyRef Name="doid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="invoice_doid_fkey">
+          <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="0..1" />
+          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deliveryorder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice">
+              <PropertyRef Name="doid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="shipmentdetail_doid_fkey">
+          <End Role="deliveryorder" Type="Self.deliveryorder" Multiplicity="0..1" />
+          <End Role="shipmentdetail" Type="Self.shipmentdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deliveryorder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shipmentdetail">
+              <PropertyRef Name="doid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="postgresEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="addresses" EntityType="Self.address" />
+          <EntitySet Name="addresstypes" EntityType="Self.addresstype" />
+          <EntitySet Name="deliveryorders" EntityType="Self.deliveryorder" />
+          <EntitySet Name="doaddressdetails" EntityType="Self.doaddressdetail" />
+          <EntitySet Name="dodriverdetails" EntityType="Self.dodriverdetail" />
+          <EntitySet Name="driverdetails" EntityType="Self.driverdetail" />
+          <EntitySet Name="invoices" EntityType="Self.invoice" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="shipmentdetails" EntityType="Self.shipmentdetail" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="doaddressdetail_addressid_fkey" Association="Self.doaddressdetail_addressid_fkey">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="doaddressdetail" EntitySet="doaddressdetails" />
+          </AssociationSet>
+          <AssociationSet Name="dodriverdetail_doid_fkey" Association="Self.dodriverdetail_doid_fkey">
+            <End Role="deliveryorder" EntitySet="deliveryorders" />
+            <End Role="dodriverdetail" EntitySet="dodriverdetails" />
+          </AssociationSet>
+          <AssociationSet Name="dodriverdetail_driverno_fkey" Association="Self.dodriverdetail_driverno_fkey">
+            <End Role="deliveryorder" EntitySet="deliveryorders" />
+            <End Role="dodriverdetail" EntitySet="dodriverdetails" />
+          </AssociationSet>
+          <AssociationSet Name="invoice_doid_fkey" Association="Self.invoice_doid_fkey">
+            <End Role="deliveryorder" EntitySet="deliveryorders" />
+            <End Role="invoice" EntitySet="invoices" />
+          </AssociationSet>
+          <AssociationSet Name="shipmentdetail_doid_fkey" Association="Self.shipmentdetail_doid_fkey">
+            <End Role="deliveryorder" EntitySet="deliveryorders" />
+            <End Role="shipmentdetail" EntitySet="shipmentdetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="postgresModelStoreContainer" CdmEntityContainer="postgresEntities">
+          <EntitySetMapping Name="addresses">
+            <EntityTypeMapping TypeName="postgresModel.address">
+              <MappingFragment StoreEntitySet="address">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="addressee" ColumnName="addressee" />
+                <ScalarProperty Name="addressline1" ColumnName="addressline1" />
+                <ScalarProperty Name="addressline3" ColumnName="addressline3" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zip" ColumnName="zip" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="addrtype" ColumnName="addrtype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="addresstypes">
+            <EntityTypeMapping TypeName="postgresModel.addresstype">
+              <MappingFragment StoreEntitySet="addresstypes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="typename" ColumnName="typename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="deliveryorders">
+            <EntityTypeMapping TypeName="postgresModel.deliveryorder">
+              <MappingFragment StoreEntitySet="deliveryorder">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="fbrno" ColumnName="fbrno" />
+                <ScalarProperty Name="isediorder" ColumnName="isediorder" />
+                <ScalarProperty Name="billtoaddrid" ColumnName="billtoaddrid" />
+                <ScalarProperty Name="pickupaddrid" ColumnName="pickupaddrid" />
+                <ScalarProperty Name="consigneeaddrid" ColumnName="consigneeaddrid" />
+                <ScalarProperty Name="returnaddrid" ColumnName="returnaddrid" />
+                <ScalarProperty Name="brokername" ColumnName="brokername" />
+                <ScalarProperty Name="brokerrefno" ColumnName="brokerrefno" />
+                <ScalarProperty Name="portoforigin" ColumnName="portoforigin" />
+                <ScalarProperty Name="shipmentweight" ColumnName="shipmentweight" />
+                <ScalarProperty Name="freightcharges" ColumnName="freightcharges" />
+                <ScalarProperty Name="vesselname" ColumnName="vesselname" />
+                <ScalarProperty Name="bookingno" ColumnName="bookingno" />
+                <ScalarProperty Name="cutoffdate" ColumnName="cutoffdate" />
+                <ScalarProperty Name="boxes" ColumnName="boxes" />
+                <ScalarProperty Name="customernotes" ColumnName="customernotes" />
+                <ScalarProperty Name="modifiedon" ColumnName="modifiedon" />
+                <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="doaddressdetails">
+            <EntityTypeMapping TypeName="postgresModel.doaddressdetail">
+              <MappingFragment StoreEntitySet="doaddressdetail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="addressid" ColumnName="addressid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dodriverdetails">
+            <EntityTypeMapping TypeName="postgresModel.dodriverdetail">
+              <MappingFragment StoreEntitySet="dodriverdetail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="doid" ColumnName="doid" />
+                <ScalarProperty Name="driverno" ColumnName="driverno" />
+                <ScalarProperty Name="actiondate" ColumnName="actiondate" />
+                <ScalarProperty Name="loadstatus" ColumnName="loadstatus" />
+                <ScalarProperty Name="drivermoney" ColumnName="drivermoney" />
+                <ScalarProperty Name="specialnotes" ColumnName="specialnotes" />
+                <ScalarProperty Name="islocked" ColumnName="islocked" />
+                <ScalarProperty Name="userlogin" ColumnName="userlogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="driverdetails">
+            <EntityTypeMapping TypeName="postgresModel.driverdetail">
+              <MappingFragment StoreEntitySet="driverdetail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="drivername" ColumnName="drivername" />
+                <ScalarProperty Name="driverno" ColumnName="driverno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoices">
+            <EntityTypeMapping TypeName="postgresModel.invoice">
+              <MappingFragment StoreEntitySet="invoice">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="invoiceno" ColumnName="invoiceno" />
+                <ScalarProperty Name="invoicedate" ColumnName="invoicedate" />
+                <ScalarProperty Name="doid" ColumnName="doid" />
+                <ScalarProperty Name="customernotes" ColumnName="customernotes" />
+                <ScalarProperty Name="exceptions" ColumnName="exceptions" />
+                <ScalarProperty Name="baserate" ColumnName="baserate" />
+                <ScalarProperty Name="xfactor" ColumnName="xfactor" />
+                <ScalarProperty Name="stopoff" ColumnName="stopoff" />
+                <ScalarProperty Name="demurrage" ColumnName="demurrage" />
+                <ScalarProperty Name="forklift" ColumnName="forklift" />
+                <ScalarProperty Name="incomingfreight" ColumnName="incomingfreight" />
+                <ScalarProperty Name="outgoingfreight" ColumnName="outgoingfreight" />
+                <ScalarProperty Name="dropnpull" ColumnName="dropnpull" />
+                <ScalarProperty Name="overwt" ColumnName="overwt" />
+                <ScalarProperty Name="warehousestorage" ColumnName="warehousestorage" />
+                <ScalarProperty Name="chassisfee" ColumnName="chassisfee" />
+                <ScalarProperty Name="overnightfee" ColumnName="overnightfee" />
+                <ScalarProperty Name="perdiemfee" ColumnName="perdiemfee" />
+                <ScalarProperty Name="transloadfee" ColumnName="transloadfee" />
+                <ScalarProperty Name="waitingfee" ColumnName="waitingfee" />
+                <ScalarProperty Name="hazardousfee" ColumnName="hazardousfee" />
+                <ScalarProperty Name="extrafee1" ColumnName="extrafee1" />
+                <ScalarProperty Name="extrafee2" ColumnName="extrafee2" />
+                <ScalarProperty Name="extrafee3" ColumnName="extrafee3" />
+                <ScalarProperty Name="extrafee4" ColumnName="extrafee4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="postgresModel.role">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shipmentdetails">
+            <EntityTypeMapping TypeName="postgresModel.shipmentdetail">
+              <MappingFragment StoreEntitySet="shipmentdetail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="doid" ColumnName="doid" />
+                <ScalarProperty Name="iscomplete" ColumnName="iscomplete" />
+                <ScalarProperty Name="containerno" ColumnName="containerno" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="seano" ColumnName="seano" />
+                <ScalarProperty Name="apptdate" ColumnName="apptdate" />
+                <ScalarProperty Name="appttime" ColumnName="appttime" />
+                <ScalarProperty Name="drivernotes" ColumnName="drivernotes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="postgresModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="modifiedon" ColumnName="modifiedon" />
+                <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
