@@ -10,27 +10,53 @@ namespace TMS.Data
     {
         public driverdetail Add(driverdetail entity)
         {
-            throw new NotImplementedException();
+            using (var entities = new TMSDBContext())
+            {
+                entities.Driverdetails.Add(entity);
+                int i = entities.SaveChanges();
+            }
+            return entity;
         }
 
         public driverdetail FindById(long i)
         {
-            throw new NotImplementedException();
+            using (var db = new TMSDBContext())
+            {
+                return db.Driverdetails.FirstOrDefault((a) => a.id == i);
+            }
         }
 
         public IEnumerable<driverdetail> GetAll()
         {
-            throw new NotImplementedException();
+            using (var db = new TMSDBContext())
+            {
+                return db.Driverdetails.ToList();
+            }
         }
 
         public driverdetail Remove(driverdetail entity)
         {
-            throw new NotImplementedException();
+            using (var db = new TMSDBContext())
+            {
+                db.Driverdetails.Remove(entity);
+                db.SaveChanges();
+            }
+            return entity;
         }
 
         public driverdetail Update(driverdetail entity)
         {
-            throw new NotImplementedException();
+            using (var db = new TMSDBContext())
+            {
+                var existingEntity = db.Driverdetails.FirstOrDefault((ad) => ad.id == entity.id);
+                if (existingEntity != null)
+                {
+                    existingEntity.drivername = entity.drivername;
+                    existingEntity.driverno = entity.driverno;
+                    db.SaveChanges();
+                }
+            }
+            return entity;
         }
     }
 }
