@@ -1,0 +1,3323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="App_modelModel.Store" Provider="Npgsql" ProviderManifestToken="10.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="addrkey" />
+          </Key>
+          <Property Name="addrkey" Type="uuid" Nullable="false" />
+          <Property Name="addrname" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="address1" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="address2" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="255" />
+          <Property Name="state" Type="varchar" MaxLength="255" />
+          <Property Name="zipcode" Type="varchar" MaxLength="50" />
+          <Property Name="country" Type="bpchar" MaxLength="3" />
+          <Property Name="website" Type="varchar" MaxLength="255" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="fax" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="approles">
+          <Key>
+            <PropertyRef Name="rolekey" />
+          </Key>
+          <Property Name="rolekey" Type="uuid" Nullable="false" />
+          <Property Name="descrption" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="broker">
+          <Key>
+            <PropertyRef Name="brokerkey" />
+          </Key>
+          <Property Name="brokerkey" Type="uuid" Nullable="false" />
+          <Property Name="brokerid" Type="varchar" MaxLength="20" />
+          <Property Name="brokername" Type="varchar" MaxLength="255" />
+          <Property Name="addrkey" Type="uuid" />
+          <Property Name="createdate" Type="timestamp" />
+          <Property Name="status" Type="int2" />
+          <Property Name="statusdate" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="brokercontacts">
+          <Key>
+            <PropertyRef Name="brokerkey" />
+            <PropertyRef Name="contactkey" />
+          </Key>
+          <Property Name="brokerkey" Type="uuid" Nullable="false" />
+          <Property Name="contactkey" Type="uuid" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'bit' is currently not supported for the target Entity Framework version; the column 'issteamline' in the table 'App_model.dbo.carrier' was excluded.-->
+        <EntityType Name="carrier">
+          <Key>
+            <PropertyRef Name="carrierkey" />
+          </Key>
+          <Property Name="carrierkey" Type="uuid" Nullable="false" />
+          <Property Name="carrierid" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="carriername" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="addrkey" Type="uuid" Nullable="false" />
+          <Property Name="scaccode" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="licenseplate" Type="varchar" MaxLength="255" />
+          <Property Name="licenseplateexpirydate" Type="date" />
+          <Property Name="createdate" Type="timestamp" Nullable="false" />
+          <Property Name="status" Type="int2" Nullable="false" />
+          <Property Name="statusdate" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="commentkey" />
+          </Key>
+          <Property Name="commentkey" Type="uuid" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="8000" />
+          <Property Name="createdate" Type="timestamp" />
+          <Property Name="createuserkey" Type="uuid" />
+        </EntityType>
+        <EntityType Name="commentdocuments">
+          <Key>
+            <PropertyRef Name="commentkey" />
+          </Key>
+          <Property Name="commentkey" Type="uuid" Nullable="false" />
+          <Property Name="documentkey" Type="uuid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contacts">
+          <Key>
+            <PropertyRef Name="contactkey" />
+          </Key>
+          <Property Name="contactkey" Type="uuid" Nullable="false" />
+          <Property Name="contactid" Type="varchar" MaxLength="20" />
+          <Property Name="firstname" Type="varchar" MaxLength="100" />
+          <Property Name="lastname" Type="varchar" MaxLength="100" />
+          <Property Name="contacttype" Type="int2" />
+          <Property Name="addrkey" Type="uuid" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'bit' is currently not supported for the target Entity Framework version; the column 'creditcheck' in the table 'App_model.dbo.customer' was excluded.-->
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="custkey" />
+          </Key>
+          <Property Name="custkey" Type="uuid" Nullable="false" />
+          <Property Name="custid" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="custname" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="addrkey" Type="uuid" Nullable="false" />
+          <Property Name="createdate" Type="timestamp" Nullable="false" />
+          <Property Name="customergroup" Type="int2" />
+          <Property Name="status" Type="int2" Nullable="false" />
+          <Property Name="statusdate" Type="timestamp" Nullable="false" />
+          <Property Name="creditlimit" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="creditstatus" Type="int2" />
+        </EntityType>
+        <EntityType Name="customeraddress">
+          <Key>
+            <PropertyRef Name="custkey" />
+            <PropertyRef Name="addrkey" />
+          </Key>
+          <Property Name="custkey" Type="uuid" Nullable="false" />
+          <Property Name="addrkey" Type="uuid" Nullable="false" />
+          <Property Name="addrtype" Type="int2" />
+          <Property Name="addrid" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="customercontacts">
+          <Key>
+            <PropertyRef Name="custkey" />
+            <PropertyRef Name="contactkey" />
+          </Key>
+          <Property Name="custkey" Type="uuid" Nullable="false" />
+          <Property Name="contactkey" Type="uuid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="document">
+          <Key>
+            <PropertyRef Name="documentkey" />
+          </Key>
+          <Property Name="documentkey" Type="uuid" Nullable="false" />
+          <Property Name="documenttype" Type="int2" />
+          <Property Name="createdate" Type="timestamp" />
+          <Property Name="createuserkey" Type="uuid" />
+          <Property Name="originalfilename" Type="varchar" MaxLength="2000" />
+          <Property Name="originalfiletype" Type="varchar" MaxLength="5" />
+          <Property Name="filesizeinmb" Type="int4" />
+        </EntityType>
+        <EntityType Name="documenttype">
+          <Key>
+            <PropertyRef Name="documenttype" />
+          </Key>
+          <Property Name="documenttype" Type="int2" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+          <Property Name="storagepath" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="driver">
+          <Key>
+            <PropertyRef Name="driverkey" />
+          </Key>
+          <Property Name="driverkey" Type="uuid" Nullable="false" />
+          <Property Name="driverid" Type="varchar" MaxLength="20" />
+          <Property Name="firstname" Type="varchar" MaxLength="100" />
+          <Property Name="lastname" Type="varchar" MaxLength="100" />
+          <Property Name="addrkey" Type="uuid" />
+          <Property Name="carrierkey" Type="uuid" />
+          <Property Name="drivinglicenseno" Type="varchar" MaxLength="50" />
+          <Property Name="drivinglicenseexpirydate" Type="date" />
+          <Property Name="createdate" Type="timestamp" />
+          <Property Name="status" Type="int2" />
+          <Property Name="statusdate" Type="timestamp" />
+          <Property Name="vendkey" Type="uuid" />
+        </EntityType>
+        <EntityType Name="invoicedetail">
+          <Key>
+            <PropertyRef Name="invoicelinekey" />
+          </Key>
+          <Property Name="invoicelinekey" Type="uuid" Nullable="false" />
+          <Property Name="invoicekey" Type="uuid" />
+          <Property Name="itemkey" Type="uuid" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="unitprice" Type="numeric" Precision="9" Scale="5" />
+          <Property Name="qty" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="extamt" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="invoiceheader">
+          <Key>
+            <PropertyRef Name="invoicekey" />
+          </Key>
+          <Property Name="invoicekey" Type="uuid" Nullable="false" />
+          <Property Name="invoiceno" Type="int4" />
+          <Property Name="invoicedate" Type="date" />
+          <Property Name="custkey" Type="uuid" />
+          <Property Name="billtoaddrkey" Type="uuid" />
+          <Property Name="billtocopyaddrkey" Type="uuid" />
+          <Property Name="invoiceamount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="duedate" Type="date" />
+          <Property Name="invoicetype" Type="int2" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="itemkey" />
+          </Key>
+          <Property Name="itemkey" Type="uuid" Nullable="false" />
+          <Property Name="itemid" Type="varchar" MaxLength="30" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="itemtype" Type="int2" />
+          <Property Name="unitprice" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="unitcost" Type="numeric" Precision="18" Scale="5" />
+        </EntityType>
+        <EntityType Name="shippingport">
+          <Key>
+            <PropertyRef Name="shippingportkey" />
+          </Key>
+          <Property Name="shippingportkey" Type="uuid" Nullable="false" />
+          <Property Name="shippingportid" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="addrkey" Type="uuid" Nullable="false" />
+          <Property Name="status" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="shippingportterminals">
+          <Key>
+            <PropertyRef Name="terminalkey" />
+          </Key>
+          <Property Name="terminalkey" Type="uuid" Nullable="false" />
+          <Property Name="portkey" Type="uuid" Nullable="false" />
+          <Property Name="addrkey" Type="uuid" />
+          <Property Name="status" Type="int2" />
+        </EntityType>
+        <EntityType Name="tms_containersize">
+          <Key>
+            <PropertyRef Name="containersize" />
+          </Key>
+          <Property Name="containersize" Type="int2" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tms_holdreason">
+          <Key>
+            <PropertyRef Name="holdreason" />
+          </Key>
+          <Property Name="holdreason" Type="int2" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tms_orderdetail">
+          <Key>
+            <PropertyRef Name="orderdetailkey" />
+          </Key>
+          <Property Name="orderdetailkey" Type="uuid" Nullable="false" />
+          <Property Name="orderkey" Type="uuid" Nullable="false" />
+          <Property Name="containerno" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="containersize" Type="int2" Nullable="false" />
+          <Property Name="chassis" Type="varchar" MaxLength="20" />
+          <Property Name="sealno" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="weight" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="apptdatefrom" Type="timestamp" />
+          <Property Name="apptdateto" Type="timestamp" />
+          <Property Name="status" Type="int2" />
+          <Property Name="statusdate" Type="timestamp" />
+          <Property Name="holdreason" Type="int2" />
+          <Property Name="holddate" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="tms_orderdetailcomments">
+          <Key>
+            <PropertyRef Name="orderdetailkey" />
+          </Key>
+          <Property Name="orderdetailkey" Type="uuid" Nullable="false" />
+          <Property Name="commentkey" Type="uuid" Nullable="false" />
+          <Property Name="commenttype" Type="int2" />
+        </EntityType>
+        <EntityType Name="tms_orderdetaildocuments">
+          <Key>
+            <PropertyRef Name="orderdetailkey" />
+            <PropertyRef Name="documentkey" />
+          </Key>
+          <Property Name="orderdetailkey" Type="uuid" Nullable="false" />
+          <Property Name="documentkey" Type="uuid" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'bit' is currently not supported for the target Entity Framework version; the column 'ishazardous' in the table 'App_model.dbo.tms_orderheader' was excluded.-->
+        <EntityType Name="tms_orderheader">
+          <Key>
+            <PropertyRef Name="orderkey" />
+          </Key>
+          <Property Name="orderkey" Type="uuid" Nullable="false" />
+          <Property Name="orderno" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="orderdate" Type="timestamp" Nullable="false" />
+          <Property Name="custkey" Type="uuid" Nullable="false" />
+          <Property Name="billtoaddrkey" Type="uuid" />
+          <Property Name="billtocopyaddrkey" Type="uuid" />
+          <Property Name="sourceaddrkey" Type="uuid" />
+          <Property Name="sourcecopyaddrkey" Type="uuid" />
+          <Property Name="destinationaddrkey" Type="uuid" />
+          <Property Name="destinationcopyaddrkey" Type="uuid" />
+          <Property Name="returnaddrkey" Type="uuid" />
+          <Property Name="returncopyaddrkey" Type="uuid" />
+          <Property Name="source" Type="int2" />
+          <Property Name="ordertype" Type="int2" />
+          <Property Name="status" Type="int2" />
+          <Property Name="statusdate" Type="timestamp" />
+          <Property Name="holdreason" Type="int2" />
+          <Property Name="holddate" Type="timestamp" />
+          <Property Name="brokerkey" Type="uuid" />
+          <Property Name="brokerrefno" Type="varchar" MaxLength="50" />
+          <Property Name="portoforiginkey" Type="uuid" />
+          <Property Name="carrierkey" Type="uuid" />
+          <Property Name="vesselname" Type="varchar" MaxLength="50" />
+          <Property Name="billoflading" Type="varchar" MaxLength="50" />
+          <Property Name="bookingno" Type="varchar" MaxLength="50" />
+          <Property Name="cutoffdate" Type="timestamp" />
+          <Property Name="priority" Type="int2" />
+          <Property Name="createdate" Type="timestamp" />
+          <Property Name="createuserkey" Type="uuid" />
+          <Property Name="lastupdatedate" Type="timestamp" />
+          <Property Name="lastupdateuserkey" Type="uuid" />
+        </EntityType>
+        <EntityType Name="tms_orderheadercomments">
+          <Key>
+            <PropertyRef Name="orderkey" />
+            <PropertyRef Name="commentkey" />
+          </Key>
+          <Property Name="orderkey" Type="uuid" Nullable="false" />
+          <Property Name="commentkey" Type="uuid" Nullable="false" />
+          <Property Name="commenttype" Type="int2" />
+        </EntityType>
+        <EntityType Name="tms_orderheaderdocuments">
+          <Key>
+            <PropertyRef Name="orderkey" />
+            <PropertyRef Name="documentkey" />
+          </Key>
+          <Property Name="orderkey" Type="uuid" Nullable="false" />
+          <Property Name="documentkey" Type="uuid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tms_orderinvoices">
+          <Key>
+            <PropertyRef Name="orderdetailkey" />
+            <PropertyRef Name="invoicekey" />
+          </Key>
+          <Property Name="orderdetailkey" Type="uuid" Nullable="false" />
+          <Property Name="invoicekey" Type="uuid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tms_ordersource">
+          <Key>
+            <PropertyRef Name="source" />
+          </Key>
+          <Property Name="source" Type="int2" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tms_orderstatus">
+          <Key>
+            <PropertyRef Name="status" />
+          </Key>
+          <Property Name="status" Type="int2" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="orderby" Type="int2" />
+        </EntityType>
+        <EntityType Name="tms_ordertype">
+          <Key>
+            <PropertyRef Name="ordertype" />
+          </Key>
+          <Property Name="ordertype" Type="int2" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tms_priority">
+          <Key>
+            <PropertyRef Name="priority" />
+          </Key>
+          <Property Name="priority" Type="int2" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="20" />
+          <Property Name="colorcode" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tms_routes">
+          <Key>
+            <PropertyRef Name="routekey" />
+          </Key>
+          <Property Name="routekey" Type="uuid" Nullable="false" />
+          <Property Name="orderdetailkey" Type="uuid" />
+          <Property Name="orderkey" Type="uuid" />
+          <Property Name="legno" Type="int2" />
+          <Property Name="legtype" Type="int2" />
+          <Property Name="sourceaddrkey" Type="uuid" />
+          <Property Name="destinationaddrkey" Type="uuid" />
+          <Property Name="estimateddistanceinmiles" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="estimatedtraveltime" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="status" Type="int2" />
+          <Property Name="driverkey" Type="uuid" />
+          <Property Name="scheduledarrival" Type="timestamp" />
+          <Property Name="scheduleddeparture" Type="timestamp" />
+          <Property Name="odometeratsource" Type="int2" />
+          <Property Name="actualarrival" Type="timestamp" />
+          <Property Name="actualdeparture" Type="timestamp" />
+          <Property Name="odometeratdestination" Type="int2" />
+        </EntityType>
+        <EntityType Name="tms_routevouchers">
+          <Key>
+            <PropertyRef Name="routekey" />
+            <PropertyRef Name="voucherkey" />
+          </Key>
+          <Property Name="routekey" Type="uuid" Nullable="false" />
+          <Property Name="voucherkey" Type="uuid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userinfo">
+          <Key>
+            <PropertyRef Name="userkey" />
+          </Key>
+          <Property Name="userkey" Type="uuid" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="255" />
+          <Property Name="lastname" Type="varchar" MaxLength="255" />
+          <Property Name="usertype" Type="int2" />
+          <Property Name="usertyperefkey" Type="uuid" />
+        </EntityType>
+        <EntityType Name="userroles">
+          <Key>
+            <PropertyRef Name="userkey" />
+            <PropertyRef Name="rolekey" />
+          </Key>
+          <Property Name="userkey" Type="uuid" Nullable="false" />
+          <Property Name="rolekey" Type="uuid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vendor">
+          <Key>
+            <PropertyRef Name="vendkey" />
+          </Key>
+          <Property Name="vendkey" Type="uuid" Nullable="false" />
+          <Property Name="vendid" Type="varchar" MaxLength="20" />
+          <Property Name="vendname" Type="varchar" MaxLength="255" />
+          <Property Name="addrkey" Type="uuid" />
+          <Property Name="status" Type="int2" />
+          <Property Name="statusdate" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="voucherdetail">
+          <Key>
+            <PropertyRef Name="voucherlinekey" />
+          </Key>
+          <Property Name="voucherlinekey" Type="uuid" Nullable="false" />
+          <Property Name="voucherkey" Type="uuid" />
+          <Property Name="itemkey" Type="uuid" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="unitcost" Type="numeric" Precision="9" Scale="5" />
+          <Property Name="qty" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="extcost" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'bit' is currently not supported for the target Entity Framework version; the column 'ispaymentapproved' in the table 'App_model.dbo.voucherheader' was excluded.-->
+        <EntityType Name="voucherheader">
+          <Key>
+            <PropertyRef Name="voucherkey" />
+          </Key>
+          <Property Name="voucherkey" Type="uuid" Nullable="false" />
+          <Property Name="voucherno" Type="int4" />
+          <Property Name="voucherdate" Type="date" />
+          <Property Name="vendkey" Type="uuid" />
+          <Property Name="billtoaddrkey" Type="uuid" />
+          <Property Name="billtocopyaddrkey" Type="uuid" />
+          <Property Name="voucheramount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="duedate" Type="date" />
+        </EntityType>
+        <EntityType Name="warehouse">
+          <Key>
+            <PropertyRef Name="warehousekey" />
+          </Key>
+          <Property Name="warehousekey" Type="uuid" Nullable="false" />
+          <Property Name="warehouseid" Type="varchar" MaxLength="10" />
+          <Property Name="addrkey" Type="uuid" />
+          <Property Name="status" Type="int2" />
+        </EntityType>
+        <Association Name="fk_broker_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="broker" Type="Self.broker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="broker">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_brokercontacts_broker">
+          <End Role="broker" Type="Self.broker" Multiplicity="1" />
+          <End Role="brokercontacts" Type="Self.brokercontacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="broker">
+              <PropertyRef Name="brokerkey" />
+            </Principal>
+            <Dependent Role="brokercontacts">
+              <PropertyRef Name="brokerkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_brokercontacts_contacts">
+          <End Role="contacts" Type="Self.contacts" Multiplicity="1" />
+          <End Role="brokercontacts" Type="Self.brokercontacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contacts">
+              <PropertyRef Name="contactkey" />
+            </Principal>
+            <Dependent Role="brokercontacts">
+              <PropertyRef Name="contactkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_carrier_address">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="carrier" Type="Self.carrier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="carrier">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_commentdocuments_comment">
+          <End Role="comment" Type="Self.comment" Multiplicity="1" />
+          <End Role="commentdocuments" Type="Self.commentdocuments" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="commentkey" />
+            </Principal>
+            <Dependent Role="commentdocuments">
+              <PropertyRef Name="commentkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_commentdocuments_document">
+          <End Role="document" Type="Self.document" Multiplicity="1" />
+          <End Role="commentdocuments" Type="Self.commentdocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document">
+              <PropertyRef Name="documentkey" />
+            </Principal>
+            <Dependent Role="commentdocuments">
+              <PropertyRef Name="documentkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_contacts_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="contacts" Type="Self.contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="contacts">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_customer_address">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_customeraddress_address">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="customeraddress" Type="Self.customeraddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="customeraddress">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_customeraddress_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customeraddress" Type="Self.customeraddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="custkey" />
+            </Principal>
+            <Dependent Role="customeraddress">
+              <PropertyRef Name="custkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_customercontacts_contacts">
+          <End Role="contacts" Type="Self.contacts" Multiplicity="1" />
+          <End Role="customercontacts" Type="Self.customercontacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contacts">
+              <PropertyRef Name="contactkey" />
+            </Principal>
+            <Dependent Role="customercontacts">
+              <PropertyRef Name="contactkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_customercontacts_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customercontacts" Type="Self.customercontacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="custkey" />
+            </Principal>
+            <Dependent Role="customercontacts">
+              <PropertyRef Name="custkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_document_documenttype">
+          <End Role="documenttype" Type="Self.documenttype" Multiplicity="0..1" />
+          <End Role="document" Type="Self.document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="documenttype">
+              <PropertyRef Name="documenttype" />
+            </Principal>
+            <Dependent Role="document">
+              <PropertyRef Name="documenttype" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_driver_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="driver" Type="Self.driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="driver">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_driver_carrier">
+          <End Role="carrier" Type="Self.carrier" Multiplicity="0..1" />
+          <End Role="driver" Type="Self.driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrier">
+              <PropertyRef Name="carrierkey" />
+            </Principal>
+            <Dependent Role="driver">
+              <PropertyRef Name="carrierkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_driver_vendor">
+          <End Role="vendor" Type="Self.vendor" Multiplicity="0..1" />
+          <End Role="driver" Type="Self.driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendkey" />
+            </Principal>
+            <Dependent Role="driver">
+              <PropertyRef Name="vendkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_invoicedetail_invoiceheader">
+          <End Role="invoiceheader" Type="Self.invoiceheader" Multiplicity="0..1" />
+          <End Role="invoicedetail" Type="Self.invoicedetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoiceheader">
+              <PropertyRef Name="invoicekey" />
+            </Principal>
+            <Dependent Role="invoicedetail">
+              <PropertyRef Name="invoicekey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_invoicedetail_item">
+          <End Role="item" Type="Self.item" Multiplicity="0..1" />
+          <End Role="invoicedetail" Type="Self.invoicedetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemkey" />
+            </Principal>
+            <Dependent Role="invoicedetail">
+              <PropertyRef Name="itemkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_shippingport_address">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="shippingport" Type="Self.shippingport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="shippingport">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_shippingportterminals_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="shippingportterminals" Type="Self.shippingportterminals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="shippingportterminals">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_shippingportterminals_shippingport">
+          <End Role="shippingport" Type="Self.shippingport" Multiplicity="1" />
+          <End Role="shippingportterminals" Type="Self.shippingportterminals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shippingport">
+              <PropertyRef Name="shippingportkey" />
+            </Principal>
+            <Dependent Role="shippingportterminals">
+              <PropertyRef Name="portkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetail_tms_containersize1">
+          <End Role="tms_containersize" Type="Self.tms_containersize" Multiplicity="1" />
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_containersize">
+              <PropertyRef Name="containersize" />
+            </Principal>
+            <Dependent Role="tms_orderdetail">
+              <PropertyRef Name="containersize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetail_tms_holdreason">
+          <End Role="tms_holdreason" Type="Self.tms_holdreason" Multiplicity="0..1" />
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_holdreason">
+              <PropertyRef Name="holdreason" />
+            </Principal>
+            <Dependent Role="tms_orderdetail">
+              <PropertyRef Name="holdreason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetail_tms_orderheader">
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="1" />
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderheader">
+              <PropertyRef Name="orderkey" />
+            </Principal>
+            <Dependent Role="tms_orderdetail">
+              <PropertyRef Name="orderkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetailcomments_comment">
+          <End Role="comment" Type="Self.comment" Multiplicity="1" />
+          <End Role="tms_orderdetailcomments" Type="Self.tms_orderdetailcomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="commentkey" />
+            </Principal>
+            <Dependent Role="tms_orderdetailcomments">
+              <PropertyRef Name="commentkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetailcomments_tms_orderdetail">
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="1" />
+          <End Role="tms_orderdetailcomments" Type="Self.tms_orderdetailcomments" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderdetail">
+              <PropertyRef Name="orderdetailkey" />
+            </Principal>
+            <Dependent Role="tms_orderdetailcomments">
+              <PropertyRef Name="orderdetailkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetaildocuments_document">
+          <End Role="document" Type="Self.document" Multiplicity="1" />
+          <End Role="tms_orderdetaildocuments" Type="Self.tms_orderdetaildocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document">
+              <PropertyRef Name="documentkey" />
+            </Principal>
+            <Dependent Role="tms_orderdetaildocuments">
+              <PropertyRef Name="documentkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetaildocuments_tms_orderdetail">
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="1" />
+          <End Role="tms_orderdetaildocuments" Type="Self.tms_orderdetaildocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderdetail">
+              <PropertyRef Name="orderdetailkey" />
+            </Principal>
+            <Dependent Role="tms_orderdetaildocuments">
+              <PropertyRef Name="orderdetailkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="billtoaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address1">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="billtocopyaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address2">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="sourceaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address3">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="sourcecopyaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address4">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="destinationaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address5">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="destinationcopyaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address6">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="returnaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address7">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="returncopyaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="custkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="custkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_holdreason">
+          <End Role="tms_holdreason" Type="Self.tms_holdreason" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_holdreason">
+              <PropertyRef Name="holdreason" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="holdreason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_ordersource">
+          <End Role="tms_ordersource" Type="Self.tms_ordersource" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_ordersource">
+              <PropertyRef Name="source" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="source" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_orderstatus">
+          <End Role="tms_orderstatus" Type="Self.tms_orderstatus" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderstatus">
+              <PropertyRef Name="status" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_ordertype">
+          <End Role="tms_ordertype" Type="Self.tms_ordertype" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_ordertype">
+              <PropertyRef Name="ordertype" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="ordertype" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_priority">
+          <End Role="tms_priority" Type="Self.tms_priority" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_priority">
+              <PropertyRef Name="priority" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="priority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_priority1">
+          <End Role="tms_priority" Type="Self.tms_priority" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_priority">
+              <PropertyRef Name="priority" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="priority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheadercomments_comment">
+          <End Role="comment" Type="Self.comment" Multiplicity="1" />
+          <End Role="tms_orderheadercomments" Type="Self.tms_orderheadercomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="commentkey" />
+            </Principal>
+            <Dependent Role="tms_orderheadercomments">
+              <PropertyRef Name="commentkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheadercomments_tms_orderheader">
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="1" />
+          <End Role="tms_orderheadercomments" Type="Self.tms_orderheadercomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderheader">
+              <PropertyRef Name="orderkey" />
+            </Principal>
+            <Dependent Role="tms_orderheadercomments">
+              <PropertyRef Name="orderkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheaderdocuments_document">
+          <End Role="document" Type="Self.document" Multiplicity="1" />
+          <End Role="tms_orderheaderdocuments" Type="Self.tms_orderheaderdocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document">
+              <PropertyRef Name="documentkey" />
+            </Principal>
+            <Dependent Role="tms_orderheaderdocuments">
+              <PropertyRef Name="documentkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheaderdocuments_tms_orderheader">
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="1" />
+          <End Role="tms_orderheaderdocuments" Type="Self.tms_orderheaderdocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderheader">
+              <PropertyRef Name="orderkey" />
+            </Principal>
+            <Dependent Role="tms_orderheaderdocuments">
+              <PropertyRef Name="orderkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderinvoices_invoiceheader">
+          <End Role="invoiceheader" Type="Self.invoiceheader" Multiplicity="1" />
+          <End Role="tms_orderinvoices" Type="Self.tms_orderinvoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoiceheader">
+              <PropertyRef Name="invoicekey" />
+            </Principal>
+            <Dependent Role="tms_orderinvoices">
+              <PropertyRef Name="invoicekey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderinvoices_tms_orderdetail">
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="1" />
+          <End Role="tms_orderinvoices" Type="Self.tms_orderinvoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderdetail">
+              <PropertyRef Name="orderdetailkey" />
+            </Principal>
+            <Dependent Role="tms_orderinvoices">
+              <PropertyRef Name="orderdetailkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routes_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_routes">
+              <PropertyRef Name="sourceaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routes_address1">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_routes">
+              <PropertyRef Name="destinationaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routes_driver">
+          <End Role="driver" Type="Self.driver" Multiplicity="0..1" />
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="driver">
+              <PropertyRef Name="driverkey" />
+            </Principal>
+            <Dependent Role="tms_routes">
+              <PropertyRef Name="driverkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routes_tms_orderdetail">
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="0..1" />
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderdetail">
+              <PropertyRef Name="orderdetailkey" />
+            </Principal>
+            <Dependent Role="tms_routes">
+              <PropertyRef Name="orderdetailkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routes_tms_orderheader">
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="0..1" />
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderheader">
+              <PropertyRef Name="orderkey" />
+            </Principal>
+            <Dependent Role="tms_routes">
+              <PropertyRef Name="orderkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routevouchers_tms_routes">
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="1" />
+          <End Role="tms_routevouchers" Type="Self.tms_routevouchers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_routes">
+              <PropertyRef Name="routekey" />
+            </Principal>
+            <Dependent Role="tms_routevouchers">
+              <PropertyRef Name="routekey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routevouchers_voucherheader">
+          <End Role="voucherheader" Type="Self.voucherheader" Multiplicity="1" />
+          <End Role="tms_routevouchers" Type="Self.tms_routevouchers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voucherheader">
+              <PropertyRef Name="voucherkey" />
+            </Principal>
+            <Dependent Role="tms_routevouchers">
+              <PropertyRef Name="voucherkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userroles_approles">
+          <End Role="approles" Type="Self.approles" Multiplicity="1" />
+          <End Role="userroles" Type="Self.userroles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="approles">
+              <PropertyRef Name="rolekey" />
+            </Principal>
+            <Dependent Role="userroles">
+              <PropertyRef Name="rolekey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userroles_userinfo">
+          <End Role="userinfo" Type="Self.userinfo" Multiplicity="1" />
+          <End Role="userroles" Type="Self.userroles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userinfo">
+              <PropertyRef Name="userkey" />
+            </Principal>
+            <Dependent Role="userroles">
+              <PropertyRef Name="userkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_voucherdetail_item">
+          <End Role="item" Type="Self.item" Multiplicity="0..1" />
+          <End Role="voucherdetail" Type="Self.voucherdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemkey" />
+            </Principal>
+            <Dependent Role="voucherdetail">
+              <PropertyRef Name="itemkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_voucherdetail_voucherheader">
+          <End Role="voucherheader" Type="Self.voucherheader" Multiplicity="0..1" />
+          <End Role="voucherdetail" Type="Self.voucherdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voucherheader">
+              <PropertyRef Name="voucherkey" />
+            </Principal>
+            <Dependent Role="voucherdetail">
+              <PropertyRef Name="voucherkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_voucherheader_vendor">
+          <End Role="vendor" Type="Self.vendor" Multiplicity="0..1" />
+          <End Role="voucherheader" Type="Self.voucherheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendkey" />
+            </Principal>
+            <Dependent Role="voucherheader">
+              <PropertyRef Name="vendkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_warehouse_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="warehouse" Type="Self.warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="warehouse">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="App_modelModelStoreContainer">
+          <EntitySet Name="address" EntityType="Self.address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="approles" EntityType="Self.approles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="broker" EntityType="Self.broker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="brokercontacts" EntityType="Self.brokercontacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="carrier" EntityType="Self.carrier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comment" EntityType="Self.comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="commentdocuments" EntityType="Self.commentdocuments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contacts" EntityType="Self.contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customeraddress" EntityType="Self.customeraddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customercontacts" EntityType="Self.customercontacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="document" EntityType="Self.document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="documenttype" EntityType="Self.documenttype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="driver" EntityType="Self.driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoicedetail" EntityType="Self.invoicedetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoiceheader" EntityType="Self.invoiceheader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="item" EntityType="Self.item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shippingport" EntityType="Self.shippingport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shippingportterminals" EntityType="Self.shippingportterminals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_containersize" EntityType="Self.tms_containersize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_holdreason" EntityType="Self.tms_holdreason" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_orderdetail" EntityType="Self.tms_orderdetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_orderdetailcomments" EntityType="Self.tms_orderdetailcomments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_orderdetaildocuments" EntityType="Self.tms_orderdetaildocuments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_orderheader" EntityType="Self.tms_orderheader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_orderheadercomments" EntityType="Self.tms_orderheadercomments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_orderheaderdocuments" EntityType="Self.tms_orderheaderdocuments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_orderinvoices" EntityType="Self.tms_orderinvoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_ordersource" EntityType="Self.tms_ordersource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_orderstatus" EntityType="Self.tms_orderstatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_ordertype" EntityType="Self.tms_ordertype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_priority" EntityType="Self.tms_priority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_routes" EntityType="Self.tms_routes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tms_routevouchers" EntityType="Self.tms_routevouchers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userinfo" EntityType="Self.userinfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userroles" EntityType="Self.userroles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vendor" EntityType="Self.vendor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="voucherdetail" EntityType="Self.voucherdetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="voucherheader" EntityType="Self.voucherheader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="warehouse" EntityType="Self.warehouse" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_broker_address" Association="Self.fk_broker_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="broker" EntitySet="broker" />
+          </AssociationSet>
+          <AssociationSet Name="fk_brokercontacts_broker" Association="Self.fk_brokercontacts_broker">
+            <End Role="broker" EntitySet="broker" />
+            <End Role="brokercontacts" EntitySet="brokercontacts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_brokercontacts_contacts" Association="Self.fk_brokercontacts_contacts">
+            <End Role="contacts" EntitySet="contacts" />
+            <End Role="brokercontacts" EntitySet="brokercontacts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_carrier_address" Association="Self.fk_carrier_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="carrier" EntitySet="carrier" />
+          </AssociationSet>
+          <AssociationSet Name="fk_commentdocuments_comment" Association="Self.fk_commentdocuments_comment">
+            <End Role="comment" EntitySet="comment" />
+            <End Role="commentdocuments" EntitySet="commentdocuments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_commentdocuments_document" Association="Self.fk_commentdocuments_document">
+            <End Role="document" EntitySet="document" />
+            <End Role="commentdocuments" EntitySet="commentdocuments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_contacts_address" Association="Self.fk_contacts_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="contacts" EntitySet="contacts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_customer_address" Association="Self.fk_customer_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="customer" EntitySet="customer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_customeraddress_address" Association="Self.fk_customeraddress_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="customeraddress" EntitySet="customeraddress" />
+          </AssociationSet>
+          <AssociationSet Name="fk_customeraddress_customer" Association="Self.fk_customeraddress_customer">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customeraddress" EntitySet="customeraddress" />
+          </AssociationSet>
+          <AssociationSet Name="fk_customercontacts_contacts" Association="Self.fk_customercontacts_contacts">
+            <End Role="contacts" EntitySet="contacts" />
+            <End Role="customercontacts" EntitySet="customercontacts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_customercontacts_customer" Association="Self.fk_customercontacts_customer">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customercontacts" EntitySet="customercontacts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_document_documenttype" Association="Self.fk_document_documenttype">
+            <End Role="documenttype" EntitySet="documenttype" />
+            <End Role="document" EntitySet="document" />
+          </AssociationSet>
+          <AssociationSet Name="fk_driver_address" Association="Self.fk_driver_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="driver" EntitySet="driver" />
+          </AssociationSet>
+          <AssociationSet Name="fk_driver_carrier" Association="Self.fk_driver_carrier">
+            <End Role="carrier" EntitySet="carrier" />
+            <End Role="driver" EntitySet="driver" />
+          </AssociationSet>
+          <AssociationSet Name="fk_driver_vendor" Association="Self.fk_driver_vendor">
+            <End Role="vendor" EntitySet="vendor" />
+            <End Role="driver" EntitySet="driver" />
+          </AssociationSet>
+          <AssociationSet Name="fk_invoicedetail_invoiceheader" Association="Self.fk_invoicedetail_invoiceheader">
+            <End Role="invoiceheader" EntitySet="invoiceheader" />
+            <End Role="invoicedetail" EntitySet="invoicedetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_invoicedetail_item" Association="Self.fk_invoicedetail_item">
+            <End Role="item" EntitySet="item" />
+            <End Role="invoicedetail" EntitySet="invoicedetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_shippingport_address" Association="Self.fk_shippingport_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="shippingport" EntitySet="shippingport" />
+          </AssociationSet>
+          <AssociationSet Name="fk_shippingportterminals_address" Association="Self.fk_shippingportterminals_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="shippingportterminals" EntitySet="shippingportterminals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_shippingportterminals_shippingport" Association="Self.fk_shippingportterminals_shippingport">
+            <End Role="shippingport" EntitySet="shippingport" />
+            <End Role="shippingportterminals" EntitySet="shippingportterminals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetail_tms_containersize1" Association="Self.fk_tms_orderdetail_tms_containersize1">
+            <End Role="tms_containersize" EntitySet="tms_containersize" />
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetail_tms_holdreason" Association="Self.fk_tms_orderdetail_tms_holdreason">
+            <End Role="tms_holdreason" EntitySet="tms_holdreason" />
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetail_tms_orderheader" Association="Self.fk_tms_orderdetail_tms_orderheader">
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetailcomments_comment" Association="Self.fk_tms_orderdetailcomments_comment">
+            <End Role="comment" EntitySet="comment" />
+            <End Role="tms_orderdetailcomments" EntitySet="tms_orderdetailcomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetailcomments_tms_orderdetail" Association="Self.fk_tms_orderdetailcomments_tms_orderdetail">
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+            <End Role="tms_orderdetailcomments" EntitySet="tms_orderdetailcomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetaildocuments_document" Association="Self.fk_tms_orderdetaildocuments_document">
+            <End Role="document" EntitySet="document" />
+            <End Role="tms_orderdetaildocuments" EntitySet="tms_orderdetaildocuments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetaildocuments_tms_orderdetail" Association="Self.fk_tms_orderdetaildocuments_tms_orderdetail">
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+            <End Role="tms_orderdetaildocuments" EntitySet="tms_orderdetaildocuments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address" Association="Self.fk_tms_orderheader_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address1" Association="Self.fk_tms_orderheader_address1">
+            <End Role="address" EntitySet="address" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address2" Association="Self.fk_tms_orderheader_address2">
+            <End Role="address" EntitySet="address" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address3" Association="Self.fk_tms_orderheader_address3">
+            <End Role="address" EntitySet="address" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address4" Association="Self.fk_tms_orderheader_address4">
+            <End Role="address" EntitySet="address" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address5" Association="Self.fk_tms_orderheader_address5">
+            <End Role="address" EntitySet="address" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address6" Association="Self.fk_tms_orderheader_address6">
+            <End Role="address" EntitySet="address" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address7" Association="Self.fk_tms_orderheader_address7">
+            <End Role="address" EntitySet="address" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_customer" Association="Self.fk_tms_orderheader_customer">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_holdreason" Association="Self.fk_tms_orderheader_tms_holdreason">
+            <End Role="tms_holdreason" EntitySet="tms_holdreason" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_ordersource" Association="Self.fk_tms_orderheader_tms_ordersource">
+            <End Role="tms_ordersource" EntitySet="tms_ordersource" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_orderstatus" Association="Self.fk_tms_orderheader_tms_orderstatus">
+            <End Role="tms_orderstatus" EntitySet="tms_orderstatus" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_ordertype" Association="Self.fk_tms_orderheader_tms_ordertype">
+            <End Role="tms_ordertype" EntitySet="tms_ordertype" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_priority" Association="Self.fk_tms_orderheader_tms_priority">
+            <End Role="tms_priority" EntitySet="tms_priority" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_priority1" Association="Self.fk_tms_orderheader_tms_priority1">
+            <End Role="tms_priority" EntitySet="tms_priority" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheadercomments_comment" Association="Self.fk_tms_orderheadercomments_comment">
+            <End Role="comment" EntitySet="comment" />
+            <End Role="tms_orderheadercomments" EntitySet="tms_orderheadercomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheadercomments_tms_orderheader" Association="Self.fk_tms_orderheadercomments_tms_orderheader">
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+            <End Role="tms_orderheadercomments" EntitySet="tms_orderheadercomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheaderdocuments_document" Association="Self.fk_tms_orderheaderdocuments_document">
+            <End Role="document" EntitySet="document" />
+            <End Role="tms_orderheaderdocuments" EntitySet="tms_orderheaderdocuments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheaderdocuments_tms_orderheader" Association="Self.fk_tms_orderheaderdocuments_tms_orderheader">
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+            <End Role="tms_orderheaderdocuments" EntitySet="tms_orderheaderdocuments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderinvoices_invoiceheader" Association="Self.fk_tms_orderinvoices_invoiceheader">
+            <End Role="invoiceheader" EntitySet="invoiceheader" />
+            <End Role="tms_orderinvoices" EntitySet="tms_orderinvoices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderinvoices_tms_orderdetail" Association="Self.fk_tms_orderinvoices_tms_orderdetail">
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+            <End Role="tms_orderinvoices" EntitySet="tms_orderinvoices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routes_address" Association="Self.fk_tms_routes_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="tms_routes" EntitySet="tms_routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routes_address1" Association="Self.fk_tms_routes_address1">
+            <End Role="address" EntitySet="address" />
+            <End Role="tms_routes" EntitySet="tms_routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routes_driver" Association="Self.fk_tms_routes_driver">
+            <End Role="driver" EntitySet="driver" />
+            <End Role="tms_routes" EntitySet="tms_routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routes_tms_orderdetail" Association="Self.fk_tms_routes_tms_orderdetail">
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+            <End Role="tms_routes" EntitySet="tms_routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routes_tms_orderheader" Association="Self.fk_tms_routes_tms_orderheader">
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+            <End Role="tms_routes" EntitySet="tms_routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routevouchers_tms_routes" Association="Self.fk_tms_routevouchers_tms_routes">
+            <End Role="tms_routes" EntitySet="tms_routes" />
+            <End Role="tms_routevouchers" EntitySet="tms_routevouchers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routevouchers_voucherheader" Association="Self.fk_tms_routevouchers_voucherheader">
+            <End Role="voucherheader" EntitySet="voucherheader" />
+            <End Role="tms_routevouchers" EntitySet="tms_routevouchers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userroles_approles" Association="Self.fk_userroles_approles">
+            <End Role="approles" EntitySet="approles" />
+            <End Role="userroles" EntitySet="userroles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userroles_userinfo" Association="Self.fk_userroles_userinfo">
+            <End Role="userinfo" EntitySet="userinfo" />
+            <End Role="userroles" EntitySet="userroles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_voucherdetail_item" Association="Self.fk_voucherdetail_item">
+            <End Role="item" EntitySet="item" />
+            <End Role="voucherdetail" EntitySet="voucherdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_voucherdetail_voucherheader" Association="Self.fk_voucherdetail_voucherheader">
+            <End Role="voucherheader" EntitySet="voucherheader" />
+            <End Role="voucherdetail" EntitySet="voucherdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_voucherheader_vendor" Association="Self.fk_voucherheader_vendor">
+            <End Role="vendor" EntitySet="vendor" />
+            <End Role="voucherheader" EntitySet="voucherheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_warehouse_address" Association="Self.fk_warehouse_address">
+            <End Role="address" EntitySet="address" />
+            <End Role="warehouse" EntitySet="warehouse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="App_modelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="address">
+          <Key>
+            <PropertyRef Name="addrkey" />
+          </Key>
+          <Property Name="addrkey" Type="Guid" Nullable="false" />
+          <Property Name="addrname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="zipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="brokers" Relationship="Self.fk_broker_address" FromRole="address" ToRole="broker" />
+          <NavigationProperty Name="carriers" Relationship="Self.fk_carrier_address" FromRole="address" ToRole="carrier" />
+          <NavigationProperty Name="contacts" Relationship="Self.fk_contacts_address" FromRole="address" ToRole="contacts" />
+          <NavigationProperty Name="customers" Relationship="Self.fk_customer_address" FromRole="address" ToRole="customer" />
+          <NavigationProperty Name="customeraddresses" Relationship="Self.fk_customeraddress_address" FromRole="address" ToRole="customeraddress" />
+          <NavigationProperty Name="drivers" Relationship="Self.fk_driver_address" FromRole="address" ToRole="driver" />
+          <NavigationProperty Name="shippingports" Relationship="Self.fk_shippingport_address" FromRole="address" ToRole="shippingport" />
+          <NavigationProperty Name="shippingportterminals" Relationship="Self.fk_shippingportterminals_address" FromRole="address" ToRole="shippingportterminals" />
+          <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_orderheader_address" FromRole="address" ToRole="tms_orderheader" />
+          <NavigationProperty Name="tms_orderheader1" Relationship="Self.fk_tms_orderheader_address1" FromRole="address" ToRole="tms_orderheader" />
+          <NavigationProperty Name="tms_orderheader2" Relationship="Self.fk_tms_orderheader_address2" FromRole="address" ToRole="tms_orderheader" />
+          <NavigationProperty Name="tms_orderheader3" Relationship="Self.fk_tms_orderheader_address3" FromRole="address" ToRole="tms_orderheader" />
+          <NavigationProperty Name="tms_orderheader4" Relationship="Self.fk_tms_orderheader_address4" FromRole="address" ToRole="tms_orderheader" />
+          <NavigationProperty Name="tms_orderheader5" Relationship="Self.fk_tms_orderheader_address5" FromRole="address" ToRole="tms_orderheader" />
+          <NavigationProperty Name="tms_orderheader6" Relationship="Self.fk_tms_orderheader_address6" FromRole="address" ToRole="tms_orderheader" />
+          <NavigationProperty Name="tms_orderheader7" Relationship="Self.fk_tms_orderheader_address7" FromRole="address" ToRole="tms_orderheader" />
+          <NavigationProperty Name="tms_routes" Relationship="Self.fk_tms_routes_address" FromRole="address" ToRole="tms_routes" />
+          <NavigationProperty Name="tms_routes1" Relationship="Self.fk_tms_routes_address1" FromRole="address" ToRole="tms_routes" />
+          <NavigationProperty Name="warehouses" Relationship="Self.fk_warehouse_address" FromRole="address" ToRole="warehouse" />
+        </EntityType>
+        <EntityType Name="approle">
+          <Key>
+            <PropertyRef Name="rolekey" />
+          </Key>
+          <Property Name="rolekey" Type="Guid" Nullable="false" />
+          <Property Name="descrption" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="userinfoes" Relationship="Self.userroles" FromRole="approles" ToRole="userinfo" />
+        </EntityType>
+        <EntityType Name="broker">
+          <Key>
+            <PropertyRef Name="brokerkey" />
+          </Key>
+          <Property Name="brokerkey" Type="Guid" Nullable="false" />
+          <Property Name="brokerid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="brokername" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="addrkey" Type="Guid" />
+          <Property Name="createdate" Type="DateTime" Precision="6" />
+          <Property Name="status" Type="Int16" />
+          <Property Name="statusdate" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="address" Relationship="Self.fk_broker_address" FromRole="broker" ToRole="address" />
+          <NavigationProperty Name="contacts" Relationship="Self.brokercontacts" FromRole="broker" ToRole="contacts" />
+        </EntityType>
+        <EntityType Name="carrier">
+          <Key>
+            <PropertyRef Name="carrierkey" />
+          </Key>
+          <Property Name="carrierkey" Type="Guid" Nullable="false" />
+          <Property Name="carrierid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="carriername" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="addrkey" Type="Guid" Nullable="false" />
+          <Property Name="scaccode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="licenseplate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="licenseplateexpirydate" Type="DateTime" Precision="0" />
+          <Property Name="createdate" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="status" Type="Int16" Nullable="false" />
+          <Property Name="statusdate" Type="DateTime" Precision="6" Nullable="false" />
+          <NavigationProperty Name="address" Relationship="Self.fk_carrier_address" FromRole="carrier" ToRole="address" />
+          <NavigationProperty Name="drivers" Relationship="Self.fk_driver_carrier" FromRole="carrier" ToRole="driver" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="commentkey" />
+          </Key>
+          <Property Name="commentkey" Type="Guid" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="8000" FixedLength="false" Unicode="true" />
+          <Property Name="createdate" Type="DateTime" Precision="6" />
+          <Property Name="createuserkey" Type="Guid" />
+          <NavigationProperty Name="tms_orderdetailcomments" Relationship="Self.fk_tms_orderdetailcomments_comment" FromRole="comment" ToRole="tms_orderdetailcomments" />
+          <NavigationProperty Name="tms_orderheadercomments" Relationship="Self.fk_tms_orderheadercomments_comment" FromRole="comment" ToRole="tms_orderheadercomments" />
+          <NavigationProperty Name="document" Relationship="Self.commentdocuments" FromRole="comment" ToRole="document" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="contactkey" />
+          </Key>
+          <Property Name="contactkey" Type="Guid" Nullable="false" />
+          <Property Name="contactid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="contacttype" Type="Int16" />
+          <Property Name="addrkey" Type="Guid" />
+          <NavigationProperty Name="address" Relationship="Self.fk_contacts_address" FromRole="contacts" ToRole="address" />
+          <NavigationProperty Name="brokers" Relationship="Self.brokercontacts" FromRole="contacts" ToRole="broker" />
+          <NavigationProperty Name="customers" Relationship="Self.customercontacts" FromRole="contacts" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="custkey" />
+          </Key>
+          <Property Name="custkey" Type="Guid" Nullable="false" />
+          <Property Name="custid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="custname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="addrkey" Type="Guid" Nullable="false" />
+          <Property Name="createdate" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="customergroup" Type="Int16" />
+          <Property Name="status" Type="Int16" Nullable="false" />
+          <Property Name="statusdate" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="creditlimit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="creditstatus" Type="Int16" />
+          <NavigationProperty Name="address" Relationship="Self.fk_customer_address" FromRole="customer" ToRole="address" />
+          <NavigationProperty Name="customeraddresses" Relationship="Self.fk_customeraddress_customer" FromRole="customer" ToRole="customeraddress" />
+          <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_orderheader_customer" FromRole="customer" ToRole="tms_orderheader" />
+          <NavigationProperty Name="contacts" Relationship="Self.customercontacts" FromRole="customer" ToRole="contacts" />
+        </EntityType>
+        <EntityType Name="customeraddress">
+          <Key>
+            <PropertyRef Name="custkey" />
+            <PropertyRef Name="addrkey" />
+          </Key>
+          <Property Name="custkey" Type="Guid" Nullable="false" />
+          <Property Name="addrkey" Type="Guid" Nullable="false" />
+          <Property Name="addrtype" Type="Int16" />
+          <Property Name="addrid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="address" Relationship="Self.fk_customeraddress_address" FromRole="customeraddress" ToRole="address" />
+          <NavigationProperty Name="customer" Relationship="Self.fk_customeraddress_customer" FromRole="customeraddress" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="document">
+          <Key>
+            <PropertyRef Name="documentkey" />
+          </Key>
+          <Property Name="documentkey" Type="Guid" Nullable="false" />
+          <Property Name="documenttype" Type="Int16" />
+          <Property Name="createdate" Type="DateTime" Precision="6" />
+          <Property Name="createuserkey" Type="Guid" />
+          <Property Name="originalfilename" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="originalfiletype" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="filesizeinmb" Type="Int32" />
+          <NavigationProperty Name="documenttype1" Relationship="Self.fk_document_documenttype" FromRole="document" ToRole="documenttype" />
+          <NavigationProperty Name="comments" Relationship="Self.commentdocuments" FromRole="document" ToRole="comment" />
+          <NavigationProperty Name="tms_orderdetail" Relationship="Self.tms_orderdetaildocuments" FromRole="document" ToRole="tms_orderdetail" />
+          <NavigationProperty Name="tms_orderheader" Relationship="Self.tms_orderheaderdocuments" FromRole="document" ToRole="tms_orderheader" />
+        </EntityType>
+        <EntityType Name="documenttype">
+          <Key>
+            <PropertyRef Name="documenttype1" />
+          </Key>
+          <Property Name="documenttype1" Type="Int16" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="storagepath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="documents" Relationship="Self.fk_document_documenttype" FromRole="documenttype" ToRole="document" />
+        </EntityType>
+        <EntityType Name="driver">
+          <Key>
+            <PropertyRef Name="driverkey" />
+          </Key>
+          <Property Name="driverkey" Type="Guid" Nullable="false" />
+          <Property Name="driverid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="addrkey" Type="Guid" />
+          <Property Name="carrierkey" Type="Guid" />
+          <Property Name="drivinglicenseno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="drivinglicenseexpirydate" Type="DateTime" Precision="0" />
+          <Property Name="createdate" Type="DateTime" Precision="6" />
+          <Property Name="status" Type="Int16" />
+          <Property Name="statusdate" Type="DateTime" Precision="6" />
+          <Property Name="vendkey" Type="Guid" />
+          <NavigationProperty Name="address" Relationship="Self.fk_driver_address" FromRole="driver" ToRole="address" />
+          <NavigationProperty Name="carrier" Relationship="Self.fk_driver_carrier" FromRole="driver" ToRole="carrier" />
+          <NavigationProperty Name="vendor" Relationship="Self.fk_driver_vendor" FromRole="driver" ToRole="vendor" />
+          <NavigationProperty Name="tms_routes" Relationship="Self.fk_tms_routes_driver" FromRole="driver" ToRole="tms_routes" />
+        </EntityType>
+        <EntityType Name="invoicedetail">
+          <Key>
+            <PropertyRef Name="invoicelinekey" />
+          </Key>
+          <Property Name="invoicelinekey" Type="Guid" Nullable="false" />
+          <Property Name="invoicekey" Type="Guid" />
+          <Property Name="itemkey" Type="Guid" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="unitprice" Type="Decimal" Precision="9" Scale="5" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="extamt" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="invoiceheader" Relationship="Self.fk_invoicedetail_invoiceheader" FromRole="invoicedetail" ToRole="invoiceheader" />
+          <NavigationProperty Name="item" Relationship="Self.fk_invoicedetail_item" FromRole="invoicedetail" ToRole="item" />
+        </EntityType>
+        <EntityType Name="invoiceheader">
+          <Key>
+            <PropertyRef Name="invoicekey" />
+          </Key>
+          <Property Name="invoicekey" Type="Guid" Nullable="false" />
+          <Property Name="invoiceno" Type="Int32" />
+          <Property Name="invoicedate" Type="DateTime" Precision="0" />
+          <Property Name="custkey" Type="Guid" />
+          <Property Name="billtoaddrkey" Type="Guid" />
+          <Property Name="billtocopyaddrkey" Type="Guid" />
+          <Property Name="invoiceamount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="duedate" Type="DateTime" Precision="0" />
+          <Property Name="invoicetype" Type="Int16" />
+          <NavigationProperty Name="invoicedetails" Relationship="Self.fk_invoicedetail_invoiceheader" FromRole="invoiceheader" ToRole="invoicedetail" />
+          <NavigationProperty Name="tms_orderdetail" Relationship="Self.tms_orderinvoices" FromRole="invoiceheader" ToRole="tms_orderdetail" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="itemkey" />
+          </Key>
+          <Property Name="itemkey" Type="Guid" Nullable="false" />
+          <Property Name="itemid" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="itemtype" Type="Int16" />
+          <Property Name="unitprice" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="unitcost" Type="Decimal" Precision="18" Scale="5" />
+          <NavigationProperty Name="invoicedetails" Relationship="Self.fk_invoicedetail_item" FromRole="item" ToRole="invoicedetail" />
+          <NavigationProperty Name="voucherdetails" Relationship="Self.fk_voucherdetail_item" FromRole="item" ToRole="voucherdetail" />
+        </EntityType>
+        <EntityType Name="shippingport">
+          <Key>
+            <PropertyRef Name="shippingportkey" />
+          </Key>
+          <Property Name="shippingportkey" Type="Guid" Nullable="false" />
+          <Property Name="shippingportid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="addrkey" Type="Guid" Nullable="false" />
+          <Property Name="status" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="address" Relationship="Self.fk_shippingport_address" FromRole="shippingport" ToRole="address" />
+          <NavigationProperty Name="shippingportterminals" Relationship="Self.fk_shippingportterminals_shippingport" FromRole="shippingport" ToRole="shippingportterminals" />
+        </EntityType>
+        <EntityType Name="shippingportterminal">
+          <Key>
+            <PropertyRef Name="terminalkey" />
+          </Key>
+          <Property Name="terminalkey" Type="Guid" Nullable="false" />
+          <Property Name="portkey" Type="Guid" Nullable="false" />
+          <Property Name="addrkey" Type="Guid" />
+          <Property Name="status" Type="Int16" />
+          <NavigationProperty Name="address" Relationship="Self.fk_shippingportterminals_address" FromRole="shippingportterminals" ToRole="address" />
+          <NavigationProperty Name="shippingport" Relationship="Self.fk_shippingportterminals_shippingport" FromRole="shippingportterminals" ToRole="shippingport" />
+        </EntityType>
+        <EntityType Name="tms_containersize">
+          <Key>
+            <PropertyRef Name="containersize" />
+          </Key>
+          <Property Name="containersize" Type="Int16" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tms_orderdetail" Relationship="Self.fk_tms_orderdetail_tms_containersize1" FromRole="tms_containersize" ToRole="tms_orderdetail" />
+        </EntityType>
+        <EntityType Name="tms_holdreason">
+          <Key>
+            <PropertyRef Name="holdreason" />
+          </Key>
+          <Property Name="holdreason" Type="Int16" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tms_orderdetail" Relationship="Self.fk_tms_orderdetail_tms_holdreason" FromRole="tms_holdreason" ToRole="tms_orderdetail" />
+          <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_orderheader_tms_holdreason" FromRole="tms_holdreason" ToRole="tms_orderheader" />
+        </EntityType>
+        <EntityType Name="tms_orderdetail">
+          <Key>
+            <PropertyRef Name="orderdetailkey" />
+          </Key>
+          <Property Name="orderdetailkey" Type="Guid" Nullable="false" />
+          <Property Name="orderkey" Type="Guid" Nullable="false" />
+          <Property Name="containerno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="containersize" Type="Int16" Nullable="false" />
+          <Property Name="chassis" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="sealno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="weight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="apptdatefrom" Type="DateTime" Precision="6" />
+          <Property Name="apptdateto" Type="DateTime" Precision="6" />
+          <Property Name="status" Type="Int16" />
+          <Property Name="statusdate" Type="DateTime" Precision="6" />
+          <Property Name="holdreason" Type="Int16" />
+          <Property Name="holddate" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="tms_containersize" Relationship="Self.fk_tms_orderdetail_tms_containersize1" FromRole="tms_orderdetail" ToRole="tms_containersize" />
+          <NavigationProperty Name="tms_holdreason" Relationship="Self.fk_tms_orderdetail_tms_holdreason" FromRole="tms_orderdetail" ToRole="tms_holdreason" />
+          <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_orderdetail_tms_orderheader" FromRole="tms_orderdetail" ToRole="tms_orderheader" />
+          <NavigationProperty Name="tms_orderdetailcomments" Relationship="Self.fk_tms_orderdetailcomments_tms_orderdetail" FromRole="tms_orderdetail" ToRole="tms_orderdetailcomments" />
+          <NavigationProperty Name="tms_routes" Relationship="Self.fk_tms_routes_tms_orderdetail" FromRole="tms_orderdetail" ToRole="tms_routes" />
+          <NavigationProperty Name="documents" Relationship="Self.tms_orderdetaildocuments" FromRole="tms_orderdetail" ToRole="document" />
+          <NavigationProperty Name="invoiceheaders" Relationship="Self.tms_orderinvoices" FromRole="tms_orderdetail" ToRole="invoiceheader" />
+        </EntityType>
+        <EntityType Name="tms_orderdetailcomments">
+          <Key>
+            <PropertyRef Name="orderdetailkey" />
+          </Key>
+          <Property Name="orderdetailkey" Type="Guid" Nullable="false" />
+          <Property Name="commentkey" Type="Guid" Nullable="false" />
+          <Property Name="commenttype" Type="Int16" />
+          <NavigationProperty Name="comment" Relationship="Self.fk_tms_orderdetailcomments_comment" FromRole="tms_orderdetailcomments" ToRole="comment" />
+          <NavigationProperty Name="tms_orderdetail" Relationship="Self.fk_tms_orderdetailcomments_tms_orderdetail" FromRole="tms_orderdetailcomments" ToRole="tms_orderdetail" />
+        </EntityType>
+        <EntityType Name="tms_orderheader">
+          <Key>
+            <PropertyRef Name="orderkey" />
+          </Key>
+          <Property Name="orderkey" Type="Guid" Nullable="false" />
+          <Property Name="orderno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="orderdate" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="custkey" Type="Guid" Nullable="false" />
+          <Property Name="billtoaddrkey" Type="Guid" />
+          <Property Name="billtocopyaddrkey" Type="Guid" />
+          <Property Name="sourceaddrkey" Type="Guid" />
+          <Property Name="sourcecopyaddrkey" Type="Guid" />
+          <Property Name="destinationaddrkey" Type="Guid" />
+          <Property Name="destinationcopyaddrkey" Type="Guid" />
+          <Property Name="returnaddrkey" Type="Guid" />
+          <Property Name="returncopyaddrkey" Type="Guid" />
+          <Property Name="source" Type="Int16" />
+          <Property Name="ordertype" Type="Int16" />
+          <Property Name="status" Type="Int16" />
+          <Property Name="statusdate" Type="DateTime" Precision="6" />
+          <Property Name="holdreason" Type="Int16" />
+          <Property Name="holddate" Type="DateTime" Precision="6" />
+          <Property Name="brokerkey" Type="Guid" />
+          <Property Name="brokerrefno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="portoforiginkey" Type="Guid" />
+          <Property Name="carrierkey" Type="Guid" />
+          <Property Name="vesselname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="billoflading" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bookingno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cutoffdate" Type="DateTime" Precision="6" />
+          <Property Name="priority" Type="Int16" />
+          <Property Name="createdate" Type="DateTime" Precision="6" />
+          <Property Name="createuserkey" Type="Guid" />
+          <Property Name="lastupdatedate" Type="DateTime" Precision="6" />
+          <Property Name="lastupdateuserkey" Type="Guid" />
+          <NavigationProperty Name="address" Relationship="Self.fk_tms_orderheader_address" FromRole="tms_orderheader" ToRole="address" />
+          <NavigationProperty Name="address1" Relationship="Self.fk_tms_orderheader_address1" FromRole="tms_orderheader" ToRole="address" />
+          <NavigationProperty Name="address2" Relationship="Self.fk_tms_orderheader_address2" FromRole="tms_orderheader" ToRole="address" />
+          <NavigationProperty Name="address3" Relationship="Self.fk_tms_orderheader_address3" FromRole="tms_orderheader" ToRole="address" />
+          <NavigationProperty Name="address4" Relationship="Self.fk_tms_orderheader_address4" FromRole="tms_orderheader" ToRole="address" />
+          <NavigationProperty Name="address5" Relationship="Self.fk_tms_orderheader_address5" FromRole="tms_orderheader" ToRole="address" />
+          <NavigationProperty Name="address6" Relationship="Self.fk_tms_orderheader_address6" FromRole="tms_orderheader" ToRole="address" />
+          <NavigationProperty Name="address7" Relationship="Self.fk_tms_orderheader_address7" FromRole="tms_orderheader" ToRole="address" />
+          <NavigationProperty Name="customer" Relationship="Self.fk_tms_orderheader_customer" FromRole="tms_orderheader" ToRole="customer" />
+          <NavigationProperty Name="tms_holdreason" Relationship="Self.fk_tms_orderheader_tms_holdreason" FromRole="tms_orderheader" ToRole="tms_holdreason" />
+          <NavigationProperty Name="tms_orderdetail" Relationship="Self.fk_tms_orderdetail_tms_orderheader" FromRole="tms_orderheader" ToRole="tms_orderdetail" />
+          <NavigationProperty Name="tms_ordersource" Relationship="Self.fk_tms_orderheader_tms_ordersource" FromRole="tms_orderheader" ToRole="tms_ordersource" />
+          <NavigationProperty Name="tms_orderstatus" Relationship="Self.fk_tms_orderheader_tms_orderstatus" FromRole="tms_orderheader" ToRole="tms_orderstatus" />
+          <NavigationProperty Name="tms_ordertype" Relationship="Self.fk_tms_orderheader_tms_ordertype" FromRole="tms_orderheader" ToRole="tms_ordertype" />
+          <NavigationProperty Name="tms_priority" Relationship="Self.fk_tms_orderheader_tms_priority" FromRole="tms_orderheader" ToRole="tms_priority" />
+          <NavigationProperty Name="tms_priority1" Relationship="Self.fk_tms_orderheader_tms_priority1" FromRole="tms_orderheader" ToRole="tms_priority" />
+          <NavigationProperty Name="tms_orderheadercomments" Relationship="Self.fk_tms_orderheadercomments_tms_orderheader" FromRole="tms_orderheader" ToRole="tms_orderheadercomments" />
+          <NavigationProperty Name="tms_routes" Relationship="Self.fk_tms_routes_tms_orderheader" FromRole="tms_orderheader" ToRole="tms_routes" />
+          <NavigationProperty Name="documents" Relationship="Self.tms_orderheaderdocuments" FromRole="tms_orderheader" ToRole="document" />
+        </EntityType>
+        <EntityType Name="tms_orderheadercomments">
+          <Key>
+            <PropertyRef Name="orderkey" />
+            <PropertyRef Name="commentkey" />
+          </Key>
+          <Property Name="orderkey" Type="Guid" Nullable="false" />
+          <Property Name="commentkey" Type="Guid" Nullable="false" />
+          <Property Name="commenttype" Type="Int16" />
+          <NavigationProperty Name="comment" Relationship="Self.fk_tms_orderheadercomments_comment" FromRole="tms_orderheadercomments" ToRole="comment" />
+          <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_orderheadercomments_tms_orderheader" FromRole="tms_orderheadercomments" ToRole="tms_orderheader" />
+        </EntityType>
+        <EntityType Name="tms_ordersource">
+          <Key>
+            <PropertyRef Name="source" />
+          </Key>
+          <Property Name="source" Type="Int16" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_orderheader_tms_ordersource" FromRole="tms_ordersource" ToRole="tms_orderheader" />
+        </EntityType>
+        <EntityType Name="tms_orderstatus">
+          <Key>
+            <PropertyRef Name="status" />
+          </Key>
+          <Property Name="status" Type="Int16" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="orderby" Type="Int16" />
+          <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_orderheader_tms_orderstatus" FromRole="tms_orderstatus" ToRole="tms_orderheader" />
+        </EntityType>
+        <EntityType Name="tms_ordertype">
+          <Key>
+            <PropertyRef Name="ordertype" />
+          </Key>
+          <Property Name="ordertype" Type="Int16" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_orderheader_tms_ordertype" FromRole="tms_ordertype" ToRole="tms_orderheader" />
+        </EntityType>
+        <EntityType Name="tms_priority">
+          <Key>
+            <PropertyRef Name="priority" />
+          </Key>
+          <Property Name="priority" Type="Int16" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="colorcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_orderheader_tms_priority" FromRole="tms_priority" ToRole="tms_orderheader" />
+          <NavigationProperty Name="tms_orderheader1" Relationship="Self.fk_tms_orderheader_tms_priority1" FromRole="tms_priority" ToRole="tms_orderheader" />
+        </EntityType>
+        <EntityType Name="tms_routes">
+          <Key>
+            <PropertyRef Name="routekey" />
+          </Key>
+          <Property Name="routekey" Type="Guid" Nullable="false" />
+          <Property Name="orderdetailkey" Type="Guid" />
+          <Property Name="orderkey" Type="Guid" />
+          <Property Name="legno" Type="Int16" />
+          <Property Name="legtype" Type="Int16" />
+          <Property Name="sourceaddrkey" Type="Guid" />
+          <Property Name="destinationaddrkey" Type="Guid" />
+          <Property Name="estimateddistanceinmiles" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="estimatedtraveltime" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="status" Type="Int16" />
+          <Property Name="driverkey" Type="Guid" />
+          <Property Name="scheduledarrival" Type="DateTime" Precision="6" />
+          <Property Name="scheduleddeparture" Type="DateTime" Precision="6" />
+          <Property Name="odometeratsource" Type="Int16" />
+          <Property Name="actualarrival" Type="DateTime" Precision="6" />
+          <Property Name="actualdeparture" Type="DateTime" Precision="6" />
+          <Property Name="odometeratdestination" Type="Int16" />
+          <NavigationProperty Name="address" Relationship="Self.fk_tms_routes_address" FromRole="tms_routes" ToRole="address" />
+          <NavigationProperty Name="address1" Relationship="Self.fk_tms_routes_address1" FromRole="tms_routes" ToRole="address" />
+          <NavigationProperty Name="driver" Relationship="Self.fk_tms_routes_driver" FromRole="tms_routes" ToRole="driver" />
+          <NavigationProperty Name="tms_orderdetail" Relationship="Self.fk_tms_routes_tms_orderdetail" FromRole="tms_routes" ToRole="tms_orderdetail" />
+          <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_routes_tms_orderheader" FromRole="tms_routes" ToRole="tms_orderheader" />
+          <NavigationProperty Name="voucherheaders" Relationship="Self.tms_routevouchers" FromRole="tms_routes" ToRole="voucherheader" />
+        </EntityType>
+        <EntityType Name="userinfo">
+          <Key>
+            <PropertyRef Name="userkey" />
+          </Key>
+          <Property Name="userkey" Type="Guid" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="lastname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="usertype" Type="Int16" />
+          <Property Name="usertyperefkey" Type="Guid" />
+          <NavigationProperty Name="approles" Relationship="Self.userroles" FromRole="userinfo" ToRole="approles" />
+        </EntityType>
+        <EntityType Name="vendor">
+          <Key>
+            <PropertyRef Name="vendkey" />
+          </Key>
+          <Property Name="vendkey" Type="Guid" Nullable="false" />
+          <Property Name="vendid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="vendname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="addrkey" Type="Guid" />
+          <Property Name="status" Type="Int16" />
+          <Property Name="statusdate" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="drivers" Relationship="Self.fk_driver_vendor" FromRole="vendor" ToRole="driver" />
+          <NavigationProperty Name="voucherheaders" Relationship="Self.fk_voucherheader_vendor" FromRole="vendor" ToRole="voucherheader" />
+        </EntityType>
+        <EntityType Name="voucherdetail">
+          <Key>
+            <PropertyRef Name="voucherlinekey" />
+          </Key>
+          <Property Name="voucherlinekey" Type="Guid" Nullable="false" />
+          <Property Name="voucherkey" Type="Guid" />
+          <Property Name="itemkey" Type="Guid" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="unitcost" Type="Decimal" Precision="9" Scale="5" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="extcost" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="item" Relationship="Self.fk_voucherdetail_item" FromRole="voucherdetail" ToRole="item" />
+          <NavigationProperty Name="voucherheader" Relationship="Self.fk_voucherdetail_voucherheader" FromRole="voucherdetail" ToRole="voucherheader" />
+        </EntityType>
+        <EntityType Name="voucherheader">
+          <Key>
+            <PropertyRef Name="voucherkey" />
+          </Key>
+          <Property Name="voucherkey" Type="Guid" Nullable="false" />
+          <Property Name="voucherno" Type="Int32" />
+          <Property Name="voucherdate" Type="DateTime" Precision="0" />
+          <Property Name="vendkey" Type="Guid" />
+          <Property Name="billtoaddrkey" Type="Guid" />
+          <Property Name="billtocopyaddrkey" Type="Guid" />
+          <Property Name="voucheramount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="duedate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="vendor" Relationship="Self.fk_voucherheader_vendor" FromRole="voucherheader" ToRole="vendor" />
+          <NavigationProperty Name="voucherdetails" Relationship="Self.fk_voucherdetail_voucherheader" FromRole="voucherheader" ToRole="voucherdetail" />
+          <NavigationProperty Name="tms_routes" Relationship="Self.tms_routevouchers" FromRole="voucherheader" ToRole="tms_routes" />
+        </EntityType>
+        <EntityType Name="warehouse">
+          <Key>
+            <PropertyRef Name="warehousekey" />
+          </Key>
+          <Property Name="warehousekey" Type="Guid" Nullable="false" />
+          <Property Name="warehouseid" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="addrkey" Type="Guid" />
+          <Property Name="status" Type="Int16" />
+          <NavigationProperty Name="address" Relationship="Self.fk_warehouse_address" FromRole="warehouse" ToRole="address" />
+        </EntityType>
+        <Association Name="fk_broker_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="broker" Type="Self.broker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="broker">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_carrier_address">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="carrier" Type="Self.carrier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="carrier">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_contacts_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="contacts" Type="Self.contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="contacts">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_customer_address">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_customeraddress_address">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="customeraddress" Type="Self.customeraddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="customeraddress">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_driver_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="driver" Type="Self.driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="driver">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_shippingport_address">
+          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="shippingport" Type="Self.shippingport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="shippingport">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_shippingportterminals_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="shippingportterminals" Type="Self.shippingportterminal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="shippingportterminals">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="billtoaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address1">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="billtocopyaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address2">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="sourceaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address3">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="sourcecopyaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address4">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="destinationaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address5">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="destinationcopyaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address6">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="returnaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_address7">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="returncopyaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routes_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_routes">
+              <PropertyRef Name="sourceaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routes_address1">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="tms_routes">
+              <PropertyRef Name="destinationaddrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_warehouse_address">
+          <End Role="address" Type="Self.address" Multiplicity="0..1" />
+          <End Role="warehouse" Type="Self.warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="address">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="warehouse">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_driver_carrier">
+          <End Role="carrier" Type="Self.carrier" Multiplicity="0..1" />
+          <End Role="driver" Type="Self.driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrier">
+              <PropertyRef Name="carrierkey" />
+            </Principal>
+            <Dependent Role="driver">
+              <PropertyRef Name="carrierkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetailcomments_comment">
+          <End Role="comment" Type="Self.comment" Multiplicity="1" />
+          <End Role="tms_orderdetailcomments" Type="Self.tms_orderdetailcomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="commentkey" />
+            </Principal>
+            <Dependent Role="tms_orderdetailcomments">
+              <PropertyRef Name="commentkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheadercomments_comment">
+          <End Role="comment" Type="Self.comment" Multiplicity="1" />
+          <End Role="tms_orderheadercomments" Type="Self.tms_orderheadercomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="commentkey" />
+            </Principal>
+            <Dependent Role="tms_orderheadercomments">
+              <PropertyRef Name="commentkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_customeraddress_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customeraddress" Type="Self.customeraddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="custkey" />
+            </Principal>
+            <Dependent Role="customeraddress">
+              <PropertyRef Name="custkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="custkey" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="custkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_document_documenttype">
+          <End Role="documenttype" Type="Self.documenttype" Multiplicity="0..1" />
+          <End Role="document" Type="Self.document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="documenttype">
+              <PropertyRef Name="documenttype1" />
+            </Principal>
+            <Dependent Role="document">
+              <PropertyRef Name="documenttype" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_driver_vendor">
+          <End Role="vendor" Type="Self.vendor" Multiplicity="0..1" />
+          <End Role="driver" Type="Self.driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendkey" />
+            </Principal>
+            <Dependent Role="driver">
+              <PropertyRef Name="vendkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routes_driver">
+          <End Role="driver" Type="Self.driver" Multiplicity="0..1" />
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="driver">
+              <PropertyRef Name="driverkey" />
+            </Principal>
+            <Dependent Role="tms_routes">
+              <PropertyRef Name="driverkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_invoicedetail_invoiceheader">
+          <End Role="invoiceheader" Type="Self.invoiceheader" Multiplicity="0..1" />
+          <End Role="invoicedetail" Type="Self.invoicedetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoiceheader">
+              <PropertyRef Name="invoicekey" />
+            </Principal>
+            <Dependent Role="invoicedetail">
+              <PropertyRef Name="invoicekey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_invoicedetail_item">
+          <End Role="item" Type="Self.item" Multiplicity="0..1" />
+          <End Role="invoicedetail" Type="Self.invoicedetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemkey" />
+            </Principal>
+            <Dependent Role="invoicedetail">
+              <PropertyRef Name="itemkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_voucherdetail_item">
+          <End Role="item" Type="Self.item" Multiplicity="0..1" />
+          <End Role="voucherdetail" Type="Self.voucherdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="itemkey" />
+            </Principal>
+            <Dependent Role="voucherdetail">
+              <PropertyRef Name="itemkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_shippingportterminals_shippingport">
+          <End Role="shippingport" Type="Self.shippingport" Multiplicity="1" />
+          <End Role="shippingportterminals" Type="Self.shippingportterminal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shippingport">
+              <PropertyRef Name="shippingportkey" />
+            </Principal>
+            <Dependent Role="shippingportterminals">
+              <PropertyRef Name="portkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetail_tms_containersize1">
+          <End Role="tms_containersize" Type="Self.tms_containersize" Multiplicity="1" />
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_containersize">
+              <PropertyRef Name="containersize" />
+            </Principal>
+            <Dependent Role="tms_orderdetail">
+              <PropertyRef Name="containersize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetail_tms_holdreason">
+          <End Role="tms_holdreason" Type="Self.tms_holdreason" Multiplicity="0..1" />
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_holdreason">
+              <PropertyRef Name="holdreason" />
+            </Principal>
+            <Dependent Role="tms_orderdetail">
+              <PropertyRef Name="holdreason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_holdreason">
+          <End Role="tms_holdreason" Type="Self.tms_holdreason" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_holdreason">
+              <PropertyRef Name="holdreason" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="holdreason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetail_tms_orderheader">
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="1" />
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderheader">
+              <PropertyRef Name="orderkey" />
+            </Principal>
+            <Dependent Role="tms_orderdetail">
+              <PropertyRef Name="orderkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderdetailcomments_tms_orderdetail">
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="1" />
+          <End Role="tms_orderdetailcomments" Type="Self.tms_orderdetailcomments" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderdetail">
+              <PropertyRef Name="orderdetailkey" />
+            </Principal>
+            <Dependent Role="tms_orderdetailcomments">
+              <PropertyRef Name="orderdetailkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routes_tms_orderdetail">
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="0..1" />
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderdetail">
+              <PropertyRef Name="orderdetailkey" />
+            </Principal>
+            <Dependent Role="tms_routes">
+              <PropertyRef Name="orderdetailkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_ordersource">
+          <End Role="tms_ordersource" Type="Self.tms_ordersource" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_ordersource">
+              <PropertyRef Name="source" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="source" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_orderstatus">
+          <End Role="tms_orderstatus" Type="Self.tms_orderstatus" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderstatus">
+              <PropertyRef Name="status" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_ordertype">
+          <End Role="tms_ordertype" Type="Self.tms_ordertype" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_ordertype">
+              <PropertyRef Name="ordertype" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="ordertype" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_priority">
+          <End Role="tms_priority" Type="Self.tms_priority" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_priority">
+              <PropertyRef Name="priority" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="priority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheader_tms_priority1">
+          <End Role="tms_priority" Type="Self.tms_priority" Multiplicity="0..1" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_priority">
+              <PropertyRef Name="priority" />
+            </Principal>
+            <Dependent Role="tms_orderheader">
+              <PropertyRef Name="priority" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_orderheadercomments_tms_orderheader">
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="1" />
+          <End Role="tms_orderheadercomments" Type="Self.tms_orderheadercomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderheader">
+              <PropertyRef Name="orderkey" />
+            </Principal>
+            <Dependent Role="tms_orderheadercomments">
+              <PropertyRef Name="orderkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tms_routes_tms_orderheader">
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="0..1" />
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tms_orderheader">
+              <PropertyRef Name="orderkey" />
+            </Principal>
+            <Dependent Role="tms_routes">
+              <PropertyRef Name="orderkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_voucherheader_vendor">
+          <End Role="vendor" Type="Self.vendor" Multiplicity="0..1" />
+          <End Role="voucherheader" Type="Self.voucherheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendkey" />
+            </Principal>
+            <Dependent Role="voucherheader">
+              <PropertyRef Name="vendkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_voucherdetail_voucherheader">
+          <End Role="voucherheader" Type="Self.voucherheader" Multiplicity="0..1" />
+          <End Role="voucherdetail" Type="Self.voucherdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voucherheader">
+              <PropertyRef Name="voucherkey" />
+            </Principal>
+            <Dependent Role="voucherdetail">
+              <PropertyRef Name="voucherkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="brokercontacts">
+          <End Role="broker" Type="Self.broker" Multiplicity="*" />
+          <End Role="contacts" Type="Self.contact" Multiplicity="*" />
+        </Association>
+        <Association Name="commentdocuments">
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <End Role="document" Type="Self.document" Multiplicity="0..1" />
+        </Association>
+        <Association Name="customercontacts">
+          <End Role="contacts" Type="Self.contact" Multiplicity="*" />
+          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+        </Association>
+        <Association Name="tms_orderdetaildocuments">
+          <End Role="document" Type="Self.document" Multiplicity="*" />
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="*" />
+        </Association>
+        <Association Name="tms_orderheaderdocuments">
+          <End Role="document" Type="Self.document" Multiplicity="*" />
+          <End Role="tms_orderheader" Type="Self.tms_orderheader" Multiplicity="*" />
+        </Association>
+        <Association Name="tms_orderinvoices">
+          <End Role="invoiceheader" Type="Self.invoiceheader" Multiplicity="*" />
+          <End Role="tms_orderdetail" Type="Self.tms_orderdetail" Multiplicity="*" />
+        </Association>
+        <Association Name="tms_routevouchers">
+          <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
+          <End Role="voucherheader" Type="Self.voucherheader" Multiplicity="*" />
+        </Association>
+        <Association Name="userroles">
+          <End Role="approles" Type="Self.approle" Multiplicity="*" />
+          <End Role="userinfo" Type="Self.userinfo" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="App_modelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="addresses" EntityType="Self.address" />
+          <EntitySet Name="approles" EntityType="Self.approle" />
+          <EntitySet Name="brokers" EntityType="Self.broker" />
+          <EntitySet Name="carriers" EntityType="Self.carrier" />
+          <EntitySet Name="comments" EntityType="Self.comment" />
+          <EntitySet Name="contacts" EntityType="Self.contact" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="customeraddresses" EntityType="Self.customeraddress" />
+          <EntitySet Name="documents" EntityType="Self.document" />
+          <EntitySet Name="documenttypes" EntityType="Self.documenttype" />
+          <EntitySet Name="drivers" EntityType="Self.driver" />
+          <EntitySet Name="invoicedetails" EntityType="Self.invoicedetail" />
+          <EntitySet Name="invoiceheaders" EntityType="Self.invoiceheader" />
+          <EntitySet Name="items" EntityType="Self.item" />
+          <EntitySet Name="shippingports" EntityType="Self.shippingport" />
+          <EntitySet Name="shippingportterminals" EntityType="Self.shippingportterminal" />
+          <EntitySet Name="tms_containersize" EntityType="Self.tms_containersize" />
+          <EntitySet Name="tms_holdreason" EntityType="Self.tms_holdreason" />
+          <EntitySet Name="tms_orderdetail" EntityType="Self.tms_orderdetail" />
+          <EntitySet Name="tms_orderdetailcomments" EntityType="Self.tms_orderdetailcomments" />
+          <EntitySet Name="tms_orderheader" EntityType="Self.tms_orderheader" />
+          <EntitySet Name="tms_orderheadercomments" EntityType="Self.tms_orderheadercomments" />
+          <EntitySet Name="tms_ordersource" EntityType="Self.tms_ordersource" />
+          <EntitySet Name="tms_orderstatus" EntityType="Self.tms_orderstatus" />
+          <EntitySet Name="tms_ordertype" EntityType="Self.tms_ordertype" />
+          <EntitySet Name="tms_priority" EntityType="Self.tms_priority" />
+          <EntitySet Name="tms_routes" EntityType="Self.tms_routes" />
+          <EntitySet Name="userinfoes" EntityType="Self.userinfo" />
+          <EntitySet Name="vendors" EntityType="Self.vendor" />
+          <EntitySet Name="voucherdetails" EntityType="Self.voucherdetail" />
+          <EntitySet Name="voucherheaders" EntityType="Self.voucherheader" />
+          <EntitySet Name="warehouses" EntityType="Self.warehouse" />
+          <AssociationSet Name="fk_broker_address" Association="Self.fk_broker_address">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="broker" EntitySet="brokers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_carrier_address" Association="Self.fk_carrier_address">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="carrier" EntitySet="carriers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_contacts_address" Association="Self.fk_contacts_address">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="contacts" EntitySet="contacts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_customer_address" Association="Self.fk_customer_address">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="customer" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_customeraddress_address" Association="Self.fk_customeraddress_address">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="customeraddress" EntitySet="customeraddresses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_driver_address" Association="Self.fk_driver_address">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="driver" EntitySet="drivers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_shippingport_address" Association="Self.fk_shippingport_address">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="shippingport" EntitySet="shippingports" />
+          </AssociationSet>
+          <AssociationSet Name="fk_shippingportterminals_address" Association="Self.fk_shippingportterminals_address">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="shippingportterminals" EntitySet="shippingportterminals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address" Association="Self.fk_tms_orderheader_address">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address1" Association="Self.fk_tms_orderheader_address1">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address2" Association="Self.fk_tms_orderheader_address2">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address3" Association="Self.fk_tms_orderheader_address3">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address4" Association="Self.fk_tms_orderheader_address4">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address5" Association="Self.fk_tms_orderheader_address5">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address6" Association="Self.fk_tms_orderheader_address6">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_address7" Association="Self.fk_tms_orderheader_address7">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routes_address" Association="Self.fk_tms_routes_address">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="tms_routes" EntitySet="tms_routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routes_address1" Association="Self.fk_tms_routes_address1">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="tms_routes" EntitySet="tms_routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_warehouse_address" Association="Self.fk_warehouse_address">
+            <End Role="address" EntitySet="addresses" />
+            <End Role="warehouse" EntitySet="warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_driver_carrier" Association="Self.fk_driver_carrier">
+            <End Role="carrier" EntitySet="carriers" />
+            <End Role="driver" EntitySet="drivers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetailcomments_comment" Association="Self.fk_tms_orderdetailcomments_comment">
+            <End Role="comment" EntitySet="comments" />
+            <End Role="tms_orderdetailcomments" EntitySet="tms_orderdetailcomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheadercomments_comment" Association="Self.fk_tms_orderheadercomments_comment">
+            <End Role="comment" EntitySet="comments" />
+            <End Role="tms_orderheadercomments" EntitySet="tms_orderheadercomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_customeraddress_customer" Association="Self.fk_customeraddress_customer">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customeraddress" EntitySet="customeraddresses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_customer" Association="Self.fk_tms_orderheader_customer">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_document_documenttype" Association="Self.fk_document_documenttype">
+            <End Role="documenttype" EntitySet="documenttypes" />
+            <End Role="document" EntitySet="documents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_driver_vendor" Association="Self.fk_driver_vendor">
+            <End Role="vendor" EntitySet="vendors" />
+            <End Role="driver" EntitySet="drivers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routes_driver" Association="Self.fk_tms_routes_driver">
+            <End Role="driver" EntitySet="drivers" />
+            <End Role="tms_routes" EntitySet="tms_routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_invoicedetail_invoiceheader" Association="Self.fk_invoicedetail_invoiceheader">
+            <End Role="invoiceheader" EntitySet="invoiceheaders" />
+            <End Role="invoicedetail" EntitySet="invoicedetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_invoicedetail_item" Association="Self.fk_invoicedetail_item">
+            <End Role="item" EntitySet="items" />
+            <End Role="invoicedetail" EntitySet="invoicedetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_voucherdetail_item" Association="Self.fk_voucherdetail_item">
+            <End Role="item" EntitySet="items" />
+            <End Role="voucherdetail" EntitySet="voucherdetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_shippingportterminals_shippingport" Association="Self.fk_shippingportterminals_shippingport">
+            <End Role="shippingport" EntitySet="shippingports" />
+            <End Role="shippingportterminals" EntitySet="shippingportterminals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetail_tms_containersize1" Association="Self.fk_tms_orderdetail_tms_containersize1">
+            <End Role="tms_containersize" EntitySet="tms_containersize" />
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetail_tms_holdreason" Association="Self.fk_tms_orderdetail_tms_holdreason">
+            <End Role="tms_holdreason" EntitySet="tms_holdreason" />
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_holdreason" Association="Self.fk_tms_orderheader_tms_holdreason">
+            <End Role="tms_holdreason" EntitySet="tms_holdreason" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetail_tms_orderheader" Association="Self.fk_tms_orderdetail_tms_orderheader">
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderdetailcomments_tms_orderdetail" Association="Self.fk_tms_orderdetailcomments_tms_orderdetail">
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+            <End Role="tms_orderdetailcomments" EntitySet="tms_orderdetailcomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routes_tms_orderdetail" Association="Self.fk_tms_routes_tms_orderdetail">
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+            <End Role="tms_routes" EntitySet="tms_routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_ordersource" Association="Self.fk_tms_orderheader_tms_ordersource">
+            <End Role="tms_ordersource" EntitySet="tms_ordersource" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_orderstatus" Association="Self.fk_tms_orderheader_tms_orderstatus">
+            <End Role="tms_orderstatus" EntitySet="tms_orderstatus" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_ordertype" Association="Self.fk_tms_orderheader_tms_ordertype">
+            <End Role="tms_ordertype" EntitySet="tms_ordertype" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_priority" Association="Self.fk_tms_orderheader_tms_priority">
+            <End Role="tms_priority" EntitySet="tms_priority" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheader_tms_priority1" Association="Self.fk_tms_orderheader_tms_priority1">
+            <End Role="tms_priority" EntitySet="tms_priority" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_orderheadercomments_tms_orderheader" Association="Self.fk_tms_orderheadercomments_tms_orderheader">
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+            <End Role="tms_orderheadercomments" EntitySet="tms_orderheadercomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tms_routes_tms_orderheader" Association="Self.fk_tms_routes_tms_orderheader">
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+            <End Role="tms_routes" EntitySet="tms_routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_voucherheader_vendor" Association="Self.fk_voucherheader_vendor">
+            <End Role="vendor" EntitySet="vendors" />
+            <End Role="voucherheader" EntitySet="voucherheaders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_voucherdetail_voucherheader" Association="Self.fk_voucherdetail_voucherheader">
+            <End Role="voucherheader" EntitySet="voucherheaders" />
+            <End Role="voucherdetail" EntitySet="voucherdetails" />
+          </AssociationSet>
+          <AssociationSet Name="brokercontacts" Association="Self.brokercontacts">
+            <End Role="broker" EntitySet="brokers" />
+            <End Role="contacts" EntitySet="contacts" />
+          </AssociationSet>
+          <AssociationSet Name="commentdocuments" Association="Self.commentdocuments">
+            <End Role="comment" EntitySet="comments" />
+            <End Role="document" EntitySet="documents" />
+          </AssociationSet>
+          <AssociationSet Name="customercontacts" Association="Self.customercontacts">
+            <End Role="contacts" EntitySet="contacts" />
+            <End Role="customer" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="tms_orderdetaildocuments" Association="Self.tms_orderdetaildocuments">
+            <End Role="document" EntitySet="documents" />
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="tms_orderheaderdocuments" Association="Self.tms_orderheaderdocuments">
+            <End Role="document" EntitySet="documents" />
+            <End Role="tms_orderheader" EntitySet="tms_orderheader" />
+          </AssociationSet>
+          <AssociationSet Name="tms_orderinvoices" Association="Self.tms_orderinvoices">
+            <End Role="invoiceheader" EntitySet="invoiceheaders" />
+            <End Role="tms_orderdetail" EntitySet="tms_orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="tms_routevouchers" Association="Self.tms_routevouchers">
+            <End Role="tms_routes" EntitySet="tms_routes" />
+            <End Role="voucherheader" EntitySet="voucherheaders" />
+          </AssociationSet>
+          <AssociationSet Name="userroles" Association="Self.userroles">
+            <End Role="approles" EntitySet="approles" />
+            <End Role="userinfo" EntitySet="userinfoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="App_modelModelStoreContainer" CdmEntityContainer="App_modelEntities">
+          <EntitySetMapping Name="addresses">
+            <EntityTypeMapping TypeName="App_modelModel.address">
+              <MappingFragment StoreEntitySet="address">
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+                <ScalarProperty Name="addrname" ColumnName="addrname" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="approles">
+            <EntityTypeMapping TypeName="App_modelModel.approle">
+              <MappingFragment StoreEntitySet="approles">
+                <ScalarProperty Name="rolekey" ColumnName="rolekey" />
+                <ScalarProperty Name="descrption" ColumnName="descrption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="brokers">
+            <EntityTypeMapping TypeName="App_modelModel.broker">
+              <MappingFragment StoreEntitySet="broker">
+                <ScalarProperty Name="brokerkey" ColumnName="brokerkey" />
+                <ScalarProperty Name="brokerid" ColumnName="brokerid" />
+                <ScalarProperty Name="brokername" ColumnName="brokername" />
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="statusdate" ColumnName="statusdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="carriers">
+            <EntityTypeMapping TypeName="App_modelModel.carrier">
+              <MappingFragment StoreEntitySet="carrier">
+                <ScalarProperty Name="carrierkey" ColumnName="carrierkey" />
+                <ScalarProperty Name="carrierid" ColumnName="carrierid" />
+                <ScalarProperty Name="carriername" ColumnName="carriername" />
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+                <ScalarProperty Name="scaccode" ColumnName="scaccode" />
+                <ScalarProperty Name="licenseplate" ColumnName="licenseplate" />
+                <ScalarProperty Name="licenseplateexpirydate" ColumnName="licenseplateexpirydate" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="statusdate" ColumnName="statusdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comments">
+            <EntityTypeMapping TypeName="App_modelModel.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="commentkey" ColumnName="commentkey" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="createuserkey" ColumnName="createuserkey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contacts">
+            <EntityTypeMapping TypeName="App_modelModel.contact">
+              <MappingFragment StoreEntitySet="contacts">
+                <ScalarProperty Name="contactkey" ColumnName="contactkey" />
+                <ScalarProperty Name="contactid" ColumnName="contactid" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="contacttype" ColumnName="contacttype" />
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="App_modelModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="custkey" ColumnName="custkey" />
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="custname" ColumnName="custname" />
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="customergroup" ColumnName="customergroup" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="statusdate" ColumnName="statusdate" />
+                <ScalarProperty Name="creditlimit" ColumnName="creditlimit" />
+                <ScalarProperty Name="creditstatus" ColumnName="creditstatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customeraddresses">
+            <EntityTypeMapping TypeName="App_modelModel.customeraddress">
+              <MappingFragment StoreEntitySet="customeraddress">
+                <ScalarProperty Name="custkey" ColumnName="custkey" />
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+                <ScalarProperty Name="addrtype" ColumnName="addrtype" />
+                <ScalarProperty Name="addrid" ColumnName="addrid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documents">
+            <EntityTypeMapping TypeName="App_modelModel.document">
+              <MappingFragment StoreEntitySet="document">
+                <ScalarProperty Name="documentkey" ColumnName="documentkey" />
+                <ScalarProperty Name="documenttype" ColumnName="documenttype" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="createuserkey" ColumnName="createuserkey" />
+                <ScalarProperty Name="originalfilename" ColumnName="originalfilename" />
+                <ScalarProperty Name="originalfiletype" ColumnName="originalfiletype" />
+                <ScalarProperty Name="filesizeinmb" ColumnName="filesizeinmb" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documenttypes">
+            <EntityTypeMapping TypeName="App_modelModel.documenttype">
+              <MappingFragment StoreEntitySet="documenttype">
+                <ScalarProperty Name="documenttype1" ColumnName="documenttype" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="storagepath" ColumnName="storagepath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="drivers">
+            <EntityTypeMapping TypeName="App_modelModel.driver">
+              <MappingFragment StoreEntitySet="driver">
+                <ScalarProperty Name="driverkey" ColumnName="driverkey" />
+                <ScalarProperty Name="driverid" ColumnName="driverid" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+                <ScalarProperty Name="carrierkey" ColumnName="carrierkey" />
+                <ScalarProperty Name="drivinglicenseno" ColumnName="drivinglicenseno" />
+                <ScalarProperty Name="drivinglicenseexpirydate" ColumnName="drivinglicenseexpirydate" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="statusdate" ColumnName="statusdate" />
+                <ScalarProperty Name="vendkey" ColumnName="vendkey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoicedetails">
+            <EntityTypeMapping TypeName="App_modelModel.invoicedetail">
+              <MappingFragment StoreEntitySet="invoicedetail">
+                <ScalarProperty Name="invoicelinekey" ColumnName="invoicelinekey" />
+                <ScalarProperty Name="invoicekey" ColumnName="invoicekey" />
+                <ScalarProperty Name="itemkey" ColumnName="itemkey" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="extamt" ColumnName="extamt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoiceheaders">
+            <EntityTypeMapping TypeName="App_modelModel.invoiceheader">
+              <MappingFragment StoreEntitySet="invoiceheader">
+                <ScalarProperty Name="invoicekey" ColumnName="invoicekey" />
+                <ScalarProperty Name="invoiceno" ColumnName="invoiceno" />
+                <ScalarProperty Name="invoicedate" ColumnName="invoicedate" />
+                <ScalarProperty Name="custkey" ColumnName="custkey" />
+                <ScalarProperty Name="billtoaddrkey" ColumnName="billtoaddrkey" />
+                <ScalarProperty Name="billtocopyaddrkey" ColumnName="billtocopyaddrkey" />
+                <ScalarProperty Name="invoiceamount" ColumnName="invoiceamount" />
+                <ScalarProperty Name="duedate" ColumnName="duedate" />
+                <ScalarProperty Name="invoicetype" ColumnName="invoicetype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="App_modelModel.item">
+              <MappingFragment StoreEntitySet="item">
+                <ScalarProperty Name="itemkey" ColumnName="itemkey" />
+                <ScalarProperty Name="itemid" ColumnName="itemid" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="itemtype" ColumnName="itemtype" />
+                <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+                <ScalarProperty Name="unitcost" ColumnName="unitcost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shippingports">
+            <EntityTypeMapping TypeName="App_modelModel.shippingport">
+              <MappingFragment StoreEntitySet="shippingport">
+                <ScalarProperty Name="shippingportkey" ColumnName="shippingportkey" />
+                <ScalarProperty Name="shippingportid" ColumnName="shippingportid" />
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shippingportterminals">
+            <EntityTypeMapping TypeName="App_modelModel.shippingportterminal">
+              <MappingFragment StoreEntitySet="shippingportterminals">
+                <ScalarProperty Name="terminalkey" ColumnName="terminalkey" />
+                <ScalarProperty Name="portkey" ColumnName="portkey" />
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tms_containersize">
+            <EntityTypeMapping TypeName="App_modelModel.tms_containersize">
+              <MappingFragment StoreEntitySet="tms_containersize">
+                <ScalarProperty Name="containersize" ColumnName="containersize" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tms_holdreason">
+            <EntityTypeMapping TypeName="App_modelModel.tms_holdreason">
+              <MappingFragment StoreEntitySet="tms_holdreason">
+                <ScalarProperty Name="holdreason" ColumnName="holdreason" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tms_orderdetail">
+            <EntityTypeMapping TypeName="App_modelModel.tms_orderdetail">
+              <MappingFragment StoreEntitySet="tms_orderdetail">
+                <ScalarProperty Name="orderdetailkey" ColumnName="orderdetailkey" />
+                <ScalarProperty Name="orderkey" ColumnName="orderkey" />
+                <ScalarProperty Name="containerno" ColumnName="containerno" />
+                <ScalarProperty Name="containersize" ColumnName="containersize" />
+                <ScalarProperty Name="chassis" ColumnName="chassis" />
+                <ScalarProperty Name="sealno" ColumnName="sealno" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="apptdatefrom" ColumnName="apptdatefrom" />
+                <ScalarProperty Name="apptdateto" ColumnName="apptdateto" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="statusdate" ColumnName="statusdate" />
+                <ScalarProperty Name="holdreason" ColumnName="holdreason" />
+                <ScalarProperty Name="holddate" ColumnName="holddate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tms_orderdetailcomments">
+            <EntityTypeMapping TypeName="App_modelModel.tms_orderdetailcomments">
+              <MappingFragment StoreEntitySet="tms_orderdetailcomments">
+                <ScalarProperty Name="orderdetailkey" ColumnName="orderdetailkey" />
+                <ScalarProperty Name="commentkey" ColumnName="commentkey" />
+                <ScalarProperty Name="commenttype" ColumnName="commenttype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tms_orderheader">
+            <EntityTypeMapping TypeName="App_modelModel.tms_orderheader">
+              <MappingFragment StoreEntitySet="tms_orderheader">
+                <ScalarProperty Name="orderkey" ColumnName="orderkey" />
+                <ScalarProperty Name="orderno" ColumnName="orderno" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="custkey" ColumnName="custkey" />
+                <ScalarProperty Name="billtoaddrkey" ColumnName="billtoaddrkey" />
+                <ScalarProperty Name="billtocopyaddrkey" ColumnName="billtocopyaddrkey" />
+                <ScalarProperty Name="sourceaddrkey" ColumnName="sourceaddrkey" />
+                <ScalarProperty Name="sourcecopyaddrkey" ColumnName="sourcecopyaddrkey" />
+                <ScalarProperty Name="destinationaddrkey" ColumnName="destinationaddrkey" />
+                <ScalarProperty Name="destinationcopyaddrkey" ColumnName="destinationcopyaddrkey" />
+                <ScalarProperty Name="returnaddrkey" ColumnName="returnaddrkey" />
+                <ScalarProperty Name="returncopyaddrkey" ColumnName="returncopyaddrkey" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="ordertype" ColumnName="ordertype" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="statusdate" ColumnName="statusdate" />
+                <ScalarProperty Name="holdreason" ColumnName="holdreason" />
+                <ScalarProperty Name="holddate" ColumnName="holddate" />
+                <ScalarProperty Name="brokerkey" ColumnName="brokerkey" />
+                <ScalarProperty Name="brokerrefno" ColumnName="brokerrefno" />
+                <ScalarProperty Name="portoforiginkey" ColumnName="portoforiginkey" />
+                <ScalarProperty Name="carrierkey" ColumnName="carrierkey" />
+                <ScalarProperty Name="vesselname" ColumnName="vesselname" />
+                <ScalarProperty Name="billoflading" ColumnName="billoflading" />
+                <ScalarProperty Name="bookingno" ColumnName="bookingno" />
+                <ScalarProperty Name="cutoffdate" ColumnName="cutoffdate" />
+                <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="createuserkey" ColumnName="createuserkey" />
+                <ScalarProperty Name="lastupdatedate" ColumnName="lastupdatedate" />
+                <ScalarProperty Name="lastupdateuserkey" ColumnName="lastupdateuserkey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tms_orderheadercomments">
+            <EntityTypeMapping TypeName="App_modelModel.tms_orderheadercomments">
+              <MappingFragment StoreEntitySet="tms_orderheadercomments">
+                <ScalarProperty Name="orderkey" ColumnName="orderkey" />
+                <ScalarProperty Name="commentkey" ColumnName="commentkey" />
+                <ScalarProperty Name="commenttype" ColumnName="commenttype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tms_ordersource">
+            <EntityTypeMapping TypeName="App_modelModel.tms_ordersource">
+              <MappingFragment StoreEntitySet="tms_ordersource">
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tms_orderstatus">
+            <EntityTypeMapping TypeName="App_modelModel.tms_orderstatus">
+              <MappingFragment StoreEntitySet="tms_orderstatus">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="orderby" ColumnName="orderby" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tms_ordertype">
+            <EntityTypeMapping TypeName="App_modelModel.tms_ordertype">
+              <MappingFragment StoreEntitySet="tms_ordertype">
+                <ScalarProperty Name="ordertype" ColumnName="ordertype" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tms_priority">
+            <EntityTypeMapping TypeName="App_modelModel.tms_priority">
+              <MappingFragment StoreEntitySet="tms_priority">
+                <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="colorcode" ColumnName="colorcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tms_routes">
+            <EntityTypeMapping TypeName="App_modelModel.tms_routes">
+              <MappingFragment StoreEntitySet="tms_routes">
+                <ScalarProperty Name="routekey" ColumnName="routekey" />
+                <ScalarProperty Name="orderdetailkey" ColumnName="orderdetailkey" />
+                <ScalarProperty Name="orderkey" ColumnName="orderkey" />
+                <ScalarProperty Name="legno" ColumnName="legno" />
+                <ScalarProperty Name="legtype" ColumnName="legtype" />
+                <ScalarProperty Name="sourceaddrkey" ColumnName="sourceaddrkey" />
+                <ScalarProperty Name="destinationaddrkey" ColumnName="destinationaddrkey" />
+                <ScalarProperty Name="estimateddistanceinmiles" ColumnName="estimateddistanceinmiles" />
+                <ScalarProperty Name="estimatedtraveltime" ColumnName="estimatedtraveltime" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="driverkey" ColumnName="driverkey" />
+                <ScalarProperty Name="scheduledarrival" ColumnName="scheduledarrival" />
+                <ScalarProperty Name="scheduleddeparture" ColumnName="scheduleddeparture" />
+                <ScalarProperty Name="odometeratsource" ColumnName="odometeratsource" />
+                <ScalarProperty Name="actualarrival" ColumnName="actualarrival" />
+                <ScalarProperty Name="actualdeparture" ColumnName="actualdeparture" />
+                <ScalarProperty Name="odometeratdestination" ColumnName="odometeratdestination" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userinfoes">
+            <EntityTypeMapping TypeName="App_modelModel.userinfo">
+              <MappingFragment StoreEntitySet="userinfo">
+                <ScalarProperty Name="userkey" ColumnName="userkey" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="usertype" ColumnName="usertype" />
+                <ScalarProperty Name="usertyperefkey" ColumnName="usertyperefkey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vendors">
+            <EntityTypeMapping TypeName="App_modelModel.vendor">
+              <MappingFragment StoreEntitySet="vendor">
+                <ScalarProperty Name="vendkey" ColumnName="vendkey" />
+                <ScalarProperty Name="vendid" ColumnName="vendid" />
+                <ScalarProperty Name="vendname" ColumnName="vendname" />
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="statusdate" ColumnName="statusdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="voucherdetails">
+            <EntityTypeMapping TypeName="App_modelModel.voucherdetail">
+              <MappingFragment StoreEntitySet="voucherdetail">
+                <ScalarProperty Name="voucherlinekey" ColumnName="voucherlinekey" />
+                <ScalarProperty Name="voucherkey" ColumnName="voucherkey" />
+                <ScalarProperty Name="itemkey" ColumnName="itemkey" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="unitcost" ColumnName="unitcost" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="extcost" ColumnName="extcost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="voucherheaders">
+            <EntityTypeMapping TypeName="App_modelModel.voucherheader">
+              <MappingFragment StoreEntitySet="voucherheader">
+                <ScalarProperty Name="voucherkey" ColumnName="voucherkey" />
+                <ScalarProperty Name="voucherno" ColumnName="voucherno" />
+                <ScalarProperty Name="voucherdate" ColumnName="voucherdate" />
+                <ScalarProperty Name="vendkey" ColumnName="vendkey" />
+                <ScalarProperty Name="billtoaddrkey" ColumnName="billtoaddrkey" />
+                <ScalarProperty Name="billtocopyaddrkey" ColumnName="billtocopyaddrkey" />
+                <ScalarProperty Name="voucheramount" ColumnName="voucheramount" />
+                <ScalarProperty Name="duedate" ColumnName="duedate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="warehouses">
+            <EntityTypeMapping TypeName="App_modelModel.warehouse">
+              <MappingFragment StoreEntitySet="warehouse">
+                <ScalarProperty Name="warehousekey" ColumnName="warehousekey" />
+                <ScalarProperty Name="warehouseid" ColumnName="warehouseid" />
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="brokercontacts" TypeName="App_modelModel.brokercontacts" StoreEntitySet="brokercontacts">
+            <EndProperty Name="broker">
+              <ScalarProperty Name="brokerkey" ColumnName="brokerkey" />
+            </EndProperty>
+            <EndProperty Name="contacts">
+              <ScalarProperty Name="contactkey" ColumnName="contactkey" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="commentdocuments" TypeName="App_modelModel.commentdocuments" StoreEntitySet="commentdocuments">
+            <EndProperty Name="comment">
+              <ScalarProperty Name="commentkey" ColumnName="commentkey" />
+            </EndProperty>
+            <EndProperty Name="document">
+              <ScalarProperty Name="documentkey" ColumnName="documentkey" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="customercontacts" TypeName="App_modelModel.customercontacts" StoreEntitySet="customercontacts">
+            <EndProperty Name="contacts">
+              <ScalarProperty Name="contactkey" ColumnName="contactkey" />
+            </EndProperty>
+            <EndProperty Name="customer">
+              <ScalarProperty Name="custkey" ColumnName="custkey" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tms_orderdetaildocuments" TypeName="App_modelModel.tms_orderdetaildocuments" StoreEntitySet="tms_orderdetaildocuments">
+            <EndProperty Name="document">
+              <ScalarProperty Name="documentkey" ColumnName="documentkey" />
+            </EndProperty>
+            <EndProperty Name="tms_orderdetail">
+              <ScalarProperty Name="orderdetailkey" ColumnName="orderdetailkey" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tms_orderheaderdocuments" TypeName="App_modelModel.tms_orderheaderdocuments" StoreEntitySet="tms_orderheaderdocuments">
+            <EndProperty Name="document">
+              <ScalarProperty Name="documentkey" ColumnName="documentkey" />
+            </EndProperty>
+            <EndProperty Name="tms_orderheader">
+              <ScalarProperty Name="orderkey" ColumnName="orderkey" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tms_orderinvoices" TypeName="App_modelModel.tms_orderinvoices" StoreEntitySet="tms_orderinvoices">
+            <EndProperty Name="invoiceheader">
+              <ScalarProperty Name="invoicekey" ColumnName="invoicekey" />
+            </EndProperty>
+            <EndProperty Name="tms_orderdetail">
+              <ScalarProperty Name="orderdetailkey" ColumnName="orderdetailkey" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tms_routevouchers" TypeName="App_modelModel.tms_routevouchers" StoreEntitySet="tms_routevouchers">
+            <EndProperty Name="tms_routes">
+              <ScalarProperty Name="routekey" ColumnName="routekey" />
+            </EndProperty>
+            <EndProperty Name="voucherheader">
+              <ScalarProperty Name="voucherkey" ColumnName="voucherkey" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="userroles" TypeName="App_modelModel.userroles" StoreEntitySet="userroles">
+            <EndProperty Name="approles">
+              <ScalarProperty Name="rolekey" ColumnName="rolekey" />
+            </EndProperty>
+            <EndProperty Name="userinfo">
+              <ScalarProperty Name="userkey" ColumnName="userkey" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

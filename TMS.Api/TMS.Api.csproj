@@ -208,6 +208,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\CompanyAppController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DeliveryOrderController.cs" />
     <Compile Include="Controllers\DriverDetailsController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
@@ -275,6 +277,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Company\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -306,9 +309,13 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TMS.Data\TMS.Data.csproj">
-      <Project>{3524150a-5ccf-470f-b164-1d0c859a0696}</Project>
-      <Name>TMS.Data</Name>
+    <ProjectReference Include="..\TMS.BusinessLayer\TMS.BusinessLayer.csproj">
+      <Project>{c2dc4319-4e2e-4e2c-849d-82598ee62985}</Project>
+      <Name>TMS.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMS.BusinessObjects\TMS.BusinessObjects.csproj">
+      <Project>{3fc4d08b-d452-4852-8093-cf915e98dab2}</Project>
+      <Name>TMS.BusinessObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

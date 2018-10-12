@@ -12,31 +12,28 @@ namespace TMS.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class address
+    public partial class voucherheader
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public address()
+        public voucherheader()
         {
-            this.companies = new HashSet<company>();
-            this.userinfoes = new HashSet<userinfo>();
+            this.voucherdetails = new HashSet<voucherdetail>();
+            this.tms_routes = new HashSet<tms_routes>();
         }
     
-        public System.Guid addrkey { get; set; }
-        public string addrname { get; set; }
-        public string address1 { get; set; }
-        public string address2 { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string zipcode { get; set; }
-        public string country { get; set; }
-        public string website { get; set; }
-        public string phone { get; set; }
-        public string email { get; set; }
-        public string fax { get; set; }
+        public System.Guid voucherkey { get; set; }
+        public Nullable<int> voucherno { get; set; }
+        public Nullable<System.DateTime> voucherdate { get; set; }
+        public Nullable<System.Guid> vendkey { get; set; }
+        public Nullable<System.Guid> billtoaddrkey { get; set; }
+        public Nullable<System.Guid> billtocopyaddrkey { get; set; }
+        public Nullable<decimal> voucheramount { get; set; }
+        public Nullable<System.DateTime> duedate { get; set; }
     
+        public virtual vendor vendor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<company> companies { get; set; }
+        public virtual ICollection<voucherdetail> voucherdetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<userinfo> userinfoes { get; set; }
+        public virtual ICollection<tms_routes> tms_routes { get; set; }
     }
 }

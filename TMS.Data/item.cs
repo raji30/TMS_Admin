@@ -12,31 +12,25 @@ namespace TMS.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class address
+    public partial class item
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public address()
+        public item()
         {
-            this.companies = new HashSet<company>();
-            this.userinfoes = new HashSet<userinfo>();
+            this.invoicedetails = new HashSet<invoicedetail>();
+            this.voucherdetails = new HashSet<voucherdetail>();
         }
     
-        public System.Guid addrkey { get; set; }
-        public string addrname { get; set; }
-        public string address1 { get; set; }
-        public string address2 { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string zipcode { get; set; }
-        public string country { get; set; }
-        public string website { get; set; }
-        public string phone { get; set; }
-        public string email { get; set; }
-        public string fax { get; set; }
+        public System.Guid itemkey { get; set; }
+        public string itemid { get; set; }
+        public string description { get; set; }
+        public Nullable<short> itemtype { get; set; }
+        public Nullable<decimal> unitprice { get; set; }
+        public Nullable<decimal> unitcost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<company> companies { get; set; }
+        public virtual ICollection<invoicedetail> invoicedetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<userinfo> userinfoes { get; set; }
+        public virtual ICollection<voucherdetail> voucherdetails { get; set; }
     }
 }

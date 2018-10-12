@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS.Api", "TMS.Api\TMS.Api.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS.Data", "TMS.Data\TMS.Data.csproj", "{3524150A-5CCF-470F-B164-1D0C859A0696}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS.BusinessLayer", "TMS.BusinessLayer\TMS.BusinessLayer.csproj", "{C2DC4319-4E2E-4E2C-849D-82598EE62985}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS.BusinessObjects", "TMS.BusinessObjects\TMS.BusinessObjects.csproj", "{3FC4D08B-D452-4852-8093-CF915E98DAB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{3524150A-5CCF-470F-B164-1D0C859A0696}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3524150A-5CCF-470F-B164-1D0C859A0696}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3524150A-5CCF-470F-B164-1D0C859A0696}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2DC4319-4E2E-4E2C-849D-82598EE62985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2DC4319-4E2E-4E2C-849D-82598EE62985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2DC4319-4E2E-4E2C-849D-82598EE62985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2DC4319-4E2E-4E2C-849D-82598EE62985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FC4D08B-D452-4852-8093-CF915E98DAB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC4D08B-D452-4852-8093-CF915E98DAB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC4D08B-D452-4852-8093-CF915E98DAB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FC4D08B-D452-4852-8093-CF915E98DAB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

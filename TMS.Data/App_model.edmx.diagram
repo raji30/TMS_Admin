@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="08daccbba0af428885130bf4ddb2e851" Name="Diagram1">
+        <EntityTypeShape EntityType="App_modelModel.address" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.approle" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.broker" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.carrier" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.comment" Width="1.5" PointX="9.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.contact" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.customer" Width="1.5" PointX="7.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.customeraddress" Width="1.5" PointX="10.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.document" Width="1.5" PointX="11.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.documenttype" Width="1.5" PointX="9.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.driver" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.invoicedetail" Width="1.5" PointX="25.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.invoiceheader" Width="1.5" PointX="13.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.item" Width="1.5" PointX="23.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.shippingport" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.shippingportterminal" Width="1.5" PointX="8.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.tms_containersize" Width="1.5" PointX="13.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.tms_holdreason" Width="1.5" PointX="11.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.tms_orderdetail" Width="1.5" PointX="16" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.tms_orderdetailcomments" Width="1.625" PointX="18.125" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.tms_orderheader" Width="1.5" PointX="13.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.tms_orderheadercomments" Width="1.5" PointX="19" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.tms_ordersource" Width="1.5" PointX="11.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.tms_orderstatus" Width="1.5" PointX="11.5" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.tms_ordertype" Width="1.5" PointX="11.5" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.tms_priority" Width="1.5" PointX="11.5" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.tms_routes" Width="1.5" PointX="21.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.userinfo" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.vendor" Width="1.5" PointX="3" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.voucherdetail" Width="1.5" PointX="25.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.voucherheader" Width="1.5" PointX="23.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="App_modelModel.warehouse" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <AssociationConnector Association="App_modelModel.fk_broker_address" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_carrier_address" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_contacts_address" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_customer_address" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_customeraddress_address" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_driver_address" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_shippingport_address" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_shippingportterminals_address" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_address" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_address1" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_address2" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_address3" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_address4" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_address5" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_address6" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_address7" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_routes_address" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_routes_address1" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_warehouse_address" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_driver_carrier" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderdetailcomments_comment" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheadercomments_comment" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_customeraddress_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_document_documenttype" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_driver_vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_routes_driver" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_invoicedetail_invoiceheader" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_invoicedetail_item" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_voucherdetail_item" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_shippingportterminals_shippingport" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderdetail_tms_containersize1" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderdetail_tms_holdreason" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_tms_holdreason" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderdetail_tms_orderheader" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderdetailcomments_tms_orderdetail" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_routes_tms_orderdetail" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_tms_ordersource" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_tms_orderstatus" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_tms_ordertype" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_tms_priority" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheader_tms_priority1" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_orderheadercomments_tms_orderheader" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_tms_routes_tms_orderheader" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_voucherheader_vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.fk_voucherdetail_voucherheader" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.brokercontacts" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.commentdocuments" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.customercontacts" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.tms_orderdetaildocuments" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.tms_orderheaderdocuments" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.tms_orderinvoices" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.tms_routevouchers" ManuallyRouted="false" />
+        <AssociationConnector Association="App_modelModel.userroles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -12,31 +12,28 @@ namespace TMS.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class address
+    public partial class invoiceheader
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public address()
+        public invoiceheader()
         {
-            this.companies = new HashSet<company>();
-            this.userinfoes = new HashSet<userinfo>();
+            this.invoicedetails = new HashSet<invoicedetail>();
+            this.tms_orderdetail = new HashSet<tms_orderdetail>();
         }
     
-        public System.Guid addrkey { get; set; }
-        public string addrname { get; set; }
-        public string address1 { get; set; }
-        public string address2 { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string zipcode { get; set; }
-        public string country { get; set; }
-        public string website { get; set; }
-        public string phone { get; set; }
-        public string email { get; set; }
-        public string fax { get; set; }
+        public System.Guid invoicekey { get; set; }
+        public Nullable<int> invoiceno { get; set; }
+        public Nullable<System.DateTime> invoicedate { get; set; }
+        public Nullable<System.Guid> custkey { get; set; }
+        public Nullable<System.Guid> billtoaddrkey { get; set; }
+        public Nullable<System.Guid> billtocopyaddrkey { get; set; }
+        public Nullable<decimal> invoiceamount { get; set; }
+        public Nullable<System.DateTime> duedate { get; set; }
+        public Nullable<short> invoicetype { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<company> companies { get; set; }
+        public virtual ICollection<invoicedetail> invoicedetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<userinfo> userinfoes { get; set; }
+        public virtual ICollection<tms_orderdetail> tms_orderdetail { get; set; }
     }
 }

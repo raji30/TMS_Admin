@@ -12,31 +12,25 @@ namespace TMS.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class address
+    public partial class vendor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public address()
+        public vendor()
         {
-            this.companies = new HashSet<company>();
-            this.userinfoes = new HashSet<userinfo>();
+            this.drivers = new HashSet<driver>();
+            this.voucherheaders = new HashSet<voucherheader>();
         }
     
-        public System.Guid addrkey { get; set; }
-        public string addrname { get; set; }
-        public string address1 { get; set; }
-        public string address2 { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string zipcode { get; set; }
-        public string country { get; set; }
-        public string website { get; set; }
-        public string phone { get; set; }
-        public string email { get; set; }
-        public string fax { get; set; }
+        public System.Guid vendkey { get; set; }
+        public string vendid { get; set; }
+        public string vendname { get; set; }
+        public Nullable<System.Guid> addrkey { get; set; }
+        public Nullable<short> status { get; set; }
+        public Nullable<System.DateTime> statusdate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<company> companies { get; set; }
+        public virtual ICollection<driver> drivers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<userinfo> userinfoes { get; set; }
+        public virtual ICollection<voucherheader> voucherheaders { get; set; }
     }
 }

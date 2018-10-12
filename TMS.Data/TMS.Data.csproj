@@ -68,85 +68,191 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="address.cs">
-      <DependentUpon>Postgres.tt</DependentUpon>
+      <DependentUpon>App_Security.tt</DependentUpon>
     </Compile>
-    <Compile Include="AddressRepo.cs" />
-    <Compile Include="addresstype.cs">
-      <DependentUpon>Postgres.tt</DependentUpon>
+    <Compile Include="app.cs">
+      <DependentUpon>App_Security.tt</DependentUpon>
     </Compile>
-    <Compile Include="deliveryorder.cs">
-      <DependentUpon>Postgres.tt</DependentUpon>
+    <Compile Include="approle.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
-    <Compile Include="DeliveryOrderRepo.cs" />
-    <Compile Include="doaddressdetail.cs">
-      <DependentUpon>Postgres.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dodriverdetail.cs">
-      <DependentUpon>Postgres.tt</DependentUpon>
-    </Compile>
-    <Compile Include="driverdetail.cs">
-      <DependentUpon>Postgres.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DriverDetailRepo.cs" />
-    <Compile Include="ICRUDOperations.cs" />
-    <Compile Include="invoice.cs">
-      <DependentUpon>Postgres.tt</DependentUpon>
-    </Compile>
-    <Compile Include="InvoiceRepo.cs" />
-    <Compile Include="Postgres.Context.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Include="App_model.Context.cs">
+      <DependentUpon>App_model.Context.tt</DependentUpon>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Postgres.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Postgres.cs">
       <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Postgres.tt</DependentUpon>
     </Compile>
-    <Compile Include="Postgres.Designer.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Include="App_model.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Postgres.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="App_model.Designer.cs">
+      <DependentUpon>App_model.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="App_Security.Context.cs">
+      <DependentUpon>App_Security.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="App_Security.cs">
+      <DependentUpon>App_Security.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="App_Security.Designer.cs">
+      <DependentUpon>App_Security.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="broker.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="carrier.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="comment.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="company.cs">
+      <DependentUpon>App_Security.tt</DependentUpon>
+    </Compile>
+    <Compile Include="companyapp.cs">
+      <DependentUpon>App_Security.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contact.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="customer.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="customeraddress.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="document.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documenttype.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="driver.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IBaseRepository.cs" />
+    <Compile Include="invoicedetail.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="invoiceheader.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="item.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="role.cs">
-      <DependentUpon>Postgres.tt</DependentUpon>
+    <Compile Include="shippingport.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
-    <Compile Include="shipmentdetail.cs">
-      <DependentUpon>Postgres.tt</DependentUpon>
+    <Compile Include="shippingportterminal.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ShipmentDetailRepo.cs" />
-    <Compile Include="TMSDBContext.cs" />
-    <Compile Include="user.cs">
-      <DependentUpon>Postgres.tt</DependentUpon>
+    <Compile Include="TableOperations\AddressRepository.cs" />
+    <Compile Include="TableOperations\AppRepository.cs" />
+    <Compile Include="TableOperations\CompanyAppRepository.cs" />
+    <Compile Include="TableOperations\CompanyRepository.cs" />
+    <Compile Include="TableOperations\UserActivityRepository.cs" />
+    <Compile Include="tms_containersize.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserRepo.cs" />
+    <Compile Include="tms_holdreason.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tms_orderdetail.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tms_orderdetailcomments.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tms_orderheader.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tms_orderheadercomments.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tms_ordersource.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tms_orderstatus.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tms_ordertype.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tms_priority.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tms_routes.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="useractivity.cs">
+      <DependentUpon>App_Security.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAccessDL.cs" />
+    <Compile Include="TableOperations\UserInfoRepository.cs" />
+    <Compile Include="userinfo.cs">
+      <DependentUpon>App_Security.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vendor.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="voucherdetail.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="voucherheader.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="warehouse.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="Postgres.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Postgres.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Postgres.edmx.diagram">
-      <DependentUpon>Postgres.edmx</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Postgres.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Postgres.edmx</DependentUpon>
-      <LastGenOutput>Postgres.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Postgres.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Postgres.edmx</DependentUpon>
-      <LastGenOutput>Postgres.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_model.Context.tt">
+      <DependentUpon>App_model.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>App_model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_model.tt">
+      <DependentUpon>App_model.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>App_model.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_Security.Context.tt">
+      <DependentUpon>App_Security.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>App_Security.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_Security.tt">
+      <DependentUpon>App_Security.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>App_Security.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="App_model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>App_model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="App_Security.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>App_Security.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
