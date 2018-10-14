@@ -254,5 +254,11 @@
       <LastGenOutput>App_Security.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TMS.BusinessObjects\TMS.BusinessObjects.csproj">
+      <Project>{3FC4D08B-D452-4852-8093-CF915E98DAB2}</Project>
+      <Name>TMS.BusinessObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

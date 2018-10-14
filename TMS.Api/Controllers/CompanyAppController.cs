@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TMS.BusinessObjects;
 
 namespace TMS.Api.Controllers
 {
@@ -22,8 +23,9 @@ namespace TMS.Api.Controllers
         }
 
         // POST: api/CompanyApp
-        public void Post([FromBody]string value)
+        public void Post([FromBody]CompanyDetailBO companyBO)
         {
+
         }
 
         // PUT: api/CompanyApp/5

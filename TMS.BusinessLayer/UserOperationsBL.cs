@@ -15,27 +15,41 @@ namespace TMS.BusinessLayer
         {
             UserInfoRepository repo = new UserInfoRepository();
             AddressRepository addressRepo = new AddressRepository();
-          var addressKey =  addressRepo.Add(new address
+            List<company> usercompany = new List<company>();
+            Guid Addresskey = Guid.Empty;
+            if(userDetailsBO.address != null) {
+                Addresskey =  addressRepo.Add(new address
             {
-                address1 = userDetailsBO.Address1,
-                address2 = userDetailsBO.Address2,
-                city = userDetailsBO.City,
-                state = userDetailsBO.State,
-                zipcode = userDetailsBO.Zip,
-                phone = userDetailsBO.Phone,
-                fax = userDetailsBO.Fax,
-                email = userDetailsBO.Email,
+              addrname = userDetailsBO.FirstName,
+              addrkey = Guid.NewGuid(),
+              address1 = userDetailsBO.address.Address1,
+                address2 = userDetailsBO.address.Address2,
+                city = userDetailsBO.address.City,
+                state = userDetailsBO.address.State,
+                zipcode = userDetailsBO.address.Zip,
+                phone = userDetailsBO.address.Phone,
+                fax = userDetailsBO.address.Fax,
+                email = userDetailsBO.address.Email,
                
             });
+            }
+            if (userDetailsBO.CompanyKey != null)
+            {
+                CompanyRepository companyRepo = new CompanyRepository();
+                var result =  companyRepo.GetbyId(userDetailsBO.CompanyKey.Value);
+                if(result != null)
+                usercompany.Add(result);
+            }
             userinfo userinfo = new userinfo
             {
                 firstname = userDetailsBO.FirstName,
                 lastname = userDetailsBO.LastName,
                 password = userDetailsBO.Password,
-                addrkey = addressKey,
-                createdate = DateTime.Now
-              
+                addrkey = Addresskey,
+                createdate = DateTime.Now,
+                status = 1
             };
+            
             var usrKey= repo.Add(userinfo);
             if(usrKey !=null || usrKey !=Guid.Empty)
             {
@@ -57,21 +71,33 @@ namespace TMS.BusinessLayer
 
         }
 
-        public UserDetailsBO GetUser(Guid id)
+        public UserDetailsBO GetUser(string userName)
         {
             UserInfoRepository repo = new UserInfoRepository();
-          var userinfo=  repo.GetbyId(id);
+          var userinfo=  repo.GetbyField(userName);
+            if(userinfo!=null) { 
             UserDetailsBO bo = new UserDetailsBO();
             bo.FirstName = userinfo.firstname;
             bo.LastName = userinfo.lastname;
-            bo.Phone = userinfo.address.phone;
-            bo.Email = userinfo.address.email;
-            bo.Fax = userinfo.address.fax;
-            bo.Address1 = userinfo.address.address1;
-            bo.Address2 = userinfo.address.address2;
-            bo.City = userinfo.address.city;
-            bo.State = userinfo.address.state;
+            bo.UserKey = userinfo.userkey;
+                bo.UserId = userinfo.userid;
+            if (userinfo.address != null)
+            {
+                bo.address = new AddressBO
+                {
+                    Phone = userinfo.address.phone,
+                    Email = userinfo.address.email,
+                    Fax = userinfo.address.fax,
+                    Address1 = userinfo.address.address1,
+                    Address2 = userinfo.address.address2,
+                    City = userinfo.address.city,
+                    State = userinfo.address.state
+                };
+            }
             return bo;
         }
+            else return null;
+        }
+        
     }
 }

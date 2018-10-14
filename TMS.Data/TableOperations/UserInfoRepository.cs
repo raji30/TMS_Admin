@@ -21,7 +21,9 @@ namespace TMS.BusinessLayer
             
             using (var entity = new App_SecurityEntities())
             {
+                t.userkey = Guid.NewGuid();
                var newlyadded =   entity.userinfoes.Add(t);
+               
                 entity.SaveChanges();
               return  newlyadded.userkey;
             }

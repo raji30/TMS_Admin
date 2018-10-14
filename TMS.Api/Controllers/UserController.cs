@@ -14,12 +14,13 @@ namespace TMS.Api.Controllers
     public class UserController : ApiController
     {
         // GET: api/User/5
-        public JsonResult Get(Guid id)
+        [System.Web.Http.HttpGet]
+        public JsonResult Get(string userName)
         {
             UserOperationsBL userOperationsBL = new UserOperationsBL();
-           var result= userOperationsBL.GetUser(id);
-            return new JsonResult { Data = new { result } };
-
+           var result= userOperationsBL.GetUser(userName);
+          var jsonresult = new JsonResult { Data = new { result } };
+            return jsonresult;
         }
        
         // POST: api/User
@@ -29,7 +30,7 @@ namespace TMS.Api.Controllers
           bool result=  bll.AddUser(user);
             if (result)
             {
-                return new HttpResponseMessage(HttpStatusCode.Accepted);
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
             else
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);
@@ -42,7 +43,7 @@ namespace TMS.Api.Controllers
             bool result = bll.UpdateUser(user);
             if (result)
             {
-                return new HttpResponseMessage(HttpStatusCode.Accepted);
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
             else
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);
