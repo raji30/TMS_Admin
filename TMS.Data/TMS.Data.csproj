@@ -158,8 +158,10 @@
     </Compile>
     <Compile Include="TableOperations\AddressRepository.cs" />
     <Compile Include="TableOperations\AppRepository.cs" />
+    <Compile Include="TableOperations\BrokerRepository.cs" />
     <Compile Include="TableOperations\CompanyAppRepository.cs" />
     <Compile Include="TableOperations\CompanyRepository.cs" />
+    <Compile Include="TableOperations\CustomerRepository.cs" />
     <Compile Include="TableOperations\UserActivityRepository.cs" />
     <Compile Include="tms_containersize.cs">
       <DependentUpon>App_model.tt</DependentUpon>

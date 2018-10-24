@@ -214,6 +214,7 @@
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\CompanyAppController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DeliveryOrderController.cs" />
     <Compile Include="Controllers\DriverDetailsController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
@@ -320,6 +321,10 @@
     <ProjectReference Include="..\TMS.BusinessObjects\TMS.BusinessObjects.csproj">
       <Project>{3fc4d08b-d452-4852-8093-cf915e98dab2}</Project>
       <Name>TMS.BusinessObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMS.Data\TMS.Data.csproj">
+      <Project>{3524150A-5CCF-470F-B164-1D0C859A0696}</Project>
+      <Name>TMS.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

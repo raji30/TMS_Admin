@@ -18,8 +18,8 @@ namespace TMS.Api.Controllers
         public JsonResult Get(string userName)
         {
             UserOperationsBL userOperationsBL = new UserOperationsBL();
-           var result= userOperationsBL.GetUser(userName);
-          var jsonresult = new JsonResult { Data = new { result } };
+            var result= userOperationsBL.GetUser(userName);
+            var jsonresult = new JsonResult { Data = new { result } };
             return jsonresult;
         }
        
