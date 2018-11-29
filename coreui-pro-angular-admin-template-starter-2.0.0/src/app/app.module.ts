@@ -37,6 +37,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { LoginComponent } from './views/login/login.component';
+import { DOIntakeComponent } from './views/dointake/dointake.component';
+import { AddressComponent } from './views/child/address/address.component';
 
 @NgModule({
   imports: [
@@ -57,7 +59,9 @@ import { LoginComponent } from './views/login/login.component';
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
-    LoginComponent
+    LoginComponent,
+    DOIntakeComponent,
+    AddressComponent
   ],
   providers: [{
     provide: LocationStrategy,

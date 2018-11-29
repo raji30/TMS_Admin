@@ -1,15 +1,15 @@
 <app-header
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [navbarBrandFull]="{src: 'assets/img/brand/truck.svg', width: 150, height: 45, alt: 'CoreUI Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/truck.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'">
   <ul class="nav navbar-nav d-md-down-none mr-auto">
     <li class="nav-item px-3">
-      <a class="nav-link" href="#">DO Intake</a>
+      <a class="nav-link" routerLink= "/doIntake">DO Intake</a>
       </li>
       <li class="nav-item px-3">
-        <a class="nav-link" href="#">Schedule</a>
+        <a class="nav-link" href="">Schedule</a>
         </li>
         <li class="nav-item px-3">
           <a class="nav-link" href="#">Dispatch</a>
@@ -20,9 +20,9 @@
             <li class="nav-item px-3">
               <a class="nav-link" href="#">Billing</a>
               </li>
-      <li class="navbar-nav-right" style="padding-right: 500px;">
+     <!-- <li class="navbar-nav-right" style="padding-right: 500px;">
         <a class="nav-link" routerLink="/login">Login</a>
-      </li>
+      </li>-->
   </ul>
 </app-header>
 <div class="app-body">

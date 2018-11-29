@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
 import { LoginComponent } from './views/login/login.component';
+import { DOIntakeComponent } from './views/dointake/dointake.component';
+
 
 export const routes: Routes = [
   {
@@ -22,6 +24,11 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
       },
+      {
+        path :'doIntake',
+        component : DOIntakeComponent
+      }
+      
       // {
       //   path: 'login',
       //   loadChildren: './views/login/login.module#LoginModule'
