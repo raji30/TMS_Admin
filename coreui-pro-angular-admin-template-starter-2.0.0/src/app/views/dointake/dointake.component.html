@@ -1,0 +1,127 @@
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-3">
+  <h5>Bill To:</h5>
+   <app-address></app-address>
+  </div> <!--Col 3-->
+  <div class="col-md-3">
+      <h5>Pick Up:</h5>
+      <app-address></app-address>
+    </div>
+    <div class="col-md-3">
+        <h5>Consignee:</h5>
+        <app-address></app-address>
+      </div>
+      <div class="col-md-3">
+          <h5>Return:</h5>
+          <app-address></app-address>
+        </div>
+</div>
+<h5>Broker Details:</h5>
+<div class="row">
+    <div class="form-group col-md-3">
+        <select id="drpBrokerName" class="form-control" aria-placeholder="BrokerName">
+         <option selected>Broker Name</option>
+         <option>------</option>
+       </select>
+       </div>
+   <div class="form-group col-md-2">
+     <input type="text" id="txtBrokerRefNo" placeholder="Broker Ref no#" class="form-control">
+   </div>
+   <div class="form-group col-md-3">
+      <input type="text" id="txtPortofOrigin" placeholder="Port of Origin" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+        <input type="text" id="txtShipwt" placeholder="Shipment Weight" class="form-control">
+      </div>
+      <div class="form-group col-md-2">
+          <select id="drpFreightCharges" class="form-control" aria-placeholder="Freight charges">
+              <option selected>Charges</option>
+              <option>------</option>
+            </select>
+        </div>
+</div>
+<div class="row">
+ 
+    <div class="form-group col-md-3">
+        <input type="text" id="txtVesselName" placeholder="Vessel Name" class="form-control">
+       </div>
+   <div class="form-group col-md-2">
+     <input type="text" id="txtBLNo" placeholder="B/L no#" class="form-control">
+   </div>
+   <div class="form-group col-md-3">
+      <input type="text" id="txtBookingNum" placeholder="Booking #" class="form-control">
+    </div>
+    <div class="form-group col-md-2">
+        <div class="input-group">
+            <div class="input-group date" id="datetimepicker1">
+                <input type="text" class="form-control" placeholder="Cut off Date" />
+             
+            </div>
+      </div>
+      </div>
+      <div class="form-group col-md-2">
+          <input type="text" id="txtBoxes" placeholder="Boxes" class="form-control">
+        </div>
+</div>
+<div class="row">
+  <div class="form-group col-md-8">
+      <textarea class="form-control" rows="3" id="txtcomment" placeholder="Comment"></textarea>
+     
+  </div>
+  <div class="form-group col-md-4">
+      <button type="button" class="btn btn-link">More..</button>
+  </div>
+</div>
+<h5>Shipment Details</h5>
+<div class="row">
+<div class="col-md-12">
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Done?</th>
+        <th scope="col-2">Container #</th>
+        <th scope="col">Size</th>
+        <th scope="col">Chassis</th>
+        <th scope="col-2">Sea #</th>
+        <th scope="col">Temp</th>
+        <th scope="col">ApptDate</th>
+        <th scope="col">Appt Time</th>
+        <th scope="col-2">Driver Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row"><input type="checkbox"></td>
+            <td>FGQ14584</td>
+            <td>XL</td>
+            <td>ZSD#35</td>
+            <td>1234676</td>
+            <td>72</td>
+            <td>24-Nov-18</td>
+            <td>9:00 AM</td>
+            <td>Callback at 421-355-4563</td>
+          </tr>
+      <tr>
+        <td scope="row"><input type="checkbox"></td>
+        <td>ZAQ12784</td>
+        <td>M</td>
+        <td>ZSD#35</td>
+        <td>1234676</td>
+        <td>72</td>
+        <td>24-Nov-18</td>
+        <td>1:00 PM</td>
+        <td>Callback at 421-355-4563</td>
+      </tr>
+      </tbody>
+  </table>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-2 text-right">
+      <button class="btn btn-block btn-secondary" type="button">Check Credit</button>
+    </div>
+    <div class="col-md-2 text-right">
+        <button class="btn btn-block btn-primary" type="button">Submit</button>
+      </div>
+</div>
