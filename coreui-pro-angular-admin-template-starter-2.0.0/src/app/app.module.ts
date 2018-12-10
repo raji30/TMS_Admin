@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { ModalModule } from "ngx-bootstrap";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -39,6 +40,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { LoginComponent } from './views/login/login.component';
 import { DOIntakeComponent } from './views/dointake/dointake.component';
 import { AddressComponent } from './views/child/address/address.component';
+import { BillingratesComponent } from './views/child/billingrates/billingrates.component';
 
 @NgModule({
   imports: [
@@ -54,14 +56,16 @@ import { AddressComponent } from './views/child/address/address.component';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
     LoginComponent,
     DOIntakeComponent,
-    AddressComponent
+    AddressComponent,
+    BillingratesComponent
   ],
   providers: [{
     provide: LocationStrategy,
