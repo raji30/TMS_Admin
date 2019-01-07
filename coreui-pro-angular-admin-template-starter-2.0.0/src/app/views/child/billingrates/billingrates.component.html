@@ -1,0 +1,104 @@
+<div class="row">
+  <div class="col-md-2">Total Due:</div>
+  <div class="col-md-2"><span style="font-weight:bold;color:blue">$1500.00</span> </div>
+  <div class="col-md-2"><button class="btn btn-pill btn-block btn-link" type="button" data-toggle="modal" (click)="myModal.show()">Breakup..</button>
+  </div>
+
+</div>
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Rates</h4>
+        <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Base Rate</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+
+          <div class="form-group col-md-4">
+
+            <label># items</label>
+            <input type="number" class="form-control" placeholder="0">
+
+          </div>
+          <div class="form-group col-md-4">
+
+            <label>Sub Total</label>
+            <input type="number" class="form-control" placeholder="0">
+
+          </div>
+        </div>
+       <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Stop off</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+
+          <div class="form-group col-md-4">
+
+            <label>Demurrage</label>
+            <input type="number" class="form-control" placeholder="0.00">
+
+          </div>
+          <div class="form-group col-md-4">
+
+            <label>ForkLift</label>
+            <input type="number" class="form-control" placeholder="0.00">
+
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Incoming Freight</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+
+          <div class="form-group col-md-4">
+
+            <label>Outgoing Freight</label>
+            <input type="number" class="form-control" placeholder="0.00">
+
+          </div>
+          <div class="form-group col-md-4">
+
+            <label>Drop & Pull</label>
+            <input type="number" class="form-control" placeholder="0.00">
+
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Overweight</label>
+            <input type="number" class="form-control" placeholder="0.00">
+          </div>
+
+          <div class="form-group col-md-4">
+
+            <label>Warehouse Storage</label>
+            <input type="number" class="form-control" placeholder="0.00">
+
+          </div>
+          <div class="form-group col-md-4">
+
+            <label>Chassis Fee</label>
+            <input type="number" class="form-control" placeholder="0.00">
+
+          </div>
+        </div>
+       
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
