@@ -52,5 +52,22 @@ namespace TMS.Data
             }
             return false;
         }
+
+        public bool resetPassword (string userName, string newPassword)
+        {
+            using (var cmd = new NpgsqlCommand("update userInfo set password = @password where userId= @userName", securityconnection))
+            {
+                cmd.Parameters.AddWithValue("userName", userName);
+                cmd.Parameters.AddWithValue("password", newPassword);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                   
+                   bool returnval = Convert.ToBoolean(reader["status"].ToString());
+                    return returnval;
+                }
+                return false;
+            }
+        }
     }
 }

@@ -7,37 +7,31 @@ using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Mvc;
 using TMS.BusinessObjects;
+using TMS.Data;
 
 namespace TMS.Api.Controllers
 {
     public class DeliveryOrderController : ApiController
     {
+        DeliveryOrderDL doObj = new DeliveryOrderDL();
         // GET: api/DO
         public JsonResult Get(string OrderKey)
         {
-            var dorder = new DeliveryOrderBO();
+            
+           var dorder= doObj.GetDeliveryOrder(OrderKey);
             return new JsonResult { Data = new { dorder } };
         }
 
         // GET: api/DO/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+       
 
         // POST: api/DO
-        public void Post([FromBody]string value)
+        public JsonResult Post([FromBody]DeliveryOrderBO obj)
         {
+           var orderid= doObj.CreateDeliveryOrder(obj);
+            return new JsonResult { Data = new { orderId= orderid } };
         }
 
-        // PUT: api/DO/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/DO/5
-        public void Delete(int id)
-        {
-        }
+       
     }
 }

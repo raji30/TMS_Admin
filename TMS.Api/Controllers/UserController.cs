@@ -49,9 +49,6 @@ namespace TMS.Api.Controllers
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);
         }
 
-        // DELETE: api/User/5
-        public void Delete(int id)
-        {
-        }
+       
     }
 }
