@@ -1,0 +1,51 @@
+<app-header
+  [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/brand/truck.svg', width: 150, height: 45, alt: 'CoreUI Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/truck.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [sidebarToggler]="'lg'"
+  [asideMenuToggler]="'lg'">
+  <ul class="nav navbar-nav d-md-down-none mr-auto">
+    <li class="nav-item px-3">
+      <a class="nav-link" routerLink= "/doIntake">DO Intake</a>
+      </li>
+      <li class="nav-item px-3">
+        <a class="nav-link" href="">Dashboard</a>
+        </li>
+    <!--    <li class="nav-item px-3">
+          <a class="nav-link" href="#">Dispatch</a>
+          </li>
+          <li class="nav-item px-3">
+            <a class="nav-link" href="#">Review</a>
+            </li>
+            <li class="nav-item px-3">
+              <a class="nav-link" href="#">Billing</a>
+              </li>
+      <li class="navbar-nav-right" style="padding-right: 500px;">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>-->
+  </ul>
+</app-header>
+<div class="app-body">
+  <app-sidebar [fixed]="true" [display]="'lg'">
+    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+    <app-sidebar-minimizer></app-sidebar-minimizer>
+
+   
+  </app-sidebar>
+  <!-- Main content -->
+  <main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+      <app-breadcrumb></app-breadcrumb>
+    </ol>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div><!-- /.container-fluid -->
+  </main>
+  <app-aside [fixed]="true" [display]="false">
+    
+  </app-aside>
+</div>
+<app-footer>
+  <span>&copy; 2018 Trikaiser</span>
+  </app-footer>

@@ -1,0 +1,37 @@
+<div class="animated fadeIn">
+    <div class="card-columns cols-2">
+        <div class="card">
+          <div class="card-header">
+            Order Status
+          </div>
+          <div class="card-body">
+              <div class="chart-wrapper">
+                <canvas baseChart class="chart"
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+              Order Numbers
+            </div>
+            <div class="card-body">
+              <div class="chart-wrapper">
+                <canvas baseChart class="chart"
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+          </div>
+</div>
+</div>

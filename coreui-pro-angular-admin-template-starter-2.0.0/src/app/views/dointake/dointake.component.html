@@ -1,0 +1,253 @@
+<div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            DO Intake
+          </button>
+        </h5>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-2">
+                  <h5>Order Type:</h5>
+                </div>
+                <div class="col-md-3">
+                  <select id="cboOrderType"class="form-control">
+                    <option value="Import">Import</option>
+                    <option value="Import-No-Return">Import-No-Return</option>
+                    <option value="Export">Export</option>
+                    <option value="Export-No-Empty-Pickup">Export-No-Empty-Pickup</option>
+                    <option value="Return-To-Terminal">Return-To-Terminal</option>
+                    <option value="One-Way-Delivery">One-Way-Delivery</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                      </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-secondary">Upload</button>
+                    <button class="btn btn-link">View File</button>
+                </div>
+              </div>
+          
+                <div class="row">
+                  <div class="col-md-3">
+                  <h5>Bill To:</h5>
+                   <app-address></app-address>
+                  </div> <!--Col 3-->
+                  <div class="col-md-3">
+                      <h5>Pick Up:</h5>
+                      <app-address></app-address>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Consignee:</h5>
+                        <app-address></app-address>
+                      </div>
+                      <div class="col-md-3">
+                          <h5>Return:</h5>
+                          <app-address></app-address>
+                        </div>
+                </div>
+                <h5>Broker Details:</h5>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <select id="drpBrokerName" class="form-control" aria-placeholder="BrokerName">
+                         <option selected>Broker Name</option>
+                         <option>------</option>
+                       </select>
+                       </div>
+                   <div class="form-group col-md-2">
+                     <input type="text" id="txtBrokerRefNo" placeholder="Broker Ref no#" class="form-control">
+                   </div>
+                   <div class="form-group col-md-3">
+                      <input type="text" id="txtPortofOrigin" placeholder="Port of Origin" class="form-control">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input type="text" id="txtShipwt" placeholder="Shipment Weight" class="form-control">
+                      </div>
+                      <div class="form-group col-md-2">
+                          <select id="drpFreightCharges" class="form-control" aria-placeholder="Freight charges">
+                              <option selected>Charges</option>
+                              <option>------</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="row">
+                 
+                    <div class="form-group col-md-3">
+                        <input type="text" id="txtVesselName" placeholder="Vessel Name" class="form-control">
+                       </div>
+                   <div class="form-group col-md-2">
+                     <input type="text" id="txtBLNo" placeholder="B/L no#" class="form-control">
+                   </div>
+                   <div class="form-group col-md-3">
+                      <input type="text" id="txtBookingNum" placeholder="Booking #" class="form-control">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <div class="input-group">
+                            <div class="input-group date" id="datetimepicker1">
+                                <input type="text" class="form-control" placeholder="Cut off Date" />
+                             
+                            </div>
+                      </div>
+                      </div>
+                      <div class="form-group col-md-2">
+                          <input type="text" id="txtBoxes" placeholder="Boxes" class="form-control">
+                        </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-8">
+                      <textarea class="form-control" rows="3" id="txtcomment" placeholder="Comment"></textarea>
+                     
+                  </div>
+                  <div class="form-group col-md-4">
+                      <button type="button" class="btn btn-link">More..</button>
+                  </div>
+                </div>
+                <h5>Container Attributes</h5>
+                <div class="row">
+                <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col-2">Container #</th>
+                        <th scope="col">Size</th>
+                        <th scope="col">Chassis</th>
+                        <th scope="col-2">Sea #</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FGQ14584</td>
+                            <td>XL</td>
+                            <td>ZSD#35</td>
+                            <td>1234676</td>
+                         </tr>
+                      <tr>
+                        <td>ZAQ12784</td>
+                        <td>M</td>
+                        <td>ZSD#35</td>
+                        <td>1234676</td>
+                      </tr>
+                      </tbody>
+                  </table>
+                </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-2 text-right">
+                        <button class="btn btn-block btn-primary" type="button">Send to Scheduler</button>
+                      </div>
+                </div>
+                </div>
+</div>
+</div>
+</div>
+<div class="card">
+    <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          Dispatch
+          </button>
+        </h5>
+       
+</div>
+
+<div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+    <div class="card-body">
+            <div class="row">
+                    <div class="col-md-12">
+                     <h5>Driver Details</h5>
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">EntryDate</th>
+                            <th scope="col-2">Driver</th>
+                            <th scope="col">ActionDate</th>
+                            <th scope="col">LoadStatus</th>
+                            <th scope="col-2">DriverMoney</th>
+                            <th scope="col">SpecialNotes</th>
+                            <th scope="col">Locked</th>
+                            <th scope="col">UserLogin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="date"></td>
+                                <td>85-ER</td>
+                                <td><input type="date"></td>
+                                <td>------</td>
+                                <td>1245</td>
+                                <td><input type="text" aria-multiline="true"></td>
+                                <td><input type="radio"></td>
+                                <td>PHILIP</td>
+                              </tr>
+                              <tr>
+                                <td><input type="date"></td>
+                                <td>85-ER</td>
+                                <td><input type="date"></td>
+                                <td>------</td>
+                                <td>1245</td>
+                                <td><input type="text" aria-multiline="true"></td>
+                                <td><input type="radio"></td>
+                                <td>JOSEPH</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                    </div>
+                    </div>
+</div>
+</div>
+</div>
+<!--<div class="card">
+    <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+           Invoice
+          </button>
+        </h5>
+</div>
+<div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
+    <div class="card-body">
+  <div class="row">
+       
+  </div>
+</div>
+</div>
+</div>-->
+<!--<div class="card">
+    <div class="card-header" id="headingFour">
+        <h5 class="mb-0">
+          <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+           Billing
+          </button>
+        </h5>
+</div>
+<div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordionExample">
+    <div class="card-body">
+       <app-billingrates></app-billingrates>
+</div>
+</div>
+</div> -->
+<div class="card">
+    <div class="card-header" id="headingFive">
+        <h5 class="mb-0">
+          <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+           Review
+          </button>
+        </h5>
+</div>
+<div id="collapseFive" class="collapse show" aria-labelledby="headingFive" data-parent="#accordionExample">
+    <div class="card-body">
+</div>
+</div>
+</div>
+</div>
+
+
