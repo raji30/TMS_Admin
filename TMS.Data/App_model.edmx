@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="App_modelModel.Store" Provider="Npgsql" ProviderManifestToken="10.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="App_modelModel.Store" Provider="Npgsql" ProviderManifestToken="10.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="address">
           <Key>
             <PropertyRef Name="addrkey" />
@@ -49,8 +49,6 @@
           <Property Name="brokerkey" Type="uuid" Nullable="false" />
           <Property Name="contactkey" Type="uuid" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6005: The data type 'bit' is currently not supported for the target Entity Framework version; the column 'issteamline' in the table 'App_model.dbo.carrier' was excluded.-->
         <EntityType Name="carrier">
           <Key>
             <PropertyRef Name="carrierkey" />
@@ -65,6 +63,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <Property Name="createdate" Type="timestamp" Nullable="false" />
           <Property Name="status" Type="int2" Nullable="false" />
           <Property Name="statusdate" Type="timestamp" Nullable="false" />
+          <Property Name="isstreamline" Type="bool" />
         </EntityType>
         <EntityType Name="comment">
           <Key>
@@ -93,8 +92,6 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <Property Name="contacttype" Type="int2" />
           <Property Name="addrkey" Type="uuid" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6005: The data type 'bit' is currently not supported for the target Entity Framework version; the column 'creditcheck' in the table 'App_model.dbo.customer' was excluded.-->
         <EntityType Name="customer">
           <Key>
             <PropertyRef Name="custkey" />
@@ -109,6 +106,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <Property Name="statusdate" Type="timestamp" Nullable="false" />
           <Property Name="creditlimit" Type="numeric" Precision="18" Scale="2" />
           <Property Name="creditstatus" Type="int2" />
+          <Property Name="creditcheck" Type="bool" />
         </EntityType>
         <EntityType Name="customeraddress">
           <Key>
@@ -268,8 +266,6 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <Property Name="orderdetailkey" Type="uuid" Nullable="false" />
           <Property Name="documentkey" Type="uuid" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6005: The data type 'bit' is currently not supported for the target Entity Framework version; the column 'ishazardous' in the table 'App_model.dbo.tms_orderheader' was excluded.-->
         <EntityType Name="tms_orderheader">
           <Key>
             <PropertyRef Name="orderkey" />
@@ -305,6 +301,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <Property Name="createuserkey" Type="uuid" />
           <Property Name="lastupdatedate" Type="timestamp" />
           <Property Name="lastupdateuserkey" Type="uuid" />
+          <Property Name="ishazardous" Type="bool" />
         </EntityType>
         <EntityType Name="tms_orderheadercomments">
           <Key>
@@ -432,8 +429,6 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <Property Name="qty" Type="numeric" Precision="18" Scale="2" />
           <Property Name="extcost" Type="numeric" Precision="18" Scale="2" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6005: The data type 'bit' is currently not supported for the target Entity Framework version; the column 'ispaymentapproved' in the table 'App_model.dbo.voucherheader' was excluded.-->
         <EntityType Name="voucherheader">
           <Key>
             <PropertyRef Name="voucherkey" />
@@ -446,6 +441,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <Property Name="billtocopyaddrkey" Type="uuid" />
           <Property Name="voucheramount" Type="numeric" Precision="18" Scale="2" />
           <Property Name="duedate" Type="date" />
+          <Property Name="ispaymentapproved" Type="bool" />
         </EntityType>
         <EntityType Name="warehouse">
           <Key>
@@ -1200,6 +1196,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        
         <EntityContainer Name="App_modelModelStoreContainer">
           <EntitySet Name="address" EntityType="Self.address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="approles" EntityType="Self.approles" Schema="dbo" store:Type="Tables" />
@@ -1490,8 +1487,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
             <End Role="warehouse" EntitySet="warehouse" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="App_modelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1569,6 +1565,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <Property Name="statusdate" Type="DateTime" Precision="6" Nullable="false" />
           <NavigationProperty Name="address" Relationship="Self.fk_carrier_address" FromRole="carrier" ToRole="address" />
           <NavigationProperty Name="drivers" Relationship="Self.fk_driver_carrier" FromRole="carrier" ToRole="driver" />
+          <Property Name="isstreamline" Type="Boolean" />
         </EntityType>
         <EntityType Name="comment">
           <Key>
@@ -1614,6 +1611,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <NavigationProperty Name="customeraddresses" Relationship="Self.fk_customeraddress_customer" FromRole="customer" ToRole="customeraddress" />
           <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_orderheader_customer" FromRole="customer" ToRole="tms_orderheader" />
           <NavigationProperty Name="contacts" Relationship="Self.customercontacts" FromRole="customer" ToRole="contacts" />
+          <Property Name="creditcheck" Type="Boolean" />
         </EntityType>
         <EntityType Name="customeraddress">
           <Key>
@@ -1844,6 +1842,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <NavigationProperty Name="tms_orderheadercomments" Relationship="Self.fk_tms_orderheadercomments_tms_orderheader" FromRole="tms_orderheader" ToRole="tms_orderheadercomments" />
           <NavigationProperty Name="tms_routes" Relationship="Self.fk_tms_routes_tms_orderheader" FromRole="tms_orderheader" ToRole="tms_routes" />
           <NavigationProperty Name="documents" Relationship="Self.tms_orderheaderdocuments" FromRole="tms_orderheader" ToRole="document" />
+          <Property Name="ishazardous" Type="Boolean" />
         </EntityType>
         <EntityType Name="tms_orderheadercomments">
           <Key>
@@ -1972,6 +1971,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <NavigationProperty Name="vendor" Relationship="Self.fk_voucherheader_vendor" FromRole="voucherheader" ToRole="vendor" />
           <NavigationProperty Name="voucherdetails" Relationship="Self.fk_voucherdetail_voucherheader" FromRole="voucherheader" ToRole="voucherdetail" />
           <NavigationProperty Name="tms_routes" Relationship="Self.tms_routevouchers" FromRole="voucherheader" ToRole="tms_routes" />
+          <Property Name="ispaymentapproved" Type="Boolean" />
         </EntityType>
         <EntityType Name="warehouse">
           <Key>
@@ -2865,6 +2865,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <EntitySetMapping Name="carriers">
             <EntityTypeMapping TypeName="App_modelModel.carrier">
               <MappingFragment StoreEntitySet="carrier">
+                <ScalarProperty Name="isstreamline" ColumnName="isstreamline" />
                 <ScalarProperty Name="carrierkey" ColumnName="carrierkey" />
                 <ScalarProperty Name="carrierid" ColumnName="carrierid" />
                 <ScalarProperty Name="carriername" ColumnName="carriername" />
@@ -2903,6 +2904,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <EntitySetMapping Name="customers">
             <EntityTypeMapping TypeName="App_modelModel.customer">
               <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="creditcheck" ColumnName="creditcheck" />
                 <ScalarProperty Name="custkey" ColumnName="custkey" />
                 <ScalarProperty Name="custid" ColumnName="custid" />
                 <ScalarProperty Name="custname" ColumnName="custname" />
@@ -3073,6 +3075,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <EntitySetMapping Name="tms_orderheader">
             <EntityTypeMapping TypeName="App_modelModel.tms_orderheader">
               <MappingFragment StoreEntitySet="tms_orderheader">
+                <ScalarProperty Name="ishazardous" ColumnName="ishazardous" />
                 <ScalarProperty Name="orderkey" ColumnName="orderkey" />
                 <ScalarProperty Name="orderno" ColumnName="orderno" />
                 <ScalarProperty Name="orderdate" ColumnName="orderdate" />
@@ -3212,6 +3215,7 @@ warning 6005: The data type 'bit' is currently not supported for the target Enti
           <EntitySetMapping Name="voucherheaders">
             <EntityTypeMapping TypeName="App_modelModel.voucherheader">
               <MappingFragment StoreEntitySet="voucherheader">
+                <ScalarProperty Name="ispaymentapproved" ColumnName="ispaymentapproved" />
                 <ScalarProperty Name="voucherkey" ColumnName="voucherkey" />
                 <ScalarProperty Name="voucherno" ColumnName="voucherno" />
                 <ScalarProperty Name="voucherdate" ColumnName="voucherdate" />

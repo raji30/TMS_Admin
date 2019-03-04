@@ -29,6 +29,7 @@ namespace TMS.Data
         public Nullable<System.Guid> billtocopyaddrkey { get; set; }
         public Nullable<decimal> voucheramount { get; set; }
         public Nullable<System.DateTime> duedate { get; set; }
+        public Nullable<bool> ispaymentapproved { get; set; }
     
         public virtual vendor vendor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

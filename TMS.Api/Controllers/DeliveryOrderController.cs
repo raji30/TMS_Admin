@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web.Helpers;
 using System.Web.Http;
+using System.Web.Mvc;
+using TMS.BusinessObjects;
 
 namespace TMS.Api.Controllers
 {
     public class DeliveryOrderController : ApiController
     {
         // GET: api/DO
-        public IEnumerable<string> Get()
+        public JsonResult Get(string OrderKey)
         {
-            return new string[] { "value1", "value2" };
+            var dorder = new DeliveryOrderBO();
+            return new JsonResult { Data = new { dorder } };
         }
 
         // GET: api/DO/5

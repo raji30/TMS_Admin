@@ -29,8 +29,6 @@ namespace TMS.Data
                 {
                     u_info = new userinfo();
                     u_info.userkey = Guid.Parse (reader["userkey"].ToString());
-                    u_info.userid = reader["userid"].ToString();
-                    u_info.password = reader["password"].ToString();
                     u_info.firstname = reader["firstname"].ToString();
                     u_info.lastname = reader["lastname"].ToString();
                     u_info.status = Convert.ToInt16(reader["status"].ToString());

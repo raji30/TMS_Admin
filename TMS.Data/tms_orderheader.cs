@@ -54,6 +54,7 @@ namespace TMS.Data
         public Nullable<System.Guid> createuserkey { get; set; }
         public Nullable<System.DateTime> lastupdatedate { get; set; }
         public Nullable<System.Guid> lastupdateuserkey { get; set; }
+        public Nullable<bool> ishazardous { get; set; }
     
         public virtual address address { get; set; }
         public virtual address address1 { get; set; }
