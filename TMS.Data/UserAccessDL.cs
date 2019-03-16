@@ -10,7 +10,7 @@ namespace TMS.Data
 {
    public class UserAccessDL
     {
-        string securityconnString = "host=localhost;Username=postgres;Password=Abc1234!;Database=App_security";
+        string securityconnString = "host=localhost;port=5432;Username=postgres;Password=Abc1234!;Database=App_Security;";
         NpgsqlConnection securityconnection;
         public UserAccessDL()
         {
@@ -19,8 +19,9 @@ namespace TMS.Data
 
         public userinfo Login(string userName, string password)
         {
-            using (var cmd = new NpgsqlCommand("SELECT * from userInfo where userId= @userName and password = @password ", securityconnection))
+            using (var cmd = new NpgsqlCommand("SELECT * from dbo.userinfo where userId= @userName and password = @password ", securityconnection))
             {
+                securityconnection.Open();
                 cmd.Parameters.AddWithValue("userName", userName);
                 cmd.Parameters.AddWithValue("password", password);
                 userinfo u_info = null;
@@ -35,6 +36,7 @@ namespace TMS.Data
                     u_info.lastlogindate = Convert.ToDateTime(reader["lastlogindate"].ToString());
                     u_info.loginattempts = Convert.ToInt16(reader["loginattempts"].ToString());
                 }
+                securityconnection.Close();
                 return u_info;
             }
         }

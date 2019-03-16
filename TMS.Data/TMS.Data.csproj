@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="address.cs">
-      <DependentUpon>App_Security.tt</DependentUpon>
+      <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
     <Compile Include="app.cs">
       <DependentUpon>App_Security.tt</DependentUpon>
@@ -197,6 +197,9 @@
     <Compile Include="tms_routes.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="user.cs">
+      <DependentUpon>App_model.tt</DependentUpon>
+    </Compile>
     <Compile Include="useractivity.cs">
       <DependentUpon>App_Security.tt</DependentUpon>
     </Compile>
@@ -205,6 +208,7 @@
     <Compile Include="userinfo.cs">
       <DependentUpon>App_Security.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
     <Compile Include="vendor.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>

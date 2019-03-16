@@ -2,50 +2,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
 using TMS.Data;
+using HttpGetAttribute = System.Web.Mvc.HttpGetAttribute;
+using NonActionAttribute = System.Web.Mvc.NonActionAttribute;
 
 namespace TMS.Api.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : ApiController
     {
-       
-        // GET: Login
-        public JsonResult Login(string username, string password, string companyName)
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("")]
+        public string Token(string username, string password, string companyName)
         {
             UserAccessDL userAccessDL = new UserAccessDL();
-            var isauth = userAccessDL.isAuthorized(username, companyName);
-            if(isauth) { 
+          //  var isauth = userAccessDL.isAuthorized(username, companyName);
+            if(true) { 
            var userInfo= userAccessDL.Login(username, password);
             if(userInfo == null)
             {
-                return new JsonResult() { Data = "Not Authenticated!" };
+                return  "User not found!" ;
             }
-            var jsonresult = new JsonResult { Data = new { firstName = userInfo.firstname,
-                lastName = userInfo.lastname,
-                userInfo.userid}
-            };
-            return jsonresult;
+              return JwtManager.GenerateToken(username);
             }
-            return new JsonResult() { Data = "Unauthorized!" };
+           
         }
-
-        public JsonResult ForgotPassword(string username, string newPassword)
-        {
-            UserAccessDL userAccessDL = new UserAccessDL();
-            bool success = userAccessDL.resetPassword(username, newPassword);
-            if (!success)
-            {
-                return new JsonResult() { Data = "User Not found!" };
-            }
-            else { 
-            var jsonresult = new JsonResult()
-            {
-                Data ="Password Updated!"
+        //[NonAction]
+        //public JsonResult ForgotPassword(string username, string newPassword)
+        //{
+        //    UserAccessDL userAccessDL = new UserAccessDL();
+        //    bool success = userAccessDL.resetPassword(username, newPassword);
+        //    if (!success)
+        //    {
+        //        return new JsonResult() { Data = "User Not found!" };
+        //    }
+        //    else { 
+        //    var jsonresult = new JsonResult()
+        //    {
+        //        Data ="Password Updated!"
                
-            };
-            return jsonresult;
-            }
-        }
+        //    };
+        //    return jsonresult;
+        //    }
+        //}
         }
     }

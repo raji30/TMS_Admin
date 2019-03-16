@@ -10,6 +10,7 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
 {
+    [JwtAuthentication]
     public class CustomerController : ApiController
     {
         // GET: api/Customer

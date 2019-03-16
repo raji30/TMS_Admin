@@ -11,21 +11,27 @@ using TMS.Data;
 
 namespace TMS.Api.Controllers
 {
+    [JwtAuthentication]
     public class DeliveryOrderController : ApiController
     {
         DeliveryOrderDL doObj = new DeliveryOrderDL();
-        // GET: api/DO
+        /// <summary>
+        /// Get Delivery order by Order Key
+        /// </summary>
+        /// <param name="OrderKey"></param>
+        /// <returns>Delivery Order </returns>
         public JsonResult Get(string OrderKey)
         {
             
-           var dorder= doObj.GetDeliveryOrder(OrderKey);
+           DeliveryOrderBO dorder= doObj.GetDeliveryOrder(OrderKey);
             return new JsonResult { Data = new { dorder } };
         }
 
-        // GET: api/DO/5
-       
-
-        // POST: api/DO
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj">Delivery Order</param>
+        /// <returns>GUID</returns>
         public JsonResult Post([FromBody]DeliveryOrderBO obj)
         {
            var orderid= doObj.CreateDeliveryOrder(obj);

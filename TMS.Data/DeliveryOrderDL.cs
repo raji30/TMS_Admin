@@ -91,7 +91,7 @@ namespace TMS.Data
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("orderkey", 
-                        NpgsqlTypes.NpgsqlDbType.Uuid, orderkey);
+                        NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(orderkey));
                    var reader= cmd.ExecuteReader();
                     while(reader.Read())
                     {
@@ -105,28 +105,28 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         bo.OrderNo = reader["orderno"].ToString();
                         bo.OrderDate = Convert.ToDateTime(reader["orderdate"].ToString());
                         bo.CustKey = Guid.Parse(reader["custkey"].ToString());
-                        bo.BillToAddress = GetAddress(Guid.Parse(reader["billingAddress"].ToString()));
-                        bo.SourceAddress = GetAddress(Guid.Parse(reader["sourceaddress"].ToString()));
-                        bo.DestinationAddress = GetAddress(Guid.Parse(reader["destinationaddress"].ToString()));
-                        bo.ReturnAddress = GetAddress(Guid.Parse(reader["returnaddress"].ToString()));
-                        bo.OrderType = short.Parse(reader["ordertype"].ToString());
-                        bo.Status = short.Parse(reader["status"].ToString());
-                        bo.StatusDate = DateTime.Parse(reader["statusdate"].ToString());
-                        bo.HoldReason = short.Parse(reader["holdreason"].ToString());
-                        bo.HoldDate = DateTime.Parse(reader["holdDate"].ToString());
+                        bo.BillToAddress = GetAddress(Utils.CustomParse<Guid>(reader["billtoaddrkey"]));
+                        bo.SourceAddress = GetAddress(Utils.CustomParse<Guid>(reader["sourceaddrkey"]));
+                        bo.DestinationAddress = GetAddress(Utils.CustomParse<Guid>(reader["destinationaddrkey"]));
+                        bo.ReturnAddress = GetAddress(Utils.CustomParse<Guid>(reader["returnaddrkey"]));
+                        bo.OrderType = Utils.CustomParse<short>(reader["ordertype"]);
+                        bo.Status = Utils.CustomParse<short>(reader["status"]);
+                        bo.StatusDate = Utils.CustomParse<DateTime>(reader["statusdate"]);
+                        bo.HoldReason = Utils.CustomParse<short>(reader["holdreason"]);
+                        bo.HoldDate = Utils.CustomParse<DateTime>(reader["holdDate"]);
                         bo.BrokerName = reader["brokername"].ToString();
                         bo.BrokerId = reader["brokerid"].ToString();
                         bo.BrokerRefNo = reader["brokerrefno"].ToString();
-                        bo.PortofOriginKey = Guid.Parse(reader["portoforiginkey"].ToString());
-                        bo.CarrierKey = Guid.Parse(reader["carrierkey"].ToString());
+                        bo.PortofOriginKey = Utils.CustomParse<Guid>(reader["portoforiginkey"]);
+                        bo.CarrierKey = Utils.CustomParse<Guid>(reader["carrierkey"]);
                         bo.VesselName = reader["vesselname"].ToString();
                         bo.BillofLading = reader["billoflading"].ToString();
                         bo.BookingNo = reader["bookingno"].ToString();
-                        bo.CutOffDate = DateTime.Parse(reader["cutoffdate"].ToString());
-                        bo.IsHazardous = bool.Parse(reader["ishazardous"].ToString());
-                        bo.Priority = short.Parse(reader["priority"].ToString());
-                        bo.CreatedDate = DateTime.Parse(reader["createdate"].ToString());
-                        bo.CreatedBy = Guid.Parse(reader["createuserkey"].ToString());
+                        bo.CutOffDate = Utils.CustomParse<DateTime>(reader["cutoffdate"]);
+                        bo.IsHazardous = Utils.CustomParse<bool>(reader["ishazardous"]);
+                        bo.Priority = Utils.CustomParse<short>(reader["priority"]);
+                        bo.CreatedDate = Utils.CustomParse<DateTime>(reader["createdate"]);
+                        bo.CreatedBy = Utils.CustomParse<Guid>(reader["createuserkey"]);
                         
                     }
                     return bo;
@@ -134,11 +134,16 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
             }
         }
 
-        public AddressBO GetAddress(Guid addrKey)
+        public AddressBO GetAddress(Guid? addrKey)
         {
+           if(addrKey == null)
+            {
+                return null;
+            }
             AddressBO addBO = new AddressBO();
             AddressRepository repo = new AddressRepository();
-           var addr= repo.GetbyId(addrKey);
+           var addr= repo.GetbyId(addrKey.Value);
+            if(addr !=null) { 
             addBO.Address1 = addr.address1;
             addBO.Address2 = addr.address2;
             addBO.City = addr.city;
@@ -147,6 +152,7 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
             addBO.Email = addr.email;
             addBO.Fax = addr.fax;
             addBO.Phone = addr.phone;
+            }
             return addBO;
         }
 

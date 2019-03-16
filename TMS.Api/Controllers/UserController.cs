@@ -11,6 +11,7 @@ using TMS.BusinessObjects;
 
 namespace TMS.Api.Controllers
 {
+    [JwtAuthentication]
     public class UserController : ApiController
     {
         // GET: api/User/5

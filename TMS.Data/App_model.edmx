@@ -388,7 +388,7 @@
           <Property Name="routekey" Type="uuid" Nullable="false" />
           <Property Name="voucherkey" Type="uuid" Nullable="false" />
         </EntityType>
-        <EntityType Name="userinfo">
+        <EntityType Name="user">
           <Key>
             <PropertyRef Name="userkey" />
           </Key>
@@ -1137,10 +1137,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_userroles_userinfo">
-          <End Role="userinfo" Type="Self.userinfo" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="1" />
           <End Role="userroles" Type="Self.userroles" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="userinfo">
+            <Principal Role="user">
               <PropertyRef Name="userkey" />
             </Principal>
             <Dependent Role="userroles">
@@ -1196,7 +1196,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        
         <EntityContainer Name="App_modelModelStoreContainer">
           <EntitySet Name="address" EntityType="Self.address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="approles" EntityType="Self.approles" Schema="dbo" store:Type="Tables" />
@@ -1232,7 +1231,7 @@
           <EntitySet Name="tms_priority" EntityType="Self.tms_priority" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tms_routes" EntityType="Self.tms_routes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tms_routevouchers" EntityType="Self.tms_routevouchers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="userinfo" EntityType="Self.userinfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="userroles" EntityType="Self.userroles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vendor" EntityType="Self.vendor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="voucherdetail" EntityType="Self.voucherdetail" Schema="dbo" store:Type="Tables" />
@@ -1467,7 +1466,7 @@
             <End Role="userroles" EntitySet="userroles" />
           </AssociationSet>
           <AssociationSet Name="fk_userroles_userinfo" Association="Self.fk_userroles_userinfo">
-            <End Role="userinfo" EntitySet="userinfo" />
+            <End Role="user" EntitySet="user" />
             <End Role="userroles" EntitySet="userroles" />
           </AssociationSet>
           <AssociationSet Name="fk_voucherdetail_item" Association="Self.fk_voucherdetail_item">
@@ -1533,7 +1532,7 @@
           </Key>
           <Property Name="rolekey" Type="Guid" Nullable="false" />
           <Property Name="descrption" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="userinfoes" Relationship="Self.userroles" FromRole="approles" ToRole="userinfo" />
+          <NavigationProperty Name="users" Relationship="App_modelModel.userroles1" FromRole="approle" ToRole="user" />
         </EntityType>
         <EntityType Name="broker">
           <Key>
@@ -1917,17 +1916,6 @@
           <NavigationProperty Name="tms_orderdetail" Relationship="Self.fk_tms_routes_tms_orderdetail" FromRole="tms_routes" ToRole="tms_orderdetail" />
           <NavigationProperty Name="tms_orderheader" Relationship="Self.fk_tms_routes_tms_orderheader" FromRole="tms_routes" ToRole="tms_orderheader" />
           <NavigationProperty Name="voucherheaders" Relationship="Self.tms_routevouchers" FromRole="tms_routes" ToRole="voucherheader" />
-        </EntityType>
-        <EntityType Name="userinfo">
-          <Key>
-            <PropertyRef Name="userkey" />
-          </Key>
-          <Property Name="userkey" Type="Guid" Nullable="false" />
-          <Property Name="firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="lastname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="usertype" Type="Int16" />
-          <Property Name="usertyperefkey" Type="Guid" />
-          <NavigationProperty Name="approles" Relationship="Self.userroles" FromRole="userinfo" ToRole="approles" />
         </EntityType>
         <EntityType Name="vendor">
           <Key>
@@ -2563,10 +2551,6 @@
           <End Role="tms_routes" Type="Self.tms_routes" Multiplicity="*" />
           <End Role="voucherheader" Type="Self.voucherheader" Multiplicity="*" />
         </Association>
-        <Association Name="userroles">
-          <End Role="approles" Type="Self.approle" Multiplicity="*" />
-          <End Role="userinfo" Type="Self.userinfo" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="App_modelEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="addresses" EntityType="Self.address" />
           <EntitySet Name="approles" EntityType="Self.approle" />
@@ -2595,7 +2579,6 @@
           <EntitySet Name="tms_ordertype" EntityType="Self.tms_ordertype" />
           <EntitySet Name="tms_priority" EntityType="Self.tms_priority" />
           <EntitySet Name="tms_routes" EntityType="Self.tms_routes" />
-          <EntitySet Name="userinfoes" EntityType="Self.userinfo" />
           <EntitySet Name="vendors" EntityType="Self.vendor" />
           <EntitySet Name="voucherdetails" EntityType="Self.voucherdetail" />
           <EntitySet Name="voucherheaders" EntityType="Self.voucherheader" />
@@ -2812,11 +2795,27 @@
             <End Role="tms_routes" EntitySet="tms_routes" />
             <End Role="voucherheader" EntitySet="voucherheaders" />
           </AssociationSet>
-          <AssociationSet Name="userroles" Association="Self.userroles">
-            <End Role="approles" EntitySet="approles" />
-            <End Role="userinfo" EntitySet="userinfoes" />
+          <EntitySet Name="users" EntityType="App_modelModel.user" />
+          <AssociationSet Name="userroles1" Association="App_modelModel.userroles1">
+            <End Role="approle" EntitySet="approles" />
+            <End Role="user" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userkey" />
+          </Key>
+          <Property Name="userkey" Type="Guid" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="lastname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="usertype" Type="Int16" />
+          <Property Name="usertyperefkey" Type="Guid" />
+          <NavigationProperty Name="approles" Relationship="App_modelModel.userroles1" FromRole="user" ToRole="approle" />
+        </EntityType>
+        <Association Name="userroles1">
+          <End Type="App_modelModel.approle" Role="approle" Multiplicity="*" />
+          <End Type="App_modelModel.user" Role="user" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3176,17 +3175,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="userinfoes">
-            <EntityTypeMapping TypeName="App_modelModel.userinfo">
-              <MappingFragment StoreEntitySet="userinfo">
-                <ScalarProperty Name="userkey" ColumnName="userkey" />
-                <ScalarProperty Name="firstname" ColumnName="firstname" />
-                <ScalarProperty Name="lastname" ColumnName="lastname" />
-                <ScalarProperty Name="usertype" ColumnName="usertype" />
-                <ScalarProperty Name="usertyperefkey" ColumnName="usertyperefkey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vendors">
             <EntityTypeMapping TypeName="App_modelModel.vendor">
               <MappingFragment StoreEntitySet="vendor">
@@ -3293,12 +3281,23 @@
               <ScalarProperty Name="voucherkey" ColumnName="voucherkey" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="userroles" TypeName="App_modelModel.userroles" StoreEntitySet="userroles">
-            <EndProperty Name="approles">
-              <ScalarProperty Name="rolekey" ColumnName="rolekey" />
-            </EndProperty>
-            <EndProperty Name="userinfo">
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="App_modelModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="usertyperefkey" ColumnName="usertyperefkey" />
+                <ScalarProperty Name="usertype" ColumnName="usertype" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="userkey" ColumnName="userkey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="userroles1" TypeName="App_modelModel.userroles1" StoreEntitySet="userroles">
+            <EndProperty Name="user">
               <ScalarProperty Name="userkey" ColumnName="userkey" />
+            </EndProperty>
+            <EndProperty Name="approle">
+              <ScalarProperty Name="rolekey" ColumnName="rolekey" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

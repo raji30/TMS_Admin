@@ -10,6 +10,7 @@ using TMS.BusinessObjects;
 using Newtonsoft.Json;
 namespace TMS.Api.Controllers
 {
+    [JwtAuthentication]
     public class CompanyController : ApiController
     {
         // GET: api/Company

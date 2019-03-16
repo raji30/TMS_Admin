@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressBO.cs" />
+    <Compile Include="BrokerBO.cs" />
+    <Compile Include="CarrierBO.cs" />
     <Compile Include="CompanyDetailBO.cs" />
     <Compile Include="CustomerBO.cs" />
     <Compile Include="DeliveryOrderBO.cs" />

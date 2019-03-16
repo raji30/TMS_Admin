@@ -9,10 +9,10 @@ namespace TMS.Data.TableOperations
 {
     public class AddressRepository : IBaseRepository<address>
     {
-        App_SecurityEntities entities;
+        App_modelEntities entities;
         public AddressRepository()
         {
-            entities = new App_SecurityEntities();
+            entities = new App_modelEntities();
         }
         public Guid Add(address t)
         {

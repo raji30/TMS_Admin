@@ -17,13 +17,13 @@ namespace TMS.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public approle()
         {
-            this.userinfoes = new HashSet<userinfo>();
+            this.users = new HashSet<user>();
         }
     
         public System.Guid rolekey { get; set; }
         public string descrption { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<userinfo> userinfoes { get; set; }
+        public virtual ICollection<user> users { get; set; }
     }
 }

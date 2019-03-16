@@ -9,9 +9,11 @@ namespace TMS.Data.TableOperations
 {
     public class BrokerRepository : IBaseRepository<broker>
     {
+        App_modelEntities entity = new App_modelEntities();
         public Guid Add(broker t)
         {
-            throw new NotImplementedException();
+            var newbroker = entity.brokers.Add(t);
+            return newbroker.brokerkey;
         }
 
         public bool Delete(broker t)
@@ -26,7 +28,7 @@ namespace TMS.Data.TableOperations
 
         public broker GetbyField(object t)
         {
-            throw new NotImplementedException();
+            return entity.brokers.FirstOrDefault(b => b.brokername == t.ToString());
         }
 
         public broker GetbyId(Guid id)

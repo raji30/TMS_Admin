@@ -17,8 +17,25 @@ namespace TMS.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public address()
         {
-            this.companies = new HashSet<company>();
-            this.userinfoes = new HashSet<userinfo>();
+            this.brokers = new HashSet<broker>();
+            this.carriers = new HashSet<carrier>();
+            this.contacts = new HashSet<contact>();
+            this.customers = new HashSet<customer>();
+            this.customeraddresses = new HashSet<customeraddress>();
+            this.drivers = new HashSet<driver>();
+            this.shippingports = new HashSet<shippingport>();
+            this.shippingportterminals = new HashSet<shippingportterminal>();
+            this.tms_orderheader = new HashSet<tms_orderheader>();
+            this.tms_orderheader1 = new HashSet<tms_orderheader>();
+            this.tms_orderheader2 = new HashSet<tms_orderheader>();
+            this.tms_orderheader3 = new HashSet<tms_orderheader>();
+            this.tms_orderheader4 = new HashSet<tms_orderheader>();
+            this.tms_orderheader5 = new HashSet<tms_orderheader>();
+            this.tms_orderheader6 = new HashSet<tms_orderheader>();
+            this.tms_orderheader7 = new HashSet<tms_orderheader>();
+            this.tms_routes = new HashSet<tms_routes>();
+            this.tms_routes1 = new HashSet<tms_routes>();
+            this.warehouses = new HashSet<warehouse>();
         }
     
         public System.Guid addrkey { get; set; }
@@ -35,8 +52,42 @@ namespace TMS.Data
         public string fax { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<company> companies { get; set; }
+        public virtual ICollection<broker> brokers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<userinfo> userinfoes { get; set; }
+        public virtual ICollection<carrier> carriers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contact> contacts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<customer> customers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<customeraddress> customeraddresses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<driver> drivers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<shippingport> shippingports { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<shippingportterminal> shippingportterminals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tms_orderheader> tms_orderheader { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tms_orderheader> tms_orderheader1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tms_orderheader> tms_orderheader2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tms_orderheader> tms_orderheader3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tms_orderheader> tms_orderheader4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tms_orderheader> tms_orderheader5 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tms_orderheader> tms_orderheader6 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tms_orderheader> tms_orderheader7 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tms_routes> tms_routes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tms_routes> tms_routes1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<warehouse> warehouses { get; set; }
     }
 }

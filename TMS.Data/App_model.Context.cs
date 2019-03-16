@@ -52,10 +52,10 @@ namespace TMS.Data
         public virtual DbSet<tms_ordertype> tms_ordertype { get; set; }
         public virtual DbSet<tms_priority> tms_priority { get; set; }
         public virtual DbSet<tms_routes> tms_routes { get; set; }
-        public virtual DbSet<userinfo> userinfoes { get; set; }
         public virtual DbSet<vendor> vendors { get; set; }
         public virtual DbSet<voucherdetail> voucherdetails { get; set; }
         public virtual DbSet<voucherheader> voucherheaders { get; set; }
         public virtual DbSet<warehouse> warehouses { get; set; }
+        public virtual DbSet<user> users { get; set; }
     }
 }

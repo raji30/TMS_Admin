@@ -14,14 +14,19 @@ namespace TMS.Data
     
     public partial class user
     {
-        public int id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public user()
+        {
+            this.approles = new HashSet<approle>();
+        }
+    
+        public System.Guid userkey { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
-        public string password { get; set; }
-        public string email { get; set; }
-        public Nullable<System.DateTime> createdon { get; set; }
-        public Nullable<int> createdby { get; set; }
-        public Nullable<System.DateTime> modifiedon { get; set; }
-        public Nullable<int> modifiedby { get; set; }
+        public Nullable<short> usertype { get; set; }
+        public Nullable<System.Guid> usertyperefkey { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<approle> approles { get; set; }
     }
 }

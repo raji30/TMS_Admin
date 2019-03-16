@@ -32,7 +32,6 @@
         <EntityTypeShape EntityType="App_modelModel.tms_ordertype" Width="1.5" PointX="11.5" PointY="20.875" IsExpanded="true" />
         <EntityTypeShape EntityType="App_modelModel.tms_priority" Width="1.5" PointX="11.5" PointY="23.25" IsExpanded="true" />
         <EntityTypeShape EntityType="App_modelModel.tms_routes" Width="1.5" PointX="21.25" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="App_modelModel.userinfo" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="App_modelModel.vendor" Width="1.5" PointX="3" PointY="21.875" IsExpanded="true" />
         <EntityTypeShape EntityType="App_modelModel.voucherdetail" Width="1.5" PointX="25.75" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="App_modelModel.voucherheader" Width="1.5" PointX="23.5" PointY="12.125" IsExpanded="true" />
@@ -90,7 +89,8 @@
         <AssociationConnector Association="App_modelModel.tms_orderheaderdocuments" ManuallyRouted="false" />
         <AssociationConnector Association="App_modelModel.tms_orderinvoices" ManuallyRouted="false" />
         <AssociationConnector Association="App_modelModel.tms_routevouchers" ManuallyRouted="false" />
-        <AssociationConnector Association="App_modelModel.userroles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="App_modelModel.user" Width="1.5" PointX="3" PointY="4" />
+        <AssociationConnector Association="App_modelModel.userroles1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
