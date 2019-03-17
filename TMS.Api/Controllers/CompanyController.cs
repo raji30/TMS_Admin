@@ -18,7 +18,7 @@ namespace TMS.Api.Controllers
         //{
         //    return new string[] { "value1", "value2" };
         //}
-
+        [System.Web.Http.HttpGet]
         // GET: api/Company/5
         public JsonResult Get(string companyName)
         {
@@ -31,7 +31,7 @@ namespace TMS.Api.Controllers
             else
                 return new JsonResult {  Data = "Not found"  };
         }
-
+        [System.Web.Http.HttpPost]
         // POST: api/Company
         public HttpResponseMessage Post([FromBody]CompanyDetailBO detailsBO)
         {

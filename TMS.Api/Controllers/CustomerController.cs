@@ -36,7 +36,7 @@ namespace TMS.Api.Controllers
         }
 
         // POST: api/Customer
-        public HttpResponseMessage Post([FromBody] CustomerBO customer)
+        public JsonResult Post([FromBody] CustomerBO customer)
         {
             Data.customer _customer = new Data.customer();
             _customer.custid = customer.CustId;
@@ -45,18 +45,30 @@ namespace TMS.Api.Controllers
             _customer.creditlimit = customer.CreditLimit;
             _customer.creditstatus = customer.CreditStatus;
             _customer.customergroup = customer.CustomerGroup;
-            repo.Add(_customer);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+           Guid userId =repo.Add(_customer);
+            if(userId!= null && userId != Guid.Empty)
+            return new JsonResult { Data = new { status = HttpStatusCode.OK, userId = userId } };
+            else
+                return new JsonResult { Data = new { status = HttpStatusCode.InternalServerError, userId = "" } };
         }
-
+        [System.Web.Http.HttpPut]
         // PUT: api/Customer/5
-        private void Put(int id, [FromBody]string value)
+        public JsonResult Put(int id, [FromBody]CustomerBO customer)
         {
+            Data.customer _customer = new Data.customer();
+            _customer.custid = customer.CustId;
+            _customer.custname = customer.CustName;
+            _customer.creditstatus = customer.CreditStatus;
+            _customer.creditlimit = customer.CreditLimit;
+            _customer.creditstatus = customer.CreditStatus;
+            _customer.customergroup = customer.CustomerGroup;
+           bool result= repo.Update(_customer);
+           if(result)
+                return new JsonResult { Data = new { status = HttpStatusCode.OK } };
+            else
+                return new JsonResult { Data = new { status = HttpStatusCode.InternalServerError} };
         }
 
-        // DELETE: api/Customer/5
-        private void Delete(int id)
-        {
-        }
+       
     }
 }

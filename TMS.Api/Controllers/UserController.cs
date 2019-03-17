@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -16,6 +13,7 @@ namespace TMS.Api.Controllers
     {
         // GET: api/User/5
         [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("Get")]
         public JsonResult Get(string userName)
         {
             UserOperationsBL userOperationsBL = new UserOperationsBL();
@@ -25,29 +23,32 @@ namespace TMS.Api.Controllers
         }
        
         // POST: api/User
-        public HttpResponseMessage Post([FromBody]UserDetailsBO user)
+        [System.Web.Http.HttpPost]
+        public JsonResult Post([FromBody]UserDetailsBO user)
         {
             UserOperationsBL bll = new UserOperationsBL();
           bool result=  bll.AddUser(user);
             if (result)
             {
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                return new JsonResult { Data = new { StatusCode = 200 } };
             }
             else
-                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                return new JsonResult { Data= new { StatusCode= 500 } };
         }
 
         // PUT: api/User/5
-        public HttpResponseMessage Put([FromBody]UserDetailsBO user)
+        [System.Web.Http.HttpPut]
+        [System.Web.Http.Route("Update")]
+        public JsonResult Put([FromBody]UserDetailsBO user)
         {
             UserOperationsBL bll = new UserOperationsBL();
             bool result = bll.UpdateUser(user);
             if (result)
             {
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                return new JsonResult { Data = new { StatusCode = 200 } };
             }
             else
-                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                return new JsonResult { Data = new { StatusCode = 500 } };
         }
 
        

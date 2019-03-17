@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Results;
+using TMS.BusinessObjects;
 using TMS.Data;
 using HttpGetAttribute = System.Web.Mvc.HttpGetAttribute;
 using NonActionAttribute = System.Web.Mvc.NonActionAttribute;
@@ -13,38 +15,47 @@ namespace TMS.Api.Controllers
     {
         [HttpPost]
         [AllowAnonymous]
-        [Route("")]
-        public string Token(string username, string password, string companyName)
+        [Route("Token")]
+        public LoginResult Token(string username, string password, string companyName)
         {
             UserAccessDL userAccessDL = new UserAccessDL();
-          //  var isauth = userAccessDL.isAuthorized(username, companyName);
-            if(true) { 
-           var userInfo= userAccessDL.Login(username, password);
-            if(userInfo == null)
+            var result = new LoginResult();
+            //  var isauth = userAccessDL.isAuthorized(username, companyName);
+            if (true) {
+                var userInfo = userAccessDL.Login(username, password);
+                if (userInfo == null)
+                {
+                    result.message = "user not found";
+                    result.isLoggedIn = false;
+                    result.token = string.Empty;
+                }
+                else
+                {
+                    result.message = "success";
+                    result.token = JwtManager.GenerateToken(username);
+                    result.loggedinTime = Convert.ToString(userInfo.lastlogindate.Value);
+                    result.isLoggedIn = true;
+                    result.userId = Convert.ToString(userInfo.userkey);
+                }
+                return result;
+            }
+
+        }
+        [HttpPost]
+        [Route("ResetPassword")]
+        [AllowAnonymous]
+        public string ResetPassword(string username, string newPassword)
+        {
+            UserAccessDL userAccessDL = new UserAccessDL();
+            bool success = userAccessDL.resetPassword(username, newPassword);
+            if (!success)
             {
-                return  "User not found!" ;
+                return  "User Not found!" ;
             }
-              return JwtManager.GenerateToken(username);
+            else
+            {
+                return "Password Updated!";
             }
-           
         }
-        //[NonAction]
-        //public JsonResult ForgotPassword(string username, string newPassword)
-        //{
-        //    UserAccessDL userAccessDL = new UserAccessDL();
-        //    bool success = userAccessDL.resetPassword(username, newPassword);
-        //    if (!success)
-        //    {
-        //        return new JsonResult() { Data = "User Not found!" };
-        //    }
-        //    else { 
-        //    var jsonresult = new JsonResult()
-        //    {
-        //        Data ="Password Updated!"
-               
-        //    };
-        //    return jsonresult;
-        //    }
-        //}
-        }
+    }
     }
