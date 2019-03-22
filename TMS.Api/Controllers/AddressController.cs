@@ -44,7 +44,7 @@ namespace TMS.Api.Controllers
         public HttpResponseMessage Post([FromBody]address add)
         {
             var value = repo.Add(add);
-            return Request.CreateResponse(HttpStatusCode.OK, value);
+            return Request.CreateResponse(HttpStatusCode.OK, value, Configuration.Formatters.JsonFormatter);
         }
         //[HttpPut]
         //// PUT api/values/5

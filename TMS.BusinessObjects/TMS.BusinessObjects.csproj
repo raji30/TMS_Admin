@@ -47,8 +47,10 @@
     <Compile Include="CompanyDetailBO.cs" />
     <Compile Include="CustomerBO.cs" />
     <Compile Include="DeliveryOrderBO.cs" />
+    <Compile Include="DeliveryOrderDetailBO.cs" />
     <Compile Include="LoginResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThinOrderDO.cs" />
     <Compile Include="UserDetailsBO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

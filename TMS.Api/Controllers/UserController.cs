@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
 using TMS.BusinessLayer;
 using TMS.BusinessObjects;
 
@@ -14,41 +13,46 @@ namespace TMS.Api.Controllers
         // GET: api/User/5
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("Get")]
-        public JsonResult Get(string userName)
+        public HttpResponseMessage Get(string userName)
         {
             UserOperationsBL userOperationsBL = new UserOperationsBL();
             var result= userOperationsBL.GetUser(userName);
-            var jsonresult = new JsonResult { Data = new { result } };
-            return jsonresult;
+            if (result != null)
+                return Request.CreateResponse(HttpStatusCode.OK,
+                    result, Configuration.Formatters.JsonFormatter);
+            else
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "User Not Found");
         }
        
         // POST: api/User
-        [System.Web.Http.HttpPost]
-        public JsonResult Post([FromBody]UserDetailsBO user)
+        [HttpPost]
+        public HttpResponseMessage Post([FromBody]UserDetailsBO user)
         {
             UserOperationsBL bll = new UserOperationsBL();
           bool result=  bll.AddUser(user);
             if (result)
             {
-                return new JsonResult { Data = new { StatusCode = 200 } };
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   result, Configuration.Formatters.JsonFormatter);
             }
             else
-                return new JsonResult { Data= new { StatusCode= 500 } };
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError,"User not added!");
         }
 
         // PUT: api/User/5
-        [System.Web.Http.HttpPut]
-        [System.Web.Http.Route("Update")]
-        public JsonResult Put([FromBody]UserDetailsBO user)
+        [HttpPut]
+        [Route("Update")]
+        public HttpResponseMessage Put([FromBody]UserDetailsBO user)
         {
             UserOperationsBL bll = new UserOperationsBL();
             bool result = bll.UpdateUser(user);
             if (result)
             {
-                return new JsonResult { Data = new { StatusCode = 200 } };
+                return Request.CreateResponse(HttpStatusCode.OK,
+                   result, Configuration.Formatters.JsonFormatter);
             }
             else
-                return new JsonResult { Data = new { StatusCode = 500 } };
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "User update failed!");
         }
 
        

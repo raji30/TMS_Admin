@@ -15,6 +15,7 @@ namespace TMS.Data
         public UserAccessDL()
         {
             securityconnection = new NpgsqlConnection(securityconnString);
+            securityconnection.Open();
         }
 
         public userinfo Login(string userName, string password)
@@ -55,9 +56,9 @@ namespace TMS.Data
             return false;
         }
 
-        public bool resetPassword (string userName, string newPassword)
+        public bool resetPassword(string userName, string newPassword)
         {
-            using (var cmd = new NpgsqlCommand("update userInfo set password = @password where userId= @userName", securityconnection))
+            using (var cmd = new NpgsqlCommand("update dbo.userInfo set password = @password, passwordexpirydate = Now() + interval '60' day, status =1 where userId= @userName", securityconnection))
             {
                 cmd.Parameters.AddWithValue("userName", userName);
                 cmd.Parameters.AddWithValue("password", newPassword);
@@ -68,6 +69,7 @@ namespace TMS.Data
                    bool returnval = Convert.ToBoolean(reader["status"].ToString());
                     return returnval;
                 }
+                securityconnection.Close();
                 return false;
             }
         }

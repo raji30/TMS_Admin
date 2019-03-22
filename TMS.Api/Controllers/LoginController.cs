@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Swashbuckle.Swagger.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
@@ -13,10 +15,11 @@ namespace TMS.Api.Controllers
 {
     public class LoginController : ApiController
     {
-        [HttpPost]
+        [HttpGet]
         [AllowAnonymous]
         [Route("Token")]
-        public LoginResult Token(string username, string password, string companyName)
+        [SwaggerOperation("Token")]
+        public HttpResponseMessage Token(string username, string password, string companyName)
         {
             UserAccessDL userAccessDL = new UserAccessDL();
             var result = new LoginResult();
@@ -28,6 +31,8 @@ namespace TMS.Api.Controllers
                     result.message = "user not found";
                     result.isLoggedIn = false;
                     result.token = string.Empty;
+                    return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, result,
+                        Configuration.Formatters.JsonFormatter);
                 }
                 else
                 {
@@ -36,25 +41,30 @@ namespace TMS.Api.Controllers
                     result.loggedinTime = Convert.ToString(userInfo.lastlogindate.Value);
                     result.isLoggedIn = true;
                     result.userId = Convert.ToString(userInfo.userkey);
+                    return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, result, 
+                        Configuration.Formatters.JsonFormatter);
                 }
-                return result;
+                
             }
 
         }
-        [HttpPost]
+        [HttpPut]
         [Route("ResetPassword")]
+        [SwaggerOperation("ResetPassword")]
         [AllowAnonymous]
-        public string ResetPassword(string username, string newPassword)
+        public HttpResponseMessage ResetPassword(string username, string newPassword)
         {
             UserAccessDL userAccessDL = new UserAccessDL();
             bool success = userAccessDL.resetPassword(username, newPassword);
             if (!success)
             {
-                return  "User Not found!" ;
+               return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, "Failed!",
+                        Configuration.Formatters.JsonFormatter);
             }
             else
             {
-                return "Password Updated!";
+               return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, "Password Updated!",
+                        Configuration.Formatters.JsonFormatter);
             }
         }
     }

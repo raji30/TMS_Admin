@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
 using TMS.BusinessObjects;
 using TMS.Data.TableOperations;
 
@@ -16,9 +15,9 @@ namespace TMS.Api.Controllers
         // GET: api/Customer
         CustomerRepository repo = new CustomerRepository();
         
-
+        [HttpGet]
         // GET: api/Customer/5
-        public JsonResult Get(string name)
+        public HttpResponseMessage Get(string name)
         {
            Data.customer customer= repo.GetbyField(name);
             if (customer != null)
@@ -29,14 +28,27 @@ namespace TMS.Api.Controllers
                 customerBO.CustomerGroup = customer.customergroup;
                 customerBO.CreditLimit = customer.creditlimit;
                 customerBO.CreditStatus = customer.creditstatus;
-                return new JsonResult { Data = new { customerBO } };
+                var address = new AddressRepository().GetbyId(customer.addrkey);
+                customerBO.Address = new AddressBO()
+                {
+                    Address1 = address.address1,
+                    Address2 = address.address2,
+                    City = address.city,
+                    State = address.state,
+                    Zip = address.zipcode,
+                    Email = address.email,
+                    Phone = address.phone,
+                    Fax = address.fax
+                };
+
+                return Request.CreateResponse(HttpStatusCode.OK, customerBO, Configuration.Formatters.JsonFormatter);
             }
             else
-                return new JsonResult { Data =   "Not found"  };
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not found", Configuration.Formatters.JsonFormatter);
         }
-
+        [HttpPost]
         // POST: api/Customer
-        public JsonResult Post([FromBody] CustomerBO customer)
+        public HttpResponseMessage Post([FromBody] CustomerBO customer)
         {
             Data.customer _customer = new Data.customer();
             _customer.custid = customer.CustId;
@@ -45,15 +57,32 @@ namespace TMS.Api.Controllers
             _customer.creditlimit = customer.CreditLimit;
             _customer.creditstatus = customer.CreditStatus;
             _customer.customergroup = customer.CustomerGroup;
-           Guid userId =repo.Add(_customer);
-            if(userId!= null && userId != Guid.Empty)
-            return new JsonResult { Data = new { status = HttpStatusCode.OK, userId = userId } };
+            if(customer.Address != null)
+            {
+                var custaddress = new Data.address()
+                {
+                    address1 = customer.Address.Address1,
+                    address2 = customer.Address.Address2,
+                    city = customer.Address.City,
+                    state = customer.Address.State,
+                    country = customer.Address.Country,
+                    zipcode = customer.Address.Zip,
+                    email = customer.Address.Email,
+                    fax = customer.Address.Fax,
+                    addrname = customer.CustName
+                };
+                var addrkey = new AddressRepository().Add(custaddress);
+                _customer.addrkey = addrkey;
+            }
+           Guid custId =repo.Add(_customer);
+            if(custId != null && custId != Guid.Empty)
+            return Request.CreateResponse(HttpStatusCode.OK, custId, Configuration.Formatters.JsonFormatter);
             else
-                return new JsonResult { Data = new { status = HttpStatusCode.InternalServerError, userId = "" } };
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
-        [System.Web.Http.HttpPut]
+        [HttpPut]
         // PUT: api/Customer/5
-        public JsonResult Put(int id, [FromBody]CustomerBO customer)
+        public HttpResponseMessage Put(int id, [FromBody]CustomerBO customer)
         {
             Data.customer _customer = new Data.customer();
             _customer.custid = customer.CustId;
@@ -62,11 +91,29 @@ namespace TMS.Api.Controllers
             _customer.creditlimit = customer.CreditLimit;
             _customer.creditstatus = customer.CreditStatus;
             _customer.customergroup = customer.CustomerGroup;
-           bool result= repo.Update(_customer);
-           if(result)
-                return new JsonResult { Data = new { status = HttpStatusCode.OK } };
+            if (customer.Address != null)
+            {
+                var custaddress = new Data.address()
+                {
+
+                    address1 = customer.Address.Address1,
+                    address2 = customer.Address.Address2,
+                    city = customer.Address.City,
+                    state = customer.Address.State,
+                    country = customer.Address.Country,
+                    zipcode = customer.Address.Zip,
+                    email = customer.Address.Email,
+                    fax = customer.Address.Fax,
+                    addrname = customer.CustName
+                };
+                bool updated = new AddressRepository().Update(custaddress);
+                
+            }
+            bool result= repo.Update(_customer);
+            if (result)
+                return Request.CreateResponse(HttpStatusCode.OK);
             else
-                return new JsonResult { Data = new { status = HttpStatusCode.InternalServerError} };
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
 
        

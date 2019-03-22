@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Swashbuckle.Swagger.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
 using System.Web.Http;
-using System.Web.Mvc;
 using TMS.BusinessObjects;
 using TMS.Data;
 
@@ -20,24 +20,50 @@ namespace TMS.Api.Controllers
         /// </summary>
         /// <param name="OrderKey"></param>
         /// <returns>Delivery Order </returns>
-        public JsonResult Get(string OrderKey)
+        [HttpGet]
+        [Route("GetbyKey")]
+        [SwaggerOperation("GetbyKey")]
+        public HttpResponseMessage Get(string OrderKey)
         {
             
            DeliveryOrderBO dorder= doObj.GetDeliveryOrder(OrderKey);
-            return new JsonResult { Data = new { dorder } };
+            return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="UserKey"></param>
+        /// <returns>IEnumerable of DOs</returns>
+        [HttpGet]
+        [Route("GetbyKey")]
+        [SwaggerOperation("GetOrdersByUser")]
+        public HttpResponseMessage GetOrdersByUser(string UserKey)
+        {
 
+            IEnumerable<ThinOrderDO> dorders = doObj.GetOrdersByUser(Guid.Parse(UserKey));
+            return Request.CreateResponse(HttpStatusCode.OK, dorders, Configuration.Formatters.JsonFormatter);
+        }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="obj">Delivery Order</param>
         /// <returns>GUID</returns>
-        public JsonResult Post([FromBody]DeliveryOrderBO obj)
+        [HttpPost]
+        [Route("DeliveryOrderHeader")]
+        [SwaggerOperation("DeliveryOrderHeader")]
+        public HttpResponseMessage Post([FromBody]DeliveryOrderBO obj)
         {
            var orderid= doObj.CreateDeliveryOrder(obj);
-            return new JsonResult { Data = new { orderId= orderid } };
+            return Request.CreateResponse(HttpStatusCode.OK, orderid, Configuration.Formatters.JsonFormatter);
         }
 
-       
+        [HttpPost]
+        [Route("DeliveryOrderDetails")]
+        [SwaggerOperation("DeliveryOrderDetails")]
+        public HttpResponseMessage Post([FromBody]DeliveryOrderDetailBO[] objList)
+        {
+            var orderdetailCollection = doObj.InsertOrderDetails(objList.ToList());
+            return Request.CreateResponse(HttpStatusCode.OK, orderdetailCollection, Configuration.Formatters.JsonFormatter);
+        }
     }
 }

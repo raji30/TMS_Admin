@@ -36,5 +36,6 @@ namespace TMS.BusinessObjects
         public bool IsHazardous { get; set; }
         public Guid CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
+        public IList<DeliveryOrderDetailBO> OrderDetail { get; set; }
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
 using TMS.BusinessLayer;
 using TMS.BusinessObjects;
 using Newtonsoft.Json;
@@ -18,20 +17,20 @@ namespace TMS.Api.Controllers
         //{
         //    return new string[] { "value1", "value2" };
         //}
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         // GET: api/Company/5
-        public JsonResult Get(string companyName)
+        public HttpResponseMessage Get(string companyName)
         {
             CompanyDetailsBL bll = new CompanyDetailsBL();
             CompanyDetailBO result = bll.GetCompany(companyName);
             if (result != null)
             {
-                return new JsonResult { Data = new { result } };
+                return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
             }
             else
-                return new JsonResult {  Data = "Not found"  };
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Data not Found", Configuration.Formatters.JsonFormatter);
         }
-        [System.Web.Http.HttpPost]
+        [HttpPost]
         // POST: api/Company
         public HttpResponseMessage Post([FromBody]CompanyDetailBO detailsBO)
         {
@@ -39,10 +38,10 @@ namespace TMS.Api.Controllers
             Guid result = bll.AddCompany(detailsBO);
             if (result!=null)
             {
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK,result, Configuration.Formatters.JsonFormatter);
             }
             else
-                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
 
         // PUT: api/Company/5
