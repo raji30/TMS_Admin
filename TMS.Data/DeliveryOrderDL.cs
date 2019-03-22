@@ -81,10 +81,10 @@ namespace TMS.Data
             return Guid.Empty;
         }
 
-        public IEnumerable<ThinOrderDO> GetOrdersByUser(Guid userkey)
+        public IEnumerable<string> GetOrdersByUser(Guid userkey)
         {
             string sql = "dbo.fn_get_orders_by_user";
-            List<ThinOrderDO> list = new List<ThinOrderDO>();
+            List<string> list = new List<string>();
             using (connection)
             {
                 connection.Open();
@@ -98,11 +98,11 @@ namespace TMS.Data
                     {
                         while (reader.Read())
                         {
-                            var thinOrder = new ThinOrderDO();
-                            thinOrder.OrderNo = Utils.CustomParse<string>(reader["orderno"]);
-                            thinOrder.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
-                            thinOrder.OrderDate = Utils.CustomParse<DateTime>(reader["orderdate"]);
-                            list.Add(thinOrder);
+                           // var thinOrder = new ThinOrderDO();
+                           // thinOrder.OrderNo = Utils.CustomParse<string>(reader["orderno"]);
+                           // thinOrder.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
+                           // thinOrder.OrderDate = Utils.CustomParse<DateTime>(reader["orderdate"]);
+                            list.Add(Utils.CustomParse<string>(reader["orderno"]));
                         }
                     }
                     while (reader.NextResult());
@@ -160,11 +160,11 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         bo.CreatedBy = Utils.CustomParse<Guid>(reader["createuserkey"]);
                         
                     }
-                    if(bo.OrderKey!=Guid.Empty)
-                    {
-                      var orderDetails=  GetOrderDetails(bo.OrderKey);
-                      bo.OrderDetail = orderDetails;
-                    }
+                    //if(bo.OrderKey!=Guid.Empty)
+                    //{
+                    //  var orderDetails=  GetOrderDetails(bo.OrderKey);
+                    //  bo.OrderDetail = orderDetails;
+                    //}
                     return bo;
                 }
             }
@@ -192,7 +192,7 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
             return addBO;
         }
 
-        public List<DeliveryOrderDetailBO> GetOrderDetails(Guid orderkey)
+        public IEnumerable<DeliveryOrderDetailBO> GetOrderDetails(Guid orderkey)
         {
             var orderDetails = new List<DeliveryOrderDetailBO>();
             string sql = "dbo.fn_get_order_detail";

@@ -35,12 +35,12 @@ namespace TMS.Api.Controllers
         /// <param name="UserKey"></param>
         /// <returns>IEnumerable of DOs</returns>
         [HttpGet]
-        [Route("GetbyKey")]
+        [Route("GetOrdersByUser")]
         [SwaggerOperation("GetOrdersByUser")]
         public HttpResponseMessage GetOrdersByUser(string UserKey)
         {
 
-            IEnumerable<ThinOrderDO> dorders = doObj.GetOrdersByUser(Guid.Parse(UserKey));
+            IEnumerable<string> dorders = doObj.GetOrdersByUser(Guid.Parse(UserKey));
             return Request.CreateResponse(HttpStatusCode.OK, dorders, Configuration.Formatters.JsonFormatter);
         }
         /// <summary>
@@ -57,13 +57,6 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, orderid, Configuration.Formatters.JsonFormatter);
         }
 
-        [HttpPost]
-        [Route("DeliveryOrderDetails")]
-        [SwaggerOperation("DeliveryOrderDetails")]
-        public HttpResponseMessage Post([FromBody]DeliveryOrderDetailBO[] objList)
-        {
-            var orderdetailCollection = doObj.InsertOrderDetails(objList.ToList());
-            return Request.CreateResponse(HttpStatusCode.OK, orderdetailCollection, Configuration.Formatters.JsonFormatter);
-        }
+        
     }
 }
