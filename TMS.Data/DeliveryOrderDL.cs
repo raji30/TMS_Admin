@@ -33,13 +33,13 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_custkey",
                         NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.CustKey);
                     cmd.Parameters.AddWithValue("_billtoaddrkey",
-                       NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.BillToAddress?.AddrKey);
+                       NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.BillToAddress);
                     cmd.Parameters.AddWithValue("_sourceaddrkey",
-                       NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.SourceAddress?.AddrKey);
+                       NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.SourceAddress);
                     cmd.Parameters.AddWithValue("_destinationaddrkey",
-                       NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.DestinationAddress?.AddrKey);
+                       NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.DestinationAddress);
                     cmd.Parameters.AddWithValue("_returnaddrkey",
-                       NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.ReturnAddress?.AddrKey);
+                       NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.ReturnAddress);
                     cmd.Parameters.AddWithValue("_source",
                        NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Source);
                     cmd.Parameters.AddWithValue("_ordertype",
@@ -136,10 +136,10 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         bo.OrderNo = reader["orderno"].ToString();
                         bo.OrderDate = Convert.ToDateTime(reader["orderdate"].ToString());
                         bo.CustKey = Guid.Parse(reader["custkey"].ToString());
-                        bo.BillToAddress = GetAddress(Utils.CustomParse<Guid>(reader["billtoaddrkey"]));
-                        bo.SourceAddress = GetAddress(Utils.CustomParse<Guid>(reader["sourceaddrkey"]));
-                        bo.DestinationAddress = GetAddress(Utils.CustomParse<Guid>(reader["destinationaddrkey"]));
-                        bo.ReturnAddress = GetAddress(Utils.CustomParse<Guid>(reader["returnaddrkey"]));
+                        bo.BillToAddress = Utils.CustomParse<Guid>(reader["billtoaddrkey"]);
+                        bo.SourceAddress = Utils.CustomParse<Guid>(reader["sourceaddrkey"]);
+                        bo.DestinationAddress = Utils.CustomParse<Guid>(reader["destinationaddrkey"]);
+                        bo.ReturnAddress = Utils.CustomParse<Guid>(reader["returnaddrkey"]);
                         bo.OrderType = Utils.CustomParse<short>(reader["ordertype"]);
                         bo.Status = Utils.CustomParse<short>(reader["status"]);
                         bo.StatusDate = Utils.CustomParse<DateTime>(reader["statusdate"]);

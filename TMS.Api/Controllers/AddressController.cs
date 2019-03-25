@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Swashbuckle.Swagger.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -14,14 +15,18 @@ namespace TMS.Api.Controllers
     public class AddressController : ApiController
     {
         AddressRepository repo = new AddressRepository();
-       
-       //[HttpGet]
-       // public HttpResponseMessage Get()
-       // {
-       //     var list = repo.GetAll();
-       //     return Request.CreateResponse(HttpStatusCode.OK, list);
-       // }
+
         [HttpGet]
+        [SwaggerOperation("GetAll")]
+        [Route("GetAll")]
+        public HttpResponseMessage Get()
+        {
+            var list = repo.GetAll();
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
+        [HttpGet]
+        [SwaggerOperation("GetByName")]
+        [Route("GetByName")]
         public HttpResponseMessage GetbyName(string name)
         {
             var address = repo.GetbyField(name);

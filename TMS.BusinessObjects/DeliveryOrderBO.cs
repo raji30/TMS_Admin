@@ -12,10 +12,10 @@ namespace TMS.BusinessObjects
         public String OrderNo { get; set; }
         public Guid CustKey { get; set; }
         public DateTime OrderDate { get; set; }
-        public AddressBO BillToAddress { get; set; }
-        public AddressBO SourceAddress { get; set; }
-        public AddressBO DestinationAddress { get; set; }
-        public AddressBO ReturnAddress { get; set; }
+        public Guid BillToAddress { get; set; }
+        public Guid SourceAddress { get; set; }
+        public Guid DestinationAddress { get; set; }
+        public Guid ReturnAddress { get; set; }
         public short Source { get; set; }
         public short OrderType { get; set; }
         public short Status { get; set; }

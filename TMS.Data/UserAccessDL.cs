@@ -22,7 +22,7 @@ namespace TMS.Data
         {
             using (var cmd = new NpgsqlCommand("SELECT * from dbo.userinfo where userId= @userName and password = @password ", securityconnection))
             {
-                securityconnection.Open();
+              
                 cmd.Parameters.AddWithValue("userName", userName);
                 cmd.Parameters.AddWithValue("password", password);
                 userinfo u_info = null;
