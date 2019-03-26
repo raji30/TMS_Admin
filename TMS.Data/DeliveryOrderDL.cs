@@ -110,6 +110,31 @@ namespace TMS.Data
             }
             return list;
         }
+        public bool UpdateDOStatus (string orderkey, int status, string userKey)
+        {
+            string sql = "update dbo.tms_orderheader set status=@status, lastupdatedate = NOW(), lastupdateuserkey =" +
+                "@userkey  where orderkey = @orderkey";
+            using (connection)
+            {
+                connection.Open();
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("orderkey",
+                       NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(orderkey));
+                    cmd.Parameters.AddWithValue("status",
+                       NpgsqlTypes.NpgsqlDbType.Numeric, status);
+                    cmd.Parameters.AddWithValue("userkey",
+                       NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(userKey));
+                    int returnvalue= cmd.ExecuteNonQuery();
+                    if (returnvalue < 0)
+                    {
+                        return false;
+                    }
+                    else return true;
+                }
+            }
+        }
 
         public DeliveryOrderBO GetDeliveryOrder(string orderkey)
         {

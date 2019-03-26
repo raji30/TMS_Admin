@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
@@ -15,6 +16,7 @@ namespace TMS.Api.Controllers
 {
     public class LoginController : ApiController
     {
+        
         [HttpGet]
         [AllowAnonymous]
         [Route("Token")]
@@ -31,8 +33,12 @@ namespace TMS.Api.Controllers
                     result.message = "user not found";
                     result.isLoggedIn = false;
                     result.token = string.Empty;
+                    IPrincipal principal = new GenericPrincipal(new GenericIdentity(userInfo.userkey.ToString()),
+                        new string[] { "Admin"});
+                    HttpContext.Current.User = principal;
                     return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, result,
                         Configuration.Formatters.JsonFormatter);
+                    
                 }
                 else
                 {

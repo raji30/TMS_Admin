@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
+using TMS.BusinessLayer.Common;
 using TMS.BusinessObjects;
 using TMS.Data;
+using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
@@ -43,6 +46,20 @@ namespace TMS.Api.Controllers
             IEnumerable<string> dorders = doObj.GetOrdersByUser(Guid.Parse(UserKey));
             return Request.CreateResponse(HttpStatusCode.OK, dorders, Configuration.Formatters.JsonFormatter);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        ///<returns>name/value pair</returns>
+        [HttpGet]
+        [Route("GetAllDOStatus")]
+        [SwaggerOperation("GetAllDOStatus")]
+        public HttpResponseMessage GetallDOStatus()
+        {
+
+          List<EnumValue> values=  EnumExtensions.GetEnumValues<DOStatus>();
+            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -56,7 +73,14 @@ namespace TMS.Api.Controllers
            var orderid= doObj.CreateDeliveryOrder(obj);
             return Request.CreateResponse(HttpStatusCode.OK, orderid, Configuration.Formatters.JsonFormatter);
         }
-
+        [HttpPost]
+        [Route("UpdateDeliveryOrderStatus")]
+        [SwaggerOperation("UpdateDeliveryOrderStatus")]
+        public HttpResponseMessage UpdateOrderStatus(string OrderKey, int Status)
+        {
+          bool result=  doObj.UpdateDOStatus(OrderKey, Status, HttpContext.Current.User.Identity.Name);
+            return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
+        }
         
     }
 }

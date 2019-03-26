@@ -48,6 +48,8 @@
     <Compile Include="CustomerBO.cs" />
     <Compile Include="DeliveryOrderBO.cs" />
     <Compile Include="DeliveryOrderDetailBO.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="EnumValue.cs" />
     <Compile Include="LoginResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThinOrderDO.cs" />

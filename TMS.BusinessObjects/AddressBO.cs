@@ -18,5 +18,6 @@ namespace TMS.BusinessObjects
         public string Email { get; set; }
         public string Country { get; set; }
         public Guid AddrKey { get; set; }
+        public string Name { get; set; }
     }
 }

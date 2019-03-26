@@ -5,9 +5,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TMS.BusinessLayer;
+using TMS.BusinessLayer.Common;
 using TMS.BusinessObjects;
 using TMS.Data;
 using TMS.Data.TableOperations;
+using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
@@ -17,11 +20,21 @@ namespace TMS.Api.Controllers
         AddressRepository repo = new AddressRepository();
 
         [HttpGet]
-        [SwaggerOperation("GetAll")]
-        [Route("GetAll")]
-        public HttpResponseMessage Get()
+        [SwaggerOperation("GetAddressTypes")]
+        [Route("GetAddressTypes")]
+        public HttpResponseMessage GetAddressTypes()
         {
-            var list = repo.GetAll();
+            var list = EnumExtensions.GetEnumValues<AddressType>();
+            return Request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
+        [HttpGet]
+        [SwaggerOperation("GetAllByType")]
+        [Route("GetAllByType")]
+        public HttpResponseMessage GetAllByType(int AddressType)
+        {
+            AddressBL blobj = new AddressBL();
+          var list=  blobj.GetAddressesByType(AddressType);
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
         [HttpGet]
@@ -39,7 +52,8 @@ namespace TMS.Api.Controllers
                 Zip = address.zipcode,
                 Email = address.email,
                 Fax = address.fax,
-                Phone = address.phone
+                Phone = address.phone,
+                Name = address.addrname
             };
             return Request.CreateResponse(HttpStatusCode.OK, bo, 
                 Configuration.Formatters.JsonFormatter);

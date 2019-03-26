@@ -130,6 +130,7 @@
     <Compile Include="customeraddress.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CustomerDL.cs" />
     <Compile Include="DeliveryOrderDL.cs" />
     <Compile Include="document.cs">
       <DependentUpon>App_model.tt</DependentUpon>
@@ -163,7 +164,11 @@
     <Compile Include="TableOperations\CompanyAppRepository.cs" />
     <Compile Include="TableOperations\CompanyRepository.cs" />
     <Compile Include="TableOperations\CustomerRepository.cs" />
+    <Compile Include="TableOperations\ShippingPortRepository.cs" />
+    <Compile Include="TableOperations\TerminalRepository.cs" />
     <Compile Include="TableOperations\UserActivityRepository.cs" />
+    <Compile Include="TableOperations\VendorRepository.cs" />
+    <Compile Include="TableOperations\WarehouseRepository.cs" />
     <Compile Include="tms_containersize.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>

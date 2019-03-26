@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Swashbuckle.Swagger.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TMS.BusinessObjects;
+using TMS.Data;
 using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
@@ -114,6 +116,18 @@ namespace TMS.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK);
             else
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
+        }
+        [Route("GetCustomerCredit")]
+        [SwaggerOperation("GetCustomerCredit")]
+        public HttpResponseMessage GetCredit (string custKey, double amount)
+        {
+            CustomerDL dataaccess = new CustomerDL();
+           bool result= dataaccess.GetCustomerCredit(Guid.Parse(custKey), amount);
+            if (result)
+                return Request.CreateResponse(HttpStatusCode.OK,"Credit Approved");
+            else
+                return Request.CreateResponse(HttpStatusCode.OK, "Credit Denied");
+
         }
 
        

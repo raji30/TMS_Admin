@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressBL.cs" />
     <Compile Include="BrokerBL.cs" />
+    <Compile Include="Common\EnumExtensions.cs" />
     <Compile Include="CompanyDetailsBL.cs" />
     <Compile Include="Security\CompanyAccessFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
