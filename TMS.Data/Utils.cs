@@ -8,6 +8,8 @@ namespace TMS.Data
 {
     public static class Utils
     {
+        public const string appModel = "app_model";
+        public const string appSecurities = "app_securities";
         public static T CustomParse<T>(object input)
         {
             var val = default(T);

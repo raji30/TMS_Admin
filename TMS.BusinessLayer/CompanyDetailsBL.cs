@@ -54,13 +54,13 @@ namespace TMS.BusinessLayer
 
                     address = new AddressBO
                     {
-                        Address1 = company.address?.address1,
-                        Address2 = company.address?.address2,
-                        City = company.address?.city,
-                        State = company.address?.state,
-                        Zip = company.address?.zipcode,
-                        Email = company.address?.email,
-                        Fax = company.address?.fax
+                        Address1 = company.addressmaster?.address1,
+                        Address2 = company.addressmaster?.address2,
+                        City = company.addressmaster?.city,
+                        State = company.addressmaster?.state,
+                        Zip = company.addressmaster?.zipcode,
+                        Email = company.addressmaster?.email,
+                        Fax = company.addressmaster?.fax
                     }
                 };
             }

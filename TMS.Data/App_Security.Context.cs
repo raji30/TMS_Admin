@@ -25,11 +25,11 @@ namespace TMS.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<address> addresses { get; set; }
         public virtual DbSet<app> apps { get; set; }
         public virtual DbSet<company> companies { get; set; }
         public virtual DbSet<companyapp> companyapps { get; set; }
         public virtual DbSet<useractivity> useractivities { get; set; }
         public virtual DbSet<userinfo> userinfoes { get; set; }
+        public virtual DbSet<addressmaster> addressmasters { get; set; }
     }
 }

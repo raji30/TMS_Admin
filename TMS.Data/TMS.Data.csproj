@@ -70,6 +70,9 @@
     <Compile Include="address.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="addressmaster.cs">
+      <DependentUpon>App_Security.tt</DependentUpon>
+    </Compile>
     <Compile Include="app.cs">
       <DependentUpon>App_Security.tt</DependentUpon>
     </Compile>
@@ -141,6 +144,7 @@
     <Compile Include="driver.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\BaseModelRepository.cs" />
     <Compile Include="Interfaces\IBaseRepository.cs" />
     <Compile Include="invoicedetail.cs">
       <DependentUpon>App_model.tt</DependentUpon>
@@ -158,6 +162,7 @@
     <Compile Include="shippingportterminal.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="TableOperations\AddressMasterRepository.cs" />
     <Compile Include="TableOperations\AddressRepository.cs" />
     <Compile Include="TableOperations\AppRepository.cs" />
     <Compile Include="TableOperations\BrokerRepository.cs" />

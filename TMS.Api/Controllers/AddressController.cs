@@ -27,6 +27,14 @@ namespace TMS.Api.Controllers
             var list = EnumExtensions.GetEnumValues<AddressType>();
             return Request.CreateResponse(HttpStatusCode.OK, list);
         }
+        [HttpGet]
+        [SwaggerOperation("GetAddressById")]
+        [Route("GetAddressById")]
+        public HttpResponseMessage GetAddressById(string Id)
+        {
+            var address = repo.GetbyId(Guid.Parse(Id));
+            return Request.CreateResponse(HttpStatusCode.OK, address);
+        }
 
         [HttpGet]
         [SwaggerOperation("GetAllByType")]
@@ -43,6 +51,7 @@ namespace TMS.Api.Controllers
         public HttpResponseMessage GetbyName(string name)
         {
             var address = repo.GetbyField(name);
+            if(address!=null) { 
             AddressBO bo = new AddressBO()
             {
                 Address1 = address.address1,
@@ -57,6 +66,8 @@ namespace TMS.Api.Controllers
             };
             return Request.CreateResponse(HttpStatusCode.OK, bo, 
                 Configuration.Formatters.JsonFormatter);
+            }
+            return Request.CreateResponse(HttpStatusCode.NoContent, "Not found");
         }
         [HttpPost]
         // POST api/values

@@ -39,6 +39,22 @@ namespace TMS.BusinessLayer
             broker.BrokerKey = brokerguid;
             return broker;
         }
+        public IList<BrokerBO> GetAll()
+        {
+            List<BrokerBO> list = new List<BrokerBO>();
+            var allbrokers = repo.GetAll();
+            foreach(var brokerEntity in allbrokers)
+            {
+                list.Add(new BrokerBO
+                {
+                    BrokerName = brokerEntity.brokername,
+                    BrokerId = brokerEntity.brokerid,
+                    BrokerKey = brokerEntity.brokerkey,
+                    Status = brokerEntity.status.Value
+                });
+            }
+            return list;
+        }
     }
 
 }

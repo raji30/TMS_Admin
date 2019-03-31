@@ -14,11 +14,11 @@ namespace TMS.BusinessLayer
         public bool AddUser(UserDetailsBO userDetailsBO)
         {
             UserInfoRepository repo = new UserInfoRepository();
-            AddressRepository addressRepo = new AddressRepository();
+            AddressMasterRepository addressRepo = new AddressMasterRepository();
             List<company> usercompany = new List<company>();
             Guid Addresskey = Guid.Empty;
             if(userDetailsBO.address != null) {
-                Addresskey =  addressRepo.Add(new address
+                Addresskey =  addressRepo.Add(new addressmaster
             {
               addrname = userDetailsBO.FirstName,
               addrkey = Guid.NewGuid(),
@@ -81,17 +81,17 @@ namespace TMS.BusinessLayer
             bo.LastName = userinfo.lastname;
             bo.UserKey = userinfo.userkey;
                 bo.UserId = userinfo.userid;
-            if (userinfo.address != null)
+            if (userinfo.addressmaster != null)
             {
                 bo.address = new AddressBO
                 {
-                    Phone = userinfo.address.phone,
-                    Email = userinfo.address.email,
-                    Fax = userinfo.address.fax,
-                    Address1 = userinfo.address.address1,
-                    Address2 = userinfo.address.address2,
-                    City = userinfo.address.city,
-                    State = userinfo.address.state
+                    Phone = userinfo.addressmaster.phone,
+                    Email = userinfo.addressmaster.email,
+                    Fax = userinfo.addressmaster.fax,
+                    Address1 = userinfo.addressmaster.address1,
+                    Address2 = userinfo.addressmaster.address2,
+                    City = userinfo.addressmaster.city,
+                    State = userinfo.addressmaster.state
                 };
             }
             return bo;

@@ -25,17 +25,14 @@ namespace TMS.Api.Controllers
         {
             UserAccessDL userAccessDL = new UserAccessDL();
             var result = new LoginResult();
-            //  var isauth = userAccessDL.isAuthorized(username, companyName);
-            if (true) {
+              var isauth = userAccessDL.isAuthorized(username, companyName);
+            if (isauth) {
                 var userInfo = userAccessDL.Login(username, password);
                 if (userInfo == null)
                 {
                     result.message = "user not found";
                     result.isLoggedIn = false;
                     result.token = string.Empty;
-                    IPrincipal principal = new GenericPrincipal(new GenericIdentity(userInfo.userkey.ToString()),
-                        new string[] { "Admin"});
-                    HttpContext.Current.User = principal;
                     return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, result,
                         Configuration.Formatters.JsonFormatter);
                     
@@ -47,31 +44,48 @@ namespace TMS.Api.Controllers
                     result.loggedinTime = Convert.ToString(userInfo.lastlogindate.Value);
                     result.isLoggedIn = true;
                     result.userId = Convert.ToString(userInfo.userkey);
+                    IPrincipal principal = new GenericPrincipal(new GenericIdentity(userInfo.userkey.ToString()),
+                        new string[] { "Admin" });
+                    HttpContext.Current.User = principal;
                     return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, result, 
                         Configuration.Formatters.JsonFormatter);
                 }
                 
             }
+            result.message = "user not found";
+            result.isLoggedIn = false;
+            result.token = string.Empty;
+            
+            return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, result,
+                Configuration.Formatters.JsonFormatter);
 
         }
         [HttpPut]
         [Route("ResetPassword")]
         [SwaggerOperation("ResetPassword")]
         [AllowAnonymous]
-        public HttpResponseMessage ResetPassword(string username, string newPassword)
+        public HttpResponseMessage ResetPassword(string username, string newPassword, string companyName)
         {
             UserAccessDL userAccessDL = new UserAccessDL();
-            bool success = userAccessDL.resetPassword(username, newPassword);
-            if (!success)
+            var isauth = userAccessDL.isAuthorized(username, companyName);
+            if (isauth)
             {
-               return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, "Failed!",
-                        Configuration.Formatters.JsonFormatter);
+                
+                bool success = userAccessDL.resetPassword(username, newPassword);
+                if (!success)
+                {
+                    return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, "Failed!",
+                             Configuration.Formatters.JsonFormatter);
+                }
+                else
+                {
+                    return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, "Password Updated!",
+                             Configuration.Formatters.JsonFormatter);
+                }
             }
-            else
-            {
-               return Request.CreateResponse(System.Net.HttpStatusCode.Accepted, "Password Updated!",
-                        Configuration.Formatters.JsonFormatter);
-            }
+            return Request.CreateResponse(System.Net.HttpStatusCode.InternalServerError, "Failed!",
+                            Configuration.Formatters.JsonFormatter);
+
         }
     }
     }

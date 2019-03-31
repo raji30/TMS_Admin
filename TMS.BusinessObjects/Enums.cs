@@ -29,5 +29,21 @@ namespace TMS.BusinessObjects
             Driver = 5,
             Warehouse = 6
         }
+        public enum ContainerSize
+        {
+            Small =1,
+            Medium =2,
+            Large = 3
+
+        }
+        public enum OrderType
+        {
+            Import =1,
+            ImportNoReturn =2,
+            Export = 3,
+            ExportNoEmptyPickup = 4,
+            ReturnToTerminal = 5,
+            OneWayDelivery = 6
+        }
     }
 }

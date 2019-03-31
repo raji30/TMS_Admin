@@ -37,10 +37,10 @@ namespace TMS.Data
         public Nullable<short> loginattempts { get; set; }
         public string passwordtemp { get; set; }
     
-        public virtual address address { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<useractivity> useractivities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<company> companies { get; set; }
+        public virtual addressmaster addressmaster { get; set; }
     }
 }

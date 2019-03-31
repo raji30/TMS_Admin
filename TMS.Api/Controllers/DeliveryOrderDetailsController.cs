@@ -5,8 +5,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TMS.BusinessLayer.Common;
 using TMS.BusinessObjects;
 using TMS.Data;
+using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
@@ -24,12 +26,21 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
         }
         [HttpPost]
-       
-       // [SwaggerOperation("DeliveryOrderDetails")]
+
+        // [SwaggerOperation("DeliveryOrderDetails")]
         public HttpResponseMessage Post([FromBody]DeliveryOrderDetailBO[] objList)
         {
             var orderdetailCollection = doObj.InsertOrderDetails(objList.ToList());
             return Request.CreateResponse(HttpStatusCode.OK, orderdetailCollection, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpGet]
+        [Route("GetContainerSizes")]
+        [SwaggerOperation("GetContainerSizes")]
+        public HttpResponseMessage GetContainerSizes()
+        {
+            var list = EnumExtensions.GetEnumValues<ContainerSize>();
+            return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
         }
     }
 }

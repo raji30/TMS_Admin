@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="App_SecurityModel.Store" Provider="Npgsql" ProviderManifestToken="10.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="address">
+        <EntityType Name="addressmaster">
           <Key>
             <PropertyRef Name="addrkey" />
           </Key>
@@ -93,10 +93,10 @@
           <Property Name="passwordtemp" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="fk_company_address">
-          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="addressmaster" Type="Self.addressmaster" Multiplicity="1" />
           <End Role="company" Type="Self.company" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="address">
+            <Principal Role="addressmaster">
               <PropertyRef Name="addrkey" />
             </Principal>
             <Dependent Role="company">
@@ -177,10 +177,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_userinfo_address">
-          <End Role="address" Type="Self.address" Multiplicity="1" />
+          <End Role="addressmaster" Type="Self.addressmaster" Multiplicity="1" />
           <End Role="userinfo" Type="Self.userinfo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="address">
+            <Principal Role="addressmaster">
               <PropertyRef Name="addrkey" />
             </Principal>
             <Dependent Role="userinfo">
@@ -189,7 +189,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="App_SecurityModelStoreContainer">
-          <EntitySet Name="address" EntityType="Self.address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="addressmaster" EntityType="Self.addressmaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="apps" EntityType="Self.apps" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="companyapps" EntityType="Self.companyapps" Schema="dbo" store:Type="Tables" />
@@ -197,7 +197,7 @@
           <EntitySet Name="usercompany" EntityType="Self.usercompany" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="userinfo" EntityType="Self.userinfo" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_company_address" Association="Self.fk_company_address">
-            <End Role="address" EntitySet="address" />
+            <End Role="addressmaster" EntitySet="addressmaster" />
             <End Role="company" EntitySet="company" />
           </AssociationSet>
           <AssociationSet Name="fk_company_company" Association="Self.fk_company_company">
@@ -225,7 +225,7 @@
             <End Role="usercompany" EntitySet="usercompany" />
           </AssociationSet>
           <AssociationSet Name="fk_userinfo_address" Association="Self.fk_userinfo_address">
-            <End Role="address" EntitySet="address" />
+            <End Role="addressmaster" EntitySet="addressmaster" />
             <End Role="userinfo" EntitySet="userinfo" />
           </AssociationSet>
         </EntityContainer>
@@ -233,25 +233,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="App_SecurityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="address">
-          <Key>
-            <PropertyRef Name="addrkey" />
-          </Key>
-          <Property Name="addrkey" Type="Guid" Nullable="false" />
-          <Property Name="addrname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="address1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="address2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="city" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="zipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="country" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
-          <Property Name="website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="companies" Relationship="Self.fk_company_address" FromRole="address" ToRole="company" />
-          <NavigationProperty Name="userinfoes" Relationship="Self.fk_userinfo_address" FromRole="address" ToRole="userinfo" />
-        </EntityType>
         <EntityType Name="app">
           <Key>
             <PropertyRef Name="appkey" />
@@ -271,11 +252,11 @@
           <Property Name="companyname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="addrkey" Type="Guid" Nullable="false" />
           <Property Name="parentcompanykey" Type="Guid" />
-          <NavigationProperty Name="address" Relationship="Self.fk_company_address" FromRole="company" ToRole="address" />
           <NavigationProperty Name="company1" Relationship="Self.fk_company_company" FromRole="company" ToRole="company1" />
           <NavigationProperty Name="company2" Relationship="Self.fk_company_company" FromRole="company1" ToRole="company" />
           <NavigationProperty Name="companyapps" Relationship="Self.fk_companyapps_company" FromRole="company" ToRole="companyapps" />
           <NavigationProperty Name="userinfoes" Relationship="Self.usercompany" FromRole="company" ToRole="userinfo" />
+          <NavigationProperty Name="addressmaster" Relationship="App_SecurityModel.fk_company_address1" FromRole="company" ToRole="addressmaster" />
         </EntityType>
         <EntityType Name="companyapp">
           <Key>
@@ -322,34 +303,10 @@
           <Property Name="lastlogindate" Type="DateTime" Precision="6" />
           <Property Name="loginattempts" Type="Int16" />
           <Property Name="passwordtemp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="address" Relationship="Self.fk_userinfo_address" FromRole="userinfo" ToRole="address" />
           <NavigationProperty Name="useractivities" Relationship="Self.fk_useractivity_userinfo1" FromRole="userinfo" ToRole="useractivity" />
           <NavigationProperty Name="companies" Relationship="Self.usercompany" FromRole="userinfo" ToRole="company" />
+          <NavigationProperty Name="addressmaster" Relationship="App_SecurityModel.fk_userinfo_address1" FromRole="userinfo" ToRole="addressmaster" />
         </EntityType>
-        <Association Name="fk_company_address">
-          <End Role="address" Type="Self.address" Multiplicity="1" />
-          <End Role="company" Type="Self.company" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="address">
-              <PropertyRef Name="addrkey" />
-            </Principal>
-            <Dependent Role="company">
-              <PropertyRef Name="addrkey" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_userinfo_address">
-          <End Role="address" Type="Self.address" Multiplicity="1" />
-          <End Role="userinfo" Type="Self.userinfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="address">
-              <PropertyRef Name="addrkey" />
-            </Principal>
-            <Dependent Role="userinfo">
-              <PropertyRef Name="addrkey" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_companyapps_apps">
           <End Role="apps" Type="Self.app" Multiplicity="1" />
           <End Role="companyapps" Type="Self.companyapp" Multiplicity="*" />
@@ -403,20 +360,11 @@
           <End Role="userinfo" Type="Self.userinfo" Multiplicity="*" />
         </Association>
         <EntityContainer Name="App_SecurityEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="addresses" EntityType="Self.address" />
           <EntitySet Name="apps" EntityType="Self.app" />
           <EntitySet Name="companies" EntityType="Self.company" />
           <EntitySet Name="companyapps" EntityType="Self.companyapp" />
           <EntitySet Name="useractivities" EntityType="Self.useractivity" />
           <EntitySet Name="userinfoes" EntityType="Self.userinfo" />
-          <AssociationSet Name="fk_company_address" Association="Self.fk_company_address">
-            <End Role="address" EntitySet="addresses" />
-            <End Role="company" EntitySet="companies" />
-          </AssociationSet>
-          <AssociationSet Name="fk_userinfo_address" Association="Self.fk_userinfo_address">
-            <End Role="address" EntitySet="addresses" />
-            <End Role="userinfo" EntitySet="userinfoes" />
-          </AssociationSet>
           <AssociationSet Name="fk_companyapps_apps" Association="Self.fk_companyapps_apps">
             <End Role="apps" EntitySet="apps" />
             <End Role="companyapps" EntitySet="companyapps" />
@@ -437,31 +385,65 @@
             <End Role="company" EntitySet="companies" />
             <End Role="userinfo" EntitySet="userinfoes" />
           </AssociationSet>
+          <EntitySet Name="addressmasters" EntityType="App_SecurityModel.addressmaster" />
+          <AssociationSet Name="fk_company_address1" Association="App_SecurityModel.fk_company_address1">
+            <End Role="addressmaster" EntitySet="addressmasters" />
+            <End Role="company" EntitySet="companies" />
+          </AssociationSet>
+          <AssociationSet Name="fk_userinfo_address1" Association="App_SecurityModel.fk_userinfo_address1">
+            <End Role="addressmaster" EntitySet="addressmasters" />
+            <End Role="userinfo" EntitySet="userinfoes" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="addressmaster">
+          <Key>
+            <PropertyRef Name="addrkey" />
+          </Key>
+          <Property Name="addrkey" Type="Guid" Nullable="false" />
+          <Property Name="addrname" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="address1" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="address2" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="zipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="companies" Relationship="App_SecurityModel.fk_company_address1" FromRole="addressmaster" ToRole="company" />
+          <NavigationProperty Name="userinfoes" Relationship="App_SecurityModel.fk_userinfo_address1" FromRole="addressmaster" ToRole="userinfo" />
+        </EntityType>
+        <Association Name="fk_company_address1">
+          <End Type="App_SecurityModel.addressmaster" Role="addressmaster" Multiplicity="1" />
+          <End Type="App_SecurityModel.company" Role="company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="addressmaster">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="company">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_userinfo_address1">
+          <End Type="App_SecurityModel.addressmaster" Role="addressmaster" Multiplicity="1" />
+          <End Type="App_SecurityModel.userinfo" Role="userinfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="addressmaster">
+              <PropertyRef Name="addrkey" />
+            </Principal>
+            <Dependent Role="userinfo">
+              <PropertyRef Name="addrkey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="App_SecurityModelStoreContainer" CdmEntityContainer="App_SecurityEntities">
-          <EntitySetMapping Name="addresses">
-            <EntityTypeMapping TypeName="App_SecurityModel.address">
-              <MappingFragment StoreEntitySet="address">
-                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
-                <ScalarProperty Name="addrname" ColumnName="addrname" />
-                <ScalarProperty Name="address1" ColumnName="address1" />
-                <ScalarProperty Name="address2" ColumnName="address2" />
-                <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
-                <ScalarProperty Name="country" ColumnName="country" />
-                <ScalarProperty Name="website" ColumnName="website" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="fax" ColumnName="fax" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="apps">
             <EntityTypeMapping TypeName="App_SecurityModel.app">
               <MappingFragment StoreEntitySet="apps">
@@ -536,6 +518,24 @@
               <ScalarProperty Name="userkey" ColumnName="userkey" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="addressmasters">
+            <EntityTypeMapping TypeName="App_SecurityModel.addressmaster">
+              <MappingFragment StoreEntitySet="addressmaster">
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="addrname" ColumnName="addrname" />
+                <ScalarProperty Name="addrkey" ColumnName="addrkey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

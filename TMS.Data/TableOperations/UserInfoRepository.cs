@@ -38,7 +38,7 @@ namespace TMS.BusinessLayer
         public bool Update(userinfo t)
         {
             var existing = entity.userinfoes.Where(u => u.userid == t.userid).FirstOrDefault();
-            existing.address = t.address;
+           // existing.address = t.address;
             existing.firstname = t.firstname;
             existing.lastname = t.lastname;
             return true;

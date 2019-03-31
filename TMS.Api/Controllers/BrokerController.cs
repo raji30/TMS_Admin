@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Swashbuckle.Swagger.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -22,6 +23,15 @@ namespace TMS.Api.Controllers
            
            var bo= brokerBL.GetBroker(name);
             return Request.CreateResponse(HttpStatusCode.OK, bo,
+                Configuration.Formatters.JsonFormatter);
+        }
+        [HttpGet]
+        [Route("GetAll")]
+        [SwaggerOperation("GetAll")]
+        public HttpResponseMessage GetAll()
+        {
+            var boList = brokerBL.GetAll();
+            return Request.CreateResponse(HttpStatusCode.OK, boList,
                 Configuration.Formatters.JsonFormatter);
         }
         [HttpPost]

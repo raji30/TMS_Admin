@@ -46,7 +46,7 @@ namespace TMS.Data.TableOperations
             var company = GetbyId(t.companykey);
             if (company != null)
             {
-                company.address = t.address;
+               // company.addressmaster = t.addressmaster;
                 company.companyname = t.companyname;
                 company.companyapps = t.companyapps;
                 entity.SaveChanges();
