@@ -71,9 +71,22 @@ namespace TMS.Api.Controllers
         }
         [HttpPost]
         // POST api/values
-        public HttpResponseMessage Post([FromBody]address add)
+        public HttpResponseMessage Post([FromBody]AddressBO add)
         {
-            var value = repo.Add(add);
+            address entity = new address()
+            {
+                address1 = add.Address1,
+                address2 = add.Address2,
+                addrname = add.Name,
+                city = add.City,
+                state = add.State,
+                country = add.Country,
+                zipcode = add.Zip,
+                email = add.Email,
+                phone = add.Phone,
+                fax = add.Fax
+            };
+            var value = repo.Add(entity);
             return Request.CreateResponse(HttpStatusCode.OK, value, Configuration.Formatters.JsonFormatter);
         }
         //[HttpPut]

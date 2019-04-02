@@ -16,7 +16,7 @@ namespace TMS.Data.TableOperations
         }
         public Guid Add(customer t)
         {
-           var newcustomr= entity.customers.Add(t);
+            var newcustomr= entity.customers.Add(t);
             entity.SaveChanges();
             return newcustomr.custkey;
         }

@@ -119,7 +119,7 @@ namespace TMS.Api.Controllers
         }
         [Route("GetCustomerCredit")]
         [SwaggerOperation("GetCustomerCredit")]
-        public HttpResponseMessage GetCredit (string custKey, double amount)
+        public HttpResponseMessage GetCredit (string custKey, int amount)
         {
             CustomerDL dataaccess = new CustomerDL();
            bool result= dataaccess.GetCustomerCredit(Guid.Parse(custKey), amount);
