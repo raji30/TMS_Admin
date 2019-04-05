@@ -13,21 +13,20 @@ using HttpGetAttribute = System.Web.Mvc.HttpGetAttribute;
 using NonActionAttribute = System.Web.Mvc.NonActionAttribute;
 
 namespace TMS.Api.Controllers
-{
+{   
     public class LoginController : ApiController
-    {
-        
+    {        
         [HttpGet]
         [AllowAnonymous]
         [Route("Token")]
         [SwaggerOperation("Token")]
-        public HttpResponseMessage Token(string username, string password, string companyName)
+        public HttpResponseMessage Token(LoginRequest loginRequest)
         {
             UserAccessDL userAccessDL = new UserAccessDL();
             var result = new LoginResult();
-              var isauth = userAccessDL.isAuthorized(username, companyName);
+              var isauth = userAccessDL.isAuthorized(loginRequest.UserName, loginRequest.Company);
             if (isauth) {
-                var userInfo = userAccessDL.Login(username, password);
+                var userInfo = userAccessDL.Login(loginRequest.UserName, loginRequest.Password);
                 if (userInfo == null)
                 {
                     result.message = "user not found";
@@ -40,7 +39,7 @@ namespace TMS.Api.Controllers
                 else
                 {
                     result.message = "success";
-                    result.token = JwtManager.GenerateToken(username);
+                    result.token = JwtManager.GenerateToken(loginRequest.UserName);
                     result.loggedinTime = Convert.ToString(userInfo.lastlogindate.Value);
                     result.isLoggedIn = true;
                     result.userId = Convert.ToString(userInfo.userkey);

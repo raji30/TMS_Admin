@@ -14,7 +14,8 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    // [JwtAuthentication]
+    [RoutePrefix("api/address")]
     public class AddressController : ApiController
     {
         AddressRepository repo = new AddressRepository();
@@ -29,7 +30,7 @@ namespace TMS.Api.Controllers
         }
         [HttpGet]
         [SwaggerOperation("GetAddressById")]
-        [Route("GetAddressById")]
+        [Route("GetAddressById/{Id:int}")]
         public HttpResponseMessage GetAddressById(string Id)
         {
             var address = repo.GetbyId(Guid.Parse(Id));
