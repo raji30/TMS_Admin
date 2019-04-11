@@ -32,6 +32,7 @@ namespace TMS.BusinessLayer
                         foreach(var customer in allcustomers)
                         {
                           var addressBO=  dl.GetAddress(customer.addrkey);
+                            addressBO.Name = customer.custname;
                             returnList.Add(addressBO);
                         }
                     }
@@ -43,6 +44,7 @@ namespace TMS.BusinessLayer
                         foreach (var port in allPorts)
                         {
                             var addressBO = dl.GetAddress(port.addrkey);
+                          
                             returnList.Add(addressBO);
                         }
                     }
@@ -76,6 +78,7 @@ namespace TMS.BusinessLayer
                         foreach (var port in allPorts)
                         {
                             var addressBO = dl.GetAddress(port.addrkey);
+                            addressBO.Name = port.vendname;
                             returnList.Add(addressBO);
                         }
                     }

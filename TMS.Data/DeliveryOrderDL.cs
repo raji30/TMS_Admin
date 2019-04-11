@@ -11,7 +11,7 @@ namespace TMS.Data
 {
     public class DeliveryOrderDL
     {
-        string connString = "host=localhost;Username=postgres;Password=Abc1234!;Database=App_model";
+        string connString = "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";
         NpgsqlConnection connection;
         public DeliveryOrderDL()
         {
@@ -47,7 +47,7 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_status",
                        NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Status);
                     cmd.Parameters.AddWithValue("_statusdate",
-                       NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.StatusDate);
+                       NpgsqlTypes.NpgsqlDbType.Date, orderBO.StatusDate);
                     cmd.Parameters.AddWithValue("_brokerkey",
                        NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.Brokerkey);
                     cmd.Parameters.AddWithValue("_brokerrefno",
@@ -65,17 +65,21 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_cutoffdate",
                       NpgsqlTypes.NpgsqlDbType.Timestamp, orderBO.CutOffDate);
                     cmd.Parameters.AddWithValue("_ishazardous",
-                      NpgsqlTypes.NpgsqlDbType.Boolean, orderBO.IsHazardous);
+                      NpgsqlTypes.NpgsqlDbType.Bit, orderBO.IsHazardous);
                     cmd.Parameters.AddWithValue("_priority",
                       NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Priority);
                     cmd.Parameters.AddWithValue("_createuserkey",
                       NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.CreatedBy);
-                   var reader= cmd.ExecuteReader();
-                    while(reader.Read())
-                    {
-                        var OrderID = Guid.Parse(reader["orderkey"].ToString());
-                        return OrderID;
-                    }
+
+                    var OrderID  = cmd.ExecuteScalar();
+                    return Guid.Parse(OrderID.ToString());
+
+                    //var reader= cmd.ExecuteReader();
+                    //while(reader.Read())
+                    //{
+                    //var OrderID = Guid.Parse(reader["orderkey"].ToString());
+                    //return OrderID;
+                    //}
                 }
             }
             return Guid.Empty;

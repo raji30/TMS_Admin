@@ -14,12 +14,9 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-    // [JwtAuthentication]
-    [RoutePrefix("api/address")]
+     [JwtAuthentication]    
     public class AddressController : ApiController
-    {
-        AddressRepository repo = new AddressRepository();
-
+    {   
         [HttpGet]
         [SwaggerOperation("GetAddressTypes")]
         [Route("GetAddressTypes")]
@@ -30,16 +27,17 @@ namespace TMS.Api.Controllers
         }
         [HttpGet]
         [SwaggerOperation("GetAddressById")]
-        [Route("GetAddressById/{Id:int}")]
+        [Route("GetAddressById")]
         public HttpResponseMessage GetAddressById(string Id)
         {
+            AddressRepository repo = new AddressRepository();
             var address = repo.GetbyId(Guid.Parse(Id));
             return Request.CreateResponse(HttpStatusCode.OK, address);
         }
 
         [HttpGet]
         [SwaggerOperation("GetAllByType")]
-        [Route("GetAllByType")]
+        [Route("GetAllByType/{AddressType}")]
         public HttpResponseMessage GetAllByType(int AddressType)
         {
             AddressBL blobj = new AddressBL();
@@ -51,6 +49,7 @@ namespace TMS.Api.Controllers
         [Route("GetByName")]
         public HttpResponseMessage GetbyName(string name)
         {
+            AddressRepository repo = new AddressRepository();
             var address = repo.GetbyField(name);
             if(address!=null) { 
             AddressBO bo = new AddressBO()
@@ -74,6 +73,7 @@ namespace TMS.Api.Controllers
         // POST api/values
         public HttpResponseMessage Post([FromBody]address add)
         {
+            AddressRepository repo = new AddressRepository();
             var value = repo.Add(add);
             return Request.CreateResponse(HttpStatusCode.OK, value, Configuration.Formatters.JsonFormatter);
         }

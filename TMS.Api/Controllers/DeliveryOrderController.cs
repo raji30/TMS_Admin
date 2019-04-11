@@ -14,7 +14,7 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    //[JwtAuthentication]
     public class DeliveryOrderController : ApiController
     {
         DeliveryOrderDL doObj = new DeliveryOrderDL();
@@ -27,9 +27,8 @@ namespace TMS.Api.Controllers
         [Route("GetbyKey")]
         [SwaggerOperation("GetbyKey")]
         public HttpResponseMessage Get(string OrderKey)
-        {
-            
-           DeliveryOrderBO dorder= doObj.GetDeliveryOrder(OrderKey);
+        {           
+            DeliveryOrderBO dorder= doObj.GetDeliveryOrder(OrderKey);
             return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
         }
         /// <summary>
@@ -41,8 +40,7 @@ namespace TMS.Api.Controllers
         [Route("GetOrdersByUser")]
         [SwaggerOperation("GetOrdersByUser")]
         public HttpResponseMessage GetOrdersByUser(string UserKey)
-        {
-
+        {            
             IEnumerable<string> dorders = doObj.GetOrdersByUser(Guid.Parse(UserKey));
             return Request.CreateResponse(HttpStatusCode.OK, dorders, Configuration.Formatters.JsonFormatter);
         }
@@ -69,16 +67,16 @@ namespace TMS.Api.Controllers
         [Route("DeliveryOrderHeader")]
         [SwaggerOperation("DeliveryOrderHeader")]
         public HttpResponseMessage Post([FromBody]DeliveryOrderBO obj)
-        {
-           var orderid= doObj.CreateDeliveryOrder(obj);
+        {            
+            var orderid= doObj.CreateDeliveryOrder(obj);
             return Request.CreateResponse(HttpStatusCode.OK, orderid, Configuration.Formatters.JsonFormatter);
         }
         [HttpPost]
         [Route("UpdateDeliveryOrderStatus")]
         [SwaggerOperation("UpdateDeliveryOrderStatus")]
         public HttpResponseMessage UpdateOrderStatus(string OrderKey, int Status)
-        {
-          bool result=  doObj.UpdateDOStatus(OrderKey, Status, HttpContext.Current.User.Identity.Name);
+        {           
+            bool result=  doObj.UpdateDOStatus(OrderKey, Status, HttpContext.Current.User.Identity.Name);
             return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
         }
         

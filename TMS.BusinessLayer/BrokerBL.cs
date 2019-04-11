@@ -30,14 +30,17 @@ namespace TMS.BusinessLayer
         public BrokerBO AddBroker(BrokerBO broker)
         {
             broker _broker = new broker();
+
             _broker.brokername = broker.BrokerName;
-            if(broker.Address != null) {
+            if (broker.Address != null)
+            {
                 _broker.addrkey = broker.Address.AddrKey;
             }
             _broker.brokerid = broker.BrokerId;
-          var brokerguid=  repo.Add(_broker);
+            var brokerguid = repo.Add(_broker);
             broker.BrokerKey = brokerguid;
             return broker;
+
         }
         public IList<BrokerBO> GetAll()
         {
