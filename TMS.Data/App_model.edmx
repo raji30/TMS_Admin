@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="addrkey" />
           </Key>
-          <Property Name="addrkey" Type="uuid" Nullable="false" />
+          <Property Name="addrkey" Type="uuid" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="addrname" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="address1" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="address2" Type="varchar" MaxLength="255" Nullable="false" />
@@ -33,7 +33,7 @@
           <Key>
             <PropertyRef Name="brokerkey" />
           </Key>
-          <Property Name="brokerkey" Type="uuid" Nullable="false" />
+          <Property Name="brokerkey" Type="uuid" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="brokerid" Type="varchar" MaxLength="20" />
           <Property Name="brokername" Type="varchar" MaxLength="255" />
           <Property Name="addrkey" Type="uuid" />
@@ -96,7 +96,7 @@
           <Key>
             <PropertyRef Name="custkey" />
           </Key>
-          <Property Name="custkey" Type="uuid" Nullable="false" />
+          <Property Name="custkey" Type="uuid" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="custid" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="custname" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="addrkey" Type="uuid" Nullable="false" />
@@ -1494,7 +1494,7 @@
           <Key>
             <PropertyRef Name="addrkey" />
           </Key>
-          <Property Name="addrkey" Type="Guid" Nullable="false" />
+          <Property Name="addrkey" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="addrname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="address1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="address2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
@@ -1538,7 +1538,7 @@
           <Key>
             <PropertyRef Name="brokerkey" />
           </Key>
-          <Property Name="brokerkey" Type="Guid" Nullable="false" />
+          <Property Name="brokerkey" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="brokerid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="brokername" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="addrkey" Type="Guid" />
@@ -1596,7 +1596,7 @@
           <Key>
             <PropertyRef Name="custkey" />
           </Key>
-          <Property Name="custkey" Type="Guid" Nullable="false" />
+          <Property Name="custkey" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="custid" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="custname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="addrkey" Type="Guid" Nullable="false" />

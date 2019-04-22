@@ -17,7 +17,7 @@ namespace TMS.Data
             connection.ConnectionString = connString;
             
         }
-        public bool GetCustomerCredit(Guid custKey, double amount)
+        public bool GetCustomerCredit(Guid custKey, int amount)
         {
             connection.Open();
             string sql = "dbo.fn_get_cust_credit";
@@ -26,10 +26,15 @@ namespace TMS.Data
 
                 cmd.Parameters.AddWithValue("_custkey", custKey);
                 cmd.Parameters.AddWithValue("_amount", amount);
-               
-                bool result = (bool)cmd.ExecuteScalar();
-                connection.Close();
-                return result;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                var reader = cmd.ExecuteReader();
+                int result= 0;
+                while (reader.Read())
+                {
+                    result= Convert.ToInt32(reader[0].ToString());
+                }
+                    connection.Close();
+                return result>0;
             }
         }
     }
