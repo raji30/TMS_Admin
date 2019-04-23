@@ -12,13 +12,13 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+   // [JwtAuthentication]
     public class DeliveryOrderDetailsController : ApiController
     {
         DeliveryOrderDL doObj = new DeliveryOrderDL();
 
         [HttpGet]
-       // [Route("GetDeliveryOrderDetail")]
+        [Route("GetDeliveryOrderDetail")]
        // [SwaggerOperation("Get")]
        public HttpResponseMessage Get(string Orderkey)
         {
@@ -26,8 +26,8 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
         }
         [HttpPost]
-
-        // [SwaggerOperation("DeliveryOrderDetails")]
+        [Route("DeliveryOrderDetails")]
+        [SwaggerOperation("DeliveryOrderDetails")]        
         public HttpResponseMessage Post([FromBody]DeliveryOrderDetailBO[] objList)
         {
             var orderdetailCollection = doObj.InsertOrderDetails(objList.ToList());

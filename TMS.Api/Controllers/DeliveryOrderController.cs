@@ -24,9 +24,10 @@ namespace TMS.Api.Controllers
         /// <param name="OrderKey"></param>
         /// <returns>Delivery Order </returns>
         [HttpGet]
-        [Route("GetbyKey")]
+        [Route("GetbyKey/{OrderKey}")]
         [SwaggerOperation("GetbyKey")]
-        public HttpResponseMessage Get(string OrderKey)
+       
+        public HttpResponseMessage GetbyKey(string OrderKey)
         {           
             DeliveryOrderBO dorder= doObj.GetDeliveryOrder(OrderKey);
             return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
@@ -48,6 +49,21 @@ namespace TMS.Api.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="UserKey"></param>
+        /// <returns>IEnumerable of DOs</returns>
+        [HttpGet]
+        [Route("GetOrders")]
+        [SwaggerOperation("GetOrders")]
+        public HttpResponseMessage GetOrdersr()
+        {
+          //  IEnumerable<string> dorders = doObj.GetOrders();
+            List<DeliveryOrderBO> dorder = doObj.GetOrders();
+            return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         ///<returns>name/value pair</returns>
         [HttpGet]
         [Route("GetAllDOStatus")]
@@ -63,12 +79,13 @@ namespace TMS.Api.Controllers
         /// </summary>
         /// <param name="obj">Delivery Order</param>
         /// <returns>GUID</returns>
+
         [HttpPost]
         [Route("DeliveryOrderHeader")]
         [SwaggerOperation("DeliveryOrderHeader")]
         public HttpResponseMessage Post([FromBody]DeliveryOrderBO obj)
-        {            
-            var orderid= doObj.CreateDeliveryOrder(obj);
+        {
+            var orderid = doObj.CreateDeliveryOrder(obj);
             return Request.CreateResponse(HttpStatusCode.OK, orderid, Configuration.Formatters.JsonFormatter);
         }
         [HttpPost]

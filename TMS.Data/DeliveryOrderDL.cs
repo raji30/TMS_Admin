@@ -114,6 +114,48 @@ namespace TMS.Data
             }
             return list;
         }
+
+        public List<DeliveryOrderBO> GetOrders()
+        {
+            string sql = "dbo.fn_get_All_tms_order_header";
+            List <DeliveryOrderBO> DOlist = new List <DeliveryOrderBO>();
+            List<string> list = new List<string>();
+            using (connection)
+            {
+                connection.Open();
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;                    
+                    var reader = cmd.ExecuteReader();
+                    do
+                    {
+                        while (reader.Read())
+                        {
+                            // var thinOrder = new ThinOrderDO();
+                            // thinOrder.OrderNo = Utils.CustomParse<string>(reader["orderno"]);
+                            // thinOrder.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
+                            // thinOrder.OrderDate = Utils.CustomParse<DateTime>(reader["orderdate"]);
+                            //list.Add(Utils.CustomParse<string>(reader["orderno"]));
+
+                            var BO = new DeliveryOrderBO();
+                            BO.OrderNo = Utils.CustomParse<string>(reader["orderno"]);
+                            BO.OrderType = Utils.CustomParse<short>(reader["ordertype"]);
+                            BO.BrokerRefNo = Utils.CustomParse<string>(reader["brokerrefno"]);                            
+                            BO.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
+                            BO.OrderDate = Utils.CustomParse<DateTime>(reader["orderdate"]);
+
+                            BO.statusdescription = reader["statusdescription"].ToString();
+                            BO.ordertypedescription = reader["ordertypedescription"].ToString();
+                            DOlist.Add(BO);
+
+                        }
+                    }
+                    while (reader.NextResult());
+                }
+            }
+            return DOlist;
+        }
+
         public bool UpdateDOStatus (string orderkey, int status, string userKey)
         {
             string sql = "update dbo.tms_orderheader set status=@status, lastupdatedate = NOW(), lastupdateuserkey =" +
@@ -183,11 +225,14 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         bo.BillofLading = reader["billoflading"].ToString();
                         bo.BookingNo = reader["bookingno"].ToString();
                         bo.CutOffDate = Utils.CustomParse<DateTime>(reader["cutoffdate"]);
-                        bo.IsHazardous = Utils.CustomParse<bool>(reader["ishazardous"]);
+                        //bo.IsHazardous = Utils.CustomParse<bool>(reader["ishazardous"]);
                         bo.Priority = Utils.CustomParse<short>(reader["priority"]);
                         bo.CreatedDate = Utils.CustomParse<DateTime>(reader["createdate"]);
                         bo.CreatedBy = Utils.CustomParse<Guid>(reader["createuserkey"]);
-                        
+
+                        bo.statusdescription = reader["statusdescription"].ToString();
+                        bo.ordertypedescription = reader["ordertypedescription"].ToString();
+
                     }
                     //if(bo.OrderKey!=Guid.Empty)
                     //{
@@ -265,7 +310,7 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
         public IList<Guid> InsertOrderDetails(IList<DeliveryOrderDetailBO> objList)
         {
             var OrderDetailCollection = new List<Guid>();
-            string sql = "dbo.fn_insert_order_header";
+            string sql = "dbo.fn_insert_order_details";
             using (connection)
             {
                 connection.Open();
@@ -279,30 +324,33 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         cmd.Parameters.AddWithValue("_containerno",
                             NpgsqlTypes.NpgsqlDbType.Varchar, obj.ContainerNo);
                         cmd.Parameters.AddWithValue("_containersize",
-                            NpgsqlTypes.NpgsqlDbType.Varchar, obj.ContainerSize);
+                            NpgsqlTypes.NpgsqlDbType.Smallint, obj.ContainerSize);
                         cmd.Parameters.AddWithValue("_chassis",
                             NpgsqlTypes.NpgsqlDbType.Varchar, obj.Chassis);
                         cmd.Parameters.AddWithValue("_sealno",
                             NpgsqlTypes.NpgsqlDbType.Varchar, obj.SealNo);
                         cmd.Parameters.AddWithValue("_weight",
-                            NpgsqlTypes.NpgsqlDbType.Varchar, obj.Weight);
+                            NpgsqlTypes.NpgsqlDbType.Numeric, Convert.ToDecimal(obj.Weight));
                         cmd.Parameters.AddWithValue("_apptdatefrom",
                             NpgsqlTypes.NpgsqlDbType.Timestamp, obj.AppDateFrom);
                         cmd.Parameters.AddWithValue("_apptdateto",
-                            NpgsqlTypes.NpgsqlDbType.Varchar, obj.AppDateTo);
+                            NpgsqlTypes.NpgsqlDbType.Timestamp, obj.AppDateTo);
                         cmd.Parameters.AddWithValue("_status",
                             NpgsqlTypes.NpgsqlDbType.Smallint, obj.Status);
                         cmd.Parameters.AddWithValue("_statusdate",
                             NpgsqlTypes.NpgsqlDbType.Timestamp, obj.StatusDate);
-                        cmd.Parameters.AddWithValue("_holdreason",
-                            NpgsqlTypes.NpgsqlDbType.Smallint, obj.HoldReason);
-                        cmd.Parameters.AddWithValue("_holddate",
-                            NpgsqlTypes.NpgsqlDbType.Timestamp, obj.HoldDate);
+                        //cmd.Parameters.AddWithValue("_holdreason",
+                        //    NpgsqlTypes.NpgsqlDbType.Smallint, obj.HoldReason);
+                        //cmd.Parameters.AddWithValue("_holddate",
+                        //    NpgsqlTypes.NpgsqlDbType.Timestamp, obj.HoldDate);
                         var reader = cmd.ExecuteReader();
                         while (reader.Read())
-                        {
-                            var OrderDetailID = Guid.Parse(reader["orderdetailkey"].ToString());
-                            OrderDetailCollection.Add(OrderDetailID);
+                        {                            
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                var OrderDetailID = Guid.Parse(reader[i].ToString());
+                                OrderDetailCollection.Add(OrderDetailID);
+                            }
                         }
 
 

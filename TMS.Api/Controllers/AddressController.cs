@@ -14,7 +14,7 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-     [JwtAuthentication]    
+    // [JwtAuthentication]    
     public class AddressController : ApiController
     {   
         [HttpGet]

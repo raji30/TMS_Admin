@@ -32,6 +32,7 @@ namespace TMS.BusinessLayer
                         foreach(var customer in allcustomers)
                         {
                           var addressBO=  dl.GetAddress(customer.addrkey);
+                            addressBO.AddrKey = customer.addrkey;
                             addressBO.Name = customer.custname;
                             returnList.Add(addressBO);
                         }
@@ -44,7 +45,8 @@ namespace TMS.BusinessLayer
                         foreach (var port in allPorts)
                         {
                             var addressBO = dl.GetAddress(port.addrkey);
-                          
+                            addressBO.AddrKey = port.addrkey;
+                            addressBO.Name = port.shippingportid;
                             returnList.Add(addressBO);
                         }
                     }
@@ -56,6 +58,7 @@ namespace TMS.BusinessLayer
                         foreach (var port in allPorts)
                         {
                             var addressBO = dl.GetAddress(port.addrkey);
+                            addressBO.AddrKey = port.portkey;
                             returnList.Add(addressBO);
                         }
                     }
@@ -67,6 +70,8 @@ namespace TMS.BusinessLayer
                         foreach (var port in allPorts)
                         {
                             var addressBO = dl.GetAddress(port.addrkey);
+                            addressBO.AddrKey = port.warehousekey;
+                            addressBO.Name = port.warehouseid;
                             returnList.Add(addressBO);
                         }
                     }
@@ -78,6 +83,7 @@ namespace TMS.BusinessLayer
                         foreach (var port in allPorts)
                         {
                             var addressBO = dl.GetAddress(port.addrkey);
+                            addressBO.AddrKey = port.vendkey;
                             addressBO.Name = port.vendname;
                             returnList.Add(addressBO);
                         }
