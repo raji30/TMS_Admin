@@ -15,12 +15,12 @@ namespace TMS.BusinessObjects
         public string Chassis { get; set; }
         public string SealNo { get; set; }
         public string Weight { get; set; }
-        public DateTime AppDateFrom { get; set; }
-        public DateTime AppDateTo { get; set; }
+        public string AppDateFrom { get; set; }
+        public string AppDateTo { get; set; }
         public short Status { get; set; }
-        public DateTime StatusDate { get; set; }
+        public string StatusDate { get; set; }
         public short HoldReason { get; set; }
-        public DateTime HoldDate { get; set; }
+        public string HoldDate { get; set; }
         public string Comment { get; set; }
     }
 }
