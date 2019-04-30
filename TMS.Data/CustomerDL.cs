@@ -9,7 +9,7 @@ namespace TMS.Data
 {
    public class CustomerDL
     {
-        string connString = "host=localhost;Username=postgres;Password=Abc1234!;Database=App_model";
+        string connString = "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";
         private NpgsqlConnection connection;
         public CustomerDL()
         {
