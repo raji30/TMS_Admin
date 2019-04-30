@@ -31,10 +31,14 @@ namespace TMS.BusinessObjects
         }
         public enum ContainerSize
         {
-            Small =1,
-            Medium =2,
-            Large = 3
-
+            DRY_20 =1,
+            DRY_40 =2,
+            HDRY_40 = 3,
+            HDRY_45 = 4,
+            OPEN_20 = 5,
+            OPEN_40=6,
+            FLAT_20 =7,
+            FLAT_40 =8
         }
         public enum OrderType
         {
@@ -44,6 +48,13 @@ namespace TMS.BusinessObjects
             ExportNoEmptyPickup = 4,
             ReturnToTerminal = 5,
             OneWayDelivery = 6
+        }
+
+        public enum Priority
+        {
+            High = 1,
+            Medium = 2,
+            Low = 3
         }
     }
 }

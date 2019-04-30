@@ -96,6 +96,19 @@ namespace TMS.Api.Controllers
             bool result=  doObj.UpdateDOStatus(OrderKey, Status, HttpContext.Current.User.Identity.Name);
             return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
         }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        ///<returns>name/value pair</returns>
+        [HttpGet]
+        [Route("GetallPriority")]
+        [SwaggerOperation("GetallPriority")]
+        public HttpResponseMessage GetallPriority()
+        {
+            List<EnumValue> values = EnumExtensions.GetEnumValues<Priority>();
+            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        }
+
     }
 }

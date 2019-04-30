@@ -192,12 +192,11 @@ namespace TMS.Data
                 using (var cmd = new NpgsqlCommand(sql,connection))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("orderkey", 
+                    cmd.Parameters.AddWithValue("deliveryorderkey", 
                         NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(orderkey));
                    var reader= cmd.ExecuteReader();
                     while(reader.Read())
-                    {
-                        
+                    {                        
                         AddressRepository addRepo = new AddressRepository();
                         /*orderno ,  orderdate ,  custkey, billtoaddrkey as billingAddress,
 sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnaddrkey as returnaddress,
