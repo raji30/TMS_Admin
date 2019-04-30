@@ -18,11 +18,11 @@ namespace TMS.Api.Controllers
         DeliveryOrderDL doObj = new DeliveryOrderDL();
 
         [HttpGet]
-        [Route("GetDeliveryOrderDetail")]
+        [Route("GetDeliveryOrderDetail/{OrderKey}")]
        // [SwaggerOperation("Get")]
        public HttpResponseMessage Get(string Orderkey)
         {
-            var list = doObj.GetOrderDetails(Guid.Parse(Orderkey));
+            var list = doObj.GetOrderDetails(Orderkey);
             return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
         }
         [HttpPost]
