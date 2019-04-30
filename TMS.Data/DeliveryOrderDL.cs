@@ -142,7 +142,7 @@ namespace TMS.Data
                             BO.OrderType = Utils.CustomParse<short>(reader["ordertype"]);
                             BO.BrokerRefNo = Utils.CustomParse<string>(reader["brokerrefno"]);                            
                             BO.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
-                            BO.OrderDate = Utils.CustomParse<DateTime>(reader["orderdate"]);
+                            BO.OrderDate = Utils.CustomParse<string>(reader["orderdate"]);
 
                             BO.statusdescription = reader["statusdescription"].ToString();
                             BO.ordertypedescription = reader["ordertypedescription"].ToString();
@@ -205,7 +205,9 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
   br.brokername,br.brokerid ,brokerrefno ,portoforiginkey ,carrierkey,vesselname ,
   billoflading ,  bookingno ,  cutoffdate ,  ishazardous ,  priority ,  oh.createdate ,oh.createuserkey */
                         bo.OrderNo = reader["orderno"].ToString();
-                        bo.OrderDate = Convert.ToDateTime(reader["orderdate"].ToString());
+                        var dateAndTime = Convert.ToDateTime(reader["orderdate"].ToString()).ToShortDateString();
+                        bo.OrderDate = Convert.ToDateTime(reader["orderdate"].ToString()).ToShortDateString();
+                        //bo.OrderDate = Convert.ToDateTime(reader["orderdate"].ToString());
                         bo.CustKey = Guid.Parse(reader["custkey"].ToString());
                         bo.BillToAddress = Utils.CustomParse<Guid>(reader["billtoaddrkey"]);
                         bo.SourceAddress = Utils.CustomParse<Guid>(reader["sourceaddrkey"]);
@@ -213,9 +215,9 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         bo.ReturnAddress = Utils.CustomParse<Guid>(reader["returnaddrkey"]);
                         bo.OrderType = Utils.CustomParse<short>(reader["ordertype"]);
                         bo.Status = Utils.CustomParse<short>(reader["status"]);
-                        bo.StatusDate = Utils.CustomParse<DateTime>(reader["statusdate"]);
+                        bo.StatusDate = Utils.CustomParse<string>(reader["statusdate"]);
                         bo.HoldReason = Utils.CustomParse<short>(reader["holdreason"]);
-                        bo.HoldDate = Utils.CustomParse<DateTime>(reader["holdDate"]);
+                        bo.HoldDate = Utils.CustomParse<string>(reader["holdDate"]);
                         bo.BrokerName = reader["brokername"].ToString();
                         bo.BrokerId = reader["brokerid"].ToString();
                         bo.BrokerRefNo = reader["brokerrefno"].ToString();
@@ -224,10 +226,10 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         bo.VesselName = reader["vesselname"].ToString();
                         bo.BillofLading = reader["billoflading"].ToString();
                         bo.BookingNo = reader["bookingno"].ToString();
-                        bo.CutOffDate = Utils.CustomParse<DateTime>(reader["cutoffdate"]);
+                        bo.CutOffDate = Utils.CustomParse<string>(reader["cutoffdate"]);
                         //bo.IsHazardous = Utils.CustomParse<bool>(reader["ishazardous"]);
                         bo.Priority = Utils.CustomParse<short>(reader["priority"]);
-                        bo.CreatedDate = Utils.CustomParse<DateTime>(reader["createdate"]);
+                        bo.CreatedDate = Utils.CustomParse<string>(reader["createdate"]);
                         bo.CreatedBy = Utils.CustomParse<Guid>(reader["createuserkey"]);
 
                         bo.statusdescription = reader["statusdescription"].ToString();
@@ -266,7 +268,7 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
             return addBO;
         }
 
-        public IEnumerable<DeliveryOrderDetailBO> GetOrderDetails(Guid orderkey)
+        public List<DeliveryOrderDetailBO> GetOrderDetails(string orderkey)
         {
             var orderDetails = new List<DeliveryOrderDetailBO>();
             string sql = "dbo.fn_get_order_detail";
@@ -277,8 +279,7 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                 using (var cmd = new NpgsqlCommand(sql, connection))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("orderkey",
-                        NpgsqlTypes.NpgsqlDbType.Uuid, orderkey);
+                    cmd.Parameters.AddWithValue("_orderkey", NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(orderkey));
                     var reader = cmd.ExecuteReader();
                     do
                     {
@@ -286,18 +287,19 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         {
                             var orderDetail = new DeliveryOrderDetailBO();
                             orderDetail.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);
-                            orderDetail.OrderKey = orderkey;
+                            orderDetail.OrderKey = Guid.Parse(orderkey);
                             orderDetail.ContainerNo = Utils.CustomParse<string>(reader["containerno"]);
                             orderDetail.ContainerSize = Utils.CustomParse<short>(reader["containersize"]);
                             orderDetail.Chassis = Utils.CustomParse<string>(reader["chassis"]);
-                            orderDetail.AppDateFrom = Utils.CustomParse<DateTime>(reader["apptdatefrom"]);
-                            orderDetail.AppDateTo = Utils.CustomParse<DateTime>(reader["apptdateto"]);
+                            orderDetail.AppDateFrom = Utils.CustomParse<string>(reader["apptdatefrom"]);
+                            orderDetail.AppDateTo = Utils.CustomParse<string>(reader["apptdateto"]);
                             orderDetail.SealNo = Utils.CustomParse<string>(reader["sealno"]);
                             orderDetail.Status = Utils.CustomParse<short>(reader["status"]);
-                            orderDetail.StatusDate = Utils.CustomParse<DateTime>(reader["statusdate"]);
-                            orderDetail.HoldDate = Utils.CustomParse<DateTime>(reader["holddate"]);
+                            orderDetail.StatusDate = Utils.CustomParse<string>(reader["statusdate"]);
+                            orderDetail.HoldDate = Utils.CustomParse<string>(reader["holddate"]);
                             orderDetail.HoldReason = Utils.CustomParse<short>(reader["holdreason"]);
                             orderDetail.Comment = Utils.CustomParse<string>(reader["description"]);
+                            orderDetail.Weight= Utils.CustomParse<string>(reader["weight"]);
                             orderDetails.Add(orderDetail);
                         }
                     } while (reader.NextResult());
