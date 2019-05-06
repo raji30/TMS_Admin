@@ -1,0 +1,14 @@
+  
+      <div class="form-group dropright">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="drpBillTo"  
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          >{{brokerName}}
+            </button>
+            <!-- {{customer}} -->
+            <div class="dropdown-menu" aria-labelledby="drpBillTo">        
+                <li *ngFor="let Broker of broker"
+                (click)="onSelect(Broker)">               
+                  <a class="dropdown-item" >{{Broker.BrokerName}}</a>
+                </li>            
+            </div>    
+        </div> 
