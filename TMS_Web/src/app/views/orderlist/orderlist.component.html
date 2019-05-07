@@ -1,0 +1,65 @@
+<!-- <div class="row" style="background-color: white">
+<div class="container">
+    <div class="row"> -->
+      <div class="col-sm-12">
+        
+          <!-- <div class="container" style="background-color: white"> -->
+
+            <br>
+<div class="row" >
+    <table class="table table-sm table-hover" >
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">View</th>
+          <th scope="col">Order No</th>
+          <th scope="col">Date</th>
+          <th scope="col">Order Type</th>
+          <th scope="col">Status</th>
+          <th scope="col">Update</th>
+        </tr>
+      </thead>
+       <tbody>  <!--bgcolor="#F8F9F9" -->
+        <tr *ngFor="let order of Orderlist" >
+          <td>
+            <button type="button" class="btn btn-link" label="Click" (click)="viewOrderinfo(order.OrderKey)"> view          
+            </button>
+          
+          </td>
+          <td><button type="button" class="btn btn-link" label="Click"
+              (click)="viewOrder(order.OrderKey)">{{ order.OrderNo }}</button>
+            <!-- <a [routerLink]="['/dointake', order.OrderKey]" >{{ order.OrderNo }}</a>  -->
+          </td>
+          <td>{{ order.OrderDate|date }} </td>
+          <td>{{ order.ordertypedescription}}</td>
+          <div>
+            <td *ngIf="order.statusdescription  == 'InProgress'"><span
+                class="badge badge-pill badge-primary">{{ order.statusdescription }}</span></td>
+            <td *ngIf="order.statusdescription  == 'OnHold'"><span
+                class="badge badge-pill badge-warning">{{ order.statusdescription }}</span></td>
+            <td *ngIf="order.statusdescription  == 'Complete'"><span
+                class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
+          </div>
+          <td><button type="button" class="btn btn-link" label="Click" (click)="viewOrder(order.OrderKey)">update</button>
+            <!-- <a [routerLink]="['/dointake', order.OrderKey]" >{{ order.OrderNo }}</a>  -->
+          </td>
+  
+        </tr>
+      </tbody>
+    </table>
+  </div>
+      </div>
+  <!-- <div *ngIf="customer && !customer.orders" class="row">
+        No orders found
+    </div> 
+    <div *ngIf="!customer" class="row">
+        No customer found
+    </div>   -->
+
+      <!-- </div> -->
+      <div class="col-sm-4">
+       <app-orderinfo></app-orderinfo>
+      </div>      
+    <!-- </div>
+  </div>
+</div> -->
+<router-outlet></router-outlet>

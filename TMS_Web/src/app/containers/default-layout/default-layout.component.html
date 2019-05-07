@@ -1,0 +1,84 @@
+<app-header  
+  [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/brand/paper-plane-icon1.png', width: 45, height: 45, alt: 'CoreUI Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/paper-plane-icon3.png', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [sidebarToggler]="'lg'"
+  [asideMenuToggler]="'lg'">
+
+  <ol class=" nav navbar-nav d-md-down-none mr-auto">
+      <app-breadcrumb></app-breadcrumb>
+    </ol>
+   
+  <!-- <ul class="nav navbar-nav d-md-down-none mr-auto">
+    <li class="nav-item px-3">
+      <a class="nav-link" routerLink= "/doIntake">DO Intake</a>
+      </li>
+      <li class="nav-item px-3">
+        <a class="nav-link" href="">Dashboard</a>
+        </li>
+       <li class="nav-item px-3">
+          <a class="nav-link" href="#">Dispatch</a>
+          </li>
+          <li class="nav-item px-3">
+            <a class="nav-link" href="#">Review</a>
+            </li>
+            <li class="nav-item px-3">
+              <a class="nav-link" href="#">Billing</a>
+              </li>
+      <li class="navbar-nav-right" style="padding-right: 500px;">
+        <a class="btn btn-danger" routerLink="/login">Logout</a>        
+      </li>
+
+      <ul class="nav navbar-nav ml-auto">
+        
+        <li class="nav-item dropdown" dropdown placement="bottom right">
+          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+            <img src="assets/img/brand/close-icon.png" class="img-avatar" alt=".."/>
+            <label>Logout</label>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+            <div class="dropdown-header text-center"><strong>Settings</strong></div>
+            <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+            <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a> 
+            
+            <div class="divider"></div>
+            <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>
+            <a class="dropdown-item" routerLink="/login"><i class="fa fa-lock"></i> Logout</a>
+          </div>
+        </li>
+      </ul>    
+  </ul> -->
+</app-header>
+<div class="app-body">
+  <app-sidebar [fixed]="true" [display]="'lg'">
+    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+    <!-- <app-navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></app-navigation> -->
+    <app-sidebar-minimizer></app-sidebar-minimizer>   
+  </app-sidebar>
+  <!-- Main content -->
+  <main class="main">
+    <!-- Breadcrumb -->
+    <!-- <ol class="breadcrumb">
+      <app-breadcrumb></app-breadcrumb>
+    </ol> -->
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div><!-- /.container-fluid -->
+  </main>
+  <app-aside [fixed]="true" [display]="false" style="background-color:black">
+      <aside class="aside-menu">
+        <div>
+          <div class="dropdown-header text-center"><strong>Settings</strong></div>
+          <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+          <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a> 
+          
+          <div class="divider"></div>
+          <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>
+          <a class="dropdown-item" routerLink="/login"><i class="fa fa-lock"></i> Logout</a>
+        </div>                              
+        </aside>      
+  </app-aside>
+</div>
+<app-footer >
+  <span>&copy; 2019 Trikaiser</span>
+  </app-footer>

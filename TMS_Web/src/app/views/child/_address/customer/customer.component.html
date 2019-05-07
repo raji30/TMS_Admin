@@ -1,0 +1,50 @@
+<!-- <div class="card text-white border-dark bg-dark mb-2" >
+    <div class="card-header">
+        
+    </div>
+    <div class="card-body">
+       
+  
+    </div>
+  </div> -->
+  <div class="form-group btn-group dropdown-menu-right">
+      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="drpBillTo" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">{{billtoCustomerName}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="drpBillTo">
+        <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer" (click)="onSelect(Address)">
+          <a class="dropdown-item">{{Address.Name}}</a>
+        </li>
+      </div>
+    </div>
+
+    <div *ngIf="selectedCustomer!=null">
+        <div class="form-group">
+          <input type="text" class="form-control form-control-sm text-primary" id="inputAddress" placeholder="Address1"
+            [(ngModel)]="selectedCustomer.Address1">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control form-control-sm text-primary" id="inputAddress2" placeholder="Address2"
+            [(ngModel)]="selectedCustomer.Address2">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-5">
+            <input type="text" class="form-control form-control-sm text-primary" id="inputCity" placeholder="City"
+              [(ngModel)]="selectedCustomer.City">
+          </div>
+          <div class="form-group col-md-4">
+            <input type="text" class="form-control form-control-sm text-primary" id="inputState" placeholder="State"
+              [(ngModel)]="selectedCustomer.State">
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" class="form-control form-control-sm text-primary" id="inputZip" placeholder="Zip"
+              [(ngModel)]="selectedCustomer.Zip">
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
