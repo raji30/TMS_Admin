@@ -46,23 +46,26 @@
               class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
           <td>
-            <button type="button" class="btn btn-link" label="Click" (click)="viewOrderinfo(order)" data-toggle="modal"
-              data-target="#myModal"> view
+            <button type="button" class="btn " label="Click" (click)="viewOrderinfo(order)" data-toggle="modal"
+              data-target="#myModal" tooltip="View Order information"> <i class="cui-location-pin "></i>
             </button>
 
           </td>
-          <td><button type="button" class="btn btn-link" label="Click"
-              (click)="viewOrder(order.OrderKey)">{{ order.OrderNo }}</button>
-            <!-- <a [routerLink]="['/dointake', order.OrderKey]" >{{ order.OrderNo }}</a>  -->
+          <td>
+            <span>{{ order.OrderNo}} </span>
           </td>
 
 
           <td>{{ order.OrderDate|date }} </td>
           <td>{{ order.ordertypedescription}}</td>
 
-          <td><button type="button" class="btn btn-link" label="Click"
-              (click)="viewOrder(order.OrderKey)">update</button>
+          <td>
+            <button type="button" class="btn btn-link" label="Click"
+              (click)="viewOrder(order.OrderKey)">
+              <!-- <span class="spinner-grow spinner-grow-sm"></span>--> update 
+            </button>
             <!-- <a [routerLink]="['/dointake', order.OrderKey]" >{{ order.OrderNo }}</a>  -->
+
           </td>
 
         </tr>
@@ -154,7 +157,7 @@
 
               </div>
               <div class="col-md-3">
-                  <div class="card text-white bg-warning mb-3" >
+                  <div class="card text-white bg-secondary mb-3" >
                       <div class="card-header">
                           <div class="row">
                               <div class="col-md-3">                        
