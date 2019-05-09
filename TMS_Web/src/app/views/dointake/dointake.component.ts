@@ -109,4 +109,10 @@ export class DOIntakeComponent implements OnInit {
       .subscribe(results => results, error => (this.errorMessage = error));
     this.doHeader = null;
   }
+
+  clear()
+  {
+    this.doHeader.BrokerRefNo = undefined;
+    
+  }
 }

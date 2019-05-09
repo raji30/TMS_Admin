@@ -8,7 +8,8 @@ import { AddressService } from "../../../../_services/address.service";
   styleUrls: ["./customer.component.scss"]
 })
 export class CustomerComponent implements OnInit {
-  billtoCustomerName: string = "Select";
+  billtoCustomerName: string = "Select Name";
+  @Input() AddrName: string = "Customer";
   customer: Address[];
   addressTobind: Address = new Address();
 
@@ -53,6 +54,22 @@ export class CustomerComponent implements OnInit {
         error => console.log(error),
         () => console.log("Get customer complete")
       );
+    }
+    if(this.billToaddressType=== 1)
+    {
+        this.AddrName = "Customer";
+    }
+    if(this.billToaddressType=== 2)
+    {
+        this.AddrName = "Pickup ";
+    }
+    if(this.billToaddressType=== 3)
+    {
+        this.AddrName = "Consignee";
+    }
+    if(this.billToaddressType=== 4)
+    {
+        this.AddrName = "Return ";
     }
   }
 

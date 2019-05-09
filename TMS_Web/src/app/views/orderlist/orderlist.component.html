@@ -6,7 +6,7 @@
           <!-- <div class="container" style="background-color: white"> -->
 
             <br>
-<div class="row" >
+            <div class="row" >
     <table class="table table-sm table-hover" >
       <thead class="thead-light">
         <tr>
@@ -21,7 +21,7 @@
        <tbody>  <!--bgcolor="#F8F9F9" -->
         <tr *ngFor="let order of Orderlist" >
           <td>
-            <button type="button" class="btn btn-link" label="Click" (click)="viewOrderinfo(order.OrderKey)"> view          
+            <button type="button" class="btn btn-link" label="Click" (click)="viewOrderinfo(order.OrderKey)" data-toggle="modal" data-target="#myModal"> view          
             </button>
           
           </td>
@@ -46,7 +46,8 @@
         </tr>
       </tbody>
     </table>
-  </div>
+          </div>
+          
       </div>
   <!-- <div *ngIf="customer && !customer.orders" class="row">
         No orders found
@@ -56,10 +57,189 @@
     </div>   -->
 
       <!-- </div> -->
-      <div class="col-sm-4">
+      <!-- <div class="col-sm-4">
        <app-orderinfo></app-orderinfo>
-      </div>      
+      </div>       -->
     <!-- </div>
   </div>
 </div> -->
+
+ <!-- The Modal -->
+ <div class="modal fade" id="myModal" style="width:100%;height: auto;" >
+    <div class="modal-dialog modal-dialog-centered modal-xl" style="width:100%;height: auto;">
+      <div class="modal-content" style="width:100%;height: auto;">
+      
+        <!-- Modal Header -->
+        <div class="modal-header" style="width:100%;height: auto;">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body" style="width:100%;height: auto;">
+
+            <h6 class="card-subtitle mb-2 text-muted">Delivery Order info</h6><br>
+        <p class="card-subtitle mb-2 text-muted">Orderno  <span style="color:blue">{{Orderlist.OrderNo}}</span> </p>
+        <p class="card-subtitle mb-2 text-muted">  Date   <span style="color:black">{{Orderlist.OrderDate}}</span></p>
+        <p class="card-subtitle mb-2 text-muted">  Status    <span style="color:orange">{{Orderlist.statusdescription}}</span> </p><br>
+              
+            <table class="table table-sm table-borderless">    
+                <tbody>
+                  <tr>
+                    <td>               
+                      <div class="card text-white border-primary bg-primary mb-3" >
+                          <div class="card-header">Customer</div>
+                          <div class="card-body">
+                            <h5 class="card-title">Customer Details</h5>
+                             <p class="card-text">   MaerskLine </p>
+                             <p class="card-text">   Milestone Buildcon</p>
+                             <p class="card-text">   bhartiya city, Chokanahalli</p>
+                             <p class="card-text">   Bengaluru, Karnataka 560064 </p>
+                             <p class="card-text">   India 560064 </p>       
+                        
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card text-white bg-secondary  mb-3" >
+                            <div class="card-header">Pickup/Loading</div>
+                            <div class="card-body">
+                              <h5 class="card-title">Customer Details</h5>
+                               <p class="card-text">   MaerskLine </p>
+                               <p class="card-text">   Milestone Buildcon</p>
+                               <p class="card-text">   bhartiya city, Chokanahalli</p>
+                               <p class="card-text">   Bengaluru, Karnataka 560064 </p>
+                               <p class="card-text">   India 560064 </p>       
+                          
+                            </div>
+                          </div>
+                    </td>
+                    <td>               
+                      <div class="card text-white bg-info mb-3" >
+                          <div class="card-header">Consignee</div>
+                          <div class="card-body">
+                            <h5 class="card-title">Customer Details</h5>
+                             <p class="card-text">   MaerskLine </p>
+                             <p class="card-text">   Milestone Buildcon</p>
+                             <p class="card-text">   bhartiya city, Chokanahalli</p>
+                             <p class="card-text">   Bengaluru, Karnataka 560064 </p>
+                             <p class="card-text">   India 560064 </p>       
+                        
+                          </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card text-white bg-info mb-3" >
+                            <div class="card-header">Return</div>
+                            <div class="card-body">
+                              <h5 class="card-title">Customer Details</h5>
+                               <p class="card-text">   MaerskLine </p>
+                               <p class="card-text">   Milestone Buildcon</p>
+                               <p class="card-text">   bhartiya city, Chokanahalli</p>
+                               <p class="card-text">   Bengaluru, Karnataka 560064 </p>
+                               <p class="card-text">   India 560064 </p>       
+                          
+                            </div>
+                          </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> 
+                        <div class="card text-white bg-dark mb-4" >
+                            <div class="card-header">Broker</div>
+                            <div class="card-body">
+                              <h5 class="card-title">Customer Details</h5>
+                               <p class="card-text">   MaerskLine </p>
+                               <p class="card-text">   Milestone Buildcon</p>
+                               <p class="card-text">   bhartiya city, Chokanahalli</p>
+                               <p class="card-text">   Bengaluru, Karnataka 560064 </p>
+                               <p class="card-text">   India 560064 </p>       
+                          
+                            </div>
+                          </div>
+                    </td>  
+                      <!-- <td rowspan="2" colspan="2"> -->
+                        <td>
+                          <div class="card" >
+                              <div class="card-header" >        
+                                   Order Detail info       
+                              </div>
+                              <div class="card-body">
+                                  <div class="table-responsive" style="overflow-x: auto">
+                                      <table id="containerAttributes" class="table table-sm" cellspacing="0" width="100%">
+                                          <thead>
+                                              <tr>
+                                                  <th scope="col">Container No</th>
+                                                  <th scope="col">Container Size</th>
+                                                  <th scope="col">Chassis_No</th>
+                                                  <th scope="col">Seal No</th>
+                                                  <th scope="col">Weight in lbs</th>
+                                                  <th scope="col">appt date From</th>
+                                                  <th scope="col">appt date To</th>
+                                                  <!-- <th scope="col">Status</th>
+                                                  <th scope="col">Date</th>
+                                                  <th scope="col">Hold_Reason</th>
+                                                  <th scope="col">Date</th>
+                                                  <th scope="col">Action</th> -->
+                                  
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <!-- <tr *ngFor="let field of Orderlist.orderdetails; let i = index">
+                                                  <td>{{field.ContainerSize}} </td>
+                                                  <td>
+                                                      <select id="drpcontainerType" class="form-control form-control-sm text-primary"
+                                                          aria-placeholder="containerNo" name="{{field.ContainerNo}}" [(ngModel)]="field.ContainerNo">
+                                                          <option value=1>20DRY</option>
+                                                          <option value=2>40DRY</option>
+                                                          <option value=3>40HDRY</option>
+                                                          <option value=4>45HDRY</option>
+                                                          <option value=5>20OPEN</option>
+                                                          <option value=6>40OPEN</option>
+                                                          <option value=7>20FLAT</option>
+                                                          <option value=8>40FLAT</option>
+                                                      </select>
+                                                  </td>          
+                                                  <!-- <td> {{field.Chassis}}</td>
+                                                  <td> {{field.SealNo}}</td>
+                                                  <td> {{field.Weight}}</td>
+                                                  <td> {{field.AppDateFrom}}</td>
+                                                  <td> {{field.ApptDateTo}} </td> -->
+                                                  <!-- <td> {{field.Status}}</td>
+                                                  <td> {{field.StatusDate}}</td>
+                                                  <td> {{field.HoldReason}}</td>
+                                                  <td> {{field.HoldDate}}</td>-->
+                                              <!-- </tr> -->
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div> 
+                          
+                            </div>
+        
+                      </td>           
+                  </tr>
+                  <tr>
+                    <td ></td>
+                    
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+
+
+
+          
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 <router-outlet></router-outlet>

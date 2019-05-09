@@ -1,2 +1,17 @@
 .card-header{height: 50px;}
-.card-body{height: 150px;}
+.card-body{height: 165px;}
+// .form-control:focus {
+//     border-color: #000;
+//   }
+//   .form-control:empty {
+//     border-color:gray;
+//   }
+
+.form-control {
+    position: relative;
+    margin: -20px 0px 24px;
+}
+.btn {
+    position: relative;
+    margin: -5px 0px 24px;
+}
