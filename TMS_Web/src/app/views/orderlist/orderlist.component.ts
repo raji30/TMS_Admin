@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DeliveryOrderService } from '../../_services/deliveryOrder.service';
 import { DeliveryOrderHeader } from '../../_models/DeliveryOrderHeader';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Order_details } from '../../_models/order_details';
 
 @Component({
   selector: 'app-orderlist',
@@ -12,7 +13,8 @@ export class OrderlistComponent implements OnInit {
   Orderlist:any;
   orderKey:string;
   orderkey1: string;
-  public orderinfo: DeliveryOrderHeader;
+  public order: DeliveryOrderHeader;
+  public orderinfo: Order_details[];
   
   constructor(private service: DeliveryOrderService , private router: Router,private route: ActivatedRoute) {  }
 
@@ -27,24 +29,24 @@ export class OrderlistComponent implements OnInit {
     //this.orderKey='399ba232-5c32-11e9-be2b-6b37a32de01c';
     this.router.navigate(['/doIntake', orderKey]); 
   }
-  viewOrderinfo(orderKey1:string)
+  viewOrderinfo(orderParams)
   {
-    this.orderinfo = new DeliveryOrderHeader();
+    this.order = orderParams;
     //this.orderKey='399ba232-5c32-11e9-be2b-6b37a32de01c';
-    //this.router.navigate(['/orderinfo', orderKey1]); 
+    //this.router.navigate(['/orderinfo', this.order.OrderKey]); 
 
-    if ( this.orderkey1 != undefined) {    
-      this.service.GetbyKey(this.orderkey1 ).subscribe(data => {
-        (this.Orderlist = data),
+    if ( this.order.OrderKey != undefined) {    
+      this.service.GetbyKey(this.order.OrderKey  ).subscribe(data => {
+        (this.order = data),console.log("testing Model----",this.order),
           error => console.log(error)          
       });
 
       this.service
-        .GetOrderDetailsbyKey(this.orderkey1)
+        .GetOrderDetailsbyKey(this.order.OrderKey)
         .subscribe(
-          data => (this.Orderlist.orderdetails = data),
+          data => (this.orderinfo = data),
           error => console.log(error),
-          () => console.log("Get OrderDetail", this.Orderlist.orderdetails)
+          () => console.log("Get OrderDetail", this.orderinfo)
         );
     }
   }

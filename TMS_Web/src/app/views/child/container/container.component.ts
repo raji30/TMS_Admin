@@ -13,6 +13,7 @@ export class ContainerComponent implements OnInit {
   @Input() isContainerAttributeVisible : boolean=false;
   private AddContainerDetails: Array<Order_details> = [];
  private newAttribute: any = {};  
+
  @Output() ContainerDetailsOutput = new EventEmitter<any>();
 
   selectedcontainer: Order_details;
@@ -24,6 +25,8 @@ export class ContainerComponent implements OnInit {
       { containerClass: "theme-orange" },
       { dateInputFormat: "MM/DD/YYYY" }
     );
+    
+
   }
 
   addFieldValue() {

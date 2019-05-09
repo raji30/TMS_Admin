@@ -111,7 +111,12 @@
 </form>
 <br>
 
-<div class="table-responsive" style="overflow-x: auto">
+<!-- <div *ngIf="!ContainerDetails|| ContainerDetails.length === 0" class="row">
+       <p>No customer found </p> 
+       *ngIf="ContainerDetails ||ContainerDetails.length > 0"
+</div>  -->
+
+<div   class="table-responsive" style="overflow-x: auto">
     <table id="containerAttributes" class="table table-sm" cellspacing="0" width="100%">
         <thead>
             <tr>
