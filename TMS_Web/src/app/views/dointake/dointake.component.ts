@@ -27,6 +27,7 @@ export class DOIntakeComponent implements OnInit {
   brokerName: string = "Select Broker";
   public doHeader: DeliveryOrderHeader;
   isContainerAttributeVisible: boolean=true;
+  isNewDeliveryOrder:boolean= true;
 
   orderNo: string;
   errorMessage: string;
@@ -73,6 +74,9 @@ export class DOIntakeComponent implements OnInit {
 
     if (this.orderNo != undefined) {
       this.isContainerAttributeVisible = false;
+      this.isNewDeliveryOrder = false;
+
+      //getting order info from the DB..
       this.service.GetbyKey(this.orderNo).subscribe(data => {
         (this.doHeader = data),
           error => console.log(error),
@@ -92,6 +96,9 @@ export class DOIntakeComponent implements OnInit {
   }
 
   OnSubmit(value: DeliveryOrderHeader) {
+
+    if(this.isNewDeliveryOrder)
+    {    
     this.service
       .saveDOHeader(value)
       .subscribe(
@@ -109,10 +116,15 @@ export class DOIntakeComponent implements OnInit {
       .subscribe(results => results, error => (this.errorMessage = error));
     this.doHeader = null;
   }
+  else
+  {
+    
+  }
+  }
 
   clear()
   {
     this.doHeader.BrokerRefNo = undefined;
-    
+
   }
 }

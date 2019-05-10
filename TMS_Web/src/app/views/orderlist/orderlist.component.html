@@ -47,7 +47,7 @@
 
           <td>
             <button type="button" class="btn " label="Click" (click)="viewOrderinfo(order)" data-toggle="modal"
-              data-target="#myModal" tooltip="View Order information"> <i class="cui-location-pin "></i>
+              data-target="#myModal" tooltip="View Order information"> <i class="fa fa-eye fa-1x" style="color:slateblue"></i> 
             </button>
 
           </td>
@@ -62,7 +62,8 @@
           <td>
             <button type="button" class="btn btn-link" label="Click"
               (click)="viewOrder(order.OrderKey)">
-              <!-- <span class="spinner-grow spinner-grow-sm"></span>--> update 
+              <i class="fa fa-pencil-square-o fa-2x" ></i>
+              <!-- <span class="spinner-grow spinner-grow-sm"></span>-->  
             </button>
             <!-- <a [routerLink]="['/dointake', order.OrderKey]" >{{ order.OrderNo }}</a>  -->
 
