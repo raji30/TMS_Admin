@@ -5,9 +5,11 @@ import { AddressService } from "../../../../_services/address.service";
 @Component({
   selector: "app-customer",
   templateUrl: "./customer.component.html",
-  styleUrls: ["./customer.component.scss"]
+  styleUrls: ["./customer.component.scss"],
+  
 })
 export class CustomerComponent implements OnInit {
+
   billtoCustomerName: string = "Select Name";
   @Input() AddrName: string = "Customer";
   customer: Address[];
@@ -21,6 +23,7 @@ export class CustomerComponent implements OnInit {
   constructor(private service: AddressService) {}
 
   ngOnInit() {
+
     console.log(this.addressKeyTobind);
     this.service
       .getAddress(this.billToaddressType)
@@ -78,5 +81,5 @@ export class CustomerComponent implements OnInit {
     this.selectedCustomer = CustomerSelected;
     this.billtoCustomerName = this.selectedCustomer.Name;
     console.log(this.selectedCustomer);
-  }
+  }  
 }

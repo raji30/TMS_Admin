@@ -13,36 +13,36 @@
           <th scope="col">Order No</th>
           <th scope="col">Date</th>
           <th scope="col">Order Type</th>
-          <th scope="col">Action</th>
+          <th scope="col">Action</th>          
         </tr>
       </thead>
       <tbody>
         <!--bgcolor="#F8F9F9" -->
         <tr *ngFor="let order of Orderlist">
 
-          <td *ngIf="order.statusdescription  == 'InProgress'"><span
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'InProgress'"><span
               class="badge badge-pill badge-primary">{{ order.statusdescription }}</span></td>
-          <td *ngIf="order.statusdescription  == 'OnHold'"><span
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'OnHold'"><span
               class="badge badge-pill badge-warning">{{ order.statusdescription }}</span></td>
-          <td *ngIf="order.statusdescription  == 'Complete'"><span
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'Complete'"><span
               class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-          <td *ngIf="order.statusdescription  == 'CreditDenied'"><span
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'CreditDenied'"><span
               class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-          <td *ngIf="order.statusdescription  == 'SenttoScheduler'"><span
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'SenttoScheduler'"><span
               class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-          <td *ngIf="order.statusdescription  == 'SenttoDispatch'"><span
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'SenttoDispatch'"><span
               class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-          <td *ngIf="order.statusdescription  == 'SenttoBilling'"><span
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'SenttoBilling'"><span
               class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-          <td *ngIf="order.statusdescription  == 'InvoiceGenerated'"><span
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'InvoiceGenerated'"><span
               class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-          <td *ngIf="order.statusdescription  == 'Reviewed'"><span
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'Reviewed'"><span
               class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
           <td>
@@ -60,14 +60,19 @@
           <td>{{ order.ordertypedescription}}</td>
 
           <td>
-            <button type="button" class="btn btn-link" label="Click"
+            <!-- <button type="button" class="btn btn-link" label="Click"
               (click)="viewOrder(order.OrderKey)">
-              <i class="fa fa-pencil-square-o fa-2x" ></i>
-              <!-- <span class="spinner-grow spinner-grow-sm"></span>-->  
-            </button>
+              <i class="fa fa-pencil-square-o fa-2x" ></i>            
+            </button> -->
             <!-- <a [routerLink]="['/dointake', order.OrderKey]" >{{ order.OrderNo }}</a>  -->
 
+            <button type="button" class="btn btn-link" label="Click"
+              (click)="navigatetoTab(order.OrderKey)"> 
+              <i class="fa fa-pencil-square-o fa-2x" ></i>        
+            </button>
+
           </td>
+
 
         </tr>
       </tbody>
@@ -76,7 +81,7 @@
 </div>
 
 <!-- The Modal -->
-<div class="modal fade" id="myModal" style="width:100%;height: auto;">
+<div *ngIf="order!=undefined"  class="modal fade" id="myModal" style="width:100%;height: auto;">
   <div class="modal-dialog modal-dialog-centered modal-xl" style="width:100%;height: auto;">
     <div class="modal-content" style="width:100%;height: auto;background-color: #5c6873">
 
@@ -87,11 +92,9 @@
       </div>
 
       <!-- Modal body -->
-      <div class="modal-body" style="width:100%;height: auto;">
-                 
-                    <h4><p class="card-subtitle mb-2"> Status : <span style=" font-style: oblique;color:yellowgreen"> {{order.statusdescription}}</span> </p></h4>              
-         
-
+      <div   class="modal-body" style="width:100%;height: auto;">                 
+                    <h4><p class="card-subtitle mb-2"> Status : 
+                      <span *ngIf="order.statusdescription!=undefined" style=" font-style: oblique;color:yellowgreen"> {{order.statusdescription}}</span> </p></h4>                       
             <br>
             <table class="table table-sm table-borderless">
                 <tbody>

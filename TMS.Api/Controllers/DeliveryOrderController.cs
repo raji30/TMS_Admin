@@ -79,7 +79,14 @@ namespace TMS.Api.Controllers
         /// </summary>
         /// <param name="obj">Delivery Order</param>
         /// <returns>GUID</returns>
-
+        [HttpPost]
+        [Route("DeliveryOrderHeader1")]
+        [SwaggerOperation("DeliveryOrderHeader")]
+        public HttpResponseMessage Post([FromBody]int q)
+        {
+            //var orderid = doObj.CreateDeliveryOrder(obj);
+            return Request.CreateResponse(HttpStatusCode.OK, q, Configuration.Formatters.JsonFormatter);
+        }
         [HttpPost]
         [Route("DeliveryOrderHeader")]
         [SwaggerOperation("DeliveryOrderHeader")]

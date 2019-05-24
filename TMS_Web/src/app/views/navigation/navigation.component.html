@@ -1,0 +1,49 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">                
+                    <span>
+                        <img alt="image" class="img-circle" width="80px"
+                             src="./assets/img/brand/user-identity2.png" />
+                    </span>
+                   
+                      <span class="clear">
+                          <span class="block m-t-xs">
+                            <br>
+                          <strong class="font-bold">Hi {{currentUser.firstname}} {{loginInfo.lastname}}</strong>
+                      </span>
+                      <div>                     
+                          <span class="text-muted text-xs block">Logged : {{currentUser.loggedinTime}}</span>
+                      </div>
+                      </span>
+                    
+            </li>
+            <hr>
+
+            <li>
+                <a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Dashboard</a>
+            </li>
+            <br>
+            <li>
+                <a [routerLink]="['/orderList']"><i class="fa fa-desktop"></i> Order List</a>
+            </li>
+            <hr >
+            <li *ngFor="let order of Orderlist| slice:0:25; let ind=index;">
+                <!-- <span>{{ order.OrderNo}} </span>   -->
+                <!-- <a [routerLink]="['./tab']"><i class="fa fa-dashboard"></i> <span class="nav-label">Dashboards</span></a> -->
+                
+                <div class="row">
+                    <div class="col-md-1">
+                       
+                    </div>
+                   
+                    <div class="col-md-10">
+                        <i  style="width:20px;"class="fa fa-circle-thin" aria-hidden="true"></i>
+                         <a   [routerLink]="['/tab', order.OrderKey]" >{{ order.OrderNo }}</a> 
+                      </div>
+                  </div>                
+              </li>
+        </ul>
+
+    </div>
+</nav>

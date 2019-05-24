@@ -29,7 +29,7 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_orderno",
                         NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.OrderNo);
                     cmd.Parameters.AddWithValue("_orderdate",
-                        NpgsqlTypes.NpgsqlDbType.Date, orderBO.OrderDate);
+                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(orderBO.OrderDate));
                     cmd.Parameters.AddWithValue("_custkey",
                         NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.CustKey);
                     cmd.Parameters.AddWithValue("_billtoaddrkey",
@@ -47,7 +47,7 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_status",
                        NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Status);
                     cmd.Parameters.AddWithValue("_statusdate",
-                       NpgsqlTypes.NpgsqlDbType.Date, orderBO.StatusDate);
+                       NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(orderBO.StatusDate));
                     cmd.Parameters.AddWithValue("_brokerkey",
                        NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.Brokerkey);
                     cmd.Parameters.AddWithValue("_brokerrefno",
@@ -63,7 +63,7 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_bookingno",
                       NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BookingNo);
                     cmd.Parameters.AddWithValue("_cutoffdate",
-                      NpgsqlTypes.NpgsqlDbType.Timestamp, orderBO.CutOffDate);
+                      NpgsqlTypes.NpgsqlDbType.Timestamp, Convert.ToDateTime(orderBO.CutOffDate));
                     cmd.Parameters.AddWithValue("_ishazardous",
                       NpgsqlTypes.NpgsqlDbType.Bit, orderBO.IsHazardous);
                     cmd.Parameters.AddWithValue("_priority",
@@ -297,8 +297,11 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                             orderDetail.StatusDate = Utils.CustomParse<string>(reader["statusdate"]);
                             orderDetail.HoldDate = Utils.CustomParse<string>(reader["holddate"]);
                             orderDetail.HoldReason = Utils.CustomParse<short>(reader["holdreason"]);
-                            orderDetail.Comment = Utils.CustomParse<string>(reader["description"]);
+                            orderDetail.Comment = Utils.CustomParse<string>(reader["comment_description"]);
                             orderDetail.Weight= Utils.CustomParse<string>(reader["weight"]);
+                            orderDetail.StatusDesc = Utils.CustomParse<string>(reader["status_description"]);
+                            orderDetail.ContainerSizeDesc = Utils.CustomParse<string>(reader["containersize_description"]);
+                            orderDetail.HoldReasonDesc = Utils.CustomParse<string>(reader["holdreason_description"]);
                             orderDetails.Add(orderDetail);
                         }
                     } while (reader.NextResult());
@@ -311,7 +314,8 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
         public IList<Guid> InsertOrderDetails(IList<DeliveryOrderDetailBO> objList)
         {
             var OrderDetailCollection = new List<Guid>();
-            string sql = "dbo.fn_insert_order_details";
+            //string sql = "dbo.fn_insert_order_details";
+            string sql = "dbo.fn_insert_order_details_DOIntake";
             using (connection)
             {
                 connection.Open();
@@ -332,14 +336,14 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                             NpgsqlTypes.NpgsqlDbType.Varchar, obj.SealNo);
                         cmd.Parameters.AddWithValue("_weight",
                             NpgsqlTypes.NpgsqlDbType.Numeric, Convert.ToDecimal(obj.Weight));
-                        cmd.Parameters.AddWithValue("_apptdatefrom",
-                            NpgsqlTypes.NpgsqlDbType.Timestamp, obj.AppDateFrom);
-                        cmd.Parameters.AddWithValue("_apptdateto",
-                            NpgsqlTypes.NpgsqlDbType.Timestamp, obj.AppDateTo);
-                        cmd.Parameters.AddWithValue("_status",
-                            NpgsqlTypes.NpgsqlDbType.Smallint, obj.Status);
-                        cmd.Parameters.AddWithValue("_statusdate",
-                            NpgsqlTypes.NpgsqlDbType.Timestamp, obj.StatusDate);
+                        //cmd.Parameters.AddWithValue("_apptdatefrom",
+                        //    NpgsqlTypes.NpgsqlDbType.Timestamp, obj.AppDateFrom);
+                        //cmd.Parameters.AddWithValue("_apptdateto",
+                        //    NpgsqlTypes.NpgsqlDbType.Timestamp, obj.AppDateTo);
+                        //cmd.Parameters.AddWithValue("_status",
+                        //    NpgsqlTypes.NpgsqlDbType.Smallint, obj.Status);
+                        //cmd.Parameters.AddWithValue("_statusdate",
+                        //    NpgsqlTypes.NpgsqlDbType.Timestamp, obj.StatusDate);
                         //cmd.Parameters.AddWithValue("_holdreason",
                         //    NpgsqlTypes.NpgsqlDbType.Smallint, obj.HoldReason);
                         //cmd.Parameters.AddWithValue("_holddate",
@@ -362,5 +366,45 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
             return OrderDetailCollection;
         }
 
+        public bool UpdateOrderDetails(DeliveryOrderDetailBO detail)
+        {
+            string sql = @"update dbo.tms_orderdetail set apptdatefrom=@apptdatefrom, apptdateto=@apptdateto, "+
+                "status=@status,statusdate = @statusdate,holdreason=@holdreason, holddate=@holddate where orderdetailkey=@orderdetailkey AND orderkey=@orderkey";
+
+    
+            // string sql = "dbo.fn_update_order_details";
+            using (connection)
+            {
+                connection.Open();
+                  using (var cmd = new NpgsqlCommand(sql, connection))
+                    {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("@orderkey",
+                        NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderKey);
+                    cmd.Parameters.AddWithValue("@orderdetailkey",
+                          NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderDetailKey);
+                
+                    cmd.Parameters.AddWithValue("@apptdatefrom",
+                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(detail.AppDateFrom));
+                    cmd.Parameters.AddWithValue("@apptdateto",
+                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(detail.AppDateTo));
+                    cmd.Parameters.AddWithValue("@status",
+                        NpgsqlTypes.NpgsqlDbType.Smallint, detail.Status);
+                    cmd.Parameters.AddWithValue("@statusdate",
+                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(detail.StatusDate));
+                    cmd.Parameters.AddWithValue("@holdreason",
+                        NpgsqlTypes.NpgsqlDbType.Smallint, detail.HoldReason);
+                    cmd.Parameters.AddWithValue("@holddate",
+                        NpgsqlTypes.NpgsqlDbType.Timestamp, Convert.ToDateTime(detail.HoldDate));
+
+                    int returnvalue = cmd.ExecuteNonQuery();
+                    if (returnvalue < 0)
+                    {
+                        return false;
+                    }
+                    else return true;
+                }
+            }
+        }
     }
 }

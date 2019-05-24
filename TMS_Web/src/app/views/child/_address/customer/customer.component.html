@@ -6,12 +6,13 @@
             aria-haspopup="true" aria-expanded="false">
             {{billtoCustomerName}}
             </button>
+           
             <div class="dropdown-menu" aria-labelledby="drpBillTo">
                 <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer" (click)="onSelect(Address)">
                 <a class="dropdown-item">{{Address.Name}}</a>
-                </li>
-            </div>
-
+                </li>              
+                  </div>
+          
             <div class="form-group">
               <input type="text" class="form-control form-control-sm" id="inputAddress" placeholder="Address1"
                 [(ngModel)]="selectedCustomer.Address1">
@@ -33,6 +34,7 @@
                 <input type="text" class="form-control form-control-sm" id="inputZip" placeholder="Zip"
                   [(ngModel)]="selectedCustomer.Zip">
               </div>
+           
             </div> 
             </div>
 

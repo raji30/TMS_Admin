@@ -1,10 +1,11 @@
 import { Order_details } from "./order_details";
 
 export class DeliveryOrderHeader {
+         
         public OrderKey: string;
         public OrderNo:string ;
         public CustKey:string ;
-        public OrderDate:Date ;
+        public OrderDate:string ;
         public BillToAddress: string ;
         public SourceAddress: string ;
         public DestinationAddress: string ;
@@ -24,11 +25,11 @@ export class DeliveryOrderHeader {
         public VesselName:string  ;
         public BillofLading:string  ;
         public BookingNo:string ;
-        public CutOffDate:Date ;
+        public CutOffDate:string ;
         public Priority:number;
         public IsHazardous:boolean;
         public CreatedBy: string ;
-        public CreatedDate:Date;
+        public CreatedDate:string;
         public ordertypedescription:string ;
         public statusdescription:string ;
 

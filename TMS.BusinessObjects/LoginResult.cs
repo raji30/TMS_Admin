@@ -11,6 +11,8 @@ namespace TMS.BusinessObjects
         public bool isLoggedIn { get; set; }
         public string message { get; set; }
         public string userId { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
         public string loggedinTime { get; set; }
         public string token { get; set; }
     }

@@ -28,6 +28,13 @@ export class OrderlistComponent implements OnInit {
   {
     //this.orderKey='399ba232-5c32-11e9-be2b-6b37a32de01c';
     this.router.navigate(['/doIntake', orderKey]); 
+   //this.router.navigate(['/tab',orderKey]); 
+  }
+  navigatetoTab(orderKey:string)
+  {
+    //this.orderKey='399ba232-5c32-11e9-be2b-6b37a32de01c';
+    this.router.navigate(['/tab', orderKey]); 
+   //this.router.navigate(['/tab',orderKey]); 
   }
   viewOrderinfo(orderParams)
   {

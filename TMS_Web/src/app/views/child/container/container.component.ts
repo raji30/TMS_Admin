@@ -23,8 +23,8 @@ export class ContainerComponent implements OnInit {
     this.bsConfig = Object.assign(
       {},
       { containerClass: "theme-orange" },
-      { dateInputFormat: "MM/DD/YYYY" }
-    );
+      { dateInputFormat: "MM/DD/YYYY" },
+         );
     
 
   }

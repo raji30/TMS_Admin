@@ -1,0 +1,30 @@
+<div class="card">
+<!-- <div class="row">
+     -->
+<tabset   type="pills" (click)="onClick($event)" >
+    <tab   title="Disabled" [disabled]="false"   >
+      <ng-template tabHeading>
+          doIntake 
+      </ng-template>
+      <app-dointake [orderKeyinput]=orderKey></app-dointake>
+    </tab>
+   
+    <tab >
+      <ng-template tabHeading>
+          Scheduler
+      </ng-template>
+      <app-scheduler [orderKeyinput]=orderKey></app-scheduler>
+    </tab>
+    <tab [disabled]="true">
+      <ng-template tabHeading >
+        Despatch
+      </ng-template>
+    </tab>
+    <tab [disabled]="true">
+      <ng-template tabHeading>
+        Billing
+      </ng-template>
+    </tab>
+  </tabset>
+  <!-- </div> -->
+</div>

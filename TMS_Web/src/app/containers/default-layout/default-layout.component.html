@@ -5,17 +5,20 @@
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'">
 
-  <ol class=" nav navbar-nav d-md-down-none mr-auto">
+  <!-- <ol class=" nav navbar-nav d-md-down-none mr-auto">
       <app-breadcrumb></app-breadcrumb>
-    </ol>
+    </ol> -->
    
-  <!-- <ul class="nav navbar-nav d-md-down-none mr-auto">
+  <ul class="nav navbar-nav d-md-down-none mr-auto">
     <li class="nav-item px-3">
       <a class="nav-link" routerLink= "/doIntake">DO Intake</a>
       </li>
-      <li class="nav-item px-3">
+      <!-- <li class="nav-item px-3">
         <a class="nav-link" href="">Dashboard</a>
         </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" routerLink="/container"><i class="fa fa-wrench"></i> Scheduler</a>
+            </li>
        <li class="nav-item px-3">
           <a class="nav-link" href="#">Dispatch</a>
           </li>
@@ -24,8 +27,8 @@
             </li>
             <li class="nav-item px-3">
               <a class="nav-link" href="#">Billing</a>
-              </li>
-      <li class="navbar-nav-right" style="padding-right: 500px;">
+              </li> -->
+      <!-- <li class="navbar-nav-right" style="padding-right: 500px;">
         <a class="btn btn-danger" routerLink="/login">Logout</a>        
       </li>
 
@@ -46,14 +49,18 @@
             <a class="dropdown-item" routerLink="/login"><i class="fa fa-lock"></i> Logout</a>
           </div>
         </li>
-      </ul>    
-  </ul> -->
+      </ul>     -->
+  </ul>
 </app-header>
 <div class="app-body">
-  <app-sidebar [fixed]="true" [display]="'lg'">
-    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
-    <!-- <app-navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></app-navigation> -->
-    <app-sidebar-minimizer></app-sidebar-minimizer>   
+
+  <!-- <app-sidebar [fixed]="true" [display]="'lg'">
+      <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized">    
+    </app-sidebar-nav>    
+       <app-sidebar-minimizer></app-sidebar-minimizer>   
+  </app-sidebar> -->
+  <app-sidebar>
+     <app-navigation ></app-navigation>
   </app-sidebar>
   <!-- Main content -->
   <main class="main">
@@ -68,13 +75,13 @@
   <app-aside [fixed]="true" [display]="false" style="background-color:black">
       <aside class="aside-menu">
         <div>
-          <div class="dropdown-header text-center"><strong>Settings</strong></div>
+          <div class="dropdown-header text-center"><strong>Settings </strong></div>
           <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
           <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a> 
-          
+         
           <div class="divider"></div>
           <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>
-          <a class="dropdown-item" routerLink="/login"><i class="fa fa-lock"></i> Logout</a>
+          <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
         </div>                              
         </aside>      
   </app-aside>

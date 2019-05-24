@@ -9,7 +9,7 @@ namespace TMS.BusinessObjects
    public class DeliveryOrderBO
     {
         public Guid OrderKey { get; set; }
-        public String OrderNo { get; set; }
+        public string OrderNo { get; set; }
         public Guid CustKey { get; set; }
         public string OrderDate { get; set; }
         public Guid BillToAddress { get; set; }
@@ -39,6 +39,6 @@ namespace TMS.BusinessObjects
 
         public string ordertypedescription{ get; set; }
         public string statusdescription{ get; set; }
-       
+     ///  public List<DeliveryOrderDetailBO> OrderDetails { get; set; }
     }
 }
