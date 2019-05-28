@@ -51,6 +51,7 @@ import { TabComponent } from './views/tab/tab.component';
 import { SchedulerComponent } from './views/scheduler/scheduler.component';
 import { NavigationComponent } from './views/navigation/navigation.component';
 import { FileSelectDirective } from 'ng2-file-upload';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [   
@@ -67,6 +68,7 @@ BrowserModule,
     TooltipModule.forRoot(),
     BsDatepickerModule.forRoot(),
     ProgressbarModule.forRoot(),
+    ToastrModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
     FormsModule,

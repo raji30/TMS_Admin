@@ -3,3 +3,12 @@
     .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
     .another-file-over-class { border: dotted 3px green; } 
     html, body { height: 100%; }
+    
+    ::ng-deep.bs-datepicker {
+        height: 300px;
+       
+      }
+
+      ::ng-deep.bs-datepicker-container {
+        padding: 0px;
+    }

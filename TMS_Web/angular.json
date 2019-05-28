@@ -27,7 +27,8 @@
               
               "node_modules/simple-line-icons/css/simple-line-icons.css",
               "src/scss/style.scss",
-              "node_modules/font-awesome/scss/font-awesome.scss"
+              "node_modules/font-awesome/scss/font-awesome.scss",              
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["./node_modules"]

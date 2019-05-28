@@ -134,11 +134,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let field of ContainerDetails; let i = index">
-                <td> <input [(ngModel)]="field.ContainerSize" class="form-control form-control-sm text-primary"
-                        type="text" name="{{field.ContainerSize}}" /> </td>
+                             <td> <input [(ngModel)]="field.ContainerNo" class="form-control form-control-sm text-primary"
+                            type="text" name="{{field.ContainerNo}}" /> </td>
                 <td>
                     <select id="drpcontainerType" class="form-control form-control-sm text-primary"
-                        aria-placeholder="containerNo" name="{{field.ContainerNo}}" [(ngModel)]="field.ContainerNo">
+                        aria-placeholder="ContainerSize" name="{{field.ContainerSize}}" [(ngModel)]="field.ContainerSize">
                         <!-- <option value=1>20DRY</option>
                         <option value=2>40DRY</option>
                         <option value=3>40HDRY</option>

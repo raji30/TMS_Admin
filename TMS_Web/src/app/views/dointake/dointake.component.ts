@@ -27,6 +27,7 @@ import { HttpClient, HttpEventType, HttpResponse } from "@angular/common/http";
 import { FileSelectDirective, FileDropDirective,FileUploader } from 'ng2-file-upload';
 import { OrderType, Priority, Containersize, Status, HoldReason } from "../../common/master";
 import { MasterService } from "../../_services/master.service";
+import { ToastrService } from "ngx-toastr";
 
 
  const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
@@ -64,7 +65,7 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
   public hasBaseDropZoneOver:boolean = false;
   public hasAnotherDropZoneOver:boolean = false;
 
-  constructor(  private http: HttpClient,
+  constructor( private toastr: ToastrService, private http: HttpClient,
     private service: DeliveryOrderService,
     private master:MasterService,
     private router: Router,
@@ -127,15 +128,15 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
     );
     
     this.master.getHoldReasonList().subscribe(
-      data => (this.statuslist = data),
-          error => console.log(error),
-          () => console.log("Get statuslist", this.statuslist)
-    );
-
-    this.master.getStatusList().subscribe(
       data => (this.holdreasonlist = data),
           error => console.log(error),
           () => console.log("Get holdreasonlist", this.holdreasonlist)
+    );
+
+    this.master.getStatusList().subscribe(
+      data => (this.statuslist = data),
+          error => console.log(error),
+          () => console.log("Get statuslist", this.statuslist)
     );
     
    
@@ -158,17 +159,20 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
         .GetOrderDetailsbyKey(this.orderNo)
         .subscribe(
           data => (this.doHeader.orderdetails = data),
-          error => console.log(error),
+          error => (console.log(error)),
           () => console.log("Get OrderDetail", this.doHeader.orderdetails)
         );
     } 
     else {
-      this.clear();
+        this.showSuccess("Order Created successfully","New-Order");
+
+         this.clear();
 
     }
   }
+  
 
-  OnSubmit(form) {
+  OnSubmit(form) {   
     if (this.isNewDeliveryOrder) {
        this.service
         .saveDOHeader(form.value)
@@ -177,11 +181,13 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
             if(this.orderKey!=undefined && this.orderKey!="")
             {
             this.saveDeliveryDetails();
+            this.clear();            
             }
           },
-          error => (this.errorMessage = error)
+          error => { (this.errorMessage = error )
+            this.showError(this.errorMessage,"New-Order");}
         );
-
+        this.showSuccess("Order Created successfully","New-Order");
      //applying orderkey to order details
      
     } else {
@@ -193,11 +199,11 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
     for (let order of this.doHeader.orderdetails) {
       order.OrderKey = this.orderKey;
     }
-    this.delay(300);
+   
     this.service
       .saveOrderDetails(this.doHeader.orderdetails)
-      .subscribe(results => results, error => (this.errorMessage = error));
-    this.doHeader = null;
+      .subscribe(results => {this.showSuccess("Order Created successfully","New-Order");}, error => (this.errorMessage = error));
+     
   }
 
   clear() {
@@ -254,4 +260,25 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
   ngOnDestroy() {
     this.subscription && this.subscription.unsubscribe();
   }
+
+
+  showSuccess(message:string,title:string) {   
+    this.toastr.info(message, title, {  timeOut :  4000, closeButton: true }); 
+}
+
+showError(message:string,title:string) {
+    this.toastr.error(message, 'Oops!',{  timeOut :  4000, closeButton: true });
+}
+
+showWarning() {
+    this.toastr.warning('This is warning toast.', 'Alert!');
+}
+
+showInfo() {
+    this.toastr.info('This is info toast.', 'Info');
+}
+
+showToast(position: any = 'top-left') {
+    this.toastr.info('This is a toast.', 'Toast', { positionClass: position });
+}
 }

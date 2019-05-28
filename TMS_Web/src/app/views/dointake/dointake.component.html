@@ -317,7 +317,7 @@
                     <h5><span class="label badge">Status Date</span></h5>
                     <input type="text" class="form-control form-control-sm bg-light" name="StatusDate" id="StatusDate"
                       bsDatepicker placeholder="Status Date" [bsConfig]="bsConfig" [(ngModel)]="doHeader.StatusDate"
-                      #OrderDate="ngModel" [ngClass]="{ 'is-invalid': f.submitted && StatusDate.invalid }" required />
+                      #StatusDate="ngModel" [ngClass]="{ 'is-invalid': f.submitted && StatusDate.invalid }" required />
 
                     <div *ngIf="f.submitted && StatusDate.invalid" class="invalid-feedback">
                       <div *ngIf="StatusDate.errors.required"> Status-Date is required</div>
@@ -340,7 +340,7 @@
                       <div class="form-group">
                         <select id="drpHoldReason" class="form-control form-control-sm bg-light" name="HoldReason"
                           [(ngModel)]="doHeader.HoldReason">
-                          <option [value]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>                        
+                          <option [value]="reason.Value" *ngFor="let reason of holdreasonlist">{{reason.Name}}</option>                        
                      
                         </select>
                       </div>
