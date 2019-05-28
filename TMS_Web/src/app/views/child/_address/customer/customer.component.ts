@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Input, Output } from "@angular/core";
 import { Address } from "../../../../_models/address";
 import { AddressService } from "../../../../_services/address.service";
 
+
 @Component({
   selector: "app-customer",
   templateUrl: "./customer.component.html",
@@ -18,6 +19,7 @@ export class CustomerComponent implements OnInit {
   @Input() billToaddressType: number;
   @Input() addressKeyTobind: string;
   @Output() CustomerSelectedOutput = new EventEmitter<string>();
+
 
   selectedCustomer: Address = new Address();
   constructor(private service: AddressService) {}

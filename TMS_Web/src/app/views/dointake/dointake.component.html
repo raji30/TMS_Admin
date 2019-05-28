@@ -270,12 +270,8 @@
                       <select id="cboOrderType" class="form-control form-control-sm bg-light" name="OrderType"
                         [(ngModel)]="doHeader.OrderType" #OrderType="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && OrderType.invalid }" required>
-                        <option value="1">Import</option>
-                        <option value="2">Import-No-Return</option>
-                        <option value="3">Export</option>
-                        <option value="4">Export-No-Empty-Pickup</option>
-                        <option value="5">Return-To-Terminal</option>
-                        <option value="6">One-Way-Delivery</option>
+                        <option [value]="otype.Value" *ngFor="let otype of ordertypelist">{{otype.Name}}</option>                        
+                     
                       </select>
                       <div *ngIf="f.submitted && OrderType.invalid" class="invalid-feedback">
                         <div *ngIf="OrderType.errors.required"> Order Type is required</div>
@@ -290,11 +286,10 @@
                     <div>
                       <select id="drpPriority" class="form-control form-control-sm bg-light" name="Priority"
                         [(ngModel)]="doHeader.Priority" #Priority="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && Priority.invalid }" required>
-                        <option value=1>High</option>
-                        <option value=3>Medium</option>
-                        <option value=2>Low</option>
+                        [ngClass]="{ 'is-invalid': f.submitted && Priority.invalid }" required>                       
+                        <option [value]="priority.Value" *ngFor="let priority of prioritylist">{{priority.Name}}</option>                        
                       </select>
+                     
                       <div *ngIf="f.submitted && Priority.invalid" class="invalid-feedback">
                         <div *ngIf="Priority.errors.required"> Priority is required</div>
                       </div>
@@ -309,16 +304,8 @@
                     <div class="form-group">
                       <select id="drpStatus" class="form-control form-control-sm bg-light" name="Status"
                         [(ngModel)]="doHeader.Status" #Status="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && Status.invalid }" required>
-                        <option value=1>In Progress</option>
-                        <option value=2>Credit Denied</option>
-                        <option value=3>Sent to Scheduler</option>
-                        <option value=4>Sent to Dispatch</option>
-                        <option value=5>On Hold</option>
-                        <option value=6>Sent to Billing</option>
-                        <option value=7>Invoice Generated</option>
-                        <option value=8>Reviewed</option>
-                        <option value=9>Complete</option>
+                        [ngClass]="{ 'is-invalid': f.submitted && Status.invalid }" required>                       
+                        <option [value]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>                        
                       </select>
                       <div *ngIf="f.submitted && Status.invalid" class="invalid-feedback">
                         <div *ngIf="Status.errors.required"> Status is required</div>
@@ -353,9 +340,8 @@
                       <div class="form-group">
                         <select id="drpHoldReason" class="form-control form-control-sm bg-light" name="HoldReason"
                           [(ngModel)]="doHeader.HoldReason">
-                          <option value=1>No Confirmation From Customer</option>
-                          <option value=2>Driver Availability</option>
-                          <option value=3>Container Availability</option>
+                          <option [value]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>                        
+                     
                         </select>
                       </div>
                     </div>    

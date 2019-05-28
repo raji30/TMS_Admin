@@ -16,7 +16,13 @@ public getPriorityList() {
   return this.http.get<Priority[]>(AppSettings._BaseURL + 'GetallPriority');  
 }
 public getOrderTypeList() {
-  return this.http.get<OrderType[]>(AppSettings._BaseURL + 'GetallPriority');  
+  return this.http.get<OrderType[]>(AppSettings._BaseURL + 'GetOrderType');  
+}
+public getStatusList() {
+  return this.http.get<OrderType[]>(AppSettings._BaseURL + 'GetAllDOStatus');  
+}
+public getHoldReasonList() {
+  return this.http.get<OrderType[]>(AppSettings._BaseURL + 'GetHoldReason');  
 }
 
 }

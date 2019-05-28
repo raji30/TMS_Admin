@@ -11,21 +11,23 @@
             </div>
         </div>
         <div class="form-group col-md-2">
+                <!-- <app-containersize class="form-control bg-light" id="drpnewcontainerType"
+                 placeholder="Type" name="ContainerNo"
+                [(ngModel)]="newAttribute.ContainerNo"                
+                 #ContainerNo="ngModel" (SelectedcontainersizeOutput)="onSelectedcontainersize($event)"
+                [bindContainersize]="newAttribute.ContainerNo"
+               ></app-containersize> -->
+               
+
+
             <select class="form-control bg-light" id="drpnewcontainerType" placeholder="Type" name="ContainerNo"
                 [(ngModel)]="newAttribute.ContainerNo" #ContainerNo="ngModel"
                 [ngClass]="{ 'is-invalid': f.submitted && ContainerNo.invalid }" required>
-                <option value=1>20DRY</option>
-                <option value=2>40DRY</option>
-                <option value=3>40HDRY</option>
-                <option value=4>45HDRY</option>
-                <option value=5>20OPEN</option>
-                <option value=6>40OPEN</option>
-                <option value=7>20FLAT</option>
-                <option value=8>40FLAT</option>
+                <option [value]="container.Value" *ngFor="let container of containersizelist">{{container.Name}}</option>
             </select>
             <div *ngIf="f.submitted && ContainerNo.invalid" class="invalid-feedback">
                 <div *ngIf="ContainerNo.errors.required"> container no is required</div>
-            </div>
+            </div> 
         </div>
         <div class="form-group col-md-2">
             <input class="form-control bg-light" type="text" placeholder="chassis" id="newchassis"
@@ -137,14 +139,17 @@
                 <td>
                     <select id="drpcontainerType" class="form-control form-control-sm text-primary"
                         aria-placeholder="containerNo" name="{{field.ContainerNo}}" [(ngModel)]="field.ContainerNo">
-                        <option value=1>20DRY</option>
+                        <!-- <option value=1>20DRY</option>
                         <option value=2>40DRY</option>
                         <option value=3>40HDRY</option>
                         <option value=4>45HDRY</option>
                         <option value=5>20OPEN</option>
                         <option value=6>40OPEN</option>
                         <option value=7>20FLAT</option>
-                        <option value=8>40FLAT</option>
+                        <option value=8>40FLAT</option> -->
+
+                        <option [value]="container.Value" *ngFor="let container of containersizelist">{{container.Name}}</option>
+           
                     </select>
                 </td>
 

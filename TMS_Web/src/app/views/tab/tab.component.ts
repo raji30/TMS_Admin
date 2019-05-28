@@ -28,7 +28,7 @@ export class TabComponent implements OnInit ,OnChanges,OnDestroy{
 {
   this.orderKey = null;
 }
-onClick(event) {
-   alert('TEst');
-}
+// onClick(event) {
+//    alert('TEst');
+// }
 }

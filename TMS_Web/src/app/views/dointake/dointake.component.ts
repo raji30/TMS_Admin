@@ -25,7 +25,9 @@ import { BsDatepickerConfig } from "ngx-bootstrap/datepicker";
 import { Subscription } from "rxjs";
 import { HttpClient, HttpEventType, HttpResponse } from "@angular/common/http";
 import { FileSelectDirective, FileDropDirective,FileUploader } from 'ng2-file-upload';
-import { Server } from "tls";
+import { OrderType, Priority, Containersize, Status, HoldReason } from "../../common/master";
+import { MasterService } from "../../_services/master.service";
+
 
  const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 //const URL = 'http://localhost:4200/api';
@@ -37,11 +39,17 @@ import { Server } from "tls";
 })
 export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
   subscription: Subscription;
-  bsConfig: Partial<BsDatepickerConfig>;
- 
+  bsConfig: Partial<BsDatepickerConfig>; 
   @Input() orderKeyinput: string;
   broker: Broker[];
   brokerName: string = "Select Broker";
+
+  ordertypelist: OrderType[];
+  prioritylist: Priority[];
+  containersizelist:Containersize[];
+  statuslist:Status[];
+  holdreasonlist:HoldReason[];
+
   public doHeader: DeliveryOrderHeader;
   isContainerAttributeVisible: boolean = true;
   isNewDeliveryOrder: boolean = true;
@@ -51,16 +59,14 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
   orderKey: string;
   selectedBillToKey = "";
 
-  percentDone: number;
-  uploadSuccess: boolean;
-
-    uploader = new FileUploader({url: URL });
+  uploader = new FileUploader({url: URL });
   
   public hasBaseDropZoneOver:boolean = false;
   public hasAnotherDropZoneOver:boolean = false;
 
   constructor(  private http: HttpClient,
     private service: DeliveryOrderService,
+    private master:MasterService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -93,13 +99,46 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
       { containerClass: "theme-orange" },
       { dateInputFormat: "MM/DD/YYYY" }
     );
-
     // this.bsConfig.containerClass = 'theme-orange';
     // this.bsConfig.dateInputFormat = 'MM/DD/YYYY';
+
+
     this.doHeader = null;
     this.doHeader = new DeliveryOrderHeader();
     //this.orderNo = this.route.snapshot.paramMap.get("order");
     this.orderNo = this.orderKeyinput;
+
+    this.master.getContainerSizeList().subscribe(
+      data => (this.containersizelist = data),
+          error => console.log(error),
+          () => console.log("Get containersizelist", this.containersizelist )
+    );
+   
+    this.master.getPriorityList().subscribe(
+      data => (this.prioritylist = data),
+          error => console.log(error),
+          () => console.log("Get prioritylist", this.prioritylist)
+    );
+
+    this.master.getOrderTypeList().subscribe(
+      data => (this.ordertypelist = data),
+          error => console.log(error),
+          () => console.log("Get ordertypelist", this.ordertypelist)
+    );
+    
+    this.master.getHoldReasonList().subscribe(
+      data => (this.statuslist = data),
+          error => console.log(error),
+          () => console.log("Get statuslist", this.statuslist)
+    );
+
+    this.master.getStatusList().subscribe(
+      data => (this.holdreasonlist = data),
+          error => console.log(error),
+          () => console.log("Get holdreasonlist", this.holdreasonlist)
+    );
+    
+   
     if (this.orderNo != undefined) {
       this.isContainerAttributeVisible = false;
       this.isNewDeliveryOrder = false;
@@ -122,7 +161,10 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
           error => console.log(error),
           () => console.log("Get OrderDetail", this.doHeader.orderdetails)
         );
-    } else {
+    } 
+    else {
+      this.clear();
+
     }
   }
 
@@ -159,7 +201,37 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
   }
 
   clear() {
-    this.doHeader.BrokerRefNo = undefined;
+    this.doHeader.BrokerRefNo = undefined;         
+    this.doHeader.OrderKey=undefined;
+    this.doHeader.OrderNo=undefined;
+    //this.doHeader. CustKey:string ;
+    this.doHeader.OrderDate=undefined;
+     //BillToAddress: string ;
+     //SourceAddress: string ;
+    // DestinationAddress: string ;
+     //ReturnAddress: string ;
+     //Source:string ;
+     this.doHeader.OrderType=undefined;
+     this.doHeader.Status=undefined;
+     this.doHeader.StatusDate=undefined;
+     this.doHeader.HoldReason=undefined;
+     this.doHeader.HoldDate=undefined;
+     this.doHeader.BrokerName="Select Broker";
+     //BrokerId:string ;
+     //Brokerkey: string;
+     this.doHeader.BrokerRefNo=undefined;
+    // PortofOriginKey=undefined;
+    // CarrierKey=undefined;
+     this.doHeader.VesselName=undefined;
+     this.doHeader.BillofLading=undefined;
+     this.doHeader.BookingNo=undefined;
+     this.doHeader.CutOffDate=undefined;
+     this.doHeader.Priority = undefined;
+     this.doHeader.IsHazardous=undefined;
+     this.doHeader.CreatedBy=undefined;
+     this.doHeader.CreatedDate=undefined;
+     
+     this.doHeader.orderdetails=null;
   }
 
   delay(ms: number) {
@@ -167,59 +239,9 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    let newFocusedChallenge = changes["orderKeyinput"].currentValue;
-
-    this.bsConfig = Object.assign(
-      {},
-      { containerClass: "theme-orange" },
-      { dateInputFormat: "MM/DD/YYYY" }
-    );
-
-    // this.bsConfig.containerClass = 'theme-orange';
-    // this.bsConfig.dateInputFormat = 'MM/DD/YYYY';
-    this.doHeader = null;
-    this.doHeader = new DeliveryOrderHeader();
-    //this.orderNo = this.route.snapshot.paramMap.get("order");
-    this.orderNo = this.orderKeyinput;
-    if (this.orderNo != undefined) {
-      this.isContainerAttributeVisible = false;
-      this.isNewDeliveryOrder = false;
-
-      //getting order info from the DB..
-      this.service.GetbyKey(this.orderNo).subscribe(data => {
-        (this.doHeader = data),
-          error => console.log(error),
-          () =>
-            console.log(
-              "Get Order Detail BillToAddress",
-              this.doHeader.BillToAddress
-            );
-      });
-
-      this.service
-        .GetOrderDetailsbyKey(this.orderNo)
-        .subscribe(
-          data => (this.doHeader.orderdetails = data),
-          error => console.log(error),
-          () => console.log("Get OrderDetail", this.doHeader.orderdetails)
-        );
-    } else {
-    }
+  
   }
-  uploadAndProgress(files: File[]){
-    console.log(files)
-    var formData = new FormData();
-    Array.from(files).forEach(f => formData.append('file',f))
-    
-    this.http.post('http://localhost:4200/api/', formData, {reportProgress: true, observe: 'events'})
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.percentDone = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          this.uploadSuccess = true;
-        }
-    });
-  }
+ 
 
   public fileOverBase(e:any):void {
     this.hasBaseDropZoneOver = e;

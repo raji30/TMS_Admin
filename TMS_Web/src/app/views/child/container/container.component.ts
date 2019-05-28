@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { Order_details } from "../../../_models/order_details";
 import { BsDatepickerConfig } from "ngx-bootstrap/datepicker";
+import { MasterService } from "../../../_services/master.service";
+import { Containersize } from "../../../common/master";
 
 @Component({
   selector: "app-container",
@@ -15,9 +17,9 @@ export class ContainerComponent implements OnInit {
  private newAttribute: any = {};  
 
  @Output() ContainerDetailsOutput = new EventEmitter<any>();
-
+  containersizelist: Containersize[];
   selectedcontainer: Order_details;
-  constructor() {}
+  constructor(private service: MasterService) {}
 
   ngOnInit() {
     this.bsConfig = Object.assign(
@@ -25,8 +27,14 @@ export class ContainerComponent implements OnInit {
       { containerClass: "theme-orange" },
       { dateInputFormat: "MM/DD/YYYY" },
          );
-    
 
+         this.service
+    .getContainerSizeList()
+    .subscribe(
+      data => (this.containersizelist = data),
+      error => console.log(error),
+      () => console.log("Get containersizelist complete")
+    );
   }
 
   addFieldValue() {
@@ -37,5 +45,8 @@ export class ContainerComponent implements OnInit {
 
 deleteFieldValue(index) {
     this.ContainerDetails.splice(index, 1);
+}
+onSelectedcontainersize(ContainerNo: string) {
+  this.newAttribute.ContainerNo= ContainerNo;
 }
 }

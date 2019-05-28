@@ -11,8 +11,8 @@ export class DeliveryOrderHeader {
         public DestinationAddress: string ;
         public ReturnAddress: string ;
         public Source:string ;
-        public OrderType:string ;
-        public Status:string ;
+        public OrderType:number ;
+        public Status:number ;
         public StatusDate:string ;
         public HoldReason: number;
         public HoldDate:string ;
