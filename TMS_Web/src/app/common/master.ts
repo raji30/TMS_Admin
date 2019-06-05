@@ -26,3 +26,13 @@ export class HoldReason {
     name:string;
     value:number;
 }
+
+export class Source {
+    name:string;
+    value:number;
+}
+
+export class Carrier {
+    name:string;
+    value:number;
+}

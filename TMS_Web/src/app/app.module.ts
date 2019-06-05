@@ -52,10 +52,11 @@ import { SchedulerComponent } from './views/scheduler/scheduler.component';
 import { NavigationComponent } from './views/navigation/navigation.component';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { ToastrModule } from 'ngx-toastr';
+import {MatButtonModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 
 @NgModule({
   imports: [   
-BrowserModule,
+    BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AppAsideModule,
@@ -80,7 +81,8 @@ BrowserModule,
     CdkTreeModule,
     DragDropModule,
     PortalModule,
-    ScrollingModule        
+    ScrollingModule ,MatButtonModule,MatInputModule
+    
   ],
   declarations: [
     AppComponent,

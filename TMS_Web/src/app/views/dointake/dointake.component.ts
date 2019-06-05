@@ -25,10 +25,9 @@ import { BsDatepickerConfig } from "ngx-bootstrap/datepicker";
 import { Subscription } from "rxjs";
 import { HttpClient, HttpEventType, HttpResponse } from "@angular/common/http";
 import { FileSelectDirective, FileDropDirective,FileUploader } from 'ng2-file-upload';
-import { OrderType, Priority, Containersize, Status, HoldReason } from "../../common/master";
+import { OrderType, Priority, Containersize, Status, HoldReason, Source, Carrier } from "../../common/master";
 import { MasterService } from "../../_services/master.service";
 import { ToastrService } from "ngx-toastr";
-
 
  const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 //const URL = 'http://localhost:4200/api';
@@ -50,6 +49,8 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
   containersizelist:Containersize[];
   statuslist:Status[];
   holdreasonlist:HoldReason[];
+  sourcelist:Source[];
+  carrierlist:Carrier[];
 
   public doHeader: DeliveryOrderHeader;
   isContainerAttributeVisible: boolean = true;
@@ -93,6 +94,11 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
   onSelectedContainerDetails(Order_details: any[]) {
     this.doHeader.orderdetails = Order_details;
   }
+  onOrdernoGenerated(brokerkey: string) {
+    
+    this.doHeader.OrderNo = brokerkey;
+    this.doHeader.OrderDate = new Date().toString();
+  }  
 
   ngOnInit(): void {
     this.bsConfig = Object.assign(
@@ -138,8 +144,20 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
           error => console.log(error),
           () => console.log("Get statuslist", this.statuslist)
     );
+
+    this.master.getSourceList().subscribe(
+      data => (this.sourcelist = data),
+          error => console.log(error),
+          () => console.log("Get sourcelist", this.sourcelist)
+    );
+
+    this.master.getCarrierList().subscribe(
+      data => (this.carrierlist = data),
+          error => console.log(error),
+          () => console.log("Get carrierlist", this.carrierlist)
+    );
     
-   
+    this.showInfo("Welcome!!!","DO Intake") ;
     if (this.orderNo != undefined) {
       this.isContainerAttributeVisible = false;
       this.isNewDeliveryOrder = false;
@@ -164,7 +182,7 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
         );
     } 
     else {
-        this.showSuccess("Order Created successfully","New-Order");
+       // this.showSuccess("Order Created successfully","New-Order");
 
          this.clear();
 
@@ -217,6 +235,7 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
     // DestinationAddress: string ;
      //ReturnAddress: string ;
      //Source:string ;
+     this.doHeader.Source=undefined;
      this.doHeader.OrderType=undefined;
      this.doHeader.Status=undefined;
      this.doHeader.StatusDate=undefined;
@@ -224,8 +243,7 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
      this.doHeader.HoldDate=undefined;
      this.doHeader.BrokerName="Select Broker";
      //BrokerId:string ;
-     //Brokerkey: string;
-     this.doHeader.BrokerRefNo=undefined;
+     //Brokerkey: string;     
     // PortofOriginKey=undefined;
     // CarrierKey=undefined;
      this.doHeader.VesselName=undefined;
@@ -263,7 +281,7 @@ export class DOIntakeComponent implements OnInit, OnChanges,OnDestroy {
 
 
   showSuccess(message:string,title:string) {   
-    this.toastr.info(message, title, {  timeOut :  4000, closeButton: true }); 
+    this.toastr.success(message, title, {  timeOut :  4000, closeButton: true }); 
 }
 
 showError(message:string,title:string) {
@@ -274,8 +292,8 @@ showWarning() {
     this.toastr.warning('This is warning toast.', 'Alert!');
 }
 
-showInfo() {
-    this.toastr.info('This is info toast.', 'Info');
+showInfo(message:string,title:string) {
+  this.toastr.info(message, title, {  timeOut :  4000, closeButton: true }); 
 }
 
 showToast(position: any = 'top-left') {

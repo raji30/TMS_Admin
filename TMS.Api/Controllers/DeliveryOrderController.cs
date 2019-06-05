@@ -135,5 +135,23 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
         }
 
+        [HttpGet]
+        [Route("GetSource")]
+        [SwaggerOperation("GetSource")]
+        public HttpResponseMessage GetSource()
+        {
+            List<EnumValue> values = EnumExtensions.GetEnumValues<Source>();
+            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpGet]
+        [Route("GetCarrier")]
+        [SwaggerOperation("GetCarrier")]
+        public HttpResponseMessage GetCarrier()
+        {
+            List<EnumValue> values = EnumExtensions.GetEnumValues<Carrier>();
+            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        }
+
     }
 }

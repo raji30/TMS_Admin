@@ -11,17 +11,19 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+   // [JwtAuthentication]
     public class CustomerController : ApiController
     {
+        CustomerDL cusObj = new CustomerDL();
         // GET: api/Customer
-        CustomerRepository repo = new CustomerRepository();
+     
         
         [HttpGet]
         // GET: api/Customer/5
         public HttpResponseMessage Get(string name)
         {
-           Data.customer customer= repo.GetbyField(name);
+            CustomerRepository repo = new CustomerRepository();
+            Data.customer customer= repo.GetbyField(name);
             if (customer != null)
             {
                 CustomerBO customerBO = new CustomerBO();
@@ -48,10 +50,12 @@ namespace TMS.Api.Controllers
             else
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not found", Configuration.Formatters.JsonFormatter);
         }
+
         [HttpPost]
         // POST: api/Customer
         public HttpResponseMessage Post([FromBody] CustomerBO customer)
         {
+            CustomerRepository repo = new CustomerRepository();
             Data.customer _customer = new Data.customer();
             _customer.custid = customer.CustId;
             _customer.custname = customer.CustName;
@@ -82,10 +86,12 @@ namespace TMS.Api.Controllers
             else
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
+
         [HttpPut]
         // PUT: api/Customer/5
         public HttpResponseMessage Put(int id, [FromBody]CustomerBO customer)
         {
+            CustomerRepository repo = new CustomerRepository();
             Data.customer _customer = new Data.customer();
             _customer.custid = customer.CustId;
             _customer.custname = customer.CustName;
@@ -117,6 +123,7 @@ namespace TMS.Api.Controllers
             else
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
+
         [Route("GetCustomerCredit")]
         [SwaggerOperation("GetCustomerCredit")]
         public HttpResponseMessage GetCredit (string custKey, int amount)
@@ -130,6 +137,15 @@ namespace TMS.Api.Controllers
 
         }
 
-       
+
+        [HttpGet]
+        [Route("GetCustomerMaxcount/{custname}")]
+        [SwaggerOperation("GetCustomerMaxcount")]
+        public HttpResponseMessage GetCustomerMaxcount(string custname)
+        {
+            Int64 result = cusObj.GetCustomerMaxcount(custname);
+            return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
+        }
+
     }
 }

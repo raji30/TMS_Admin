@@ -64,6 +64,7 @@
     "ng6-toastr-notifications": "^1.0.4",
     "ngx-bootstrap": "^3.0.1",
     "ngx-cookie": "^4.1.2",
+    "ngx-cookie-service": "^2.2.0",
     "ngx-perfect-scrollbar": "6.3.0",
     "ngx-quill": "^3.4.0",
     "ngx-toastr": "^10.0.4",

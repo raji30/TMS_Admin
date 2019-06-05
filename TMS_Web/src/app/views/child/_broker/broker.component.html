@@ -1,5 +1,7 @@
   
-      <div class="form-group dropright ">
+      <div class="btn-group btn-group-sm bd-dark" role="group" aria-label="Button group with nested dropdown">
+          <button type="button" class="btn btn-secondary" style="background-color:darkslategrey">Broker</button>           
+          <div class="btn-group" role="group">
           <button class="btn btn-secondary dropdown-toggle form-control-sm" type="button" id="drpBillTo"  
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
           >{{brokerName}}
@@ -10,5 +12,7 @@
                 (click)="onSelect(Broker)">               
                   <a class="dropdown-item" >{{Broker.BrokerName}}</a>
                 </li>            
-            </div>    
+            </div>  
+          </div>    
         </div> 
+

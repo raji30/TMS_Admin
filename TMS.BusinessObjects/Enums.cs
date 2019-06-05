@@ -63,5 +63,21 @@ namespace TMS.BusinessObjects
             DriverAvailability = 2,
             ContainerAvailability = 3                
         }
+
+        public enum Source
+        {
+            Source1 = 1,
+            Source2 = 2,
+            Source3 = 3
+        }
+
+        public enum Carrier
+        {
+            MAEU = 1,
+            SAFM = 2,
+            SEGO = 3
+        }
+
+        
     }
 }
