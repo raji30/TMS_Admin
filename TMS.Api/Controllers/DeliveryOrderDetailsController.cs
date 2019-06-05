@@ -42,5 +42,14 @@ namespace TMS.Api.Controllers
             var list = EnumExtensions.GetEnumValues<ContainerSize>();
             return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
         }
+
+        [HttpPut]
+        [Route("UpdateDeliveryOrderDetails")]
+        [SwaggerOperation("UpdateDeliveryOrderDetails")]
+        public HttpResponseMessage Put([FromBody]DeliveryOrderDetailBO objList)
+        {
+            var orderdetailCollection = doObj.UpdateOrderDetails(objList);
+            return Request.CreateResponse(HttpStatusCode.OK, orderdetailCollection, Configuration.Formatters.JsonFormatter);
+        }
     }
 }

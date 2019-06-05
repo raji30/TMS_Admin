@@ -1,6 +1,6 @@
 export class Order_details {
-        orderdetailkey :string;
-        orderkey:string;
+        OrderDetailKey :string;
+        OrderKey:string;
         containerSize:string;
         containerNo:string;
         chassis:string;
@@ -12,9 +12,7 @@ export class Order_details {
         statusdate:string;
         holdreason:string;
         holddate:string;
-
-    
-    
-    
-    
+        containerSizeDesc:string;
+        StatusDesc:string;
+        HoldReasonDesc:string;  
 }

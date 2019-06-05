@@ -171,10 +171,10 @@ export const navItems: NavData[] = [
     name: 'DO-Intake',
     icon: 'icon-pencil',
     url: '/doIntake',
-    badge: {
-      variant: 'info',
-      text: 'New'    
-    }
+    // badge: {
+    //   variant: 'info',
+    //   text: 'New'    
+    // }
   },
   {
     name: 'Scheduler',

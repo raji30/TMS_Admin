@@ -1,65 +1,306 @@
-<!-- <div class="row" style="background-color: white">
-<div class="container">
-    <div class="row"> -->
-      <div class="col-sm-12">
-        
-          <!-- <div class="container" style="background-color: white"> -->
+<div *ngIf="!Orderlist" class="row">
+  No customer found
+</div>
 
-            <br>
-<div class="row" >
-    <table class="table table-sm table-hover" >
+<div *ngIf="Orderlist" class="row">
+  <div class="col-sm-12">
+    <br>
+    <table class="table table-sm table-hover">
       <thead class="thead-light">
         <tr>
+          <th scope="col">Status</th>
           <th scope="col">View</th>
           <th scope="col">Order No</th>
           <th scope="col">Date</th>
           <th scope="col">Order Type</th>
-          <th scope="col">Status</th>
-          <th scope="col">Update</th>
+          <th scope="col">Action</th>          
         </tr>
       </thead>
-       <tbody>  <!--bgcolor="#F8F9F9" -->
-        <tr *ngFor="let order of Orderlist" >
+      <tbody>
+        <!--bgcolor="#F8F9F9" -->
+        <tr *ngFor="let order of Orderlist">
+
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'InProgress'"><span
+              class="badge badge-pill badge-primary">{{ order.statusdescription }}</span></td>
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'OnHold'"><span
+              class="badge badge-pill badge-warning">{{ order.statusdescription }}</span></td>
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'Complete'"><span
+              class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
+
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'CreditDenied'"><span
+              class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
+
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'SenttoScheduler'"><span
+              class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
+
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'SenttoDispatch'"><span
+              class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
+
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'SenttoBilling'"><span
+              class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
+
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'InvoiceGenerated'"><span
+              class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
+
+          <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'Reviewed'"><span
+              class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
+
           <td>
-            <button type="button" class="btn btn-link" label="Click" (click)="viewOrderinfo(order.OrderKey)"> view          
+            <button type="button" class="btn " label="Click" (click)="viewOrderinfo(order)" data-toggle="modal"
+              data-target="#myModal" tooltip="View Order information"> <i class="fa fa-eye fa-1x" style="color:slateblue"></i> 
             </button>
-          
+
           </td>
-          <td><button type="button" class="btn btn-link" label="Click"
-              (click)="viewOrder(order.OrderKey)">{{ order.OrderNo }}</button>
-            <!-- <a [routerLink]="['/dointake', order.OrderKey]" >{{ order.OrderNo }}</a>  -->
+          <td>
+            <span>{{ order.OrderNo}} </span>
           </td>
+
+
           <td>{{ order.OrderDate|date }} </td>
           <td>{{ order.ordertypedescription}}</td>
-          <div>
-            <td *ngIf="order.statusdescription  == 'InProgress'"><span
-                class="badge badge-pill badge-primary">{{ order.statusdescription }}</span></td>
-            <td *ngIf="order.statusdescription  == 'OnHold'"><span
-                class="badge badge-pill badge-warning">{{ order.statusdescription }}</span></td>
-            <td *ngIf="order.statusdescription  == 'Complete'"><span
-                class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
-          </div>
-          <td><button type="button" class="btn btn-link" label="Click" (click)="viewOrder(order.OrderKey)">update</button>
+
+          <td>
+            <!-- <button type="button" class="btn btn-link" label="Click"
+              (click)="viewOrder(order.OrderKey)">
+              <i class="fa fa-pencil-square-o fa-2x" ></i>            
+            </button> -->
             <!-- <a [routerLink]="['/dointake', order.OrderKey]" >{{ order.OrderNo }}</a>  -->
+
+            <button type="button" class="btn btn-link" label="Click"
+              (click)="navigatetoTab(order.OrderKey)"> 
+              <i class="fa fa-pencil-square-o fa-2x" ></i>        
+            </button>
+
           </td>
-  
+
+
         </tr>
       </tbody>
     </table>
   </div>
-      </div>
-  <!-- <div *ngIf="customer && !customer.orders" class="row">
-        No orders found
-    </div> 
-    <div *ngIf="!customer" class="row">
-        No customer found
-    </div>   -->
+</div>
 
-      <!-- </div> -->
-      <div class="col-sm-4">
-       <app-orderinfo></app-orderinfo>
-      </div>      
-    <!-- </div>
+<!-- The Modal -->
+<div *ngIf="order!=undefined"  class="modal fade" id="myModal" style="width:100%;height: auto;">
+  <div class="modal-dialog modal-dialog-centered modal-xl" style="width:100%;height: auto;">
+    <div class="modal-content" style="width:100%;height: auto;background-color: #5c6873">
+
+      <!-- Modal Header -->
+      <div class="modal-header" style="width:100%;height: auto;">
+        <h4 class="modal-title">Delivery Order</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div   class="modal-body" style="width:100%;height: auto;">                 
+                    <h4><p class="card-subtitle mb-2"> Status : 
+                      <span *ngIf="order.statusdescription!=undefined" style=" font-style: oblique;color:yellowgreen"> {{order.statusdescription}}</span> </p></h4>                       
+            <br>
+            <table class="table table-sm table-borderless">
+                <tbody>
+                  <tr>
+                    <td>  
+                        <p class="card-subtitle mb-2" style="color:white">Order No :  <span  class="badge badge-pill badge-primary" style="color:white">{{order.OrderNo}}</span> </p>
+                        
+                    </td>
+                    <td> 
+                        <p class="card-subtitle mb-2" style="color:white"> Date : <span class="badge badge-pill badge-danger" style="color:white">{{order.OrderDate}}</span></p>                    
+                    </td>                    
+                  </tr>
+                  <tr>
+                    <td> 
+                        <p class="card-subtitle mb-2" style="color:white"> VessalName : <span class="badge badge-pill badge-primary" style="color:black">{{order.VesselName}}</span></p>                   
+                    </td>                   
+                    <td>
+                       <p class="card-subtitle mb-2" style="color:white"> Billof Lading :<span class="badge badge-pill badge-primary" style="color:black">{{order.BillofLading}}</span></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                         <p class="card-subtitle mb-2" style="color:white"> Broker Name : <span class="badge badge-pill badge-primary" style="color:black">{{order.BrokerName}}</span></p>                          
+                    </td> 
+                    <td>
+                        <p class="card-subtitle mb-2" style="color:white"> Broker Ref No : <span class="badge badge-pill badge-primary" style="color:black">{{order.BrokerRefNo}}</span></p>
+                    </td>  
+                  </tr>
+                  <tr>
+                    <td>
+                       <p class="card-subtitle mb-2" style="color:white"> Booking No : <span class="badge badge-pill badge-primary" style="color:black">{{order.BookingNo}}</span></p>
+                    </td>
+                    <td> 
+                      <p class="card-subtitle mb-2" style="color:white"> Cut-Off Date : <span class="badge badge-pill badge-primary" style="color:black">{{order.CutOffDate}}</span></p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+     
+              <br>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-3">                        
+                                    <img src="assets/img/brand/user-identity2.png" alt="My Image" class="img-rounded" style="width:100%;height:auto">                            
+                            </div>
+                            <div class="col-md-5">
+                              </div>
+                              <div class="col-md-4">
+                                <label>Customer</label>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Maersk Line</h5>
+                      <label class="card-text"> Milestone Buildcon</label>
+                      <label class="card-text"> bhartiya city, Chokanahalli</label>
+                      <label class="card-text"> Bengaluru, Karnataka 560064 </label>
+                      <label class="card-text"> India 560064 </label>
+                    </div>
+                  </div>
+
+              </div>
+              <div class="col-md-3">
+                  <div class="card text-white bg-secondary mb-3" >
+                      <div class="card-header">
+                          <div class="row">
+                              <div class="col-md-3">                        
+                                      <img src="assets/img/brand/user-identity2.png" alt="My Image" class="img-rounded" style="width:100%;height:auto">                            
+                              </div>
+                              <div class="col-md-5">
+                                </div>
+                                <div class="col-md-4">
+                                  <label>Pickup</label>
+                                  </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title">Maersk Line</h5>
+                        <label class="card-text"> Milestone Buildcon</label>
+                        <label class="card-text"> bhartiya city, Chokanahalli</label>
+                        <label class="card-text"> Bengaluru, Karnataka 560064 </label>
+                        <label class="card-text"> India 560064 </label>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-success  mb-3" >
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-3">                        
+                                        <img src="assets/img/brand/user-identity2.png" alt="My Image" class="img-rounded" style="width:100%;height:auto">                            
+                                </div>
+                                <div class="col-md-5">
+                                  </div>
+                                  <div class="col-md-4">
+                                    <label>Consignee</label>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title">Maersk Line</h5>
+                          <label class="card-text"> Milestone Buildcon</label>
+                          <label class="card-text"> bhartiya city, Chokanahalli</label>
+                          <label class="card-text"> Bengaluru, Karnataka 560064 </label>
+                          <label class="card-text"> India 560064 </label>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="card text-white bg-info mb-3" >
+                          <div class="card-header">
+                              <div class="row">
+                                  <div class="col-md-3">                        
+                                          <img src="assets/img/brand/user-identity2.png" alt="My Image" class="img-rounded" style="width:100%;height:auto">                            
+                                  </div>
+                                  <div class="col-md-5">
+                                    </div>
+                                    <div class="col-md-4">
+                                      <label>Return</label>
+                                      </div>
+                              </div>
+                          </div>
+                          <div class="card-body">
+                            <h5 class="card-title">Maersk Line</h5>
+                            <label class="card-text"> Milestone Buildcon</label>
+                            <label class="card-text"> bhartiya city, Chokanahalli</label>
+                            <label class="card-text"> Bengaluru, Karnataka 560064 </label>
+                            <label class="card-text"> India 560064 </label>
+                          </div>
+                        </div>
+                    </div>
+        </div>
+        <br>
+        <div class="card card-accent-warning bg-secondary mb-3">
+            <div class="card-header " >
+                <div class="row">
+                    <div class="col-md-2">                        
+                            <img src="assets/img/brand/shipping-container.png" alt="My Image" class="img-rounded" style="max-width:100%;height:auto">                            
+                    </div>
+                    
+                      <div class="col-md-8">
+                       
+                        </div>
+                        <div class="col-md-2">
+                            <h5 > Container details</h5>
+                          </div>
+                </div>
+             
+            </div>
+            <div class="card-body">
+              <div class="table-responsive" style="overflow-x: auto">
+                <table id="containerAttributes" class="table table-sm" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th scope="col"><label style="text-decoration: underline;">Container No </label> </th>
+                      <th scope="col"><label style="text-decoration: underline;">Container Size</label></th>
+                      <th scope="col"><label style="text-decoration: underline;">Chassis</label></th>
+                      <th scope="col"><label style="text-decoration: underline;">Seal</label> </th>
+                      <th scope="col"><label style="text-decoration: underline;">Weight in lbs</label></th>
+                      <th scope="col"><label style="text-decoration: underline;">Appointment From</label></th>
+                      <th scope="col"><label style="text-decoration: underline;">Appointment To</label></th>
+                      <th scope="col"><label style="text-decoration: underline;">Status</label></th>                                           
+
+                    </tr>
+                  </thead>
+                   <tbody>
+                    <tr *ngFor="let field of orderinfo; let i = index">
+                                            <td>{{field.ContainerSize}} </td>
+                                            <td>
+                                                <select id="drpcontainerType" class="form-control form-control-sm text-primary"
+                                                    aria-placeholder="containerNo" name="{{field.ContainerNo}}" [(ngModel)]="field.ContainerNo">
+                                                    <option value=1>20DRY</option>
+                                                    <option value=2>40DRY</option>
+                                                    <option value=3>40HDRY</option>
+                                                    <option value=4>45HDRY</option>
+                                                    <option value=5>20OPEN</option>
+                                                    <option value=6>40OPEN</option>
+                                                    <option value=7>20FLAT</option>
+                                                    <option value=8>40FLAT</option>
+                                                </select>
+                                            </td>          
+                                            <td> {{field.Chassis}}</td>
+                                            <td> {{field.SealNo}}</td>
+                                            <td> {{field.Weight}}</td>
+                                            <td> {{field.AppDateFrom}}</td>
+                                            <td> {{field.ApptDateTo}} </td>
+                                            <td> {{field.Status}}</td>                                            
+                     </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+        </div>        
+
+      </div>
+
+      <!-- Modal footer -->
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div> -->
+
+    </div>
   </div>
-</div> -->
+</div>
 <router-outlet></router-outlet>

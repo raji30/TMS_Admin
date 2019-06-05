@@ -2,7 +2,7 @@
     <div class="form-row" [hidden]="!isContainerAttributeVisible">
 
         <div class="form-group col-md-2">
-            <input class="form-control" type="text" placeholder="Size" id="newcontainerSize"
+            <input class="form-control bg-light" type="text" placeholder="Size" id="newcontainerSize"
                 [(ngModel)]="newAttribute.ContainerSize" name="ContainerSize" #ContainerSize="ngModel"
                 [ngClass]="{ 'is-invalid': f.submitted && ContainerSize.invalid }" required />
 
@@ -11,24 +11,26 @@
             </div>
         </div>
         <div class="form-group col-md-2">
-            <select class="form-control" id="drpnewcontainerType" placeholder="Type" name="ContainerNo"
+                <!-- <app-containersize class="form-control bg-light" id="drpnewcontainerType"
+                 placeholder="Type" name="ContainerNo"
+                [(ngModel)]="newAttribute.ContainerNo"                
+                 #ContainerNo="ngModel" (SelectedcontainersizeOutput)="onSelectedcontainersize($event)"
+                [bindContainersize]="newAttribute.ContainerNo"
+               ></app-containersize> -->
+               
+
+
+            <select class="form-control bg-light" id="drpnewcontainerType" placeholder="Type" name="ContainerNo"
                 [(ngModel)]="newAttribute.ContainerNo" #ContainerNo="ngModel"
                 [ngClass]="{ 'is-invalid': f.submitted && ContainerNo.invalid }" required>
-                <option value=1>20DRY</option>
-                <option value=2>40DRY</option>
-                <option value=3>40HDRY</option>
-                <option value=4>45HDRY</option>
-                <option value=5>20OPEN</option>
-                <option value=6>40OPEN</option>
-                <option value=7>20FLAT</option>
-                <option value=8>40FLAT</option>
+                <option [value]="container.Value" *ngFor="let container of containersizelist">{{container.Name}}</option>
             </select>
             <div *ngIf="f.submitted && ContainerNo.invalid" class="invalid-feedback">
                 <div *ngIf="ContainerNo.errors.required"> container no is required</div>
-            </div>
+            </div> 
         </div>
         <div class="form-group col-md-2">
-            <input class="form-control" type="text" placeholder="chassis" id="newchassis"
+            <input class="form-control bg-light" type="text" placeholder="chassis" id="newchassis"
                 [(ngModel)]="newAttribute.Chassis" name="Chassis" #Chassis="ngModel"
                 [ngClass]="{ 'is-invalid': f.submitted && Chassis.invalid }" required />
 
@@ -37,7 +39,7 @@
             </div>
         </div>
         <div class="form-group col-md-2">
-            <input class="form-control" type="text" placeholder="seal no" id="newseaNo"
+            <input class="form-control bg-light" type="text" placeholder="seal no" id="newseaNo"
                 [(ngModel)]="newAttribute.SealNo" name="SealNo" #SealNo="ngModel"
                 [ngClass]="{ 'is-invalid': f.submitted && SealNo.invalid }" required />
 
@@ -46,7 +48,7 @@
             </div>
         </div>
         <div class="form-group col-md-2">
-            <input [(ngModel)]="newAttribute.Weight" class="form-control" placeholder="weight" type="text" name="Weight"
+            <input [(ngModel)]="newAttribute.Weight" class="form-control bg-light" placeholder="weight" type="text" name="Weight"
                 #Weight="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Weight.invalid }" required />
 
 
@@ -54,55 +56,50 @@
                 <div *ngIf="Weight.errors.required"> weight is required</div>
             </div>
         </div>
-
-        <div class="form-group col-md-2">
+        <!-- <div class="form-group col-md-2">
 
             <input type="text" bsDatepicker [bsConfig]="bsConfig" id="AppDateFrom" name="AppDateFrom"
-                placeholder="Choose a date" [(ngModel)]="newAttribute.AppDateFrom" class="form-control"
+                placeholder="Choose a date" [(ngModel)]="newAttribute.AppDateFrom" class="form-control bg-light"
                 #AppDateFrom="ngModel" [ngClass]="{ 'is-invalid': f.submitted && AppDateFrom.invalid }" required />
 
             <div *ngIf="f.submitted && AppDateFrom.invalid" class="invalid-feedback">
                 <div *ngIf="AppDateFrom.errors.required"> appt from date is required</div>
             </div>
         </div>
-
         <div class="form-group col-md-2">
             <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="newAttribute.AppDateTo"
-                class="form-control" name="AppDateTo" placeholder="apptdateto" #AppDateTo="ngModel"
+                class="form-control bg-light" name="AppDateTo" placeholder="apptdateto" #AppDateTo="ngModel"
                 [ngClass]="{ 'is-invalid': f.submitted && AppDateTo.invalid }" required />
 
             <div *ngIf="f.submitted && AppDateTo.invalid" class="invalid-feedback">
                 <div *ngIf="AppDateTo.errors.required"> appt to date is required</div>
             </div>
         </div>
-
         <div class="form-group col-md-2">
-            <input [(ngModel)]="newAttribute.Status" class="form-control" type="text" name="Status" placeholder="status"
+            <input [(ngModel)]="newAttribute.Status" class="form-control bg-light" type="text" name="Status" placeholder="status"
                 #Status="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Status.invalid }" required />
 
             <div *ngIf="f.submitted && Status.invalid" class="invalid-feedback">
                 <div *ngIf="Status.errors.required"> Status is required</div>
             </div>
         </div>
-
         <div class="form-group col-md-2">
             <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="newAttribute.StatusDate"
-                class="form-control" name="StatusDate" placeholder="statusdate" #StatusDate="ngModel"
+                class="form-control bg-light" name="StatusDate" placeholder="statusdate" #StatusDate="ngModel"
                 [ngClass]="{ 'is-invalid': f.submitted && StatusDate.invalid }" required />
 
             <div *ngIf="f.submitted && StatusDate.invalid" class="invalid-feedback">
                 <div *ngIf="StatusDate.errors.required"> Status date is required</div>
             </div>
         </div>
-
         <div class="form-group col-md-2">
-            <input [(ngModel)]="newAttribute.HoldReason" class="form-control" type="text" name="HoldReason"
+            <input [(ngModel)]="newAttribute.HoldReason" class="form-control bg-light" type="text" name="HoldReason"
                 placeholder="HoldReason" />
         </div>
         <div class="form-group col-md-2">
             <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="newAttribute.HoldDate"
-                class="form-control" name="HoldDate" placeholder="HoldDate" />
-        </div>
+                class="form-control bg-light" name="HoldDate" placeholder="HoldDate" />
+        </div> -->
         <div class="form-group col-md-2">
             <button type="submit" class="btn btn-outline-success" [disabled]="!f.form.valid"
                 (click)="addFieldValue()">Add Container</button>
@@ -111,43 +108,49 @@
 </form>
 <br>
 
-<div class="table-responsive" style="overflow-x: auto">
+<!-- <div *ngIf="!ContainerDetails|| ContainerDetails.length === 0" class="row">
+       <p>No customer found </p> 
+       *ngIf="ContainerDetails ||ContainerDetails.length > 0"
+</div>  -->
+
+<div   class="table-responsive" style="overflow-x: auto">
     <table id="containerAttributes" class="table table-sm" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th scope="col">Container_No</th>
-                <th scope="col">Container_Size</th>
-                <th scope="col">Chassis_No</th>
-                <th scope="col">Seal_No</th>
+                <th scope="col">Container#</th>
+                <th scope="col">Container Size</th>
+                <th scope="col">Chassis#</th>
+                <th scope="col">Seal#</th>
                 <th scope="col">Weight</th>
-                <th scope="col">appt_From</th>
-                <th scope="col">appt_To</th>
+                <!-- <th scope="col">appt From</th>
+                <th scope="col">appt To</th>
                 <th scope="col">Status</th>
-                <th scope="col">Date</th>
-                <th scope="col">Hold_Reason</th>
-                <th scope="col">Date</th>
-                <th scope="col">Action</th>
+                <th scope="col">Status Date</th>
+                <th scope="col">Hold Reason</th>
+                <th scope="col">Date</th>-->
+                <th scope="col">Action</th> 
 
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let field of ContainerDetails; let i = index">
-                <td> <input [(ngModel)]="field.ContainerSize" class="form-control form-control-sm text-primary"
-                        type="text" name="{{field.ContainerSize}}" /> </td>
+                             <td> <input [(ngModel)]="field.ContainerNo" class="form-control form-control-sm text-primary"
+                            type="text" name="{{field.ContainerNo}}" /> </td>
                 <td>
                     <select id="drpcontainerType" class="form-control form-control-sm text-primary"
-                        aria-placeholder="containerNo" name="{{field.ContainerNo}}" [(ngModel)]="field.ContainerNo">
-                        <option value=1>20DRY</option>
+                        aria-placeholder="ContainerSize" name="{{field.ContainerSize}}" [(ngModel)]="field.ContainerSize">
+                        <!-- <option value=1>20DRY</option>
                         <option value=2>40DRY</option>
                         <option value=3>40HDRY</option>
                         <option value=4>45HDRY</option>
                         <option value=5>20OPEN</option>
                         <option value=6>40OPEN</option>
                         <option value=7>20FLAT</option>
-                        <option value=8>40FLAT</option>
-                    </select>
-                    
+                        <option value=8>40FLAT</option> -->
 
+                        <option [value]="container.Value" *ngFor="let container of containersizelist">{{container.Name}}</option>
+           
+                    </select>
                 </td>
 
                 <td> <input [(ngModel)]="field.Chassis" class="form-control form-control-sm text-primary" type="text"
@@ -156,13 +159,13 @@
                         name="{{field.SealNo}}" /></td>
                 <td> <input [(ngModel)]="field.Weight" class="form-control form-control-sm text-primary" type="text"
                         name="{{field.Weight}}" /></td>
-                <td>
-                    <input type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.AppDateFrom}}"
+                <!-- <td>
+                    <input type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.AppDateFrom}}" 
                         [(ngModel)]="field.AppDateFrom" class="form-control form-control-sm text-primary" />
                 </td>
                 <td>
-                    <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.ApptDateTo"
-                        class="form-control form-control-sm text-primary" name="{{field.ApptDateTo}}" />
+                    <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.AppDateTo"
+                        class="form-control form-control-sm text-primary" name="{{field.AppDateTo}}" />
                 </td>
                 <td> <input [(ngModel)]="field.Status" class="form-control form-control-sm text-primary" type="text"
                         name="{{field.Status}}" /></td>
@@ -171,7 +174,7 @@
                 <td> <input [(ngModel)]="field.HoldReason" class="form-control form-control-sm text-primary" type="text"
                         name="{{field.HoldReason}}" /></td>
                 <td> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.HoldDate"
-                        class="form-control form-control-sm text-primary" name="{{field.HoldDate}}" /></td>
+                        class="form-control form-control-sm text-primary" name="{{field.HoldDate}}" /></td> -->
                 <td>
                     <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Delete</button>
                 </td>

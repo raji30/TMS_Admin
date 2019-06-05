@@ -79,7 +79,14 @@ namespace TMS.Api.Controllers
         /// </summary>
         /// <param name="obj">Delivery Order</param>
         /// <returns>GUID</returns>
-
+        [HttpPost]
+        [Route("DeliveryOrderHeader1")]
+        [SwaggerOperation("DeliveryOrderHeader")]
+        public HttpResponseMessage Post([FromBody]int q)
+        {
+            //var orderid = doObj.CreateDeliveryOrder(obj);
+            return Request.CreateResponse(HttpStatusCode.OK, q, Configuration.Formatters.JsonFormatter);
+        }
         [HttpPost]
         [Route("DeliveryOrderHeader")]
         [SwaggerOperation("DeliveryOrderHeader")]
@@ -107,6 +114,24 @@ namespace TMS.Api.Controllers
         public HttpResponseMessage GetallPriority()
         {
             List<EnumValue> values = EnumExtensions.GetEnumValues<Priority>();
+            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpGet]
+        [Route("GetOrderType")]
+        [SwaggerOperation("GetOrderType")]
+        public HttpResponseMessage GetOrderType()
+        {
+            List<EnumValue> values = EnumExtensions.GetEnumValues<OrderType>();
+            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpGet]
+        [Route("GetHoldReason")]
+        [SwaggerOperation("GetHoldReason")]
+        public HttpResponseMessage GetHoldReason()
+        {
+            List<EnumValue> values = EnumExtensions.GetEnumValues<HoldReason>();
             return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
         }
 

@@ -56,5 +56,12 @@ namespace TMS.BusinessObjects
             Medium = 2,
             Low = 3
         }
+
+        public enum HoldReason
+        {           
+            NoConfirmationFromCustomer = 1,
+            DriverAvailability = 2,
+            ContainerAvailability = 3                
+        }
     }
 }

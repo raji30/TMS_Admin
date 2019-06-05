@@ -2,13 +2,17 @@ import { Component, OnInit, EventEmitter, Input, Output } from "@angular/core";
 import { Address } from "../../../../_models/address";
 import { AddressService } from "../../../../_services/address.service";
 
+
 @Component({
   selector: "app-customer",
   templateUrl: "./customer.component.html",
-  styleUrls: ["./customer.component.scss"]
+  styleUrls: ["./customer.component.scss"],
+  
 })
 export class CustomerComponent implements OnInit {
-  billtoCustomerName: string = "Select";
+
+  billtoCustomerName: string = "Select Name";
+  @Input() AddrName: string = "Customer";
   customer: Address[];
   addressTobind: Address = new Address();
 
@@ -16,10 +20,12 @@ export class CustomerComponent implements OnInit {
   @Input() addressKeyTobind: string;
   @Output() CustomerSelectedOutput = new EventEmitter<string>();
 
+
   selectedCustomer: Address = new Address();
   constructor(private service: AddressService) {}
 
   ngOnInit() {
+
     console.log(this.addressKeyTobind);
     this.service
       .getAddress(this.billToaddressType)
@@ -54,6 +60,22 @@ export class CustomerComponent implements OnInit {
         () => console.log("Get customer complete")
       );
     }
+    if(this.billToaddressType=== 1)
+    {
+        this.AddrName = "Customer";
+    }
+    if(this.billToaddressType=== 2)
+    {
+        this.AddrName = "Pickup ";
+    }
+    if(this.billToaddressType=== 3)
+    {
+        this.AddrName = "Consignee";
+    }
+    if(this.billToaddressType=== 4)
+    {
+        this.AddrName = "Return ";
+    }
   }
 
   onSelect(CustomerSelected: Address): void {
@@ -61,5 +83,5 @@ export class CustomerComponent implements OnInit {
     this.selectedCustomer = CustomerSelected;
     this.billtoCustomerName = this.selectedCustomer.Name;
     console.log(this.selectedCustomer);
-  }
+  }  
 }

@@ -7,6 +7,8 @@ import { LoginComponent } from './views/login/login.component';
 import { DOIntakeComponent } from './views/dointake/dointake.component';
 import { OrderlistComponent } from './views/orderlist/orderlist.component';
 import { OrderinfoComponent } from './views/child/orderinfo/orderinfo.component';
+import { TabComponent } from './views/tab/tab.component';
+import { ContainerComponent } from './views/child/container/container.component';
 
 export const routes: Routes = [
   {
@@ -42,7 +44,14 @@ export const routes: Routes = [
         path :'orderinfo/:order',
         component : OrderinfoComponent
       },
-     
+      { 
+        path: 'Scheduler', 
+        component: ContainerComponent 
+      },
+      { path: 'tab/:order', 
+        component: TabComponent
+      },
+      { path: 'tab', component: TabComponent },
       // {
       //   path: 'login',
       //   loadChildren: './views/login/login.module#LoginModule'
@@ -50,6 +59,8 @@ export const routes: Routes = [
    ]
   },
   { path: 'login', component: LoginComponent },
+ 
+  
 ];
 
 @NgModule({

@@ -43,6 +43,8 @@ namespace TMS.Api.Controllers
                     result.loggedinTime = Convert.ToString(userInfo.lastlogindate.Value);
                     result.isLoggedIn = true;
                     result.userId = Convert.ToString(userInfo.userkey);
+                    result.firstname = userInfo.firstname;
+                    result.lastname = userInfo.lastname;
                     IPrincipal principal = new GenericPrincipal(new GenericIdentity(userInfo.userkey.ToString()),
                         new string[] { "Admin" });
                     HttpContext.Current.User = principal;
