@@ -9,7 +9,7 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Data
 {
-    public class DeliveryOrderDL
+    public class DeliveryOrderDL :BaseConnection
     {
         string connString = "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";
         NpgsqlConnection connection;

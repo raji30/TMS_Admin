@@ -109,6 +109,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="BaseConnection.cs" />
     <Compile Include="broker.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
@@ -138,6 +139,7 @@
     <Compile Include="document.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DocumentDL.cs" />
     <Compile Include="documenttype.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>

@@ -63,5 +63,14 @@ namespace TMS.BusinessObjects
             DriverAvailability = 2,
             ContainerAvailability = 3                
         }
+        public enum DocType
+        {
+            PDF=1,
+            DOC=2,
+            DOCX=3,
+            XLS = 4,
+            XLSX =5,
+            JPG=6
+        }
     }
 }

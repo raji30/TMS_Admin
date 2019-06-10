@@ -8,13 +8,17 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using TMS.BusinessLayer;
+using TMS.BusinessObjects;
+using TMS.Data;
+using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
     public class FileUploadController : ApiController
     {
         [HttpPost]
-        public Task<HttpResponseMessage> Post(string DO)
+        public Task<HttpResponseMessage> Post(string DO,string CreatedBy)
         {
 
             try
@@ -37,17 +41,32 @@ namespace TMS.Api.Controllers
                         foreach(var file in provider.FileData)
                         { 
                         FileInfo finfo = new FileInfo(file.LocalFileName);
+                            DocumentBO documentBO = new DocumentBO
+                            {
+                                Dockey = Guid.NewGuid(),
+                                DocType = (DocType)Enum.Parse(typeof(DocType), finfo.Extension),
+                                CreatedBy = new UserInfoRepository().GetbyField(CreatedBy).userkey,
+                                FileSizeInMB = (int)finfo.Length / 1024,
+                                FileType = string.Empty, //not sure
+                                FileName = finfo.Name
+                            };
+                            OrderHeaderDocumentBO orderBO = new OrderHeaderDocumentBO
+                            {
+                                Document = documentBO,
+                                Orderkey = Guid.Parse(DO)
+                            };
 
-                        string guid = Guid.NewGuid().ToString();
-
-                        File.Move(finfo.FullName, Path.Combine(root, file.Headers.ContentDisposition.FileName.Replace("\"", "")));
+                            File.Move(finfo.FullName, Path.Combine(root, 
+                            file.Headers.ContentDisposition.FileName.Replace("\"", "")));
+                             DocumentDL dl = new DocumentDL();
+                            dl.InsertDOHeaderDocument(orderBO);
                         }
                         return new HttpResponseMessage()
                         {
                             Content = new StringContent("File uploaded.")
                         };
                     }
-                );
+                ) ;
                 return task;
               
             }
@@ -56,5 +75,7 @@ namespace TMS.Api.Controllers
                 return null;
             }
         }
+
+
     }
 }
