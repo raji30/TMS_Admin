@@ -49,6 +49,7 @@
     <Compile Include="DeliveryOrderBO.cs" />
     <Compile Include="DeliveryOrderDetailBO.cs" />
     <Compile Include="DocumentBO.cs" />
+    <Compile Include="DriverBO.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="EnumValue.cs" />
     <Compile Include="LoginResult.cs" />

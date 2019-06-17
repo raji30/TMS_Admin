@@ -69,8 +69,6 @@ namespace TMS.Data
                     {
                         FileName = Convert.ToString(reader["originalfilename"]),
                         FileType = Convert.ToString(reader["originalfiletype"])
-                        
-                        
                     };
                     list.Add(docDO);
                 }

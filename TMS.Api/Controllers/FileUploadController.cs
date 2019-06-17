@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -56,7 +57,7 @@ namespace TMS.Api.Controllers
                                 Orderkey = Guid.Parse(DO)
                             };
 
-                            File.Move(finfo.FullName, Path.Combine(root, 
+                            File.Move(finfo.FullName, Path.Combine(root, DO, 
                             file.Headers.ContentDisposition.FileName.Replace("\"", "")));
                              DocumentDL dl = new DocumentDL();
                             dl.InsertDOHeaderDocument(orderBO);
@@ -75,7 +76,48 @@ namespace TMS.Api.Controllers
                 return null;
             }
         }
+        [HttpGet]
+        public HttpResponseMessage GetDocNames(string DO)
+        {
+            DocumentDL dl = new DocumentDL();
+            List<DocumentBO> list = dl.GetSupportingDocumentsForDO(Guid.Parse(DO)).ToList();
+            List<string> FileNames = list.Select(y => y.FileName).ToList();
+            return Request.CreateResponse(HttpStatusCode.OK, FileNames, Configuration.Formatters.JsonFormatter);
+        }
+        [HttpPost]
+        public HttpResponseMessage GetDocuments(string DO,string FileName)
+        {
+            DocumentDL dl = new DocumentDL();
+            string root = HttpContext.Current.Server.MapPath($"~/App_Data/Files/{DO}/");
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
 
+            //Set the File Path.
+            //Check whether File exists.
+            if (!File.Exists(root))
+            {
+                //Throw 404 (Not Found) exception if File not found.
+                response.StatusCode = HttpStatusCode.NotFound;
+                response.ReasonPhrase = string.Format("File not found: {0} .", FileName);
+                throw new HttpResponseException(response);
+            }
+
+            //Read the File into a Byte Array.
+            byte[] bytes = File.ReadAllBytes(root);
+
+            //Set the Response Content.
+            response.Content = new ByteArrayContent(bytes);
+
+            //Set the Response Content Length.
+            response.Content.Headers.ContentLength = bytes.LongLength;
+
+            //Set the Content Disposition Header Value and FileName.
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = FileName;
+
+            //Set the File Content Type.
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue(MimeMapping.GetMimeMapping(FileName));
+            return response;
+        }
 
     }
 }
