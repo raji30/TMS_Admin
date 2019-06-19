@@ -1,40 +1,27 @@
-<!-- <div *ngIf="selectedCustomer!=null"> -->
-<!-- <p class="card-title"  style="text-align:left">{{AddrName}}</p> -->
 
-    <div *ngIf="selectedCustomer!=null" class="btn-group btn-group-sm" role="group"
-      aria-label="Button group with nested dropdown">
-      <button type="button" class="btn btn-secondary" style="background-color: darkslategray">Customer</button>
-      
-      <div class="btn-group" role="group">
-        <button class="btn btn-secondary dropdown-toggle form-control-sm" type="button" id="drpBillTo"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{billtoCustomerName}}
-        </button>
-        <div class="dropdown-menu" aria-labelledby="drpBillTo">
-          <li *ngFor="let cust of customer" [class.selected]="cust === selectedCustomer" (click)="onSelect(cust)">
-            <a class="dropdown-item">{{cust.CustName}}</a>
-          </li>
-        </div>
-      </div>
-     
-    </div>
-
-    <!-- <div class="input-group input-group-sm mb-3" *ngIf="HolddropdownVisible">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Customer</span>
-        </div>
-        <select id="drpHoldReason" class="form-control form-control-sm" name="HoldReason"
-          [(ngModel)]="doHeader.HoldReason" (click)="onSelect(cust)">
-          <option [value]="cust.CustKey" *ngFor="let cust of customer">{{cust.CustName}}</option>
-        </select>
-
-      </div> -->
-      
-<!-- <div class="form-row "><p>{{selectedCustomer.Address1}} </p> </div> 
+   
+    <!-- <div *ngIf="selectedCustomer!=null"> -->
+        <!-- <p class="card-title"  style="text-align:left">{{AddrName}}</p> -->
+        <div *ngIf="selectedCustomer!=null" class="btn-group btn-group-sm" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-secondary" style="background-color: darkslategray">{{AddrName}}</button>           
+           
+            <div class="btn-group" role="group">
+              <button class="btn btn-secondary dropdown-toggle form-control-sm" type="button" id="drpBillTo" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"> 
+              {{billtoCustomerName}}
+              </button>
+              <div class="dropdown-menu" aria-labelledby="drpBillTo">
+                  <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer" (click)="onSelect(Address)">
+                  <a class="dropdown-item">{{Address.Name}}</a>                  
+                  </li>              
+                    </div>
+            </div>           
+          </div>     
+          <!-- <div class="form-row "><p>{{selectedCustomer.Address1}} </p> </div> 
           <div class="form-row "> <p> {{selectedCustomer.Address2}} ,  {{selectedCustomer.City}} </p>  </div> 
           <div class="form-row ">  <p> {{selectedCustomer.State}} {{selectedCustomer.Zip}}</p>  </div>  -->
-
-<!-- <div class="form-row ">
+                     
+                   <!-- <div class="form-row ">
                         
              <div class="form-group">
               <input type="text" class="form-control form-control-sm" id="inputAddress" placeholder="Address1"
@@ -59,7 +46,7 @@
               </div> 
            
             </div> -->
-<!-- </div> -->
+            <!-- </div> -->
 
 <!-- <div class="btn-group dropdown-menu-right"> 
 
@@ -103,3 +90,10 @@
     </div>
                                               
   </div> -->
+
+
+
+
+
+
+

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   templateUrl: 'dashboard.component.html'
@@ -21,5 +20,10 @@ export class DashboardComponent implements OnInit {
     {data: [65], label: 'Total Orders'},
     {data: [28], label: 'Delivery in Progress'}
   ];
-  ngOnInit(): void { }
+
+  constructor( ) {  }
+
+  ngOnInit() {
+        
+  }
 }

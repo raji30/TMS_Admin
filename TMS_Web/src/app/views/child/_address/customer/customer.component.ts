@@ -9,6 +9,8 @@ import {
 import { Address } from "../../../../_models/address";
 import { AddressService } from "../../../../_services/address.service";
 import { MasterService } from "../../../../_services/master.service";
+import { CustomerService } from "../../../../_services/customer.service";
+import { Customer } from './../../../../_models/customer';
 
 @Component({
   selector: "app-customer",
@@ -16,96 +18,72 @@ import { MasterService } from "../../../../_services/master.service";
   styleUrls: ["./customer.component.scss"]
 })
 export class CustomerComponent implements OnInit {
-  billtoCustomerName: string = "Select";
-  @Input() AddrName: string = "Customer";
-  customer: Address[];
+  billtoCustomerName: string = "Select"; 
+  customer: Customer[];
   addressTobind: Address = new Address();
 
-  @Input() billToaddressType: number;
-  @Input() addressKeyTobind: string;
+  @Input() Type: number;
+  @Input() AddressType: number;
+  @Input() customerKeyTobind: string;
   @Output() CustomerSelectedOutput = new EventEmitter<string>();
   @Output() OrdernoGenerated = new EventEmitter<string>();
 
   customercount: any;
   Orderno: any;
 
-  selectedCustomer: Address = new Address();
-  constructor(
-    private service: AddressService,
-    private master: MasterService,
-    private _ref: ChangeDetectorRef
+  selectedCustomer: Customer = new Customer();
+  constructor(private service:CustomerService ,
+    private master: MasterService, 
   ) {}
 
-  ngOnInit() {
-    console.log(this.addressKeyTobind);
+  ngOnInit() {    
     this.service
-      .getAddress(this.billToaddressType)
+      .getCustomers()
       .subscribe(
         data => (this.customer = data),
         error => console.log(error),
         () => console.log("Get customer complete")
-      );
-
-    if (this.addressKeyTobind != undefined) {
-      this.addressTobind = this.customer.find(
-        x => x.AddrKey === this.addressKeyTobind
-      );
-      console.log(this.addressTobind);
-      this.onSelect(this.addressTobind);
-    }
+      );   
   }
 
   ngOnChanges() {
-    if (this.addressKeyTobind != undefined) {
-      this.service.getAddress(this.billToaddressType).subscribe(
+    if (this.customerKeyTobind != undefined) {
+      this.service.getCustomers().subscribe(
         (data: any) => {
           this.customer = data;
-          if (this.addressKeyTobind) {
+          if (this.customerKeyTobind) {
             this.selectedCustomer = this.customer.find(
-              x => x.AddrKey === this.addressKeyTobind
+              x => x.CustomerKey === this.customerKeyTobind
             );
-            this.billtoCustomerName = this.selectedCustomer.Name;
+            this.billtoCustomerName = this.selectedCustomer.CustName;
           }
         },
         error => console.log(error),
         () => console.log("Get customer complete")
       );
     }
-
-    if (this.billToaddressType === 1) {
-      this.AddrName = "Customer";
-    }
-    if (this.billToaddressType === 2) {
-      this.AddrName = "Pickup ";
-    }
-    if (this.billToaddressType === 3) {
-      this.AddrName = "Consignee";
-    }
-    if (this.billToaddressType === 4) {
-      this.AddrName = "Return ";
-    }
   }
 
-  onSelect(CustomerSelected: Address): void {
+  onSelect(CustomerSelected: Customer): void {
     this.selectedCustomer = CustomerSelected;
-    this.billtoCustomerName = this.selectedCustomer.Name;
+    this.billtoCustomerName = this.selectedCustomer.CustName;
     console.log(this.selectedCustomer);
 
-    this.master.getMaxcount_Customer(this.selectedCustomer.Name).subscribe(
+    this.master.getMaxcount_Customer(this.selectedCustomer.CustName).subscribe(
       data => {
         this.customercount = data;
 
         var year = new Date();
         var autono = this.pad(this.customercount + 1, 4);
         this.Orderno =
-          this.selectedCustomer.Name.substr(0, 2).toUpperCase() +
+          this.selectedCustomer.CustName.substr(0, 2).toUpperCase() +
           year
             .getUTCFullYear()
             .toString()
             .substr(2, 2) +
           autono;
 
-        this.CustomerSelectedOutput.emit(CustomerSelected.AddrKey);
+        this.CustomerSelectedOutput.emit(CustomerSelected.CustomerKey);
         this.OrdernoGenerated.emit(this.Orderno);
       },
       error => console.log(error),

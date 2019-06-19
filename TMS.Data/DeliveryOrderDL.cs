@@ -28,8 +28,9 @@ namespace TMS.Data
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("_orderno",
                         NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.OrderNo);
-                    cmd.Parameters.AddWithValue("_orderdate",
-                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(orderBO.OrderDate));
+                    cmd.Parameters.AddWithValue("_orderdate",                       
+                    NpgsqlTypes.NpgsqlDbType.Date, orderBO.OrderDate);
+                 
                     cmd.Parameters.AddWithValue("_custkey",
                         NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.CustKey);
                     cmd.Parameters.AddWithValue("_billtoaddrkey",
@@ -40,20 +41,22 @@ namespace TMS.Data
                        NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.DestinationAddress);
                     cmd.Parameters.AddWithValue("_returnaddrkey",
                        NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.ReturnAddress);
-                    cmd.Parameters.AddWithValue("_source",
-                       NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Source);
+                    //cmd.Parameters.AddWithValue("_source",
+                    //   NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Source);
                     cmd.Parameters.AddWithValue("_ordertype",
                        NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.OrderType);
                     cmd.Parameters.AddWithValue("_status",
                        NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Status);
-                    cmd.Parameters.AddWithValue("_statusdate",
-                       NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(orderBO.StatusDate));
+                    //cmd.Parameters.AddWithValue("_statusdate",
+                    //   NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(orderBO.StatusDate));
                     cmd.Parameters.AddWithValue("_brokerkey",
                        NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.Brokerkey);
                     cmd.Parameters.AddWithValue("_brokerrefno",
                        NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BrokerRefNo);
                     cmd.Parameters.AddWithValue("_portoforiginkey",
                        NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.PortofOriginKey);
+                    cmd.Parameters.AddWithValue("_portofdestinationkey",
+                   NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.PortofDestinationKey);
                     cmd.Parameters.AddWithValue("_carrierkey",
                        NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.CarrierKey);
                     cmd.Parameters.AddWithValue("_vesselname",
@@ -62,8 +65,16 @@ namespace TMS.Data
                       NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BillofLading);
                     cmd.Parameters.AddWithValue("_bookingno",
                       NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BookingNo);
-                    cmd.Parameters.AddWithValue("_cutoffdate",
-                      NpgsqlTypes.NpgsqlDbType.Timestamp, Convert.ToDateTime(orderBO.CutOffDate));
+                    if(orderBO.CutOffDate==null)
+                    {
+                        cmd.Parameters.AddWithValue("_cutoffdate",
+                     NpgsqlTypes.NpgsqlDbType.Date, orderBO.CutOffDate);
+
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("_cutoffdate", NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(orderBO.CutOffDate).Date);
+                    }
                     cmd.Parameters.AddWithValue("_ishazardous",
                       NpgsqlTypes.NpgsqlDbType.Bit, orderBO.IsHazardous);
                     cmd.Parameters.AddWithValue("_priority",
@@ -142,7 +153,7 @@ namespace TMS.Data
                             BO.OrderType = Utils.CustomParse<short>(reader["ordertype"]);
                             BO.BrokerRefNo = Utils.CustomParse<string>(reader["brokerrefno"]);                            
                             BO.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
-                            BO.OrderDate = Utils.CustomParse<string>(reader["orderdate"]);
+                            BO.OrderDate = Convert.ToDateTime(reader["orderdate"]);
 
                             BO.statusdescription = reader["statusdescription"].ToString();
                             BO.ordertypedescription = reader["ordertypedescription"].ToString();
@@ -204,8 +215,8 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
   br.brokername,br.brokerid ,brokerrefno ,portoforiginkey ,carrierkey,vesselname ,
   billoflading ,  bookingno ,  cutoffdate ,  ishazardous ,  priority ,  oh.createdate ,oh.createuserkey */
                         bo.OrderNo = reader["orderno"].ToString();
-                        var dateAndTime = Convert.ToDateTime(reader["orderdate"].ToString()).ToShortDateString();
-                        bo.OrderDate = Convert.ToDateTime(reader["orderdate"].ToString()).ToShortDateString();
+                        var dateAndTime = Convert.ToDateTime(reader["orderdate"].ToString()).ToString("MM/dd/yyyy");
+                        bo.OrderDate = Convert.ToDateTime(reader["orderdate"]);
                         //bo.OrderDate = Convert.ToDateTime(reader["orderdate"].ToString());
                         bo.CustKey = Guid.Parse(reader["custkey"].ToString());
                         bo.BillToAddress = Utils.CustomParse<Guid>(reader["billtoaddrkey"]);
@@ -214,9 +225,9 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         bo.ReturnAddress = Utils.CustomParse<Guid>(reader["returnaddrkey"]);
                         bo.OrderType = Utils.CustomParse<short>(reader["ordertype"]);
                         bo.Status = Utils.CustomParse<short>(reader["status"]);
-                        bo.StatusDate = Utils.CustomParse<string>(reader["statusdate"]);
-                        bo.HoldReason = Utils.CustomParse<short>(reader["holdreason"]);
-                        bo.HoldDate = Utils.CustomParse<string>(reader["holdDate"]);
+                        bo.StatusDate = Convert.ToDateTime(reader["statusdate"]);
+                        //bo.HoldReason = Utils.CustomParse<short>(reader["holdreason"]);
+                        //bo.HoldDate = Convert.ToDateTime(reader["holdDate"]);
                         bo.BrokerName = reader["brokername"].ToString();
                         bo.BrokerId = reader["brokerid"].ToString();
                         bo.BrokerRefNo = reader["brokerrefno"].ToString();
@@ -225,10 +236,11 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         bo.VesselName = reader["vesselname"].ToString();
                         bo.BillofLading = reader["billoflading"].ToString();
                         bo.BookingNo = reader["bookingno"].ToString();
-                        bo.CutOffDate = Utils.CustomParse<string>(reader["cutoffdate"]);
+                        //bo.CutOffDate = Utils.CustomParse<string>(reader["cutoffdate"]);
+                        bo.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);
                         //bo.IsHazardous = Utils.CustomParse<bool>(reader["ishazardous"]);
                         bo.Priority = Utils.CustomParse<short>(reader["priority"]);
-                        bo.CreatedDate = Utils.CustomParse<string>(reader["createdate"]);
+                        bo.CreatedDate = Convert.ToDateTime(reader["createdate"]);
                         bo.CreatedBy = Utils.CustomParse<Guid>(reader["createuserkey"]);
 
                         bo.statusdescription = reader["statusdescription"].ToString();
@@ -290,8 +302,10 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                             orderDetail.ContainerNo = Utils.CustomParse<string>(reader["containerno"]);
                             orderDetail.ContainerSize = Utils.CustomParse<short>(reader["containersize"]);
                             orderDetail.Chassis = Utils.CustomParse<string>(reader["chassis"]);
-                            orderDetail.AppDateFrom = Utils.CustomParse<string>(reader["apptdatefrom"]);
-                            orderDetail.AppDateTo = Utils.CustomParse<string>(reader["apptdateto"]);
+                            orderDetail.AppDateFrom = Convert.ToDateTime(reader["apptdatefrom"].ToString()).ToString("MM/dd/yyyy");
+                            orderDetail.AppDateTo = Convert.ToDateTime(reader["apptdateto"].ToString()).ToString("MM/dd/yyyy");
+                            //orderDetail.AppDateFrom = Utils.CustomParse<string>(reader["apptdatefrom"]);
+                            //orderDetail.AppDateTo = Utils.CustomParse<string>(reader["apptdateto"]);
                             orderDetail.SealNo = Utils.CustomParse<string>(reader["sealno"]);
                             orderDetail.Status = Utils.CustomParse<short>(reader["status"]);
                             orderDetail.StatusDate = Utils.CustomParse<string>(reader["statusdate"]);
@@ -368,10 +382,12 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
 
         public bool UpdateOrderDetails(DeliveryOrderDetailBO detail)
         {
-            string sql = @"update dbo.tms_orderdetail set apptdatefrom=@apptdatefrom, apptdateto=@apptdateto, "+
-                "status=@status,statusdate = @statusdate,holdreason=@holdreason, holddate=@holddate where orderdetailkey=@orderdetailkey AND orderkey=@orderkey";
+            //string sql = @"update dbo.tms_orderdetail set apptdatefrom=@apptdatefrom, apptdateto=@apptdateto, "+
+            //    "status=@status,statusdate = @statusdate,holdreason=@holdreason, holddate=@holddate where orderdetailkey=@orderdetailkey AND orderkey=@orderkey";
 
-    
+            string sql = @"update dbo.tms_orderdetail set apptdatefrom=@apptdatefrom, apptdateto=@apptdateto, " +
+                        "status=@status where orderdetailkey=@orderdetailkey AND orderkey=@orderkey";
+
             // string sql = "dbo.fn_update_order_details";
             using (connection)
             {
@@ -382,20 +398,22 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                     cmd.Parameters.AddWithValue("@orderkey",
                         NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderKey);
                     cmd.Parameters.AddWithValue("@orderdetailkey",
-                          NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderDetailKey);
-                
+                          NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderDetailKey);                
                     cmd.Parameters.AddWithValue("@apptdatefrom",
-                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(detail.AppDateFrom));
+                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(detail.AppDateFrom).Date);
+                    
                     cmd.Parameters.AddWithValue("@apptdateto",
-                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(detail.AppDateTo));
+                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(detail.AppDateTo).Date);
                     cmd.Parameters.AddWithValue("@status",
                         NpgsqlTypes.NpgsqlDbType.Smallint, detail.Status);
-                    cmd.Parameters.AddWithValue("@statusdate",
-                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(detail.StatusDate));
-                    cmd.Parameters.AddWithValue("@holdreason",
-                        NpgsqlTypes.NpgsqlDbType.Smallint, detail.HoldReason);
-                    cmd.Parameters.AddWithValue("@holddate",
-                        NpgsqlTypes.NpgsqlDbType.Timestamp, Convert.ToDateTime(detail.HoldDate));
+                    //cmd.Parameters.AddWithValue("@statusdate",
+                    //    NpgsqlTypes.NpgsqlDbType.Date, DateTime.Now);
+                    //cmd.Parameters.AddWithValue("@statusdate",
+                    //    NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(detail.StatusDate));
+                    //cmd.Parameters.AddWithValue("@holdreason",
+                    //    NpgsqlTypes.NpgsqlDbType.Smallint, detail.HoldReason);
+                    //cmd.Parameters.AddWithValue("@holddate",
+                    //    NpgsqlTypes.NpgsqlDbType.Timestamp, Convert.ToDateTime(detail.HoldDate));
 
                     int returnvalue = cmd.ExecuteNonQuery();
                     if (returnvalue < 0)

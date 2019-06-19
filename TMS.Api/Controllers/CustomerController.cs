@@ -16,8 +16,82 @@ namespace TMS.Api.Controllers
     {
         CustomerDL cusObj = new CustomerDL();
         // GET: api/Customer
-     
-        
+
+        [HttpGet]
+        // GET: api/Customer/5
+        [Route("GetCustomers")]
+        public HttpResponseMessage GetCustomers()
+        {
+            CustomerRepository repo = new CustomerRepository();
+            List<Data.customer> customer = repo.GetAll().ToList();
+            List<CustomerBO> customerBOList = new List<CustomerBO>();
+
+            if(customer.Count>0)
+            {
+            foreach (var cust in customer)
+            {
+                CustomerBO customerBO = new CustomerBO();
+                customerBO.CustomerKey = cust.custkey;
+                customerBO.CustId = cust.custid;
+                customerBO.CustName = cust.custname;
+                customerBO.CustomerGroup = cust.customergroup;
+                customerBO.CreditLimit = cust.creditlimit;
+                customerBO.CreditStatus = cust.creditstatus;
+                var address = new AddressRepository().GetbyId(cust.addrkey);
+                customerBO.Address = new AddressBO()
+                {
+                    Address1 = address.address1,
+                    Address2 = address.address2,
+                    City = address.city,
+                    State = address.state,
+                    Zip = address.zipcode,
+                    Email = address.email,
+                    Phone = address.phone,
+                    Fax = address.fax
+                };
+                customerBOList.Add(customerBO);
+            }
+                return Request.CreateResponse(HttpStatusCode.OK, customerBOList, Configuration.Formatters.JsonFormatter);
+            }
+            else
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not found", Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpGet]     
+        [Route("GetCustomerByID/{custkey}")]
+        public HttpResponseMessage GetCustomerByID(string custkey)
+        {
+            CustomerRepository repo = new CustomerRepository();
+            Data.customer customer = repo.GetbyId(Guid.Parse(custkey));
+            if (customer != null)
+            {
+                CustomerBO customerBO = new CustomerBO();
+                customerBO.CustomerKey = customer.custkey;
+                customerBO.CustId = customer.custid;
+                customerBO.CustName = customer.custname;
+                customerBO.CustomerGroup = customer.customergroup;
+                customerBO.CreditLimit = customer.creditlimit;
+                customerBO.CreditStatus = customer.creditstatus;
+                var address = new AddressRepository().GetbyId(customer.addrkey);
+                customerBO.Address = new AddressBO()
+                {
+                    Address1 = address.address1,
+                    Address2 = address.address2,
+                    City = address.city,
+                    State = address.state,
+                    Zip = address.zipcode,
+                    Email = address.email,
+                    Phone = address.phone,
+                    Fax = address.fax
+                };
+
+                return Request.CreateResponse(HttpStatusCode.OK, customerBO, Configuration.Formatters.JsonFormatter);
+            }
+            else
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not found", Configuration.Formatters.JsonFormatter);
+        }
+
+
         [HttpGet]
         // GET: api/Customer/5
         public HttpResponseMessage Get(string name)
@@ -27,6 +101,7 @@ namespace TMS.Api.Controllers
             if (customer != null)
             {
                 CustomerBO customerBO = new CustomerBO();
+                customerBO.CustomerKey = customer.custkey;
                 customerBO.CustId = customer.custid;
                 customerBO.CustName = customer.custname;
                 customerBO.CustomerGroup = customer.customergroup;

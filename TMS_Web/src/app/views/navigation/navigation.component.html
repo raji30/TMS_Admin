@@ -7,10 +7,11 @@
                              src="./assets/img/brand/user-identity2.png" />
                     </span> -->
 
-                <span > 
+                <span>
                     <span class="block m-t-xs">
 
-                        <strong class="font-bold"> &nbsp;&nbsp; Hi {{currentUser.firstname}} {{loginInfo.lastname}}!!</strong>
+                        <strong class="font-bold"  style="color:cornflowerblue"> &nbsp;&nbsp; Hi {{currentUser.firstname}}
+                            {{loginInfo.lastname}}!</strong>
                     </span>
                     <!-- <div>                     
                           <span class="text-muted text-xs block">Logged : {{currentUser.loggedinTime}}</span>
@@ -23,35 +24,34 @@
                 <a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Dashboard</a>
             </li> -->
             <br>
-            <li>
-                &nbsp;&nbsp; <a [routerLink]="['/orderList']">
-                    <!-- <i class="fa fa-list" aria-hidden="true"></i> -->                   
+            <!-- <li>
+                &nbsp;&nbsp; <a [routerLink]="['/orderList']">                            
                     <img src="assets/img/brand/chromium-app-list-icon32px.png" />
                      &nbsp; Order
                     List</a>
-            </li>
+            </li> -->
             <li>
-                <br>
-                &nbsp;&nbsp;&nbsp; <span  style="color:lightslategrey"> Recent
+                &nbsp;&nbsp;&nbsp; <span style="color:lightskyblue"> Recent
                     orders</span>
-                    
+
             </li>
             <li *ngFor="let order of Orderlist| slice:0:25; let ind=index;">
                 <!-- <span>{{ order.OrderNo}} </span>   -->
                 <!-- <a [routerLink]="['./tab']"><i class="fa fa-dashboard"></i> <span class="nav-label">Dashboards</span></a> -->
 
-                
-                        <!-- <i  style="width:20px;"class="fa fa-circle-thin" aria-hidden="true"></i> -->
-                        <!-- <i class="fa-li fa fa-check-square"></i>
+
+                <!-- <i  style="width:20px;"class="fa fa-circle-thin" aria-hidden="true"></i> -->
+                <!-- <i class="fa-li fa fa-check-square"></i>
                          <a   [routerLink]="['/tab', order.OrderKey]" >&nbsp; {{ order.OrderNo }}</a>  -->
 
-                        <ul class="fa-ul">
-                            <li>
-                                <a [routerLink]="['/tab', order.OrderKey]" class="text-secondary">
-                                     <img src="assets/img/brand/bullet-black-icon.png" /> {{ order.OrderNo }}</a>
-                            </li>
-                        </ul>
-                    
+                <ul class="fa-ul">
+                    <li>
+                        <a [routerLink]="" class="text-secondary" (click)="open(order.OrderKey)">
+                            <img src="assets/img/brand/bullet-black-icon.png" /> {{ order.OrderNo }}</a>
+
+                    </li>
+                </ul>
+
             </li>
         </ul>
 

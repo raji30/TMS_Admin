@@ -53,9 +53,16 @@ import { NavigationComponent } from './views/navigation/navigation.component';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { ToastrModule } from 'ngx-toastr';
 import {MatButtonModule, MatCheckboxModule, MatInputModule} from '@angular/material';
+import { FileuploadComponent } from './views/fileupload/fileupload.component';
+import { OrderDashboardComponent } from './views/order-dashboard/order-dashboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CompanyComponent } from './views/child/_company/company/company.component';
+import { DispatchComponent } from './views/dispatch/dispatch.component';
+
 
 @NgModule({
-  imports: [   
+  imports: [
+    NgbModule,   
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -88,18 +95,21 @@ import {MatButtonModule, MatCheckboxModule, MatInputModule} from '@angular/mater
     AppComponent,
     ...APP_CONTAINERS,
     LoginComponent,
+    OrderDashboardComponent,
     DOIntakeComponent,
     AddressComponent,
-    CustomerComponent,   
+    CustomerComponent, CompanyComponent,  
     BrokerComponent,
     BillingratesComponent,
     ContainerComponent,
     OrderlistComponent,
     OrderinfoComponent,
-    ContainersizeComponent, TabComponent,SchedulerComponent,NavigationComponent,
+    ContainersizeComponent, TabComponent,SchedulerComponent,NavigationComponent,FileuploadComponent,DispatchComponent,
     FileSelectDirective 
   ],
   providers:  [UserService,AddressService,DatePipe ],
-  bootstrap: [ AppComponent]
+  bootstrap: [ AppComponent],
+  entryComponents:[TabComponent]
+ 
 })
 export class AppModule { }

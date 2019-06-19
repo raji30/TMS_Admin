@@ -1,4 +1,3 @@
-<br>
 <h6><i class="fa fa-commenting-o" aria-hidden="true"></i> &nbsp; Delivery Order</h6>
 <div id="accordion">
   <form (ngSubmit)="f.form.valid && OnSubmit(f)" #f="ngForm" novalidate>
@@ -14,7 +13,117 @@
 
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="card-body">
+          <div class="row ">
+            <div class="col-md-4" [hidden]="false">          
+
+                <app-customer name="CustKey" [(ngModel)]="doHeader.CustKey" #CustKey="ngModel"
+                (CustomerSelectedOutput)="onSelectedCustKeyAddress($event)" [Type]=1 [AddressType] = 1
+                [customerKeyTobind]="doHeader.CustKey" (OrdernoGenerated)="onOrdernoGenerated($event)">
+              </app-customer>              
+            </div>
+            <div class="col-md-2" [hidden]="false">
+              <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Type</span>
+                </div>
+                <select id="cboOrderType" class="form-control" name="OrderType" [(ngModel)]="doHeader.OrderType"
+                  #OrderType="ngModel" [ngClass]="{ 'is-invalid': f.submitted && OrderType.invalid }" required>
+                  <option [value]="otype.Value" *ngFor="let otype of ordertypelist">{{otype.Name}}</option>
+                </select>
+                <div *ngIf="f.submitted && OrderType.invalid" class="invalid-feedback">
+                  <div *ngIf="OrderType.errors.required"> Order Type is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2" [hidden]="false">
+              <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Priority</span>
+                </div>
+                <select id="drpPriority" class="form-control form-control-sm" name="Priority"
+                  [(ngModel)]="doHeader.Priority" #Priority="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && Priority.invalid }" required>
+                  <option [value]="priority.Value" *ngFor="let priority of prioritylist">{{priority.Name}}</option>
+                </select>
+
+                <div *ngIf="f.submitted && Priority.invalid" class="invalid-feedback">
+                  <div *ngIf="Priority.errors.required"> Priority is required</div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="col-md-2" [hidden]="false">
+              <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Status</span>
+                </div>
+
+                <select id="drpStatus" class="form-control form-control-sm" name="Status"
+                  (change)="StatusDropDownChanged($event.target.value)" [(ngModel)]="doHeader.Status" #Status="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && Status.invalid }" required>
+                  <option [value]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>
+                </select>
+                <div *ngIf="f.submitted && Status.invalid" class="invalid-feedback">
+                  <div *ngIf="Status.errors.required"> Status is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2" [hidden]="false">
+              <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Order#</span>
+                </div>
+                <input type="text" id="OrderNo" readonly class="form-control" name="OrderNo" tooltip="Order No"
+                  [(ngModel)]="doHeader.OrderNo" #OrderNo="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && OrderNo.invalid }" required />
+
+                <div *ngIf="f.submitted && OrderNo.invalid" class="invalid-feedback">
+                  <div *ngIf="OrderNo.errors.required"> Order No is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="row">
+            <div class="col-md-8">
+
+            </div>
+
+
+            <div class="col-md-2">
+              <div class="input-group input-group-sm mb-3" *ngIf="HolddropdownVisible">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Reason</span>
+                </div>
+                <select id="drpHoldReason" class="form-control form-control-sm" name="HoldReason"
+                  [(ngModel)]="doHeader.HoldReason">
+                  <option [value]="reason.Value" *ngFor="let reason of holdreasonlist">{{reason.Name}}</option>
+
+                </select>
+
+              </div>
+            </div>
+
+            <div class="col-md-2" [hidden]="false">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Date</span>
+                </div>
+                <input type="text" class="form-control " name="OrderDate" id="OrderDate" readonly bsDatepicker
+                  placeholder="Order Date" [bsConfig]="bsConfig" [(ngModel)]="doHeader.OrderDate" #OrderDate="ngModel"
+                  [ngClass]="{ 'is-invalid': f.submitted && OrderDate.invalid }" required />
+                <div *ngIf="f.submitted && OrderDate.invalid" class="invalid-feedback">
+                  <div *ngIf="OrderDate.errors.required"> Order-Date is required</div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <!-- <div class="row ">
             <div class="col-md-3" [hidden]="false">
               <app-customer name="BillToAddress" [(ngModel)]="doHeader.BillToAddress" #BillToAddress="ngModel"
                 (CustomerSelectedOutput)="onSelectedBilltoAddress($event)" [billToaddressType]=1
@@ -23,7 +132,6 @@
               </app-customer>
             </div>
             <div class="col-md-3" [hidden]="false">
-
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text">Type</span>
@@ -91,7 +199,7 @@
                           <span class="input-group-text">Status</span>
                         </div>
                        
-                        <select id="drpStatus" class="form-control form-control-sm" name="Status"
+                        <select id="drpStatus" class="form-control form-control-sm" name="Status" (change)="StatusDropDownChanged($event.target.value)"
                         [(ngModel)]="doHeader.Status" #Status="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && Status.invalid }" required>                       
                         <option [value]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>                        
@@ -117,9 +225,8 @@
                     </div>
   
               </div>
-              <div class="col-md-3">
-  
-                  <div class="input-group input-group-sm mb-3">
+              <div class="col-md-3">  
+                  <div class="input-group input-group-sm mb-3" *ngIf ="HolddropdownVisible">
                       <div class="input-group-prepend">
                         <span class="input-group-text">HoldReason</span>
                       </div>
@@ -131,15 +238,14 @@
       
                     </div>
               </div>
-            </div>
-            <hr style="border: none; border-bottom: 1px solid dimgray;">
+            </div> -->
+          <hr style="border: none; border-bottom: 1px solid dimgray;">
           <div class="row">
             <div class="col-md-3">
-              <app-customer name="SourceAddress" [(ngModel)]="doHeader.SourceAddress"
-                (CustomerSelectedOutput)="onSelectedPickupAddress($event)" [billToaddressType]=2 [AddrName]="Pickup"
-                [addressKeyTobind]="doHeader.SourceAddress">
-              </app-customer>
-
+                <app-company name="BillToAddress" [(ngModel)]="doHeader.BillToAddress" #BillToAddress="ngModel"
+                (CustomerSelectedOutput)="onSelectedBilltoAddress($event)" [Type]=1 [AddressType] = 1
+                [addressKeyTobind]="doHeader.BillToAddress" (OrdernoGenerated)="onOrdernoGenerated($event)">
+              </app-company>
             </div>
             <div class="col-md-3" [hidden]="false">
               <app-broker name="Brokerkey" [(ngModel)]="doHeader.Brokerkey"
@@ -180,10 +286,11 @@
 
           <div class="row">
             <div class="col-md-3" [hidden]="false">
-              <app-customer name="DestinationAddress" [(ngModel)]="doHeader.DestinationAddress"
-                (CustomerSelectedOutput)="onSelectedConsigneeAddress($event)" [billToaddressType]=3
-                [addressKeyTobind]="doHeader.DestinationAddress">
-              </app-customer>
+                <app-company name="SourceAddress" [(ngModel)]="doHeader.SourceAddress"
+                (CustomerSelectedOutput)="onSelectedPickupAddress($event)" [Type]=1 [AddressType] = 2 
+                [addressKeyTobind]="doHeader.SourceAddress">
+              </app-company>
+             
             </div>
             <div class="col-md-3">
               <div class="input-group input-group-sm mb-3">
@@ -195,6 +302,7 @@
                   [ngClass]="{ 'is-invalid': f.submitted && CarrierKey.invalid }" required>
                   <option [value]="carrier.Value" *ngFor="let carrier of carrierlist">{{carrier.Name}}</option>
                 </select>
+   
                 <div *ngIf="f.submitted && CarrierKey.invalid" class="invalid-feedback">
                   <div *ngIf="CarrierKey.errors.required"> Carrier is required</div>
                 </div>
@@ -202,44 +310,45 @@
               </div>
 
             </div>
+
             <div class="col-md-3">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Source</span>
+                  <span class="input-group-text">Load Port</span>
                 </div>
-                <select id="drpSource" class="form-control form-control-sm" name="Source" [(ngModel)]="doHeader.Source"
-                  #Source="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Source.invalid }" required>
-                  <option [value]="src.Value" *ngFor="let src of sourcelist">{{src.Name}}</option>                 
+                              <select id="drpSource" class="form-control form-control-sm" name="PortofOriginKey"
+                [(ngModel)]="doHeader.PortofOriginKey" #PortofOriginKey="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && PortofOriginKey.invalid }" required>
+                  <option [value]="src.Value" *ngFor="let src of LoadDischargePortList">{{src.Name}}</option>
                 </select>
-                <div *ngIf="f.submitted && Source.invalid" class="invalid-feedback">
-                  <div *ngIf="Source.errors.required"> Source is required</div>
+                <div *ngIf="f.submitted && PortofOriginKey.invalid" class="invalid-feedback">
+                  <div *ngIf="PortofOriginKey.errors.required">Load Port is required</div>
                 </div>
+
               </div>
             </div>
+
             <div class="col-md-3">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Port of Origin</span>
+                  <span class="input-group-text">Discharge Port</span>
                 </div>
-
-
-                <input type="text" id="txtPortofOrigin" class="form-control form-control-sm" name="PortofOriginKey"
-                  [(ngModel)]="doHeader.PortofOriginKey" #PortofOriginKey="ngModel"
-                  [ngClass]="{ 'is-invalid': f.submitted && PortofOriginKey.invalid }" required />
-
-                <div *ngIf="f.submitted && PortofOriginKey.invalid" class="invalid-feedback">
-                  <div *ngIf="PortofOriginKey.errors.required">Port of Origin is required</div>
+                <select id="drpPortofDestinationKey" class="form-control form-control-sm" name="PortofDestinationKey" [(ngModel)]="doHeader.PortofDestinationKey"
+                  #PortofDestinationKey="ngModel" [ngClass]="{ 'is-invalid': f.submitted && PortofDestinationKey.invalid }" required>
+                  <option [value]="dest.Value" *ngFor="let dest of LoadDischargePortList">{{dest.Name}}</option>
+                </select>
+                <div *ngIf="f.submitted && PortofDestinationKey.invalid" class="invalid-feedback">
+                  <div *ngIf="PortofDestinationKey.errors.required"> Port of Destination is required</div>
                 </div>
-
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-3" [hidden]="false">
-              <app-customer name="ReturnAddress" [(ngModel)]="doHeader.ReturnAddress"
-                (CustomerSelectedOutput)="onSelectedReturnAddress($event)" [billToaddressType]=3
-                [addressKeyTobind]="doHeader.ReturnAddress">
-              </app-customer>
+                <app-company name="DestinationAddress" [(ngModel)]="doHeader.DestinationAddress"
+                (CustomerSelectedOutput)="onSelectedConsigneeAddress($event)" [Type]=1 [AddressType] = 3
+                [addressKeyTobind]="doHeader.DestinationAddress">
+              </app-company>             
             </div>
             <div class="col-md-3">
               <div class="input-group input-group-sm mb-3">
@@ -286,40 +395,60 @@
 
             </div>
           </div>
-          <hr>
           <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-3" [hidden]="false">
+              <app-company name="ReturnAddress" [(ngModel)]="doHeader.ReturnAddress"
+                (CustomerSelectedOutput)="onSelectedReturnAddress($event)" [Type]=1 [AddressType] = 4
+                [addressKeyTobind]="doHeader.ReturnAddress">
+              </app-company>
+            </div>
+            <div class="col-md-3">
+              
+            </div>
+            <div class="col-md-3">
+             
+
+            </div>
+            <div class="col-md-3">
+            
+            </div>
+          </div>
+          <br>
+          <!-- <hr> -->
+          <div class="row">
+            <div class="col-md-8">
               <app-container (ContainerDetailsOutput)="onSelectedContainerDetails($event)"
                 [ContainerDetails]=doHeader.orderdetails [isContainerAttributeVisible]="isContainerAttributeVisible">
               </app-container>
             </div>
-            <div class="col-md-2">
-              <button type="button" class="btn btn-primary btn-sm" label="Click" data-toggle="modal"
+            <div class="col-md-4">
+              <!-- <button type="button" class="btn btn-primary btn-sm" label="Click" data-toggle="modal"
                 data-target="#myModal" tooltip="upload documents">
                 <i class="fa fa-cloud-upload" aria-hidden="true"></i> &nbsp; Upload documents
-              </button>
+              </button> -->
+              <app-fileupload></app-fileupload>
             </div>
           </div>
+          <!-- <div class="row">
+            <app-fileupload ></app-fileupload>
+          </div> -->
           <div class="row">
-
             <div class="col-md-8" [hidden]="false">
               <textarea class="form-control" rows="3" id="txtcomment" placeholder="Comment"></textarea>
             </div>
             <div class="col-md-2" [hidden]="false">
-               
-              </div>
+
+            </div>
             <div class="col-md-2" nowrap>
-                <div class="row">
-                     </div>
-                        &nbsp;
-                <div class="row">
-                    <button class="btn btn-primary btn-sm" type="submit">
-                        <i class="fa fa-database" aria-hidden="true"></i>&nbsp; Create</button> &nbsp;
-                  
-                  <button class="btn btn-warning btn-sm" type="button" (click)="clear()">
-                    <i class="fa fa-trash-o"></i>&nbsp; Clear</button> </div>
-              
-              
+              <div class="row">
+              </div>
+              &nbsp;
+              <div class="row">
+                <button class="btn btn-primary btn-sm" type="submit">
+                  <i class="fa fa-database" aria-hidden="true"></i>&nbsp; Create</button> &nbsp;
+
+                <button class="btn btn-warning btn-sm" type="button" (click)="clear()">
+                  <i class="fa fa-trash-o"></i>&nbsp; Clear</button> </div>
             </div>
           </div>
         </div>
@@ -396,7 +525,7 @@
                 </table>
 
                 <div>
-                  <hr>
+                  <!-- <hr> -->
                   <div>
                     <div class="progress" style="height: 10px;">
                       <div class="progress-bar progress-bar-striped" role="progressbar"

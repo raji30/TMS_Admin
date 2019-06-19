@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppSettings } from '../_constants/appsettings';
-import { Containersize, Priority, OrderType ,Source, HoldReason, Status, Carrier} from '../common/master';
+import { Containersize, Priority, OrderType ,Source, HoldReason, Status, Carrier, LoadDischargePort} from '../common/master';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,9 @@ public getHoldReasonList() {
 }
 public getSourceList() {
   return this.http.get<Source[]>(AppSettings._BaseURL + 'GetSource');  
+}
+public getLoadDischargePortList(addressType:number) {
+  return this.http.get<LoadDischargePort[]>(AppSettings._BaseURL + 'GetAllByType/' + addressType);  
 }
 public getCarrierList() {
   return this.http.get<Carrier[]>(AppSettings._BaseURL + 'GetCarrier');  

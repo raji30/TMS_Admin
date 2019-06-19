@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
         <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseTwo"
@@ -54,4 +54,119 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+
+
+<!-- <div *ngIf="!ContainerDetails|| ContainerDetails.length === 0" class="row">
+     <p>No customer found </p> 
+     *ngIf="ContainerDetails ||ContainerDetails.length > 0"
+</div>  -->
+
+<div class="table-responsive" style="overflow-x: auto">
+  <table id="containerAttributes" class="table table-sm">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col" style="display:none">OrderDetailKey</th>
+        <th scope="col">Container#</th>
+        <th scope="col">Chassis#</th>
+        <th scope="col">Seal#</th>
+        <th scope="col-md-2">Weight</th>
+        <th scope="col-md-2">Depature</th>
+        <th scope="col-md-2">Arrival</th>
+        <th scope="col-md-2">Status</th>
+
+        <th scope="col">..</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let field of ContainerDetails; let i = index">
+        <td hidden="true" style="display:none">
+          <input [(ngModel)]="field.OrderDetailKey" class="form-control form-control-sm" type="text"
+            name="{{field.OrderDetailKey}}" />
+        </td>
+        <td>
+          {{field.ContainerSize}} </td>
+
+        <td>
+          {{field.Chassis}}
+        </td>
+        <td>
+
+          {{field.SealNo}}
+        </td>
+        <td scope="col-md-2">
+
+          {{field.Weight}}
+        </td>
+        <td scope="col-md-2">
+          {{field.AppDateFrom}}
+        </td>
+        <td scope="col-md-2">
+          {{field.AppDateTo}}
+        </td>
+        <td scope="col-md-2">
+          {{field.Status}}
+        </td>
+
+
+        <td>
+          <button class="btn btn-outline-secondary btn-sm" type="button" (click)="collapseSign()" data-toggle="collapse"
+            data-target="#collapseDriverdetails" aria-expanded="false" aria-controls="collapseDriverdetails">
+            {{collapsesign}}
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="15">
+          <div class="collapse" id="collapseDriverdetails">
+            <div class="card card-body">
+              <table class="table table-sm bg-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Entry Date</th>
+                    <th scope="col">Driver</th>
+                    <th scope="col">Action Date</th>
+                    <th scope="col">Load Status</th>
+                    <th scope="col">Driver Money</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <input class="form-control form-control-sm bg-dark" type="date" />
+                    </td>
+                    <td>
+                      <select id="drpStatus" class="form-control form-control-sm bg-dark" style="width: 100px">
+                        <option value=1>Celb Howard</option>
+                        <option value=2>Lan Weiland</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input class="form-control form-control-sm bg-dark" type="date" />
+                    </td>
+                    <td>
+                      <select id="drpStatus" class="form-control form-control-sm bg-dark" style="width: 100px">
+                        <option value=1>To Storage</option>
+                        <option value=2>Hazardeous</option>
+                        <option value=2>Roundtrip</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input class="form-control form-control-sm bg-dark" type="text" />
+                    </td>
+                    <td>
+                      <button class="btn btn-primary btn-sm" type="button"
+                        (click)="ScheduleFieldValue(field)">Dispatch</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

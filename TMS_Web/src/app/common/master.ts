@@ -36,3 +36,12 @@ export class Carrier {
     name:string;
     value:number;
 }
+
+export class LoadDischargePort {
+    name:string;
+    value:number;
+}
+export class DischargePort {
+    name:string;
+    value:number;
+}
