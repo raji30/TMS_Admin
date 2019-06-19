@@ -1,13 +1,12 @@
   
       <div class="btn-group btn-group-sm bd-dark" role="group" aria-label="Button group with nested dropdown">
-          <button type="button" class="btn btn-secondary" style="background-color:darkslategrey">Broker</button>           
+          <button type="button" class="btn btn-secondary" style="background-color:#424949">Broker</button>           
           <div class="btn-group" role="group">
-          <button class="btn btn-secondary dropdown-toggle form-control-sm" type="button" id="drpBillTo"  
+          <button class="btn btn-secondary dropdown-toggle form-control-sm" type="button" id="drpbroker"  
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
           >{{brokerName}}
-            </button>
-            <!-- {{customer}} -->
-            <div class="dropdown-menu" aria-labelledby="drpBillTo">        
+            </button>         
+            <div class="dropdown-menu" aria-labelledby="drpbroker">        
                 <li *ngFor="let Broker of broker"
                 (click)="onSelect(Broker)">               
                   <a class="dropdown-item" >{{Broker.BrokerName}}</a>

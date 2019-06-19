@@ -14,9 +14,8 @@
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="card-body">
           <div class="row ">
-            <div class="col-md-4" [hidden]="false">          
-
-                <app-customer name="CustKey" [(ngModel)]="doHeader.CustKey" #CustKey="ngModel"
+            <div class="col-md-4" [hidden]="false"> 
+               <app-customer name="CustKey" [(ngModel)]="doHeader.CustKey" #CustKey="ngModel"
                 (CustomerSelectedOutput)="onSelectedCustKeyAddress($event)" [Type]=1 [AddressType] = 1
                 [customerKeyTobind]="doHeader.CustKey" (OrdernoGenerated)="onOrdernoGenerated($event)">
               </app-customer>              
@@ -331,7 +330,7 @@
             <div class="col-md-3">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Discharge Port</span>
+                  <span class="input-group-text">Dis. Port</span>
                 </div>
                 <select id="drpPortofDestinationKey" class="form-control form-control-sm" name="PortofDestinationKey" [(ngModel)]="doHeader.PortofDestinationKey"
                   #PortofDestinationKey="ngModel" [ngClass]="{ 'is-invalid': f.submitted && PortofDestinationKey.invalid }" required>

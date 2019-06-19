@@ -3,14 +3,15 @@
     <!-- <div *ngIf="selectedCustomer!=null"> -->
         <!-- <p class="card-title"  style="text-align:left">{{AddrName}}</p> -->
         <div *ngIf="selectedCustomer!=null" class="btn-group btn-group-sm" role="group" aria-label="Button group with nested dropdown">
-            <button type="button" class="btn btn-secondary" style="background-color: darkslategray">{{AddrName}}</button>           
-           
+            <button type="button" class="btn btn-secondary" style="background-color:#424949" > 
+                {{AddrName}}</button>           
+                <!-- darkslategray -->
             <div class="btn-group" role="group">
-              <button class="btn btn-secondary dropdown-toggle form-control-sm" type="button" id="drpBillTo" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false"> 
+              <button class="btn btn-secondary dropdown-toggle form-control-sm" type="button" id="drpcompany" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="false" > 
               {{billtoCustomerName}}
               </button>
-              <div class="dropdown-menu" aria-labelledby="drpBillTo">
+              <div class="dropdown-menu" aria-labelledby="drpcompany" >
                   <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer" (click)="onSelect(Address)">
                   <a class="dropdown-item">{{Address.Name}}</a>                  
                   </li>              

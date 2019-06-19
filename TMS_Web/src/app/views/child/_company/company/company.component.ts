@@ -71,13 +71,13 @@ export class CompanyComponent implements OnInit {
       this.AddrName = "Consignee";
     }    
     if (this.AddressType === 2) {
-      this.AddrName = "Pickup";
+      this.AddrName = "Pick-up   ";
     }
     if (this.AddressType === 3) {
-      this.AddrName = "Delivery";
+      this.AddrName = "Delivery ";
     }
     if (this.AddressType === 4) {
-      this.AddrName = "Return";
+      this.AddrName = "Return   ";
     }
    
     
