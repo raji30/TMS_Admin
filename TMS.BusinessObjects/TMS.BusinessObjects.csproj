@@ -54,6 +54,7 @@
     <Compile Include="EnumValue.cs" />
     <Compile Include="LoginResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduleOrderBO.cs" />
     <Compile Include="ThinOrderDO.cs" />
     <Compile Include="LoginRequest.cs" />
     <Compile Include="UserDetailsBO.cs" />
