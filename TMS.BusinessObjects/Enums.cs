@@ -63,7 +63,6 @@ namespace TMS.BusinessObjects
             DriverAvailability = 2,
             ContainerAvailability = 3                
         }
-
         public enum Source
         {
             Source1 = 1,
@@ -77,7 +76,14 @@ namespace TMS.BusinessObjects
             SAFM = 2,
             SEGO = 3
         }
-
-        
+        public enum DocType
+        {
+            PDF=1,
+            DOC=2,
+            DOCX=3,
+            XLS = 4,
+            XLSX =5,
+            JPG=6
+        }
     }
 }

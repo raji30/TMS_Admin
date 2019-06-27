@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TMS.BusinessObjects
 {
-   public class ThinOrderDO
+   public class ThinOrderBO
     {
         public Guid OrderKey { get; set; }
         public string OrderNo { get; set; }

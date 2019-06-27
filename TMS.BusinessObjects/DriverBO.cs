@@ -6,19 +6,21 @@ using System.Threading.Tasks;
 
 namespace TMS.BusinessObjects
 {
-    public class DriverBO
+
+   public class DriverBO
     {
-        public Guid driverkey { get; set; }
-        public Guid addrkey { get; set; }
-        public Guid carrierkey { get; set; }
-        public Guid vendkey { get; set; }
-        public string driverid { get; set; }
-        public string firstname { get; set; }
-        public string lastname { get; set; }
-        public string drivinglicenseno { get; set; }
-        public DateTime drivinglicenseexpirydate { get; set; }
-        public DateTime createdate { get; set; }
-        public short status { get; set; }
-        public DateTime statusdate { get; set; }      
+        public Guid DriverKey { get; set; }
+        public string DriverId { get; set; } 
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public AddressBO Address { get; set; }
+        public Guid CarrierKey { get; set; }
+        public string DriversLicenseNo { get; set; }
+        public DateTime LicenseExpiryDate { get; set; }
+        public DateTime CreateDate { get; set; }
+        public int Status { get; set; }
+        public DateTime StatusDate { get; set; }
+        public Guid VendorKey { get; set; }
+
     }
 }

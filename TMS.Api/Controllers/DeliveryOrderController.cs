@@ -54,7 +54,7 @@ namespace TMS.Api.Controllers
         [HttpGet]
         [Route("GetOrders")]
         [SwaggerOperation("GetOrders")]
-        public HttpResponseMessage GetOrdersr()
+        public HttpResponseMessage GetOrders()
         {
           //  IEnumerable<string> dorders = doObj.GetOrders();
             List<DeliveryOrderBO> dorder = doObj.GetOrders();

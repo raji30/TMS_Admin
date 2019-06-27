@@ -109,6 +109,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="BaseConnection.cs" />
     <Compile Include="broker.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
@@ -138,6 +139,7 @@
     <Compile Include="document.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DocumentDL.cs" />
     <Compile Include="documenttype.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
@@ -158,6 +160,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutesDL.cs" />
+    <Compile Include="SchedulingDL.cs" />
     <Compile Include="shippingport.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
@@ -172,6 +175,7 @@
     <Compile Include="TableOperations\CompanyRepository.cs" />
     <Compile Include="TableOperations\CustomerRepository.cs" />
     <Compile Include="TableOperations\RoutesRepository.cs" />
+    <Compile Include="TableOperations\DriverRepository.cs" />
     <Compile Include="TableOperations\ShippingPortRepository.cs" />
     <Compile Include="TableOperations\TerminalRepository.cs" />
     <Compile Include="TableOperations\UserActivityRepository.cs" />

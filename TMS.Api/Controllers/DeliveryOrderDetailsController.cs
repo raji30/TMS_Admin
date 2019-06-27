@@ -8,6 +8,7 @@ using System.Web.Http;
 using TMS.BusinessLayer.Common;
 using TMS.BusinessObjects;
 using TMS.Data;
+using TMS.Data.TableOperations;
 using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
@@ -50,6 +51,30 @@ namespace TMS.Api.Controllers
         {
             var orderdetailCollection = doObj.UpdateOrderDetails(objList);
             return Request.CreateResponse(HttpStatusCode.OK, orderdetailCollection, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpGet]
+        [Route("GetDrivers")]
+        public HttpResponseMessage GetDriversList()
+        {
+            DriverRepository driverRepository = new DriverRepository();
+            var enumerable = driverRepository.GetAll().ToList();
+            var list = new List<DriverBO>();
+            enumerable.ForEach(d =>
+            {
+                list.Add(new DriverBO
+                {
+                    FirstName = d.firstname,
+                    LastName = d.lastname,
+                    DriverId = d.driverid,
+                    DriversLicenseNo = d.drivinglicenseno,
+                    DriverKey = d.driverkey,
+                    CarrierKey = d.carrierkey.Value,
+                    LicenseExpiryDate = d.drivinglicenseexpirydate.Value,
+
+                });
+            });
+            return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
         }
     }
 }
