@@ -16,29 +16,19 @@ export class BrokerComponent implements OnInit {
   constructor(private service:BrokerService) { }
 
   ngOnInit() {
-    this.broker = [{ "BrokerName": "Maersk Line",
-      "BrokerId": "ML0023",
-      "BrokerKey":"ae24e3ba-5aad-11e9-94fc-332aa5298740",
-      "Status":"1"}];
+    // this.broker = [{ "BrokerName": "Maersk Line",
+    //   "BrokerId": "ML0023",
+    //   "BrokerKey":"ae24e3ba-5aad-11e9-94fc-332aa5298740",
+    //   "Status":"1"}];
   }
 
   ngOnChanges() {
-    // if (this.brokerKeyTobind != undefined) {
-    //   this.service.getAddress(this.brokerKeyTobind).subscribe(
-    //     (data: any) => {
-    //       this.broker = data;
-    //       if (this.brokerKeyTobind) {
-    //         this.selectedBroker = this.broker.find(
-    //           x => x.BrokerKey === this.brokerKeyTobind
-    //         );
-    //         this.brokerName = this.selectedBroker.BrokerId;
-    //       }this.brokerKey=this.selectedBroker.BrokerKey;
-    //     },
-    //     error => console.log(error),
-    //     () => console.log("Get customer complete")
-    //   );
-    // }
-
+    this.service.getbrokers()
+    .subscribe(
+      data => (this.broker = data),
+      error => console.log(error),
+      () => console.log("Get brokers complete")
+    );   
   }
   
   onSelect(brokerSelected: Broker): void {

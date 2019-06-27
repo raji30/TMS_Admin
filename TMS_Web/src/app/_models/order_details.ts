@@ -1,3 +1,5 @@
+import { Time } from "@angular/common";
+
 export class Order_details {
         OrderDetailKey :string;
         OrderKey:string;
@@ -8,6 +10,10 @@ export class Order_details {
         weight:number;
         apptdatefrom:string;
         apptdateto:string;
+        Pickupdate:string;
+        Pickuptime:string;
+        DropOffdate:string;
+        DropOfftime:string;
         status:string;
         statusdate:string;
         holdreason:string;

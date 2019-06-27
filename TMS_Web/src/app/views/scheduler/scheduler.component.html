@@ -12,24 +12,30 @@
                 <th scope="col" hidden="true"> Size</th>
                 <th scope="col">Chassis#</th>
                 <th scope="col">Seal#</th>
-                <th scope="col" >Weight</th>
-                <th scope="col" class="col-md-2">Depature</th>
-                <th scope="col" class="col-md-2">Arrival</th>
+                <th scope="col">Weight</th>
+                <th scope="col" class="col-md-2">Appt.Date From</th>
+                <th scope="col" class="col-md-2">Appt.Date To</th>
+                <th scope="col" class="col-md-2">PickupDate</th>
+                <th scope="col" class="col-md-2">PickupTime</th>
+                <th scope="col" class="col-md-2">DropOffDate</th>
+                <th scope="col" class="col-md-2">DropOffTime</th>
+
                 <th scope="col" class="col-md-2">Status</th>
                 <th scope="col" hidden="true">Status Date</th>
                 <th scope="col" hidden="true">Hold Reason</th>
-                <th scope="col" hidden="true">Date</th>               
+                <th scope="col" hidden="true">Date</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let field of ContainerDetails; let i = index">
-                <td hidden="true" style="display:none"> 
-                    <input [(ngModel)]="field.OrderDetailKey" class="form-control form-control-sm"
-                        type="text" name="{{field.OrderDetailKey}}" />
+                <td hidden="true" style="display:none">
+                    <input [(ngModel)]="field.OrderDetailKey" class="form-control form-control-sm" type="text"
+                        name="{{field.OrderDetailKey}}" />
                 </td>
                 <td>
-                    {{field.ContainerSize}} </td>
+                    {{field.ContainerSize}}
+                </td>
                 <td hidden="true">
                     <select id="drpcontainerType" class="form-control form-control-sm" aria-placeholder="containerNo"
                         name="{{field.ContainerNo}}" [(ngModel)]="field.ContainerNo">
@@ -57,12 +63,25 @@
                 </td>
                 <td scope="col-md-2">
                     <input type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.AppDateFrom}}"
-                    style="width: 100px"  [(ngModel)]="field.AppDateFrom"
+                        style="width: 100px" [(ngModel)]="field.AppDateFrom"
                         class="form-control form-control-sm bg-dark" />
                 </td>
                 <td scope="col-md-2">
                     <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.AppDateTo"
-                    style="width: 100px" class="form-control form-control-sm bg-dark" name="{{field.AppDateTo}}" />
+                        style="width: 100px" class="form-control form-control-sm bg-dark" name="{{field.AppDateTo}}" />
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.Pickupdate}}" 
+                     [(ngModel)]="field.Pickupdate" />
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" name="{{field.Pickuptime}}"  [(ngModel)]="field.Pickuptime"/>
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.DropOffdate}}"  [(ngModel)]="field.DropOffdate" />
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" name="{{field.DropOfftime}}"  [(ngModel)]="field.DropOfftime"/>
                 </td>
                 <td class="col-md-2">
                     <select id="drpStatus" class="form-control form-control-sm bg-dark" name="{{field.Status}}"
@@ -80,7 +99,7 @@
                 </td>
                 <td hidden="true"> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.StatusDate"
                         class="form-control form-control-sm " name="{{field.StatusDate}}" /></td>
-
+               
                 <td hidden="true">
                     <select id="drpHoldReason" class="form-control form-control-sm bg-dark" name="{{field.HoldReason}}"
                         [(ngModel)]="field.HoldReason">
@@ -91,12 +110,12 @@
                 </td>
                 <td hidden="true"> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.HoldDate"
                         class="form-control form-control-sm " name="{{field.HoldDate}}" /></td>
-            
+
                 <td>
                     <button class="btn btn-primary btn-pill btn-sm" type="button"
                         (click)="ScheduleFieldValue(field)">Schedule</button>
                 </td>
-            </tr>           
+            </tr>
         </tbody>
     </table>
 </div>

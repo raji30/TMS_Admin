@@ -69,8 +69,8 @@ export class OrderlistComponent implements OnInit {
     this.router.navigate(["/doIntake", orderKey]);
     //this.router.navigate(['/tab',orderKey]);
   }
-  navigatetoTab(orderKey: string) {
-    this.router.navigate(["/tab", orderKey]);
+  navigatetoTab(order: string) {
+    this.router.navigate(["/tab", order]);
   }
 
   viewOrderinfo(orderParams) {

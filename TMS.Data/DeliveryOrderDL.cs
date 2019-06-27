@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -153,7 +154,7 @@ namespace TMS.Data
                             BO.OrderType = Utils.CustomParse<short>(reader["ordertype"]);
                             BO.BrokerRefNo = Utils.CustomParse<string>(reader["brokerrefno"]);                            
                             BO.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
-                            BO.OrderDate = Convert.ToDateTime(reader["orderdate"]);
+                            BO.OrderDate = Convert.ToDateTime(reader["orderdate"]).ToString("MM/dd/yyyy");
 
                             BO.statusdescription = reader["statusdescription"].ToString();
                             BO.ordertypedescription = reader["ordertypedescription"].ToString();
@@ -216,7 +217,7 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
   billoflading ,  bookingno ,  cutoffdate ,  ishazardous ,  priority ,  oh.createdate ,oh.createuserkey */
                         bo.OrderNo = reader["orderno"].ToString();
                         var dateAndTime = Convert.ToDateTime(reader["orderdate"].ToString()).ToString("MM/dd/yyyy");
-                        bo.OrderDate = Convert.ToDateTime(reader["orderdate"]);
+                        bo.OrderDate = Convert.ToDateTime(reader["orderdate"]).ToString("MM/dd/yyyy");
                         //bo.OrderDate = Convert.ToDateTime(reader["orderdate"].ToString());
                         bo.CustKey = Guid.Parse(reader["custkey"].ToString());
                         bo.BillToAddress = Utils.CustomParse<Guid>(reader["billtoaddrkey"]);
@@ -225,7 +226,7 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         bo.ReturnAddress = Utils.CustomParse<Guid>(reader["returnaddrkey"]);
                         bo.OrderType = Utils.CustomParse<short>(reader["ordertype"]);
                         bo.Status = Utils.CustomParse<short>(reader["status"]);
-                        bo.StatusDate = Convert.ToDateTime(reader["statusdate"]);
+                        bo.StatusDate = Convert.ToDateTime(reader["statusdate"]).ToString("MM/dd/yyyy");
                         //bo.HoldReason = Utils.CustomParse<short>(reader["holdreason"]);
                         //bo.HoldDate = Convert.ToDateTime(reader["holdDate"]);
                         bo.BrokerName = reader["brokername"].ToString();
@@ -237,7 +238,7 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         bo.BillofLading = reader["billoflading"].ToString();
                         bo.BookingNo = reader["bookingno"].ToString();
                         //bo.CutOffDate = Utils.CustomParse<string>(reader["cutoffdate"]);
-                        bo.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);
+                        bo.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]).ToString("MM/dd/yyyy");
                         //bo.IsHazardous = Utils.CustomParse<bool>(reader["ishazardous"]);
                         bo.Priority = Utils.CustomParse<short>(reader["priority"]);
                         bo.CreatedDate = Convert.ToDateTime(reader["createdate"]);
@@ -304,6 +305,10 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                             orderDetail.Chassis = Utils.CustomParse<string>(reader["chassis"]);
                             orderDetail.AppDateFrom = Convert.ToDateTime(reader["apptdatefrom"].ToString()).ToString("MM/dd/yyyy");
                             orderDetail.AppDateTo = Convert.ToDateTime(reader["apptdateto"].ToString()).ToString("MM/dd/yyyy");
+                            orderDetail.Pickupdate = Convert.ToDateTime(reader["Pickupdate"].ToString()).ToString("MM/dd/yyyy");
+                            orderDetail.DropOffdate = Convert.ToDateTime(reader["DropOffdate"].ToString()).ToString("MM/dd/yyyy");
+                            orderDetail.Pickuptime =reader["Pickuptime"].ToString();
+                            orderDetail.DropOfftime = reader["DropOfftime"].ToString();
                             //orderDetail.AppDateFrom = Utils.CustomParse<string>(reader["apptdatefrom"]);
                             //orderDetail.AppDateTo = Utils.CustomParse<string>(reader["apptdateto"]);
                             orderDetail.SealNo = Utils.CustomParse<string>(reader["sealno"]);
@@ -382,11 +387,12 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
 
         public bool UpdateOrderDetails(DeliveryOrderDetailBO detail)
         {
-            //string sql = @"update dbo.tms_orderdetail set apptdatefrom=@apptdatefrom, apptdateto=@apptdateto, "+
-            //    "status=@status,statusdate = @statusdate,holdreason=@holdreason, holddate=@holddate where orderdetailkey=@orderdetailkey AND orderkey=@orderkey";
+            //string sql = @"update dbo.tms_orderdetail set apptdatefrom=@apptdatefrom, apptdateto=@apptdateto, " +
+            //    "status=@status,statusdate = @statusdate,holdreason=@holdreason, holddate=@holddate where orderdetailkey=@orderdetailkey and orderkey=@orderkey";
 
-            string sql = @"update dbo.tms_orderdetail set apptdatefrom=@apptdatefrom, apptdateto=@apptdateto, " +
-                        "status=@status where orderdetailkey=@orderdetailkey AND orderkey=@orderkey";
+            string sql = @"update dbo.tms_orderdetail set apptdatefrom=@apptdatefrom, apptdateto=@apptdateto,Pickupdate = @Pickupdate, Pickuptime = @Pickuptime,DropOffdate = @DropOffdate, DropOfftime = @DropOfftime " +
+               ",status=@status where orderdetailkey=@orderdetailkey and orderkey=@orderkey";
+
 
             // string sql = "dbo.fn_update_order_details";
             using (connection)
@@ -395,15 +401,14 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                   using (var cmd = new NpgsqlCommand(sql, connection))
                     {
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.Parameters.AddWithValue("@orderkey",
-                        NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderKey);
-                    cmd.Parameters.AddWithValue("@orderdetailkey",
-                          NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderDetailKey);                
-                    cmd.Parameters.AddWithValue("@apptdatefrom",
-                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(detail.AppDateFrom).Date);
-                    
-                    cmd.Parameters.AddWithValue("@apptdateto",
-                        NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(detail.AppDateTo).Date);
+                    cmd.Parameters.AddWithValue("@orderkey", NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderKey);
+                    cmd.Parameters.AddWithValue("@orderdetailkey",NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderDetailKey);
+                    cmd.Parameters.AddWithValue("@apptdatefrom",NpgsqlTypes.NpgsqlDbType.Date, DateTime.Parse(detail.AppDateFrom, System.Globalization.CultureInfo.InvariantCulture));
+                    cmd.Parameters.AddWithValue("@apptdateto", NpgsqlTypes.NpgsqlDbType.Date, DateTime.Parse(detail.AppDateTo, System.Globalization.CultureInfo.InvariantCulture));
+                    cmd.Parameters.AddWithValue("@Pickupdate", NpgsqlTypes.NpgsqlDbType.Date, DateTime.Parse(detail.Pickupdate, System.Globalization.CultureInfo.InvariantCulture));
+                    cmd.Parameters.AddWithValue("@DropOffdate", NpgsqlTypes.NpgsqlDbType.Date, DateTime.Parse(detail.DropOffdate, System.Globalization.CultureInfo.InvariantCulture));
+                    cmd.Parameters.AddWithValue("@Pickuptime",NpgsqlTypes.NpgsqlDbType.Varchar, detail.Pickuptime);
+                    cmd.Parameters.AddWithValue("@DropOfftime",NpgsqlTypes.NpgsqlDbType.Varchar, detail.DropOfftime);
                     cmd.Parameters.AddWithValue("@status",
                         NpgsqlTypes.NpgsqlDbType.Smallint, detail.Status);
                     //cmd.Parameters.AddWithValue("@statusdate",

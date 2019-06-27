@@ -97,24 +97,24 @@
   </div> -->
   <div class="row">
     <div class="col-md-3">
-      <h5 class="card-subtitle mb-2" style="color:grey">Order# : {{order.OrderNo}} </h5>
-      <p class="card-subtitle mb-2" style="color:grey"> Date: {{order.OrderDate}}</p>
-      <p class="card-subtitle mb-2" style="color:grey"> Type: {{order.OrderTypeDescription}}</p>
-      <p class="card-subtitle mb-2" style="color:grey"> Status: {{order.OrderStatusDescription}}</p>
+      <h5 class="card-subtitle mb-2" style="color: white">Order# : <span style="color: #0892d0">{{order.OrderNo}} </span> </h5>
+      <p class="card-subtitle mb-2" style="color: white"> Date: <span style="color: #0892d0">{{order.OrderDate}}</span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Type: <span style="color: #0892d0">{{order.ordertypedescription}}</span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Status: <span style="color: #0892d0">{{order.statusdescription}}</span></p>
     </div>
 
     <div class="col-md-3">
-      <p class="card-subtitle mb-2" style="color:grey"> Customer: <span class="badge badge-pill badge-danger"
+      <p class="card-subtitle mb-2" style="color:white"> Customer: <span class="badge badge-pill badge-danger"
           style="color:white"></span></p>
-      <p class="card-subtitle mb-2" style="color:grey"> Broker: {{order.BrokerName}}</p>
-      <p class="card-subtitle mb-2" style="color:grey"> Broker Ref#: {{order.BrokerRefNo}}</p>
-      <p class="card-subtitle mb-2" style="color:grey"> Booking# : {{order.BookingNo}}</p>
+      <p class="card-subtitle mb-2" style="color:white"> Broker: <span style="color: #0892d0">{{order.BrokerName}}</span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Broker Ref#: <span style="color: #0892d0">{{order.BrokerRefNo}}</span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Booking# :<span style="color: #0892d0"> {{order.BookingNo}}</span></p>
     </div>
 
     <div class="col-md-3">
-      <p class="card-subtitle mb-2" style="color:grey"> Vessel:{{order.VesselName}}</p>
-      <p class="card-subtitle mb-2" style="color:grey"> Bill of Lading :{{order.BillofLading}}</p>
-      <p class="card-subtitle mb-2" style="color:grey"> Cut-Off Date : {{order.CutOffDate|date}}</p>
+      <p class="card-subtitle mb-2" style="color:white"> Vessel: <span style="color: #0892d0">{{order.VesselName}}</span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Bill of Lading : <span style="color: #0892d0">{{order.BillofLading}} </span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Cut-Off Date : <span style="color: #0892d0">{{order.CutOffDate|date}}</span></p>
     </div>
     <div class="col-md-3">
       <p class="card-subtitle mb-2" style="color:grey"> Pickup : <span class="badge badge-pill badge-primary"
@@ -125,6 +125,7 @@
           style="color:black"></span></p>
     </div>
   </div>
+  <hr>
   <tabset type="tabs" (click)="onClick($event)">
     <tab title="Disabled" [disabled]="false">
       <ng-template tabHeading>
@@ -141,7 +142,13 @@
     </tab>
     <tab [disabled]="false">
       <ng-template tabHeading>
-        Dispatch
+        Dispatch Assignment
+      </ng-template>
+      <app-dispatch [orderKeyinput]=orderKeyinput></app-dispatch>
+    </tab>
+    <tab [disabled]="false">
+      <ng-template tabHeading>
+        Dispatch/Delivery
       </ng-template>
       <app-dispatch [orderKeyinput]=orderKeyinput></app-dispatch>
     </tab>

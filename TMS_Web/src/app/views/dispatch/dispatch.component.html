@@ -71,8 +71,8 @@
         <th scope="col">Chassis#</th>
         <th scope="col">Seal#</th>
         <th scope="col-md-2">Weight</th>
-        <th scope="col-md-2">Depature</th>
-        <th scope="col-md-2">Arrival</th>
+        <th scope="col-md-2">Appt.Date From</th>
+        <th scope="col-md-2">Appt.Date To</th>
         <th scope="col-md-2">Status</th>
 
         <th scope="col">..</th>
@@ -111,15 +111,46 @@
 
 
         <td>
-          <button class="btn btn-outline-secondary btn-sm" type="button" (click)="collapseSign()" data-toggle="collapse"
+          <button class="btn btn-outline-secondary btn-sm" type="button" (click)="collapseSign(field)" data-toggle="collapse"
             data-target="#collapseDriverdetails" aria-expanded="false" aria-controls="collapseDriverdetails">
             {{collapsesign}}
           </button>
         </td>
+     
+        <td colspan="15">
+          <div class="collapse" id="collapseDriverdetails">
+            <div class="card card-body">
+              <table class="table table-sm bg-dark">
+                <thead>
+                  <tr>                    
+                    <th scope="col">Driver</th>                   
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>                    
+                    <td>
+                      <select id="drpStatus" class="form-control form-control-sm bg-dark" style="width: 100px">
+                          <option [value]="driver.driverkey" *ngFor="let driver of driverList">{{driver.driverid}}</option>
+                      </select>
+                    
+                    </td>
+                   
+                    <td>
+                      <button class="btn btn-primary btn-sm" type="button"
+                        (click)="ScheduleFieldValue(field)">Dispatch</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </td>
+
       </tr>
       <tr>
         <td colspan="15">
-          <div class="collapse" id="collapseDriverdetails">
+          <!-- <div class="collapse" id="collapseDriverdetails">
             <div class="card card-body">
               <table class="table table-sm bg-dark">
                 <thead>
@@ -164,7 +195,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> -->
         </td>
       </tr>
     </tbody>

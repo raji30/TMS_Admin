@@ -23,7 +23,7 @@ namespace TMS.Data.TableOperations
 
         public IEnumerable<broker> GetAll()
         {
-            throw new NotImplementedException();
+            return entity.brokers.ToList();
         }
 
         public broker GetbyField(object t)

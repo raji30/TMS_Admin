@@ -72,8 +72,11 @@
                     </td>
                     <td>
                       <!-- <span>{{ order.OrderNo}} </span> -->
-                       <a [routerLink]="" (click)="open(order.OrderKey)">
-                         {{ order.OrderNo }}</a>            
+                       <!-- <a [routerLink]="" (click)="open(order.OrderKey)">
+                         {{ order.OrderNo }}</a>  -->
+                         <a [routerLink]=""  (click)="navigatetoTab(order.OrderKey)" >
+                            {{ order.OrderNo }}</a>     
+                              
                     </td>
 
 

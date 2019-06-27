@@ -26,9 +26,9 @@ namespace TMS.Api.Controllers
                 Configuration.Formatters.JsonFormatter);
         }
         [HttpGet]
-        [Route("GetAll")]
-        [SwaggerOperation("GetAll")]
-        public HttpResponseMessage GetAll()
+        [Route("GetBrokers")]
+        [SwaggerOperation("GetBrokers")]
+        public HttpResponseMessage GetBrokers()
         {
             var boList = brokerBL.GetAll();
             return Request.CreateResponse(HttpStatusCode.OK, boList,

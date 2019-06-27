@@ -31,7 +31,7 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
     private modalService: NgbModal
   ) {
     //alert(this.orderKey);
-    // this.orderKey = this.route.snapshot.paramMap.get("order");
+     this.orderKeyinput = this.route.snapshot.paramMap.get("order");
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     /* This part will only be accessable on load only. So, it will not be accessable on Reload. */
     // this.ngOnInit();

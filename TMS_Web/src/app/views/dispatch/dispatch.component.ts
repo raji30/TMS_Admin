@@ -3,7 +3,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Order_details } from "../../_models/order_details";
 import { BsDatepickerConfig } from "ngx-bootstrap";
 import { DeliveryOrderService } from "../../_services/deliveryOrder.service";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, Routes } from "@angular/router";
+import { RoutesService } from "../../_services/routes.service";
+import { Tms_routes } from "../../_models/tms_routes";
+import { DriverService } from './../../_services/driver.service';
+import { Driver } from "../../_models/driver";
 @Component({
   selector: 'app-dispatch',
   templateUrl: './dispatch.component.html',
@@ -14,15 +18,16 @@ export class DispatchComponent implements OnInit {
   @Input() orderKeyinput: string;
   @Input() public ContainerDetails: Array<Order_details> = [];
   @Input() isContainerAttributeVisible: boolean = false;
-  private AddContainerDetails: Array<Order_details> = [];
-  private newAttribute: any = {};
+ 
   dataSaved = false;
   message = null;
-  @Output() ContainerDetailsOutput = new EventEmitter<any>();
   collapsesign: string;
-  selectedcontainer: Order_details;
+  tmpRoutes:Tms_routes;
+  driverList:Driver[];
   constructor(
     private service: DeliveryOrderService,
+    private routeservice: RoutesService,
+    private driverservice:DriverService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -45,14 +50,24 @@ export class DispatchComponent implements OnInit {
         error => console.log(error),
         () => console.log("Get OrderDetail", this.ContainerDetails)
       );
+
+      this.driverservice.getDrivers()
+      .subscribe(
+        data => (this.driverList = data),
+        error => console.log(error),
+        () => console.log("Get driverList", this.driverList)
+      );
   }
-  ScheduleFieldValue(field: Order_details) {
-    //this.ContainerDetails.splice(field, 1);
-    this.service.updateOrderDetails(field).subscribe(() => {
+  ScheduleFieldValue(fld:Tms_routes) {
+  //  fld.OrderKey = "33215b82-91a6-11e9-b6c9-3f0945f4a3b5";
+  //  fld.OrderDetailKey ="3ccfa396-91a6-11e9-b6ca-b37ef7da07e1";
+  //  fld.Routekey = "e20af418-9265-11e9-bdcb-2f0c27097902";
+    this.routeservice.insertRoutesDetails(fld).subscribe(() => {
       this.dataSaved = true;
-      this.message = "Scheduled Successfully";
+      this.message = "Success";
+      alert(this.message);
     });
-    alert(this.message);
+    
   }
 
   ngOnChanges() {
@@ -65,12 +80,15 @@ export class DispatchComponent implements OnInit {
         () => console.log("Get OrderDetail", this.ContainerDetails)
       );
   }
-  collapseSign() {
+  collapseSign(tmsRoutes:Tms_routes ) {
     if (this.collapsesign === "+") {
       this.collapsesign = "-";
     }
     else if (this.collapsesign === "-") {
       this.collapsesign = "+";
     }
+
+    //this.temptmsRoutes.OrderKey = tmsRoutes.OrderKey;
+    //this.temptmsRoutes.OrderDetailKey = tmsRoutes.OrderDetailKey;
   }
 }

@@ -55,8 +55,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   subscription: Subscription;
   bsConfig: Partial<BsDatepickerConfig>;
   @Input() orderKeyinput: string;
-  broker: Broker[];
-  brokerName: string = "Select Broker";
+  // broker: Broker[];
+  // brokerName: string = "Select Broker";
 
   ordertypelist: OrderType[];
   prioritylist: Priority[];
@@ -116,8 +116,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   onSelectedContainerDetails(Order_details: any[]) {
     this.doHeader.orderdetails = Order_details;
   }
-  onOrdernoGenerated(brokerkey: string) {
-    this.doHeader.OrderNo = brokerkey;
+  onOrdernoGenerated(newOrderno: string) {
+    this.doHeader.OrderNo = newOrderno;
     this.doHeader.OrderDate = new Date().toLocaleDateString();
    
   }
