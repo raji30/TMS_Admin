@@ -299,7 +299,7 @@
                 <select id="drpCarrier" class="form-control form-control-sm" name="CarrierKey"
                   [(ngModel)]="doHeader.CarrierKey" #CarrierKey="ngModel"
                   [ngClass]="{ 'is-invalid': f.submitted && CarrierKey.invalid }" required>
-                  <option [value]="carrier.Value" *ngFor="let carrier of carrierlist">{{carrier.Name}}</option>
+                  <option [value]="carrier.CarrierKey" *ngFor="let carrier of carrierlist">{{carrier.CarrierId}}</option>
                 </select>
    
                 <div *ngIf="f.submitted && CarrierKey.invalid" class="invalid-feedback">

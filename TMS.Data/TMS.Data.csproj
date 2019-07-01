@@ -171,6 +171,7 @@
     <Compile Include="TableOperations\AddressRepository.cs" />
     <Compile Include="TableOperations\AppRepository.cs" />
     <Compile Include="TableOperations\BrokerRepository.cs" />
+    <Compile Include="TableOperations\CarrierRepository.cs" />
     <Compile Include="TableOperations\CompanyAppRepository.cs" />
     <Compile Include="TableOperations\CompanyRepository.cs" />
     <Compile Include="TableOperations\CustomerRepository.cs" />

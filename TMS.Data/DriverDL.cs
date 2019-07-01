@@ -78,8 +78,8 @@ namespace TMS.Data
                         while (reader.Read())
                         {
                             var BO = new DriverBO();
-                            BO.driverkey = Guid.Parse(reader["driverkey"].ToString());
-                            BO.driverid = Utils.CustomParse<string>(reader["driverid"]);
+                            BO.DriverKey = Guid.Parse(reader["driverkey"].ToString());
+                            BO.DriverId = Utils.CustomParse<string>(reader["driverid"]);
                             driverlist.Add(BO);
                         }
                     }

@@ -15,8 +15,8 @@ namespace TMS.BusinessObjects
         public AddressBO Address { get; set; }
         public string ScacCode { get; set; }
         public string LicensePlate { get; set; }
-        public DateTime LicensePlateExpiryDate { get; set; } 
-        public Int16 Status { get; set; }  
+        public DateTime LicensePlateExpiryDate { get; set; }
+        public Int16 Status { get; set; }
         public DateTime StatusDate { get; set; }
     }
 }

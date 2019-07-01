@@ -229,10 +229,12 @@ sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnad
                         bo.StatusDate = Convert.ToDateTime(reader["statusdate"]).ToString("MM/dd/yyyy");
                         //bo.HoldReason = Utils.CustomParse<short>(reader["holdreason"]);
                         //bo.HoldDate = Convert.ToDateTime(reader["holdDate"]);
+                        bo.Brokerkey = Utils.CustomParse<Guid>(reader["brokerkey"]);
                         bo.BrokerName = reader["brokername"].ToString();
                         bo.BrokerId = reader["brokerid"].ToString();
                         bo.BrokerRefNo = reader["brokerrefno"].ToString();
                         bo.PortofOriginKey = Utils.CustomParse<Guid>(reader["portoforiginkey"]);
+                        bo.PortofDestinationKey = Utils.CustomParse<Guid>(reader["portofdestinationkey"]);
                         bo.CarrierKey = Utils.CustomParse<Guid>(reader["carrierkey"]);
                         bo.VesselName = reader["vesselname"].ToString();
                         bo.BillofLading = reader["billoflading"].ToString();
