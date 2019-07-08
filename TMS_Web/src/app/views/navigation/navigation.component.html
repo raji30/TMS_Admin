@@ -39,16 +39,15 @@
                 <!-- <span>{{ order.OrderNo}} </span>   -->
                 <!-- <a [routerLink]="['./tab']"><i class="fa fa-dashboard"></i> <span class="nav-label">Dashboards</span></a> -->
 
-
                 <!-- <i  style="width:20px;"class="fa fa-circle-thin" aria-hidden="true"></i> -->
                 <!-- <i class="fa-li fa fa-check-square"></i>
                          <a   [routerLink]="['/tab', order.OrderKey]" >&nbsp; {{ order.OrderNo }}</a>  -->
 
                 <ul class="fa-ul">
                     <li>
-                        <a [routerLink]="" class="text-secondary" (click)="open(order.OrderKey)">
-                            <img src="assets/img/brand/bullet-black-icon.png" /> {{ order.OrderNo }}</a>
-
+                        <a [routerLink]="" class="text-secondary small" (click)="open(order.OrderKey)">
+                            {{ order.OrderNo }} - {{order.ordertypedescription}}</a>
+                             <!-- <img src="assets/img/brand/bullet-black-icon.png" /> -->
                     </li>
                 </ul>
 

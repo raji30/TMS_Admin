@@ -1,72 +1,73 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
 // Import Containers
-import { DefaultLayoutComponent } from './containers';
-import { LoginComponent } from './views/login/login.component';
-import { DOIntakeComponent } from './views/dointake/dointake.component';
-import { OrderlistComponent } from './views/orderlist/orderlist.component';
-import { OrderinfoComponent } from './views/child/orderinfo/orderinfo.component';
-import { TabComponent } from './views/tab/tab.component';
-import { ContainerComponent } from './views/child/container/container.component';
+import { DefaultLayoutComponent } from "./containers";
+import { LoginComponent } from "./views/login/login.component";
+import { DOIntakeComponent } from "./views/dointake/dointake.component";
+import { OrderlistComponent } from "./views/orderlist/orderlist.component";
+import { OrderinfoComponent } from "./views/child/orderinfo/orderinfo.component";
+import { TabComponent } from "./views/tab/tab.component";
+import { ContainerComponent } from "./views/child/container/container.component";
+import { ListcustomerComponent } from "./views/_customer/list-customer/listcustomer/listcustomer.component";
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
+    path: "",
+    redirectTo: "login",
+    pathMatch: "full"
   },
 
   {
-    path: '',
+    path: "",
     component: DefaultLayoutComponent,
     data: {
-      title: 'Home'
+      title: "Home"
     },
     children: [
       {
-        path: 'dashboard',
+        path: "dashboard",
         // loadChildren: './views/dashboard/dashboard.module#DashboardModule',
-        component : OrderlistComponent
+        component: OrderlistComponent
       },
-     
+
       {
-        path :'doIntake',
-        component : DOIntakeComponent
-      },
-      {
-        path :'doIntake/:order',
-        component : DOIntakeComponent
+        path: "doIntake",
+        component: DOIntakeComponent
       },
       {
-        path :'orderList',
-        component : OrderlistComponent
+        path: "doIntake/:order",
+        component: DOIntakeComponent
       },
       {
-        path :'orderinfo/:order',
-        component : OrderinfoComponent
+        path: "orderList",
+        component: OrderlistComponent
       },
-      { 
-        path: 'Scheduler', 
-        component: ContainerComponent 
+      {
+        path: "orderinfo/:order",
+        component: OrderinfoComponent
       },
-      { path: 'tab/:order', 
-        component: TabComponent
+      {
+        path: "Scheduler",
+        component: ContainerComponent
       },
-      { path: 'tab', component: TabComponent },
+      {
+        path: "Customers",
+        component: ListcustomerComponent
+      },
+      { path: "tab/:order", component: TabComponent },
+      { path: "tab", component: TabComponent }
       // {
       //   path: 'login',
       //   loadChildren: './views/login/login.module#LoginModule'
       // }
-   ]
+    ]
   },
-  { path: 'login', component: LoginComponent },
- 
-  
+  { path: "login", component: LoginComponent }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using TMS.BusinessLayer;
 using TMS.BusinessObjects;
+using TMS.Data;
 using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
@@ -18,8 +19,8 @@ namespace TMS.Api.Controllers
         [SwaggerOperation("GetCarrier")]
         public HttpResponseMessage GetCarrier()
         {
-            CarrierBL BL = new CarrierBL();
-            List<CarrierBO> carrierlist = BL.GetAll();
+            CarrierDL DL = new CarrierDL();
+            List<CarrierBO> carrierlist = DL.GetCarriers();
             return Request.CreateResponse(HttpStatusCode.OK, carrierlist, Configuration.Formatters.JsonFormatter);
         }
     }

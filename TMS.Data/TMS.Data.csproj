@@ -116,6 +116,7 @@
     <Compile Include="carrier.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CarrierDL.cs" />
     <Compile Include="comment.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>

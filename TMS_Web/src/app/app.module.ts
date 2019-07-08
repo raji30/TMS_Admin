@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -58,6 +58,8 @@ import { OrderDashboardComponent } from './views/order-dashboard/order-dashboard
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompanyComponent } from './views/child/_company/company/company.component';
 import { DispatchComponent } from './views/dispatch/dispatch.component';
+import { ListcustomerComponent } from './views/_customer/list-customer/listcustomer/listcustomer.component';
+import { AddcustomerComponent } from './views/_customer/add-customer/addcustomer/addcustomer.component';
 
 
 @NgModule({
@@ -79,7 +81,7 @@ import { DispatchComponent } from './views/dispatch/dispatch.component';
     ToastrModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    FormsModule,
+    FormsModule,ReactiveFormsModule,
     ModalModule.forRoot(),
     HttpClientModule,
     A11yModule,
@@ -98,7 +100,7 @@ import { DispatchComponent } from './views/dispatch/dispatch.component';
     OrderDashboardComponent,
     DOIntakeComponent,
     AddressComponent,
-    CustomerComponent, CompanyComponent,  
+    CustomerComponent,AddcustomerComponent, ListcustomerComponent,CompanyComponent,  
     BrokerComponent,
     BillingratesComponent,
     ContainerComponent,

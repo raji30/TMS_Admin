@@ -11,7 +11,7 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
 {
-   // [JwtAuthentication]
+    [JwtAuthentication]
     public class CustomerController : ApiController
     {
         CustomerDL cusObj = new CustomerDL();
@@ -128,6 +128,7 @@ namespace TMS.Api.Controllers
 
         [HttpPost]
         // POST: api/Customer
+        [Route("CreateCustomer")]
         public HttpResponseMessage Post([FromBody] CustomerBO customer)
         {
             CustomerRepository repo = new CustomerRepository();
@@ -164,7 +165,8 @@ namespace TMS.Api.Controllers
 
         [HttpPut]
         // PUT: api/Customer/5
-        public HttpResponseMessage Put(int id, [FromBody]CustomerBO customer)
+        [Route("UpdateCustomer")]
+        public HttpResponseMessage Put([FromBody]CustomerBO customer)
         {
             CustomerRepository repo = new CustomerRepository();
             Data.customer _customer = new Data.customer();
