@@ -19,7 +19,7 @@ namespace TMS.Data
         {
             connection = new NpgsqlConnection(connString);
         }
-        public IList<Guid> InsertRoutesDetails(RoutesBO obj)
+        public IList<Guid> InsertRouteData(RoutesBO obj)
         {
             //routekey, orderdetailkey, orderkey, legno, legtype, sourceaddrkey, destinationaddrkey,
             //estimateddistanceinmiles, estimatedtraveltime, status, driverkey, 
@@ -43,8 +43,10 @@ namespace TMS.Data
                            NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderDetailKey);
                         cmd.Parameters.AddWithValue("_driverkey",
                             NpgsqlTypes.NpgsqlDbType.Uuid, obj.driverkey);
-                                           
-                        var reader = cmd.ExecuteReader();
+                    cmd.Parameters.AddWithValue("_drivernotes",
+                           NpgsqlTypes.NpgsqlDbType.Varchar, obj.drivernotes);
+
+                    var reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
                             for (int i = 0; i < reader.FieldCount; i++)
@@ -58,6 +60,38 @@ namespace TMS.Data
                 connection.Close();
             }
             return RouteDetailCollection;
+        }
+
+        public bool UpdateRouteData(RoutesBO obj)
+        {
+            string sql = "update dbo.tms_routes set legno=@legno, legtype = @legtype, actualarrival=@actualarrival ,actualdeparture =" +
+                "@actualdeparture  where orderkey = @orderkey and orderdetailkey = @orderdetailkey";
+
+            //SELECT routekey, orderdetailkey, orderkey, legno, legtype, sourceaddrkey, destinationaddrkey, estimateddistanceinmiles, 
+            //    estimatedtraveltime, status, driverkey, scheduledarrival, scheduleddeparture, odometeratsource, actualarrival, 
+            //    actualdeparture, odometeratdestination, drivernotes FROM dbo.tms_routes;
+
+            using (connection)
+            {
+                connection.Open();
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("orderkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderKey);
+                    cmd.Parameters.AddWithValue("orderdetailkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderDetailKey);
+                    cmd.Parameters.AddWithValue("legno", NpgsqlTypes.NpgsqlDbType.Numeric, obj.legno);
+                    cmd.Parameters.AddWithValue("legtype", NpgsqlTypes.NpgsqlDbType.Numeric, obj.legtype);
+                    cmd.Parameters.AddWithValue("actualarrival", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.actualarrival);
+                    cmd.Parameters.AddWithValue("actualdeparture", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.actualdeparture);
+                    
+                    int returnvalue = cmd.ExecuteNonQuery();
+                    if (returnvalue < 0)
+                    {
+                        return false;
+                    }
+                    else return true;
+                }
+            }
         }
     }
 }

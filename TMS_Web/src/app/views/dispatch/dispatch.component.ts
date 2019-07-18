@@ -58,10 +58,7 @@ export class DispatchComponent implements OnInit {
         () => console.log("Get driverList", this.driverList)
       );
   }
-  ScheduleFieldValue(fld:Tms_routes) {
-  //  fld.OrderKey = "33215b82-91a6-11e9-b6c9-3f0945f4a3b5";
-  //  fld.OrderDetailKey ="3ccfa396-91a6-11e9-b6ca-b37ef7da07e1";
-  //  fld.Routekey = "e20af418-9265-11e9-bdcb-2f0c27097902";
+  ScheduleFieldValue(fld:Tms_routes) {  
     this.routeservice.insertRoutesDetails(fld).subscribe(() => {
       this.dataSaved = true;
       this.message = "Success";

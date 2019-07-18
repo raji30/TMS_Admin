@@ -11,20 +11,20 @@ namespace TMS.BusinessObjects
         public Guid Routekey { get; set; }
         public Guid OrderDetailKey { get; set; }
         public Guid OrderKey { get; set; }
-        public short legno { get; set; }
-        public short legtype { get; set; }
+        public int legno { get; set; }
+        public int legtype { get; set; }
         public Guid sourceaddrkey { get; set; }
         public Guid destinationaddrkey { get; set; }
         public string estimateddistanceinmiles { get; set; }
         public string estimatedtraveltime { get; set; }
         public string status { get; set; }
         public Guid driverkey { get; set; }
-        public string scheduledarrival { get; set; }
-        public string scheduleddeparture { get; set; }
+        public DateTime scheduledarrival { get; set; }
+        public DateTime scheduleddeparture { get; set; }
         public string odometeratsource { get; set; }
-        public short actualarrival { get; set; }
-        public string actualdeparture { get; set; }
+        public DateTime actualarrival { get; set; }
+        public DateTime actualdeparture { get; set; }
         public string odometeratdestination { get; set; }
-        
+        public string drivernotes { get; set; }
     }
 }

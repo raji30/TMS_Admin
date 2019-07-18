@@ -10,7 +10,7 @@ namespace TMS.Data
 {
    public class SchedulingDL
     {
-        string connString = "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_Model;";
+        string connString = "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";
         NpgsqlConnection connection;
         public SchedulingDL()
         {
@@ -108,5 +108,39 @@ namespace TMS.Data
             }
             return DOlist;
         }
+
+        public List<DeliveryOrderDetailBO> GetOrderstoSchedule()
+        {
+            string sql = "dbo.fn_get_orders_to_schedule";
+            List<DeliveryOrderDetailBO> orderDetails = new List<DeliveryOrderDetailBO>();            
+            using (connection)
+            {                
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                  
+                    var reader = cmd.ExecuteReader();
+                    do
+                    {
+                        while (reader.Read())
+                        {                          
+                            var orderDetail = new DeliveryOrderDetailBO();
+                            orderDetail.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
+                            orderDetail.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);
+                            orderDetail.ContainerNo = Utils.CustomParse<string>(reader["containerno"]);
+                            orderDetail.ContainerSize = Utils.CustomParse<short>(reader["containersize"]);
+                            orderDetail.Chassis = Utils.CustomParse<string>(reader["chassis"]);
+                            orderDetail.SealNo = Utils.CustomParse<string>(reader["sealno"]);
+                            orderDetail.Weight = Utils.CustomParse<string>(reader["weight"]);
+                                                     
+                            orderDetails.Add(orderDetail);
+                        }
+                    }
+                    while (reader.NextResult());
+                }
+            }
+            return orderDetails;
+        }
+        
     }
 }

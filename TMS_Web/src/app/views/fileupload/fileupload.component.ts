@@ -60,16 +60,16 @@ export class FileuploadComponent implements OnInit {
     for (var i = 0; i < this.myFiles.length; i++) {
       const frmData = new FormData();
       frmData.append("fileUpload", this.myFiles[i]);
-      // this.fileUploadService.upload(frmData).subscribe(
-      //   res => {
-      //     (
-      //       this.fileUpload.status = res.toString())
-      //       this.showSuccess("File(s) uploaded successfully", "Upload");
-      //      (this.fileUploadcount = this.fileUploadcount + 1);
-      //     this.myFiles = [];   
-      //   },
-      //   err => (this.error = err)
-      // );
+      this.fileUploadService.upload(frmData).subscribe(
+        res => {
+          (
+            this.fileUpload.status = res.toString())
+            this.showSuccess("File(s) uploaded successfully", "Upload");
+           (this.fileUploadcount = this.fileUploadcount + 1);
+          this.myFiles = [];   
+        },
+        err => (this.error = err)
+      );
     }
   }
   showSuccess(message: string, title: string) {

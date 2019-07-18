@@ -137,6 +137,8 @@
     </Compile>
     <Compile Include="CustomerDL.cs" />
     <Compile Include="DeliveryOrderDL.cs" />
+    <Compile Include="DispatchAssignmentDL.cs" />
+    <Compile Include="DispatchDeliveryDL.cs" />
     <Compile Include="document.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>

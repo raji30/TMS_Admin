@@ -19,11 +19,22 @@ namespace TMS.Api.Controllers
         DeliveryOrderDL doObj = new DeliveryOrderDL();
 
         [HttpGet]
-        [Route("GetDeliveryOrderDetail/{OrderKey}")]
-       // [SwaggerOperation("Get")]
-       public HttpResponseMessage Get(string Orderkey)
+        [Route("GetDeliveryOrderDetails")]
+        // [SwaggerOperation("Get")]
+        public HttpResponseMessage Get()
         {
-            var list = doObj.GetOrderDetails(Orderkey);
+            var list = doObj.GetOrderDetails();
+            return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
+        }
+
+       
+
+        [HttpGet]
+        [Route("GetDeliveryOrderDetailByKey/{OrderKey}")]
+       // [SwaggerOperation("Get")]
+       public HttpResponseMessage GetbyOrderKey(string Orderkey)
+        {
+            var list = doObj.GetOrderDetailsByKey(Orderkey);
             return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
         }
         [HttpPost]
@@ -53,28 +64,28 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, orderdetailCollection, Configuration.Formatters.JsonFormatter);
         }
 
-        [HttpGet]
-        [Route("GetDrivers")]
-        public HttpResponseMessage GetDriversList()
-        {
-            DriverRepository driverRepository = new DriverRepository();
-            var enumerable = driverRepository.GetAll().ToList();
-            var list = new List<DriverBO>();
-            enumerable.ForEach(d =>
-            {
-                list.Add(new DriverBO
-                {
-                    FirstName = d.firstname,
-                    LastName = d.lastname,
-                    DriverId = d.driverid,
-                    DriversLicenseNo = d.drivinglicenseno,
-                    DriverKey = d.driverkey,
-                    CarrierKey = d.carrierkey.Value,
-                    LicenseExpiryDate = d.drivinglicenseexpirydate.Value,
+        //[HttpGet]
+        //[Route("GetDrivers")]
+        //public HttpResponseMessage GetDriversList()
+        //{
+        //    DriverRepository driverRepository = new DriverRepository();
+        //    var enumerable = driverRepository.GetAll().ToList();
+        //    var list = new List<DriverBO>();
+        //    enumerable.ForEach(d =>
+        //    {
+        //        list.Add(new DriverBO
+        //        {
+        //            FirstName = d.firstname,
+        //            LastName = d.lastname,
+        //            DriverId = d.driverid,
+        //            DriversLicenseNo = d.drivinglicenseno,
+        //            DriverKey = d.driverkey,
+        //            CarrierKey = d.carrierkey.Value,
+        //            LicenseExpiryDate = d.drivinglicenseexpirydate.Value,
 
-                });
-            });
-            return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
-        }
+        //        });
+        //    });
+        //    return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
+        //}
     }
 }

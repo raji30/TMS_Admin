@@ -9,6 +9,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using TMS.BusinessLayer;
 using TMS.BusinessObjects;
 using TMS.Data;
@@ -16,9 +17,11 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class FileUploadController : ApiController
     {
         [HttpPost]
+        [Route("FileUpload")]
         public Task<HttpResponseMessage> Post(string DO,string CreatedBy)
         {
             try

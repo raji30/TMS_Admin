@@ -2,41 +2,50 @@
      <p>No customer found </p> 
      *ngIf="ContainerDetails ||ContainerDetails.length > 0"
 </div>  -->
+<br>
+<div class="row">
+    <div class="col-md-8">
 
-<div class="table-responsive" style="overflow-x: auto">
-    <table id="containerAttributes" class="table table-sm">
+    </div>
+    <div class="col-md-4">
+        <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text" placeholder="Search..">
+    </div>
+</div>
+<br>
+<div class="table-responsive small" *ngIf="ContainerDetails.length > 0">
+    <table id="containerAttributes" class="table table-sm table-hover">
         <thead class="thead-light">
             <tr align="center">
-                <th scope="col" style="display:none">OrderDetailKey</th>
-                <th scope="col">Container#</th>
-                <th scope="col" hidden="true"> Size</th>
-                <th scope="col">Chassis#</th>
-                <th scope="col">Seal#</th>
-                <th scope="col">Weight</th>
-                <th scope="col" class="col-md-2">Appt.Date From</th>
-                <th scope="col" class="col-md-2">Appt.Date To</th>
-                <th scope="col" class="col-md-2">PickupDate</th>
-                <th scope="col" class="col-md-2">PickupTime</th>
-                <th scope="col" class="col-md-2">DropOffDate</th>
-                <th scope="col" class="col-md-2">DropOffTime</th>
-
-                <th scope="col" class="col-md-2">Status</th>
-                <th scope="col" hidden="true">Status Date</th>
+                <th style="display:none">OrderDetailKey</th>
+                <th>Container#</th>
+                <th> Size</th>
+                <th>Chassis#</th>
+                <th>Seal#</th>
+                <th>Weight</th>
+                <th>Appt.Date From</th>
+                <th>Appt.Date To</th>
+                <th>PickupDate</th>
+                <th>PickupTime</th>
+                <th>DropOffDate</th>
+                <th>DropOffTime</th>
+                <th>Status</th>
+                <!-- <th scope="col" hidden="true">Status Date</th>
                 <th scope="col" hidden="true">Hold Reason</th>
-                <th scope="col" hidden="true">Date</th>
-                <th scope="col">Action</th>
+                <th scope="col" hidden="true">Date</th> -->
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let field of ContainerDetails; let i = index">
-                <td hidden="true" style="display:none">
+            <tr
+                *ngFor="let field of ContainerDetails | grdFilter: {Chassis: searchText,SealNo: searchText, blog: searchText}; let i = index">
+                <td style="display:none">
                     <input [(ngModel)]="field.OrderDetailKey" class="form-control form-control-sm" type="text"
                         name="{{field.OrderDetailKey}}" />
                 </td>
                 <td>
                     {{field.ContainerSize}}
                 </td>
-                <td hidden="true">
+                <td>
                     <select id="drpcontainerType" class="form-control form-control-sm" aria-placeholder="containerNo"
                         name="{{field.ContainerNo}}" [(ngModel)]="field.ContainerNo">
                         <option value=1>20DRY</option>
@@ -61,29 +70,32 @@
 
                     {{field.Weight}}
                 </td>
-                <td scope="col-md-2">
+                <td>
                     <input type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.AppDateFrom}}"
                         style="width: 100px" [(ngModel)]="field.AppDateFrom"
                         class="form-control form-control-sm bg-dark" />
                 </td>
-                <td scope="col-md-2">
+                <td>
                     <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.AppDateTo"
                         style="width: 100px" class="form-control form-control-sm bg-dark" name="{{field.AppDateTo}}" />
                 </td>
                 <td>
-                    <input class="form-control form-control-sm" type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.Pickupdate}}" 
-                     [(ngModel)]="field.Pickupdate" />
+                    <input class="form-control form-control-sm" type="text" bsDatepicker [bsConfig]="bsConfig"
+                        name="{{field.Pickupdate}}" [(ngModel)]="field.Pickupdate" />
                 </td>
                 <td>
-                    <input class="form-control form-control-sm" type="text" name="{{field.Pickuptime}}"  [(ngModel)]="field.Pickuptime"/>
+                    <input class="form-control form-control-sm" type="text" name="{{field.Pickuptime}}"
+                        [(ngModel)]="field.Pickuptime" />
                 </td>
                 <td>
-                    <input class="form-control form-control-sm" type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.DropOffdate}}"  [(ngModel)]="field.DropOffdate" />
+                    <input class="form-control form-control-sm" type="text" bsDatepicker [bsConfig]="bsConfig"
+                        name="{{field.DropOffdate}}" [(ngModel)]="field.DropOffdate" />
                 </td>
                 <td>
-                    <input class="form-control form-control-sm" type="text" name="{{field.DropOfftime}}"  [(ngModel)]="field.DropOfftime"/>
+                    <input class="form-control form-control-sm" type="text" name="{{field.DropOfftime}}"
+                        [(ngModel)]="field.DropOfftime" />
                 </td>
-                <td class="col-md-2">
+                <td>
                     <select id="drpStatus" class="form-control form-control-sm bg-dark" name="{{field.Status}}"
                         style="width: 100px" [(ngModel)]="field.Status">
                         <option value=1>In Progress</option>
@@ -97,7 +109,7 @@
                         <option value=9>Complete</option>
                     </select>
                 </td>
-                <td hidden="true"> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.StatusDate"
+                <!-- <td hidden="true"> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.StatusDate"
                         class="form-control form-control-sm " name="{{field.StatusDate}}" /></td>
                
                 <td hidden="true">
@@ -109,10 +121,10 @@
                     </select>
                 </td>
                 <td hidden="true"> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.HoldDate"
-                        class="form-control form-control-sm " name="{{field.HoldDate}}" /></td>
+                        class="form-control form-control-sm " name="{{field.HoldDate}}" /></td> -->
 
                 <td>
-                    <button class="btn btn-primary btn-pill btn-sm" type="button"
+                    <button class="btn btn-primary btn-pill btn-sm small" type="button"
                         (click)="ScheduleFieldValue(field)">Schedule</button>
                 </td>
             </tr>

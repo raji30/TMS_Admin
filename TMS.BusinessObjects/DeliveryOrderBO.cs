@@ -40,6 +40,6 @@ namespace TMS.BusinessObjects
 
         public string ordertypedescription{ get; set; }
         public string statusdescription{ get; set; }
-     ///  public List<DeliveryOrderDetailBO> OrderDetails { get; set; }
+      public DeliveryOrderDetailBO OrderDetails { get; set; }
     }
 }

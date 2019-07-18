@@ -12,13 +12,14 @@ namespace TMS.BusinessObjects
         {
             InProgress = 1,
             CreditDenied = 2,
-            SenttoScheduler = 3,
-            SenttoDispatch = 4,
-            OnHold =5,
-            SenttoBilling = 6,
+            SendtoScheduler = 3,
+            SendtoDispatchAssignment = 4,
+            SendtoDispatchDelivery = 5,          
+            SendtoBilling = 6,
             InvoiceGenerated = 7,
             Reviewed = 8,
-            Complete = 9
+            Complete = 9,
+            OnHold = 10,
         }
        public enum AddressType
         {

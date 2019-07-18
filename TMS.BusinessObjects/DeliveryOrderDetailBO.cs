@@ -18,12 +18,11 @@ namespace TMS.BusinessObjects
         public string Weight { get; set; }
         public string AppDateFrom { get; set; }
         public string AppDateTo { get; set; }
-
-        public string Pickupdate { get; set; }
-        public string Pickuptime { get; set; }
-        public string DropOffdate { get; set; }
-        public string DropOfftime { get; set; }
-
+        public string PickupDateTime { get; set; }       
+        public string DropOffDateTime { get; set; }       
+        public string ActualPickupDateTime { get; set; }        
+        public string ActualDropOffDateTime { get; set; }
+        
         public short Status { get; set; }
         public string StatusDesc { get; set; }
         public string StatusDate { get; set; }

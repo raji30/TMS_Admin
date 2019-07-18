@@ -1,0 +1,23 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { of } from 'rxjs';
+import { AppSettings } from './../_constants/appsettings';
+import { DeliveryOrderHeader } from '../_models/DeliveryOrderHeader';
+import { Order_details } from './../_models/order_details';
+import { now } from 'moment';
+import { getDate } from 'ngx-bootstrap/chronos/utils/date-getters';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SchedulerService {
+ constructor(private http:HttpClient) {}
+
+/**
+ * name
+ */
+public GetOrderstoSchedule() {
+  return this.http.get<Order_details[]>(AppSettings._BaseURL + 'GetOrderstoSchedule');  
+}
+}

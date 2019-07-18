@@ -38,5 +38,19 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, routeKey, Configuration.Formatters.JsonFormatter);
 
         }
+
+
+        [HttpGet]
+        [Route("GetOrderstoSchedule")]
+        [SwaggerOperation("GetOrderstoSchedule")]
+        public HttpResponseMessage GetOrderstoSchedule()
+        {            
+            SchedulingDL dl = new SchedulingDL();
+            var list = dl.GetOrderstoSchedule();
+            return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
+
+        }
+
+
     }
 }

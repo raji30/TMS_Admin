@@ -14,4 +14,9 @@ public insertRoutesDetails(routedetails:Tms_routes)
 {
   return this.http.post<Tms_routes>( AppSettings._BaseURL + 'AddRoutes/',routedetails);
 }  
+
+public updateRoutesDetails(routedetails:Tms_routes)
+{
+  return this.http.put<Tms_routes>( AppSettings._BaseURL + 'UpdateRoutes/',routedetails);
+}  
 }

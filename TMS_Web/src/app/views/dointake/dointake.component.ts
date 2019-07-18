@@ -313,7 +313,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
 
   
   StatusDropDownChanged(val: number) {
-    if(val.toString()=== "5")//OnHold
+    if(val.toString()=== "10")//OnHold
     {
     this.HolddropdownVisible = true;
     }

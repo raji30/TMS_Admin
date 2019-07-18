@@ -16,32 +16,59 @@
         &nbsp; Dashboard</a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" routerLink="/doIntake"> <img src="assets/img/brand/standard-notes-icon24px.png" />
+      <a class="nav-link" routerLink="/doIntake"> <img src="assets/img/brand/Order24px.png" />
         &nbsp; DO Intake</a>
       <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
     </li>
 
     <li class="nav-item px-3">
+      <a class="nav-link" routerLink="/Scheduler"> <img src="assets/img/brand/overtime24px.png" />
+        &nbsp; Scheduler</a>
+      <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
+    </li>
+
+    <li class="nav-item px-3">
+      <!-- <a class="nav-link" routerLink="/Customers"> <img src="assets/img/brand/standard-notes-icon24px.png" />
+          &nbsp; Customers</a> -->
+      <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
+      <div class="dropdown show">
+        <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <img src="assets/img/brand/Truck24px.png" /> Dispatch
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" routerLink="/DispatchAssignment"> Dispatch Assignment</a>
+          <a class="dropdown-item" routerLink="/DispatchDelivery">Dispatch Delivery</a>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item px-3">
+      <a class="nav-link" routerLink="/doIntake"> <img src="assets/img/brand/Invoice24px.png" />
+        &nbsp; Billing</a>
+      <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
+    </li>
+    <li class="nav-item px-3">
       <!-- <a class="nav-link" routerLink="/Customers"> <img src="assets/img/brand/standard-notes-icon24px.png" />
         &nbsp; Customers</a> -->
       <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
-             <div class="dropdown show">
-            <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="assets/img/brand/Settings24px-icon.png" />  Admin
-            </a>
-          
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" routerLink="/Customers">  <img src="assets/img/brand/customer.png" /> Customers</a>
-                <a class="dropdown-item" routerLink="/Customers">Vendors</a>
-                <a class="dropdown-item" routerLink="/Customers">Warehouses</a>
-                <!-- <div class="dropdown-divider"></div> -->
-                <a class="dropdown-item" routerLink="/Customers">City</a>
-                <a class="dropdown-item" routerLink="/Customers">State</a>
-                
-            </div>
-          </div>
+      <div class="dropdown show">
+        <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <img src="assets/img/brand/SettingsIcon24px.png" /> Admin
+        </a>
 
-          
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/customer.png" /> Customers</a>
+          <a class="dropdown-item" routerLink="/Customers">Vendors</a>
+          <a class="dropdown-item" routerLink="/Customers">Warehouses</a>
+          <!-- <div class="dropdown-divider"></div> -->
+          <a class="dropdown-item" routerLink="/Customers">City</a>
+          <a class="dropdown-item" routerLink="/Customers">State</a>
+
+        </div>
+      </div>
+
+
     </li>
     <!-- <li class="nav-item px-3">
       <a class="nav-link" routerLink="/container">    

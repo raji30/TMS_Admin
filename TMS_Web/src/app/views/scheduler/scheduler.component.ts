@@ -21,6 +21,7 @@ export class SchedulerComponent implements OnInit {
   @Output() ContainerDetailsOutput = new EventEmitter<any>();
   collapsesign: string;
   selectedcontainer: Order_details;
+  public searchText : string;
   constructor(
     private service: DeliveryOrderService,
     private router: Router,
@@ -38,13 +39,28 @@ export class SchedulerComponent implements OnInit {
       { dateInputFormat: "MM/DD/YYYY" }
     );
 
-    this.service
-      .GetOrderDetailsbyKey(this.orderKeyinput)
-      .subscribe(
-        data => (this.ContainerDetails = data),
-        error => console.log(error),
-        () => console.log("Get OrderDetail", this.ContainerDetails)
-      );
+    this.service.GetOrderDetails().subscribe(
+      data => {
+        this.ContainerDetails = data;
+        if (this.ContainerDetails.length > 0) {
+        }
+      },
+      error => console.log(error),
+      () => console.log("Get OrderDetail", this.ContainerDetails)
+    );
+
+
+    // this.service.GetOrderDetailsbyKey(this.orderKeyinput).subscribe(
+    //   data => {
+    //     this.ContainerDetails = data;
+    //     if (this.ContainerDetails.length > 0) {
+    //     }
+    //   },
+    //   error => console.log(error),
+    //   () => console.log("Get OrderDetail", this.ContainerDetails)
+    // );
+
+    
   }
   ScheduleFieldValue(field: Order_details) {
     //this.ContainerDetails.splice(field, 1);
@@ -68,8 +84,7 @@ export class SchedulerComponent implements OnInit {
   collapseSign() {
     if (this.collapsesign === "+") {
       this.collapsesign = "-";
-    }
-    else if (this.collapsesign === "-") {
+    } else if (this.collapsesign === "-") {
       this.collapsesign = "+";
     }
   }

@@ -10,6 +10,11 @@ import { OrderinfoComponent } from "./views/child/orderinfo/orderinfo.component"
 import { TabComponent } from "./views/tab/tab.component";
 import { ContainerComponent } from "./views/child/container/container.component";
 import { ListcustomerComponent } from "./views/_customer/list-customer/listcustomer/listcustomer.component";
+import { SchedulerComponent } from "./views/scheduler/scheduler.component";
+import { SchedulerlistComponent } from "./views/schedulerlist/schedulerlist.component";
+import { DispatchComponent } from "./views/dispatch/dispatch.component";
+import { DispathdeliveryComponent } from "./views/dispathdelivery/dispathdelivery.component";
+import { DispatchAssignmentComponent } from "./views/dispatchAssignment/dispatchAssignment.component";
 
 export const routes: Routes = [
   {
@@ -17,7 +22,6 @@ export const routes: Routes = [
     redirectTo: "login",
     pathMatch: "full"
   },
-
   {
     path: "",
     component: DefaultLayoutComponent,
@@ -30,7 +34,6 @@ export const routes: Routes = [
         // loadChildren: './views/dashboard/dashboard.module#DashboardModule',
         component: OrderlistComponent
       },
-
       {
         path: "doIntake",
         component: DOIntakeComponent
@@ -49,7 +52,15 @@ export const routes: Routes = [
       },
       {
         path: "Scheduler",
-        component: ContainerComponent
+        component: SchedulerlistComponent
+      },
+      {
+        path: "DispatchAssignment",
+        component: DispatchAssignmentComponent
+      },
+      {
+        path: "DispatchDelivery",
+        component: DispathdeliveryComponent
       },
       {
         path: "Customers",

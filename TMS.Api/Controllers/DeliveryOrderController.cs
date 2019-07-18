@@ -61,6 +61,15 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
         }
 
+        [HttpGet]
+        [Route("GetAllDOHeaderandDetails")]
+        // [SwaggerOperation("Get")]
+        public HttpResponseMessage GetAllDOHeaderandDetails()
+        {
+            DeliveryOrderDL doObj = new DeliveryOrderDL();
+            var list = doObj.GetAllDOHeaderandDetails();
+            return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
+        }
         /// <summary>
         /// 
         /// </summary>
