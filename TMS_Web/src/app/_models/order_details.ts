@@ -22,5 +22,5 @@ export class Order_details {
         containerSizeDesc:string;
         StatusDesc:string;
         HoldReasonDesc:string;  
-        orderroutes:Tms_routes;
+        orderroutes:Tms_routes;       
 }

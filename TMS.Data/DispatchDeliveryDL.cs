@@ -41,6 +41,10 @@ namespace TMS.Data
                             orderDetail.Chassis = Utils.CustomParse<string>(reader["chassis"]);
                             orderDetail.SealNo = Utils.CustomParse<string>(reader["sealno"]);
                             orderDetail.Weight = Utils.CustomParse<string>(reader["weight"]);
+                            orderDetail.AppDateFrom = Utils.CustomParse<string>(reader["apptdatefrom"]);
+                            orderDetail.AppDateTo = Utils.CustomParse<string>(reader["apptdateto"]);
+                            orderDetail.PickupDateTime = Utils.CustomParse<string>(reader["scheduledarrival"]);
+                            orderDetail.DropOffDateTime = Utils.CustomParse<string>(reader["scheduleddeparture"]);
 
                             orderDetails.Add(orderDetail);
                         }

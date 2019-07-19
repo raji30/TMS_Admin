@@ -40,7 +40,7 @@ namespace TMS.Api.Controllers
         [SwaggerOperation("AddDispatchAssignmentData")]
         public HttpResponseMessage Post([FromBody]RoutesBO routesBO)
         {
-            var routesdata = routes.InsertRouteData(routesBO);
+            var routesdata = routes.UpdateRouteDataforDispatchAssignment(routesBO);
             return Request.CreateResponse(HttpStatusCode.OK, routesdata, Configuration.Formatters.JsonFormatter);
         }
     }

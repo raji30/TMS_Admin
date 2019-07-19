@@ -1,185 +1,67 @@
-<!-- 
-
-<div class="table-responsive-sm small" style="overflow-x: auto">
-  <table id="containerAttributes" class="table table-sm">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col" style="display:none">OrderDetailKey</th>
-        <th scope="col">Container#</th>
-        <th scope="col">Chassis#</th>
-        <th scope="col">Seal#</th>
-        <th scope="col">Weight</th>
-        <th scope="col">Appt.Date From</th>
-        <th scope="col">Appt.Date To</th>
-        <th scope="col">PickupDate</th>
-        <th scope="col">PickupTime</th>
-        <th scope="col" >DropOffDate</th>
-        <th scope="col">DropOffTime</th>
-        <th scope="col">Status</th>
-        <th scope="col">..</th>
-
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let field of ContainerDetails; let i = index" class="clickable-row" data-toggle="collapse" [attr.data-target]="'#game2Details' + i">
-         
-        <td hidden="true" style="display:none">
-          <input [(ngModel)]="field.OrderDetailKey" class="form-control form-control-sm" type="text"
-            name="{{field.OrderDetailKey}}" />
-        </td>
-        <td>
-          {{field.ContainerSize}} 
-        </td>
-
-        <td>
-          {{field.Chassis}}
-        </td>
-        <td>
-
-          {{field.SealNo}}
-        </td>
-        <td >
-
-          {{field.Weight}}
-        </td>
-        <td >
-          {{field.AppDateFrom}}
-        </td>
-        <td >
-          {{field.AppDateTo}}
-        </td>
-        <td>
-          {{field.Pickupdate}}
-        </td>
-        <td>
-          {{field.Pickuptime}}
-        </td>
-        <td>
-          {{field.DropOffdate}}
-        </td>
-        <td>
-          {{field.DropOfftime}}
-        </td>
-        <td>
-          {{field.Status}}
-        </td>
-
-
-        <td>
-         <button class="btn btn-outline-secondary btn-sm" type="button" (click)="collapseSign(field)"
-            data-toggle="collapse" data-target="#collapseDriverdetails" aria-expanded="false"
-            aria-controls="collapseDriverdetails">
-            {{collapsesign}}
-          </button> 
-
-          <button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" [attr.aria-expanded]="false" [attr.aria-controls] = "'collapse-' + i"></button>
-        
-        </td>
-      </tr>
-         <td >
-          <div class="collapse small" id="collapseDriverdetails" >
-            <div class="card card-body">
-              <table class="table table-sm bg-dark">
-                <thead>
-                  <tr>
-                    <th scope="col">Driver</th>
-                    <th scope="col">Notes</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <select id="drpStatus" class="form-control form-control-sm bg-dark" style="width: 100px">
-                        <option [value]="driver.driverkey" *ngFor="let driver of driverList">{{driver.driverid}}
-                        </option>
-                      </select>
-
-                    </td>
-                    <td>
-                      <input class="form-control form-control-sm" type="text" name="{{field.drivernotes}}"
-                        [(ngModel)]="field.drivernotes"/>
-               
-                    </td>
-
-                    <td>
-                      <button class="btn btn-primary btn-sm" type="button"
-                        (click)="ScheduleFieldValue(field)">Dispatch</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </tr>
-        </td> 
-        <tr [attr.id]="'game2Details' + i" class="collapse">
-            <td colspan="3">Insert a large component in this place</td>
-        </tr>
-    
-    </tbody>
-  </table>
-</div>
-  <div class="collapse" id="collapseDriverdetails">
-    <div class="card card-body">
-      <table class="table table-sm bg-dark">
-        <thead>
-          <tr>
-            <th scope="col">Entry Date</th>
-            <th scope="col">Driver</th>
-            <th scope="col">Action Date</th>
-            <th scope="col">Load Status</th>
-            <th scope="col">Driver Money</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input class="form-control form-control-sm bg-dark" type="date" />
-            </td>
-            <td>
-              <select id="drpStatus" class="form-control form-control-sm bg-dark" style="width: 100px">
-                <option value=1>Celb Howard</option>
-                <option value=2>Lan Weiland</option>
-              </select>
-            </td>
-            <td>
-              <input class="form-control form-control-sm bg-dark" type="date" />
-            </td>
-            <td>
-              <select id="drpStatus" class="form-control form-control-sm bg-dark" style="width: 100px">
-                <option value=1>To Storage</option>
-                <option value=2>Hazardeous</option>
-                <option value=2>Roundtrip</option>
-              </select>
-            </td>
-            <td>
-              <input class="form-control form-control-sm bg-dark" type="text" />
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm" type="button"
-                (click)="ScheduleFieldValue(field)">Dispatch</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div> 
-</div> -->
 <br>
+<h5 class="card-subtitle mb-2" style="color: black">
+  <img src="assets/img/brand/lorry24px.png" /> Dispatch Delivery</h5>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card text-white border-dark">
+      <div class="card-body" *ngIf="HeaderData">
+        <div class="row">
+          <div class="col-md-3">
+            <h5 class="card-subtitle mb-2" style="color: black">Order# : <span
+                style="color: #0892d0">{{HeaderData.OrderNo}}
+              </span> </h5>
+            <p class="card-subtitle mb-2" style="color: black"> Date : <span
+                style="color: #0892d0">{{HeaderData.OrderDate}}</span></p>
+            <p class="card-subtitle mb-2" style="color:black"> Type : <span
+                style="color: #0892d0">{{HeaderData.ordertypedescription}}</span></p>
+          </div>
+
+          <div class="col-md-3">
+            <p class="card-subtitle mb-2" style="color:black"> Customer : <span class="badge badge-pill badge-danger"
+                style="color:white"></span></p>
+            <p class="card-subtitle mb-2" style="color:black"> Broker : <span
+                style="color: #0892d0">{{HeaderData.BrokerName}}</span></p>
+            <p class="card-subtitle mb-2" style="color:black"> Broker Ref# : <span
+                style="color: #0892d0">{{HeaderData.BrokerRefNo}}</span></p>
+            <p class="card-subtitle mb-2" style="color:black"> Booking# :<span style="color: #0892d0">
+                {{HeaderData.BookingNo}}</span></p>
+          </div>
+
+          <div class="col-md-3">
+            <p class="card-subtitle mb-2" style="color:black"> Vessel : <span
+                style="color: #0892d0">{{HeaderData.VesselName}}</span></p>
+            <p class="card-subtitle mb-2" style="color:black"> Bill of Lading : <span
+                style="color: #0892d0">{{HeaderData.BillofLading}} </span></p>
+            <p class="card-subtitle mb-2" style="color:black"> Cut-Off Date : <span
+                style="color: #0892d0">{{HeaderData.CutOffDate|date}}</span></p>
+          </div>
+          <div class="col-md-3">
+            <p class="card-subtitle mb-2" style="color:grey"> Pickup : <span class="badge badge-pill badge-primary"
+                style="color:black"></span></p>
+            <p class="card-subtitle mb-2" style="color:grey"> Consignee : <span class="badge badge-pill badge-primary"
+                style="color:black"></span></p>
+            <p class="card-subtitle mb-2" style="color:grey"> Return : <span class="badge badge-pill badge-primary"
+                style="color:black"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 <table class="table table-striped table-sm  small">
   <thead class="thead-light">
     <tr>
       <th scope="col" style="display:none">OrderDetailKey</th>
+      <th>View_Detail</th>
       <th scope="col">Container#</th>
       <th scope="col">Chassis#</th>
       <th scope="col">Seal#</th>
       <th scope="col">Weight</th>
       <th scope="col">ApptDate_From</th>
       <th scope="col">ApptDate_To</th>
-      <th scope="col">PickupDate_Time</th>     
-      <th scope="col">DropOffDate_Time</th>    
-      <th scope="col">Status</th>
+      <th scope="col">PickupDate_Time</th>
+      <th scope="col">DropOffDate_Time</th>
     </tr>
   </thead>
   <tbody>
@@ -189,6 +71,11 @@
         <td hidden="true" style="display:none">
           <input [(ngModel)]="field.OrderDetailKey" class="form-control form-control-sm" type="text"
             name="{{field.OrderDetailKey}}" />
+        </td>
+        <td>
+          <a class="btn btn-link" role="button" (click)="rowclickEvent(field)">
+            <img src="assets/img/brand/DataViewDetails24px.png" />
+          </a>
         </td>
         <td>
           {{field.ContainerSize}}
@@ -209,14 +96,12 @@
           {{field.AppDateTo}}
         </td>
         <td>
-          {{field.Pickupdate}}
-        </td>        
-        <td>
-          {{field.DropOffdate}}
-        </td>       
-        <td>
-          {{field.Status}}
+          {{field.PickupDateTime}}
         </td>
+        <td>
+          {{field.DropOffDateTime}}
+        </td>
+
       </tr>
       <tr>
         <td colspan="15" class="collapse-row">
@@ -227,8 +112,8 @@
                   <!-- <div class="input-group-prepend">
                           <span class="input-group-text">Chassis</span>
                         </div> -->
-                  <input class="form-control form-control-sm" type="text" name="{{field.drivernotes}}"
-                    [(ngModel)]="field.drivernotes" placeholder="Chassis" />
+                  <input class="form-control form-control-sm" type="text" name="{{field.Chassis}}"
+                    [(ngModel)]="field.Chassis" placeholder="Chassis" />
                 </div>
               </div>
               <div class="col-md-2">

@@ -26,14 +26,16 @@ export class SchedulerlistComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
+  selectedKey: string;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private schedulerService: SchedulerService,
     private orderService: DeliveryOrderService,
     private master: MasterService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {
     //this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -44,12 +46,6 @@ export class SchedulerlistComponent implements OnInit {
     //   { containerClass: "theme-orange" },
     //   { dateInputFormat: "MM/DD/YYYY" }
     // );
-  //   this.registerForm = this.formBuilder.group({
-  //     AppDateFrom: ['', Validators.required],
-  //     AppDateTo: ['', Validators.required],
-  //     Pickupdatetime: ['', [Validators.required]],
-  //     DropOffdatetime: ['', [Validators.required]]
-  // });
     this.master
       .getStatusList()
       .subscribe(
@@ -65,36 +61,42 @@ export class SchedulerlistComponent implements OnInit {
     //   () => console.log("Scheduler list ", this.schedulerlist)
     // );
 
- this.loaddata();
+    this.loaddata();
   }
-  onSubmit(field: Order_details) {   
-    
-    if(field.AppDateFrom==null||field.AppDateTo==null || field.status==null || field.PickupDateTime == null|| field.DropOffDateTime==null)
-    {
+  onSubmit(field: Order_details) {
+    if (
+      field.AppDateFrom == null ||
+      field.AppDateTo == null ||
+      field.status == null ||
+      field.PickupDateTime == null ||
+      field.DropOffDateTime == null
+    ) {
       this.showError("Enter the missing fields.", "Scheduler");
       return;
     }
 
-    this.orderService.updateOrderDetails(field).subscribe(() => {      
-      this.dataSaved = true;
-      this.message = "Scheduled Successfully";
-      this.loaddata();
-    },
-    error => console.log(error),
-    () => console.log("Scheduler  ", this.message));    
+    this.orderService.updateOrderDetails(field).subscribe(
+      () => {
+        this.dataSaved = true;
+        this.message = "Scheduled Successfully";
+        this.loaddata();
+      },
+      error => console.log(error),
+      () => console.log("Scheduler  ", this.message)
+    );
   }
 
   ngOnChanges() {}
 
-  rowclickEvent(value:Order_details)
-  {
-        this.orderService.GetbyKey(value.OrderKey).subscribe(
+  rowclickEvent(value: Order_details) {
+    this.orderService.GetbyKey(value.OrderKey).subscribe(
       data => {
         this.HeaderData = data;
       },
       error => console.log(error),
       () => console.log("order Header Data ", this.HeaderData)
     );
+   this.selectedKey = value.OrderKey;
   }
 
   showSuccess(message: string, title: string) {
@@ -104,12 +106,10 @@ export class SchedulerlistComponent implements OnInit {
     this.toastr.error(message, "Oops!", { timeOut: 4000, closeButton: true });
   }
 
-  loaddata()
-  {
-
+  loaddata() {
     this.schedulerService.GetOrderstoSchedule().subscribe(
       data => {
-        this.DetailsData = data;        
+        this.DetailsData = data;
       },
       error => console.log(error),
       () => console.log("Get OrderDetail", this.DetailsData)

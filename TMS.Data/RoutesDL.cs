@@ -62,36 +62,71 @@ namespace TMS.Data
             return RouteDetailCollection;
         }
 
-        public bool UpdateRouteData(RoutesBO obj)
+        public bool UpdateRouteDataforDispatchAssignment(RoutesBO obj)
         {
-            string sql = "update dbo.tms_routes set legno=@legno, legtype = @legtype, actualarrival=@actualarrival ,actualdeparture =" +
-                "@actualdeparture  where orderkey = @orderkey and orderdetailkey = @orderdetailkey";
+            string sql = "update dbo.tms_routes set drivernotes=@drivernotes, driverkey = @driverkey" +
+                " where orderkey = @orderkey and orderdetailkey = @orderdetailkey";
 
             //SELECT routekey, orderdetailkey, orderkey, legno, legtype, sourceaddrkey, destinationaddrkey, estimateddistanceinmiles, 
             //    estimatedtraveltime, status, driverkey, scheduledarrival, scheduleddeparture, odometeratsource, actualarrival, 
             //    actualdeparture, odometeratdestination, drivernotes FROM dbo.tms_routes;
+            string query = "dbo.fn_update_route_for_dispatch_assignment";
+            using (connection)
+            {
+                connection.Open();
+                using (var cmd = new NpgsqlCommand(query, connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("_orderkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderKey);
+                    cmd.Parameters.AddWithValue("_orderdetailkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderDetailKey);
+                    cmd.Parameters.AddWithValue("_drivernotes", NpgsqlTypes.NpgsqlDbType.Varchar, obj.drivernotes);
+                    cmd.Parameters.AddWithValue("_driverkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.driverkey);
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var result = bool.Parse(reader[0].ToString());
+                        return result;
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool UpdateRouteDataforDispatchDelivery(RoutesBO obj)
+        {
+            //string sql = "update dbo.tms_routes set legno=@legno, legtype = @legtype, actualarrival=@actualarrival ,actualdeparture =" +
+            //    "@actualdeparture  where orderkey = @orderkey and orderdetailkey = @orderdetailkey";
+
+            string sql = "dbo.fn_update_route_for_dispatch_delivery";
 
             using (connection)
             {
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))
                 {
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.Parameters.AddWithValue("orderkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderKey);
-                    cmd.Parameters.AddWithValue("orderdetailkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderDetailKey);
-                    cmd.Parameters.AddWithValue("legno", NpgsqlTypes.NpgsqlDbType.Numeric, obj.legno);
-                    cmd.Parameters.AddWithValue("legtype", NpgsqlTypes.NpgsqlDbType.Numeric, obj.legtype);
-                    cmd.Parameters.AddWithValue("actualarrival", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.actualarrival);
-                    cmd.Parameters.AddWithValue("actualdeparture", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.actualdeparture);
-                    
-                    int returnvalue = cmd.ExecuteNonQuery();
-                    if (returnvalue < 0)
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("_orderkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderKey);
+                    cmd.Parameters.AddWithValue("_orderdetailkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderDetailKey);
+                    cmd.Parameters.AddWithValue("_legno", NpgsqlTypes.NpgsqlDbType.Smallint, obj.legno);
+                    cmd.Parameters.AddWithValue("_legtype", NpgsqlTypes.NpgsqlDbType.Smallint, obj.legtype);
+                    cmd.Parameters.AddWithValue("_actualarrival", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.actualarrival);
+                    cmd.Parameters.AddWithValue("_actualdeparture", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.actualdeparture);
+                   
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        return false;
+                        var result = bool.Parse(reader[0].ToString());
+                        return result;
                     }
-                    else return true;
                 }
             }
+            return false;
         }
     }
 }

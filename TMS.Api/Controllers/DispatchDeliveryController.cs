@@ -39,7 +39,7 @@ namespace TMS.Api.Controllers
         [SwaggerOperation("UpdateDispatchDeliveryData")]
         public HttpResponseMessage Put([FromBody]RoutesBO routesBO)
         {
-            var routesdata = routes.UpdateRouteData(routesBO);
+            var routesdata = routes.UpdateRouteDataforDispatchDelivery(routesBO);
             return Request.CreateResponse(HttpStatusCode.OK, routesdata, Configuration.Formatters.JsonFormatter);
         }
     }

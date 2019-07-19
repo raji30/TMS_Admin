@@ -8,6 +8,7 @@ import { Tms_routes } from "../../_models/tms_routes";
 import { DriverService } from './../../_services/driver.service';
 import { Driver } from "../../_models/driver";
 import { DispatchAssignmentService } from "../../_services/dispatchAssignment.service";
+import { DeliveryOrderHeader } from "../../_models/DeliveryOrderHeader";
 @Component({
   selector: 'app-dispatchAssignment',
   templateUrl: './dispatchAssignment.component.html',
@@ -19,13 +20,14 @@ export class DispatchAssignmentComponent implements OnInit {
   @Input() public ContainerDetails: Array<Order_details> = [];
   @Input() isContainerAttributeVisible: boolean = false;
  
+  HeaderData: DeliveryOrderHeader;
   dataSaved = false;
   message = null;
   collapsesign: string;
   tmpRoutes:Tms_routes;
   driverList:Driver[];
   constructor(
-    private service: DeliveryOrderService,
+    private orderService: DeliveryOrderService, 
     private dispatchAssignmentservice : DispatchAssignmentService,
     private routeservice: RoutesService,
     private driverservice:DriverService,
@@ -44,14 +46,8 @@ export class DispatchAssignmentComponent implements OnInit {
       { dateInputFormat: "MM/DD/YYYY" }
     );
 
-    this.dispatchAssignmentservice
-      .GetOrderstoDispatchAssignment()
-      .subscribe(
-        data => (this.ContainerDetails = data),
-        error => console.log(error),
-        () => console.log("Get OrderDetail", this.ContainerDetails)
-      );
-
+   this.loaddata();
+   
       this.driverservice.getDrivers()
       .subscribe(
         data => (this.driverList = data),
@@ -64,19 +60,13 @@ export class DispatchAssignmentComponent implements OnInit {
       this.dataSaved = true;
       this.message = "Success";
       alert(this.message);
+      this.loaddata();
     });
     
   }
 
   ngOnChanges() {
-    // alert('Scheduler Onchange:  '+ this.orderKeyinput);
-    this.service
-      .GetOrderDetailsbyKey(this.orderKeyinput)
-      .subscribe(
-        data => (this.ContainerDetails = data),
-        error => console.log(error),
-        () => console.log("Get OrderDetail", this.ContainerDetails)
-      );
+    
   }
   collapseSign(tmsRoutes:Tms_routes ) {
     if (this.collapsesign === "+") {
@@ -88,5 +78,26 @@ export class DispatchAssignmentComponent implements OnInit {
 
     //this.temptmsRoutes.OrderKey = tmsRoutes.OrderKey;
     //this.temptmsRoutes.OrderDetailKey = tmsRoutes.OrderDetailKey;
+  }
+
+  rowclickEvent(value: Order_details) {
+    this.orderService.GetbyKey(value.OrderKey).subscribe(
+      data => {
+        this.HeaderData = data;
+      },
+      error => console.log(error),
+      () => console.log("order Header Data ", this.HeaderData)
+    );
+  }
+
+  loaddata()
+  {
+    this.dispatchAssignmentservice
+    .GetOrderstoDispatchAssignment()
+    .subscribe(
+      data => (this.ContainerDetails = data),
+      error => console.log(error),
+      () => console.log("Get OrderDetail", this.ContainerDetails)
+    );
   }
 }

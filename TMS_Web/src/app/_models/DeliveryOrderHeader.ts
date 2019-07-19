@@ -5,7 +5,7 @@ export class DeliveryOrderHeader {
         public OrderKey: string;
         public OrderNo:string ;
         public CustKey:string ;
-        public OrderDate:string ;
+        public OrderDate:Date ;
         public BillToAddress: string ;
         public SourceAddress: string ;
         public DestinationAddress: string ;

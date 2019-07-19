@@ -357,10 +357,11 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Cut-off Date</span>
                 </div>
+                
                 <input type="text" class="form-control form-control-sm" name="CutOffDate"
-                  [(ngModel)]="doHeader.CutOffDate" #CutOffDate="ngModel" bsDatepicker placeholder="Cut-Off Date"
-                  [bsConfig]="bsConfig" [ngClass]="{ 'is-invalid': f.submitted && CutOffDate.invalid }" required />
-
+                  [(ngModel)]="doHeader.CutOffDate" #CutOffDate="ngModel" placeholder="Cut-Off Date"
+                   [ngClass]="{ 'is-invalid': f.submitted && CutOffDate.invalid }" required [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" />
+                   <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                 <div *ngIf="f.submitted && CutOffDate.invalid" class="invalid-feedback">
                   <div *ngIf="CutOffDate.errors.required"> Cut-Off Date is required</div>
                 </div>
