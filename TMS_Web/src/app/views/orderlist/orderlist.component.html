@@ -14,7 +14,7 @@
           <div *ngIf="Orderlist" class="row">
             <div class="col-sm-12">
              
-              <table class="table table-sm table-hover">
+              <table class="table table-sm table-hover small">
                 <thead class="thead-light">
                   <tr>
                    <th scope="col" hidden="true">Key</th>
@@ -122,7 +122,7 @@
         </div>
         <div class="card-body">
           <div class="chart-wrapper">
-            <canvas baseChart class="chart" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+            <canvas baseChart class="chart"  [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
               (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
           </div>
         </div>

@@ -32,9 +32,12 @@ export class OrderlistComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
+
+  
   public barChartLabels: string[] = ["Dec 2018"];
   public barChartType = "bar";
   public barChartLegend = true;
+
 
   public barChartData: any[] = [
     { data: [65], label: "Total Orders" },

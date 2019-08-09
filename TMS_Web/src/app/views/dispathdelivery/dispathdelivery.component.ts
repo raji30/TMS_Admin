@@ -25,6 +25,9 @@ export class DispathdeliveryComponent implements OnInit {
   collapsesign: string;
   tmpRoutes: Tms_routes;
   driverList: Driver[];
+  selectedKey: string;
+  dataShow: boolean;
+  tempOrderDetailKey :string;
   constructor(
     private orderService: DeliveryOrderService,
     private dispatchDeliveryService : DispatchDeliveryService ,
@@ -63,12 +66,27 @@ export class DispathdeliveryComponent implements OnInit {
   }
 
   rowclickEvent(value: Order_details) {
+    if (this.tempOrderDetailKey == value.OrderDetailKey )
+    {
+      this.dataShow = false;       
+      this.tempOrderDetailKey = null;
+      this.selectedKey = null;
+      return;
+    }
+    else
+    {
+      this.dataShow = true;  
+    }
+
     this.orderService.GetbyKey(value.OrderKey).subscribe(
       data => {
         this.HeaderData = data;
+        this.dataShow = true; 
+        this.tempOrderDetailKey = value.OrderDetailKey;
       },
       error => console.log(error),
       () => console.log("order Header Data ", this.HeaderData)
     );
+    this.selectedKey = value.OrderDetailKey;
   }
 }

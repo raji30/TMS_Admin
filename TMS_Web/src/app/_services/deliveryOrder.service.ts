@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { HttpClientModule } from "@angular/common/http";
-import { of } from "rxjs";
+import { of, Observable, BehaviorSubject, observable } from "rxjs";
 import { AppSettings } from "./../_constants/appsettings";
 import { DeliveryOrderHeader } from "../_models/DeliveryOrderHeader";
 import { Order_details } from "./../_models/order_details";
@@ -11,9 +11,8 @@ import { getDate } from "ngx-bootstrap/chronos/utils/date-getters";
 @Injectable({
   providedIn: "root"
 })
-export class DeliveryOrderService {
+export class DeliveryOrderService { 
   constructor(private http: HttpClient) {}
-
   public saveDOHeader(OrderHeader: DeliveryOrderHeader) {
     OrderHeader.orderdetails = [];
     console.log(OrderHeader);
@@ -22,7 +21,6 @@ export class DeliveryOrderService {
       OrderHeader
     );
   }
-
   public saveOrderDetails(Orderdetails: Order_details[]) {
     return this.http.post<Order_details[]>(
       AppSettings._BaseURL + "DeliveryOrderDetails/",
@@ -33,7 +31,8 @@ export class DeliveryOrderService {
   /**
    * name
    */
-  public getOrderlist() {
+
+  public getOrderlist():Observable<DeliveryOrderHeader[]> {
     return this.http.get<DeliveryOrderHeader[]>(
       AppSettings._BaseURL + "GetOrders"
     );

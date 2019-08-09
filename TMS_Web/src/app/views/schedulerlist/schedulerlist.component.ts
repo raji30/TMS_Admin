@@ -9,8 +9,10 @@ import { SchedulerService } from "../../_services/scheduler.service";
 import { DeliveryOrderService } from "../../_services/deliveryOrder.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
+import { NavigationComponent } from "../navigation/navigation.component";
 
 @Component({
+  providers:[NavigationComponent],
   selector: "app-schedulerlist",
   templateUrl: "./schedulerlist.component.html",
   styleUrls: ["./schedulerlist.component.scss"]
@@ -27,8 +29,10 @@ export class SchedulerlistComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   selectedKey: string;
+  dataShow: boolean;
+  tempOrderDetailKey :string;
 
-  constructor(
+  constructor(private NaviComp: NavigationComponent,
     private formBuilder: FormBuilder,
     private schedulerService: SchedulerService,
     private orderService: DeliveryOrderService,
@@ -38,6 +42,7 @@ export class SchedulerlistComponent implements OnInit {
     private toastr: ToastrService
   ) {
     //this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    NaviComp.test(6);
   }
 
   ngOnInit() {
@@ -46,6 +51,8 @@ export class SchedulerlistComponent implements OnInit {
     //   { containerClass: "theme-orange" },
     //   { dateInputFormat: "MM/DD/YYYY" }
     // );
+
+    
     this.master
       .getStatusList()
       .subscribe(
@@ -89,9 +96,23 @@ export class SchedulerlistComponent implements OnInit {
   ngOnChanges() {}
 
   rowclickEvent(value: Order_details) {
+
+    if (this.tempOrderDetailKey == value.OrderDetailKey )
+    {
+      this.dataShow = false;       
+      this.tempOrderDetailKey = null;
+      this.selectedKey = null;
+      return;
+    }
+    else
+    {
+      this.dataShow = true;  
+    }
     this.orderService.GetbyKey(value.OrderKey).subscribe(
       data => {
         this.HeaderData = data;
+        this.dataShow = true; 
+        this.tempOrderDetailKey = value.OrderDetailKey;
       },
       error => console.log(error),
       () => console.log("order Header Data ", this.HeaderData)

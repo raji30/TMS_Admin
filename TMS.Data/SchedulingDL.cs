@@ -129,6 +129,7 @@ namespace TMS.Data
                             orderDetail.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);
                             orderDetail.ContainerNo = Utils.CustomParse<string>(reader["containerno"]);
                             orderDetail.ContainerSize = Utils.CustomParse<short>(reader["containersize"]);
+                            orderDetail.ContainerSizeDesc = Utils.CustomParse<string>(reader["containersizeDesc"]);
                             orderDetail.Chassis = Utils.CustomParse<string>(reader["chassis"]);
                             orderDetail.SealNo = Utils.CustomParse<string>(reader["sealno"]);
                             orderDetail.Weight = Utils.CustomParse<string>(reader["weight"]);

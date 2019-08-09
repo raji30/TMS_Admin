@@ -12,6 +12,8 @@ export class DashboardComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
+
+  public indexLabelBackgroundColor: "yellow";
   public barChartLabels: string[] = ['Dec 2018'];
   public barChartType = 'bar';
   public barChartLegend = true;
@@ -25,5 +27,14 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
         
+  }
+
+  // events
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+ 
+  public chartHovered(e:any):void {
+    console.log(e);
   }
 }

@@ -11,6 +11,7 @@
                 <canvas baseChart class="chart"
                 [data]="pieChartData"
                 [labels]="pieChartLabels"
+                [indexLabelBackgroundColor] = "indexLabelForegroundColor"
                 [chartType]="pieChartType"
                 (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>

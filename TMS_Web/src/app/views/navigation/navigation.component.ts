@@ -8,6 +8,8 @@ import { Loginresult } from "../../_models/loginresult";
 import { Subscription } from "rxjs";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { TabComponent } from "../tab/tab.component";
+import { Order_details } from "../../_models/order_details";
+import { DeliveryOrderHeader } from "../../_models/DeliveryOrderHeader";
 
 @Component({
   selector: "app-navigation",
@@ -17,15 +19,14 @@ import { TabComponent } from "../tab/tab.component";
 export class NavigationComponent implements OnInit {
   currentUser: Loginresult;
   currentUserSubscription: Subscription;
-  Orderlist: any;
-  loginInfo: Login = {
-    first_name: "Andrew",
-    last_name: "Yang",
-    avatar: "ay.jpeg",
-    title: "Senior Developer"
-  };
+  
+  Orderlist: Array<DeliveryOrderHeader> = [];
+  schedulerlist:Array<Order_details> = [];
+  dispatchAssignmentlist:Array<Order_details> = [];
+  dispatchDeliverylist:Array<Order_details> = [];
+
   ModalOrderKey: string;
-  // @Input() loginInfo:Login;
+  show:boolean=true;
 
   constructor(
     private service: DeliveryOrderService,
@@ -40,6 +41,7 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.service
       .getOrderlist()
       .subscribe(
@@ -47,6 +49,10 @@ export class NavigationComponent implements OnInit {
         error => console.log(error),
         () => console.log("Get OrderList complete", this.Orderlist)
       );
+  }
+  test(type:number)
+  {
+    alert();
   }
   //   navigate(orderkey:string)
   //   {
