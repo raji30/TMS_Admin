@@ -79,7 +79,7 @@
                   </div>
                  
                   <input type="text" class="form-control form-control-sm" formControlName="Zip"
-                    [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Zip.errors }">
+                    [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Zip.errors }" (keypress)="numberOnly($event)" appBlockCopyPaste>
                     <div *ngIf="submitted && f.Address['controls'].Zip.errors" class="invalid-feedback">
                       <div *ngIf="f.Address['controls'].errors.required">Zip is required</div>
                       <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->

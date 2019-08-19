@@ -12,7 +12,7 @@ import { ToastrService } from "ngx-toastr";
 import { NavigationComponent } from "../navigation/navigation.component";
 
 @Component({
-  providers:[NavigationComponent],
+  providers: [NavigationComponent],
   selector: "app-schedulerlist",
   templateUrl: "./schedulerlist.component.html",
   styleUrls: ["./schedulerlist.component.scss"]
@@ -21,7 +21,8 @@ export class SchedulerlistComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   HeaderData: DeliveryOrderHeader;
   DetailsData: Array<Order_details> = [];
-  statuslist: Status[];
+  statuslist: Status[] = [];
+  statuslistFiltered: Status[] = [];
   dataSaved = false;
   message = null;
   public searchText: string;
@@ -30,9 +31,10 @@ export class SchedulerlistComponent implements OnInit {
   submitted = false;
   selectedKey: string;
   dataShow: boolean;
-  tempOrderDetailKey :string;
+  tempOrderDetailKey: string;
 
-  constructor(private NaviComp: NavigationComponent,
+  constructor(
+    private NaviComp: NavigationComponent,
     private formBuilder: FormBuilder,
     private schedulerService: SchedulerService,
     private orderService: DeliveryOrderService,
@@ -42,7 +44,7 @@ export class SchedulerlistComponent implements OnInit {
     private toastr: ToastrService
   ) {
     //this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    NaviComp.test(6);
+    // NaviComp.test(6);
   }
 
   ngOnInit() {
@@ -52,24 +54,36 @@ export class SchedulerlistComponent implements OnInit {
     //   { dateInputFormat: "MM/DD/YYYY" }
     // );
 
-    
-    this.master
-      .getStatusList()
-      .subscribe(
-        data => (this.statuslist = data),
-        error => console.log(error),
-        () => console.log("Get statuslist", this.statuslist)
-      );
-    // this.service.GetOrderHeaderandDetails().subscribe(
-    //   data => {
-    //     this.schedulerlist = data;
-    //   },
-    //   error => console.log(error),
-    //   () => console.log("Scheduler list ", this.schedulerlist)
-    // );
+    // this.booksByStoreID = this.books.filter(
+    //   book => book.store_id === this.store.id );
+
+    this.master.getStatusList().subscribe(
+      data => {
+        this.statuslist = data;
+        // for (let i = 0; i< this.statuslistFiltered.length;i++) {
+
+        //   if (this.statuslistFiltered[i].name === "OnHold" || this.statuslistFiltered[i].name === "SendtoDispatchAssignment") {
+        //     this.statuslist.push(this.statuslistFiltered[i]);
+        //   }
+        // }   
+        
+        // this.statuslist.forEach(contact => {
+        //   console.log(contact.name);
+        // },
+      },
+      error => console.log(error),
+      () => console.log("Get statuslist", this.statuslist)
+    );
+
+    // for (let prop of this.statuslistFiltered) {
+    //   if (prop.name === "OnHold" || prop.name === "SendtoDispatchAssignment") {
+    //     this.statuslist.push(prop);
+    //   }
+    // }
 
     this.loaddata();
   }
+
   onSubmit(field: Order_details) {
     if (
       field.AppDateFrom == null ||
@@ -96,28 +110,24 @@ export class SchedulerlistComponent implements OnInit {
   ngOnChanges() {}
 
   rowclickEvent(value: Order_details) {
-
-    if (this.tempOrderDetailKey == value.OrderDetailKey )
-    {
-      this.dataShow = false;       
+    if (this.tempOrderDetailKey == value.OrderDetailKey) {
+      this.dataShow = false;
       this.tempOrderDetailKey = null;
       this.selectedKey = null;
       return;
-    }
-    else
-    {
-      this.dataShow = true;  
+    } else {
+      this.dataShow = true;
     }
     this.orderService.GetbyKey(value.OrderKey).subscribe(
       data => {
         this.HeaderData = data;
-        this.dataShow = true; 
+        this.dataShow = true;
         this.tempOrderDetailKey = value.OrderDetailKey;
       },
       error => console.log(error),
       () => console.log("order Header Data ", this.HeaderData)
     );
-   this.selectedKey = value.OrderKey;
+    this.selectedKey = value.OrderKey;
   }
 
   showSuccess(message: string, title: string) {

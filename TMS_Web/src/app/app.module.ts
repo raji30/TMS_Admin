@@ -73,6 +73,8 @@ import { GrdFilterPipe } from "./_models/grd-filter.pipe";
 import { SchedulerlistComponent } from "./views/schedulerlist/schedulerlist.component";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { DispatchAssignmentComponent } from "./views/dispatchAssignment/dispatchAssignment.component";
+import { ListcityComponent } from "./views/_master/_city/listcity/listcity.component";
+import { BlockCopyPaste } from "./common/block-copy-paste";
 
 @NgModule({
   imports: [
@@ -116,7 +118,8 @@ import { DispatchAssignmentComponent } from "./views/dispatchAssignment/dispatch
     AddressComponent,
     CustomerComponent,
     AddcustomerComponent,
-    ListcustomerComponent,
+    ListcustomerComponent,    
+    ListcityComponent,
     CompanyComponent,
     BrokerComponent,
     BillingratesComponent,
@@ -133,7 +136,8 @@ import { DispatchAssignmentComponent } from "./views/dispatchAssignment/dispatch
     DispatchAssignmentComponent,
     DispathdeliveryComponent,
     FileSelectDirective,
-    GrdFilterPipe
+    GrdFilterPipe,
+    BlockCopyPaste
   ],
   providers: [UserService, AddressService, DatePipe],
   bootstrap: [AppComponent],

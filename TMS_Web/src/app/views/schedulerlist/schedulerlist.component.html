@@ -82,13 +82,12 @@
         *ngFor="let field of DetailsData | grdFilter: {Chassis: searchText,SealNo: searchText, blog: searchText}; let i = index">
         <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()"> -->
         <td>
-          <a class="btn btn-link" role="button" (click)="rowclickEvent(field)" >
+          <a class="btn btn-link" role="button" (click)="rowclickEvent(field)">
             <img src="assets/img/brand/DataViewDetails24px.png" />
             <span class="badge" *ngIf="selectedKey===field.OrderKey">
               <img src="assets/img/brand/symbol-check16px.png" /> </span>
           </a>
         </td>
-
         <td>
           {{field.ContainerNo}}
         </td>

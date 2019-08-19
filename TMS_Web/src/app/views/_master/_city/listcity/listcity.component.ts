@@ -7,11 +7,11 @@ import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Address } from "../../../../_models/address";
 
 @Component({
-  selector: "app-listcustomer",
-  templateUrl: "./listcustomer.component.html",
-  styleUrls: ["./listcustomer.component.scss"]
+  selector: 'app-listcity',
+  templateUrl: './listcity.component.html',
+  styleUrls: ['./listcity.component.scss']
 })
-export class ListcustomerComponent implements OnInit {
+export class ListcityComponent implements OnInit {
   customers: Observable<Customer[]>;
   dataSaved = false;
   customerForm: FormGroup;
@@ -160,15 +160,5 @@ export class ListcustomerComponent implements OnInit {
 
     // convenience getter for easy access to form fields
     get f() { return this.customerForm.controls; }
-
-
-    numberOnly(event): boolean {
-      const charCode = (event.which) ? event.which : event.keyCode;
-      if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-      }
-      return true;
-  
-    }
 
 }

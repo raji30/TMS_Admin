@@ -15,6 +15,7 @@ import { SchedulerlistComponent } from "./views/schedulerlist/schedulerlist.comp
 import { DispatchComponent } from "./views/dispatch/dispatch.component";
 import { DispathdeliveryComponent } from "./views/dispathdelivery/dispathdelivery.component";
 import { DispatchAssignmentComponent } from "./views/dispatchAssignment/dispatchAssignment.component";
+import { ListcityComponent } from "./views/_master/_city/listcity/listcity.component";
 
 export const routes: Routes = [
   {
@@ -65,6 +66,10 @@ export const routes: Routes = [
       {
         path: "Customers",
         component: ListcustomerComponent
+      },
+      {
+        path: "City",
+        component: ListcityComponent
       },
       { path: "tab/:order", component: TabComponent },
       { path: "tab", component: TabComponent }

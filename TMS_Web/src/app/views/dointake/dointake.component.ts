@@ -118,7 +118,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   }
   onOrdernoGenerated(newOrderno: string) {
     this.doHeader.OrderNo = newOrderno;
-    this.doHeader.OrderDate = new Date().toLocaleDateString();
+    //this.doHeader.OrderDate = new Date().toLocaleDateString();
    
   }
 

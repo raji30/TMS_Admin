@@ -1,0 +1,148 @@
+<div id="accordion">
+
+    <div class="row">
+      <div class="col-md-6">
+        <form [formGroup]="customerForm" (ngSubmit)="onFormSubmit(customerForm.value)">
+          <br>
+          <button type="button" class="btn btn-info btn-sm" (click)="toggle()">Add Customer</button>
+  
+          <div *ngIf="show_addupdatecustomer">
+            <br>
+            <div class="card text-white bg-dark mb-3">
+              <div class="card-header">
+                <br>
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Customer ID</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="custid">
+                  </div>
+  
+                  <div class="form-group input-group input-group-sm col-md-8">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Customer</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="CustName">
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Credit limit</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="creditlimit"
+                      [ngClass]="{ 'is-invalid': submitted && f.creditlimit.errors }">
+                      <div *ngIf="submitted && f.creditlimit.errors" class="invalid-feedback">
+                        <div *ngIf="f.creditlimit.errors.required">creditlimit is required</div>
+                        <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
+                        <div *ngIf="f.creditlimit.errors.minLength">minlength is required</div>
+                      </div>
+                  </div>
+                  
+  
+                </div>
+  
+                <div class="row" formGroupName="Address">
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Address1</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="Address1">
+                  </div>
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Address2</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="Address2">
+                  </div>
+                </div>
+  
+                <div class="row" formGroupName="Address">
+                  <div class="form-group input-group input-group-sm col-md-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">City</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="City">
+                  </div>
+  
+                  <div class="form-group input-group input-group-sm col-md-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">State</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="State">
+                  </div>
+                  <div class="form-group input-group input-group-sm col-md-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Zip</span>
+                    </div>
+                   
+                    <input type="text" class="form-control form-control-sm" formControlName="Zip"
+                      [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Zip.errors }">
+                      <div *ngIf="submitted && f.Address['controls'].Zip.errors" class="invalid-feedback">
+                        <div *ngIf="f.Address['controls'].errors.required">Zip is required</div>
+                        <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
+                        <div *ngIf="f.Address['controls'].Zip.errors.minLength">minlength is required</div>
+                      </div>
+                  </div>
+  
+                </div>
+  
+                <div class="form-group  row">
+                  <div class="form-group col-md-8">
+                    <p *ngIf="dataSaved" style="color:green;font-size:15px;font-weight:normal" align="left">
+                      {{message}}
+                    </p>
+                  </div>
+                  <div class=" col-md-1">
+                    <button type="reset" *ngIf="isCancelbtnhidden" class="btn btn-primary btn-sm"
+                      (click)="cancel()">Cancel</button>
+                  </div>
+                  <div class=" col-md-1">
+                    <!-- <button type="submit" class="btn btn-primary btn-sm"  [disabled]="!customerForm.valid">Submit</button> -->
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                  </div>
+                  <div class=" col-md-1">
+                    <button type="reset" *ngIf="isResetbtnhidden" class="btn btn-primary btn-sm"
+                      (click)="resetForm()">Reset</button>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <div class="row">
+  
+      <div class="col-md-8">
+        <br><br>
+        <table class="table table-sm">
+          <tr ngclass="btn-primary">
+            <th hidden="true">custkey</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Credit Limit</th>
+          </tr>
+          <tr *ngFor="let cust of customers | async">
+            <td hidden="true">{{cust.CustomerKey}}</td>
+            <td>{{cust.CustId}}</td>
+            <td>{{cust.CustName}}</td>
+            <td>{{cust.CreditLimit}}</td>
+            <td class="tbl2">
+              <button type="button" class="btn btn-info btn-sm"
+                (click)="loadCustomerToEdit(cust.CustomerKey)">Edit</button>
+            </td>
+            <!-- <td class="tbl2">
+              <button type="button" class="btn btn-danger btn-sm"
+                (click)="deleteCustomer(cust.CustomerKey)">Delete</button>
+            </td> -->
+          </tr>
+        </table>
+      </div>
+  
+    </div>
+  </div>

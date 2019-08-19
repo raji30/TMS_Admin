@@ -41,7 +41,6 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.service
       .getOrderlist()
       .subscribe(
