@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Trikaiser Admin\source\repos\TMS\TMS.Data\App_model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Arun\Documents\GitHub\TMS_Admin\TMS.Data\App_model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

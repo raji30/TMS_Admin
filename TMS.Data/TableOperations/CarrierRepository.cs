@@ -34,12 +34,22 @@ namespace TMS.Data.TableOperations
 
         public carrier GetbyId(Guid id)
         {
-            throw new NotImplementedException();
+            return entity.carriers.FirstOrDefault(d => d.carrierkey == id);
         }
 
         public bool Update(carrier t)
         {
-            throw new NotImplementedException();
+            var car = GetbyId(t.carrierkey);
+            if (car != null)
+            {                
+                car.carrierid = t.carrierid;
+                car.carriername = t.carriername;
+                car.addrkey = t.addrkey;
+
+                entity.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

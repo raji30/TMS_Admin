@@ -24,7 +24,7 @@ namespace TMS.Data
         public System.Guid vendkey { get; set; }
         public string vendid { get; set; }
         public string vendname { get; set; }
-        public Nullable<System.Guid> addrkey { get; set; }
+        public System.Guid addrkey { get; set; }
         public Nullable<short> status { get; set; }
         public Nullable<System.DateTime> statusdate { get; set; }
     

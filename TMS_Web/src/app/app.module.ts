@@ -75,6 +75,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { DispatchAssignmentComponent } from "./views/dispatchAssignment/dispatchAssignment.component";
 import { ListcityComponent } from "./views/_master/_city/listcity/listcity.component";
 import { BlockCopyPaste } from "./common/block-copy-paste";
+import { ListdriverComponent } from "./views/_master/_driver/listdriver/listdriver.component";
+import { VendorlistComponent } from "./views/_master/_vendor/vendorlist/vendorlist/vendorlist.component";
 
 @NgModule({
   imports: [
@@ -122,6 +124,8 @@ import { BlockCopyPaste } from "./common/block-copy-paste";
     ListcityComponent,
     CompanyComponent,
     BrokerComponent,
+    VendorlistComponent,
+    ListdriverComponent,
     BillingratesComponent,
     ContainerComponent,
     OrderlistComponent,

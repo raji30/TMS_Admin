@@ -17,6 +17,10 @@ namespace TMS.Api.Controllers
         CustomerDL cusObj = new CustomerDL();
         // GET: api/Customer
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
         [HttpGet]
         // GET: api/Customer/5
         [Route("GetCustomers")]
@@ -57,6 +61,11 @@ namespace TMS.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not found", Configuration.Formatters.JsonFormatter);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="custkey"></param>
+        /// <returns></returns>
         [HttpGet]     
         [Route("GetCustomerByID/{custkey}")]
         public HttpResponseMessage GetCustomerByID(string custkey)
@@ -91,7 +100,11 @@ namespace TMS.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not found", Configuration.Formatters.JsonFormatter);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet]
         // GET: api/Customer/5
         public HttpResponseMessage Get(string name)
@@ -126,6 +139,11 @@ namespace TMS.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not found", Configuration.Formatters.JsonFormatter);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
         [HttpPost]
         // POST: api/Customer
         [Route("CreateCustomer")]
@@ -163,6 +181,11 @@ namespace TMS.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
         [HttpPut]
         // PUT: api/Customer/5
         [Route("UpdateCustomer")]
@@ -201,6 +224,13 @@ namespace TMS.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="custKey"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
         [Route("GetCustomerCredit")]
         [SwaggerOperation("GetCustomerCredit")]
         public HttpResponseMessage GetCredit (string custKey, int amount)
@@ -214,7 +244,11 @@ namespace TMS.Api.Controllers
 
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="custname"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetCustomerMaxcount/{custname}")]
         [SwaggerOperation("GetCustomerMaxcount")]

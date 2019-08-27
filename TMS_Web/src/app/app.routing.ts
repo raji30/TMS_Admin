@@ -16,6 +16,8 @@ import { DispatchComponent } from "./views/dispatch/dispatch.component";
 import { DispathdeliveryComponent } from "./views/dispathdelivery/dispathdelivery.component";
 import { DispatchAssignmentComponent } from "./views/dispatchAssignment/dispatchAssignment.component";
 import { ListcityComponent } from "./views/_master/_city/listcity/listcity.component";
+import { ListdriverComponent } from "./views/_master/_driver/listdriver/listdriver.component";
+import { VendorlistComponent } from "./views/_master/_vendor/vendorlist/vendorlist/vendorlist.component";
 
 export const routes: Routes = [
   {
@@ -66,6 +68,14 @@ export const routes: Routes = [
       {
         path: "Customers",
         component: ListcustomerComponent
+      },
+      {
+        path: "Drivers",
+        component: ListdriverComponent
+      },
+            {
+        path: "Vendors",
+        component: VendorlistComponent
       },
       {
         path: "City",

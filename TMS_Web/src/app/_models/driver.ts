@@ -1,15 +1,17 @@
+import { Address } from "./address";
+
 export class Driver {
-    DriverKey: string;
-    DriverId: string;
-  drivernotes: string;
-  //  Guid addrkey { get; set; }
-  //  Guid carrierkey { get; set; }
-  //  Guid vendkey { get; set; }
-  //  string firstname
-  //  string lastname
-  //  string drivinglicenseno
-  //  DateTime drivinglicenseexpirydate
-  //  DateTime createdate
-  //  short status
-  //  DateTime statusdate
+  DriverKey: string;
+  DriverId: string;
+  drivernotes?: string;
+  FirstName: string;
+  LastName?: string;
+  Address?: Address;
+  CarrierKey?: string;
+  DriversLicenseNo?: string;
+  LicenseExpiryDate?: string;
+  CreateDate?: string;
+  Status?: number;
+  StatusDate?: string;
+  VendorKey?: string;
 }

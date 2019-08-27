@@ -12,7 +12,9 @@ namespace TMS.Data.TableOperations
         App_modelEntities entities = new App_modelEntities();
         public Guid Add(vendor t)
         {
-            throw new NotImplementedException();
+            var newVendor = entities.vendors.Add(t);
+            entities.SaveChanges();
+            return newVendor.vendkey;
         }
 
         public bool Delete(vendor t)
@@ -32,12 +34,22 @@ namespace TMS.Data.TableOperations
 
     public vendor GetbyId(Guid id)
     {
-        throw new NotImplementedException();
-    }
+        
+            return entities.vendors.FirstOrDefault(d => d.vendkey == id);
+        }
 
     public bool Update(vendor t)
-    {
-        throw new NotImplementedException();
-    }
+    {        
+            var vend = GetbyId(t.vendkey);
+            if (vend != null)
+            {
+                vend.vendname = t.vendname;
+                vend.vendid = t.vendid;
+                vend.addrkey = t.addrkey;
+                entities.SaveChanges();
+                return true;
+            }
+            return false;
+        }
 }
 }

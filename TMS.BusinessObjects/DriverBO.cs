@@ -14,13 +14,13 @@ namespace TMS.BusinessObjects
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public AddressBO Address { get; set; }
-        public Guid CarrierKey { get; set; }
+        public Nullable<Guid> CarrierKey { get; set; }
         public string DriversLicenseNo { get; set; }
-        public DateTime LicenseExpiryDate { get; set; }
-        public DateTime CreateDate { get; set; }
+        public Nullable<DateTime> LicenseExpiryDate { get; set; }
+        public Nullable<DateTime> CreateDate { get; set; }
         public int Status { get; set; }
         public DateTime StatusDate { get; set; }
-        public Guid VendorKey { get; set; }
+        public Nullable<Guid> VendorKey { get; set; }
 
     }
 }

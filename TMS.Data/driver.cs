@@ -20,18 +20,18 @@ namespace TMS.Data
             this.tms_routes = new HashSet<tms_routes>();
         }
     
-        public System.Guid driverkey { get; set; }
+        public Guid driverkey { get; set; }
         public string driverid { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
-        public Nullable<System.Guid> addrkey { get; set; }
-        public Nullable<System.Guid> carrierkey { get; set; }
+        public Guid addrkey { get; set; }
+        public Nullable<Guid> carrierkey { get; set; }
         public string drivinglicenseno { get; set; }
-        public Nullable<System.DateTime> drivinglicenseexpirydate { get; set; }
-        public Nullable<System.DateTime> createdate { get; set; }
+        public Nullable<DateTime> drivinglicenseexpirydate { get; set; }
+        public Nullable<DateTime> createdate { get; set; }
         public Nullable<short> status { get; set; }
-        public Nullable<System.DateTime> statusdate { get; set; }
-        public Nullable<System.Guid> vendkey { get; set; }
+        public Nullable<DateTime> statusdate { get; set; }
+        public Nullable<Guid> vendkey { get; set; }
     
         public virtual address address { get; set; }
         public virtual carrier carrier { get; set; }
