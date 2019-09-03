@@ -10,7 +10,7 @@ namespace TMS.BusinessObjects
     {
         public Guid Itemkey { get; set; }
         public string Description { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
         public short ItemType { get; set; }
         public decimal Quantity { get; set; }
         public string InvoiceDescription { get; set; }

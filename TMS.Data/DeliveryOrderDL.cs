@@ -193,11 +193,6 @@ namespace TMS.Data
                     while(reader.Read())
                     {                        
                         AddressRepository addRepo = new AddressRepository();
-                        /*orderno ,  orderdate ,  custkey, billtoaddrkey as billingAddress,
-sourceaddrkey as sourceaddress,destinationaddrkey as destinationaddress,returnaddrkey as returnaddress,
-  source,  ordertype ,  oh.status , oh.statusdate , oh.holdreason , oh.holddate ,
-  br.brokername,br.brokerid ,brokerrefno ,portoforiginkey ,carrierkey,vesselname ,
-  billoflading ,  bookingno ,  cutoffdate ,  ishazardous ,  priority ,  oh.createdate ,oh.createuserkey */
                         bo.OrderNo = reader["orderno"].ToString();
                         var dateAndTime = Convert.ToDateTime(reader["orderdate"].ToString()).ToString("MM/dd/yyyy");
                         bo.OrderDate = Convert.ToDateTime(reader["orderdate"]);
