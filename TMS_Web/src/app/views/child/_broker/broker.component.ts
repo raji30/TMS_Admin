@@ -22,7 +22,7 @@ export class BrokerComponent implements OnInit {
     //   "Status":"1"}];
 
     this.service
-      .getbrokers()
+      .GetBrokers()
       .subscribe(
         data => (this.broker = data),
         error => console.log(error),
@@ -32,7 +32,7 @@ export class BrokerComponent implements OnInit {
 
   ngOnChanges() {
     if (this.brokerKeyTobind != undefined) {
-      this.service.getbrokers().subscribe(
+      this.service.GetBrokers().subscribe(
         (data: any) => {
           this.broker = data;
           this.selectedBroker = this.broker.find(

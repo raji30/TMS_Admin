@@ -38,8 +38,8 @@ export class Carrier {
   CarrierKey: string;
   CarrierId: string;
   CarrierName: string;
-  isSteamLine: boolean;
-  AddressBO: Address;
+  isstreamline: boolean;
+  Address: Address;
   ScacCode: string;
   LicensePlate: string;
   LicensePlateExpiryDate: string;

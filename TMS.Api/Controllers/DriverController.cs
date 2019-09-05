@@ -64,6 +64,7 @@ namespace TMS.Api.Controllers
                     var address = new AddressRepository().GetbyId(driv.addrkey);
                     driverBO.Address = new AddressBO()
                     {
+                        AddrKey = address.addrkey,
                         Address1 = address.address1,
                         Address2 = address.address2,
                         City = address.city,
@@ -108,6 +109,7 @@ namespace TMS.Api.Controllers
                     var address = new AddressRepository().GetbyId(driver.addrkey);
                     driverBO.Address = new AddressBO()
                     {
+                        AddrKey = address.addrkey,
                         Address1 = address.address1,
                         Address2 = address.address2,
                         City = address.city,
@@ -195,7 +197,7 @@ namespace TMS.Api.Controllers
             {
                 var custaddress = new Data.address()
                 {
-
+                    addrkey = driverBO.Address.AddrKey,
                     address1 = driverBO.Address.Address1,
                     address2 = driverBO.Address.Address2,
                     city = driverBO.Address.City,

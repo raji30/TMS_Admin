@@ -77,6 +77,8 @@ import { ListcityComponent } from "./views/_master/_city/listcity/listcity.compo
 import { BlockCopyPaste } from "./common/block-copy-paste";
 import { ListdriverComponent } from "./views/_master/_driver/listdriver/listdriver.component";
 import { VendorlistComponent } from "./views/_master/_vendor/vendorlist/vendorlist/vendorlist.component";
+import { BrokerlistComponent } from "./views/_master/_broker/brokerlist/brokerlist/brokerlist.component";
+import { CarrierlistComponent } from "./views/_master/_carrier/carrierlist/carrierlist.component";
 
 @NgModule({
   imports: [
@@ -125,6 +127,8 @@ import { VendorlistComponent } from "./views/_master/_vendor/vendorlist/vendorli
     CompanyComponent,
     BrokerComponent,
     VendorlistComponent,
+    BrokerlistComponent,
+    CarrierlistComponent,
     ListdriverComponent,
     BillingratesComponent,
     ContainerComponent,

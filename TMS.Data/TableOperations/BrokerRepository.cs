@@ -32,13 +32,24 @@ namespace TMS.Data.TableOperations
         }
 
         public broker GetbyId(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        {            
+            return entity.brokers.FirstOrDefault(b => b.brokerkey == id);
+
+        }    
 
         public bool Update(broker t)
-        {
-            throw new NotImplementedException();
+        {            
+            var broker = GetbyId(t.brokerkey);
+            if (broker != null)
+            {
+                broker.brokername = t.brokername;
+                broker.brokerid = t.brokerid;
+                broker.addrkey = t.addrkey;
+
+                entity.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

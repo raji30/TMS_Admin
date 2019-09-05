@@ -44,6 +44,7 @@ namespace TMS.Api.Controllers
                 var address = new AddressRepository().GetbyId(cust.addrkey);
                 customerBO.Address = new AddressBO()
                 {
+                    AddrKey = address.addrkey,
                     Address1 = address.address1,
                     Address2 = address.address2,
                     City = address.city,
@@ -84,6 +85,7 @@ namespace TMS.Api.Controllers
                 var address = new AddressRepository().GetbyId(customer.addrkey);
                 customerBO.Address = new AddressBO()
                 {
+                    AddrKey = address.addrkey,
                     Address1 = address.address1,
                     Address2 = address.address2,
                     City = address.city,
@@ -199,11 +201,12 @@ namespace TMS.Api.Controllers
             _customer.creditlimit = customer.CreditLimit;
             _customer.creditstatus = customer.CreditStatus;
             _customer.customergroup = customer.CustomerGroup;
+            _customer.custkey = customer.CustomerKey;
             if (customer.Address != null)
             {
                 var custaddress = new Data.address()
                 {
-
+                    addrkey = customer.Address.AddrKey,
                     address1 = customer.Address.Address1,
                     address2 = customer.Address.Address2,
                     city = customer.Address.City,

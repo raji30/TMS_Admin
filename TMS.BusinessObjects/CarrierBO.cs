@@ -11,7 +11,7 @@ namespace TMS.BusinessObjects
         public Guid CarrierKey { get; set; }
         public string CarrierId { get; set; }
         public string CarrierName { get; set; }
-        public bool isSteamLine { get; set; }
+        public bool isstreamline { get; set; }
         public Guid AddrKey { get; set; }
         public AddressBO Address { get; set; }
         public string ScacCode { get; set; }
