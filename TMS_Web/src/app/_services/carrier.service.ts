@@ -1,21 +1,21 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppSettings } from '../_constants/appsettings';
-import { Driver } from '../_models/driver';
-import { Vendor } from '../_models/vendor';
+import { Carrier } from '../common/master';
 
 @Injectable({
   providedIn: 'root'
 })
-export class VendorService {
+export class CarrierService {
 
 constructor(private http:HttpClient) { }
 
-public getVendors() {
-  return this.http.get<Vendor[]>(AppSettings._BaseURL + 'GetVendors');  
+public GetCarriers() {
+  return this.http.get<Carrier[]>(AppSettings._BaseURL + 'GetCarrier');  
 }
 
-  createVendor(vendor: Vendor) {
+  CreateCarrier(carrier: Carrier) {
     var token = JSON.parse(localStorage.getItem("currentUser"));
 
     const httpOptions = {
@@ -24,14 +24,14 @@ public getVendors() {
         Authorization: "Bearer " + token.token
       })
     };
-    return this.http.post<Vendor>(
-      AppSettings._BaseURL + "CreateVendor",
-      vendor,
+    return this.http.post<Carrier >(
+      AppSettings._BaseURL + "CreateCarrier",
+      carrier,
       httpOptions
     );
   }
 
-  updateVendor(vendor: Vendor) {
+  UpdateCarrier(carrier: Carrier ) {
     var token = JSON.parse(localStorage.getItem("currentUser"));
     const httpOptions = {
       headers: new HttpHeaders({
@@ -40,15 +40,15 @@ public getVendors() {
       })
     };
 
-    return this.http.put<Vendor>(
-      AppSettings._BaseURL + "UpdateVendor",
-      vendor,
+    return this.http.put<Carrier>(
+      AppSettings._BaseURL + "UpdateCarrier",
+      carrier,
       httpOptions
     );
   }
-  GetVendorByID(id: string) {
-    return this.http.get<Vendor>(
-      AppSettings._BaseURL + "GetVendorByID" + "/" + id
+  GetCarrierByID(id: string) {
+    return this.http.get<Carrier>(
+      AppSettings._BaseURL + "GetCarrierByID" + "/" + id
     );
   }
 }

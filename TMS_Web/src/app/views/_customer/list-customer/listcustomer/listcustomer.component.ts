@@ -69,12 +69,12 @@ export class ListcustomerComponent implements OnInit {
     this.dataSaved = false;
 
     let cust: Customer = this.customerForm.value;
-    cust.CustomerKey = "";
-    cust.CustomerGroup = 0;
-    cust.CustomerKey = "";
-    cust.Status = 1;
-    cust.addrkey = "";
-    cust.CreditCheck = true;
+    // cust.CustomerKey = "";
+    // cust.CustomerGroup = 0;
+    // cust.CustomerKey = "";
+    // cust.Status = 1;
+    // cust.addrkey = "";
+    // cust.CreditCheck = true;
 
     this.CreateCustomer(cust);
     this.customerForm.reset();

@@ -16,7 +16,6 @@ namespace TMS.Api.Controllers
     [JwtAuthentication]
     public class VendorController : ApiController
     {
-
         VendorRepository repo = new VendorRepository();
 
         /// <summary>
@@ -45,6 +44,7 @@ namespace TMS.Api.Controllers
                     var address = new AddressRepository().GetbyId(driv.addrkey);
                     vendorBO.Address = new AddressBO()
                     {
+                        AddrKey = address.addrkey,
                         Address1 = address.address1,
                         Address2 = address.address2,
                         City = address.city,
@@ -68,7 +68,7 @@ namespace TMS.Api.Controllers
         /// <param name="vendorkey"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetVendorID/{vendorkey}")]
+        [Route("GetVendorByID/{vendorkey}")]
         public HttpResponseMessage GetDriverByID(string vendorkey)
         {
             Data.vendor vendor = repo.GetbyId(Guid.Parse(vendorkey));
@@ -85,6 +85,7 @@ namespace TMS.Api.Controllers
                 var address = new AddressRepository().GetbyId(vendor.addrkey);
                 vendorBO.Address = new AddressBO()
                 {
+                    AddrKey = address.addrkey,
                     Address1 = address.address1,
                     Address2 = address.address2,
                     City = address.city,
@@ -160,6 +161,7 @@ namespace TMS.Api.Controllers
             {
                 var custaddress = new Data.address()
                 {
+                    addrkey = vendorBO.Address.AddrKey,
                     address1 = vendorBO.Address.Address1,
                     address2 = vendorBO.Address.Address2,
                     city = vendorBO.Address.City,

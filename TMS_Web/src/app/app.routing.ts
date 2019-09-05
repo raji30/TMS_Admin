@@ -18,6 +18,8 @@ import { DispatchAssignmentComponent } from "./views/dispatchAssignment/dispatch
 import { ListcityComponent } from "./views/_master/_city/listcity/listcity.component";
 import { ListdriverComponent } from "./views/_master/_driver/listdriver/listdriver.component";
 import { VendorlistComponent } from "./views/_master/_vendor/vendorlist/vendorlist/vendorlist.component";
+import { BrokerlistComponent } from "./views/_master/_broker/brokerlist/brokerlist/brokerlist.component";
+import { CarrierlistComponent } from "./views/_master/_carrier/carrierlist/carrierlist.component";
 
 export const routes: Routes = [
   {
@@ -76,7 +78,15 @@ export const routes: Routes = [
             {
         path: "Vendors",
         component: VendorlistComponent
+      },      
+      {
+        path: "Brokers",
+        component: BrokerlistComponent
       },
+      {
+        path: "Carriers",
+        component: CarrierlistComponent
+      },      
       {
         path: "City",
         component: ListcityComponent

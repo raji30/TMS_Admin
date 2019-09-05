@@ -11,6 +11,15 @@
           <div class="card text-white bg-dark mb-3">
             <div class="card-header">
               <br>
+              <div class="row" hidden ="true">
+                  <div class="form-group input-group input-group-sm col-md-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Customer Key</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="CustomerKey">
+                  </div>
+                  
+                </div>
               <div class="row">
                 <div class="form-group input-group input-group-sm col-md-4">
                   <div class="input-group-prepend">
@@ -44,6 +53,15 @@
 
               </div>
 
+              <div class="row" formGroupName="Address" hidden ="true">
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Address Key</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="AddrKey">
+                  </div>
+                  
+                </div>
               <div class="row" formGroupName="Address">
                 <div class="form-group input-group input-group-sm col-md-6">
                   <div class="input-group-prepend">

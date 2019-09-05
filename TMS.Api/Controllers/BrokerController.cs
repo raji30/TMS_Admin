@@ -13,6 +13,7 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
 {
+    [JwtAuthentication]
     public class BrokerController : ApiController
     {
         BrokerBL brokerBL = new BrokerBL();
@@ -41,9 +42,41 @@ namespace TMS.Api.Controllers
         [SwaggerOperation("GetBrokers")]
         public HttpResponseMessage GetBrokers()
         {
-            var boList = brokerBL.GetAll();
-            return Request.CreateResponse(HttpStatusCode.OK, boList,
-                Configuration.Formatters.JsonFormatter);
+            //var boList = brokerBL.GetAll();
+            //return Request.CreateResponse(HttpStatusCode.OK, boList,Configuration.Formatters.JsonFormatter);
+
+            List < Data.broker> broker = repo.GetAll().ToList();
+          
+            List<BrokerBO> brokerBOList = new List<BrokerBO>();
+
+
+            if (broker.Count > 0)
+            {
+                foreach (var driv in broker)
+                {
+                    BrokerBO brokerBO = new BrokerBO();
+                    brokerBO.BrokerKey = driv.brokerkey;
+                    brokerBO.BrokerId = driv.brokerid;
+                    brokerBO.BrokerName = driv.brokername;
+
+                    var address = new AddressRepository().GetbyId(driv.addrkey);
+                    brokerBO.Address = new AddressBO()
+                    {
+                        Address1 = address.address1,
+                        Address2 = address.address2,
+                        City = address.city,
+                        State = address.state,
+                        Zip = address.zipcode,
+                        Email = address.email,
+                        Phone = address.phone,
+                        Fax = address.fax
+                    };
+                    brokerBOList.Add(brokerBO);
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, brokerBOList, Configuration.Formatters.JsonFormatter);
+            }
+            else
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not found", Configuration.Formatters.JsonFormatter);
         }
 
         /// <summary>
@@ -103,10 +136,11 @@ namespace TMS.Api.Controllers
             {
                 brokerBO.BrokerId = broker.brokerid;
                 brokerBO.BrokerName = broker.brokername;
-               
-                var address = new AddressRepository().GetbyId(broker.addrkey);
+                brokerBO.BrokerKey = broker.brokerkey;
+                 var address = new AddressRepository().GetbyId(broker.addrkey);
                 brokerBO.Address = new AddressBO()
                 {
+                    AddrKey =address.addrkey,
                     Address1 = address.address1,
                     Address2 = address.address2,
                     City = address.city,
@@ -140,6 +174,7 @@ namespace TMS.Api.Controllers
             {
                 var custaddress = new Data.address()
                 {
+                    addrkey=brokerBO.Address.AddrKey,
                     address1 = brokerBO.Address.Address1,
                     address2 = brokerBO.Address.Address2,
                     city = brokerBO.Address.City,

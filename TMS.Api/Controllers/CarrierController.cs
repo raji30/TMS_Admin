@@ -12,6 +12,7 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
 {
+    [JwtAuthentication]
     public class CarrierController : ApiController
     {
         CarrierRepository repo = new CarrierRepository();
@@ -27,6 +28,7 @@ namespace TMS.Api.Controllers
         {
             CarrierDL DL = new CarrierDL();
             List<CarrierBO> carrierlist = DL.GetCarriers();
+            //List < Data.carrier > driver =  repo.GetAll().ToList();//
             return Request.CreateResponse(HttpStatusCode.OK, carrierlist, Configuration.Formatters.JsonFormatter);
         }
 

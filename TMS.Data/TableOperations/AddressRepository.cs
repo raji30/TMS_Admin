@@ -49,6 +49,7 @@ namespace TMS.Data.TableOperations
             addresstoUpdate.address1 = t.address1;
             addresstoUpdate.address2 = t.address2;
             addresstoUpdate.city = t.city;
+            addresstoUpdate.zipcode = t.zipcode;
             addresstoUpdate.addrname = t.addrname;
             addresstoUpdate.state = t.state;
             addresstoUpdate.email = t.email;
