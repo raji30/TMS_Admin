@@ -155,6 +155,7 @@
     <Compile Include="invoicedetail.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="InvoiceDL.cs" />
     <Compile Include="invoiceheader.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>

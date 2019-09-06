@@ -53,6 +53,8 @@
     <Compile Include="DriverBO.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="EnumValue.cs" />
+    <Compile Include="InvoiceDetailBO.cs" />
+    <Compile Include="InvoiceHeaderBO.cs" />
     <Compile Include="LoginResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutesBO.cs" />
