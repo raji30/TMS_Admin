@@ -37,5 +37,27 @@ namespace TMS.Data
                 return result>0;
             }
         }
+
+        public Int64 GetCustomerMaxcount(string custname)
+        {
+            string sql = "SELECT cnt FROM (SELECT custkey, COUNT(*) AS cnt FROM dbo.tms_orderheader  GROUP BY custkey ) AS customer" +
+                            " WHERE custkey = (select custkey from dbo.customer where custname=@custname)";  
+            using (connection)
+            {
+                connection.Open();
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("custname",
+                       NpgsqlTypes.NpgsqlDbType.Varchar, custname);
+                    object Obj = cmd.ExecuteScalar();
+                    if (Obj != null)
+                    {
+                        return (Int64)cmd.ExecuteScalar();
+                    }
+                    else return 0;
+                }
+            }
+        }
     }
 }

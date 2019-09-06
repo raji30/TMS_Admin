@@ -12,7 +12,9 @@ namespace TMS.Data.TableOperations
         App_modelEntities entities = new App_modelEntities();
         public Guid Add(warehouse t)
         {
-            throw new NotImplementedException();
+            var newWarehouse = entities.warehouses.Add(t);
+            entities.SaveChanges();
+            return newWarehouse.warehousekey;
         }
 
         public bool Delete(warehouse t)
@@ -32,12 +34,21 @@ namespace TMS.Data.TableOperations
 
         public warehouse GetbyId(Guid id)
         {
-            throw new NotImplementedException();
+            return entities.warehouses.FirstOrDefault(d => d.warehousekey == id);
         }
 
         public bool Update(warehouse t)
         {
-            throw new NotImplementedException();
+            var ware = GetbyId(t.warehousekey);
+            if (ware != null)
+            {
+                ware.warehouseid = t.warehouseid;
+                ware.addrkey = t.addrkey;
+
+                entities.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

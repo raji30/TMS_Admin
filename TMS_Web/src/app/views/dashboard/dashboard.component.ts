@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   templateUrl: 'dashboard.component.html'
@@ -13,6 +12,8 @@ export class DashboardComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
+
+  public indexLabelBackgroundColor: "yellow";
   public barChartLabels: string[] = ['Dec 2018'];
   public barChartType = 'bar';
   public barChartLegend = true;
@@ -21,5 +22,19 @@ export class DashboardComponent implements OnInit {
     {data: [65], label: 'Total Orders'},
     {data: [28], label: 'Delivery in Progress'}
   ];
-  ngOnInit(): void { }
+
+  constructor( ) {  }
+
+  ngOnInit() {
+        
+  }
+
+  // events
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+ 
+  public chartHovered(e:any):void {
+    console.log(e);
+  }
 }

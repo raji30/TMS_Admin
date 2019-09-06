@@ -26,11 +26,11 @@ namespace TMS.Data
         public System.Guid addrkey { get; set; }
         public string scaccode { get; set; }
         public string licenseplate { get; set; }
-        public Nullable<System.DateTime> licenseplateexpirydate { get; set; }
+        public System.DateTime licenseplateexpirydate { get; set; }
         public System.DateTime createdate { get; set; }
         public short status { get; set; }
         public System.DateTime statusdate { get; set; }
-        public Nullable<bool> isstreamline { get; set; }
+       public Nullable<bool> isstreamline { get; set; }
     
         public virtual address address { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

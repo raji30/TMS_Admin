@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       .login(this.model.username, this.model.password, this.model.company)
       .pipe(first())
       .subscribe(
-        data => {
+        data => {     
           this.router.navigate(["dashboard"]);
         },
         error => {

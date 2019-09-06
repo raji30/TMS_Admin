@@ -1,3 +1,6 @@
+import { Time } from "@angular/common";
+import { Tms_routes } from "./tms_routes";
+
 export class Order_details {
         OrderDetailKey :string;
         OrderKey:string;
@@ -6,8 +9,12 @@ export class Order_details {
         chassis:string;
         sealNo: string;
         weight:number;
-        apptdatefrom:string;
-        apptdateto:string;
+        AppDateFrom:string;
+        AppDateTo:string;
+        PickupDateTime:string;       
+        DropOffDateTime:string;      
+        ActualPickupDateTime:string;
+        ActualDropOffDateTime:string;       
         status:string;
         statusdate:string;
         holdreason:string;
@@ -15,4 +22,5 @@ export class Order_details {
         containerSizeDesc:string;
         StatusDesc:string;
         HoldReasonDesc:string;  
+        orderroutes:Tms_routes;       
 }

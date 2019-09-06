@@ -38,7 +38,7 @@ export class ContainerComponent implements OnInit {
   }
 
   addFieldValue() {
-    this.AddContainerDetails.push(this.newAttribute);
+    this.AddContainerDetails.push(this.newAttribute);    
     this.newAttribute = {};
     this.ContainerDetailsOutput.emit(this.AddContainerDetails);    
 }

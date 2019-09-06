@@ -5,7 +5,7 @@ export class DeliveryOrderHeader {
         public OrderKey: string;
         public OrderNo:string ;
         public CustKey:string ;
-        public OrderDate:string ;
+        public OrderDate:Date ;
         public BillToAddress: string ;
         public SourceAddress: string ;
         public DestinationAddress: string ;
@@ -13,23 +13,24 @@ export class DeliveryOrderHeader {
         public Source:string ;
         public OrderType:number ;
         public Status:number ;
-        public StatusDate:string ;
+        public StatusDate:Date ;
         public HoldReason: number;
-        public HoldDate:string ;
+        public HoldDate:Date ;
         public BrokerName:string  ;
         public BrokerId:string ;
         public Brokerkey: string;
         public BrokerRefNo:string  ;
         public PortofOriginKey: string ;
+        public PortofDestinationKey: string ;        
         public CarrierKey: string ;
         public VesselName:string  ;
         public BillofLading:string  ;
         public BookingNo:string ;
-        public CutOffDate:string ;
+        public CutOffDate:Date ;
         public Priority:number;
         public IsHazardous:boolean;
         public CreatedBy: string ;
-        public CreatedDate:string;
+        public CreatedDate:Date;
         public ordertypedescription:string ;
         public statusdescription:string ;
 

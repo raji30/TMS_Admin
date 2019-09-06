@@ -1,5 +1,7 @@
-<div class="animated fadeIn">
+<div class="animated fadeIn">  
+  
     <div class="card-columns cols-2">
+
                <div class="card">
           <div class="card-header">
             Order Status
@@ -9,13 +11,15 @@
                 <canvas baseChart class="chart"
                 [data]="pieChartData"
                 [labels]="pieChartLabels"
+                [indexLabelBackgroundColor] = "indexLabelForegroundColor"
                 [chartType]="pieChartType"
                 (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
               </div>
             </div>
         </div>
-        
+
+       
         <div class="card">
             <div class="card-header">
               Order Numbers

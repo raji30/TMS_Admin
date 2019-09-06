@@ -12,7 +12,9 @@ namespace TMS.Data.TableOperations
         App_modelEntities entities = new App_modelEntities();
         public Guid Add(shippingportterminal t)
         {
-            throw new NotImplementedException();
+            var newWarehouse = entities.shippingportterminals.Add(t);
+            entities.SaveChanges();
+            return newWarehouse.terminalkey;
         }
 
         public bool Delete(shippingportterminal t)
@@ -32,12 +34,22 @@ namespace TMS.Data.TableOperations
 
         public shippingportterminal GetbyId(Guid id)
         {
-            throw new NotImplementedException();
+            return entities.shippingportterminals.FirstOrDefault(d => d.terminalkey == id);
         }
 
         public bool Update(shippingportterminal t)
         {
-            throw new NotImplementedException();
+            var terminal = GetbyId(t.terminalkey);
+            if (terminal != null)
+            {
+                terminal.shippingport = t.shippingport;
+                terminal.portkey = t.portkey;
+                terminal.addrkey = t.addrkey;
+
+                entities.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

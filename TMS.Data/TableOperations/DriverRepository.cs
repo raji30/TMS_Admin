@@ -16,7 +16,11 @@ namespace TMS.Data.TableOperations
         }
         public Guid Add(driver t)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            var newdriver = entities.drivers.Add(t);
+            entities.SaveChanges();
+            return newdriver.driverkey;
         }
 
         public bool Delete(driver t)
@@ -41,7 +45,21 @@ namespace TMS.Data.TableOperations
 
         public bool Update(driver t)
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
+
+            var driv = GetbyId(t.driverkey);
+            if (driv != null)
+            {
+                driv.firstname = t.firstname;
+                driv.lastname = t.lastname;
+                driv.carrierkey = t.carrierkey;
+                driv.drivinglicenseno = t.drivinglicenseno;
+                driv.drivinglicenseexpirydate = t.drivinglicenseexpirydate;
+
+                entities.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

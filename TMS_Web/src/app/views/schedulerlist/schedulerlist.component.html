@@ -1,0 +1,146 @@
+<br>
+<h5 class="card-subtitle mb-2" style="color: black">
+  <img src="assets/img/brand/overtime24px.png" /> Scheduler</h5>
+
+<div class="row" *ngIf="HeaderData && dataShow">
+  <div class="col-md-3">
+    <div class="card text-white border-secondary ">
+      <div class="card-body">
+        <h5 class="card-subtitle mb-2" style="color: black">Order# : <span style="color: #0892d0">{{HeaderData.OrderNo}}
+          </span> </h5>
+        <p class="card-subtitle mb-2" style="color: black"> Date : <span
+            style="color: #0892d0">{{HeaderData.OrderDate}}</span></p>
+        <p class="card-subtitle mb-2" style="color:black"> Type : <span
+            style="color: #0892d0">{{HeaderData.ordertypedescription}}</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-white border-secondary">
+      <div class="card-body">
+        <!-- <p class="card-subtitle mb-2" style="color:black"> Customer : <span class="badge badge-pill badge-danger"
+          style="color:white"></span></p> -->
+        <p class="card-subtitle mb-2" style="color:black"> Broker : <span
+            style="color: #0892d0">{{HeaderData.BrokerName}}</span></p>
+        <p class="card-subtitle mb-2" style="color:black"> Broker Ref# : <span
+            style="color: #0892d0">{{HeaderData.BrokerRefNo}}</span></p>
+        <p class="card-subtitle mb-2" style="color:black"> Booking# :<span style="color: #0892d0">
+            {{HeaderData.BookingNo}}</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-white border-secondary">
+      <div class="card-body">
+        <p class="card-subtitle mb-2" style="color:black"> Vessel : <span
+            style="color: #0892d0">{{HeaderData.VesselName}}</span></p>
+        <p class="card-subtitle mb-2" style="color:black"> Bill of Lading : <span
+            style="color: #0892d0">{{HeaderData.BillofLading}} </span></p>
+        <p class="card-subtitle mb-2" style="color:black"> Cut-Off Date : <span
+            style="color: #0892d0">{{HeaderData.CutOffDate|date}}</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-white border-secondary">
+      <div class="card-body">
+        <p class="card-subtitle mb-2" style="color:grey"> Pickup : <span class="badge badge-pill badge-primary"
+            style="color:black"></span></p>
+        <p class="card-subtitle mb-2" style="color:grey"> Consignee : <span class="badge badge-pill badge-primary"
+            style="color:black"></span></p>
+        <p class="card-subtitle mb-2" style="color:grey"> Return : <span class="badge badge-pill badge-primary"
+            style="color:black"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text" placeholder="Search..">
+  </div>
+</div>
+<div class="table-responsive small" *ngIf="DetailsData.length > 0">
+  <table id="containerAttributes" class="table table-sm table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>View_Detail</th>
+        <th>Container#</th>
+        <th>Size</th>
+        <th>Chassis#</th>
+        <th>Seal#</th>
+        <th>Weight</th>
+        <th>Appt_DateFrom</th>
+        <th>Appt_DateTo</th>
+        <th>Pickup_DateTime</th>
+        <th>DropOff_DateTime</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let field of DetailsData | grdFilter: {Chassis: searchText,SealNo: searchText, blog: searchText}; let i = index">
+        <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()"> -->
+        <td>
+          <a class="btn btn-link" role="button" (click)="rowclickEvent(field)">
+            <img src="assets/img/brand/DataViewDetails24px.png" />
+            <span class="badge" *ngIf="selectedKey===field.OrderKey">
+              <img src="assets/img/brand/symbol-check16px.png" /> </span>
+          </a>
+        </td>
+        <td>
+          {{field.ContainerNo}}
+        </td>
+        <td>
+          {{field.ContainerSizeDesc}}
+        </td>
+
+        <td>
+          {{field.Chassis}}
+        </td>
+        <td>
+
+          {{field.SealNo}}
+        </td>
+        <td>
+
+          {{field.Weight}}
+        </td>
+        <td>
+          <input type="text" #model="ngModel" [(ngModel)]="field.AppDateFrom"
+            class="form-control form-control-sm bg-dark" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" />
+          <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+        </td>
+        <td>
+          <input type="text" #model="ngModel" [(ngModel)]="field.AppDateTo" class="form-control form-control-sm bg-dark"
+            [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" />
+          <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+
+        </td>
+        <td>
+          <input class="form-control form-control-sm" type="text" #model="ngModel" [(ngModel)]="field.PickupDateTime"
+            [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" required />
+          <owl-date-time [pickerType]="'both'" #dt3 [hour12Timer]="false"></owl-date-time>
+        </td>
+
+        <td>
+          <input class="form-control form-control-sm" type="text" #model="ngModel" [(ngModel)]="field.DropOffDateTime"
+            [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" />
+          <owl-date-time [pickerType]="'both'" #dt4></owl-date-time>
+        </td>
+
+        <td>
+          <select id="drpStatus" class="form-control form-control-sm bg-dark" #model="ngModel"
+            [(ngModel)]="field.status">
+            <option [(value)]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>
+          </select>
+        </td>
+
+        <td>
+          <button class="btn btn-primary btn-sm small" type="button" (click)="onSubmit(field)">Schedule</button>
+        </td>
+        <!-- </form> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

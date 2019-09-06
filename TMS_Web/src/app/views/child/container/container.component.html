@@ -1,4 +1,4 @@
-<form name="form" (ngSubmit)="f.form.valid && onSubmit(form.value)" #f="ngForm" novalidate>
+<!-- <form name="form" (ngSubmit)="f.form.valid && onSubmit(form.value)" #f="ngForm" novalidate>
     <div class="form-row" [hidden]="!isContainerAttributeVisible">
 
         <div class="form-group col-md-2">
@@ -11,15 +11,7 @@
             </div>
         </div>
         <div class="form-group col-md-2">
-                <!-- <app-containersize class="form-control bg-light" id="drpnewcontainerType"
-                 placeholder="Type" name="ContainerNo"
-                [(ngModel)]="newAttribute.ContainerNo"                
-                 #ContainerNo="ngModel" (SelectedcontainersizeOutput)="onSelectedcontainersize($event)"
-                [bindContainersize]="newAttribute.ContainerNo"
-               ></app-containersize> -->
-               
-
-
+              
             <select class="form-control bg-light" id="drpnewcontainerType" placeholder="Type" name="ContainerNo"
                 [(ngModel)]="newAttribute.ContainerNo" #ContainerNo="ngModel"
                 [ngClass]="{ 'is-invalid': f.submitted && ContainerNo.invalid }" required>
@@ -56,8 +48,7 @@
                 <div *ngIf="Weight.errors.required"> weight is required</div>
             </div>
         </div>
-        <!-- <div class="form-group col-md-2">
-
+       
             <input type="text" bsDatepicker [bsConfig]="bsConfig" id="AppDateFrom" name="AppDateFrom"
                 placeholder="Choose a date" [(ngModel)]="newAttribute.AppDateFrom" class="form-control bg-light"
                 #AppDateFrom="ngModel" [ngClass]="{ 'is-invalid': f.submitted && AppDateFrom.invalid }" required />
@@ -99,114 +90,114 @@
         <div class="form-group col-md-2">
             <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="newAttribute.HoldDate"
                 class="form-control bg-light" name="HoldDate" placeholder="HoldDate" />
-        </div> -->
+        </div> 
         <div class="form-group col-md-2">
             <button type="submit" class="btn btn-outline-success" [disabled]="!f.form.valid"
                 (click)="addFieldValue()">Add Container</button>
         </div>
     </div>
 </form>
-<br>
-
+<br> -->
+<div class="form-row" [hidden]="!isContainerAttributeVisible">
+        <div class="form-group col-md-11">
+                <div   class="table-responsive" style="overflow-x: auto" bg-dark>
+                        <table id="containerAttributes" class="table table-sm bg-secondary" cellspacing="0" width="100%" >
+                            <thead>
+                                <tr align="center">
+                                    <th scope="col">Container#</th>
+                                    <th scope="col"> Size</th>
+                                    <th scope="col">Chassis#</th>
+                                    <th scope="col">Seal#</th>
+                                    <th scope="col">Weight</th>
+                                    <!-- <th scope="col">appt From</th>
+                                    <th scope="col">appt To</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Status Date</th>
+                                    <th scope="col">Hold Reason</th>
+                                    <th scope="col">Date</th>-->
+                                    <th scope="col">Action</th> 
+                    
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr align="center" *ngFor="let field of ContainerDetails; let i = index">
+                                                 <td> <input [(ngModel)]="field.ContainerNo" class="form-control form-control-sm "
+                                                type="text" name="{{field.ContainerNo}}" /> </td>
+                                    <td>
+                                        <select id="drpcontainerType" class="form-control form-control-sm "
+                                            aria-placeholder="ContainerSize" name="{{field.ContainerSize}}" [(ngModel)]="field.ContainerSize">
+                                                            
+                                            <option [value]="container.Value" *ngFor="let container of containersizelist">{{container.Name}}</option>
+                               
+                                        </select>
+                                    </td>
+                    
+                                    <td> <input [(ngModel)]="field.Chassis" class="form-control form-control-sm" type="text"
+                                            name="{{field.Chassis}}" /></td>
+                                    <td> <input [(ngModel)]="field.SealNo" class="form-control form-control-sm " type="text"
+                                            name="{{field.SealNo}}" /></td>
+                                    <td> <input [(ngModel)]="field.Weight" class="form-control form-control-sm " type="text"
+                                            name="{{field.Weight}}" /></td>
+                                    <!-- <td>
+                                        <input type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.AppDateFrom}}" 
+                                            [(ngModel)]="field.AppDateFrom" class="form-control form-control-sm text-primary" />
+                                    </td>
+                                    <td>
+                                        <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.AppDateTo"
+                                            class="form-control form-control-sm text-primary" name="{{field.AppDateTo}}" />
+                                    </td>
+                                    <td> <input [(ngModel)]="field.Status" class="form-control form-control-sm text-primary" type="text"
+                                            name="{{field.Status}}" /></td>
+                                    <td> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.StatusDate"
+                                            class="form-control form-control-sm text-primary" name="{{field.StatusDate}}" /></td>
+                                    <td> <input [(ngModel)]="field.HoldReason" class="form-control form-control-sm text-primary" type="text"
+                                            name="{{field.HoldReason}}" /></td>
+                                    <td> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.HoldDate"
+                                            class="form-control form-control-sm text-primary" name="{{field.HoldDate}}" /></td> -->
+                                    <td>
+                                        <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Delete</button>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                        <td>  <input class="form-control" type="text" id="newcontainerSize" [(ngModel)]="newAttribute.containerSize" name="containerSize" /> </td>           
+                                        <td>
+                                            <select id="drpnewcontainerType" class="form-control" aria-placeholder="containerNo" name="containerNo"
+                                            [(ngModel)]="newAttribute.containerNo">
+                                              <option value=1>20DRY</option>
+                                              <option value=2>40DRY</option>  
+                                              <option value=3>40HDRY</option>
+                                              <option value=4>45HDRY</option>
+                                              <option value=5>20OPEN</option>
+                                              <option value=6>40OPEN</option>
+                                              <option value=7>20FLAT</option>
+                                              <option value=8>40FLAT</option>                                 
+                                            </select>
+                                        </td>          
+                                        <td>  <input class="form-control" type="text" id="newchassis" [(ngModel)]="newAttribute.chassis" name="chassis" /></td>           
+                                        <td>  <input class="form-control" type="text" id="newseaNo" [(ngModel)]="newAttribute.sealNo" name="seaNo" /></td>          
+                                        <td> <input [(ngModel)]="newAttribute.weight" class="form-control" type="text" name="weight" /></td>           
+                                         <td> <input [(ngModel)]="newAttribute.apptdatefrom" class="form-control" type="date" name="apptdatefrom" /></td>           
+                                        <td> <input [(ngModel)]="newAttribute.apptdateto" class="form-control" type="date" name="apptdateto" /></td>          
+                                        <td>  <input [(ngModel)]="newAttribute.status" class="form-control" type="text" name="status" /></td>           
+                                        <td>  <input [(ngModel)]="newAttribute.statusdate" class="form-control" type="date" name="statusdate"/></td>            
+                                        <td>  <input [(ngModel)]="newAttribute.holdreason" class="form-control" type="text" name="holdreason" /></td>            
+                                        <td>  <input [(ngModel)]="newAttribute.holddate" class="form-control" type="date" name="holddate" /></td>  
+                                        <td>
+                                            <button class="btn btn-default" type="button" (click)="addFieldValue()">Add</button>
+                                        </td>
+                                    </tr> -->
+                            </tbody>
+                        </table>
+                    </div>   
+            </div>
+        
+        <div class="form-group col-md-1">
+            <button type="button" class="btn btn-outline-secondary btn-sm" 
+                (click)="addFieldValue()">+</button>
+        </div>
+    </div>
 <!-- <div *ngIf="!ContainerDetails|| ContainerDetails.length === 0" class="row">
        <p>No customer found </p> 
        *ngIf="ContainerDetails ||ContainerDetails.length > 0"
 </div>  -->
 
-<div   class="table-responsive" style="overflow-x: auto">
-    <table id="containerAttributes" class="table table-sm" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th scope="col">Container#</th>
-                <th scope="col">Container Size</th>
-                <th scope="col">Chassis#</th>
-                <th scope="col">Seal#</th>
-                <th scope="col">Weight</th>
-                <!-- <th scope="col">appt From</th>
-                <th scope="col">appt To</th>
-                <th scope="col">Status</th>
-                <th scope="col">Status Date</th>
-                <th scope="col">Hold Reason</th>
-                <th scope="col">Date</th>-->
-                <th scope="col">Action</th> 
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let field of ContainerDetails; let i = index">
-                             <td> <input [(ngModel)]="field.ContainerNo" class="form-control form-control-sm text-primary"
-                            type="text" name="{{field.ContainerNo}}" /> </td>
-                <td>
-                    <select id="drpcontainerType" class="form-control form-control-sm text-primary"
-                        aria-placeholder="ContainerSize" name="{{field.ContainerSize}}" [(ngModel)]="field.ContainerSize">
-                        <!-- <option value=1>20DRY</option>
-                        <option value=2>40DRY</option>
-                        <option value=3>40HDRY</option>
-                        <option value=4>45HDRY</option>
-                        <option value=5>20OPEN</option>
-                        <option value=6>40OPEN</option>
-                        <option value=7>20FLAT</option>
-                        <option value=8>40FLAT</option> -->
-
-                        <option [value]="container.Value" *ngFor="let container of containersizelist">{{container.Name}}</option>
-           
-                    </select>
-                </td>
-
-                <td> <input [(ngModel)]="field.Chassis" class="form-control form-control-sm text-primary" type="text"
-                        name="{{field.Chassis}}" /></td>
-                <td> <input [(ngModel)]="field.SealNo" class="form-control form-control-sm text-primary" type="text"
-                        name="{{field.SealNo}}" /></td>
-                <td> <input [(ngModel)]="field.Weight" class="form-control form-control-sm text-primary" type="text"
-                        name="{{field.Weight}}" /></td>
-                <!-- <td>
-                    <input type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.AppDateFrom}}" 
-                        [(ngModel)]="field.AppDateFrom" class="form-control form-control-sm text-primary" />
-                </td>
-                <td>
-                    <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.AppDateTo"
-                        class="form-control form-control-sm text-primary" name="{{field.AppDateTo}}" />
-                </td>
-                <td> <input [(ngModel)]="field.Status" class="form-control form-control-sm text-primary" type="text"
-                        name="{{field.Status}}" /></td>
-                <td> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.StatusDate"
-                        class="form-control form-control-sm text-primary" name="{{field.StatusDate}}" /></td>
-                <td> <input [(ngModel)]="field.HoldReason" class="form-control form-control-sm text-primary" type="text"
-                        name="{{field.HoldReason}}" /></td>
-                <td> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.HoldDate"
-                        class="form-control form-control-sm text-primary" name="{{field.HoldDate}}" /></td> -->
-                <td>
-                    <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Delete</button>
-                </td>
-            </tr>
-            <!-- <tr>
-                    <td>  <input class="form-control" type="text" id="newcontainerSize" [(ngModel)]="newAttribute.containerSize" name="containerSize" /> </td>           
-                    <td>
-                        <select id="drpnewcontainerType" class="form-control" aria-placeholder="containerNo" name="containerNo"
-                        [(ngModel)]="newAttribute.containerNo">
-                          <option value=1>20DRY</option>
-                          <option value=2>40DRY</option>  
-                          <option value=3>40HDRY</option>
-                          <option value=4>45HDRY</option>
-                          <option value=5>20OPEN</option>
-                          <option value=6>40OPEN</option>
-                          <option value=7>20FLAT</option>
-                          <option value=8>40FLAT</option>                                 
-                        </select>
-                    </td>          
-                    <td>  <input class="form-control" type="text" id="newchassis" [(ngModel)]="newAttribute.chassis" name="chassis" /></td>           
-                    <td>  <input class="form-control" type="text" id="newseaNo" [(ngModel)]="newAttribute.sealNo" name="seaNo" /></td>          
-                    <td> <input [(ngModel)]="newAttribute.weight" class="form-control" type="text" name="weight" /></td>           
-                    <td> <input [(ngModel)]="newAttribute.apptdatefrom" class="form-control" type="date" name="apptdatefrom" /></td>           
-                    <td> <input [(ngModel)]="newAttribute.apptdateto" class="form-control" type="date" name="apptdateto" /></td>          
-                    <td>  <input [(ngModel)]="newAttribute.status" class="form-control" type="text" name="status" /></td>           
-                    <td>  <input [(ngModel)]="newAttribute.statusdate" class="form-control" type="date" name="statusdate"/></td>            
-                    <td>  <input [(ngModel)]="newAttribute.holdreason" class="form-control" type="text" name="holdreason" /></td>            
-                    <td>  <input [(ngModel)]="newAttribute.holddate" class="form-control" type="date" name="holddate" /></td>            
-                    <td>
-                        <button class="btn btn-default" type="button" (click)="addFieldValue()">Add</button>
-                    </td>
-                </tr> -->
-        </tbody>
-    </table>
-</div>

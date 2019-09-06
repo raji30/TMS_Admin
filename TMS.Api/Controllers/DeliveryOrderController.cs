@@ -61,6 +61,15 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
         }
 
+        [HttpGet]
+        [Route("GetAllDOHeaderandDetails")]
+        // [SwaggerOperation("Get")]
+        public HttpResponseMessage GetAllDOHeaderandDetails()
+        {
+            DeliveryOrderDL doObj = new DeliveryOrderDL();
+            var list = doObj.GetAllDOHeaderandDetails();
+            return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -79,14 +88,7 @@ namespace TMS.Api.Controllers
         /// </summary>
         /// <param name="obj">Delivery Order</param>
         /// <returns>GUID</returns>
-        [HttpPost]
-        [Route("DeliveryOrderHeader1")]
-        [SwaggerOperation("DeliveryOrderHeader")]
-        public HttpResponseMessage Post([FromBody]int q)
-        {
-            //var orderid = doObj.CreateDeliveryOrder(obj);
-            return Request.CreateResponse(HttpStatusCode.OK, q, Configuration.Formatters.JsonFormatter);
-        }
+     
         [HttpPost]
         [Route("DeliveryOrderHeader")]
         [SwaggerOperation("DeliveryOrderHeader")]
@@ -134,6 +136,24 @@ namespace TMS.Api.Controllers
             List<EnumValue> values = EnumExtensions.GetEnumValues<HoldReason>();
             return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
         }
+
+        [HttpGet]
+        [Route("GetSource")]
+        [SwaggerOperation("GetSource")]
+        public HttpResponseMessage GetSource()
+        {
+            List<EnumValue> values = EnumExtensions.GetEnumValues<Source>();
+            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        }
+
+        //[HttpGet]
+        //[Route("GetCarrier")]
+        //[SwaggerOperation("GetCarrier")]
+        //public HttpResponseMessage GetCarrier()
+        //{
+        //    List<EnumValue> values = EnumExtensions.GetEnumValues<Carrier>();
+        //    return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        //}
 
     }
 }

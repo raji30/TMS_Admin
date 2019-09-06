@@ -23,7 +23,7 @@ namespace TMS.Data
         public System.Guid brokerkey { get; set; }
         public string brokerid { get; set; }
         public string brokername { get; set; }
-        public Nullable<System.Guid> addrkey { get; set; }
+        public System.Guid addrkey { get; set; }
         public Nullable<System.DateTime> createdate { get; set; }
         public Nullable<short> status { get; set; }
         public Nullable<System.DateTime> statusdate { get; set; }

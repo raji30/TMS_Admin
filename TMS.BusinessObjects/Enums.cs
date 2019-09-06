@@ -12,13 +12,14 @@ namespace TMS.BusinessObjects
         {
             InProgress = 1,
             CreditDenied = 2,
-            SenttoScheduler = 3,
-            SenttoDispatch = 4,
-            OnHold =5,
-            SenttoBilling = 6,
+            SendtoScheduler = 3,
+            SendtoDispatchAssignment = 4,
+            SendtoDispatchDelivery = 5,          
+            SendtoBilling = 6,
             InvoiceGenerated = 7,
             Reviewed = 8,
-            Complete = 9
+            Complete = 9,
+            OnHold = 10,
         }
        public enum AddressType
         {
@@ -62,6 +63,19 @@ namespace TMS.BusinessObjects
             NoConfirmationFromCustomer = 1,
             DriverAvailability = 2,
             ContainerAvailability = 3                
+        }
+        public enum Source
+        {
+            Source1 = 1,
+            Source2 = 2,
+            Source3 = 3
+        }
+
+        public enum Carrier
+        {
+            MAEU = 1,
+            SAFM = 2,
+            SEGO = 3
         }
         public enum DocType
         {

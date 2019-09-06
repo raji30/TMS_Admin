@@ -1,50 +1,99 @@
-<nav class="navbar-default navbar-static-side" role="navigation">
+<span>
+        <span class="block m-t-xs">
+
+            <strong class="font-bold" style="color:cornflowerblue"> &nbsp;&nbsp; Hi
+                {{currentUser.firstname}}
+                !</strong>
+        </span>
+        <!-- <div>                     
+              <span class="text-muted text-xs block">Logged : {{currentUser.loggedinTime}}</span>
+          </div> -->
+    </span>
+
+<nav class="navbar-default navbar-static-side" role="navigation" *ngIf ="Orderlist.length > 0 && show">
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
-            <li class="nav-header">                
-                    <span>
-                        <img alt="image" class="img-circle" width="80px"
-                             src="./assets/img/brand/user-identity2.png" />
-                    </span>
-                   
-                      <span class="clear">
-                          <span class="block m-t-xs">
-                            <br>
-                          <strong class="font-bold">Hi {{currentUser.firstname}} {{loginInfo.lastname}}</strong>
-                      </span>
-                      <div>                     
-                          <span class="text-muted text-xs block">Logged : {{currentUser.loggedinTime}}</span>
-                      </div>
-                      </span>
-                    
+            <li class="nav-header">
+              
             </li>
-            <hr>
 
-            <li>
+            <!-- <li>
                 <a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Dashboard</a>
-            </li>
+            </li> -->
             <br>
+            <!-- <li>
+                &nbsp;&nbsp; <a [routerLink]="['/orderList']">                            
+                    <img src="assets/img/brand/chromium-app-list-icon32px.png" />
+                     &nbsp; Order
+                    List</a>
+            </li> -->
             <li>
-                <a [routerLink]="['/orderList']"><i class="fa fa-desktop"></i> Order List</a>
+                &nbsp;&nbsp;&nbsp; <span style="color:lightskyblue"> Recent
+                    orders</span>
+
             </li>
-            <hr >
             <li *ngFor="let order of Orderlist| slice:0:25; let ind=index;">
                 <!-- <span>{{ order.OrderNo}} </span>   -->
                 <!-- <a [routerLink]="['./tab']"><i class="fa fa-dashboard"></i> <span class="nav-label">Dashboards</span></a> -->
-                
-                <div class="row">
-                    <div class="col-md-1">
-                       
-                    </div>
-                   
-                    <div class="col-md-10">
-                        <!-- <i  style="width:20px;"class="fa fa-circle-thin" aria-hidden="true"></i> -->
-                        <i style="width:20px;" class="fa fa-star-o" aria-hidden="true"></i>
-                         <a   [routerLink]="['/tab', order.OrderKey]" >{{ order.OrderNo }}</a> 
-                      </div>
-                  </div>                
-              </li>
+
+                <!-- <i  style="width:20px;"class="fa fa-circle-thin" aria-hidden="true"></i> -->
+                <!-- <i class="fa-li fa fa-check-square"></i>
+                         <a   [routerLink]="['/tab', order.OrderKey]" >&nbsp; {{ order.OrderNo }}</a>  -->
+
+                <ul class="fa-ul">
+                    <li>
+                        <a [routerLink]="" class="text-secondary small" (click)="open(order.OrderKey)">
+                            {{ order.OrderNo }} - {{order.ordertypedescription}}</a>
+                        <!-- <img src="assets/img/brand/bullet-black-icon.png" /> -->
+                    </li>
+                </ul>
+
+            </li>
         </ul>
 
     </div>
 </nav>
+
+<nav class="navbar-default navbar-static-side" role="navigation" *ngIf ="schedulerlist.length > 0">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                  
+                </li>
+    
+                <!-- <li>
+                    <a [routerLink]="['/dashboard']"><i class="fa fa-dashboard"></i> Dashboard</a>
+                </li> -->
+                <br>
+                <!-- <li>
+                    &nbsp;&nbsp; <a [routerLink]="['/orderList']">                            
+                        <img src="assets/img/brand/chromium-app-list-icon32px.png" />
+                         &nbsp; Order
+                        List</a>
+                </li> -->
+                <li>
+                    &nbsp;&nbsp;&nbsp; <span style="color:lightskyblue"> Recent
+                        orders</span>
+    
+                </li>
+                <li *ngFor="let order of Orderlist| slice:0:25; let ind=index;">
+                    <!-- <span>{{ order.OrderNo}} </span>   -->
+                    <!-- <a [routerLink]="['./tab']"><i class="fa fa-dashboard"></i> <span class="nav-label">Dashboards</span></a> -->
+    
+                    <!-- <i  style="width:20px;"class="fa fa-circle-thin" aria-hidden="true"></i> -->
+                    <!-- <i class="fa-li fa fa-check-square"></i>
+                             <a   [routerLink]="['/tab', order.OrderKey]" >&nbsp; {{ order.OrderNo }}</a>  -->
+    
+                    <ul class="fa-ul">
+                        <li>
+                            <a [routerLink]="" class="text-secondary small" (click)="open(order.OrderKey)">
+                                {{ order.OrderNo }} - {{order.ordertypedescription}}</a>
+                            <!-- <img src="assets/img/brand/bullet-black-icon.png" /> -->
+                        </li>
+                    </ul>
+    
+                </li>
+            </ul>
+    
+        </div>
+    </nav>

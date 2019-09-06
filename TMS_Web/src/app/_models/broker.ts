@@ -1,7 +1,11 @@
-export class Broker {
+import { Address } from "./address";
 
-                    BrokerName:string;
-                    BrokerId :string;
-                    BrokerKey :string;
-                    Status:string;
+export class Broker {
+  BrokerName: string;
+  BrokerId: string;
+  BrokerKey: string;
+  Status: string;
+  Address?: Address;
+  CreateDate: string;
+  StatusDate: string;
 }
