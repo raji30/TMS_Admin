@@ -16,7 +16,7 @@ namespace TMS.Api.Controllers
     public class CarrierController : ApiController
     {
         CarrierRepository repo = new CarrierRepository();
-
+        CarrierDL DL = new CarrierDL();
         /// <summary>
         /// 
         /// </summary>
@@ -26,7 +26,7 @@ namespace TMS.Api.Controllers
         [SwaggerOperation("GetCarrier")]
         public HttpResponseMessage GetCarrier()
         {
-            CarrierDL DL = new CarrierDL();
+           
             List<CarrierBO> carrierlist = DL.GetCarriers();
             //List < Data.carrier > driver =  repo.GetAll().ToList();//
             return Request.CreateResponse(HttpStatusCode.OK, carrierlist, Configuration.Formatters.JsonFormatter);
@@ -42,13 +42,28 @@ namespace TMS.Api.Controllers
         // POST api/values
         public HttpResponseMessage Post([FromBody]CarrierBO carrierBO)
         {
-            Data.carrier _carrier = new Data.carrier();
+            CarrierBO carrierData = new CarrierBO();
+            carrierData = carrierBO;
+            carrierData.CarrierKey = Guid.NewGuid();
 
-            _carrier.carrierid = carrierBO.CarrierId;
-            _carrier.carriername = carrierBO.CarrierName;
-            _carrier.createdate = DateTime.Now;
-            _carrier.status = 1;
-            _carrier.statusdate = DateTime.Now;
+            if (string.IsNullOrEmpty(carrierBO.LicensePlate ))
+            {
+                carrierBO.LicensePlate = string.Empty;
+            }
+
+            carrierData.Status = 1;
+            carrierData.CreatedDate = DateTime.Now;
+            carrierData.StatusDate = DateTime.Now;
+
+            //Data.carrier _carrier = new Data.carrier();
+
+            //_carrier.carrierid = carrierBO.CarrierId;
+            //_carrier.carriername = carrierBO.CarrierName;
+            ////_carrier.isstreamline = carrierBO.isstreamline;
+            //_carrier.scaccode = carrierBO.ScacCode;
+            //_carrier.createdate = DateTime.Now;
+            //_carrier.status = 1;
+            //_carrier.statusdate = DateTime.Now;
 
             if (carrierBO.Address != null)
             {
@@ -62,14 +77,19 @@ namespace TMS.Api.Controllers
                     zipcode = carrierBO.Address.Zip,
                     email = carrierBO.Address.Email,
                     fax = carrierBO.Address.Fax,
-                    addrname = _carrier.carrierid
+                    //addrname = _carrier.carrierid
+                    addrname = carrierBO.CarrierName
                 };
                 var addrkey = new AddressRepository().Add(custaddress);
-                _carrier.addrkey = addrkey;
+                //_carrier.addrkey = addrkey;
+                carrierData.AddrKey = addrkey;
             }
-            Guid brokerid = repo.Add(_carrier);
-            if (brokerid != null && brokerid != Guid.Empty)
-                return Request.CreateResponse(HttpStatusCode.OK, brokerid, Configuration.Formatters.JsonFormatter);
+            //Guid brokerid = repo.Add(_carrier);
+            CarrierDL DL = new CarrierDL();
+            var carrierKey = DL.InsertCarrier(carrierData);
+
+            if (carrierKey != null && carrierKey != Guid.Empty)
+                return Request.CreateResponse(HttpStatusCode.OK, carrierKey, Configuration.Formatters.JsonFormatter);
             else
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
@@ -83,20 +103,15 @@ namespace TMS.Api.Controllers
         [Route("GetCarrierByID/{carrierkey}")]
         public HttpResponseMessage GetDriverByID(string carrierkey)
         {
-            Data.carrier carrier = repo.GetbyId(Guid.Parse(carrierkey));
+           // Data.carrier carrier = repo.GetbyId(Guid.Parse(carrierkey));  
+            
             CarrierBO carrierBO = new CarrierBO();
 
-            if (carrier != null)
-            {
-                carrierBO.CarrierKey = carrier.carrierkey;
-                carrierBO.CarrierId = carrier.carrierid;
-                carrierBO.CarrierName = carrier.carriername;
-                carrierBO.LicensePlate = carrier.licenseplate;
-                carrierBO.LicensePlateExpiryDate = carrier.licenseplateexpirydate;
-                carrierBO.ScacCode = carrier.scaccode;
-                
-                var address = new AddressRepository().GetbyId(carrier.addrkey);
+            carrierBO = DL.GetCarrierbyKey(Guid.Parse(carrierkey));
 
+            if (carrierBO != null)
+            {                
+                var address = new AddressRepository().GetbyId(carrierBO.AddrKey);
                 carrierBO.Address = new AddressBO()
                 {
                     Address1 = address.address1,
@@ -119,7 +134,7 @@ namespace TMS.Api.Controllers
         /// </summary>
         /// <param name="brokerBO"></param>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPost]
         [Route("UpdateCarrier")]
         public HttpResponseMessage Put([FromBody]CarrierBO carrierBO)
         {

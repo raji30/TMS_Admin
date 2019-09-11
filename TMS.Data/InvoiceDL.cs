@@ -10,7 +10,8 @@ namespace TMS.Data
 {
    public class InvoiceDL
     {
-        string connString = "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_model;";
+        //string connString = "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_model;";
+        string connString = "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";
         NpgsqlConnection appmodelConnection;
         public InvoiceDL()
         {
@@ -161,6 +162,64 @@ namespace TMS.Data
                     return detailBO;
                 }
             }
+        }
+
+
+        public List<DeliveryOrderBO> GetOrderstoGenerateInvoice()
+        {
+            var DOHeaders = new List<DeliveryOrderBO>();
+            string sql = "dbo.fn_GetOrderstoGenerateInvoice";
+            DeliveryOrderBO bo = new DeliveryOrderBO();
+            using (appmodelConnection)
+            {
+                appmodelConnection.Open();
+                using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    var reader = cmd.ExecuteReader();
+                    do
+                    {
+                        while (reader.Read())
+                        {
+                            var orderHeader = new DeliveryOrderBO();
+                            orderHeader.OrderDetails = new DeliveryOrderDetailBO();
+
+                            orderHeader.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
+                            orderHeader.OrderNo = Utils.CustomParse<string>(reader["orderno"]);
+                            orderHeader.OrderDate = Convert.ToDateTime(reader["orderdate"].ToString());
+                            orderHeader.OrderType = Utils.CustomParse<short>(reader["ordertype"]);
+                            orderHeader.BrokerRefNo = Utils.CustomParse<string>(reader["brokerrefno"]);
+                            orderHeader.CustKey = Guid.Parse(reader["custkey"].ToString());
+                            //orderHeader.BillToAddress = Utils.CustomParse<Guid>(reader["billtoaddrkey"]);
+                            //orderHeader.SourceAddress = Utils.CustomParse<Guid>(reader["sourceaddrkey"]);
+                            //orderHeader.DestinationAddress = Utils.CustomParse<Guid>(reader["destinationaddrkey"]);
+                            //orderHeader.ReturnAddress = Utils.CustomParse<Guid>(reader["returnaddrkey"]);
+                            //orderHeader.Status = Utils.CustomParse<short>(reader["status"]);
+                            //orderHeader.StatusDate = Convert.ToDateTime(reader["statusdate"]);
+                            //orderHeader.HoldReason = Utils.CustomParse<short>(reader["holdreason"]);
+                            //orderHeader.Brokerkey = Utils.CustomParse<Guid>(reader["brokerkey"]);                                                
+                            //orderHeader.PortofOriginKey = Utils.CustomParse<Guid>(reader["portoforiginkey"]);
+                            //orderHeader.PortofDestinationKey = Utils.CustomParse<Guid>(reader["portofdestinationkey"]);
+                            //orderHeader.CarrierKey = Utils.CustomParse<Guid>(reader["carrierkey"]);
+                            orderHeader.VesselName = reader["vesselname"].ToString();
+                            orderHeader.BillofLading = reader["billoflading"].ToString();
+                            orderHeader.BookingNo = reader["bookingno"].ToString();
+                            orderHeader.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);                            
+                            //orderHeader.ordertypedescription = reader["ordertypedescription"].ToString();
+
+                            orderHeader.OrderDetails.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);
+                            orderHeader.OrderDetails.ContainerNo = Utils.CustomParse<string>(reader["containerNo"]);
+                            orderHeader.OrderDetails.ContainerSizeDesc = Utils.CustomParse<string>(reader["containerSizeDesc"]);
+                            orderHeader.OrderDetails.ContainerSize = Utils.CustomParse<short>(reader["containerSize"]);
+                            orderHeader.OrderDetails.Chassis = Utils.CustomParse<string>(reader["chassis"]);
+                            orderHeader.OrderDetails.SealNo = Utils.CustomParse<string>(reader["sealNo"]);
+
+                            DOHeaders.Add(orderHeader);
+                        }
+                    } while (reader.NextResult());
+                }                
+            }
+            return DOHeaders;
         }
 
     }

@@ -415,7 +415,46 @@
                 data-target="#myModal" tooltip="upload documents">
                 <i class="fa fa-cloud-upload" aria-hidden="true"></i> &nbsp; Upload documents
               </button> -->
-              <app-fileupload></app-fileupload>
+              <!-- <app-fileupload></app-fileupload> -->
+
+              <div class="row"> 
+                <div class="col-md-8">      
+                      <div class="input-group input-group-sm mb-3">             
+                          <input type="file" class="custom-file-input form-control-sm" multiple (change)="onSelectedFile($event)">
+                            <div class="input-group-prepend">
+                                <span class="custom-file-label"> {{ myFiles.length }} file(s) selected</span>
+                               
+                                </div>
+                        </div>
+                  </div>  
+                  <div class="col-md-4">
+                      <button type="button" class="btn btn-primary btn-sm" (click)="onUploadSubmit()">
+                      <i class="fa fa-cloud-upload" aria-hidden="true"></i> &nbsp; Upload </button>
+                    </div>
+                    
+                    
+                    
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                <div *ngIf="fileUpload.status==='progress'">
+                    <div class="progress" style="height: 20px;margin-bottom:20px;">
+                      <div class="progress-bar" role="progressbar" [style.width.%]="fileUpload.message" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{fileUpload.message}}%</div>
+                    </div>
+                </div> 
+              </div> 
+              <div class="col-md-6">
+                <!-- <div *ngIf="fileUpload.status==='error'">
+                        <div [innerHTML]="fileUpload.message"></div>
+                    </div> -->
+                       
+                <div *ngIf="fileUpload.status==='success'">
+                 <p>{{ fileUploadcount }} files uploaded. </p>
+                </div>
+              </div> 
+                <!-- <p>{{ fileUpload.error }}</p> -->
+            </div>
+
             </div>
           </div>
          

@@ -20,6 +20,7 @@ import { ListdriverComponent } from "./views/_master/_driver/listdriver/listdriv
 import { VendorlistComponent } from "./views/_master/_vendor/vendorlist/vendorlist/vendorlist.component";
 import { BrokerlistComponent } from "./views/_master/_broker/brokerlist/brokerlist/brokerlist.component";
 import { CarrierlistComponent } from "./views/_master/_carrier/carrierlist/carrierlist.component";
+import { InvoiceComponent } from "./views/invoice/invoice/invoice.component";
 
 export const routes: Routes = [
   {
@@ -91,6 +92,11 @@ export const routes: Routes = [
         path: "City",
         component: ListcityComponent
       },
+      {
+        path: "GetOrderstoGenerateInvoice",
+        component: InvoiceComponent
+      },
+      
       { path: "tab/:order", component: TabComponent },
       { path: "tab", component: TabComponent }
       // {

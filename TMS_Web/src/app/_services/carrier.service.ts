@@ -40,7 +40,7 @@ public GetCarriers() {
       })
     };
 
-    return this.http.put<Carrier>(
+    return this.http.post<Carrier>(
       AppSettings._BaseURL + "UpdateCarrier",
       carrier,
       httpOptions

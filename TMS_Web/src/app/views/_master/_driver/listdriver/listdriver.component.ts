@@ -61,8 +61,7 @@ export class ListdriverComponent implements OnInit {
   onFormSubmit() {
     this.submitted = true;
     this.dataSaved = false;
-
-    this.CreateDriver();
+        this.CreateDriver();
   }
   loadCustomerToEdit(driverkey: string) {
     this.Service.getDriverById(driverkey).subscribe(driver_edit => {
@@ -87,7 +86,7 @@ export class ListdriverComponent implements OnInit {
         
       });
     } else {
-      this.driverModel.DriverKey = this.driverUpdate;
+      // this.driverModel.DriverKey = this.driverUpdate;
       this.Service.updateDriver(this.driverModel).subscribe(() => {
         this.dataSaved = true;
         this.message = "Driver Record Updated Successfully";

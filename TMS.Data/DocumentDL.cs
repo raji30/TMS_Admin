@@ -50,7 +50,6 @@ namespace TMS.Data
 
         public IList<DocumentBO> GetSupportingDocumentsForDO(Guid Orderkey)
         {
-
             var connection = OpenConnection();
             string sql = "SELECT originalfilename, originalfiletype from dbo.document d (nolock) inner join dbo.tms_orderheaderdocuments dod" +
                 "on d.documentkey =dod.documentkey where dod.orderkey = _orderKey";

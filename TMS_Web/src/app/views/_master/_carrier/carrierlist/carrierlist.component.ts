@@ -69,7 +69,7 @@ export class CarrierlistComponent implements OnInit {
         this.show_addupdateCarrier = false;
       });
     } else {
-      this.dataModel.CarrierKey = this.updateCarrier;
+      // this.dataModel.CarrierKey = this.updateCarrier;
       this.Service.UpdateCarrier(this.dataModel).subscribe(() => {
         this.dataSaved = true;
         this.message = "Driver Record Updated Successfully";

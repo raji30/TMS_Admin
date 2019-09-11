@@ -79,6 +79,7 @@ import { ListdriverComponent } from "./views/_master/_driver/listdriver/listdriv
 import { VendorlistComponent } from "./views/_master/_vendor/vendorlist/vendorlist/vendorlist.component";
 import { BrokerlistComponent } from "./views/_master/_broker/brokerlist/brokerlist/brokerlist.component";
 import { CarrierlistComponent } from "./views/_master/_carrier/carrierlist/carrierlist.component";
+import { InvoiceComponent } from "./views/invoice/invoice/invoice.component";
 
 @NgModule({
   imports: [
@@ -135,6 +136,7 @@ import { CarrierlistComponent } from "./views/_master/_carrier/carrierlist/carri
     OrderlistComponent,
     OrderinfoComponent,
     ContainersizeComponent,
+    InvoiceComponent,
     TabComponent,
     SchedulerComponent,
     SchedulerlistComponent,

@@ -10,7 +10,8 @@ namespace TMS.Data
 {
    public class UserAccessDL
     {
-        string securityconnString = "host=localhost;port=5432;Username=postgres;Password=Abc1234!;Database=App_security;";
+        //string securityconnString = "host=localhost;port=5432;Username=postgres;Password=Abc1234!;Database=App_security;";
+        string securityconnString = "host=localhost;;port=5432;Username=postgres;Password=TMS@123;Database=App_security";
         NpgsqlConnection securityconnection;
         public UserAccessDL()
         {

@@ -19,40 +19,33 @@ namespace TMS.Data
         {
             connection = new NpgsqlConnection(connString);
         }
-        public IList<Guid> InsertCarrierDetails(CarrierBO[] obj)
+        public Guid InsertCarrier(CarrierBO carrier)
         {
-            var RouteDetailCollection = new List<Guid>();
-            //string sql = "dbo.fn_insert_routes_details";
-            //using (connection)
-            //{
-            //    connection.Open();
-            //    //foreach (var obj in objList)
-            //    //{
-            //    using (var cmd = new NpgsqlCommand(sql, connection))
-            //    {
-            //        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            string sql = "dbo.fn_insert_carrier";
+            using (connection)
+            {
+                connection.Open();
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-            //        cmd.Parameters.AddWithValue("_orderkey",
-            //            NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderKey);
-            //        cmd.Parameters.AddWithValue("_orderdetailkey",
-            //           NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderDetailKey);
-            //        cmd.Parameters.AddWithValue("_driverkey",
-            //            NpgsqlTypes.NpgsqlDbType.Uuid, obj.driverkey);
+                    cmd.Parameters.AddWithValue("_carrierkey", NpgsqlTypes.NpgsqlDbType.Uuid, carrier.CarrierKey);                   
+                    cmd.Parameters.AddWithValue("_carrierid", NpgsqlTypes.NpgsqlDbType.Varchar, carrier.CarrierId);
+                    cmd.Parameters.AddWithValue("_carriername", NpgsqlTypes.NpgsqlDbType.Varchar, carrier.CarrierName);
+                    cmd.Parameters.AddWithValue("_issteamline", NpgsqlTypes.NpgsqlDbType.Bit, carrier.isstreamline);
+                    cmd.Parameters.AddWithValue("_addrkey", NpgsqlTypes.NpgsqlDbType.Uuid, carrier.AddrKey);
+                    cmd.Parameters.AddWithValue("_scaccode", NpgsqlTypes.NpgsqlDbType.Varchar, carrier.ScacCode);
+                    cmd.Parameters.AddWithValue("_licenseplate", NpgsqlTypes.NpgsqlDbType.Varchar, carrier.LicensePlate);
+                    cmd.Parameters.AddWithValue("_licenseplateexpirydate", NpgsqlTypes.NpgsqlDbType.Date, carrier.LicensePlateExpiryDate);
+                    cmd.Parameters.AddWithValue("_status", NpgsqlTypes.NpgsqlDbType.Smallint, carrier.Status);
+                    cmd.Parameters.AddWithValue("_createdate", NpgsqlTypes.NpgsqlDbType.Timestamp, carrier.CreatedDate);
+                    cmd.Parameters.AddWithValue("_statusdate", NpgsqlTypes.NpgsqlDbType.Timestamp, carrier.StatusDate);
 
-            //        var reader = cmd.ExecuteReader();
-            //        while (reader.Read())
-            //        {
-            //            for (int i = 0; i < reader.FieldCount; i++)
-            //            {
-            //                var RouteDetailID = Guid.Parse(reader[i].ToString());
-            //                RouteDetailCollection.Add(RouteDetailID);
-            //            }
-            //        }
-            //    }
-            //    // }
-            //    connection.Close();
-            //}
-            return RouteDetailCollection;
+
+                    var carrierKey = cmd.ExecuteScalar();
+                    return Guid.Parse(carrierKey.ToString());
+                }
+            }           
         }
 
         public List<CarrierBO> GetCarriers()
@@ -88,6 +81,46 @@ namespace TMS.Data
                 }
             }
             return carrierlist;
+        }
+        public CarrierBO GetCarrierbyKey(Guid carrierKey)
+        {
+            string sql = "dbo.fn_get_carrierbyKey";
+            CarrierBO carrierlist = new CarrierBO();
+
+            try
+            {
+
+                using (connection)
+                {
+                    connection.Open();
+                    using (var cmd = new NpgsqlCommand(sql, connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("_carrierkey", NpgsqlTypes.NpgsqlDbType.Uuid, carrierKey);
+                        var reader = cmd.ExecuteReader();
+                        do
+                        {
+                            while (reader.Read())
+                            {
+                                carrierlist.CarrierKey = Guid.Parse(reader["carrierkey"].ToString());
+                                carrierlist.CarrierId = Utils.CustomParse<string>(reader["carrierid"]);
+                                carrierlist.CarrierName = Utils.CustomParse<string>(reader["carriername"]);
+                                carrierlist.ScacCode = Utils.CustomParse<string>(reader["scaccode"]);
+                                //carrierlist.isstreamline = Convert.ToBoolean(reader["issteamline"]);
+                                carrierlist.LicensePlate = Utils.CustomParse<string>(reader["licenseplate"]);
+                                carrierlist.LicensePlateExpiryDate = Utils.CustomParse<DateTime>(reader["licenseplateexpirydate"]);
+                                carrierlist.AddrKey = Guid.Parse(reader["addrkey"].ToString());
+                            }
+                        }
+                        while (reader.NextResult());
+                    }
+                }
+                return carrierlist;
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

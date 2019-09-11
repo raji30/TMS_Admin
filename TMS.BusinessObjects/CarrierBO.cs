@@ -17,6 +17,7 @@ namespace TMS.BusinessObjects
         public string ScacCode { get; set; }
         public string LicensePlate { get; set; }
         public DateTime LicensePlateExpiryDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public Int16 Status { get; set; }
         public DateTime StatusDate { get; set; }
     }

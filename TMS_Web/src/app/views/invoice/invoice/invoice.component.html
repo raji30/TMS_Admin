@@ -1,0 +1,66 @@
+<br>
+<div class="row">
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-4">
+        <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text" placeholder="Search..">
+    </div>
+</div>
+<br>
+<div class="table-responsive small">
+    <table id="containerAttributes" class="table table-sm table-hover">
+        <thead class="thead-light">
+            <tr align="center">
+                <th style="display:none">OrderKey</th>
+                <th style="display:none">OrderDetailKey</th>
+                <th>OrderNo</th>
+                <th>Container#</th>
+                <th>Size</th>
+                <th>Chassis#</th>
+                <th>Seal#</th>
+                <th>Weight</th>                
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr align="center"
+                *ngFor="let field of Data">
+                <td style="display:none">
+                    <input [(ngModel)]="field.OrderKey" class="form-control form-control-sm" type="text"
+                        name="{{field.OrderKey}}" />
+                </td>
+                <td style="display:none">
+                    <input [(ngModel)]="field.OrderDetails.OrderDetailKey" class="form-control form-control-sm" type="text"
+                        name="{{field.OrderDetails.OrderDetailKey}}" />
+                </td>
+                <td>
+                    {{field.OrderNo}}
+                </td>
+                <td>
+                    {{field.OrderDetails.ContainerNo}}
+                </td>
+                <td>
+                    {{field.OrderDetails.ContainerSizeDesc}}  
+                </td>
+
+                <td>
+                    {{field.OrderDetails.Chassis}}
+                </td>
+                <td>
+
+                    {{field.OrderDetails.SealNo}}
+                </td>
+                <td>
+
+                    {{field.OrderDetails.Weight}}
+                </td>
+                              
+                <td>
+                    <button class="btn btn-primary btn-pill btn-sm small" type="button"
+                        (click)="generateInvoiceData(field)">Create Invoice</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

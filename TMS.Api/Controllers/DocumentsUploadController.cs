@@ -108,7 +108,7 @@ namespace TMS.Api.Controllers
 
         }
 
-        [Route("FileUpload")]
+       [Route("FileUpload")]
         public  async Task<HttpResponseMessage> Upload()
         {
             try
@@ -124,6 +124,9 @@ namespace TMS.Api.Controllers
 
                 await content.ReadAsMultipartAsync(provider);
 
+                string DO = provider.FormData[0];
+                    string CreatedBy = provider.FormData[1];
+
                 //renaming the random file to Original file name
                 string uploadingFileName = provider.FileData.Select(x => x.LocalFileName).FirstOrDefault();
                 string originalFileName = String.Concat(fileuploadPath, "\\" + (provider.Contents[0].Headers.ContentDisposition.FileName).Trim(new Char[] { '"' }));
@@ -134,7 +137,6 @@ namespace TMS.Api.Controllers
                 }
 
                 File.Move(uploadingFileName, originalFileName);
-
                 return Request.CreateResponse(HttpStatusCode.Created, new StringContent(" Files Uploaded Successfully"), Configuration.Formatters.JsonFormatter);
 
             }

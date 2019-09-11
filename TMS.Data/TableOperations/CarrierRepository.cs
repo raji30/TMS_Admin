@@ -13,7 +13,9 @@ namespace TMS.Data.TableOperations
 
         public Guid Add(carrier t)
         {
-            var newcarrier = entity.carriers.Add(t);
+            t.carrierkey = Guid.NewGuid();
+                      var newcarrier = entity.carriers.Add(t);
+            entity.SaveChanges();
             return newcarrier.carrierkey;
         }
 

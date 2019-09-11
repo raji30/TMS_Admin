@@ -59,5 +59,19 @@ namespace TMS.Api.Controllers
             var invoiceDtl = dl.PostInvoiceDetail(invoiceDetail);
             return Request.CreateResponse(HttpStatusCode.OK, invoiceDtl, Configuration.Formatters.JsonFormatter);
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetOrderstoGenerateInvoice")]
+        [SwaggerOperation("GetOrderstoGenerateInvoice")]
+        public HttpResponseMessage GetOrderstoGenerateInvoice()
+        {
+            var invoiceDtlList = dl.GetOrderstoGenerateInvoice();
+            return Request.CreateResponse(HttpStatusCode.OK, invoiceDtlList, Configuration.Formatters.JsonFormatter);
+        }
     }
 }

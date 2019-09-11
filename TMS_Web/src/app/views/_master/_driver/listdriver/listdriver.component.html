@@ -3,7 +3,8 @@
   <div class="row">
 
     <div class="col-md-6">
-      <form (ngSubmit)="f.form.valid && onFormSubmit()" #f="ngForm" novalidate>
+        <!-- f.form.valid && -->
+      <form (ngSubmit)=" f.form.valid && onFormSubmit()" #f="ngForm" novalidate>
         <br>
         <button type="button" class="btn btn-info btn-sm" (click)="toggle()">Add driver</button>
 
@@ -16,7 +17,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">DriverKey</span>
               </div>
-              <input type="text" class="form-control form-control-sm" required [(ngModel)]="driverModel.DriverKey"
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.DriverKey"
                 id="DriverKey" name="DriverKey">
             </div>
 
@@ -35,9 +36,10 @@
               </div>
               <input type="text" class="form-control form-control-sm" required [(ngModel)]="driverModel.DriverId"
                 #DriverId="ngModel" name="DriverId" [ngClass]="{ 'is-invalid': f.submitted && DriverId.invalid }"
-                required>
+                required autofocus minlength="6">
               <div *ngIf="f.submitted && DriverId.invalid" class="invalid-feedback">
                 <div *ngIf="DriverId.errors.required"> DriverId is required</div>
+                <div *ngIf="DriverId.errors.minlength"> ID must be at least 6 characters</div>
               </div>
             </div>
             <div class="form-group input-group input-group-sm col-md-6">
@@ -103,11 +105,8 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">License No</span>
               </div>
-              <input type="text" class="form-control form-control-sm" required
-                [(ngModel)]="driverModel.DriversLicenseNo" name="DriversLicenseNo">
-              <div *ngIf="f.submitted && FirstName.invalid" class="invalid-feedback">
-                <div *ngIf="FirstName.errors.required"> FirstName is required</div>
-              </div>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.DriversLicenseNo" name="DriversLicenseNo">
+              
             </div>
 
             <div class="form-row col-md-6">
@@ -140,7 +139,7 @@
                 <span class="input-group-text">Expiry Date</span>
               </div>
               <input type="text" class="form-control form-control-sm" [owlDateTimeTrigger]="dtactualdeparture"
-                [owlDateTime]="dtactualdeparture" required [(ngModel)]="driverModel.LicenseExpiryDate"
+                [owlDateTime]="dtactualdeparture" [(ngModel)]="driverModel.LicenseExpiryDate"
                 name="LicenseExpiryDate">
 
               <owl-date-time [pickerType]="'calendar'" #dtactualdeparture [hour12Timer]="false"></owl-date-time>

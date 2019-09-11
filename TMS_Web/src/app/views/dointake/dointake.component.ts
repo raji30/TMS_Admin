@@ -42,6 +42,7 @@ import {
 import { MasterService } from "../../_services/master.service";
 import { ToastrService } from "ngx-toastr";
 import { AppSettings } from "./../../_constants/appsettings";
+import { FileUploadService } from "../../_services/fileupload.service";
 
 const URL = "https://evening-anchorage-3159.herokuapp.com/api/";
 //const URL = 'http://localhost:4200/api';
@@ -65,7 +66,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   holdreasonlist: HoldReason[];
   sourcelist: Source[];
   carrierlist: Carrier[];
-  LoadDischargePortList :LoadDischargePort[];
+  LoadDischargePortList: LoadDischargePort[];
 
   public doHeader: DeliveryOrderHeader;
   isContainerAttributeVisible: boolean = true;
@@ -75,7 +76,12 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   errorMessage: string;
   orderKey: string;
   selectedBillToKey = "";
-  HolddropdownVisible =false;
+  HolddropdownVisible = false;
+
+  myFiles: string[] = [];
+  error: string;
+  fileUpload = { status: "", message: "", filePath: "" };
+  fileUploadcount: number;
 
   uploader = new FileUploader({ url: AppSettings._BaseURL + "FileUpload" });
 
@@ -88,11 +94,12 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     private service: DeliveryOrderService,
     private master: MasterService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fileUploadService: FileUploadService
   ) {
     this.doHeader = null;
-   // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-  }  
+    // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   onSelectedCustKeyAddress(addressKey: string) {
     this.doHeader.CustKey = addressKey;
@@ -119,7 +126,6 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   onOrdernoGenerated(newOrderno: string) {
     this.doHeader.OrderNo = newOrderno;
     //this.doHeader.OrderDate = new Date().toLocaleDateString();
-   
   }
 
   ngOnInit(): void {
@@ -184,12 +190,13 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
         () => console.log("Get sourcelist", this.sourcelist)
       );
 
-      this.master
+    this.master
       .getLoadDischargePortList(3)
       .subscribe(
         data => (this.LoadDischargePortList = data),
         error => console.log(error),
-        () => console.log("Get LoadDischargePortList", this.LoadDischargePortList)
+        () =>
+          console.log("Get LoadDischargePortList", this.LoadDischargePortList)
       );
 
     this.master
@@ -236,7 +243,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
         result => {
           this.orderKey = result;
           if (this.orderKey != undefined && this.orderKey != "") {
-            this.saveDeliveryDetails();            
+            this.saveDeliveryDetails();
           }
         },
         error => {
@@ -302,26 +309,46 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  ngOnChanges() {
-  }
- 
+  ngOnChanges() {}
 
   ngOnDestroy() {
     this.subscription && this.subscription.unsubscribe();
   }
 
-
-  
   StatusDropDownChanged(val: number) {
-    if(val.toString()=== "10")//OnHold
-    {
-    this.HolddropdownVisible = true;
+    if (val.toString() === "10") {
+      //OnHold
+      this.HolddropdownVisible = true;
+    } else {
+      this.HolddropdownVisible = false;
     }
-    else
-    {
-    this.HolddropdownVisible = false;}
   }
 
+  onUploadSubmit() {
+    if (this.myFiles.length === 0) {
+      return this.showWarning("No File(s) selected", "Upload");
+    }
+    for (var i = 0; i < this.myFiles.length; i++) {
+      const frmData = new FormData();
+      frmData.append("fileUpload", this.myFiles[i]);
+      frmData.append("DO", this.doHeader.OrderNo);
+      frmData.append("CreatedBy", this.doHeader.CreatedBy);
+
+      this.fileUploadService.upload(frmData).subscribe(
+        res => {
+          this.fileUpload.status = res.toString();
+          console.log("testt", res);
+          this.fileUploadcount = this.fileUploadcount + 1;
+          this.myFiles = [];
+        },
+        err => {
+          this.error = err;
+          this.showError(this.error, "Upload Error");
+        }
+      );
+    }
+    this.showSuccess("File(s) uploaded successfully", "Upload");
+  }
 
   showSuccess(message: string, title: string) {
     this.toastr.success(message, title, { timeOut: 4000, closeButton: true });
@@ -331,8 +358,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.toastr.error(message, "Oops!", { timeOut: 4000, closeButton: true });
   }
 
-  showWarning() {
-    this.toastr.warning("This is warning toast.", "Alert!");
+  showWarning(message: string, title: string) {
+    this.toastr.warning(message, title);
   }
 
   showInfo(message: string, title: string) {
@@ -341,5 +368,13 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
 
   showToast(position: any = "top-left") {
     this.toastr.info("This is a toast.", "Toast", { positionClass: position });
+  }
+
+  onSelectedFile(e) {
+    this.myFiles = [];
+    this.fileUploadcount = 0;
+    for (var i = 0; i < e.target.files.length; i++) {
+      this.myFiles.push(e.target.files[i]);
+    }
   }
 }

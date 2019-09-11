@@ -21,7 +21,7 @@ namespace TMS.Api.Controllers
     public class FileUploadController : ApiController
     {
         [HttpPost]
-        [Route("FileUpload")]
+       // [Route("FileUpload")]
         public Task<HttpResponseMessage> Post(string DO,string CreatedBy)
         {
             try
@@ -58,6 +58,15 @@ namespace TMS.Api.Controllers
                                 Document = documentBO,
                                 Orderkey = Guid.Parse(DO)
                             };
+
+                            //renaming the random file to Original file name
+                            string uploadingFileName = provider.FileData.Select(x => x.LocalFileName).FirstOrDefault();
+                            string originalFileName = String.Concat(fileuploadPath, "\\" + (provider.Contents[0].Headers.ContentDisposition.FileName).Trim(new Char[] { '"' }));
+
+                            if (File.Exists(originalFileName))
+                            {
+                                File.Delete(originalFileName);
+                            }
 
                             File.Move(finfo.FullName, Path.Combine(root, DO, 
                             file.Headers.ContentDisposition.FileName.Replace("\"", "")));

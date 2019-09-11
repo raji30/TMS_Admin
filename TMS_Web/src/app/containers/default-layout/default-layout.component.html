@@ -43,9 +43,20 @@
       </div>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" routerLink="/doIntake"> <img src="assets/img/brand/Cash-icon.png" />
-        &nbsp; Billing</a>
+      <!-- <a class="nav-link" routerLink="/doIntake"> <img src="assets/img/brand/Cash-icon.png" />
+        &nbsp; Billing</a> -->
       <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
+      <div class="dropdown show">
+          <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <img src="assets/img/brand//Cash-icon.png" /> Invoice
+          </a>
+  
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" routerLink="/GetOrderstoGenerateInvoice">Create Invoice</a>
+            <a class="dropdown-item" routerLink="/GetInvoiceList">Invoice List</a>           
+          </div>
+        </div>
     </li>
     <li class="nav-item px-3">
       <!-- <a class="nav-link" routerLink="/Customers"> <img src="assets/img/brand/standard-notes-icon24px.png" />
@@ -58,16 +69,17 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/customer.png" /> Customers</a>
-          <a class="dropdown-item" routerLink="/Drivers">Drivers</a>
-          <a class="dropdown-item" routerLink="/Vendors">Vendors</a>
-          <a class="dropdown-item" routerLink="/Customers">Warehouses</a>
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/customer.png"  hspace="5"/> Customer</a>
+          <a class="dropdown-item" routerLink="/Drivers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Driver</a>
+          <a class="dropdown-item" routerLink="/Vendors"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Vendor</a>
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Warehouse</a>
 
-          <a class="dropdown-item" routerLink="/Customers">Terminal</a>
-          <a class="dropdown-item" routerLink="/Customers">Company</a>
-          <a class="dropdown-item" routerLink="/Carriers">Carrier</a>
-          <a class="dropdown-item" routerLink="/Brokers">Broker</a>
-          <a class="dropdown-item" routerLink="/Customers">Users</a>
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Terminal</a>
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Company</a>
+          <a class="dropdown-item" routerLink="/Carriers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Carrier</a>
+          <a class="dropdown-item" routerLink="/Brokers"><img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Broker</a>
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />User</a>
+          <a class="dropdown-item" routerLink="/Customers"><img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Item</a>
           <!-- <div class="dropdown-divider"></div> -->     
         </div>
       </div>
