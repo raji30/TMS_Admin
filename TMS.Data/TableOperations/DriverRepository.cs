@@ -17,7 +17,7 @@ namespace TMS.Data.TableOperations
         public Guid Add(driver t)
         {
             //throw new NotImplementedException();
-
+            t.driverkey = Guid.NewGuid();
             var newdriver = entities.drivers.Add(t);
             entities.SaveChanges();
             return newdriver.driverkey;

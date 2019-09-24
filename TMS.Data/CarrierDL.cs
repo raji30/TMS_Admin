@@ -82,6 +82,7 @@ namespace TMS.Data
             }
             return carrierlist;
         }
+
         public CarrierBO GetCarrierbyKey(Guid carrierKey)
         {
             string sql = "dbo.fn_get_carrierbyKey";

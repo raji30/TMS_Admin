@@ -22,6 +22,8 @@ export class ListcustomerComponent implements OnInit {
   customer: Customer;
   address: Address;
 
+  selectedCustomer: Customer;
+
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
 
@@ -34,22 +36,29 @@ export class ListcustomerComponent implements OnInit {
   ngOnInit() {
     this.customerForm = this.formbulider.group({
       CustomerKey: [],
-      custid: ['', [Validators.required]],
-      CustName: ['', [Validators.required]],
-      creditlimit: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(3)]],      
+      custid: ["", [Validators.required]],
+      CustName: ["", [Validators.required]],
+      creditlimit: [
+        "",
+        [
+          Validators.required,
+          Validators.pattern("^[0-9]*$"),
+          Validators.minLength(3)
+        ]
+      ],
       Address: this.formbulider.group({
-        AddrKey: [''],
-        Address1: ['', [Validators.required]],
-        Address2: ['', [Validators.required]],
-        City: ['', [Validators.required]],
-        State: ['', [Validators.required]],
+        AddrKey: [""],
+        Address1: ["", [Validators.required]],
+        Address2: ["", [Validators.required]],
+        City: ["", [Validators.required]],
+        State: ["", [Validators.required]],
         Zip: [
-          '',
+          "",
           [
             Validators.required,
             Validators.pattern("^[0-9]*$"),
             Validators.minLength(3),
-            Validators.maxLength(3),
+            Validators.maxLength(3)
           ]
         ]
       })
@@ -69,17 +78,10 @@ export class ListcustomerComponent implements OnInit {
     this.dataSaved = false;
 
     let cust: Customer = this.customerForm.value;
-    // cust.CustomerKey = "";
-    // cust.CustomerGroup = 0;
-    // cust.CustomerKey = "";
-    // cust.Status = 1;
-    // cust.addrkey = "";
-    // cust.CreditCheck = true;
-
     this.CreateCustomer(cust);
     this.customerForm.reset();
-    // this.toggle();
   }
+  searchCustomer(customerkey: string) {}
   loadCustomerToEdit(customerkey: string) {
     this.Service.getCustomerById(customerkey).subscribe(customer_edit => {
       this.message = null;
@@ -158,17 +160,16 @@ export class ListcustomerComponent implements OnInit {
     this.show_addupdatecustomer = false;
   }
 
-    // convenience getter for easy access to form fields
-    get f() { return this.customerForm.controls; }
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.customerForm.controls;
+  }
 
-
-    numberOnly(event): boolean {
-      const charCode = (event.which) ? event.which : event.keyCode;
-      if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-      }
-      return true;
-  
+  numberOnly(event): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
     }
-
+    return true;
+  }
 }

@@ -162,6 +162,7 @@
     <Compile Include="item.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ItemDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoutesDL.cs" />
     <Compile Include="SchedulingDL.cs" />

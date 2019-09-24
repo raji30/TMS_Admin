@@ -1,28 +1,24 @@
 <app-header [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/Truck-Right-Green-icon128px.png', width: 50, height: 50, alt: 'CoreUI Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/brand/paper-plane-icon3.png', width: 50, height: 50, alt: 'CoreUI Logo'}"
-  [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
-
-  <!-- <ol class=" nav navbar-nav d-md-down-none mr-auto">
-      <app-breadcrumb></app-breadcrumb>
-    </ol> -->
+  [navbarBrandFull]="{src: 'assets/img/brand/Delivery-icon.png', width: 50, height: 40, alt: 'CoreUI Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/Delivery-icon.png', width: 40, height: 40, alt: 'CoreUI Logo'}"
+  [sidebarToggler]="false" [mobileSidebarToggler]="false" [asideMenuToggler]="false">
 
   <ul class="nav navbar-nav d-md-down-none mr-auto">
     <li class="nav-item px-3">
 
       <a class="nav-link" [routerLink]="['/dashboard']">
         <!-- <i class="fa fa-dashboard"></i>  -->
-        <img src="assets/img/brand/large-tiles-icon24px.png" />
+        <img src="assets/img/brand/large-tiles-icon16px.png" />
         &nbsp; Dashboard</a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" routerLink="/doIntake"> <img src="assets/img/brand/Filetype-Docs-icon.png" />
+      <a class="nav-link" routerLink="/doIntake"> <img src="assets/img/brand/standard-notes-icon16px.png" />
         &nbsp; DO Intake</a>
       <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
     </li>
 
     <li class="nav-item px-3">
-      <a class="nav-link" routerLink="/Scheduler"> <img src="assets/img/brand/Apps-preferences-system-time-icon.png" />
+      <a class="nav-link" routerLink="/Scheduler"> <img src="assets/img/brand/schedule-icon16px.png" />
         &nbsp; Scheduler</a>
       <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
     </li>
@@ -34,7 +30,7 @@
       <div class="dropdown show">
         <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
-          <img src="assets/img/brand/delivery-truck-icon.png" /> Dispatch
+          <img src="assets/img/brand/system-box-icon16px.png" /> Dispatch
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item" routerLink="/DispatchAssignment"> Dispatch Assignment</a>
@@ -47,79 +43,62 @@
         &nbsp; Billing</a> -->
       <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
       <div class="dropdown show">
-          <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            <img src="assets/img/brand//Cash-icon.png" /> Invoice
-          </a>
-  
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" routerLink="/GetOrderstoGenerateInvoice">Create Invoice</a>
-            <a class="dropdown-item" routerLink="/GetInvoiceList">Invoice List</a>           
-          </div>
-        </div>
-    </li>
-    <li class="nav-item px-3">
-      <!-- <a class="nav-link" routerLink="/Customers"> <img src="assets/img/brand/standard-notes-icon24px.png" />
-        &nbsp; Customers</a> -->
-      <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
-      <div class="dropdown show">
         <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
-          <img src="assets/img/brand/Website-Optimization-icon.png" /> Admin
+          <img src="assets/img/brand/invoice-icon16px.png" /> Invoice
         </a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/customer.png"  hspace="5"/> Customer</a>
-          <a class="dropdown-item" routerLink="/Drivers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Driver</a>
-          <a class="dropdown-item" routerLink="/Vendors"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Vendor</a>
-          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Warehouse</a>
-
-          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Terminal</a>
-          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Company</a>
-          <a class="dropdown-item" routerLink="/Carriers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Carrier</a>
-          <a class="dropdown-item" routerLink="/Brokers"><img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Broker</a>
-          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />User</a>
-          <a class="dropdown-item" routerLink="/Customers"><img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png" hspace="5" />Item</a>
-          <!-- <div class="dropdown-divider"></div> -->     
+          <a class="dropdown-item" routerLink="/GetOrderstoGenerateInvoice">Create Invoice</a>
+          <a class="dropdown-item" routerLink="/GetInvoiceList">Invoice List</a>
         </div>
       </div>
+    </li>
+    <li class="nav-item px-3">      
+      <div class="dropdown show">
+        <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <img src="assets/img/brand/setting-icon16px.png" /> Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/customer.png" hspace="5" />
+            Customer</a>
+          <a class="dropdown-item" routerLink="/Drivers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Driver</a>
+          <a class="dropdown-item" routerLink="/Vendors"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Vendor</a>
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Warehouse</a>
 
-
-    </li>
-    <!-- <li class="nav-item px-3">
-      <a class="nav-link" routerLink="/container">    
-        <img src="assets/img/brand/clock-select-remain-icon24px.png" />
-        &nbsp; Scheduler</a>
-    </li>
-    <li class="nav-item px-3">       
-      <a class="nav-link" href="#">
-          <img src="assets/img/brand/packages-icon24px.png" />
-          &nbsp;Dispatch</a>
-    </li>
-    <li class="nav-item px-3">        
-      <a class="nav-link" href="#">
-          <img src="assets/img/brand/Test-paper-icon24px.png" />
-          &nbsp;Review</a>
-    </li>
-    <li class="nav-item px-3">        
-      <a class="nav-link" href="#">
-          <img src="assets/img/brand/Earning-statement-icon24px.png" />
-          &nbsp;Billing</a>
-    </li> -->
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Terminal</a>
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Company</a>
+          <a class="dropdown-item" routerLink="/Carriers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Carrier</a>
+          <a class="dropdown-item" routerLink="/Brokers"><img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Broker</a>
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />User</a>
+          <a class="dropdown-item" routerLink="/Customers"><img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Item</a>         
+        </div>
+      </div>
+    </li>    
   </ul>
   <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item dropdown" dropdown placement="bottom left">
+      <!-- <a class="nav-link" role="button" aria-haspopup="true" aria-expanded="false" (click)="logout()">           
+        <img src="assets/img/brand/cross-icon16px.png" >
+        <h6>Logout</h6>      
+      </a> -->
 
-    <li class="nav-item dropdown" dropdown placement="bottom right">
-      <a class="nav-link" role="button" aria-haspopup="true" aria-expanded="false" (click)="logout()">
-        <!-- <i class="fa fa-sign-out" aria-hidden="true">                
-        <img src="assets/img/brand/delete-1-icon16px.png" -->
-        <h6>Logout</h6>
-        <!-- <span class="badge badge-pill badge-danger">x</span>             -->
-      </a>
-
+      <button type="button" class="btn btn-sm" (click)="logout()">
+        <img src="assets/img/brand/cross-icon16px.png"> <p class="text-danger">Logout</p> </button>
     </li>
   </ul>
 </app-header>
+
 <div class="app-body">
 
   <!-- <app-sidebar [fixed]="true" [display]="'lg'">
@@ -127,9 +106,9 @@
     </app-sidebar-nav>    
        <app-sidebar-minimizer></app-sidebar-minimizer>   
   </app-sidebar> -->
-  <app-sidebar>
+  <!-- <app-sidebar>
     <app-navigation></app-navigation>
-  </app-sidebar>
+  </app-sidebar> -->
   <!-- Main content -->
   <main class="main">
     <!-- Breadcrumb -->

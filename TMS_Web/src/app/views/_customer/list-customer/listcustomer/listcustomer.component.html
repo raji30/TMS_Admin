@@ -1,4 +1,38 @@
 <div id="accordion">
+  <br>
+  <div class="row">
+    <div class="col-sm-8 col-md-8 col-lg-8">
+      <table class="table table-sm">
+        <tr ngclass="btn-primary">
+          <th hidden="true">custkey</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Credit Limit</th>
+        </tr>
+        <tr *ngFor="let cust of customers | async">
+          <td hidden="true">{{cust.CustomerKey}}</td>
+          <td>{{cust.CustId}}</td>
+          <td>{{cust.CustName}}</td>
+          <td>{{cust.CreditLimit}}</td>
+          <td class="tbl2">
+            <button type="button" class="btn btn-info btn-sm"
+              (click)="loadCustomerToEdit(cust.CustomerKey)">Edit</button>
+          </td>
+          <!-- <td class="tbl2">
+                    <button type="button" class="btn btn-danger btn-sm"
+                      (click)="deleteCustomer(cust.CustomerKey)">Delete</button>
+                  </td> -->
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4 border-left ">
+      <div class="container text-right">
+        <button type="button" class="btn btn-info btn-sm" (click)="toggle()">Create New Customer</button>
+      </div>
+    </div>
+  </div>
+  <br>
 
   <div class="row">
     <div class="col-md-6">
@@ -11,15 +45,15 @@
           <div class="card text-white bg-dark mb-3">
             <div class="card-header">
               <br>
-              <div class="row" hidden ="true">
-                  <div class="form-group input-group input-group-sm col-md-4">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Customer Key</span>
-                    </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="CustomerKey">
+              <div class="row" hidden="true">
+                <div class="form-group input-group input-group-sm col-md-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Customer Key</span>
                   </div>
-                  
+                  <input type="text" class="form-control form-control-sm" formControlName="CustomerKey">
                 </div>
+
+              </div>
               <div class="row">
                 <div class="form-group input-group input-group-sm col-md-4">
                   <div class="input-group-prepend">
@@ -43,25 +77,25 @@
                   </div>
                   <input type="text" class="form-control form-control-sm" formControlName="creditlimit"
                     [ngClass]="{ 'is-invalid': submitted && f.creditlimit.errors }">
-                    <div *ngIf="submitted && f.creditlimit.errors" class="invalid-feedback">
-                      <div *ngIf="f.creditlimit.errors.required">creditlimit is required</div>
-                      <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
-                      <div *ngIf="f.creditlimit.errors.minLength">minlength is required</div>
-                    </div>
+                  <div *ngIf="submitted && f.creditlimit.errors" class="invalid-feedback">
+                    <div *ngIf="f.creditlimit.errors.required">creditlimit is required</div>
+                    <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
+                    <div *ngIf="f.creditlimit.errors.minLength">minlength is required</div>
+                  </div>
                 </div>
-                
+
 
               </div>
 
-              <div class="row" formGroupName="Address" hidden ="true">
-                  <div class="form-group input-group input-group-sm col-md-6">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Address Key</span>
-                    </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="AddrKey">
+              <div class="row" formGroupName="Address" hidden="true">
+                <div class="form-group input-group input-group-sm col-md-6">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Address Key</span>
                   </div>
-                  
+                  <input type="text" class="form-control form-control-sm" formControlName="AddrKey">
                 </div>
+
+              </div>
               <div class="row" formGroupName="Address">
                 <div class="form-group input-group input-group-sm col-md-6">
                   <div class="input-group-prepend">
@@ -95,14 +129,15 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">Zip</span>
                   </div>
-                 
+
                   <input type="text" class="form-control form-control-sm" formControlName="Zip"
-                    [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Zip.errors }" (keypress)="numberOnly($event)" appBlockCopyPaste>
-                    <div *ngIf="submitted && f.Address['controls'].Zip.errors" class="invalid-feedback">
-                      <div *ngIf="f.Address['controls'].errors.required">Zip is required</div>
-                      <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
-                      <div *ngIf="f.Address['controls'].Zip.errors.minLength">minlength is required</div>
-                    </div>
+                    [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Zip.errors }"
+                    (keypress)="numberOnly($event)" appBlockCopyPaste>
+                  <div *ngIf="submitted && f.Address['controls'].Zip.errors" class="invalid-feedback">
+                    <div *ngIf="f.Address['controls'].errors.required">Zip is required</div>
+                    <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
+                    <div *ngIf="f.Address['controls'].Zip.errors.minLength">minlength is required</div>
+                  </div>
                 </div>
 
               </div>
@@ -134,7 +169,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <!-- <div class="row">
 
     <div class="col-md-8">
       <br><br>
@@ -154,13 +189,13 @@
             <button type="button" class="btn btn-info btn-sm"
               (click)="loadCustomerToEdit(cust.CustomerKey)">Edit</button>
           </td>
-          <!-- <td class="tbl2">
+          <td class="tbl2">
             <button type="button" class="btn btn-danger btn-sm"
               (click)="deleteCustomer(cust.CustomerKey)">Delete</button>
-          </td> -->
+          </td>
         </tr>
       </table>
     </div>
 
-  </div>
+  </div> -->
 </div>

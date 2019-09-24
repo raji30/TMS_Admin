@@ -243,6 +243,7 @@
     <Compile Include="Controllers\DocumentsUploadController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RoutesController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />

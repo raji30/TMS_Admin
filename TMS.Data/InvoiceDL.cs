@@ -167,7 +167,7 @@ namespace TMS.Data
 
         public List<DeliveryOrderBO> GetOrderstoGenerateInvoice()
         {
-            var DOHeaders = new List<DeliveryOrderBO>();
+            var DOHeaders = new List<DeliveryOrderBO>();           
             string sql = "dbo.fn_GetOrderstoGenerateInvoice";
             DeliveryOrderBO bo = new DeliveryOrderBO();
             using (appmodelConnection)
@@ -190,9 +190,9 @@ namespace TMS.Data
                             orderHeader.OrderType = Utils.CustomParse<short>(reader["ordertype"]);
                             orderHeader.BrokerRefNo = Utils.CustomParse<string>(reader["brokerrefno"]);
                             orderHeader.CustKey = Guid.Parse(reader["custkey"].ToString());
-                            //orderHeader.BillToAddress = Utils.CustomParse<Guid>(reader["billtoaddrkey"]);
-                            //orderHeader.SourceAddress = Utils.CustomParse<Guid>(reader["sourceaddrkey"]);
-                            //orderHeader.DestinationAddress = Utils.CustomParse<Guid>(reader["destinationaddrkey"]);
+                            orderHeader.BillToAddress = Utils.CustomParse<Guid>(reader["billtoaddrkey"]);
+                            orderHeader.SourceAddress = Utils.CustomParse<Guid>(reader["sourceaddrkey"]);
+                            orderHeader.DestinationAddress = Utils.CustomParse<Guid>(reader["destinationaddrkey"]);
                             //orderHeader.ReturnAddress = Utils.CustomParse<Guid>(reader["returnaddrkey"]);
                             //orderHeader.Status = Utils.CustomParse<short>(reader["status"]);
                             //orderHeader.StatusDate = Convert.ToDateTime(reader["statusdate"]);
