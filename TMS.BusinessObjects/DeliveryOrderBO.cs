@@ -40,6 +40,13 @@ namespace TMS.BusinessObjects
 
         public string ordertypedescription{ get; set; }
         public string statusdescription{ get; set; }
-      public DeliveryOrderDetailBO OrderDetails { get; set; }
+
+        public AddressBO BillToAddressBO { get; set; }
+        public AddressBO SourceAddressBO { get; set; }
+        public AddressBO DestinationAddressBO { get; set; }
+        public AddressBO ReturnAddressBO { get; set; }
+        public AddressBO BrokerAddressBO { get; set; }
+
+        public DeliveryOrderDetailBO OrderDetails { get; set; }
     }
 }

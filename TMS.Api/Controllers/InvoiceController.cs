@@ -179,5 +179,19 @@ namespace TMS.Api.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, orders, Configuration.Formatters.JsonFormatter);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="custname"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetInvoiceMaxcount")]
+        [SwaggerOperation("GetInvoiceMaxcount")]
+        public HttpResponseMessage GetInvoiceMaxcount()
+        {
+            Int64 result = dl.GetInvoiceMaxcount();
+            return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
+        }
     }
 }

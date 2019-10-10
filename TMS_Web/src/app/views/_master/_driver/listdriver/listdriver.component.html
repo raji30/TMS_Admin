@@ -3,7 +3,7 @@
   <div class="row">
 
     <div class="col-md-6">
-        <!-- f.form.valid && -->
+      <!-- f.form.valid && -->
       <form (ngSubmit)=" f.form.valid && onFormSubmit()" #f="ngForm" novalidate>
         <br>
         <button type="button" class="btn btn-info btn-sm" (click)="toggle()">Add driver</button>
@@ -17,8 +17,8 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">DriverKey</span>
               </div>
-              <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.DriverKey"
-                id="DriverKey" name="DriverKey">
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.DriverKey" id="DriverKey"
+                name="DriverKey">
             </div>
 
             <div class="form-group input-group input-group-sm col-md-6">
@@ -105,8 +105,9 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">License No</span>
               </div>
-              <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.DriversLicenseNo" name="DriversLicenseNo">
-              
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.DriversLicenseNo"
+                name="DriversLicenseNo">
+
             </div>
 
             <div class="form-row col-md-6">
@@ -139,8 +140,7 @@
                 <span class="input-group-text">Expiry Date</span>
               </div>
               <input type="text" class="form-control form-control-sm" [owlDateTimeTrigger]="dtactualdeparture"
-                [owlDateTime]="dtactualdeparture" [(ngModel)]="driverModel.LicenseExpiryDate"
-                name="LicenseExpiryDate">
+                [owlDateTime]="dtactualdeparture" [(ngModel)]="driverModel.LicenseExpiryDate" name="LicenseExpiryDate">
 
               <owl-date-time [pickerType]="'calendar'" #dtactualdeparture [hour12Timer]="false"></owl-date-time>
             </div>
@@ -191,9 +191,7 @@
   </div>
 
   <div class="row">
-
-    <div class="col-md-8">
-      <br><br>
+    <div class="col-sm-8 col-md-8 col-lg-8 border-right">
       <table class="table table-sm">
         <tr ngclass="btn-primary">
           <th hidden="true">Driverkey</th>
@@ -203,7 +201,7 @@
           <th>LicenseNo</th>
           <th>LicenseExpiryDate</th>
         </tr>
-        <tr *ngFor="let driv of drivers">
+        <tr *ngFor="let driv of drivers" (click)="loadCustomerToEdit(driv.DriverKey)">
           <td hidden="true">{{driv.DriverKey}}</td>
           <td>{{driv.DriverId}}</td>
           <td>{{driv.FirstName}}</td>
@@ -215,12 +213,32 @@
             <button type="button" class="btn btn-info btn-sm" (click)="loadCustomerToEdit(driv.DriverKey)">Edit</button>
           </td>
           <!-- <td class="tbl2">
-            <button type="button" class="btn btn-danger btn-sm"
-              (click)="deleteCustomer(cust.CustomerKey)">Delete</button>
-          </td> -->
+                  <button type="button" class="btn btn-danger btn-sm"
+                    (click)="deleteCustomer(cust.CustomerKey)">Delete</button>
+                </td> -->
         </tr>
       </table>
     </div>
+    <div class="col-sm-4 col-md-4 col-lg-4  ">
 
+      <div class="container text-right">
+        <button type="button" class="btn btn-info btn-sm">Edit</button>
+      </div>
+      <br>
+      <h5> {{driverModel.FirstName}} {{driverModel.LastName}}
+      </h5>
+
+      <span class="text-muted">Id <b>{{driverModel.DriverId}}</b> </span>
+      <br><br>
+      <span class="text-muted">License no </span><br>
+      <span><b> {{driverModel.DriversLicenseNo}} </b>
+      </span>
+
+      <br><br>
+      <span class="text-muted"> Expiry Date </span><br>
+      <span><b> {{driverModel.LicenseExpiryDate}} </b>
+      </span>
+      <br>
+    </div>
   </div>
 </div>

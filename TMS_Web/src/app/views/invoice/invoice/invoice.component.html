@@ -30,9 +30,8 @@
             <br>
             <div class="row">
                 <div class="col-sm-4 col-md-4 col-lg-4">
-                    <span>Invoice</span>
-                    <br>
-                    <span>FLEX-300373A</span>
+                    
+                    <span>Invoice ({{InvoiceNo}})</span>
                     <br>
                     <input type="text" name="invoiceDate" [(ngModel)]="invoiceDate" style="width:100px"
                         class="form-control form-control-sm" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" />
@@ -40,7 +39,7 @@
                     <br>
                     <img src="assets/img/brand/circle-black16px.png" /> <span> <span class="text-muted"> Bill from
                         </span> <b>
-                            {{invoiceModel.BillFrom["Name"]}}</b></span>
+                            {{this.invoiceModel.BillFrom["Name"]}}</b></span>
                     <br>
                     <span> {{invoiceModel.BillFrom["Address1"]}} {{invoiceModel.BillFrom["Address2"]}}
                         {{invoiceModel.BillFrom["City"]}} {{invoiceModel.BillFrom["State"]}}

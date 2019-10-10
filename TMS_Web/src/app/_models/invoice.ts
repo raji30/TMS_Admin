@@ -1,3 +1,5 @@
+import { Invoicedetails } from "./invoicedetails";
+
 export class Invoice {
   Invoicekey: string;
   InvoiceNo: number;
@@ -5,8 +7,9 @@ export class Invoice {
   CustKey: string;
   BilltoAddrKey: string;
   BilltoAddrCopy: string;
-  InvoiceAmt: string;
+  InvoiceAmt: number;
   DueDate: string;
   InvoiceType: number;
   OrderDetailKey: string;
+  invoicedetails:Invoicedetails[];
 }

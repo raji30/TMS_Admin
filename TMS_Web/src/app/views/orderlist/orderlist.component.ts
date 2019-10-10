@@ -64,7 +64,7 @@ export class OrderlistComponent implements OnInit {
   open(orderParams) {
    // this.order = orderParams;
     this.ModalOrderKey = orderParams;
-       const modalRef = this.modalService.open(TabComponent,{ size:'xl',backdrop:true, windowClass : 'myCustomModalClass'});
+       const modalRef = this.modalService.open(TabComponent,{ size:'lg',backdrop:true, windowClass : 'myCustomModalClass'});
       modalRef.componentInstance.orderKeyinput =   this.ModalOrderKey;  
   }
 
@@ -82,5 +82,13 @@ export class OrderlistComponent implements OnInit {
   // this.order.OrderKey =orderParams;
   this.ModalOrderKey = orderParams;
 
+  }
+  // events
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+ 
+  public chartHovered(e:any):void {
+    console.log(e);
   }
 }

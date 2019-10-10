@@ -20,6 +20,7 @@ import { NavigationComponent } from "../navigation/navigation.component";
 export class SchedulerlistComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   HeaderData: DeliveryOrderHeader;
+  DetailData: Order_details;
   DetailsData: Array<Order_details> = [];
   statuslist: Status[] = [];
   statuslistFiltered: Status[] = [];
@@ -32,6 +33,15 @@ export class SchedulerlistComponent implements OnInit {
   selectedKey: string;
   dataShow: boolean;
   tempOrderDetailKey: string;
+
+  public AppDateFrom: string;
+  public AppDateTo: string;
+  public PickupDateTime: string;
+  public DropOffDateTime: string;
+  public status: string;
+
+  showScheduler = false;
+  showImage = true;
 
   constructor(
     private NaviComp: NavigationComponent,
@@ -65,8 +75,8 @@ export class SchedulerlistComponent implements OnInit {
         //   if (this.statuslistFiltered[i].name === "OnHold" || this.statuslistFiltered[i].name === "SendtoDispatchAssignment") {
         //     this.statuslist.push(this.statuslistFiltered[i]);
         //   }
-        // }   
-        
+        // }
+
         // this.statuslist.forEach(contact => {
         //   console.log(contact.name);
         // },
@@ -84,19 +94,25 @@ export class SchedulerlistComponent implements OnInit {
     this.loaddata();
   }
 
-  onSubmit(field: Order_details) {
+  onSubmit() {
     if (
-      field.AppDateFrom == null ||
-      field.AppDateTo == null ||
-      field.status == null ||
-      field.PickupDateTime == null ||
-      field.DropOffDateTime == null
+      this.AppDateFrom == null ||
+      this.AppDateTo == null ||
+      this.status == null ||
+      this.PickupDateTime == null ||
+      this.DropOffDateTime == null
     ) {
       this.showError("Enter the missing fields.", "Scheduler");
       return;
     }
 
-    this.orderService.updateOrderDetails(field).subscribe(
+    this.DetailData.AppDateFrom = this.AppDateFrom;
+    this.DetailData.AppDateTo = this.AppDateTo;
+    this.DetailData.PickupDateTime = this.PickupDateTime;
+    this.DetailData.DropOffDateTime = this.DropOffDateTime;
+    this.DetailData.status = this.status;
+
+    this.orderService.updateOrderDetails(this.DetailData).subscribe(
       () => {
         this.dataSaved = true;
         this.message = "Scheduled Successfully";
@@ -106,6 +122,29 @@ export class SchedulerlistComponent implements OnInit {
       () => console.log("Scheduler  ", this.message)
     );
   }
+
+  // onSubmit(field: Order_details) {
+  //   if (
+  //     field.AppDateFrom == null ||
+  //     field.AppDateTo == null ||
+  //     field.status == null ||
+  //     field.PickupDateTime == null ||
+  //     field.DropOffDateTime == null
+  //   ) {
+  //     this.showError("Enter the missing fields.", "Scheduler");
+  //     return;
+  //   }
+
+  //   this.orderService.updateOrderDetails(field).subscribe(
+  //     () => {
+  //       this.dataSaved = true;
+  //       this.message = "Scheduled Successfully";
+  //       this.loaddata();
+  //     },
+  //     error => console.log(error),
+  //     () => console.log("Scheduler  ", this.message)
+  //   );
+  // }
 
   ngOnChanges() {}
 
@@ -117,7 +156,10 @@ export class SchedulerlistComponent implements OnInit {
       return;
     } else {
       this.dataShow = true;
+      this.DetailData = value;
+      console.log("Testing DetailData ", this.DetailData);
     }
+    this.selectedKey = value.OrderKey;
     this.orderService.GetbyKey(value.OrderKey).subscribe(
       data => {
         this.HeaderData = data;
@@ -127,7 +169,9 @@ export class SchedulerlistComponent implements OnInit {
       error => console.log(error),
       () => console.log("order Header Data ", this.HeaderData)
     );
-    this.selectedKey = value.OrderKey;
+
+    this.showScheduler = true;
+    this.showImage = false;
   }
 
   showSuccess(message: string, title: string) {

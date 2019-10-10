@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
     responsive: true
   };
 
-  public indexLabelBackgroundColor: "yellow";
+  // public indexLabelBackgroundColor: "yellow";
   public barChartLabels: string[] = ['Dec 2018'];
   public barChartType = 'bar';
   public barChartLegend = true;

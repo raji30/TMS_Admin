@@ -20,7 +20,7 @@ export class CompanyComponent implements OnInit {
   @Input() addressKeyTobind: string;
   @Output() CustomerSelectedOutput = new EventEmitter<string>();
   @Output() OrdernoGenerated = new EventEmitter<string>();
-
+ 
   customercount: any;
   Orderno: any;
 
@@ -65,6 +65,7 @@ export class CompanyComponent implements OnInit {
         error => console.log(error),
         () => console.log("Get customer complete")
       );
+
     }
 
     if (this.AddressType === 1) {

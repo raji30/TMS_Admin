@@ -59,10 +59,8 @@ import { ContainersizeComponent } from "./views/child/containersize/containersiz
 import { TabComponent } from "./views/tab/tab.component";
 import { SchedulerComponent } from "./views/scheduler/scheduler.component";
 import { NavigationComponent } from "./views/navigation/navigation.component";
-import { FileSelectDirective } from "ng2-file-upload";
 import { ToastrModule } from "ngx-toastr";
 import { FileuploadComponent } from "./views/fileupload/fileupload.component";
-import { OrderDashboardComponent } from "./views/order-dashboard/order-dashboard.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { CompanyComponent } from "./views/child/_company/company/company.component";
 import { DispatchComponent } from "./views/dispatch/dispatch.component";
@@ -118,7 +116,6 @@ import { InvoiceComponent } from "./views/invoice/invoice/invoice.component";
     AppComponent,
     ...APP_CONTAINERS,
     LoginComponent,
-    OrderDashboardComponent,
     DOIntakeComponent,
     AddressComponent,
     CustomerComponent,
@@ -145,7 +142,7 @@ import { InvoiceComponent } from "./views/invoice/invoice/invoice.component";
     DispatchComponent,
     DispatchAssignmentComponent,
     DispathdeliveryComponent,
-    FileSelectDirective,
+    
     GrdFilterPipe,
     BlockCopyPaste
   ],

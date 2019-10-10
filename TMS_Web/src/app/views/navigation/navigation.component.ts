@@ -63,7 +63,7 @@ export class NavigationComponent implements OnInit {
   open(orderParams) {
     // this.order = orderParams;
      this.ModalOrderKey = orderParams;
-        const modalRef = this.modalService.open(TabComponent,{ size:'xl',backdrop:true, windowClass : 'myCustomModalClass'});
+        const modalRef = this.modalService.open(TabComponent,{ size:'lg',backdrop:true, windowClass : 'myCustomModalClass'});
        modalRef.componentInstance.orderKeyinput =   this.ModalOrderKey;  
    }
 }

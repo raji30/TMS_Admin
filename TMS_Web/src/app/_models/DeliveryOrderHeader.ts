@@ -1,4 +1,5 @@
 import { Order_details } from "./order_details";
+import { Address } from "./address";
 
 export class DeliveryOrderHeader {
          
@@ -33,6 +34,12 @@ export class DeliveryOrderHeader {
         public CreatedDate:Date;
         public ordertypedescription:string ;
         public statusdescription:string ;
+
+        public BillToAddressBO : Address;
+        public SourceAddressBO : Address;
+        public DestinationAddressBO : Address;
+        public  ReturnAddressBO : Address;
+        public BrokerAddressBO : Address;
 
         public orderdetails:Order_details[];
         

@@ -59,6 +59,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   // broker: Broker[];
   // brokerName: string = "Select Broker";
 
+  Orderlist: Array<DeliveryOrderHeader> = [];
+
   ordertypelist: OrderType[];
   prioritylist: Priority[];
   containersizelist: Containersize[];
@@ -69,8 +71,13 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   LoadDischargePortList: LoadDischargePort[];
 
   public doHeader: DeliveryOrderHeader;
+  public orderinfo: Order_details[];
+
   isContainerAttributeVisible: boolean = true;
-  isNewDeliveryOrder: boolean = true;
+  isNewDeliveryOrder: boolean = false;
+  editmode = false;
+  showDO = false;
+  showImage = true;
 
   orderNo: string;
   errorMessage: string;
@@ -142,6 +149,9 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     //this.orderNo = this.route.snapshot.paramMap.get("order");
     this.orderNo = this.orderKeyinput;
 
+    this.showDO = false;
+    this.showImage = true;
+
     this.master
       .getContainerSizeList()
       .subscribe(
@@ -207,7 +217,13 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
         () => console.log("Get carrierlist", this.carrierlist)
       );
 
-    //this.showInfo("Welcome!!!", "DO Intake");
+    this.service
+      .getOrderlist()
+      .subscribe(
+        data => (this.Orderlist = data),
+        error => console.log(error),
+        () => console.log("Get OrderList complete", this.Orderlist)
+      );
 
     if (this.orderNo != undefined) {
       this.isContainerAttributeVisible = false;
@@ -230,11 +246,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
               this.doHeader.BillToAddress
             );
       });
-    } else {
-      // this.showSuccess("Order Created successfully","New-Order");
-
-      this.clear();
-    }
+    } 
   }
 
   OnSubmit(form) {
@@ -376,5 +388,46 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     for (var i = 0; i < e.target.files.length; i++) {
       this.myFiles.push(e.target.files[i]);
     }
+  }
+
+  getOrderInfo(inputKey: string) {
+    this.doHeader = null;
+    this.doHeader = new DeliveryOrderHeader();
+    this.doHeader.orderdetails = new Array<Order_details>();
+    this.showDO = true;
+    this.showImage = false;
+    this.isNewDeliveryOrder  = false;
+
+    this.service.GetbyKey(inputKey).subscribe(data => {
+      (this.doHeader = data), console.log("testing Model----", this.doHeader);
+      this.service
+        .GetOrderDetailsbyKey(inputKey)
+        .subscribe(
+          data => (this.doHeader.orderdetails = data),
+          error => console.log(error),
+          () => console.log("Get OrderDetail", this.doHeader.orderdetails)
+        ),
+        error => console.log(error);
+    });
+
+    this.isContainerAttributeVisible = true;
+    this.isNewDeliveryOrder = false;
+    this.editmode = true;
+  }
+
+  createNewOrder() {
+    this.isNewDeliveryOrder = true;
+    this.showDO = false;
+    this.showImage = false;
+    this.editmode = false;
+
+    this.doHeader = null;
+    this.doHeader = new DeliveryOrderHeader();
+    this.doHeader.CustKey = "";
+    this.doHeader.BillToAddress = "";
+    this.doHeader.SourceAddress = "";
+    this.doHeader.DestinationAddress = "";
+    this.doHeader.ReturnAddress = "";
+    this.doHeader.Brokerkey = "";
   }
 }

@@ -227,6 +227,12 @@ namespace TMS.Data
                         bo.statusdescription = reader["statusdescription"].ToString();
                         bo.ordertypedescription = reader["ordertypedescription"].ToString();
 
+                        bo.BillToAddressBO = GetAddress(bo.BillToAddress);
+                        //bo.BrokerAddressBO = GetAddress(bo.Brokerkey);
+                        bo.ReturnAddressBO = GetAddress(bo.ReturnAddress);
+                        bo.SourceAddressBO= GetAddress(bo.SourceAddress);
+                        bo.DestinationAddressBO = GetAddress(bo.DestinationAddress);
+
                     }
                     //if(bo.OrderKey!=Guid.Empty)
                     //{

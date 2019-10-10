@@ -53,7 +53,7 @@ namespace TMS.Data
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("_invoiceno",
-                        NpgsqlTypes.NpgsqlDbType.Varchar, invoice.InvoiceNo);
+                        NpgsqlTypes.NpgsqlDbType.Integer, invoice.InvoiceNo);
                     cmd.Parameters.AddWithValue("_invoicedate",
                         NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(invoice.InvoiceDate));
                     cmd.Parameters.AddWithValue("_custkey",
@@ -63,13 +63,13 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_billtocopyaddrkey",
                       NpgsqlTypes.NpgsqlDbType.Uuid, invoice.BilltoAddrCopy);
                     cmd.Parameters.AddWithValue("_invoiceamount",
-                      NpgsqlTypes.NpgsqlDbType.Double, invoice.InvoiceAmt);
+                      NpgsqlTypes.NpgsqlDbType.Numeric, invoice.InvoiceAmt);
                     cmd.Parameters.AddWithValue("_duedate",
                       NpgsqlTypes.NpgsqlDbType.Date, invoice.DueDate);
                     cmd.Parameters.AddWithValue("_invoicetype",
                   NpgsqlTypes.NpgsqlDbType.Smallint, invoice.InvoiceType);
                     cmd.Parameters.AddWithValue("_orderdetailkey",
-                NpgsqlTypes.NpgsqlDbType.Smallint, invoice.OrderDetailKey);
+                NpgsqlTypes.NpgsqlDbType.Uuid, invoice.OrderDetailKey);
                     var invoicekey = cmd.ExecuteScalar();
                     invoice.Invoicekey =Guid.Parse(invoicekey.ToString());
                     return invoice;
@@ -222,5 +222,24 @@ namespace TMS.Data
             return DOHeaders;
         }
 
+
+        public Int64 GetInvoiceMaxcount()
+        {
+            string sql = "SELECT COUNT(*) AS cnt FROM dbo.invoiceheader";
+            using (appmodelConnection)
+            {
+                appmodelConnection.Open();
+                using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;                    
+                    object Obj = cmd.ExecuteScalar();
+                    if (Obj != null)
+                    {
+                        return (Int64)cmd.ExecuteScalar();
+                    }
+                    else return 0;
+                }
+            }
+        }
     }
 }
