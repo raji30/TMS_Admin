@@ -19,11 +19,29 @@ export class DispatchAssignmentService {
  * name
  */
 public GetOrderstoDispatchAssignment() {
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+  
   return this.http.get<Order_details[]>(AppSettings._BaseURL + 'GetOrderstoDispatchAssignment');  
 }
 
 public AddDispatchAssignmentData(routedetails:Tms_routes)
 {
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+
   return this.http.post<Tms_routes>( AppSettings._BaseURL + 'AddDispatchAssignmentData/',routedetails);
 } 
 }

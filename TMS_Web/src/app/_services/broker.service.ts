@@ -11,6 +11,14 @@ export class BrokerService {
 constructor(private http:HttpClient) { }
 
 public GetBrokers() {
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
   return this.http.get<Broker[]>(AppSettings._BaseURL + 'GetBrokers');  
 }
 
@@ -46,6 +54,15 @@ CreateBroker(broker: Broker) {
     );
   }
   GetBrokerByID(id: string) {
+    var token = JSON.parse(localStorage.getItem("currentUser"));
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.token
+      })
+    };
+
     return this.http.get<Broker>(
       AppSettings._BaseURL + "GetBrokerByID" + "/" + id
     );

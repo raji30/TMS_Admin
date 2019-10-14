@@ -12,6 +12,15 @@ export class VendorService {
 constructor(private http:HttpClient) { }
 
 public getVendors() {
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+
   return this.http.get<Vendor[]>(AppSettings._BaseURL + 'GetVendors');  
 }
 
@@ -47,6 +56,15 @@ public getVendors() {
     );
   }
   GetVendorByID(id: string) {
+    var token = JSON.parse(localStorage.getItem("currentUser"));
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.token
+      })
+    };
+    
     return this.http.get<Vendor>(
       AppSettings._BaseURL + "GetVendorByID" + "/" + id
     );

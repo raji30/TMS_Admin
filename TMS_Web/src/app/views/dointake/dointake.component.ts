@@ -95,6 +95,9 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   public hasBaseDropZoneOver: boolean = false;
   public hasAnotherDropZoneOver: boolean = false;
 
+  private ContainerDetails: Array<Order_details> = [];
+  private newAttribute: any = {}; 
+
   constructor(
     private toastr: ToastrService,
     private http: HttpClient,
@@ -132,7 +135,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   }
   onOrdernoGenerated(newOrderno: string) {
     this.doHeader.OrderNo = newOrderno;
-    //this.doHeader.OrderDate = new Date().toLocaleDateString();
+    this.doHeader.OrderDate = new Date();//.toLocaleDateString();
   }
 
   ngOnInit(): void {
@@ -146,6 +149,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
 
     this.doHeader = null;
     this.doHeader = new DeliveryOrderHeader();
+    this.doHeader.orderdetails = new Array<Order_details>();
     //this.orderNo = this.route.snapshot.paramMap.get("order");
     this.orderNo = this.orderKeyinput;
 
@@ -251,6 +255,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
 
   OnSubmit(form) {
     if (this.isNewDeliveryOrder) {
+      this.doHeader.orderdetails = this.ContainerDetails;
+
       this.service.saveDOHeader(form.value).subscribe(
         result => {
           this.orderKey = result;
@@ -270,6 +276,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private saveDeliveryDetails() {
+   
     for (let order of this.doHeader.orderdetails) {
       order.OrderKey = this.orderKey;
     }
@@ -422,7 +429,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.editmode = false;
 
     this.doHeader = null;
-    this.doHeader = new DeliveryOrderHeader();
+    this.doHeader = new DeliveryOrderHeader();    
+    this.doHeader.orderdetails = new Array<Order_details>();
     this.doHeader.CustKey = "";
     this.doHeader.BillToAddress = "";
     this.doHeader.SourceAddress = "";
@@ -430,4 +438,13 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.doHeader.ReturnAddress = "";
     this.doHeader.Brokerkey = "";
   }
+
+  addFieldValue() {
+    this.ContainerDetails.push(this.newAttribute);    
+    this.newAttribute = {};
+}
+
+deleteFieldValue(index) {
+    this.ContainerDetails.splice(index, 1);
+}
 }

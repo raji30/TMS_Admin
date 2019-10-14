@@ -11,6 +11,15 @@ export class DriverService {
 constructor(private http:HttpClient) { }
 
 public getDrivers() {
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+  
   return this.http.get<Driver[]>(AppSettings._BaseURL + 'GetDrivers');  
 }
 
@@ -46,6 +55,15 @@ public getDrivers() {
     );
   }
   getDriverById(id: string) {
+
+    var token = JSON.parse(localStorage.getItem("currentUser"));
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.token
+      })
+    };
     return this.http.get<Driver>(
       AppSettings._BaseURL + "GetDriverByID" + "/" + id
     );

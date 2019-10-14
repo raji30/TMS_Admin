@@ -20,7 +20,9 @@ namespace TMS.Data
         }
         public Guid CreateDeliveryOrder(DeliveryOrderBO orderBO)
         {
+            Guid Orderkey = Guid.Empty;
             string sql = "dbo.fn_insert_order_header";
+
             using (connection)
             {
                 connection.Open();
@@ -35,12 +37,10 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_sourceaddrkey", NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.SourceAddress);
                     cmd.Parameters.AddWithValue("_destinationaddrkey",NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.DestinationAddress);
                     cmd.Parameters.AddWithValue("_returnaddrkey", NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.ReturnAddress);
-                    //cmd.Parameters.AddWithValue("_source",
-                    //   NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Source);
+                    //cmd.Parameters.AddWithValue("_source",NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Source);
                     cmd.Parameters.AddWithValue("_ordertype", NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.OrderType);
                     cmd.Parameters.AddWithValue("_status",NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Status);
-                    //cmd.Parameters.AddWithValue("_statusdate",
-                    //   NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(orderBO.StatusDate));
+                    //cmd.Parameters.AddWithValue("_statusdate",NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(orderBO.StatusDate));
                     cmd.Parameters.AddWithValue("_brokerkey",NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.Brokerkey);
                     cmd.Parameters.AddWithValue("_brokerrefno", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BrokerRefNo);
                     cmd.Parameters.AddWithValue("_portoforiginkey",NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.PortofOriginKey);
@@ -49,35 +49,80 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_vesselname",NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.VesselName);
                     cmd.Parameters.AddWithValue("_billoflading",NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BillofLading);
                     cmd.Parameters.AddWithValue("_bookingno",NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BookingNo);
-                    if(orderBO.CutOffDate==null)
+
+                    if (orderBO.CutOffDate==null)
                     {
-                        cmd.Parameters.AddWithValue("_cutoffdate",
-                     NpgsqlTypes.NpgsqlDbType.Timestamp, orderBO.CutOffDate);
+                        cmd.Parameters.AddWithValue("_cutoffdate",NpgsqlTypes.NpgsqlDbType.Timestamp, orderBO.CutOffDate);
 
                     }
                     else
                     {
                         cmd.Parameters.AddWithValue("_cutoffdate", orderBO.CutOffDate);
                     }
-                    cmd.Parameters.AddWithValue("_ishazardous",
-                      NpgsqlTypes.NpgsqlDbType.Bit, orderBO.IsHazardous);
-                    cmd.Parameters.AddWithValue("_priority",
-                      NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Priority);
-                    cmd.Parameters.AddWithValue("_createuserkey",
-                      NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.CreatedBy);
+                    cmd.Parameters.AddWithValue("_ishazardous",NpgsqlTypes.NpgsqlDbType.Bit, orderBO.IsHazardous);
+                    cmd.Parameters.AddWithValue("_priority",NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Priority);
+                    cmd.Parameters.AddWithValue("_createuserkey",NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.CreatedBy);
 
                     var OrderID  = cmd.ExecuteScalar();
-                    return Guid.Parse(OrderID.ToString());
-
-                    //var reader= cmd.ExecuteReader();
-                    //while(reader.Read())
-                    //{
-                    //var OrderID = Guid.Parse(reader["orderkey"].ToString());
-                    //return OrderID;
-                    //}
+                    Orderkey = Guid.Parse(OrderID.ToString());
                 }
             }
-            return Guid.Empty;
+
+            if (Orderkey != Guid.Empty)
+            {
+                orderBO.commentBO.createuserkey = orderBO.CreatedBy;
+                orderBO.commentBO.description = orderBO.Comment;
+
+                var commentkey = CreateComment(Orderkey, orderBO.commentBO);
+                if (commentkey != Guid.Empty)
+                {
+                    CreateOrderHeaderComment(Orderkey, commentkey, 0);
+                }
+            }
+            return Orderkey;
+        }
+
+
+        public Guid CreateComment(Guid orderKey, CommentBO commentBO)
+        {
+            Guid commentkey = Guid.Empty;
+            string sql = "dbo.fn_insert_comment";
+
+            using (connection)
+            {
+                connection.Open();
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("_description", NpgsqlTypes.NpgsqlDbType.Varchar, commentBO.description);
+                    cmd.Parameters.AddWithValue("_createuserkey", NpgsqlTypes.NpgsqlDbType.Uuid, commentBO.createuserkey);
+                   
+                    var comment = cmd.ExecuteScalar();
+                    commentkey = Guid.Parse(comment.ToString());
+                }
+            }
+            return commentkey;
+        }
+
+        public bool CreateOrderHeaderComment(Guid orderKey, Guid commentkey, int type)
+        {            
+            string sql = "dbo.fn_insert_order_header_comment";
+
+            using (connection)
+            {
+                connection.Open();
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("_orderKey", NpgsqlTypes.NpgsqlDbType.Uuid, orderKey);
+                    cmd.Parameters.AddWithValue("_commentkey", NpgsqlTypes.NpgsqlDbType.Uuid, commentkey);
+
+                    var comment = cmd.ExecuteNonQuery();                   
+                }
+            }
+            return false;
         }
 
         public IEnumerable<string> GetOrdersByUser(Guid userkey)

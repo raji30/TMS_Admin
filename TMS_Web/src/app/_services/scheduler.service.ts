@@ -18,6 +18,15 @@ export class SchedulerService {
  * name
  */
 public GetOrderstoSchedule() {
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+  
   return this.http.get<Order_details[]>(AppSettings._BaseURL + 'GetOrderstoSchedule');  
 }
 }

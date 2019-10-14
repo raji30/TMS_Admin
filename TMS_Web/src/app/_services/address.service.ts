@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 import { Address } from '../_models/address';
@@ -17,6 +17,15 @@ constructor(private http:HttpClient) {
   
 public getAddress(addressType:number)
 {   
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+  
   return this.http.get<Address[]>(this.baseUrl + 'GetAllByType/' + addressType);
 }
 }

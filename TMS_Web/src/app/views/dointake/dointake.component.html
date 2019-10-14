@@ -137,9 +137,12 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Date</span>
                       </div>
-                      <input type="text" class="form-control " name="OrderDate" id="OrderDate" readonly bsDatepicker
-                        placeholder="Order Date" [bsConfig]="bsConfig" [(ngModel)]="doHeader.OrderDate"
-                        #OrderDate="ngModel" [ngClass]="{ 'is-invalid': f.submitted && OrderDate.invalid }" required />
+                      <input type="text" class="form-control " name="OrderDate" id="OrderDate" readonly 
+                      [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3"
+                                              placeholder="Order Date" [(ngModel)]="doHeader.OrderDate"
+                        #OrderDate="ngModel" [ngClass]="{ 'is-invalid': f.submitted && OrderDate.invalid }" required />                        
+          <owl-date-time [pickerType]="'calendar'" #dt3 [hour12Timer]="false"></owl-date-time>
+
                       <div *ngIf="f.submitted && OrderDate.invalid" class="invalid-feedback">
                         <div *ngIf="OrderDate.errors.required"> Order-Date is required</div>
                       </div>
@@ -339,7 +342,7 @@
                       <select id="drpSource" class="form-control form-control-sm" name="PortofOriginKey"
                         [(ngModel)]="doHeader.PortofOriginKey" #PortofOriginKey="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && PortofOriginKey.invalid }" required>
-                        <option [value]="src.Value" *ngFor="let src of LoadDischargePortList">{{src.Name}}</option>
+                        <option [value]="src.AddrKey" *ngFor="let src of LoadDischargePortList">{{src.Name}}</option>
                       </select>
                       <div *ngIf="f.submitted && PortofOriginKey.invalid" class="invalid-feedback">
                         <div *ngIf="PortofOriginKey.errors.required">Load Port is required</div>
@@ -356,7 +359,7 @@
                         name="PortofDestinationKey" [(ngModel)]="doHeader.PortofDestinationKey"
                         #PortofDestinationKey="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && PortofDestinationKey.invalid }" required>
-                        <option [value]="dest.Value" *ngFor="let dest of LoadDischargePortList">{{dest.Name}}</option>
+                        <option [value]="dest.AddrKey" *ngFor="let dest of LoadDischargePortList">{{dest.Name}}</option>
                       </select>
                       <div *ngIf="f.submitted && PortofDestinationKey.invalid" class="invalid-feedback">
                         <div *ngIf="PortofDestinationKey.errors.required"> Port of Destination is required</div>
@@ -440,10 +443,62 @@
                 <!-- <hr> -->
                 <div class="row">
                   <div class="col-md-8">
-                    <app-container (ContainerDetailsOutput)="onSelectedContainerDetails($event)"
+                    <!-- <app-container (ContainerDetailsOutput)="onSelectedContainerDetails($event)"
                       [ContainerDetails]=doHeader.orderdetails
                       [isContainerAttributeVisible]="isContainerAttributeVisible">
-                    </app-container>
+                    </app-container> -->
+                    <div class="form-row" [hidden]="!isContainerAttributeVisible">
+                      <div class="form-group col-md-11">
+                              <div   class="table-responsive" style="overflow-x: auto" bg-dark>
+                                      <table id="containerAttributes" class="table table-sm bg-secondary" cellspacing="0" width="100%" >
+                                          <thead>
+                                              <tr align="center">
+                                                  <th scope="col">Container#</th>
+                                                  <th scope="col"> Size</th>
+                                                  <th scope="col">Chassis#</th>
+                                                  <th scope="col">Seal#</th>
+                                                  <th scope="col">Weight</th>                                               
+                                                  <th scope="col">Action</th> 
+                                  
+                                              </tr>
+                                          </thead>
+                                          <tbody >
+                                              <tr align="center" *ngFor="let field of ContainerDetails; let i = index">
+                                                               <td> <input [(ngModel)]="field.ContainerNo" class="form-control form-control-sm "
+                                                              type="text" name="{{field.ContainerNo}}" /> </td>
+                                                  <td>
+                                                      <select id="drpcontainerType" class="form-control form-control-sm "
+                                                          aria-placeholder="ContainerSize" name="{{field.ContainerSize}}" [(ngModel)]="field.ContainerSize">
+                                                                          
+                                                          <option [value]="container.Value" *ngFor="let container of containersizelist">{{container.Name}}</option>
+                                             
+                                                      </select>
+                                                  </td>
+                                  
+                                                  <td> <input [(ngModel)]="field.Chassis" class="form-control form-control-sm" type="text"
+                                                          name="{{field.Chassis}}" /></td>
+                                                  <td> <input [(ngModel)]="field.SealNo" class="form-control form-control-sm " type="text"
+                                                          name="{{field.SealNo}}" /></td>
+                                                  <td> <input [(ngModel)]="field.Weight" class="form-control form-control-sm " type="text"
+                                                          name="{{field.Weight}}" /></td>
+                                                 <td>
+                                                      <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Delete</button>
+                                                  </td>
+                                              </tr>
+                                              
+                                          </tbody>
+                                      </table>
+                                  </div>   
+                          </div>
+                      
+                      <div class="form-group col-md-1">
+                          <button type="button" class="btn btn-outline-secondary btn-sm" 
+                              (click)="addFieldValue()">+</button>
+                      </div>
+                  </div>
+
+
+
                   </div>
                   <div class="col-md-4">
                     <!-- <button type="button" class="btn btn-primary btn-sm" label="Click" data-toggle="modal"
@@ -497,7 +552,8 @@
 
                 <div class="row">
                   <div class="col-md-8" [hidden]="false">
-                    <textarea class="form-control" rows="3" id="txtcomment" placeholder="Comment"></textarea>
+                    <textarea class="form-control" rows="3" id="txtcomment" placeholder="Comment"
+                    [(ngModel)]="doHeader.Comment" #Comment="ngModel" ></textarea>
                   </div>
                   <div class="col-md-2" [hidden]="false">
 

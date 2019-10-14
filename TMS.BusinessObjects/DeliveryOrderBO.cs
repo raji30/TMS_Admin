@@ -38,9 +38,12 @@ namespace TMS.BusinessObjects
         public Guid CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
 
+        public string Comment { get; set; }
+
         public string ordertypedescription{ get; set; }
         public string statusdescription{ get; set; }
 
+        public CommentBO commentBO { get; set; }
         public AddressBO BillToAddressBO { get; set; }
         public AddressBO SourceAddressBO { get; set; }
         public AddressBO DestinationAddressBO { get; set; }

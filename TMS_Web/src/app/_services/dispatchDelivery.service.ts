@@ -19,12 +19,31 @@ export class DispatchDeliveryService {
    * name
    */
   public GetOrderstoDispatchDelivery() {
+    var token = JSON.parse(localStorage.getItem("currentUser"));
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.token
+      })
+    };
+
     return this.http.get<Order_details[]>(
       AppSettings._BaseURL + "GetOrderstoDispatchDelivery"
     );
   }
 
   public UpdateDispatchDeliveryData(routedetails: Tms_routes) {
+
+    var token = JSON.parse(localStorage.getItem("currentUser"));
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.token
+      })
+    };
+    
     return this.http.put<Tms_routes>(
       AppSettings._BaseURL + "UpdateDispatchDeliveryData/",
       routedetails

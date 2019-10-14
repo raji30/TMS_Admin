@@ -11,6 +11,15 @@ export class CustomerService {
   constructor(private http: HttpClient) {}
 
   public getCustomers() {
+    var token = JSON.parse(localStorage.getItem("currentUser"));
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.token
+      })
+    };
+
     return this.http.get<Customer[]>(AppSettings._BaseURL + "GetCustomers");
   }
 
@@ -47,6 +56,16 @@ export class CustomerService {
     );
   }
   getCustomerById(id: string) {
+
+    var token = JSON.parse(localStorage.getItem("currentUser"));
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.token
+      })
+    };
+    
     return this.http.get<Customer>(
       AppSettings._BaseURL + "GetCustomerByID" + "/" + id
     );

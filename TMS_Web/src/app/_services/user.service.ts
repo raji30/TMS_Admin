@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 import { User } from '../_models/User';
@@ -12,6 +12,14 @@ export class UserService {
         this.baseUrl= 'http://localhost:51902/Token/';
     }
     getAll() {   
+        var token = JSON.parse(localStorage.getItem("currentUser"));
+
+        const httpOptions = {
+          headers: new HttpHeaders({
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token.token
+          })
+        };
  
         return this.http.get<User[]>(this.baseUrl);
     }

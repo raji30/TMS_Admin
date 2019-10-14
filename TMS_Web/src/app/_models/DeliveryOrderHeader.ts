@@ -1,8 +1,8 @@
 import { Order_details } from "./order_details";
 import { Address } from "./address";
+import { Comments } from "./comments";
 
-export class DeliveryOrderHeader {
-         
+export class DeliveryOrderHeader {         
         public OrderKey: string;
         public OrderNo:string ;
         public CustKey:string ;
@@ -34,7 +34,7 @@ export class DeliveryOrderHeader {
         public CreatedDate:Date;
         public ordertypedescription:string ;
         public statusdescription:string ;
-
+        public CommentBO: Comments;
         public BillToAddressBO : Address;
         public SourceAddressBO : Address;
         public DestinationAddressBO : Address;

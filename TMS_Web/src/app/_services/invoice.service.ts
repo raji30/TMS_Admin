@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DeliveryOrderHeader } from '../_models/DeliveryOrderHeader';
 import { Observable } from 'rxjs';
 import { AppSettings } from '../_constants/appsettings';
@@ -33,6 +33,15 @@ public CreateInvoiceHeader(invoiceHeader: Invoice) {
 }
 
 public CreateInvoiceDetail(invoiceDetails: Invoicedetails[]) {
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+  
   return this.http.post<Invoicedetails[]>(
     AppSettings._BaseURL + "CreateInvoiceDetail/",
     invoiceDetails

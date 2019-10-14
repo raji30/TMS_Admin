@@ -45,6 +45,7 @@
     <Compile Include="BrokerBO.cs" />
     <Compile Include="CarrierBO.cs" />
     <Compile Include="CityBO.cs" />
+    <Compile Include="CommentBO.cs" />
     <Compile Include="CompanyDetailBO.cs" />
     <Compile Include="CustomerBO.cs" />
     <Compile Include="DeliveryOrderBO.cs" />
