@@ -21,7 +21,7 @@ namespace TMS.Api.Controllers
     public class FileUploadController : ApiController
     {
         [HttpPost]
-       // [Route("FileUpload")]
+        [Route("FilesUpload")]
         public Task<HttpResponseMessage> Post(string DO,string CreatedBy)
         {
             try

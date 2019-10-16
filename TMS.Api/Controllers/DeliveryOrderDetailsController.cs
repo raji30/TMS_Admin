@@ -51,7 +51,9 @@ namespace TMS.Api.Controllers
         [SwaggerOperation("GetContainerSizes")]
         public HttpResponseMessage GetContainerSizes()
         {
-            var list = EnumExtensions.GetEnumValues<ContainerSize>();
+            ContainerSizeDL dl = new ContainerSizeDL();
+            var list = dl.GetContainerSize();
+           //var list = EnumExtensions.GetEnumValues<ContainerSize>();
             return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
         }
 

@@ -127,7 +127,7 @@
                                         <select id="drpcontainerType" class="form-control form-control-sm "
                                             aria-placeholder="ContainerSize" name="{{field.ContainerSize}}" [(ngModel)]="field.ContainerSize">
                                                             
-                                            <option [value]="container.Value" *ngFor="let container of containersizelist">{{container.Name}}</option>
+                                            <option [value]="container.containersize" *ngFor="let container of containersizelist">{{container.description}}</option>
                                
                                         </select>
                                     </td>

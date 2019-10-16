@@ -21,6 +21,7 @@ namespace TMS.BusinessObjects
     public class OrderHeaderDocumentBO
     {
         public Guid Orderkey { get; set; }
+        public string OrderNo { get; set; }
         public DocumentBO Document { get; set; }
     }
     public class OrderDetailDocumentBO

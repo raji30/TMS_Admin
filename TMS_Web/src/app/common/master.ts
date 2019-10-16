@@ -1,8 +1,10 @@
 import { Address } from "../_models/address";
 
 export class Containersize {
-  name: string;
-  value: number;
+  // name: string;
+  // value: number;
+  containersize: number;
+  description: string;
 }
 export class Priority {
   name: string;

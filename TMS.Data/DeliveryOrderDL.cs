@@ -49,6 +49,7 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_vesselname",NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.VesselName);
                     cmd.Parameters.AddWithValue("_billoflading",NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BillofLading);
                     cmd.Parameters.AddWithValue("_bookingno",NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BookingNo);
+                    cmd.Parameters.AddWithValue("_comment", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.Comment);
 
                     if (orderBO.CutOffDate==null)
                     {
@@ -66,6 +67,7 @@ namespace TMS.Data
                     var OrderID  = cmd.ExecuteScalar();
                     Orderkey = Guid.Parse(OrderID.ToString());
                 }
+              
             }
 
             //if (Orderkey != Guid.Empty)
@@ -272,7 +274,7 @@ namespace TMS.Data
                         bo.Priority = Utils.CustomParse<short>(reader["priority"]);
                         bo.CreatedDate = Convert.ToDateTime(reader["createdate"]);
                         bo.CreatedBy = Utils.CustomParse<Guid>(reader["createuserkey"]);
-
+                        bo.Comment = Utils.CustomParse<string>(reader["commentdesc"]);
                         bo.statusdescription = reader["statusdescription"].ToString();
                         bo.ordertypedescription = reader["ordertypedescription"].ToString();
 

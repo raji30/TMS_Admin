@@ -129,6 +129,7 @@
     <Compile Include="contact.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ContainerSizeDL.cs" />
     <Compile Include="customer.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>

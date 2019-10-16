@@ -157,13 +157,13 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.showDO = false;
     this.showImage = true;
 
-    this.master
-      .getContainerSizeList()
-      .subscribe(
-        data => (this.containersizelist = data),
-        error => console.log(error),
-        () => console.log("Get containersizelist", this.containersizelist)
-      );
+    // this.master
+    //   .getContainerSizeList()
+    //   .subscribe(
+    //     data => (this.containersizelist = data),
+    //     error => console.log(error),
+    //     () => console.log("Get containersizelist", this.containersizelist)
+    //   );
 
     this.master
       .getPriorityList()
@@ -256,7 +256,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
 
   OnSubmit(form) {
     if (this.isNewDeliveryOrder) {
-     // this.doHeader.orderdetails = this.ContainerDetails;
+      // this.doHeader.orderdetails = this.ContainerDetails;
 
       console.log("Container Details", this.doHeader.orderdetails);
       this.service.saveDOHeader(form.value).subscribe(
@@ -286,13 +286,14 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
       results => {
         this.showSuccess("Order Created successfully", "New-Order");
         this.service
-      .getOrderlist()
-      .subscribe(
-        data => (this.Orderlist = data),
-        error => console.log(error),
-        () => console.log("Get OrderList complete", this.Orderlist)
-      );
-        // this.clear();
+          .getOrderlist()
+          .subscribe(
+            data => (this.Orderlist = data),
+            error => console.log(error),
+            () => console.log("Get OrderList complete", this.Orderlist)
+          );
+        this.createNewOrder();
+        this.getOrderInfo(this.orderKey);
       },
       error => (this.errorMessage = error)
     );

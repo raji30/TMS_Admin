@@ -47,6 +47,7 @@
     <Compile Include="CityBO.cs" />
     <Compile Include="CommentBO.cs" />
     <Compile Include="CompanyDetailBO.cs" />
+    <Compile Include="ContainerSizeBO.cs" />
     <Compile Include="CustomerBO.cs" />
     <Compile Include="DeliveryOrderBO.cs" />
     <Compile Include="DeliveryOrderDetailBO.cs" />
