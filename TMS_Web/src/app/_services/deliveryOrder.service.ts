@@ -16,9 +16,10 @@ export class DeliveryOrderService {
 
   public saveDOHeader(OrderHeader: DeliveryOrderHeader) {
     OrderHeader.orderdetails = [];
+    OrderHeader.CreatedBy = "";
 
     var token = JSON.parse(localStorage.getItem("currentUser"));
-
+    OrderHeader.CreatedBy = token.userId;
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",

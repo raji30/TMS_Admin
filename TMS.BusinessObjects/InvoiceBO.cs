@@ -9,6 +9,7 @@ namespace TMS.BusinessObjects
    public class InvoiceBO
     {
         public DeliveryOrderBO order { get; set; }
+        public DeliveryOrderDetailBO orderDetails { get; set; }
         public AddressBO BillFrom { get; set; }
         public AddressBO BillTo { get; set; }
         public AddressBO Pickup { get; set; }

@@ -42,12 +42,17 @@ export class InvoiceComponent implements OnInit {
   public invoiceItem: any = {};
   private total: number = 0;
 
+  public showInvoice:boolean=false;
+  public showImage:boolean=true;
+  
+
   constructor(
     private invoiceService: InvoiceService,
     private itemService: ItemService
   ) {}
 
   ngOnInit() {
+    this.showImage =true;
     this.invoiceModel = new Invoicemodel();
     this.invoiceModel.invoice = new Invoice();
 
@@ -61,7 +66,7 @@ export class InvoiceComponent implements OnInit {
 
     this.invoiceService.GetOrderstoGenerateInvoice().subscribe(
       data => {
-        this.Data = data;
+        this.Data = data; 
       },
       error => console.log(error),
       () => console.log("Get Data", this.Data)
@@ -79,6 +84,8 @@ export class InvoiceComponent implements OnInit {
     );
 
     this.invoiceModel = this.Data.find(x => x.order.OrderKey == orderKey);
+    this.showInvoice = true;
+    this.showImage =false;
     console.log("Get invoiceModel", this.invoiceModel);
     console.log("Get invoiceModel", this.invoiceModel.BillFrom["Name"]);
   }

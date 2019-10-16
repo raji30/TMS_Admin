@@ -24,6 +24,7 @@ export class DeliveryOrderHeader {
         public PortofOriginKey: string ;
         public PortofDestinationKey: string ;        
         public CarrierKey: string ;
+        public carrier: string ;
         public VesselName:string  ;
         public BillofLading:string  ;
         public BookingNo:string ;
@@ -34,6 +35,7 @@ export class DeliveryOrderHeader {
         public CreatedDate:Date;
         public ordertypedescription:string ;
         public statusdescription:string ;
+        public Comment:string  ;
         public CommentBO: Comments;
         public BillToAddressBO : Address;
         public SourceAddressBO : Address;

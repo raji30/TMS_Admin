@@ -95,6 +95,22 @@ namespace TMS.Api.Controllers
         public HttpResponseMessage Post([FromBody]DeliveryOrderBO obj)
         {
             var orderid = doObj.CreateDeliveryOrder(obj);
+            if (orderid != Guid.Empty)
+            {
+                if (!String.IsNullOrEmpty(obj.Comment))
+                {
+                    obj.commentBO = new CommentBO();
+                    obj.commentBO.createuserkey = obj.CreatedBy;
+                    obj.commentBO.description = obj.Comment;
+
+                    var commentkey = doObj.CreateComment(obj.OrderKey, obj.commentBO);
+                    if (commentkey != Guid.Empty)
+                    {
+                        doObj.CreateOrderHeaderComment(obj.OrderKey, commentkey, 0);
+                    }
+                }
+            }
+
             return Request.CreateResponse(HttpStatusCode.OK, orderid, Configuration.Formatters.JsonFormatter);
         }
         [HttpPost]

@@ -68,17 +68,21 @@ namespace TMS.Data
                 }
             }
 
-            if (Orderkey != Guid.Empty)
-            {
-                orderBO.commentBO.createuserkey = orderBO.CreatedBy;
-                orderBO.commentBO.description = orderBO.Comment;
+            //if (Orderkey != Guid.Empty)
+            //{
+            //    if ( !String.IsNullOrEmpty(orderBO.Comment))
+            //    {
+            //        orderBO.commentBO = new CommentBO();
+            //        orderBO.commentBO.createuserkey = orderBO.CreatedBy;
+            //        orderBO.commentBO.description = orderBO.Comment;
 
-                var commentkey = CreateComment(Orderkey, orderBO.commentBO);
-                if (commentkey != Guid.Empty)
-                {
-                    CreateOrderHeaderComment(Orderkey, commentkey, 0);
-                }
-            }
+            //        var commentkey = CreateComment(Orderkey, orderBO.commentBO);
+            //        if (commentkey != Guid.Empty)
+            //        {
+            //            CreateOrderHeaderComment(Orderkey, commentkey, 0);
+            //        }
+            //    }
+            //}
             return Orderkey;
         }
 
@@ -88,7 +92,7 @@ namespace TMS.Data
             Guid commentkey = Guid.Empty;
             string sql = "dbo.fn_insert_comment";
 
-            using (connection)
+            using (connection )
             {
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))

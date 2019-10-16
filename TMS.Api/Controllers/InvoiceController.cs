@@ -79,7 +79,7 @@ namespace TMS.Api.Controllers
             {
                 InvoiceBO bo = new InvoiceBO();
                 bo.order = new DeliveryOrderBO();
-                bo.order.OrderDetails = new DeliveryOrderDetailBO();
+                bo.orderDetails = new DeliveryOrderDetailBO();
 
                 bo.order.OrderKey = list.OrderKey;
                 bo.order.OrderNo = list.OrderNo;
@@ -94,12 +94,13 @@ namespace TMS.Api.Controllers
                 bo.order.BillofLading = list.BillofLading;
                 bo.order.BookingNo = list.BookingNo;
                 bo.order.CutOffDate = list.CutOffDate;
-                bo.order.OrderDetails.OrderDetailKey = list.OrderDetails.OrderDetailKey;
-                bo.order.OrderDetails.ContainerNo = list.OrderDetails.ContainerNo;
-                bo.order.OrderDetails.ContainerSizeDesc = list.OrderDetails.ContainerSizeDesc;
-                bo.order.OrderDetails.ContainerSize = list.OrderDetails.ContainerSize;
-                bo.order.OrderDetails.Chassis = list.OrderDetails.Chassis;
-                bo.order.OrderDetails.SealNo = list.OrderDetails.SealNo;
+
+                bo.orderDetails.OrderDetailKey = list.OrderDetails.OrderDetailKey;
+                bo.orderDetails.ContainerNo = list.OrderDetails.ContainerNo;
+                bo.orderDetails.ContainerSizeDesc = list.OrderDetails.ContainerSizeDesc;
+                bo.orderDetails.ContainerSize = list.OrderDetails.ContainerSize;
+                bo.orderDetails.Chassis = list.OrderDetails.Chassis;
+                bo.orderDetails.SealNo = list.OrderDetails.SealNo;
 
                 if (list.CustKey != null)
                 {

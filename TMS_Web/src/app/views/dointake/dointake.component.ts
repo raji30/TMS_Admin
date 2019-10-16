@@ -75,6 +75,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
 
   isContainerAttributeVisible: boolean = true;
   isNewDeliveryOrder: boolean = false;
+  btnShowcreateNewOrder: boolean = true;
   editmode = false;
   showDO = false;
   showImage = true;
@@ -95,8 +96,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   public hasBaseDropZoneOver: boolean = false;
   public hasAnotherDropZoneOver: boolean = false;
 
-  private ContainerDetails: Array<Order_details> = [];
-  private newAttribute: any = {}; 
+  private ContainerDetails: Array<any> = [];
+  private newAttribute: any = {};
 
   constructor(
     private toastr: ToastrService,
@@ -135,7 +136,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   }
   onOrdernoGenerated(newOrderno: string) {
     this.doHeader.OrderNo = newOrderno;
-    this.doHeader.OrderDate = new Date();//.toLocaleDateString();
+    this.doHeader.OrderDate = new Date(); //.toLocaleDateString();
   }
 
   ngOnInit(): void {
@@ -250,13 +251,14 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
               this.doHeader.BillToAddress
             );
       });
-    } 
+    }
   }
 
   OnSubmit(form) {
     if (this.isNewDeliveryOrder) {
-      this.doHeader.orderdetails = this.ContainerDetails;
+     // this.doHeader.orderdetails = this.ContainerDetails;
 
+      console.log("Container Details", this.doHeader.orderdetails);
       this.service.saveDOHeader(form.value).subscribe(
         result => {
           this.orderKey = result;
@@ -276,7 +278,6 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private saveDeliveryDetails() {
-   
     for (let order of this.doHeader.orderdetails) {
       order.OrderKey = this.orderKey;
     }
@@ -284,6 +285,13 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.service.saveOrderDetails(this.doHeader.orderdetails).subscribe(
       results => {
         this.showSuccess("Order Created successfully", "New-Order");
+        this.service
+      .getOrderlist()
+      .subscribe(
+        data => (this.Orderlist = data),
+        error => console.log(error),
+        () => console.log("Get OrderList complete", this.Orderlist)
+      );
         // this.clear();
       },
       error => (this.errorMessage = error)
@@ -403,7 +411,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.doHeader.orderdetails = new Array<Order_details>();
     this.showDO = true;
     this.showImage = false;
-    this.isNewDeliveryOrder  = false;
+    this.isNewDeliveryOrder = false;
+    this.btnShowcreateNewOrder = true;
 
     this.service.GetbyKey(inputKey).subscribe(data => {
       (this.doHeader = data), console.log("testing Model----", this.doHeader);
@@ -424,12 +433,13 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
 
   createNewOrder() {
     this.isNewDeliveryOrder = true;
+    this.btnShowcreateNewOrder = false;
     this.showDO = false;
     this.showImage = false;
     this.editmode = false;
 
     this.doHeader = null;
-    this.doHeader = new DeliveryOrderHeader();    
+    this.doHeader = new DeliveryOrderHeader();
     this.doHeader.orderdetails = new Array<Order_details>();
     this.doHeader.CustKey = "";
     this.doHeader.BillToAddress = "";
@@ -437,14 +447,16 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.doHeader.DestinationAddress = "";
     this.doHeader.ReturnAddress = "";
     this.doHeader.Brokerkey = "";
+    this.doHeader.Comment = "";
+    this.ContainerDetails = new Array<Order_details>();
   }
 
   addFieldValue() {
-    this.ContainerDetails.push(this.newAttribute);    
+    this.ContainerDetails.push(this.newAttribute);
     this.newAttribute = {};
-}
+  }
 
-deleteFieldValue(index) {
+  deleteFieldValue(index) {
     this.ContainerDetails.splice(index, 1);
-}
+  }
 }

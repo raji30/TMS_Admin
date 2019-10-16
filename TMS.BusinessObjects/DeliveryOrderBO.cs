@@ -27,8 +27,11 @@ namespace TMS.BusinessObjects
         public Guid Brokerkey { get; set; }
         public string BrokerRefNo { get; set; }
         public Guid PortofOriginKey { get; set; }
+        public string PortofOrigin { get; set; }
         public Guid PortofDestinationKey { get; set; }
+        public string PortofDestination { get; set; }
         public Guid CarrierKey { get; set; }
+        public string Carrier { get; set; }
         public string VesselName { get; set; }
         public string BillofLading { get; set; }
         public string BookingNo { get; set; }

@@ -5,7 +5,7 @@
       <ul class="list-unstyled">
         <li> <span style="color:darkgray"> Recent
             orders</span></li>
-        <li *ngFor="let order of Orderlist| slice:0:25; let ind=index;">
+        <li *ngFor="let order of Orderlist| slice:0:50; let ind=index;">
           <ul>
             <li><a [routerLink]="" (click)="getOrderInfo(order.OrderKey)">
                 {{ order.OrderNo }} - {{order.ordertypedescription}}</a></li>
@@ -22,11 +22,12 @@
         </div>
         <div class="col-sm-8 col-md-8 col-lg-8 ">
           <div class="row ">
-            <div class="col-md-10"> </div>           
-            <div class="col-md-2 text-right">
-              <button type="button" class="btn btn-outline-primary btn-sm" (click)="createNewOrder()">Create New Order</button>
+            <div class="col-md-10"> </div>
+            <div class="col-md-2 text-right"  *ngIf="btnShowcreateNewOrder">
+              <button type="button" class="btn btn-outline-primary btn-sm" (click)="createNewOrder()">Create New
+                Order</button>
             </div>
-          </div>         
+          </div>
         </div>
       </div>
       <br>
@@ -137,11 +138,11 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">Date</span>
                       </div>
-                      <input type="text" class="form-control " name="OrderDate" id="OrderDate" readonly 
-                      [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3"
-                                              placeholder="Order Date" [(ngModel)]="doHeader.OrderDate"
-                        #OrderDate="ngModel" [ngClass]="{ 'is-invalid': f.submitted && OrderDate.invalid }" required />                        
-          <owl-date-time [pickerType]="'calendar'" #dt3 [hour12Timer]="false"></owl-date-time>
+                      <input type="text" class="form-control " name="OrderDate" id="OrderDate" readonly
+                        [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="Order Date"
+                        [(ngModel)]="doHeader.OrderDate" #OrderDate="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && OrderDate.invalid }" required />
+                      <owl-date-time [pickerType]="'calendar'" #dt3 [hour12Timer]="false"></owl-date-time>
 
                       <div *ngIf="f.submitted && OrderDate.invalid" class="invalid-feedback">
                         <div *ngIf="OrderDate.errors.required"> Order-Date is required</div>
@@ -443,59 +444,63 @@
                 <!-- <hr> -->
                 <div class="row">
                   <div class="col-md-8">
-                    <!-- <app-container (ContainerDetailsOutput)="onSelectedContainerDetails($event)"
+                    <app-container (ContainerDetailsOutput)="onSelectedContainerDetails($event)"
                       [ContainerDetails]=doHeader.orderdetails
                       [isContainerAttributeVisible]="isContainerAttributeVisible">
-                    </app-container> -->
-                    <div class="form-row" [hidden]="!isContainerAttributeVisible">
+                    </app-container>
+                    
+                    <!-- <div class="form-row" [hidden]="!isContainerAttributeVisible">
                       <div class="form-group col-md-11">
-                              <div   class="table-responsive" style="overflow-x: auto" bg-dark>
-                                      <table id="containerAttributes" class="table table-sm bg-secondary" cellspacing="0" width="100%" >
-                                          <thead>
-                                              <tr align="center">
-                                                  <th scope="col">Container#</th>
-                                                  <th scope="col"> Size</th>
-                                                  <th scope="col">Chassis#</th>
-                                                  <th scope="col">Seal#</th>
-                                                  <th scope="col">Weight</th>                                               
-                                                  <th scope="col">Action</th> 
-                                  
-                                              </tr>
-                                          </thead>
-                                          <tbody >
-                                              <tr align="center" *ngFor="let field of ContainerDetails; let i = index">
-                                                               <td> <input [(ngModel)]="field.ContainerNo" class="form-control form-control-sm "
-                                                              type="text" name="{{field.ContainerNo}}" /> </td>
-                                                  <td>
-                                                      <select id="drpcontainerType" class="form-control form-control-sm "
-                                                          aria-placeholder="ContainerSize" name="{{field.ContainerSize}}" [(ngModel)]="field.ContainerSize">
-                                                                          
-                                                          <option [value]="container.Value" *ngFor="let container of containersizelist">{{container.Name}}</option>
-                                             
-                                                      </select>
-                                                  </td>
-                                  
-                                                  <td> <input [(ngModel)]="field.Chassis" class="form-control form-control-sm" type="text"
-                                                          name="{{field.Chassis}}" /></td>
-                                                  <td> <input [(ngModel)]="field.SealNo" class="form-control form-control-sm " type="text"
-                                                          name="{{field.SealNo}}" /></td>
-                                                  <td> <input [(ngModel)]="field.Weight" class="form-control form-control-sm " type="text"
-                                                          name="{{field.Weight}}" /></td>
-                                                 <td>
-                                                      <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Delete</button>
-                                                  </td>
-                                              </tr>
-                                              
-                                          </tbody>
-                                      </table>
-                                  </div>   
-                          </div>
-                      
-                      <div class="form-group col-md-1">
-                          <button type="button" class="btn btn-outline-secondary btn-sm" 
-                              (click)="addFieldValue()">+</button>
+                        <div class="table" style="overflow-x: auto">
+                          <table id="containerAttributes" class="table table-sm table-borderless " cellspacing="0"
+                            width="100%">
+                            <thead>
+                              <tr align="center">
+                                <th scope="col">Container#</th>
+                                <th scope="col"> Size</th>
+                                <th scope="col">Chassis#</th>
+                                <th scope="col">Seal#</th>
+                                <th scope="col">Weight</th>
+                                <th scope="col">Action</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr align="center" *ngFor="let field of ContainerDetails; let i = index">
+                                <td> <input [(ngModel)]="ContainerDetails[i].ContainerNo" class="form-control form-control-sm "
+                                    type="text" name="{{field.ContainerNo}}" /> </td>
+                                <td>
+                                  <select id="drpcontainerType" class="form-control form-control-sm "
+                                    aria-placeholder="ContainerSize" name="{{field.ContainerSize}}"
+                                    [(ngModel)]="ContainerDetails[i].ContainerSize">
+
+                                    <option [value]="container.Value" *ngFor="let container of containersizelist">
+                                      {{container.Name}}</option>
+                                  </select>
+                                </td>
+
+                                <td> <input [(ngModel)]="ContainerDetails[i].Chassis" class="form-control form-control-sm" type="text"
+                                    name="{{field.Chassis}}" /></td>
+                                <td> <input [(ngModel)]="ContainerDetails[i].SealNo" class="form-control form-control-sm " type="text"
+                                    name="{{field.SealNo}}" /></td>
+                                <td> <input [(ngModel)]="ContainerDetails[i].Weight" class="form-control form-control-sm " type="text"
+                                    name="{{field.Weight}}" /></td>
+                                <td>
+                                  <button class="btn btn-default" type="button"
+                                    (click)="deleteFieldValue(i)">  <img src="assets/img/brand/trash-icon16px.png" /></button>
+                                </td>
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
-                  </div>
+
+                      <div class="form-group col-md-1">
+                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                          (click)="addFieldValue()">+</button>
+                      </div>
+                    </div> -->
 
 
 
@@ -553,7 +558,7 @@
                 <div class="row">
                   <div class="col-md-8" [hidden]="false">
                     <textarea class="form-control" rows="3" id="txtcomment" placeholder="Comment"
-                    [(ngModel)]="doHeader.Comment" #Comment="ngModel" ></textarea>
+                      [(ngModel)]="doHeader.Comment" name="Comment" #Comment="ngModel"></textarea>
                   </div>
                   <div class="col-md-2" [hidden]="false">
 
@@ -693,7 +698,7 @@
         </div>
       </div>
 
-      <ng-container *ngIf="showDO">        
+      <ng-container *ngIf="showDO">
         <div class="row">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="card text-white bg-secondary mb-3">
@@ -705,7 +710,7 @@
                         <!-- <span style="color: white">Order no </span><br> -->
                         <div class="panel-heading">
                           <span class="panel-title" style="color:black">Order No :</span>
-                          <span style="color:black"> <b> {{doHeader.OrderNo}}</b> </span> 
+                          <span style="color:black"> <b> {{doHeader.OrderNo}}</b> </span>
                         </div>
 
                         <!-- <span style="color:white"> Date </span><br> -->
@@ -741,20 +746,20 @@
                       <div class="col-sm-3">
                         <!-- <span style="color:white"> Vessel </span><br> -->
                         <div class="panel-heading">
-                          <span class="panel-title" style="color:black">Vessel :</span>                        
-                        <span style="color: black"> <b> {{doHeader.VesselName}} </b></span>
-                      </div>
+                          <span class="panel-title" style="color:black">Vessel :</span>
+                          <span style="color: black"> <b> {{doHeader.VesselName}} </b></span>
+                        </div>
                         <!-- <span style="color:white"> Bill of Lading </span><br> -->
                         <div class="panel-heading">
-                          <span class="panel-title" style="color:black">Bill of Lading : </span>                        
-                        <span style="color: black"> <b> {{doHeader.BillofLading}} </b></span>
-                      </div>
+                          <span class="panel-title" style="color:black">Bill of Lading : </span>
+                          <span style="color: black"> <b> {{doHeader.BillofLading}} </b></span>
+                        </div>
                         <!-- <span style="color:white"> Cut-Off Date </span><br> -->
                         <div class="panel-heading">
-                          <span class="panel-title" style="color:black">Cut-Off Date :</span>                       
-                        <span style="color:black"> <b> {{doHeader.CutOffDate|date}} </b></span>
+                          <span class="panel-title" style="color:black">Cut-Off Date :</span>
+                          <span style="color:black"> <b> {{doHeader.CutOffDate|date}} </b></span>
+                        </div>
                       </div>
-                    </div>
                       <div class="col-sm-3 text-right">
                         <button type="button" class="btn alert-danger btn-sm"> <i class="fa fa-pencil"
                             aria-hidden="true"></i> Edit</button>
@@ -786,10 +791,10 @@
                     </div>
                     <div class="card alert-secondary text-center p-3">
                       <!-- <blockquote class="blockquote mb-0"> -->
-                        <span> {{doHeader.BillToAddressBO.Name}}</span>                       
-                        <span> {{doHeader.BillToAddressBO.Address1}}, {{doHeader.BillToAddressBO.Address2}} </span>                      
-                        <span> {{doHeader.BillToAddressBO.City}} - {{doHeader.BillToAddressBO.Zip}} </span>                       
-                        <span> {{doHeader.BillToAddressBO.State}}</span>
+                      <span> {{doHeader.BillToAddressBO.Name}}</span>
+                      <span> {{doHeader.BillToAddressBO.Address1}}, {{doHeader.BillToAddressBO.Address2}} </span>
+                      <span> {{doHeader.BillToAddressBO.City}} - {{doHeader.BillToAddressBO.Zip}} </span>
+                      <span> {{doHeader.BillToAddressBO.State}}</span>
                       <!-- </blockquote> -->
                     </div>
                   </div>
@@ -811,10 +816,10 @@
                     </div>
                     <div class="card alert-primary text-center p-3">
                       <!-- <blockquote class="blockquote mb-0"> -->
-                        <span> {{doHeader.SourceAddressBO.Name}}</span>                        
-                        <span> {{doHeader.SourceAddressBO.Address1}}, {{doHeader.SourceAddressBO.Address2}} </span>                        
-                        <span> {{doHeader.SourceAddressBO.City}} - {{doHeader.SourceAddressBO.Zip}} </span>                       
-                        <span> {{doHeader.SourceAddressBO.State}}</span>
+                      <span> {{doHeader.SourceAddressBO.Name}}</span>
+                      <span> {{doHeader.SourceAddressBO.Address1}}, {{doHeader.SourceAddressBO.Address2}} </span>
+                      <span> {{doHeader.SourceAddressBO.City}} - {{doHeader.SourceAddressBO.Zip}} </span>
+                      <span> {{doHeader.SourceAddressBO.State}}</span>
                       <!-- </blockquote> -->
                     </div>
                   </div>
@@ -837,11 +842,11 @@
                     </div>
                     <div class="card alert-secondary text-center p-3">
                       <!-- <blockquote class="blockquote mb-0"> -->
-                        <span> {{doHeader.DestinationAddressBO.Name}}</span>                        
-                        <span> {{doHeader.DestinationAddressBO.Address1}}, {{doHeader.DestinationAddressBO.Address2}}
-                        </span>                      
-                        <span> {{doHeader.DestinationAddressBO.City}} - {{doHeader.DestinationAddressBO.Zip}} </span>                      
-                        <span> {{doHeader.DestinationAddressBO.State}}</span>
+                      <span> {{doHeader.DestinationAddressBO.Name}}</span>
+                      <span> {{doHeader.DestinationAddressBO.Address1}}, {{doHeader.DestinationAddressBO.Address2}}
+                      </span>
+                      <span> {{doHeader.DestinationAddressBO.City}} - {{doHeader.DestinationAddressBO.Zip}} </span>
+                      <span> {{doHeader.DestinationAddressBO.State}}</span>
                       <!-- </blockquote> -->
                     </div>
                   </div>
@@ -864,10 +869,10 @@
                     </div>
                     <div class="card alert-primary text-center p-3">
                       <!-- <blockquote class="blockquote mb-0"> -->
-                        <span> {{doHeader.ReturnAddressBO.Name}}</span>
-                        <span> {{doHeader.ReturnAddressBO.Address1}}, {{doHeader.ReturnAddressBO.Address2}} </span>
-                        <span> {{doHeader.ReturnAddressBO.City}} - {{doHeader.ReturnAddressBO.Zip}} </span>
-                        <span> {{doHeader.ReturnAddressBO.State}}</span>
+                      <span> {{doHeader.ReturnAddressBO.Name}}</span>
+                      <span> {{doHeader.ReturnAddressBO.Address1}}, {{doHeader.ReturnAddressBO.Address2}} </span>
+                      <span> {{doHeader.ReturnAddressBO.City}} - {{doHeader.ReturnAddressBO.Zip}} </span>
+                      <span> {{doHeader.ReturnAddressBO.State}}</span>
                       <!-- </blockquote> -->
                     </div>
                   </div>
@@ -968,12 +973,12 @@
                 </div>
                 <div class="card alert-success text-center p-3">
                   <blockquote class="blockquote mb-0">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-                    <footer class="blockquote-footer">
+                    <small>{{doHeader.Comment}}</small>
+                    <!-- <footer class="blockquote-footer">
                       <small>
                         Someone famous in <cite title="Source Title">Source Title</cite>
                       </small>
-                    </footer>
+                    </footer> -->
                   </blockquote>
                 </div>
                 <!-- <div class="card-columns">

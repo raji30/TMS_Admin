@@ -204,7 +204,8 @@ namespace TMS.Data
                             orderHeader.VesselName = reader["vesselname"].ToString();
                             orderHeader.BillofLading = reader["billoflading"].ToString();
                             orderHeader.BookingNo = reader["bookingno"].ToString();
-                            orderHeader.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);                            
+                            orderHeader.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);
+                            orderHeader.Carrier = reader["carrier"].ToString();
                             //orderHeader.ordertypedescription = reader["ordertypedescription"].ToString();
 
                             orderHeader.OrderDetails.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);
