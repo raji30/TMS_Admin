@@ -17,4 +17,5 @@ export class Tms_routes {
   actualarrival: string;
   actualdeparture: string;
   odometeratdestination: string;
+  Chassis:string;
 }

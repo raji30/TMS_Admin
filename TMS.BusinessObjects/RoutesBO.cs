@@ -26,5 +26,7 @@ namespace TMS.BusinessObjects
         public DateTime actualdeparture { get; set; }
         public string odometeratdestination { get; set; }
         public string drivernotes { get; set; }
+
+        public string Chassis { get; set; }
     }
 }

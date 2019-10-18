@@ -117,7 +117,8 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_legtype", NpgsqlTypes.NpgsqlDbType.Smallint, obj.legtype);
                     cmd.Parameters.AddWithValue("_actualarrival", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.actualarrival);
                     cmd.Parameters.AddWithValue("_actualdeparture", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.actualdeparture);
-                   
+                    cmd.Parameters.AddWithValue("_chassis", NpgsqlTypes.NpgsqlDbType.Varchar, obj.Chassis);
+
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {

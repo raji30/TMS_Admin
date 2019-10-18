@@ -105,74 +105,86 @@ namespace TMS.Api.Controllers
                 if (list.CustKey != null)
                 {
                     var addr = new AddressRepository().GetbyId(list.CustKey);
-                    bo.BillFrom = new AddressBO()
+                    if (addr != null)
                     {
-                        AddrKey = addr.addrkey,
-                        Address1 = addr.address1,
-                        Address2 = addr.address2,
-                        City = addr.city,
-                        State = addr.state,
-                        Zip = addr.zipcode,
-                        Email = addr.email,
-                        Phone = addr.phone,
-                        Fax = addr.fax,
-                        Name = addr.addrname
+                        bo.BillFrom = new AddressBO()
+                        {
+                            AddrKey = addr.addrkey,
+                            Address1 = addr.address1,
+                            Address2 = addr.address2,
+                            City = addr.city,
+                            State = addr.state,
+                            Zip = addr.zipcode,
+                            Email = addr.email,
+                            Phone = addr.phone,
+                            Fax = addr.fax,
+                            Name = addr.addrname
 
-                    };
+                        };
+                    }
                 }
                 if (list.CustKey != null)
                 {
                     var addrBillTo = new AddressRepository().GetbyId(list.BillToAddress);
-                    bo.BillTo = new AddressBO()
+                    if (addrBillTo != null)
                     {
-                        AddrKey = addrBillTo.addrkey,
-                        Address1 = addrBillTo.address1,
-                        Address2 = addrBillTo.address2,
-                        City = addrBillTo.city,
-                        State = addrBillTo.state,
-                        Zip = addrBillTo.zipcode,
-                        Email = addrBillTo.email,
-                        Phone = addrBillTo.phone,
-                        Fax = addrBillTo.fax,
-                        Name = addrBillTo.addrname
+                        bo.BillTo = new AddressBO()
+                        {
+                            AddrKey = addrBillTo.addrkey,
+                            Address1 = addrBillTo.address1,
+                            Address2 = addrBillTo.address2,
+                            City = addrBillTo.city,
+                            State = addrBillTo.state,
+                            Zip = addrBillTo.zipcode,
+                            Email = addrBillTo.email,
+                            Phone = addrBillTo.phone,
+                            Fax = addrBillTo.fax,
+                            Name = addrBillTo.addrname
 
-                    };
+                        };
+                    }
                 }
                 if (list.SourceAddress != null)
                 {
                     var addrBillTo = new AddressRepository().GetbyId(list.SourceAddress);
-                    bo.Pickup = new AddressBO()
+                    if (addrBillTo != null)
                     {
-                        AddrKey = addrBillTo.addrkey,
-                        Address1 = addrBillTo.address1,
-                        Address2 = addrBillTo.address2,
-                        City = addrBillTo.city,
-                        State = addrBillTo.state,
-                        Zip = addrBillTo.zipcode,
-                        Email = addrBillTo.email,
-                        Phone = addrBillTo.phone,
-                        Fax = addrBillTo.fax,
-                        Name = addrBillTo.addrname
+                        bo.Pickup = new AddressBO()
+                        {
+                            AddrKey = addrBillTo.addrkey,
+                            Address1 = addrBillTo.address1,
+                            Address2 = addrBillTo.address2,
+                            City = addrBillTo.city,
+                            State = addrBillTo.state,
+                            Zip = addrBillTo.zipcode,
+                            Email = addrBillTo.email,
+                            Phone = addrBillTo.phone,
+                            Fax = addrBillTo.fax,
+                            Name = addrBillTo.addrname
 
-                    };
+                        };
+                    }
                 }
                 if (list.DestinationAddress != null)
                 {
                     var addrBillTo = new AddressRepository().GetbyId(list.DestinationAddress);
-                    bo.Delivery = new AddressBO()
+                    if (addrBillTo != null)
                     {
-                        AddrKey = addrBillTo.addrkey,
-                        Address1 = addrBillTo.address1,
-                        Address2 = addrBillTo.address2,
-                        City = addrBillTo.city,
-                        State = addrBillTo.state,
-                        Zip = addrBillTo.zipcode,
-                        Email = addrBillTo.email,
-                        Phone = addrBillTo.phone,
-                        Fax = addrBillTo.fax,
-                        Name = addrBillTo.addrname
+                        bo.Delivery = new AddressBO()
+                        {
+                            AddrKey = addrBillTo.addrkey,
+                            Address1 = addrBillTo.address1,
+                            Address2 = addrBillTo.address2,
+                            City = addrBillTo.city,
+                            State = addrBillTo.state,
+                            Zip = addrBillTo.zipcode,
+                            Email = addrBillTo.email,
+                            Phone = addrBillTo.phone,
+                            Fax = addrBillTo.fax,
+                            Name = addrBillTo.addrname
 
-                    };
+                        };
+                    }
                 }
                 orders.Add(bo);
 

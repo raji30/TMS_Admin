@@ -1,0 +1,133 @@
+<!-- <div *ngIf="!ContainerDetails|| ContainerDetails.length === 0" class="row">
+     <p>No customer found </p> 
+     *ngIf="ContainerDetails ||ContainerDetails.length > 0"
+</div>  -->
+<br>
+<div class="row">
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-4">
+        <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text" placeholder="Search..">
+    </div>
+</div>
+<br>
+<div class="table-responsive small" *ngIf="ContainerDetails.length > 0">
+    <table id="containerAttributes" class="table table-sm table-hover">
+        <thead class="thead-light">
+            <tr align="center">
+                <th style="display:none">OrderDetailKey</th>
+                <th>Container#</th>
+                <th> Size</th>
+                <th>Chassis#</th>
+                <th>Seal#</th>
+                <th>Weight</th>
+                <th>Appt.Date From</th>
+                <th>Appt.Date To</th>
+                <th>PickupDate</th>
+                <th>PickupTime</th>
+                <th>DropOffDate</th>
+                <th>DropOffTime</th>
+                <th>Status</th>
+                <!-- <th scope="col" hidden="true">Status Date</th>
+                <th scope="col" hidden="true">Hold Reason</th>
+                <th scope="col" hidden="true">Date</th> -->
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                *ngFor="let field of ContainerDetails | grdFilter: {Chassis: searchText,SealNo: searchText, blog: searchText}; let i = index">
+                <td style="display:none">
+                    <input [(ngModel)]="field.OrderDetailKey" class="form-control form-control-sm" type="text"
+                        name="{{field.OrderDetailKey}}" />
+                </td>
+                <td>
+                    {{field.ContainerSize}}
+                </td>
+                <td>
+                    <select id="drpcontainerType" class="form-control form-control-sm" aria-placeholder="containerNo"
+                        name="{{field.ContainerNo}}" [(ngModel)]="field.ContainerNo">
+                        <option value=1>20DRY</option>
+                        <option value=2>40DRY</option>
+                        <option value=3>40HDRY</option>
+                        <option value=4>45HDRY</option>
+                        <option value=5>20OPEN</option>
+                        <option value=6>40OPEN</option>
+                        <option value=7>20FLAT</option>
+                        <option value=8>40FLAT</option>
+                    </select>
+                </td>
+
+                <td>
+                    {{field.Chassis}}
+                </td>
+                <td>
+
+                    {{field.SealNo}}
+                </td>
+                <td>
+
+                    {{field.Weight}}
+                </td>
+                <td>
+                    <input type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.AppDateFrom}}"
+                        style="width: 100px" [(ngModel)]="field.AppDateFrom"
+                        class="form-control form-control-sm bg-dark" />
+                </td>
+                <td>
+                    <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.AppDateTo"
+                        style="width: 100px" class="form-control form-control-sm bg-dark" name="{{field.AppDateTo}}" />
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" bsDatepicker [bsConfig]="bsConfig"
+                        name="{{field.Pickupdate}}" [(ngModel)]="field.Pickupdate" />
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" name="{{field.Pickuptime}}"
+                        [(ngModel)]="field.Pickuptime" />
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" bsDatepicker [bsConfig]="bsConfig"
+                        name="{{field.DropOffdate}}" [(ngModel)]="field.DropOffdate" />
+                </td>
+                <td>
+                    <input class="form-control form-control-sm" type="text" name="{{field.DropOfftime}}"
+                        [(ngModel)]="field.DropOfftime" />
+                </td>
+                <td>
+                    <select id="drpStatus" class="form-control form-control-sm bg-dark" name="{{field.Status}}"
+                        style="width: 100px" [(ngModel)]="field.Status">
+                        <option value=1>In Progress</option>
+                        <option value=2>Credit Denied</option>
+                        <option value=3>Sent to Scheduler</option>
+                        <option value=4>Sent to Dispatch</option>
+                        <option value=5>On Hold</option>
+                        <option value=6>Sent to Billing</option>
+                        <option value=7>Invoice Generated</option>
+                        <option value=8>Reviewed</option>
+                        <option value=9>Complete</option>
+                    </select>
+                </td>
+                <!-- <td hidden="true"> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.StatusDate"
+                        class="form-control form-control-sm " name="{{field.StatusDate}}" /></td>
+               
+                <td hidden="true">
+                    <select id="drpHoldReason" class="form-control form-control-sm bg-dark" name="{{field.HoldReason}}"
+                        [(ngModel)]="field.HoldReason">
+                        <option value=1>No Confirmation From Customer</option>
+                        <option value=2>Driver Availability</option>
+                        <option value=3>Container Availability</option>
+                    </select>
+                </td>
+                <td hidden="true"> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.HoldDate"
+                        class="form-control form-control-sm " name="{{field.HoldDate}}" /></td> -->
+
+                <td>
+                    <button class="btn btn-primary btn-pill btn-sm small" type="button"
+                        (click)="ScheduleFieldValue(field)">Schedule</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

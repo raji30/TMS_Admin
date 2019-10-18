@@ -1,0 +1,7 @@
+<div class="form-group dropright">
+  <select [(ngModel)]="selectedContainerSize" *ngIf="drpContainerSize">
+    <option *ngFor='let container of drpContainerSize' [ngValue]="containersize">
+      {{container.description}}
+    </option>
+  </select>
+</div>

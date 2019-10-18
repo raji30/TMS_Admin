@@ -5,6 +5,7 @@ import { Customer } from "../../../../_models/customer";
 import { Observable } from "rxjs";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Address } from "../../../../_models/address";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-listcustomer",
@@ -18,19 +19,23 @@ export class ListcustomerComponent implements OnInit {
   customerUpdate = null;
   message = null;
   show_addupdatecustomer: boolean = false;
+  show_customerInfo: boolean = false;
   submitted: boolean = false;
   customer: Customer;
   address: Address;
-
   selectedCustomer: Customer;
-
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
+
+  emailPattern: string = "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$";
+  websitePattern: string =
+    "(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?";
 
   constructor(
     private formbulider: FormBuilder,
     private Service: CustomerService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -60,7 +65,20 @@ export class ListcustomerComponent implements OnInit {
             Validators.minLength(3),
             Validators.maxLength(3)
           ]
-        ]
+        ],
+        Phone: [
+          "",
+          [
+            Validators.required,
+            Validators.pattern("^[0-9]*$"),
+            Validators.minLength(10),
+            Validators.maxLength(10)
+          ]
+        ],
+        Fax: ["", []],
+        Email: ["", []],
+        Country: ["", [Validators.minLength(2), Validators.maxLength(3)]],
+        Website: ["", []]
       })
     });
 
@@ -82,11 +100,13 @@ export class ListcustomerComponent implements OnInit {
     this.customerForm.reset();
   }
   searchCustomer(customerkey: string) {}
+
   loadCustomerToEdit(customerkey: string) {
     this.Service.getCustomerById(customerkey).subscribe(customer_edit => {
-      this.message = null;
-      this.dataSaved = false;
+      // this.message = null;
+      // this.dataSaved = false;
       this.customerUpdate = customer_edit.CustomerKey;
+      this.selectedCustomer = customer_edit;
 
       this.customerForm.controls["CustomerKey"].setValue(
         customer_edit.CustomerKey
@@ -115,10 +135,32 @@ export class ListcustomerComponent implements OnInit {
       this.customerForm["controls"].Address["controls"].Zip.setValue(
         customer_edit.Address["Zip"]
       );
+
+      this.customerForm["controls"].Address["controls"].Phone.setValue(
+        customer_edit.Address["Phone"]
+      );
+      this.customerForm["controls"].Address["controls"].Fax.setValue(
+        customer_edit.Address["Fax"]
+      );
+      this.customerForm["controls"].Address["controls"].Email.setValue(
+        customer_edit.Address["Email"]
+      );
+      this.customerForm["controls"].Address["controls"].Country.setValue(
+        customer_edit.Address["Country"]
+      );
+      this.customerForm["controls"].Address["controls"].Website.setValue(
+        customer_edit.Address["Website"]
+      );
     });
-    this.show_addupdatecustomer = true;
+    this.show_customerInfo = true;
+    this.show_addupdatecustomer = false;
+
     this.isCancelbtnhidden = true;
     this.isResetbtnhidden = false;
+  }
+  bindFormControls() {
+    this.show_customerInfo = false;
+    this.show_addupdatecustomer = true;
   }
   CreateCustomer(customer: Customer) {
     if (this.customerUpdate == null) {
@@ -134,9 +176,11 @@ export class ListcustomerComponent implements OnInit {
       this.Service.updateCustomer(customer).subscribe(() => {
         this.dataSaved = true;
         this.message = "Customer Record Updated Successfully";
+        this.showSuccess("Customer updated successfully", "Edit");
         this.loadAllCustomers();
         this.customerUpdate = null;
         this.customerForm.reset();
+        this.show_addupdatecustomer = false;
       });
     }
   }
@@ -148,15 +192,14 @@ export class ListcustomerComponent implements OnInit {
   }
 
   toggle() {
-    // if (this.show_addupdatecustomer) this.show_addupdatecustomer = false;
-    // else if (!this.show_addupdatecustomer) this.show_addupdatecustomer = true;
-
     this.show_addupdatecustomer = true;
     this.isResetbtnhidden = true;
   }
 
   cancel() {
     this.isResetbtnhidden = false;
+    
+    this.show_customerInfo = true;
     this.show_addupdatecustomer = false;
   }
 
@@ -171,5 +214,21 @@ export class ListcustomerComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  showSuccess(message: string, title: string) {
+    this.toastr.success(message, title, { timeOut: 4000, closeButton: true });
+  }
+
+  showError(message: string, title: string) {
+    this.toastr.error(message, "Oops!", { timeOut: 4000, closeButton: true });
+  }
+
+  showWarning(message: string, title: string) {
+    this.toastr.warning(message, title);
+  }
+
+  showInfo(message: string, title: string) {
+    this.toastr.info(message, title, { timeOut: 4000, closeButton: true });
   }
 }

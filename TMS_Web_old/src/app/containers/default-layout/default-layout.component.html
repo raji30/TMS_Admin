@@ -1,0 +1,144 @@
+<app-header [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/brand/layer-group-icon.png', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/layer-group-icon.png', width: 40, height: 40, alt: 'CoreUI Logo'}"
+  [sidebarToggler]="false" [mobileSidebarToggler]="false" [asideMenuToggler]="false">
+
+  <ul class="nav navbar-nav d-md-down-none mr-auto">
+    <li class="nav-item px-3">
+
+      <a class="nav-link" [routerLink]="['/dashboard']">
+        <!-- <i class="fa fa-dashboard"></i>  -->
+        <img src="assets/img/brand/large-tiles-icon16px.png" />
+        &nbsp; Dashboard</a>
+    </li>
+    <li class="nav-item px-3">
+      <a class="nav-link" routerLink="/doIntake"> <img src="assets/img/brand/standard-notes-icon16px.png" />
+        &nbsp; DO Intake</a>
+      <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
+    </li>
+
+    <li class="nav-item px-3">
+      <a class="nav-link" routerLink="/Scheduler"> <img src="assets/img/brand/schedule-icon16px.png" />
+        &nbsp; Scheduler</a>
+      <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
+    </li>
+
+    <li class="nav-item px-3">
+      <!-- <a class="nav-link" routerLink="/Customers"> <img src="assets/img/brand/standard-notes-icon24px.png" />
+          &nbsp; Customers</a> -->
+      <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
+      <div class="dropdown show">
+        <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <img src="assets/img/brand/system-box-icon16px.png" /> Dispatch
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" routerLink="/DispatchAssignment"> Dispatch Assignment</a>
+          <a class="dropdown-item" routerLink="/DispatchDelivery">Dispatch Delivery</a>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item px-3">
+      <!-- <a class="nav-link" routerLink="/doIntake"> <img src="assets/img/brand/Cash-icon.png" />
+        &nbsp; Billing</a> -->
+      <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
+      <div class="dropdown show">
+        <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <img src="assets/img/brand/invoice-icon16px.png" /> Invoice
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" routerLink="/GetOrderstoGenerateInvoice">Create Invoice</a>
+          <a class="dropdown-item" routerLink="/GetInvoiceList">Invoice List</a>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item px-3">
+      <div class="dropdown show">
+        <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <img src="assets/img/brand/setting-icon16px.png" /> Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/customer.png" hspace="5" />
+            Customer</a>
+          <a class="dropdown-item" routerLink="/Drivers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Driver</a>
+          <a class="dropdown-item" routerLink="/Vendors"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Vendor</a>
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Warehouse</a>
+
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Terminal</a>
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Company</a>
+          <a class="dropdown-item" routerLink="/Carriers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Carrier</a>
+          <a class="dropdown-item" routerLink="/Brokers"><img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Broker</a>
+          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />User</a>
+          <a class="dropdown-item" routerLink="/Customers"><img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Item</a>
+
+          <a class="dropdown-item" routerLink="/Customers"><img src="assets/img/brand/Marker-Push-Pin-Left-icon24.png"
+              hspace="5" />Rate Sheet</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item dropdown" dropdown placement="bottom left">
+      <!-- <a class="nav-link" role="button" aria-haspopup="true" aria-expanded="false" (click)="logout()">           
+        <img src="assets/img/brand/cross-icon16px.png" >
+        <h6>Logout</h6>      
+      </a> -->
+
+      <button type="button" class="btn btn-sm" (click)="logout()">
+        <img src="assets/img/brand/cross-icon16px.png">
+        <p class="text-danger">Logout</p>
+      </button>
+    </li>
+  </ul>
+</app-header>
+
+<div class="app-body">
+
+  <!-- <app-sidebar [fixed]="true" [display]="'lg'">
+      <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized">    
+    </app-sidebar-nav>    
+       <app-sidebar-minimizer></app-sidebar-minimizer>   
+  </app-sidebar> -->
+  <!-- <app-sidebar>
+    <app-navigation></app-navigation>
+  </app-sidebar> -->
+  <!-- Main content -->
+  <main class="main">
+    <!-- Breadcrumb -->
+    <!-- <ol class="breadcrumb">
+      <app-breadcrumb></app-breadcrumb>
+    </ol> -->
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div><!-- /.container-fluid -->
+  </main>
+
+  <app-aside [fixed]="true" [display]="false" style="background-color:black">
+    <aside class="aside-menu">
+      <div>
+        <div class="dropdown-header text-center"><strong>Settings </strong></div>
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
+
+        <div class="divider"></div>
+        <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>
+        <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
+      </div>
+    </aside>
+  </app-aside>
+</div>
+<app-footer>
+  <span>&copy; 2019 Trikaiser</span>
+</app-footer>

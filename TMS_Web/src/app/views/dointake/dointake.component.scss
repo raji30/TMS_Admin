@@ -1,15 +1,20 @@
+::ng-deep.bs-datepicker {
+  height: 300px;
+}
 
-    ::ng-deep.bs-datepicker {
-        height: 300px;
-       
-      }
+::ng-deep.bs-datepicker-container {
+  padding: 0px;
+}
 
-      ::ng-deep.bs-datepicker-container {
-        padding: 0px;
-    }
+.card-header {
+  height: 50px;
+}
 
-    .card-header{height: 50px;}
+.disabled {
+  cursor: not-allowed;
+}
 
-    .disabled {
-      cursor: not-allowed;
-    }
+.ScrollStyle {
+  max-height: 600px;
+  overflow-y: scroll;
+}

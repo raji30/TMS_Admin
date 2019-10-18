@@ -79,6 +79,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   editmode = false;
   showDO = false;
   showImage = true;
+  
+  selectedKey: string;
 
   orderNo: string;
   errorMessage: string;
@@ -256,6 +258,26 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
 
   OnSubmit(form) {
     if (this.isNewDeliveryOrder) {
+      if (
+        this.doHeader.orderdetails == null ||
+        this.doHeader.orderdetails.length == 0
+      ) {
+        this.showError("Container data is missing!!", "Container");
+        return;
+      }
+
+      // for (let i = 0; i < this.doHeader.orderdetails.length; i++) {
+      //   if (
+      //     this.doHeader.orderdetails[i].containerNo == null ||
+      //     this.doHeader.orderdetails[i].containerSize == null ||
+      //     this.doHeader.orderdetails[i].sealNo == null ||
+      //     this.doHeader.orderdetails[i].weight == null
+      //   ) {
+      //     console.log(this.doHeader.orderdetails[i]);
+      //     this.showError("Container data is missing!!", "Container");
+      //     return;
+      //   }
+      // }
       // this.doHeader.orderdetails = this.ContainerDetails;
 
       console.log("Container Details", this.doHeader.orderdetails);
@@ -414,6 +436,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.showImage = false;
     this.isNewDeliveryOrder = false;
     this.btnShowcreateNewOrder = true;
+    this.selectedKey = null;
 
     this.service.GetbyKey(inputKey).subscribe(data => {
       (this.doHeader = data), console.log("testing Model----", this.doHeader);
@@ -430,6 +453,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.isContainerAttributeVisible = true;
     this.isNewDeliveryOrder = false;
     this.editmode = true;
+
+    this.selectedKey = inputKey;
   }
 
   createNewOrder() {

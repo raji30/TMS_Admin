@@ -1,8 +1,8 @@
 <br>
 <div class="row">
-    <div class="col-sm-2 col-md-2 col-lg-2 border-right ">
-        <span class="block m-t-xs">
-            <strong class="font-bold" style="color:cornflowerblue"> &nbsp;&nbsp; Invoices</strong>
+    <div class="col-sm-2 col-md-2 col-lg-2 border-right ScrollStyle ">
+        <!-- <span class="block m-t-xs">
+                <h5>Containers <span class="badge badge-dark">Recent</span></h5><br>
         </span>
         <br>
         <nav class="navbar-default navbar-static-side" role="navigation">
@@ -11,17 +11,32 @@
                     <li *ngFor="let field of Data| slice:0:25; let ind=index;">
 
                         <ul class="fa-ul">
-                            <li>
+                            <li> <p style="font-family:calibri;"> 
                                 <a [routerLink]="" class="text-primary" (click)="getOrderdata(field.order.OrderKey)"
                                     style="color:black">
-                                    {{field.order.OrderNo}}</a>
-                                <!-- <img src="assets/img/brand/bullet-black-icon.png" /> -->
+                                    {{field.order.OrderNo}}</a> </p>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav> -->
+
+        <ul class="list-unstyled">
+            <li>
+                <h5>Containers <span class="badge badge-dark">Recent</span></h5><br>
+            </li>
+            <li *ngFor="let field of Data; let ind=index;">
+                <ul>
+                    <li>
+                        <p style="font-family:calibri;">
+                            <a [routerLink]="" class="text-primary" (click)="getOrderdata(field.order.OrderKey)"
+                                style="color:black">
+                                {{field.order.OrderNo}}</a> </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
 
     </div>
     <div class="col-sm-10 col-md-10 col-lg-10 ">

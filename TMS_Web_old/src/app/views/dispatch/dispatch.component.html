@@ -1,0 +1,265 @@
+<!-- 
+
+<div class="table-responsive-sm small" style="overflow-x: auto">
+  <table id="containerAttributes" class="table table-sm">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col" style="display:none">OrderDetailKey</th>
+        <th scope="col">Container#</th>
+        <th scope="col">Chassis#</th>
+        <th scope="col">Seal#</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Appt.Date From</th>
+        <th scope="col">Appt.Date To</th>
+        <th scope="col">PickupDate</th>
+        <th scope="col">PickupTime</th>
+        <th scope="col" >DropOffDate</th>
+        <th scope="col">DropOffTime</th>
+        <th scope="col">Status</th>
+        <th scope="col">..</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let field of ContainerDetails; let i = index" class="clickable-row" data-toggle="collapse" [attr.data-target]="'#game2Details' + i">
+         
+        <td hidden="true" style="display:none">
+          <input [(ngModel)]="field.OrderDetailKey" class="form-control form-control-sm" type="text"
+            name="{{field.OrderDetailKey}}" />
+        </td>
+        <td>
+          {{field.ContainerSize}} 
+        </td>
+
+        <td>
+          {{field.Chassis}}
+        </td>
+        <td>
+
+          {{field.SealNo}}
+        </td>
+        <td >
+
+          {{field.Weight}}
+        </td>
+        <td >
+          {{field.AppDateFrom}}
+        </td>
+        <td >
+          {{field.AppDateTo}}
+        </td>
+        <td>
+          {{field.Pickupdate}}
+        </td>
+        <td>
+          {{field.Pickuptime}}
+        </td>
+        <td>
+          {{field.DropOffdate}}
+        </td>
+        <td>
+          {{field.DropOfftime}}
+        </td>
+        <td>
+          {{field.Status}}
+        </td>
+
+
+        <td>
+         <button class="btn btn-outline-secondary btn-sm" type="button" (click)="collapseSign(field)"
+            data-toggle="collapse" data-target="#collapseDriverdetails" aria-expanded="false"
+            aria-controls="collapseDriverdetails">
+            {{collapsesign}}
+          </button> 
+
+          <button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" [attr.data-target]="'#collapse-' + i" [attr.aria-expanded]="false" [attr.aria-controls] = "'collapse-' + i"></button>
+        
+        </td>
+      </tr>
+         <td >
+          <div class="collapse small" id="collapseDriverdetails" >
+            <div class="card card-body">
+              <table class="table table-sm bg-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Driver</th>
+                    <th scope="col">Notes</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <select id="drpStatus" class="form-control form-control-sm bg-dark" style="width: 100px">
+                        <option [value]="driver.driverkey" *ngFor="let driver of driverList">{{driver.driverid}}
+                        </option>
+                      </select>
+
+                    </td>
+                    <td>
+                      <input class="form-control form-control-sm" type="text" name="{{field.drivernotes}}"
+                        [(ngModel)]="field.drivernotes"/>
+               
+                    </td>
+
+                    <td>
+                      <button class="btn btn-primary btn-sm" type="button"
+                        (click)="ScheduleFieldValue(field)">Dispatch</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </tr>
+        </td> 
+        <tr [attr.id]="'game2Details' + i" class="collapse">
+            <td colspan="3">Insert a large component in this place</td>
+        </tr>
+    
+    </tbody>
+  </table>
+</div>
+  <div class="collapse" id="collapseDriverdetails">
+    <div class="card card-body">
+      <table class="table table-sm bg-dark">
+        <thead>
+          <tr>
+            <th scope="col">Entry Date</th>
+            <th scope="col">Driver</th>
+            <th scope="col">Action Date</th>
+            <th scope="col">Load Status</th>
+            <th scope="col">Driver Money</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input class="form-control form-control-sm bg-dark" type="date" />
+            </td>
+            <td>
+              <select id="drpStatus" class="form-control form-control-sm bg-dark" style="width: 100px">
+                <option value=1>Celb Howard</option>
+                <option value=2>Lan Weiland</option>
+              </select>
+            </td>
+            <td>
+              <input class="form-control form-control-sm bg-dark" type="date" />
+            </td>
+            <td>
+              <select id="drpStatus" class="form-control form-control-sm bg-dark" style="width: 100px">
+                <option value=1>To Storage</option>
+                <option value=2>Hazardeous</option>
+                <option value=2>Roundtrip</option>
+              </select>
+            </td>
+            <td>
+              <input class="form-control form-control-sm bg-dark" type="text" />
+            </td>
+            <td>
+              <button class="btn btn-primary btn-sm" type="button"
+                (click)="ScheduleFieldValue(field)">Dispatch</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> 
+</div> -->
+
+<table class="table table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col" style="display:none">OrderDetailKey</th>
+      <th scope="col">Container#</th>
+      <th scope="col">Chassis#</th>
+      <th scope="col">Seal#</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Appt.Date From</th>
+      <th scope="col">Appt.Date To</th>
+      <th scope="col">PickupDate</th>
+      <th scope="col">PickupTime</th>
+      <th scope="col">DropOffDate</th>
+      <th scope="col">DropOffTime</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let field of ContainerDetails; index as i">
+      <tr>
+        <td>
+          <button class="btn btn-secondary btn-block rounded-circle btn-sm" type="button" data-toggle="collapse"
+            [attr.data-target]="'#collapse-' + i" [attr.aria-expanded]="false" [attr.aria-controls]="'collapse-' + i"> +
+          </button>
+        </td>
+        <td hidden="true" style="display:none">
+          <input [(ngModel)]="field.OrderDetailKey" class="form-control form-control-sm" type="text"
+            name="{{field.OrderDetailKey}}" />
+        </td>
+        <td>
+          {{field.ContainerSize}}
+        </td>
+        <td>
+          {{field.Chassis}}
+        </td>
+        <td>
+          {{field.SealNo}}
+        </td>
+        <td>
+          {{field.Weight}}
+        </td>
+        <td>
+          {{field.AppDateFrom}}
+        </td>
+        <td>
+          {{field.AppDateTo}}
+        </td>
+        <td>
+          {{field.Pickupdate}}
+        </td>
+        <td>
+          {{field.Pickuptime}}
+        </td>
+        <td>
+          {{field.DropOffdate}}
+        </td>
+        <td>
+          {{field.DropOfftime}}
+        </td>
+        <td>
+          {{field.Status}}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="15" class="collapse-row">
+          <div [attr.id]="'collapse-' + i" class="collapse out">
+            <div class="row">
+              <div class="col-md-4"> 
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Driver</span>
+                  </div>
+                  <select id="drpdriver" class="form-control form-control-sm" name="{{field.driverkey}}" [(ngModel)]="field.driverkey">
+                    <option [value]="driver.DriverKey" *ngFor="let driver of driverList">{{driver.DriverId}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">                
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Notes</span>
+                    </div>
+                    <input class="form-control form-control-sm" type="text" name="{{field.drivernotes}}" [(ngModel)]="field.drivernotes" />
+                  </div>
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-secondary btn-block  btn-sm" type="button" (click)="ScheduleFieldValue(field)">Submit</button>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

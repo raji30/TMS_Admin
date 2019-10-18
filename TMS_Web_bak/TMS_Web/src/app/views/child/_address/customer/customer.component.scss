@@ -1,0 +1,17 @@
+.card-header{height: 50px;}
+.card-body{height: 165px;}
+
+// .form-control {
+//     position: relative;
+//     margin: -20px 0px 24px;
+// }
+.btn {
+    position: relative;
+    margin: -5px 0px 24px;
+}
+#drpcustomer{
+    max-width: 200px;
+    min-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;    
+}

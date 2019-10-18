@@ -1,5 +1,4 @@
 <br>
-
 <!-- <div class="row" *ngIf="HeaderData && dataShow">
   <div class="col-md-3">
     <div class="card text-white border-secondary ">
@@ -53,7 +52,7 @@
 
 
 <div class="row">
-  <div class="col-sm-2 col-md-2 col-lg-2 border-right ">
+  <div class="col-sm-2 col-md-2 col-lg-2 border-right ScrollStyle">
     <nav class="navbar-default navbar-static-side" role="navigation" *ngIf="DetailsData.length > 0">
       <div class="sidebar-collapse overflow-auto">
         <!-- <ul class="nav metismenu" id="side-menu">
@@ -72,11 +71,14 @@
         </ul> -->
 
         <ul class="list-unstyled">
-          <li> <span class="badge badge-primary">Recent containers </span><br></li>
+          <li> 
+            
+            <h5>Containers <span class="badge badge-dark">Recent</span></h5><br>
+          </li>
           <li *ngFor="let data of DetailsData">
             <ul>
-              <li><a [routerLink]="" (click)="rowclickEvent(data)">
-                  {{ data.ContainerNo }} </a> <span class="badge" *ngIf="selectedKey===data.OrderKey">
+              <li><p style="font-family:calibri;"><a [routerLink]="" (click)="rowclickEvent(data)">
+                  {{ data.ContainerNo }}</a>  <span class="badge" *ngIf="selectedKey===data.OrderKey">
                   <img src="assets/img/brand/symbol-check16px.png" /> </span> </li>
             </ul>
           </li>
@@ -400,7 +402,9 @@
                     <h6 class="panel-title">Comments</h6>
                   </div>
                   <div class="card alert-success text-center p-3">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+                    <small> 
+                    <p>{{HeaderData.Comment}}</p>
+                  </small>
                   </div>
                 </div>
               </div>
@@ -410,7 +414,7 @@
       </div>
 
       <br>
-      <div class="row">
+      <div class="row" *ngIf="showSchedulerDiv">
         <div class="col-sm-2 col-md-2 col-lg-2">
           <input type="text" placeholder="ApptDate From" class="form-control form-control-sm" name="AppDateFrom"
             [(ngModel)]="AppDateFrom" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" />

@@ -1,0 +1,254 @@
+<br>
+<div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2 border-right ">
+        <span class="block m-t-xs">
+            <strong class="font-bold" style="color:cornflowerblue"> &nbsp;&nbsp; Invoices</strong>
+        </span>
+        <br>
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li *ngFor="let field of Data| slice:0:25; let ind=index;">
+
+                        <ul class="fa-ul">
+                            <li>
+                                <a [routerLink]="" class="text-primary" (click)="getOrderdata(field.order.OrderKey)"
+                                    style="color:black">
+                                    {{field.order.OrderNo}}</a>
+                                <!-- <img src="assets/img/brand/bullet-black-icon.png" /> -->
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+    </div>
+    <div class="col-sm-10 col-md-10 col-lg-10 ">
+        <div *ngIf="showInvoice">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 border-right">
+                    <span>Invoice #<b>{{InvoiceNo}}</b></span>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <b>Date </b></span>
+                                </div>
+                                <input type="text" name="invoiceDate" [(ngModel)]="invoiceDate" style="width:100px"
+                                    class="form-control form-control-sm bg-secondary" [owlDateTimeTrigger]="dt1"
+                                    [owlDateTime]="dt1" />
+                                <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-3 col-md-3 col-lg-3">
+
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <b>Due</b></span>
+                                </div>
+                                <input type="text" name="DueDate" [(ngModel)]="dueDate" style="width:100px"
+                                    class="form-control form-control-sm bg-secondary" [owlDateTimeTrigger]="dt2"
+                                    [owlDateTime]="dt2" />
+                                <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <img src="assets/img/brand/circle-black16px.png" /> <span> <span class="text-muted"> Bill from
+                        </span> <b>
+                            {{this.invoiceModel.BillFrom["Name"]}}</b></span>
+                    <br>
+                    <span> {{invoiceModel.BillFrom["Address1"]}} {{invoiceModel.BillFrom["Address2"]}}
+                        {{invoiceModel.BillFrom["City"]}} {{invoiceModel.BillFrom["State"]}}
+                        {{invoiceModel.BillFrom["Zip"]}}
+                    </span>
+                    <br>
+                    <img src="assets/img/brand/circle-black16px.png" /> <span><span class="text-muted"> Bill
+                            to</span>
+                        <b>
+                            {{invoiceModel.BillTo["Name"]}}</b></span>
+                    <br>
+                    <span> {{invoiceModel.BillTo["Address1"]}} {{invoiceModel.BillTo["Address2"]}}
+                        {{invoiceModel.BillTo["City"]}} {{invoiceModel.BillTo["State"]}}
+                        {{invoiceModel.BillTo["Zip"]}}
+                    </span>
+                    <br>
+                    <br>
+
+                    <div>
+                        <span><b> <u> Route</u> </b></span>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <span class="text-muted">Pickup </span><br>
+                                <span>
+                                    {{invoiceModel.Pickup["Name"]}}</span>
+                                <br>
+                                <span> {{invoiceModel.Pickup["Address1"]}}, {{invoiceModel.Pickup["Address2"]}}
+                                </span>
+                                <br>
+                                <span>
+                                    {{invoiceModel.Pickup["City"]}} - {{invoiceModel.Pickup["Zip"]}}
+                                </span>
+                                <br>
+                                <span> {{invoiceModel.Pickup["State"]}}
+                                </span>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <span class="text-muted">Delivery </span>
+                                <br>
+                                <span>{{invoiceModel.Delivery["Name"]}}</span>
+                                <br>
+                                <span> {{invoiceModel.Delivery["Address1"]}}, {{invoiceModel.Delivery["Address2"]}}
+                                </span>
+                                <br>
+                                <span>
+                                    {{invoiceModel.Delivery["City"]}} - {{invoiceModel.Delivery["Zip"]}}
+                                </span>
+                                <br>
+                                <span> {{invoiceModel.Delivery["State"]}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <span> <b><u>Shipment</u> </b></span>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <span class="text-muted">Carrier </span>
+                            <br>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <span class="text-muted">Vessel Name </span>
+                            <br>
+                            {{invoiceModel.order.VesselName}}
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4"> </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <table class="table table-sm table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col " class="text-muted">Container</th>
+                                    <th scope="col" class="text-muted">Size</th>
+                                    <th scope="col" class="text-muted">Chassis</th>
+                                    <th scope="col" class="text-muted">SealNo</th>
+                                    <th scope="col" class="text-muted">Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let field of invoiceModel.orderDetails">
+                                    <td>{{field.ContainerNo}}</td>
+                                    <td>{{field.ContainerSizeDesc}} </td>
+                                    <td>{{field.Chassis}}</td>
+                                    <td>{{field.SealNo}}</td>
+                                    <td>{{field.Weight}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <button class="btn  btn-outline-secondary btn-sm small" type="button">Actions </button>
+                            &nbsp;
+                            <button class="btn btn-outline-secondary btn-sm small" type="button">Send</button>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="row text-right">
+                                <button class="btn btn-primary btn-sm small" type="button">Export</button> &nbsp;
+                                <button class="btn btn-primary btn-sm small" type="button"
+                                    (click)="createInvoice()">Create Invoice</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br> <br>
+
+                    <div class="row">
+                        <span> <b> &nbsp;&nbsp;&nbsp; <u> Invoice Details </u></b></span>
+                        <table class="table table-sm table-borderless">
+                            <thead>
+                                <tr>
+                                    <th hidden="true">InvoiceLineKey</th>
+                                    <th hidden="true">InvoiceKey</th>
+                                    <th hidden="true">Itemkey</th>
+                                    <th>Item</th>
+                                    <th>Quantity/Weight</th>
+                                    <th>Rate</th>
+                                    <th>Charge</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let Data of invoiceDetail; let i = index">
+                                    <td height="30" hidden="true"> <span> {{Data.InvoiceLineKey}} </span></td>
+                                    <td height="30" hidden="true"> <span> {{Data.InvoiceKey}} </span></td>
+                                    <td height="30" hidden="true"> <span>{{Data.Itemkey}} </span></td>
+                                    <td height="30"> <span>{{Data.Description}} </span></td>
+                                    <td height="30"> <span> {{Data.Quantity}} </span></td>
+                                    <td height="30"> <span> ${{Data.UnitPrice}}</span></td>
+                                    <td height="30"> <span>${{Data.Price}} </span></td>
+                                    <td height="30"> <button class="btn btn-default small" type="button"
+                                            (click)="deleteFieldValue(i)">
+                                            <img src="assets/img/brand/trash-icon16px.png" /></button></td>
+                                </tr>
+                                <tr>
+                                    <td hidden="true"> </td>
+                                    <td hidden="true"> </td>
+                                    <td hidden="true"> </td>
+                                    <td> </td>
+                                    <td> </td>
+
+                                    <td colspan="2">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <b>Total </b></span>
+                                            </div>
+                                            <input type="text" class="form-control bg-secondary text-right"
+                                                name="InvoiceAmt" [(ngModel)]="InvoiceAmt" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <select id="drpCarrier" class="form-control form-control-sm" [(ngModel)]='drpCharge'
+                                (change)="drpAddnewCharge_ChangedEvent($event.target.value)">
+                                <option [value]="0">--select--
+                                </option>
+                                <option [value]="item.itemkey" *ngFor="let item of Itemlist">
+                                    {{item.description}}
+                                </option>
+                            </select>
+                        </div>
+                        <span class="nav-link text-success" (click)="addFieldValue()">Add new charge</span>
+                    </div>
+                    <br>
+
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="showImage">
+            <div class="row "> </div>
+            <div class="row "> </div>
+            <div class="row ">
+                <div class="col-md-4"> </div>
+                <div class="col-md-4"> <img src="assets/img/brand/Actions-gear-icon128px.png" /></div>
+                <div class="col-md-4"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

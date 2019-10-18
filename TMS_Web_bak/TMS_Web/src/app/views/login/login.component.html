@@ -1,0 +1,80 @@
+<span class="border border-primary">
+    <div class="jumbotron vertical-center">
+    <div class="app-body">
+        <main class="main d-flex align-items-center" >  
+          <div class="container">  
+            <div class="row">  
+              <div class="col-md-8 mx-auto" >  
+                <div class="card-group">  
+                  <div class="card p-4">  
+                    <div class="card-body">  
+                      <form (ngSubmit) ="onSubmit()" novalidate>  
+                        <h1>Login</h1>  
+                        <p class="text-muted">Sign In to your account</p>  
+                        
+                        <div class="input-group mb-3">  
+                          <div class="input-group-prepend">  
+                            <span class="input-group-text"><i class="icon-user"></i></span>  
+                          </div>  
+                          <input type="text" class="form-control" placeholder="UserName" autocomplete="UserName " required 
+                                 [(ngModel)]="model.username" name="username" >  
+                                 <div class="invalid-feedback">
+                                  Please provide a valid zip.
+                                </div>                            
+                            </div>  
+    
+                        <div class="input-group mb-4">  
+                          <div class="input-group-prepend">  
+                            <span class="input-group-text"><i class="icon-lock"></i></span>  
+                          </div>  
+                          <input type="password" class="form-control" placeholder="Password" autocomplete="current-password" required 
+                          [(ngModel)]="model.password" name="password" >
+                          </div>
+    
+                        <div class="input-group mb-3">  
+                            <div class="input-group-prepend">  
+                              <span class="input-group-text"><i class="icon-globe"></i></span>  
+                            </div>  
+                            <input type="text" class="form-control" placeholder="Company" autocomplete="current-company" required 
+                            [(ngModel)]="model.company" name="company">  
+                          </div>
+
+                          <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                          <div [hidden]="isContainerAttributeVisible">
+                              <progressbar [value]="100" type="danger" [striped]="true" [animate]="true" ></progressbar>
+                          </div>
+                         <br>
+                        <div class="row">  
+                          <div class="col-6"> 
+                            <button  class="btn btn-primary px-4" type="submit">Login</button>  
+                          </div>
+      
+                          <div class="col-6 text-right">  
+                            <button  class="btn btn-link px-0">Forgot password?</button>  
+                          </div>      
+                        </div>  
+                        
+                      </form>
+      
+                    </div>
+      
+                  </div>
+      
+                  <div class="card text-white bg-primary py-5 d-md-down-none" style="width:20%">  
+                    <div class="card-body text-center">  
+                      <div> 
+                      <img src="assets/img/brand/Group-icon.png" class="img-fluid" alt="Responsive image">
+                        <!-- <h2>Sign up</h2>  
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>  
+                        <button type="button" class="btn btn-primary active mt-3">Register Now!</button> -->  
+                      </div>  
+                    </div>  
+                  </div>  
+                </div>  
+              </div>  
+            </div>  
+          </div>  
+        </main>      
+      </div>
+    </div>
+    </span>

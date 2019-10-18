@@ -93,7 +93,10 @@ namespace TMS.Api.Controllers
                     Zip = address.zipcode,
                     Email = address.email,
                     Phone = address.phone,
-                    Fax = address.fax
+                    Fax = address.fax,
+                    Country = address.country,
+                    Website = address.website
+                    
                 };
 
                 return Request.CreateResponse(HttpStatusCode.OK, customerBO, Configuration.Formatters.JsonFormatter);
@@ -215,6 +218,7 @@ namespace TMS.Api.Controllers
                     zipcode = customer.Address.Zip,
                     email = customer.Address.Email,
                     fax = customer.Address.Fax,
+                    phone =customer.Address.Phone,
                     addrname = customer.CustName
                 };
                 bool updated = new AddressRepository().Update(custaddress);

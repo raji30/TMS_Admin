@@ -1,14 +1,21 @@
 <br>
 <div id="accordion">
   <div class="row">
-    <div class="col-sm-2 col-md-2 col-lg-2 border-right ">
+    <div class="col-sm-2 col-md-2 col-lg-2 border-right ScrollStyle">
       <ul class="list-unstyled">
-        <li> <span style="color:darkgray"> Recent
-            orders</span></li>
-        <li *ngFor="let order of Orderlist| slice:0:50; let ind=index;">
+        <li>
+          <!-- <span class="alert-warning" style="color:darkgray"> Recent
+            orders</span> -->
+
+            <h5>Deliver Orders <span class="badge badge-dark">Recent</span></h5><br>
+        </li>
+        <li *ngFor="let order of Orderlist| slice:0:25; let ind=index;">
           <ul>
-            <li><a [routerLink]="" (click)="getOrderInfo(order.OrderKey)">
-                {{ order.OrderNo }} - {{order.ordertypedescription}}</a></li>
+            <li> <p style="font-family:calibri;"> <a [routerLink]="" (click)="getOrderInfo(order.OrderKey)">
+                {{ order.OrderNo }} - {{order.ordertypedescription}} <span class="badge"
+                  *ngIf="selectedKey===order.OrderKey">
+                  <img src="assets/img/brand/symbol-check16px.png" /> </span></a> 
+                </p></li>
           </ul>
         </li>
       </ul>
@@ -16,7 +23,7 @@
     <div class="col-sm-10 col-md-10 col-lg-10">
       <div class="row">
         <div class="col-sm-4 col-md-4 col-lg-4">
-          <h6 style="color: black"><i class="fa fa-commenting-o" aria-hidden="true"></i> &nbsp; Delivery Order</h6>
+          <h5 style="color: black"><i class="fa fa-commenting-o" aria-hidden="true"></i> &nbsp; Delivery Order</h5>
           <!-- <span class="nav-link text-success " (click)="test()"> Edit<img
               src="assets/img/brand/Pencil-icon16px.png" /> </span>  -->
         </div>
@@ -24,13 +31,12 @@
           <div class="row ">
             <div class="col-md-10"> </div>
             <div class="col-md-2 text-right" *ngIf="btnShowcreateNewOrder">
-              <button type="button" class="btn btn-outline-primary btn-sm" (click)="createNewOrder()">Create New
+              <button type="button" class="btn btn-primary btn-sm" (click)="createNewOrder()">Create New
                 Order</button>
             </div>
           </div>
         </div>
       </div>
-      <br>
       <!-- <hr style="border: none; border-bottom: 1px solid slategray;"> -->
       <div class="row" *ngIf="isNewDeliveryOrder">
         <div class="col-sm-12 col-md-12 col-lg-12" [class.disabled]="editmode">
@@ -47,6 +53,19 @@
 
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-6 col-md-6 col-lg-6"> </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="container text-right">
+                      <button class="btn btn-primary btn-sm" type="submit">
+                        <i class="fa fa-database" aria-hidden="true"></i>&nbsp; Create Order</button> &nbsp;
+                      <!-- 
+                            <button class="btn btn-warning btn-sm" type="button" (click)="clear()">
+                              <i class="fa fa-trash-o"></i>&nbsp; Clear</button> -->
+                    </div>
+                  </div>
+                </div>
+                <br>
                 <div class="row ">
                   <div class="col-md-4" [hidden]="false">
                     <app-customer name="CustKey" [(ngModel)]="doHeader.CustKey" #CustKey="ngModel"
@@ -567,12 +586,12 @@
                     <div class="row">
                     </div>
                     &nbsp;
-                    <div class="row">
+                    <!-- <div class="row">
                       <button class="btn btn-primary btn-sm" type="submit">
                         <i class="fa fa-database" aria-hidden="true"></i>&nbsp; Create</button> &nbsp;
 
                       <button class="btn btn-warning btn-sm" type="button" (click)="clear()">
-                        <i class="fa fa-trash-o"></i>&nbsp; Clear</button> </div>
+                        <i class="fa fa-trash-o"></i>&nbsp; Clear</button> </div> -->
                   </div>
                 </div>
               </div>
@@ -699,6 +718,7 @@
       </div>
 
       <ng-container *ngIf="showDO">
+        <br>
         <div class="row">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="card text-white bg-white mb-3">

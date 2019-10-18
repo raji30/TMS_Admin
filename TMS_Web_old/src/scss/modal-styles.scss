@@ -1,0 +1,21 @@
+.modal{
+    display:flex;
+    top:40%;
+    width: 100%;
+  }
+  
+  .my-modal {
+    border: solid 4px blue;
+  }
+  
+  .my-modal .modal-header {
+    background-color: lime;
+  }
+  
+  .my-modal .modal-body {
+    background-color: orange;
+  }
+  .modal-lg {
+    width: 100%;
+  }
+  

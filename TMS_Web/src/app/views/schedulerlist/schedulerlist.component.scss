@@ -1,3 +1,9 @@
 .table tbody tr:hover td, .table tbody tr:hover th {
     background-color: rgb(51, 72, 88);
 }
+
+.ScrollStyle {
+    max-height: 600px;
+    overflow-y: scroll;
+  }
+  

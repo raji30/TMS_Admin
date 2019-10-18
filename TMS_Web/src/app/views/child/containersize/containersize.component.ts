@@ -15,7 +15,6 @@ export class ContainersizeComponent implements OnInit {
 @Input() bindContainersize: number;
 @Output() ContainersizeSelectedOutput = new EventEmitter<string>();
 
-
 constructor(private service: MasterService) {}
 
 ngOnInit() {  
@@ -29,11 +28,11 @@ ngOnInit() {
 }
 
 ngOnChanges() {
-  this.selectedContainersize.value= this.bindContainersize;
+  this.selectedContainersize.containersize= this.bindContainersize;
 }
 
 onSelect(Selected: Containersize): void {
-  this.ContainersizeSelectedOutput.emit(Selected.name);
+  this.ContainersizeSelectedOutput.emit(Selected.description);
   this.selectedContainersize = Selected;  
 }
 

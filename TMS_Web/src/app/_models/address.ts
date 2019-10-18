@@ -9,6 +9,7 @@ export class Address {
     Fax: string;
     Email: string;
     Country: string;
+    Website:string;
     AddrKey: string;    
 }
 

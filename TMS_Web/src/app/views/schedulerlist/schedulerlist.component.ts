@@ -42,6 +42,7 @@ export class SchedulerlistComponent implements OnInit {
 
   showScheduler = false;
   showImage = true;
+  showSchedulerDiv = true;
 
   constructor(
     private NaviComp: NavigationComponent,
@@ -69,17 +70,7 @@ export class SchedulerlistComponent implements OnInit {
 
     this.master.getStatusList().subscribe(
       data => {
-        this.statuslist = data;
-        // for (let i = 0; i< this.statuslistFiltered.length;i++) {
-
-        //   if (this.statuslistFiltered[i].name === "OnHold" || this.statuslistFiltered[i].name === "SendtoDispatchAssignment") {
-        //     this.statuslist.push(this.statuslistFiltered[i]);
-        //   }
-        // }
-
-        // this.statuslist.forEach(contact => {
-        //   console.log(contact.name);
-        // },
+        this.statuslist = data;       
       },
       error => console.log(error),
       () => console.log("Get statuslist", this.statuslist)
@@ -116,7 +107,11 @@ export class SchedulerlistComponent implements OnInit {
       () => {
         this.dataSaved = true;
         this.message = "Scheduled Successfully";
+        this.showSuccess("Container Scheduled successfully", "Scheduler");
         this.loaddata();
+       
+        this.showImage = true;
+       this.showScheduler =false;
       },
       error => console.log(error),
       () => console.log("Scheduler  ", this.message)
@@ -172,6 +167,7 @@ export class SchedulerlistComponent implements OnInit {
 
     this.showScheduler = true;
     this.showImage = false;
+    this.showSchedulerDiv= true;
   }
 
   showSuccess(message: string, title: string) {

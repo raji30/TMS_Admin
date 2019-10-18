@@ -1,7 +1,18 @@
 <div id="accordion">
-  <br>
+   <br>
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-6">       
+              <h5 class="card-subtitle mb-2" style="color: black">
+                  <img src="assets/img/brand/user-identity4.png" /> Customers</h5>   
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 text-right">                  
+              <button type="button" class="btn btn-info btn-sm" (click)="toggle()">Create New Customer</button>                  
+          </div>
+        </div>
+      
+ 
   <div class="row">
-    <div class="col-sm-8 col-md-8 col-lg-8 border-right">
+    <div class="col-sm-8 col-md-8 col-lg-8 border-right ScrollStyle">
       <table class="table table-sm">
         <tr ngclass="btn-primary">
           <th hidden="true">custkey</th>
@@ -12,12 +23,13 @@
         <tr *ngFor="let cust of customers | async">
           <td hidden="true">{{cust.CustomerKey}}</td>
           <td>{{cust.CustId}}</td>
-          <td>{{cust.CustName}}</td>
+          <td> <a [routerLink]="" (click)="loadCustomerToEdit(cust.CustomerKey)">
+              {{cust.CustName}}</a> </td>
           <td>{{cust.CreditLimit}}</td>
-          <td class="tbl2">
+          <!-- <td class="tbl2">
             <button type="button" class="btn btn-info btn-sm"
               (click)="loadCustomerToEdit(cust.CustomerKey)">Edit</button>
-          </td>
+          </td> -->
           <!-- <td class="tbl2">
                     <button type="button" class="btn btn-danger btn-sm"
                       (click)="deleteCustomer(cust.CustomerKey)">Delete</button>
@@ -27,14 +39,21 @@
     </div>
 
     <div class="col-sm-4 col-md-4 col-lg-4  ">
-
-      <div class="row">
-        <div class="container text-right">
-          <button type="button" class="btn btn-info btn-sm" (click)="toggle()">Create New Customer</button>
-        </div>
+      <div class="row" *ngIf="show_addupdatecustomer">
         <form [formGroup]="customerForm" (ngSubmit)="onFormSubmit()">
-          <div *ngIf="show_addupdatecustomer">
+          <div>
             <br>
+            <div class="row">
+                <div class="col-12 col-sm-8 col-md-8">       
+                       
+                </div>
+                <div class="col-12 col-sm-2 col-md-2 text-right">                  
+                    <button type="reset" class="btn btn-secondary btn-sm"(click)="cancel()">Cancel</button>                     
+                </div>
+                <div class="col-12 col-sm-2 col-md-2 text-right">                  
+                    <button type="submit" class="btn btn-secondary btn-sm">Update</button>                     
+                </div>
+              </div>
             <div class="container">
               <div class="row" hidden="true">
                 <div class="form-group input-group input-group-sm col-md-4">
@@ -97,7 +116,6 @@
               </div>
 
               <div class="row" formGroupName="Address">
-
                 <div class="form-group input-group input-group-sm col-md-8">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Address line 2</span>
@@ -129,38 +147,130 @@
                     [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Zip.errors }"
                     (keypress)="numberOnly($event)" appBlockCopyPaste>
                   <div *ngIf="submitted && f.Address['controls'].Zip.errors" class="invalid-feedback">
-                    <div *ngIf="f.Address['controls'].errors.required">Zip is required</div>
+                    <div *ngIf="f.Address['controls'].Zip.errors.required">Zip is required</div>
                     <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
                     <div *ngIf="f.Address['controls'].Zip.errors.minLength">minlength is required</div>
                   </div>
                 </div>
               </div>
+
+              <div class="row" formGroupName="Address">
+                <div class="form-group input-group input-group-sm col-md-8">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Country</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" formControlName="Country"
+                    [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Country.errors }">
+                  <div *ngIf="submitted && f.Address['controls'].Country.errors" class="invalid-feedback">
+                    <div *ngIf="f.Address['controls'].Country.errors.minLength">minlength is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" formGroupName="Address">
+                <div class="form-group input-group input-group-sm col-md-8">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Website</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" formControlName="Website" appBlockCopyPaste>
+                  <!-- <div *ngIf="submitted && f.Address['controls'].website.errors" class="invalid-feedback">                   
+                        <div *ngIf="customerForm.controls.website.errors.pattern">website is not valid</div>                       
+                      </div> -->
+                </div>
+              </div>
+              <div class="row" formGroupName="Address">
+                <div class="form-group input-group input-group-sm col-md-8">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Phone</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" formControlName="Phone"
+                    [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Phone.errors }"
+                    (keypress)="numberOnly($event)" appBlockCopyPaste>
+                  <div *ngIf="submitted && f.Address['controls'].Phone.errors" class="invalid-feedback">
+                    <div *ngIf="f.Address['controls'].Phone.errors.minLength">minlength is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" formGroupName="Address">
+                <div class="form-group input-group input-group-sm col-md-8">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">E-mail</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" formControlName="Email" appBlockCopyPaste>
+                </div>
+              </div>
+              <div class="row" formGroupName="Address">
+                <div class="form-group input-group input-group-sm col-md-8">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Fax</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" formControlName="Fax"
+                    (keypress)="numberOnly($event)" appBlockCopyPaste>
+
+                </div>
+              </div>
             </div>
             <br>
-            <div class="form-group  row">
-              <div class="form-group col-md-6">
-                <p *ngIf="dataSaved" style="color:green;font-size:15px;font-weight:normal" align="left">
-                  {{message}}
-                </p>
+            <!-- <div class="container text-left">              
+                <div class="col-md-2">
+                  <button type="reset" class="btn btn-primary btn-sm"
+                    (click)="cancel()">Cancel</button>
+                </div>
+                           
               </div>
-              <div class=" col-md-1">
-                <button type="reset" *ngIf="isCancelbtnhidden" class="btn btn-primary btn-sm"
-                  (click)="cancel()">Cancel</button>
-              </div> &nbsp; &nbsp;
-              <div class=" col-md-1">
-                <!-- <button type="submit" class="btn btn-primary btn-sm"  [disabled]="!customerForm.valid">Submit</button> -->
-                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-              </div> &nbsp; &nbsp;
-              <div class=" col-md-1">
-                <button type="reset" *ngIf="isResetbtnhidden" class="btn btn-primary btn-sm"
-                  (click)="resetForm()">Reset</button>
-              </div>
-            </div>
+            <div class="container text-right">              
+              
+              <div class=" col-md-2">
+                 <button type="submit" class="btn btn-primary btn-sm">Update</button>
+              </div>              
+            </div> -->
+
+            <!-- <div class="container"> -->
+               
+              <!-- </div> -->
           </div>
         </form>
-
       </div>
+      <div class="row" *ngIf="show_customerInfo">
+        <div class="container text-right">
+          <span style="color:green;"  (click)="bindFormControls()"> <i class="fa fa-pencil" aria-hidden="true"></i> edit</span>
+        </div>
+        <div class="container ml-2">
 
+          <h5> {{selectedCustomer.CustName}}</h5>
+
+          <span class="text-muted">ID <b>{{selectedCustomer.CustId}}</b> </span>
+          <br><br>
+          <span class="text-muted">Credit Limit </span><br>
+          <span><b> {{selectedCustomer.CreditLimit}} </b>
+          </span>
+
+
+          <br><br>
+          <span class="text" style="color: chocolate;"> <b> Address </b></span><br>
+
+          <span class="text-muted">Line 1 :<b> {{selectedCustomer.Address.Address1}}</b> </span><br>
+          <span class="text-muted">Line 2 :<b> {{selectedCustomer.Address.Address2}}</b> </span> <br> 
+          <span class="text-muted">City   :<b> {{selectedCustomer.Address.City}} </b></span> <br>
+          <span class="text-muted">State  :<b> {{selectedCustomer.Address.State}} </b></span> <br>
+          <span class="text-muted">Zip    :<b> {{selectedCustomer.Address.Zip}} </b></span> <br>
+
+
+          <span class="text-muted">Country: <b> {{selectedCustomer.Address.Country}} </b></span> <br><br>
+
+
+          <span class="text-muted">Website <b> {{selectedCustomer.Address.Website}} </b></span> <br><br>
+
+          <span class="text-muted">Email </span><br>
+          <span><b> {{selectedCustomer.Address.Email}} </b></span> <br><br>
+
+          <span class="text-muted">Fax </span><br>
+          <span><b> {{selectedCustomer.Address.Fax}} </b></span> <br><br>
+
+          <span class="text-muted">Mob </span><br>
+          <span><b> {{selectedCustomer.Address.Phone}} </b></span> <br>
+
+        </div>       
+      </div>
     </div>
   </div>
   <br>

@@ -45,7 +45,8 @@ namespace TMS.Data.TableOperations
         public bool Update(customer t)
         {
             var customer = GetbyId(t.custkey);
-            if (customer != null) { 
+            if (customer != null) {
+                customer.custid = t.custid;
             customer.custname = t.custname;
             customer.customergroup = t.customergroup;
             customer.status = t.status;
