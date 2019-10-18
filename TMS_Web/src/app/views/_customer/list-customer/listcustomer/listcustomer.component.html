@@ -1,16 +1,16 @@
 <div id="accordion">
-   <br>
-        <div class="row">
-          <div class="col-12 col-sm-6 col-md-6">       
-              <h5 class="card-subtitle mb-2" style="color: black">
-                  <img src="assets/img/brand/user-identity4.png" /> Customers</h5>   
-          </div>
-          <div class="col-12 col-sm-6 col-md-6 text-right">                  
-              <button type="button" class="btn btn-info btn-sm" (click)="toggle()">Create New Customer</button>                  
-          </div>
-        </div>
-      
- 
+  <br>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-6">
+      <h5 class="card-subtitle mb-2" style="color: black">
+        <img src="assets/img/brand/user-identity4.png" /> Customers</h5>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 text-right">
+      <button type="button" class="btn btn-info btn-sm" (click)="toggle()">Create New Customer</button>
+    </div>
+  </div>
+
+
   <div class="row">
     <div class="col-sm-8 col-md-8 col-lg-8 border-right ScrollStyle">
       <table class="table table-sm">
@@ -42,19 +42,18 @@
       <div class="row" *ngIf="show_addupdatecustomer">
         <form [formGroup]="customerForm" (ngSubmit)="onFormSubmit()">
           <div>
-            <br>
-            <div class="row">
-                <div class="col-12 col-sm-8 col-md-8">       
-                       
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-sm-8 col-md-8">
+                  <h4> Customer Edit</h4>
                 </div>
-                <div class="col-12 col-sm-2 col-md-2 text-right">                  
-                    <button type="reset" class="btn btn-secondary btn-sm"(click)="cancel()">Cancel</button>                     
+                <div class="col-12 col-sm-2 col-md-2 text-right">
+                  <button type="reset" class="btn btn-secondary btn-sm" (click)="cancel()">Cancel</button>
                 </div>
-                <div class="col-12 col-sm-2 col-md-2 text-right">                  
-                    <button type="submit" class="btn btn-secondary btn-sm">Update</button>                     
+                <div class="col-12 col-sm-2 col-md-2 text-right">
+                  <button type="submit" class="btn btn-secondary btn-sm">Update</button>
                 </div>
               </div>
-            <div class="container">
               <div class="row" hidden="true">
                 <div class="form-group input-group input-group-sm col-md-4">
                   <div class="input-group-prepend">
@@ -208,31 +207,14 @@
 
                 </div>
               </div>
-            </div>
-            <br>
-            <!-- <div class="container text-left">              
-                <div class="col-md-2">
-                  <button type="reset" class="btn btn-primary btn-sm"
-                    (click)="cancel()">Cancel</button>
-                </div>
-                           
-              </div>
-            <div class="container text-right">              
-              
-              <div class=" col-md-2">
-                 <button type="submit" class="btn btn-primary btn-sm">Update</button>
-              </div>              
-            </div> -->
-
-            <!-- <div class="container"> -->
-               
-              <!-- </div> -->
+            </div>            
           </div>
         </form>
       </div>
       <div class="row" *ngIf="show_customerInfo">
         <div class="container text-right">
-          <span style="color:green;"  (click)="bindFormControls()"> <i class="fa fa-pencil" aria-hidden="true"></i> edit</span>
+          <span style="color:green;" (click)="bindFormControls()"> <i class="fa fa-pencil" aria-hidden="true"></i>
+            edit</span>
         </div>
         <div class="container ml-2">
 
@@ -249,10 +231,10 @@
           <span class="text" style="color: chocolate;"> <b> Address </b></span><br>
 
           <span class="text-muted">Line 1 :<b> {{selectedCustomer.Address.Address1}}</b> </span><br>
-          <span class="text-muted">Line 2 :<b> {{selectedCustomer.Address.Address2}}</b> </span> <br> 
-          <span class="text-muted">City   :<b> {{selectedCustomer.Address.City}} </b></span> <br>
-          <span class="text-muted">State  :<b> {{selectedCustomer.Address.State}} </b></span> <br>
-          <span class="text-muted">Zip    :<b> {{selectedCustomer.Address.Zip}} </b></span> <br>
+          <span class="text-muted">Line 2 :<b> {{selectedCustomer.Address.Address2}}</b> </span> <br>
+          <span class="text-muted">City :<b> {{selectedCustomer.Address.City}} </b></span> <br>
+          <span class="text-muted">State :<b> {{selectedCustomer.Address.State}} </b></span> <br>
+          <span class="text-muted">Zip :<b> {{selectedCustomer.Address.Zip}} </b></span> <br>
 
 
           <span class="text-muted">Country: <b> {{selectedCustomer.Address.Country}} </b></span> <br><br>
@@ -269,7 +251,7 @@
           <span class="text-muted">Mob </span><br>
           <span><b> {{selectedCustomer.Address.Phone}} </b></span> <br>
 
-        </div>       
+        </div>
       </div>
     </div>
   </div>
