@@ -13,7 +13,7 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./listcustomer.component.scss"]
 })
 export class ListcustomerComponent implements OnInit {
-  customers: Observable<Customer[]>;
+  customers: Customer[];
   dataSaved = false;
   customerForm: FormGroup;
   customerUpdate = null;
@@ -26,6 +26,8 @@ export class ListcustomerComponent implements OnInit {
   selectedCustomer: Customer;
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
+
+  searchText: string;
 
   emailPattern: string = "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$";
   websitePattern: string =
@@ -51,6 +53,8 @@ export class ListcustomerComponent implements OnInit {
           Validators.minLength(3)
         ]
       ],
+      achrequired: ["", []],
+      paymentterms: ["", []],
       Address: this.formbulider.group({
         AddrKey: [""],
         Address1: ["", [Validators.required]],
@@ -86,7 +90,11 @@ export class ListcustomerComponent implements OnInit {
   }
 
   loadAllCustomers() {
-    this.customers = this.Service.getCustomers();
+    this.Service.getCustomers().subscribe(
+      data => (this.customers = data),
+      error => console.log(error),
+      () => console.log("Get customers complete")
+    );
   }
   onFormSubmit() {
     this.submitted = true;
@@ -116,7 +124,12 @@ export class ListcustomerComponent implements OnInit {
       this.customerForm.controls["creditlimit"].setValue(
         customer_edit.CreditLimit
       );
-
+      this.customerForm.controls["achrequired"].setValue(
+        customer_edit.achrequired
+      );
+      this.customerForm.controls["paymentterms"].setValue(
+        customer_edit.paymentterms
+      );
       this.customerForm["controls"].Address["controls"].AddrKey.setValue(
         customer_edit.Address["AddrKey"]
       );
@@ -193,12 +206,13 @@ export class ListcustomerComponent implements OnInit {
 
   toggle() {
     this.show_addupdatecustomer = true;
+    this.show_customerInfo = false;
     this.isResetbtnhidden = true;
   }
 
   cancel() {
     this.isResetbtnhidden = false;
-    
+
     this.show_customerInfo = true;
     this.show_addupdatecustomer = false;
   }
@@ -230,5 +244,12 @@ export class ListcustomerComponent implements OnInit {
 
   showInfo(message: string, title: string) {
     this.toastr.info(message, title, { timeOut: 4000, closeButton: true });
+  }
+  clear_search() {
+    this.searchText = undefined;
+  }
+  Checkbox_Change(value:any)
+  {
+
   }
 }

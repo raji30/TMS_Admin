@@ -80,7 +80,7 @@ export class DispathdeliveryComponent implements OnInit {
 
     routesData.OrderKey = this.DetailsData.OrderKey;
     routesData.OrderDetailKey = this.DetailsData.OrderDetailKey;
-    routesData.legtype = "0";
+    routesData.legtype = 0;
     routesData.Chassis = this.Chassis;
     routesData.legno = this.legno;
     routesData.actualarrival =this.actualarrival;

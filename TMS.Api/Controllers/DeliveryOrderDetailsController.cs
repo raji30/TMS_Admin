@@ -66,6 +66,15 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, orderdetailCollection, Configuration.Formatters.JsonFormatter);
         }
 
+        [HttpPut]
+        [Route("UpdateDOdetailStatus")]
+        [SwaggerOperation("UpdateDOdetailStatus")]
+        public HttpResponseMessage UpdateDOdetailStatus([FromBody]DeliveryOrderDetailBO objList)
+        {
+            var orderdetailCollection = doObj.UpdateDeliveryOrderDetailsStatus(objList);
+            return Request.CreateResponse(HttpStatusCode.OK, orderdetailCollection, Configuration.Formatters.JsonFormatter);
+        }
+
         //[HttpGet]
         //[Route("GetDrivers")]
         //public HttpResponseMessage GetDriversList()

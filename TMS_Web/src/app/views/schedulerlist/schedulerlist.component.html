@@ -1,56 +1,4 @@
 <br>
-<!-- <div class="row" *ngIf="HeaderData && dataShow">
-  <div class="col-md-3">
-    <div class="card text-white border-secondary ">
-      <div class="card-body">
-        <h5 class="card-subtitle mb-2" style="color: black">Order# : <span style="color: #0892d0">{{HeaderData.OrderNo}}
-          </span> </h5>
-        <p class="card-subtitle mb-2" style="color: black"> Date : <span
-            style="color: #0892d0">{{HeaderData.OrderDate}}</span></p>
-        <p class="card-subtitle mb-2" style="color:black"> Type : <span
-            style="color: #0892d0">{{HeaderData.ordertypedescription}}</span></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card text-white border-secondary">
-      <div class="card-body">
-        <p class="card-subtitle mb-2" style="color:black"> Broker : <span
-            style="color: #0892d0">{{HeaderData.BrokerName}}</span></p>
-        <p class="card-subtitle mb-2" style="color:black"> Broker Ref# : <span
-            style="color: #0892d0">{{HeaderData.BrokerRefNo}}</span></p>
-        <p class="card-subtitle mb-2" style="color:black"> Booking# :<span style="color: #0892d0">
-            {{HeaderData.BookingNo}}</span></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card text-white border-secondary">
-      <div class="card-body">
-        <p class="card-subtitle mb-2" style="color:black"> Vessel : <span
-            style="color: #0892d0">{{HeaderData.VesselName}}</span></p>
-        <p class="card-subtitle mb-2" style="color:black"> Bill of Lading : <span
-            style="color: #0892d0">{{HeaderData.BillofLading}} </span></p>
-        <p class="card-subtitle mb-2" style="color:black"> Cut-Off Date : <span
-            style="color: #0892d0">{{HeaderData.CutOffDate|date}}</span></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card text-white border-secondary">
-      <div class="card-body">
-        <p class="card-subtitle mb-2" style="color:grey"> Pickup : <span class="badge badge-pill badge-primary"
-            style="color:black">{{HeaderData.BillToAddressBO.Name}} , {{HeaderData.BillToAddressBO.Address1}}</span></p>
-        <p class="card-subtitle mb-2" style="color:grey"> Consignee : <span class="badge badge-pill badge-primary"
-            style="color:black"></span></p>
-        <p class="card-subtitle mb-2" style="color:grey"> Return : <span class="badge badge-pill badge-primary"
-            style="color:black"></span></p>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
 <div class="row">
   <div class="col-sm-2 col-md-2 col-lg-2 border-right ScrollStyle">
     <nav class="navbar-default navbar-static-side" role="navigation" *ngIf="DetailsData.length > 0">
@@ -71,15 +19,17 @@
         </ul> -->
 
         <ul class="list-unstyled">
-          <li> 
-            
+          <li>
+
             <h5>Containers <span class="badge badge-dark">Recent</span></h5><br>
           </li>
           <li *ngFor="let data of DetailsData">
             <ul>
-              <li><p style="font-family:calibri;"><a [routerLink]="" (click)="rowclickEvent(data)">
-                  {{ data.ContainerNo }}</a>  <span class="badge" *ngIf="selectedKey===data.OrderKey">
-                  <img src="assets/img/brand/symbol-check16px.png" /> </span> </li>
+              <li>
+                <p style="font-family:calibri;"><a [routerLink]="" (click)="rowclickEvent(data)">
+                    {{ data.ContainerNo }}</a> <span class="badge" *ngIf="selectedKey===data.OrderDetailKey">
+                    <img src="assets/img/brand/green_tick16px.png" /> </span>
+              </li>
             </ul>
           </li>
         </ul>
@@ -92,114 +42,170 @@
         <h6 class="card-subtitle mb-2" style="color: black">
           <img src="assets/img/brand/overtime24px.png" /> Scheduler</h6>
       </div>
-      <div class="col-sm-8 col-md-8 col-lg-8 ">
+      <div class="col-sm-6 col-md-6 col-lg-6 ">
 
       </div>
+      <div class="col-sm-2 col-md-2 col-lg-2 text-right">
+        <button class="btn btn-primary btn-sm small" type="button" (click)="onSubmit()">Schedule</button>
+      </div>
     </div>
-
+    <br>
     <div *ngIf="showScheduler">
-      <!-- <div class="row">
-        <div class="col-sm-3 col-md-3 col-lg-3">
-          <span class="badge badge-pill badge-secondary">Order Detail</span> <br>
-          <span class="text-muted" style="color: black">Order# </span>
-          <span> <b>{{HeaderData.OrderNo}}</b> </span> <br><br>
+      <div class="row" *ngIf="showSchedulerDiv">
 
-          <span class="text-muted" style="color: black"> Date </span>
-          <span> <b>{{HeaderData.OrderDate|date}}</b></span><br><br>
-
-          <span class="text-muted" style="color:black"> Type </span>
-          <span> <b>{{HeaderData.ordertypedescription}}</b></span><br><br>
-
-
-          <span class="text-muted" style="color:black"> Broker </span>
-          <span> <b>{{HeaderData.BrokerName}} </b></span><br><br>
-
-          <span class="text-muted" style="color:black"> Broker Ref# </span>
-          <span> <b>{{HeaderData.BrokerRefNo}} </b></span><br><br>
-
-          <span class="text-muted" style="color:black"> Booking# </span>
-          <span> <b>{{HeaderData.BookingNo}} </b></span> <br><br>
-
-          <span class="text-muted" style="color:black"> Vessel </span>
-          <span> <b>{{HeaderData.VesselName}} </b></span><br><br>
-
-          <span class="text-muted" style="color:black"> Bill of Lading </span>
-          <span> <b>{{HeaderData.BillofLading}} </b></span><br><br>
-
-          <span class="text-muted" style="color:black"> Cut-Off Date </span>
-          <span> <b>{{HeaderData.CutOffDate|date}} </b></span> <br><br>
-        </div>
-        <div class="col-sm-3 col-md-3 col-lg-3">
-
-          <span class="badge badge-pill badge-secondary">BillTo</span>
-          <span> {{HeaderData.BillToAddressBO.Name}}</span>
-          <br>
-          <span> {{HeaderData.BillToAddressBO.Address1}}, {{HeaderData.BillToAddressBO.Address2}} </span>
-          <br>
-          <span> {{HeaderData.BillToAddressBO.City}} - {{HeaderData.BillToAddressBO.Zip}} </span>
-          <br>
-          <span> {{HeaderData.BillToAddressBO.State}}</span> <br>
-
-          <span class="badge badge-pill badge-secondary">Pickup</span>
-          <span> {{HeaderData.SourceAddressBO.Name}}</span>
-          <br>
-          <span> {{HeaderData.SourceAddressBO.Address1}}, {{HeaderData.SourceAddressBO.Address2}} </span>
-          <br>
-          <span> {{HeaderData.SourceAddressBO.City}} - {{HeaderData.SourceAddressBO.Zip}} </span>
-          <br>
-          <span> {{HeaderData.SourceAddressBO.State}}</span> <br>
-
-          <span class="badge badge-pill badge-secondary">Delivery</span>
-          <span> {{HeaderData.DestinationAddressBO.Name}}</span>
-          <br>
-          <span> {{HeaderData.DestinationAddressBO.Address1}}, {{HeaderData.DestinationAddressBO.Address2}} </span>
-          <br>
-          <span> {{HeaderData.DestinationAddressBO.City}} - {{HeaderData.DestinationAddressBO.Zip}} </span>
-          <br>
-          <span> {{HeaderData.DestinationAddressBO.State}}</span> <br>
-
-          <span class="badge badge-pill badge-secondary">Return</span>
-          <span> {{HeaderData.ReturnAddressBO.Name}}</span>
-          <br>
-          <span> {{HeaderData.ReturnAddressBO.Address1}}, {{HeaderData.ReturnAddressBO.Address2}} </span>
-          <br>
-          <span> {{HeaderData.ReturnAddressBO.City}} - {{HeaderData.ReturnAddressBO.Zip}} </span>
-          <br>
-          <span> {{HeaderData.ReturnAddressBO.State}}</span> <br> <br>
-
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-6">
-         
-          <span class="badge badge-pill badge-secondary">Container Detail</span> <br>
+        <div class="col-sm-8 col-md-8 col-lg-8">
           <div class="row">
-            <div class="col-sm-2 col-md-2 col-lg-2">
-              <span class="text-muted"> Container </span><br>
-              <span><b>{{DetailData.ContainerNo}}</b></span>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">AppDate From</span>
+                </div>
+                <input type="text" placeholder="ApptDate From" class="form-control form-control-sm" name="AppDateFrom"
+                  [(ngModel)]="AppDateFrom" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" />
+                <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+              </div>
             </div>
-
-            <div class="col-sm-2 col-md-2 col-lg-2">
-              <span class="text-muted"> Size </span><br>
-              <span><b>{{DetailData.ContainerSizeDesc}} </b></span>
-            </div>
-
-            <div class="col-sm-2 col-md-2 col-lg-2">
-              <span class="text-muted"> Chassis </span><br>
-              <span><b>{{DetailData.Chassis}}</b></span>
-            </div>
-
-            <div class="col-sm-2 col-md-2 col-lg-2">
-              <span class="text-muted"> Seal# </span><br>
-              <span><b>{{DetailData.SealNo}} </b></span>
-            </div>
-
-            <div class="col-sm-2 col-md-2 col-lg-2">
-              <span class="text-muted"> Weight </span><br>
-              <span><b> {{DetailData.Weight}}</b></span>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">AppDate To</span>
+                </div>
+                <input type="text" placeholder="ApptDate To" class="form-control form-control-sm" name="AppDateTo"
+                  [(ngModel)]="AppDateTo" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" />
+                <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+              </div>
             </div>
           </div>
-        </div>
-      </div> -->
+          <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Pickup</span>
+                </div>
+                <input class="form-control form-control-sm" placeholder="Pickup DateTime" type="text"
+                  name="PickupDateTime" [(ngModel)]="PickupDateTime" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3"
+                  required />
+                <owl-date-time [pickerType]="'both'" #dt3 [hour12Timer]="false"></owl-date-time>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">DropOff</span>
+                </div>
+                <input class="form-control  form-control-sm" type="text" placeholder="DropOff DateTime"
+                  name="DropOffDateTime" [(ngModel)]="DropOffDateTime" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" />
+                <owl-date-time [pickerType]="'both'" #dt4></owl-date-time>
+              </div>
+            </div>
+          </div>
 
+          <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Last Free day </span>
+                </div>
+                <input class="form-control  form-control-sm" type="text" placeholder="Last free day" name="LastFreeDay"
+                  [(ngModel)]="LastFreeDay" [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" />                 
+                <owl-date-time [pickerType]="'calendar'" #dt5></owl-date-time>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Leg Type</span>
+                </div>
+                <!-- <select id="drpStatus" class="form-control form-control-sm" placeholder="legtype" name="legtype"
+                      [(ngModel)]="legtype">
+                      <option [(value)]="leg.Value" *ngFor="let leg of statuslist">{{leg.Name}}</option>
+                    </select> -->
+
+                <select id="drpStatus" class="browser-default custom-select" placeholder="Legtype" name="Legtype"
+                  [(ngModel)]="Legtype">
+                  <!-- <option [(value)]="f8ddd2e8-f6f4-11e9-95f6-dbd2245f3061">L</option>
+                      <option [(value)]="fa3dbfb8-f6f4-11e9-95f7-978271f9febc">D</option>
+                      <option [(value)]="fb93dc9e-f6f4-11e9-95f8-0f4bc41ca26f">D/S</option> -->
+                  <option [value]='1'>L</option>
+                  <option [value]="2">D</option>
+                  <option [value]="3">D/S</option>
+
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label for="SealNo">Driver Notes</label>
+                    
+                    <textarea class="form-control" rows="3" id="DriverNotes" placeholder="Driver Notes"
+                    [(ngModel)]="DriverNotes" name="DriverNotes"></textarea>
+                </div>
+
+              <!-- <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"> Driver Notes</span>
+                </div>
+                <input class="form-control form-control-sm" placeholder="DriverNotes" type="text" name="DriverNotes"
+                  [(ngModel)]="DriverNotes" />
+              </div> -->
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label for="SealNo">Scheduler Notes</label>                    
+                    <textarea class="form-control" rows="3" id="SchedulerNotes" placeholder="Scheduler Notes"
+                    [(ngModel)]="SchedulerNotes" name="SchedulerNotes"></textarea>
+                </div>
+              <!-- <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"> Scheduler Notes</span>
+                </div>
+                <input class="form-control form-control-sm" placeholder="SchedulerNotes" type="text"
+                  name="SchedulerNotes" [(ngModel)]="SchedulerNotes" />
+              </div> -->
+            </div>
+          </div>
+          <!-- 
+          <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Status</span>
+                </div>
+                <select id="drpStatus" class="form-control form-control-sm" placeholder="Status" name="status"
+                  [(ngModel)]="status">
+                  <option [(value)]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">             
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6"></div>
+            <div class="col-sm-6 col-md-6 col-lg-6"></div>
+          </div>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <div class="row">            
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <label for="SealNo"> <b> Accounting Options:</b></label>
+              <div class="checkbox" *ngFor="let list of itemlist">
+                <label>
+                  <input type="checkbox" value="{{list.itemkey}}" (change)="onCheckboxChange(list,$event)">
+                  {{list.itemid}} </label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <br>
       <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
           <div class="row">
@@ -402,50 +408,14 @@
                     <h6 class="panel-title">Comments</h6>
                   </div>
                   <div class="card alert-success text-center p-3">
-                    <small> 
-                    <p>{{HeaderData.Comment}}</p>
-                  </small>
+                    <small>
+                      <p>{{HeaderData.Comment}}</p>
+                    </small>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <br>
-      <div class="row" *ngIf="showSchedulerDiv">
-        <div class="col-sm-2 col-md-2 col-lg-2">
-          <input type="text" placeholder="ApptDate From" class="form-control form-control-sm" name="AppDateFrom"
-            [(ngModel)]="AppDateFrom" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" />
-          <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-          <input type="text" placeholder="ApptDate To" class="form-control form-control-sm" name="AppDateTo"
-            [(ngModel)]="AppDateTo" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" />
-          <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
-
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-          <input class="form-control form-control-sm" placeholder="Pickup DateTime" type="text" name="PickupDateTime"
-            [(ngModel)]="PickupDateTime" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" required />
-          <owl-date-time [pickerType]="'both'" #dt3 [hour12Timer]="false"></owl-date-time>
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-
-          <input class="form-control  form-control-sm" type="text" placeholder="DropOff DateTime" name="DropOffDateTime"
-            [(ngModel)]="DropOffDateTime" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" />
-          <owl-date-time [pickerType]="'both'" #dt4></owl-date-time>
-
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-          <select id="drpStatus" class="form-control form-control-sm" placeholder="Status" name="status"
-            [(ngModel)]="status">
-            <option [(value)]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>
-          </select>
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-          <button class="btn btn-primary btn-sm small" type="button" (click)="onSubmit()">Schedule</button>
         </div>
       </div>
 

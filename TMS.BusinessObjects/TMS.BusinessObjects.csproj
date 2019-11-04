@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountingBO.cs" />
     <Compile Include="AddressBO.cs" />
     <Compile Include="BrokerBO.cs" />
     <Compile Include="CarrierBO.cs" />

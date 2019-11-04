@@ -10,13 +10,17 @@ namespace TMS.BusinessObjects
     {
         public Guid CustomerKey { get; set; }
         public string CustId { get; set; }
-        public string CustName { get; set; }
-        public AddressBO Address { get; set; }
+        public string CustName { get; set; }    
         public Int16 Status { get; set; }
         public Int16? CustomerGroup { get; set; }
         public DateTime StatusDate { get; set; }
-        public bool CreditCheck { get; set; }
+        public bool? CreditCheck { get; set; }
         public decimal? CreditLimit { get; set; }
         public Int16? CreditStatus { get; set; }
+        public Nullable<bool> achrequired { get; set; }
+        public Nullable<short> paymentterms { get; set; }
+        public AddressBO Address { get; set; }
+        public Guid addrkey { get; set; }
+        
     }
 }

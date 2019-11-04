@@ -11,6 +11,8 @@ export class Customer {
   CreditCheck: boolean;
   CreditLimit: number;
   CreditStatus: number;
+  achrequired:boolean;
+  paymentterms :number;
   Address = Address;
   customer_edit: Address;
 }

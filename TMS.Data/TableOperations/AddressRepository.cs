@@ -56,6 +56,7 @@ namespace TMS.Data.TableOperations
             addresstoUpdate.fax = t.fax;
             addresstoUpdate.phone = t.phone;
             addresstoUpdate.website = t.website;
+            addresstoUpdate.country = t.country;
             entities.SaveChanges();
             return true;
         }

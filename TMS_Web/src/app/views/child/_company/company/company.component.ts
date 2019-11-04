@@ -1,17 +1,16 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { Address } from '../../../../_models/address';
-import { AddressService } from '../../../../_services/address.service';
-import { MasterService } from '../../../../_services/master.service';
+import { Component, OnInit, EventEmitter, Input, Output } from "@angular/core";
+import { Address } from "../../../../_models/address";
+import { AddressService } from "../../../../_services/address.service";
+import { MasterService } from "../../../../_services/master.service";
 
 @Component({
-  selector: 'app-company',
-  templateUrl: './company.component.html',
-  styleUrls: ['./company.component.scss']
+  selector: "app-company",
+  templateUrl: "./company.component.html",
+  styleUrls: ["./company.component.scss"]
 })
 export class CompanyComponent implements OnInit {
-
   billtoCustomerName: string = "Select";
-  AddrName: string = "Customer";
+  AddrName: string = "";
   customer: Address[];
   addressTobind: Address = new Address();
 
@@ -20,16 +19,12 @@ export class CompanyComponent implements OnInit {
   @Input() addressKeyTobind: string;
   @Output() CustomerSelectedOutput = new EventEmitter<string>();
   @Output() OrdernoGenerated = new EventEmitter<string>();
- 
+
   customercount: any;
   Orderno: any;
 
   selectedCustomer: Address = new Address();
-  constructor(
-    private service: AddressService,
-    private master: MasterService,
-    
-  ) {}
+  constructor(private service: AddressService, private master: MasterService) {}
 
   ngOnInit() {
     console.log(this.addressKeyTobind);
@@ -65,12 +60,11 @@ export class CompanyComponent implements OnInit {
         error => console.log(error),
         () => console.log("Get customer complete")
       );
-
     }
 
     if (this.AddressType === 1) {
       this.AddrName = "Consignee";
-    }    
+    }
     if (this.AddressType === 2) {
       this.AddrName = "Pick-up   ";
     }
@@ -80,8 +74,6 @@ export class CompanyComponent implements OnInit {
     if (this.AddressType === 4) {
       this.AddrName = "Return   ";
     }
-   
-    
   }
 
   onSelect(CustomerSelected: Address): void {

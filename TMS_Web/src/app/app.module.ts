@@ -78,6 +78,7 @@ import { VendorlistComponent } from "./views/_master/_vendor/vendorlist/vendorli
 import { BrokerlistComponent } from "./views/_master/_broker/brokerlist/brokerlist/brokerlist.component";
 import { CarrierlistComponent } from "./views/_master/_carrier/carrierlist/carrierlist.component";
 import { InvoiceComponent } from "./views/invoice/invoice/invoice.component";
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -97,6 +98,7 @@ import { InvoiceComponent } from "./views/invoice/invoice/invoice.component";
     ProgressbarModule.forRoot(),
     ToastrModule.forRoot(),
     TabsModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,

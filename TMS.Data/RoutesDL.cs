@@ -19,6 +19,49 @@ namespace TMS.Data
         {
             connection = new NpgsqlConnection(connString);
         }
+
+        public IList<Guid> AddRoutes(RoutesBO obj)
+        {
+            //routekey, orderdetailkey, orderkey, legno, legtype, sourceaddrkey, destinationaddrkey,
+            //estimateddistanceinmiles, estimatedtraveltime, status, driverkey, 
+            //scheduledarrival, scheduleddeparture, odometeratsource, actualarrival, 
+            //actualdeparture, odometeratdestination
+
+            var RouteDetailCollection = new List<Guid>();
+            string sql = "dbo.fn_insert_tms_route_details";
+            using (connection)
+            {
+                connection.Open();
+                //foreach (var obj in objList)
+                //{
+                using (var cmd = new NpgsqlCommand(sql, connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("_orderkey",NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderKey);
+                    cmd.Parameters.AddWithValue("_orderdetailkey",NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderDetailKey);                   
+                    cmd.Parameters.AddWithValue("_drivernotes", NpgsqlTypes.NpgsqlDbType.Varchar, obj.drivernotes);
+                    cmd.Parameters.AddWithValue("_scheduledarrival", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.scheduledarrival);
+                    cmd.Parameters.AddWithValue("_scheduleddeparture", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.scheduleddeparture);
+                    //cmd.Parameters.AddWithValue("_scheduledarrival", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(obj.scheduleddeparture, System.Globalization.CultureInfo.InvariantCulture));
+                    //cmd.Parameters.AddWithValue("_scheduleddeparture", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(obj.scheduleddeparture, System.Globalization.CultureInfo.InvariantCulture));
+
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            var RouteDetailID = Guid.Parse(reader[i].ToString());
+                            RouteDetailCollection.Add(RouteDetailID);
+                        }
+                    }
+                }
+                // }
+                connection.Close();
+            }
+            return RouteDetailCollection;
+        }
         public IList<Guid> InsertRouteData(RoutesBO obj)
         {
             //routekey, orderdetailkey, orderkey, legno, legtype, sourceaddrkey, destinationaddrkey,

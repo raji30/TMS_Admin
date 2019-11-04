@@ -98,106 +98,109 @@
     </div>
 </form>
 <br> -->
-<div class="form-row" [hidden]="!isContainerAttributeVisible">
-        <div class="form-group col-md-11">
-                <div   class="table-responsive" style="overflow-x: auto" bg-dark>
-                        <table id="containerAttributes" class="table table-sm bg-secondary" cellspacing="0" width="100%" >
-                            <thead>
-                                <tr align="center">
-                                    <th scope="col">Container#</th>
-                                    <th scope="col"> Size</th>
-                                    <th scope="col">Chassis#</th>
-                                    <th scope="col">Seal#</th>
-                                    <th scope="col">Weight</th>
-                                    <!-- <th scope="col">appt From</th>
-                                    <th scope="col">appt To</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Status Date</th>
-                                    <th scope="col">Hold Reason</th>
-                                    <th scope="col">Date</th>-->
-                                    <th scope="col">Action</th> 
-                    
-                                </tr>
-                            </thead>
-                            <tbody >
-                                <tr align="center" *ngFor="let field of ContainerDetails; let i = index">
-                                                 <td> <input [(ngModel)]="field.ContainerNo" class="form-control form-control-sm "
-                                                type="text" name="{{field.ContainerNo}}" /> </td>
-                                    <td>
-                                        <select id="drpcontainerType" class="form-control form-control-sm "
-                                            aria-placeholder="ContainerSize" name="{{field.ContainerSize}}" [(ngModel)]="field.ContainerSize">
-                                                            
-                                            <option [value]="container.containersize" *ngFor="let container of containersizelist">{{container.description}}</option>
-                               
-                                        </select>
-                                    </td>
-                    
-                                    <td> <input [(ngModel)]="field.Chassis" class="form-control form-control-sm" type="text"
-                                            name="{{field.Chassis}}" /></td>
-                                    <td> <input [(ngModel)]="field.SealNo" class="form-control form-control-sm " type="text"
-                                            name="{{field.SealNo}}" /></td>
-                                    <td> <input [(ngModel)]="field.Weight" class="form-control form-control-sm " type="text"
-                                            name="{{field.Weight}}" /></td>
-                                    <!-- <td>
-                                        <input type="text" bsDatepicker [bsConfig]="bsConfig" name="{{field.AppDateFrom}}" 
-                                            [(ngModel)]="field.AppDateFrom" class="form-control form-control-sm text-primary" />
-                                    </td>
-                                    <td>
-                                        <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.AppDateTo"
-                                            class="form-control form-control-sm text-primary" name="{{field.AppDateTo}}" />
-                                    </td>
-                                    <td> <input [(ngModel)]="field.Status" class="form-control form-control-sm text-primary" type="text"
-                                            name="{{field.Status}}" /></td>
-                                    <td> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.StatusDate"
-                                            class="form-control form-control-sm text-primary" name="{{field.StatusDate}}" /></td>
-                                    <td> <input [(ngModel)]="field.HoldReason" class="form-control form-control-sm text-primary" type="text"
-                                            name="{{field.HoldReason}}" /></td>
-                                    <td> <input type="text" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="field.HoldDate"
-                                            class="form-control form-control-sm text-primary" name="{{field.HoldDate}}" /></td> -->
-                                    <td>
-                                        <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)"><img src="assets/img/brand/trash-icon16px.png" /></button>
-                                    </td>
-                                </tr>
-                                <!-- <tr>
-                                        <td>  <input class="form-control" type="text" id="newcontainerSize" [(ngModel)]="newAttribute.containerSize" name="containerSize" /> </td>           
-                                        <td>
-                                            <select id="drpnewcontainerType" class="form-control" aria-placeholder="containerNo" name="containerNo"
-                                            [(ngModel)]="newAttribute.containerNo">
-                                              <option value=1>20DRY</option>
-                                              <option value=2>40DRY</option>  
-                                              <option value=3>40HDRY</option>
-                                              <option value=4>45HDRY</option>
-                                              <option value=5>20OPEN</option>
-                                              <option value=6>40OPEN</option>
-                                              <option value=7>20FLAT</option>
-                                              <option value=8>40FLAT</option>                                 
-                                            </select>
-                                        </td>          
-                                        <td>  <input class="form-control" type="text" id="newchassis" [(ngModel)]="newAttribute.chassis" name="chassis" /></td>           
-                                        <td>  <input class="form-control" type="text" id="newseaNo" [(ngModel)]="newAttribute.sealNo" name="seaNo" /></td>          
-                                        <td> <input [(ngModel)]="newAttribute.weight" class="form-control" type="text" name="weight" /></td>           
-                                         <td> <input [(ngModel)]="newAttribute.apptdatefrom" class="form-control" type="date" name="apptdatefrom" /></td>           
-                                        <td> <input [(ngModel)]="newAttribute.apptdateto" class="form-control" type="date" name="apptdateto" /></td>          
-                                        <td>  <input [(ngModel)]="newAttribute.status" class="form-control" type="text" name="status" /></td>           
-                                        <td>  <input [(ngModel)]="newAttribute.statusdate" class="form-control" type="date" name="statusdate"/></td>            
-                                        <td>  <input [(ngModel)]="newAttribute.holdreason" class="form-control" type="text" name="holdreason" /></td>            
-                                        <td>  <input [(ngModel)]="newAttribute.holddate" class="form-control" type="date" name="holddate" /></td>  
-                                        <td>
-                                            <button class="btn btn-default" type="button" (click)="addFieldValue()">Add</button>
-                                        </td>
-                                    </tr> -->
-                            </tbody>
-                        </table>
-                    </div>   
+<div class="row" [hidden]="!isContainerAttributeVisible">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+            <div class="form-group col-sm-2 col-md-2 col-lg-2">
+                <label for="ContainerNo">Container</label>
+                <input class="form-control form-control-sm " type="text" aria-placeholder="Container"
+                    [(ngModel)]="ContainerNo" />
             </div>
-        
-        <div class="form-group col-md-1">
-            <button type="button" class="btn btn-outline-secondary btn-sm" 
-                (click)="addFieldValue()">+</button>
+            <div class="form-group col-sm-1 col-md-1 col-lg-1">
+                <label for="ContainerSize">Size</label>
+                <select id="drpcontainerType" class="form-control form-control-sm " aria-placeholder="ContainerSize"
+                    [(ngModel)]="ContainerSize" (change)="drpcontainersizeChanged($event.target.value)">
+                    <option [value]="container.containersize" *ngFor="let container of containersizelist">
+                        {{container.description}}</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-2 col-md-2 col-lg-2">
+                <label for="Chassis">Chassis</label>
+                <input class="form-control form-control-sm" type="text" aria-placeholder="Chassis"
+                    [(ngModel)]="Chassis" />
+            </div>
+            <div class="form-group col-sm-2 col-md-2 col-lg-2">
+                <label for="SealNo">SealNo</label>
+                <input class="form-control form-control-sm " type="text" aria-placeholder="SealNo"
+                    [(ngModel)]="SealNo" />
+            </div>
+            <div class="form-group col-sm-1 col-md-1 col-lg-1">
+                <label for="Weight">Weight</label>
+                <input class="form-control form-control-sm " type="text" aria-placeholder="Weight"
+                    [(ngModel)]="Weight" />
+            </div>
+            <div class="form-group col-sm-3 col-md-3 col-lg-3">
+                <label for="Comments">Comments</label>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <input type="checkbox" value="Hazard" [(ngModel)]="Comments" id="Hazard"
+                            (change)="Checkbox1_Change($event)" /> <label><small> Hazard</small></label><br>
+                        <input type="checkbox" value="Over weight" [(ngModel)]="overweight" id="Overweight"
+                            (change)="Checkbox2_Change($event)" /><label> <small> Over weight</small></label>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6">
+                        <input type="checkbox" value="Triaxle" [(ngModel)]="trixale" id="Triaxle"
+                            (change)="Checkbox3_Change($event)" /><label> <small>Triaxle</small></label><br>
+                        <input type="checkbox" value="Needs to be scaled" [(ngModel)]="needstobescaled"
+                            id="Needstobescaled" (change)="Checkbox4_Change($event)" /><label><small> Needs to be
+                            scaled</small></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-1 col-md-1 col-lg-1">
+                <label for="Comments"></label> <br>
+                <button type="button" class="btn btn-secondary btn-sm" (click)="add()">+</button>
+            </div>
+        </div>
+
+        <div class="table-responsive" style="overflow-x: auto" *ngIf="ContainerDetails.length>0">
+            <table id="containerAttributes" class="table table-sm table-borderless bg-light" cellspacing="0"
+                width="100%">
+                <thead>
+                    <tr>
+                        <th scope="col">Container#</th>
+                        <th scope="col" hidden="true"> Size</th>
+                        <th scope="col"> Size</th>
+                        <th scope="col">Chassis#</th>
+                        <th scope="col">Seal#</th>
+                        <th scope="col">Weight</th>
+                        <th scope="col">Comment</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr align="center" *ngFor="let field of ContainerDetails; let i = index">
+                        <td> <input [(ngModel)]="field.ContainerNo" class="form-control form-control-sm " type="text"
+                                name="{{field.ContainerNo}}" /> </td>
+                        <td hidden="true">
+
+                            <input [(ngModel)]="field.ContainerSize" class="form-control form-control-sm" type="text"
+                                name="{{field.ContainerSize}}" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="field.containerSizeDesc" class="form-control form-control-sm"
+                                type="text" name="{{field.containerSizeDesc}}" />
+                        </td>
+                        <td> <input [(ngModel)]="field.Chassis" class="form-control form-control-sm" type="text"
+                                name="{{field.Chassis}}" /></td>
+                        <td> <input [(ngModel)]="field.SealNo" class="form-control form-control-sm " type="text"
+                                name="{{field.SealNo}}" /></td>
+                        <td> <input [(ngModel)]="field.Weight" class="form-control form-control-sm " type="text"
+                                name="{{field.Weight}}" /></td>
+                        <td>
+                            <input [(ngModel)]="field.Comments" class="form-control form-control-sm " type="text"
+                                name="{{field.Comments}}" />
+                        </td>
+                        <td>
+                            <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)"><img
+                                    src="assets/img/brand/trash-icon16px.png" /></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-<!-- <div *ngIf="!ContainerDetails|| ContainerDetails.length === 0" class="row">
-       <p>No customer found </p> 
-       *ngIf="ContainerDetails ||ContainerDetails.length > 0"
-</div>  -->
-
+    <!-- <div class="col-sm-1 col-md-1 col-lg-1">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="addFieldValue()">+</button>
+    </div> -->
+</div>

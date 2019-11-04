@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountingDL.cs" />
     <Compile Include="address.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>

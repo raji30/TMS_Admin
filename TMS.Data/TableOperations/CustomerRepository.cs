@@ -45,15 +45,18 @@ namespace TMS.Data.TableOperations
         public bool Update(customer t)
         {
             var customer = GetbyId(t.custkey);
-            if (customer != null) {
+            if (customer != null)
+            {
                 customer.custid = t.custid;
-            customer.custname = t.custname;
-            customer.customergroup = t.customergroup;
-            customer.status = t.status;
-            customer.creditlimit = t.creditlimit;
-            customer.creditstatus = t.creditstatus;
-            entity.SaveChanges();
-            return true;
+                customer.custname = t.custname;
+                customer.customergroup = t.customergroup;
+                customer.status = t.status;
+                customer.creditlimit = t.creditlimit;
+                customer.creditstatus = t.creditstatus;
+                customer.achrequired = t.achrequired;
+                customer.paymentterms = t.paymentterms;
+                entity.SaveChanges();
+                return true;
             }
             return false;
         }

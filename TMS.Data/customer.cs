@@ -33,7 +33,10 @@ namespace TMS.Data
         public Nullable<decimal> creditlimit { get; set; }
         public Nullable<short> creditstatus { get; set; }
         public Nullable<bool> creditcheck { get; set; }
-    
+        public Nullable<bool> achrequired { get; set; }
+        public Nullable<short> paymentterms { get; set; }
+
+
         public virtual address address { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<customeraddress> customeraddresses { get; set; }

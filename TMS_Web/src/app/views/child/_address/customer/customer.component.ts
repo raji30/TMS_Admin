@@ -10,7 +10,7 @@ import { Address } from "../../../../_models/address";
 import { AddressService } from "../../../../_services/address.service";
 import { MasterService } from "../../../../_services/master.service";
 import { CustomerService } from "../../../../_services/customer.service";
-import { Customer } from './../../../../_models/customer';
+import { Customer } from "./../../../../_models/customer";
 
 @Component({
   selector: "app-customer",
@@ -18,7 +18,7 @@ import { Customer } from './../../../../_models/customer';
   styleUrls: ["./customer.component.scss"]
 })
 export class CustomerComponent implements OnInit {
-  billtoCustomerName: string = "Select"; 
+  billtoCustomerName: string = "";
   customer: Customer[];
   addressTobind: Address = new Address();
 
@@ -30,20 +30,22 @@ export class CustomerComponent implements OnInit {
 
   customercount: any;
   Orderno: any;
+  creditCheck: boolean;
 
   selectedCustomer: Customer = new Customer();
-  constructor(private service:CustomerService ,
-    private master: MasterService, 
+  constructor(
+    private service: CustomerService,
+    private master: MasterService
   ) {}
 
-  ngOnInit() {    
+  ngOnInit() {
     this.service
       .getCustomers()
       .subscribe(
         data => (this.customer = data),
         error => console.log(error),
-        () => console.log("Get customer complete")
-      );   
+        () => console.log("Get customer complete", this.customer)
+      );
   }
 
   ngOnChanges() {
@@ -67,7 +69,8 @@ export class CustomerComponent implements OnInit {
   onSelect(CustomerSelected: Customer): void {
     this.selectedCustomer = CustomerSelected;
     this.billtoCustomerName = this.selectedCustomer.CustName;
-    console.log(this.selectedCustomer);
+    this.creditCheck = this.selectedCustomer.CreditCheck;
+    console.log("Customer Details with Address:", this.selectedCustomer);
 
     this.master.getMaxcount_Customer(this.selectedCustomer.CustName).subscribe(
       data => {
@@ -75,14 +78,29 @@ export class CustomerComponent implements OnInit {
 
         var year = new Date();
         var autono = this.pad(this.customercount + 1, 4);
-        this.Orderno =
-          this.selectedCustomer.CustName.substr(0, 2).toUpperCase() +
-          year
-            .getUTCFullYear()
-            .toString()
-            .substr(2, 2) +
-          autono;
 
+        let x = this.selectedCustomer.CustName.split(" ");
+        console.log("x[1].length", x.length);
+        if (x.length == 1) {
+          this.Orderno =
+            x[0].substr(0, 4).toUpperCase() +
+            year
+              .getUTCFullYear()
+              .toString()
+              .substr(2, 2) +
+            autono;
+          console.log("length is 1");
+        } else {
+          this.Orderno =
+            x[0].substr(0, 2).toUpperCase() +
+            x[1].substr(0, 2).toUpperCase() +
+            year
+              .getUTCFullYear()
+              .toString()
+              .substr(2, 2) +
+            autono;
+          console.log("length is > 1");
+        }
         this.CustomerSelectedOutput.emit(CustomerSelected.CustomerKey);
         this.OrdernoGenerated.emit(this.Orderno);
       },

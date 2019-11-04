@@ -43,6 +43,8 @@ export class DeliveryOrderService {
       })
     };
 
+    Orderdetails[0].CreatedBy = token.userId;
+
     return this.http.post<Order_details[]>(
       AppSettings._BaseURL + "DeliveryOrderDetails/",
       Orderdetails
@@ -125,6 +127,23 @@ export class DeliveryOrderService {
     
     return this.http.put<Order_details>(
       AppSettings._BaseURL + "UpdateDeliveryOrderDetails/",
+      Orderdetails
+    );
+  }
+ 
+
+  public UpdateDOdetailStatus(Orderdetails: Order_details) {
+    var token = JSON.parse(localStorage.getItem("currentUser"));
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.token
+      })
+    };
+    
+    return this.http.put<Order_details>(
+      AppSettings._BaseURL + "UpdateDOdetailStatus/",
       Orderdetails
     );
   }

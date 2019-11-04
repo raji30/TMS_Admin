@@ -3,7 +3,7 @@ export class Tms_routes {
   OrderDetailKey: string;
   OrderKey: string;
   legno: string;
-  legtype: string;
+  legtype: number;
   sourceaddrkey: string;
   destinationaddrkey: string;
   estimateddistanceinmiles: string;

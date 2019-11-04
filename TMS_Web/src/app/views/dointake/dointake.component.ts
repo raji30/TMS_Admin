@@ -79,7 +79,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   editmode = false;
   showDO = false;
   showImage = true;
-  
+
   selectedKey: string;
 
   orderNo: string;
@@ -87,6 +87,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   orderKey: string;
   selectedBillToKey = "";
   HolddropdownVisible = false;
+  showordernodate:boolean= false;
 
   myFiles: string[] = [];
   error: string;
@@ -137,19 +138,12 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.doHeader.orderdetails = Order_details;
   }
   onOrdernoGenerated(newOrderno: string) {
+    this.showordernodate = true;
     this.doHeader.OrderNo = newOrderno;
     this.doHeader.OrderDate = new Date(); //.toLocaleDateString();
   }
 
   ngOnInit(): void {
-    this.bsConfig = Object.assign(
-      {},
-      { containerClass: "theme-orange" },
-      { dateInputFormat: "MM/DD/YYYY" }
-    );
-    // this.bsConfig.containerClass = 'theme-orange';
-    // this.bsConfig.dateInputFormat = 'MM/DD/YYYY';
-
     this.doHeader = null;
     this.doHeader = new DeliveryOrderHeader();
     this.doHeader.orderdetails = new Array<Order_details>();
@@ -257,6 +251,22 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   OnSubmit(form) {
+    if (this.doHeader.CustKey == null || this.doHeader.CustKey == undefined||this.doHeader.CustKey=="") {
+      this.showError("Customer is required", "Header");
+      return;
+    }
+    if (this.doHeader.BillToAddress == null || this.doHeader.BillToAddress == undefined||this.doHeader.BillToAddress=="") {
+      this.showError("Consignee is required", "Header");
+      return;
+    }
+    if (this.doHeader.SourceAddress == null || this.doHeader.SourceAddress == undefined||this.doHeader.SourceAddress=="") {
+      this.showError("Pickup is required", "Header");
+      return;
+    }
+    if (this.doHeader.DestinationAddress == null || this.doHeader.DestinationAddress == undefined||this.doHeader.DestinationAddress=="") {
+      this.showError("Delivery is required", "Header");
+      return;
+    }
     if (this.isNewDeliveryOrder) {
       if (
         this.doHeader.orderdetails == null ||
@@ -401,11 +411,11 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   showSuccess(message: string, title: string) {
-    this.toastr.success(message, title, { timeOut: 4000, closeButton: true });
+    this.toastr.success(message, title, { timeOut: 2000, closeButton: true });
   }
 
   showError(message: string, title: string) {
-    this.toastr.error(message, "Oops!", { timeOut: 4000, closeButton: true });
+    this.toastr.error(message, title, { timeOut: 2000, closeButton: true });
   }
 
   showWarning(message: string, title: string) {
@@ -413,7 +423,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   showInfo(message: string, title: string) {
-    this.toastr.info(message, title, { timeOut: 4000, closeButton: true });
+    this.toastr.info(message, title, { timeOut: 2000, closeButton: true });
   }
 
   showToast(position: any = "top-left") {

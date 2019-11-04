@@ -4,18 +4,17 @@
     <div class="col-sm-2 col-md-2 col-lg-2 border-right ScrollStyle">
       <ul class="list-unstyled">
         <li>
-          <!-- <span class="alert-warning" style="color:darkgray"> Recent
-            orders</span> -->
-
-            <h5>Deliver Orders <span class="badge badge-dark">Recent</span></h5><br>
+          <h5>Deliver Orders <span class="badge badge-dark">Recent</span></h5><br>
         </li>
         <li *ngFor="let order of Orderlist| slice:0:25; let ind=index;">
           <ul>
-            <li> <p style="font-family:calibri;"> <a [routerLink]="" (click)="getOrderInfo(order.OrderKey)">
-                {{ order.OrderNo }} - {{order.ordertypedescription}} <span class="badge"
-                  *ngIf="selectedKey===order.OrderKey">
-                  <img src="assets/img/brand/symbol-check16px.png" /> </span></a> 
-                </p></li>
+            <li>
+              <p style="font-family:calibri;"> <a [routerLink]="" (click)="getOrderInfo(order.OrderKey)">
+                  {{ order.OrderNo }} - {{order.ordertypedescription}} <span class="badge"
+                    *ngIf="selectedKey===order.OrderKey">
+                    <img src="assets/img/brand/green_tick16px.png" /> </span></a>
+              </p>
+            </li>
           </ul>
         </li>
       </ul>
@@ -31,8 +30,8 @@
           <div class="row ">
             <div class="col-md-10"> </div>
             <div class="col-md-2 text-right" *ngIf="btnShowcreateNewOrder">
-              <button type="button" class="btn btn-primary btn-sm" (click)="createNewOrder()">Create New
-                Order</button>
+              <button type="button" class="btn btn-primary btn-sm" (click)="createNewOrder()">Create new
+                order</button>
             </div>
           </div>
         </div>
@@ -41,39 +40,10 @@
       <div class="row" *ngIf="isNewDeliveryOrder">
         <div class="col-sm-12 col-md-12 col-lg-12" [class.disabled]="editmode">
           <form (ngSubmit)="f.form.valid && OnSubmit(f)" #f="ngForm" novalidate>
-            <!-- <div class="card"> -->
-            <!-- <div class="card-header" id="headingOne">
-                  <h5 class="mb-0">
-                    <p class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                      aria-controls="collapseOne">
-                      Do Header
-                    </p>
-                  </h5>
-                </div> -->
-
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-6 col-md-6 col-lg-6"> </div>
-                  <div class="col-sm-6 col-md-6 col-lg-6">
-                    <div class="container text-right">
-                      <button class="btn btn-primary btn-sm" type="submit">
-                        <i class="fa fa-database" aria-hidden="true"></i>&nbsp; Create Order</button> &nbsp;
-                      <!-- 
-                            <button class="btn btn-warning btn-sm" type="button" (click)="clear()">
-                              <i class="fa fa-trash-o"></i>&nbsp; Clear</button> -->
-                    </div>
-                  </div>
-                </div>
-                <br>
+            <div class="card bg-light">
+              <div class="card-header">
                 <div class="row ">
-                  <div class="col-md-4" [hidden]="false">
-                    <app-customer name="CustKey" [(ngModel)]="doHeader.CustKey" #CustKey="ngModel"
-                      (CustomerSelectedOutput)="onSelectedCustKeyAddress($event)" [Type]=1 [AddressType]=1
-                      [customerKeyTobind]="doHeader.CustKey" (OrdernoGenerated)="onOrdernoGenerated($event)">
-                    </app-customer>
-                  </div>
-                  <div class="col-md-2" [hidden]="false">
+                  <div class="col-sm-3 col-md-3 col-lg-3">
                     <div class="input-group input-group-sm">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Type</span>
@@ -88,7 +58,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-2" [hidden]="false">
+                  <div class="col-sm-3 col-md-3 col-lg-3">
                     <div class="input-group input-group-sm">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Priority</span>
@@ -105,24 +75,26 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-2" [hidden]="false">
-                    <div class="input-group input-group-sm">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Status</span>
-                      </div>
-                      <select id="drpStatus" class="form-control form-control-sm" name="Status"
-                        (change)="StatusDropDownChanged($event.target.value)" [(ngModel)]="doHeader.Status"
-                        #Status="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Status.invalid }" required
-                        [disabled]="editmode">
-                        <option [value]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>
-                      </select>
-                      <div *ngIf="f.submitted && Status.invalid" class="invalid-feedback">
-                        <div *ngIf="Status.errors.required"> Status is required</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-2" [hidden]="false">
-                    <div class="input-group input-group-sm">
+
+                  <!-- <div class="col-md-2">
+                        <div class="input-group input-group-sm">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Status</span>
+                          </div>
+                          <select id="drpStatus" class="form-control form-control-sm" name="Status"
+                            (change)="StatusDropDownChanged($event.target.value)" [(ngModel)]="doHeader.Status"
+                            #Status="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Status.invalid }" required
+                            [disabled]="editmode">
+                            <option [value]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>
+                          </select>
+                          <div *ngIf="f.submitted && Status.invalid" class="invalid-feedback">
+                            <div *ngIf="Status.errors.required"> Status is required</div>
+                          </div>
+                        </div>
+                      </div> -->
+
+                  <div class="col-sm-2 col-md-2 col-lg-2 text-right">
+                    <!-- <div class="input-group input-group-sm">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Order#</span>
                       </div>
@@ -133,11 +105,87 @@
                       <div *ngIf="f.submitted && OrderNo.invalid" class="invalid-feedback">
                         <div *ngIf="OrderNo.errors.required"> Order No is required</div>
                       </div>
-                    </div>
+                    </div> -->
+                    <input type="text" id="OrderNo" readonly class="form-control" name="OrderNo" tooltip="Order No"
+                        [(ngModel)]="doHeader.OrderNo" #OrderNo="ngModel" hidden="true"/>
+                    <span *ngIf="showordernodate">Order<small style="color: maroon;"> <b> {{doHeader.OrderNo}} </b></small></span>
+                  
+                  </div>
+                  <div class="col-sm-2 col-md-2 col-lg-2 text-right">
+                    <!-- <div class="input-group input-group-sm mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Date</span>
+                      </div>
+                      <input type="text" class="form-control " name="OrderDate" id="OrderDate" readonly
+                        [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="Order Date"
+                        [(ngModel)]="doHeader.OrderDate" #OrderDate="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && OrderDate.invalid }" required />
+                      <owl-date-time [pickerType]="'calendar'" #dt3 [hour12Timer]="false"></owl-date-time>
+
+                      <div *ngIf="f.submitted && OrderDate.invalid" class="invalid-feedback">
+                        <div *ngIf="OrderDate.errors.required"> Order-Date is required</div>
+                      </div>
+                    </div> -->
+
+                    <input type="text" class="form-control " name="OrderDate" id="OrderDate" 
+                        [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="Order Date"
+                        [(ngModel)]="doHeader.OrderDate" #OrderDate="ngModel" hidden="true" />
+                      <owl-date-time [pickerType]="'calendar'" #dt3 [hour12Timer]="false"></owl-date-time>
+                    <span *ngIf="showordernodate">Date  <small style="color:maroon;"> <b> {{doHeader.OrderDate | date}} </b></small></span>
+
+                  </div>
+
+                  <div class="col-sm-2 col-md-2 col-lg-2 text-right">
+                    <!-- <div class="container text-right"> -->
+                    <button class="btn btn-primary btn-sm" type="submit">
+                      <i class="fa fa-database" aria-hidden="true"></i>&nbsp; Create Order</button>
+                    <!-- </div> -->
                   </div>
                 </div>
+                <br>
+              </div>
+              <div class="card-body">
+                <!-- <div class="row">
+                  <div class="col-sm-6 col-md-6 col-lg-6"> </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="container text-right">
+                      <button class="btn btn-primary btn-sm" type="submit">
+                        <i class="fa fa-database" aria-hidden="true"></i>&nbsp; Create Order</button> &nbsp;                    
+                    </div>
+                  </div>
+                </div> -->
 
+                <!-- <hr style="border: none; border-bottom: 3px solid slategray;"> -->
                 <div class="row">
+                  <div class="col-sm-3 col-md-3 col-lg-3">
+                    <app-customer name="CustKey" [(ngModel)]="doHeader.CustKey" #CustKey="ngModel"
+                      (CustomerSelectedOutput)="onSelectedCustKeyAddress($event)" [Type]=1 [AddressType]=1
+                      [customerKeyTobind]="doHeader.CustKey" (OrdernoGenerated)="onOrdernoGenerated($event)">
+                    </app-customer>                    
+                  </div>
+
+                  <div class="col-sm-3 col-md-3 col-lg-3">
+                    <app-company name="BillToAddress" [(ngModel)]="doHeader.BillToAddress" #BillToAddress="ngModel"
+                      (CustomerSelectedOutput)="onSelectedBilltoAddress($event)" [Type]=1 [AddressType]=1
+                      [addressKeyTobind]="doHeader.BillToAddress">
+                    </app-company>                    
+                  </div>
+                  <div class="col-sm-3 col-md-3 col-lg-3">
+                    <app-company name="SourceAddress" [(ngModel)]="doHeader.SourceAddress"
+                      (CustomerSelectedOutput)="onSelectedPickupAddress($event)" [Type]=1 [AddressType]=2
+                      [addressKeyTobind]="doHeader.SourceAddress">
+                    </app-company>
+                  </div>
+                  <div class="col-sm-3 col-md-3 col-lg-3">
+                    <app-company name="DestinationAddress" [(ngModel)]="doHeader.DestinationAddress"
+                      (CustomerSelectedOutput)="onSelectedConsigneeAddress($event)" [Type]=1 [AddressType]=3
+                      [addressKeyTobind]="doHeader.DestinationAddress">
+                    </app-company>
+                  </div>
+
+                </div>
+
+                <!-- <div class="row">
                   <div class="col-md-8">
                   </div>
                   <div class="col-md-2">
@@ -151,318 +199,187 @@
                       </select>
                     </div>
                   </div>
-
-                  <div class="col-md-2" [hidden]="false">
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Date</span>
-                      </div>
-                      <input type="text" class="form-control " name="OrderDate" id="OrderDate" readonly
-                        [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="Order Date"
-                        [(ngModel)]="doHeader.OrderDate" #OrderDate="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && OrderDate.invalid }" required />
-                      <owl-date-time [pickerType]="'calendar'" #dt3 [hour12Timer]="false"></owl-date-time>
-
-                      <div *ngIf="f.submitted && OrderDate.invalid" class="invalid-feedback">
-                        <div *ngIf="OrderDate.errors.required"> Order-Date is required</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-                <!-- <div class="row ">
-                      <div class="col-md-3" [hidden]="false">
-                        <app-customer name="BillToAddress" [(ngModel)]="doHeader.BillToAddress" #BillToAddress="ngModel"
-                          (CustomerSelectedOutput)="onSelectedBilltoAddress($event)" [billToaddressType]=1
-                          [addressKeyTobind]="doHeader.BillToAddress"
-                          (OrdernoGenerated)="onOrdernoGenerated($event)">
-                        </app-customer>
-                      </div>
-                      <div class="col-md-3" [hidden]="false">
-                        <div class="input-group input-group-sm mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Type</span>
-                          </div>
-                          <select id="cboOrderType" class="form-control" name="OrderType" [(ngModel)]="doHeader.OrderType"
-                            #OrderType="ngModel" [ngClass]="{ 'is-invalid': f.submitted && OrderType.invalid }" required>
-                            <option [value]="otype.Value" *ngFor="let otype of ordertypelist">{{otype.Name}}</option>
-                          </select>
-                          <div *ngIf="f.submitted && OrderType.invalid" class="invalid-feedback">
-                            <div *ngIf="OrderType.errors.required"> Order Type is required</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3" [hidden]="false">
-                        <div class="input-group input-group-sm mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Order No</span>
-                          </div>
-                          <input type="text" id="OrderNo" readonly class="form-control" name="OrderNo" tooltip="Order No"
-                            [(ngModel)]="doHeader.OrderNo" #OrderNo="ngModel"
-                            [ngClass]="{ 'is-invalid': f.submitted && OrderNo.invalid }" required />
-          
-                          <div *ngIf="f.submitted && OrderNo.invalid" class="invalid-feedback">
-                            <div *ngIf="OrderNo.errors.required"> Order No is required</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-2" [hidden]="false">
-                        <div class="input-group input-group-sm mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Dt</span>
-                          </div>
-                          <input type="text" class="form-control " name="OrderDate" id="OrderDate" readonly bsDatepicker
-                            placeholder="Order Date" [bsConfig]="bsConfig" [(ngModel)]="doHeader.OrderDate" #OrderDate="ngModel"
-                            [ngClass]="{ 'is-invalid': f.submitted && OrderDate.invalid }" required />
-                          <div *ngIf="f.submitted && OrderDate.invalid" class="invalid-feedback">
-                            <div *ngIf="OrderDate.errors.required"> Order-Date is required</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                        
-                        <div class="col-md-3" [hidden]="false">
-                            <div class="input-group input-group-sm mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">Priority</span>
-                              </div>
-                              <select id="drpPriority" class="form-control form-control-sm" name="Priority"
-                                  [(ngModel)]="doHeader.Priority" #Priority="ngModel"
-                                  [ngClass]="{ 'is-invalid': f.submitted && Priority.invalid }" required>                       
-                                  <option [value]="priority.Value" *ngFor="let priority of prioritylist">{{priority.Name}}</option>                        
-                                </select>
-                               
-                                <div *ngIf="f.submitted && Priority.invalid" class="invalid-feedback">
-                                  <div *ngIf="Priority.errors.required"> Priority is required</div>
-                                </div>
-              
-                            </div>
-              
-                          </div>
-                          <div class="col-md-3" [hidden]="false">
-                              <div class="input-group input-group-sm mb-3">
-                                  <div class="input-group-prepend">
-                                    <span class="input-group-text">Status</span>
-                                  </div>
-                                 
-                                  <select id="drpStatus" class="form-control form-control-sm" name="Status" (change)="StatusDropDownChanged($event.target.value)"
-                                  [(ngModel)]="doHeader.Status" #Status="ngModel"
-                                  [ngClass]="{ 'is-invalid': f.submitted && Status.invalid }" required>                       
-                                  <option [value]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>                        
-                                </select>
-                                <div *ngIf="f.submitted && Status.invalid" class="invalid-feedback">
-                                  <div *ngIf="Status.errors.required"> Status is required</div>
-                                </div>
-                                </div>
-                            </div>
-                        <div class="col-md-3">
-                            <div class="input-group input-group-sm mb-3">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text">Status Date</span>
-                                </div>
-                                <input type="text" class="form-control form-control-sm" name="StatusDate" id="StatusDate"
-                                bsDatepicker placeholder="Status Date" [bsConfig]="bsConfig" [(ngModel)]="doHeader.StatusDate"
-                                #StatusDate="ngModel" [ngClass]="{ 'is-invalid': f.submitted && StatusDate.invalid }" required />
-          
-                              <div *ngIf="f.submitted && StatusDate.invalid" class="invalid-feedback">
-                                <div *ngIf="StatusDate.errors.required"> Status-Date is required</div>
-                              </div>
-                
-                              </div>
-            
-                        </div>
-                        <div class="col-md-3">  
-                            <div class="input-group input-group-sm mb-3" *ngIf ="HolddropdownVisible">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text">HoldReason</span>
-                                </div>
-                                <select id="drpHoldReason" class="form-control form-control-sm" name="HoldReason"
-                                [(ngModel)]="doHeader.HoldReason">
-                                <option [value]="reason.Value" *ngFor="let reason of holdreasonlist">{{reason.Name}}</option>                        
-                           
-                              </select>
-                
-                              </div>
-                        </div>
-                      </div> -->
-                <!-- <hr style="border: none; border-bottom: 1px solid dimgray;"> -->
+                </div> -->
                 <div class="row">
-                  <div class="col-md-3">
+                  <!-- <div class="col-sm-3 col-md-3 col-lg-3">
                     <app-company name="BillToAddress" [(ngModel)]="doHeader.BillToAddress" #BillToAddress="ngModel"
                       (CustomerSelectedOutput)="onSelectedBilltoAddress($event)" [Type]=1 [AddressType]=1
-                      [addressKeyTobind]="doHeader.BillToAddress" (OrdernoGenerated)="onOrdernoGenerated($event)">
+                      [addressKeyTobind]="doHeader.BillToAddress">
                     </app-company>
                   </div>
-                  <div class="col-md-3" [hidden]="false">
-                    <app-broker name="Brokerkey" [(ngModel)]="doHeader.Brokerkey"
-                      (BrokerSelectedOutput)="onSelectedBroker($event)" [brokerKeyTobind]="doHeader.Brokerkey">
-                    </app-broker>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Broker Ref#</span>
-                      </div>
-                      <input type="text" class="form-control form-control-sm" id="txtBrokerRefNo" name="BrokerRefNo"
-                        placeholder="Broker Ref no" #BrokerRefNo="ngModel" [(ngModel)]="doHeader.BrokerRefNo"
-                        [ngClass]="{ 'is-invalid': f.submitted && BrokerRefNo.invalid }" required />
-                      <div *ngIf="f.submitted && BrokerRefNo.invalid" class="invalid-feedback">
-                        <div *ngIf="BrokerRefNo.errors.required">Broker Ref No is required</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"> Booking#</span>
-                      </div>
-                      <input type="text" id="txtBookingNumBooking #" class="form-control form-control-sm"
-                        name="BookingNo" [(ngModel)]="doHeader.BookingNo" #BookingNo="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && BookingNo.invalid }" required />
-
-                      <div *ngIf="f.submitted && BookingNo.invalid" class="invalid-feedback">
-                        <div *ngIf="BookingNo.errors.required"> Booking No is required</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-3" [hidden]="false">
+                  <div class="col-sm-3 col-md-3 col-lg-3">
                     <app-company name="SourceAddress" [(ngModel)]="doHeader.SourceAddress"
                       (CustomerSelectedOutput)="onSelectedPickupAddress($event)" [Type]=1 [AddressType]=2
                       [addressKeyTobind]="doHeader.SourceAddress">
                     </app-company>
                   </div>
-                  <div class="col-md-3">
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Carrier</span>
-                      </div>
-                      <select id="drpCarrier" class="form-control form-control-sm" name="CarrierKey"
-                        [(ngModel)]="doHeader.CarrierKey" #CarrierKey="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && CarrierKey.invalid }" required>
-                        <option [value]="carrier.CarrierKey" *ngFor="let carrier of carrierlist">{{carrier.CarrierId}}
-                        </option>
-                      </select>
-
-                      <div *ngIf="f.submitted && CarrierKey.invalid" class="invalid-feedback">
-                        <div *ngIf="CarrierKey.errors.required"> Carrier is required</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-3">
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Load Port</span>
-                      </div>
-                      <select id="drpSource" class="form-control form-control-sm" name="PortofOriginKey"
-                        [(ngModel)]="doHeader.PortofOriginKey" #PortofOriginKey="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && PortofOriginKey.invalid }" required>
-                        <option [value]="src.AddrKey" *ngFor="let src of LoadDischargePortList">{{src.Name}}</option>
-                      </select>
-                      <div *ngIf="f.submitted && PortofOriginKey.invalid" class="invalid-feedback">
-                        <div *ngIf="PortofOriginKey.errors.required">Load Port is required</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-3">
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Dis Port</span>
-                      </div>
-                      <select id="drpPortofDestinationKey" class="form-control form-control-sm"
-                        name="PortofDestinationKey" [(ngModel)]="doHeader.PortofDestinationKey"
-                        #PortofDestinationKey="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && PortofDestinationKey.invalid }" required>
-                        <option [value]="dest.AddrKey" *ngFor="let dest of LoadDischargePortList">{{dest.Name}}</option>
-                      </select>
-                      <div *ngIf="f.submitted && PortofDestinationKey.invalid" class="invalid-feedback">
-                        <div *ngIf="PortofDestinationKey.errors.required"> Port of Destination is required</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-3" [hidden]="false">
+                  <div class="col-sm-3 col-md-3 col-lg-3">
                     <app-company name="DestinationAddress" [(ngModel)]="doHeader.DestinationAddress"
                       (CustomerSelectedOutput)="onSelectedConsigneeAddress($event)" [Type]=1 [AddressType]=3
                       [addressKeyTobind]="doHeader.DestinationAddress">
                     </app-company>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Bill of lading</span>
+                  </div> -->
+                  <div class="col-sm-6 col-md-6 col-lg-6">
+                      <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Broker Ref#</span>
+                            </div>
+                            <input type="text" class="form-control form-control-sm" id="txtBrokerRefNo" name="BrokerRefNo"
+                              placeholder="Broker Ref no" #BrokerRefNo="ngModel" [(ngModel)]="doHeader.BrokerRefNo" >
+                              <!-- [ngClass]="{ 'is-invalid': f.submitted && BrokerRefNo.invalid }" required />
+                            <div *ngIf="f.submitted && BrokerRefNo.invalid" class="invalid-feedback">
+                              <div *ngIf="BrokerRefNo.errors.required">Broker Ref No is required</div>
+                            </div> -->
+                          </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"> Booking#</span>
+                            </div>
+                            <input type="text" id="txtBookingNumBooking #" class="form-control form-control-sm"
+                              name="BookingNo" [(ngModel)]="doHeader.BookingNo" #BookingNo="ngModel">
+                              <!-- [ngClass]="{ 'is-invalid': f.submitted && BookingNo.invalid }" required />
+  
+                            <div *ngIf="f.submitted && BookingNo.invalid" class="invalid-feedback">
+                              <div *ngIf="BookingNo.errors.required"> Booking No is required</div>
+                            </div> -->
+                          </div>
+                        </div>
                       </div>
-                      <input type="text" id="txtBLNo" class="form-control form-control-sm" name="BillofLading"
-                        [(ngModel)]="doHeader.BillofLading" #BillofLading="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && BillofLading.invalid }" required />
-
-                      <div *ngIf="f.submitted && BillofLading.invalid" class="invalid-feedback">
-                        <div *ngIf="BillofLading.errors.required"> Bill of Loading is required</div>
+                      <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Bill of lading</span>
+                            </div>
+                            <input type="text" id="txtBLNo" class="form-control form-control-sm" name="BillofLading"
+                              [(ngModel)]="doHeader.BillofLading" #BillofLading="ngModel" >
+                              <!-- [ngClass]="{ 'is-invalid': f.submitted && BillofLading.invalid }" required />
+  
+                            <div *ngIf="f.submitted && BillofLading.invalid" class="invalid-feedback">
+                              <div *ngIf="BillofLading.errors.required"> Bill of Loading is required</div>
+                            </div> -->
+                          </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Cut-off Date</span>
+                            </div>
+  
+                            <input type="text" class="form-control form-control-sm" name="CutOffDate"
+                              [(ngModel)]="doHeader.CutOffDate" #CutOffDate="ngModel" placeholder="Cut-Off Date"
+                              [ngClass]="{ 'is-invalid': f.submitted && CutOffDate.invalid }" 
+                              [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" /> 
+                            <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                            <!-- <div *ngIf="f.submitted && CutOffDate.invalid" class="invalid-feedback">
+                              <div *ngIf="CutOffDate.errors.required"> Cut-Off Date is required</div>
+                            </div> -->
+                          </div>
+  
+                        </div>
+  
+                      </div>
+  
+                      <div class="row">
+  
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Load Port</span>
+                            </div>
+                            <select id="drpSource" class="form-control form-control-sm" name="PortofOriginKey"
+                              [(ngModel)]="doHeader.PortofOriginKey" #PortofOriginKey="ngModel" >
+                              <option [value]="src.AddrKey" *ngFor="let src of LoadDischargePortList">{{src.Name}}
+                              </option>
+                            </select>
+                            <!-- [ngClass]="{ 'is-invalid': f.submitted && PortofOriginKey.invalid }" > required
+                              
+                              <div *ngIf="f.submitted && PortofOriginKey.invalid" class="invalid-feedback">
+                              <div *ngIf="PortofOriginKey.errors.required">Load Port is required</div>
+                            </div> -->
+                          </div>
+                        </div>
+  
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Dis Port</span>
+                            </div>
+                            <select id="drpPortofDestinationKey" class="form-control form-control-sm"
+                              name="PortofDestinationKey" [(ngModel)]="doHeader.PortofDestinationKey"
+                              #PortofDestinationKey="ngModel">
+                              <option [value]="dest.AddrKey" *ngFor="let dest of LoadDischargePortList">{{dest.Name}}
+                              </option>
+                            </select>
+                            
+                            <!-- [ngClass]="{ 'is-invalid': f.submitted && PortofDestinationKey.invalid }" required
+                            <div *ngIf="f.submitted && PortofDestinationKey.invalid" class="invalid-feedback">
+                              <div *ngIf="PortofDestinationKey.errors.required"> Port of Destination is required</div>
+                            </div> -->
+                          </div>
+                        </div>
+  
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Carrier</span>
+                            </div>
+                            <select id="drpCarrier" class="form-control form-control-sm" name="CarrierKey"
+                              [(ngModel)]="doHeader.CarrierKey" #CarrierKey="ngModel">
+                              <option [value]="carrier.CarrierKey" *ngFor="let carrier of carrierlist">
+                                {{carrier.CarrierId}}
+                              </option>
+                            </select>
+  
+                            <!-- [ngClass]="{ 'is-invalid': f.submitted && CarrierKey.invalid }" required
+                            <div *ngIf="f.submitted && CarrierKey.invalid" class="invalid-feedback">
+                              <div *ngIf="CarrierKey.errors.required"> Carrier is required</div>
+                            </div> -->
+                          </div>
+                        </div>
+  
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                          <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"> Vessel#</span>
+                            </div>
+                            <input type="text" id="txtVesselName" class="form-control form-control-sm" name="VesselName"
+                              [(ngModel)]="doHeader.VesselName" #VesselName="ngModel" >
+                              <!-- [ngClass]="{ 'is-invalid': f.submitted && VesselName.invalid }" required />
+  
+                            <div *ngIf="f.submitted && VesselName.invalid" class="invalid-feedback">
+                              <div *ngIf="VesselName.errors.required">Vessel Name is required</div>
+                            </div> -->
+                          </div>
+  
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Cut-off Date</span>
-                      </div>
-
-                      <input type="text" class="form-control form-control-sm" name="CutOffDate"
-                        [(ngModel)]="doHeader.CutOffDate" #CutOffDate="ngModel" placeholder="Cut-Off Date"
-                        [ngClass]="{ 'is-invalid': f.submitted && CutOffDate.invalid }" required
-                        [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" />
-                      <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-                      <div *ngIf="f.submitted && CutOffDate.invalid" class="invalid-feedback">
-                        <div *ngIf="CutOffDate.errors.required"> Cut-Off Date is required</div>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="col-md-3">
-                    <div class="input-group input-group-sm mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"> Vessel#</span>
-                      </div>
-                      <input type="text" id="txtVesselName" class="form-control form-control-sm" name="VesselName"
-                        [(ngModel)]="doHeader.VesselName" #VesselName="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && VesselName.invalid }" required />
-
-                      <div *ngIf="f.submitted && VesselName.invalid" class="invalid-feedback">
-                        <div *ngIf="VesselName.errors.required">Vessel Name is required</div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-3" [hidden]="false">
+                  <div class="col-sm-3 col-md-3 col-lg-3">
                     <app-company name="ReturnAddress" [(ngModel)]="doHeader.ReturnAddress"
                       (CustomerSelectedOutput)="onSelectedReturnAddress($event)" [Type]=1 [AddressType]=4
                       [addressKeyTobind]="doHeader.ReturnAddress">
                     </app-company>
                   </div>
-                  <div class="col-md-3">
 
+                  <div class="col-sm-3 col-md-3 col-lg-3">
+                    <app-broker name="Brokerkey" [(ngModel)]="doHeader.Brokerkey"
+                      (BrokerSelectedOutput)="onSelectedBroker($event)" [brokerKeyTobind]="doHeader.Brokerkey">
+                    </app-broker>
                   </div>
-                  <div class="col-md-3">
-
-
-                  </div>
-                  <div class="col-md-3">
-
-                  </div>
+                 
                 </div>
+
                 <br>
                 <!-- <hr> -->
                 <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-md-12">
                     <app-container (ContainerDetailsOutput)="onSelectedContainerDetails($event)"
                       [ContainerDetails]=doHeader.orderdetails
                       [isContainerAttributeVisible]="isContainerAttributeVisible">
@@ -521,14 +438,20 @@
                       </div>
                     </div> -->
 
+                  </div>
 
+                </div>
 
+                <div class="row">
+                  <div class="col-md-8">
+                    <textarea class="form-control" rows="3" id="txtcomment" placeholder="Comment"
+                      [(ngModel)]="doHeader.Comment" name="Comment" #Comment="ngModel"></textarea>
                   </div>
                   <div class="col-md-4">
                     <!-- <button type="button" class="btn btn-primary btn-sm" label="Click" data-toggle="modal"
-                          data-target="#myModal" tooltip="upload documents">
-                          <i class="fa fa-cloud-upload" aria-hidden="true"></i> &nbsp; Upload documents
-                        </button> -->
+                            data-target="#myModal" tooltip="upload documents">
+                            <i class="fa fa-cloud-upload" aria-hidden="true"></i> &nbsp; Upload documents
+                          </button> -->
                     <!-- <app-fileupload></app-fileupload> -->
 
                     <div class="row">
@@ -538,7 +461,6 @@
                             (change)="onSelectedFile($event)">
                           <div class="input-group-prepend">
                             <span class="custom-file-label"> {{ myFiles.length }} file(s) selected</span>
-
                           </div>
                         </div>
                       </div>
@@ -546,9 +468,6 @@
                         <button type="button" class="btn btn-primary btn-sm" (click)="onUploadSubmit()">
                           <i class="fa fa-cloud-upload" aria-hidden="true"></i> &nbsp; Upload </button>
                       </div>
-
-
-
                     </div>
                     <div class="row">
                       <div class="col-md-6">
@@ -559,151 +478,122 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <!-- <div *ngIf="fileUpload.status==='error'">
-                                  <div [innerHTML]="fileUpload.message"></div>
-                              </div> -->
-
+                      <div class="col-md-6">                       
                         <div *ngIf="fileUpload.status==='success'">
                           <p>{{ fileUploadcount }} files uploaded. </p>
                         </div>
-                      </div>
-                      <!-- <p>{{ fileUpload.error }}</p> -->
-                    </div>
+                      </div>                    
+                    </div> 
 
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-8" [hidden]="false">
-                    <textarea class="form-control" rows="3" id="txtcomment" placeholder="Comment"
-                      [(ngModel)]="doHeader.Comment" name="Comment" #Comment="ngModel"></textarea>
-                  </div>
-                  <div class="col-md-2" [hidden]="false">
-
-                  </div>
-                  <div class="col-md-2" nowrap>
-                    <div class="row">
-                    </div>
-                    &nbsp;
-                    <!-- <div class="row">
-                      <button class="btn btn-primary btn-sm" type="submit">
-                        <i class="fa fa-database" aria-hidden="true"></i>&nbsp; Create</button> &nbsp;
-
-                      <button class="btn btn-warning btn-sm" type="button" (click)="clear()">
-                        <i class="fa fa-trash-o"></i>&nbsp; Clear</button> </div> -->
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- </div> -->
+              <div class="modal fade" id="myModal" style="width:100%;height: auto;">
+                <div class="modal-dialog modal-dialog-centered modal-xl" style="width:100%;height: auto;">
+                  <div class="modal-content" style="width:100%;height: auto;">
 
-            <div class="modal fade" id="myModal" style="width:100%;height: auto;">
-              <div class="modal-dialog modal-dialog-centered modal-xl" style="width:100%;height: auto;">
-                <div class="modal-content" style="width:100%;height: auto;">
-
-                  <!-- Modal Header -->
-                  <div class="modal-header" style="width:100%;height: auto;">
-                    <h4 class="modal-title"> Documents upload</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-
-                  <!-- Modal body -->
-                  <div class="modal-body" style="width:100%;height: auto;">
-                    <div class="row">
-                      <div class="input-group mb-3 col-md-3">
-                        <div class="custom-file">
-                          <!-- <input type="file" class="custom-file-input" ng2FileSelect multiple [uploader]="uploader"> -->
-                          <label class="custom-file-label" for="inputGroupFile02"> Choose documents</label>
-                        </div>
-
-                      </div>
-                      <span>count: {{ uploader?.queue?.length }}</span>
-
-                      <div class="col-md-12">
-                        <table class="table table-sm ">
-                          <thead>
-                            <tr>
-                              <th width="50%">Name</th>
-                              <th>Size</th>
-                              <th>Progress</th>
-                              <th>Status</th>
-                              <th>Actions</th>
-                            </tr>
-
-                          </thead>
-                          <tbody>
-
-                            <tr *ngFor="let item of uploader.queue">
-                              <td><strong>{{ item?.file?.name }}</strong></td>
-                              <td nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-                              <td>
-                                <div class="progress" style="margin-bottom: 0;">
-                                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                                    [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                                </div>
-                              </td>
-                              <td class="text-center">
-                                <p *ngIf="item.isSuccess"><i class="fa fa-check-circle" aria-hidden="true"></i>
-                                </p>
-                                <p *ngIf="item.isCancel"><i class="fa fa-ban" aria-hidden="true"></i></p>
-                                <p *ngIf="item.isError"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                                </p>
-                              </td>
-                              <td nowrap>
-                                <button type="button" class="btn btn-success btn-sm" (click)="item.upload()"
-                                  [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                                  <i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload
-                                </button>
-                                <button type="button" class="btn btn-warning btn-sm" (click)="item.cancel()"
-                                  [disabled]="!item.isUploading">
-                                  <i class="fa fa-ban" aria-hidden="true"></i> Cancel
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" (click)="item.remove()">
-                                  <i class="fa fa-trash" aria-hidden="true"></i> Remove
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-
-                        <div>
-                          <!-- <hr> -->
-                          <div>
-                            <div class="progress" style="height: 10px;">
-                              <div class="progress-bar progress-bar-striped" role="progressbar"
-                                [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
-                            </div>
-                          </div>
-                          <br>
-                          <button type="button" class="btn btn-success btn-sm" (click)="uploader.uploadAll()"
-                            [disabled]="!uploader.getNotUploadedItems().length">
-                            <i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload all
-                          </button>
-                          <button type="button" class="btn btn-warning btn-sm" (click)="uploader.cancelAll()"
-                            [disabled]="!uploader.isUploading">
-                            <i class="fa fa-ban" aria-hidden="true"></i> Cancel all
-                          </button>
-                          <button type="button" class="btn btn-danger btn-sm" (click)="uploader.clearQueue()"
-                            [disabled]="!uploader.queue.length">
-                            <i class="fa fa-trash" aria-hidden="true"></i> Remove all
-                          </button>
-                        </div>
-
-                      </div>
-
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="width:100%;height: auto;">
+                      <h4 class="modal-title"> Documents upload</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                  </div>
 
-                  <!-- Modal footer -->
-                  <!-- <div class="modal-footer">
+                    <!-- Modal body -->
+                    <div class="modal-body" style="width:100%;height: auto;">
+                      <div class="row">
+                        <div class="input-group mb-3 col-md-3">
+                          <div class="custom-file">
+                            <!-- <input type="file" class="custom-file-input" ng2FileSelect multiple [uploader]="uploader"> -->
+                            <label class="custom-file-label" for="inputGroupFile02"> Choose documents</label>
+                          </div>
+
+                        </div>
+                        <span>count: {{ uploader?.queue?.length }}</span>
+
+                        <div class="col-md-12">
+                          <table class="table table-sm ">
+                            <thead>
+                              <tr>
+                                <th width="50%">Name</th>
+                                <th>Size</th>
+                                <th>Progress</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                              </tr>
+
+                            </thead>
+                            <tbody>
+
+                              <tr *ngFor="let item of uploader.queue">
+                                <td><strong>{{ item?.file?.name }}</strong></td>
+                                <td nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                                <td>
+                                  <div class="progress" style="margin-bottom: 0;">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                      [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                  </div>
+                                </td>
+                                <td class="text-center">
+                                  <p *ngIf="item.isSuccess"><i class="fa fa-check-circle" aria-hidden="true"></i>
+                                  </p>
+                                  <p *ngIf="item.isCancel"><i class="fa fa-ban" aria-hidden="true"></i></p>
+                                  <p *ngIf="item.isError"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                  </p>
+                                </td>
+                                <td nowrap>
+                                  <button type="button" class="btn btn-success btn-sm" (click)="item.upload()"
+                                    [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload
+                                  </button>
+                                  <button type="button" class="btn btn-warning btn-sm" (click)="item.cancel()"
+                                    [disabled]="!item.isUploading">
+                                    <i class="fa fa-ban" aria-hidden="true"></i> Cancel
+                                  </button>
+                                  <button type="button" class="btn btn-danger btn-sm" (click)="item.remove()">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Remove
+                                  </button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                          <div>
+                            <!-- <hr> -->
+                            <div>
+                              <div class="progress" style="height: 10px;">
+                                <div class="progress-bar progress-bar-striped" role="progressbar"
+                                  [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                              </div>
+                            </div>
+                            <br>
+                            <button type="button" class="btn btn-success btn-sm" (click)="uploader.uploadAll()"
+                              [disabled]="!uploader.getNotUploadedItems().length">
+                              <i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload all
+                            </button>
+                            <button type="button" class="btn btn-warning btn-sm" (click)="uploader.cancelAll()"
+                              [disabled]="!uploader.isUploading">
+                              <i class="fa fa-ban" aria-hidden="true"></i> Cancel all
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm" (click)="uploader.clearQueue()"
+                              [disabled]="!uploader.queue.length">
+                              <i class="fa fa-trash" aria-hidden="true"></i> Remove all
+                            </button>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <!-- <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                               </div> -->
 
+                  </div>
                 </div>
               </div>
             </div>
-
           </form>
         </div>
       </div>
@@ -783,8 +673,9 @@
                         aria-hidden="true"></i> Edit</button>
                   </div>
                 </div>
-
+                <br>
                 <div class="row">
+                 
                   <div class="col-sm-3 col-md-3 col-lg-3">
                     <!-- <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
                       <div class="card-header">BillTo</div>
@@ -963,6 +854,7 @@
                               <th scope="col">Chassis</th>
                               <th scope="col">SealNo</th>
                               <th scope="col">Weight</th>
+                              <th scope="col">Comments</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -972,6 +864,7 @@
                               <td>{{field.Chassis}}</td>
                               <td>{{field.SealNo}}</td>
                               <td>{{field.Weight}}</td>
+                              <td>{{field.Comments}}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -1036,189 +929,7 @@
 
         </div>
         <br>
-      </ng-container>
-
-
-      <!-- <div class="row" *ngIf="showDO">
-        <div class="col-sm-3 col-md-3 col-lg-3">
-          <span class="badge badge-pill badge-secondary">Order Detail</span> <br>
-          <span class="text-muted" style="color: black">Order# </span>
-          <span> <b>{{doHeader.OrderNo}}</b> </span> <br><br>
-
-          <span class="text-muted" style="color: black"> Date </span>
-          <span> <b>{{doHeader.OrderDate|date}}</b></span><br><br>
-
-          <span class="text-muted" style="color:black"> Type </span>
-          <span> <b>{{doHeader.ordertypedescription}}</b></span><br><br>
-
-
-          <span class="text-muted" style="color:black"> Broker </span>
-          <span> <b>{{doHeader.BrokerName}} </b></span><br><br>
-
-          <span class="text-muted" style="color:black"> Broker Ref# </span>
-          <span> <b>{{doHeader.BrokerRefNo}} </b></span><br><br>
-
-          <span class="text-muted" style="color:black"> Booking# </span>
-          <span> <b>{{doHeader.BookingNo}} </b></span> <br><br>
-
-          <span class="text-muted" style="color:black"> Vessel </span>
-          <span> <b>{{doHeader.VesselName}} </b></span><br><br>
-
-          <span class="text-muted" style="color:black"> Bill of Lading </span>
-          <span> <b>{{doHeader.BillofLading}} </b></span><br><br>
-
-          <span class="text-muted" style="color:black"> Cut-Off Date </span>
-          <span> <b>{{doHeader.CutOffDate|date}} </b></span> <br><br>
-        </div>
-        <div class="col-sm-3 col-md-3 col-lg-3">
-
-          <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header">BillTo</div>
-            <div class="card-body">
-              <span> {{doHeader.BillToAddressBO.Name}}</span>
-              <br>
-              <span> {{doHeader.BillToAddressBO.Address1}}, {{doHeader.BillToAddressBO.Address2}} </span>
-              <br>
-              <span> {{doHeader.BillToAddressBO.City}} - {{doHeader.BillToAddressBO.Zip}} </span>
-              <br>
-              <span> {{doHeader.BillToAddressBO.State}}</span> <br>
-            </div>
-          </div>
-          <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Pickup</div>
-            <div class="card-body">
-              <span> {{doHeader.SourceAddressBO.Name}}</span>
-              <br>
-              <span> {{doHeader.SourceAddressBO.Address1}}, {{doHeader.SourceAddressBO.Address2}} </span>
-              <br>
-              <span> {{doHeader.SourceAddressBO.City}} - {{doHeader.SourceAddressBO.Zip}} </span>
-              <br>
-              <span> {{doHeader.SourceAddressBO.State}}</span> <br>
-            </div>
-          </div>
-
-
-          
-          <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Delivery</div>
-            <div class="card-body">
-              <span> {{doHeader.DestinationAddressBO.Name}}</span>
-              <br>
-              <span> {{doHeader.DestinationAddressBO.Address1}}, {{doHeader.DestinationAddressBO.Address2}} </span>
-              <br>
-              <span> {{doHeader.DestinationAddressBO.City}} - {{doHeader.DestinationAddressBO.Zip}} </span>
-              <br>
-              <span> {{doHeader.DestinationAddressBO.State}}</span> <br>
-            </div>
-          </div>
-          <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Return</div>
-            <div class="card-body">
-             
-              <span> {{doHeader.ReturnAddressBO.Name}}</span>
-              <br>
-              <span> {{doHeader.ReturnAddressBO.Address1}}, {{doHeader.ReturnAddressBO.Address2}} </span>
-              <br>
-              <span> {{doHeader.ReturnAddressBO.City}} - {{doHeader.ReturnAddressBO.Zip}} </span>
-              <br>
-              <span> {{doHeader.ReturnAddressBO.State}}</span> <br> <br>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-6 col-lg-6">
-          <span class="badge badge-pill badge-secondary">Container Detail</span> <br>
-
-          <div class="row">
-            <div class="col-sm-2 col-md-2 col-lg-2">
-              <span class="text-muted"> Container </span><br>
-            </div>
-
-            <div class="col-sm-2 col-md-2 col-lg-2">
-              <span class="text-muted"> Size </span><br>
-            </div>
-
-            <div class="col-sm-2 col-md-2 col-lg-2">
-              <span class="text-muted"> Chassis </span><br>
-            </div>
-
-            <div class="col-sm-2 col-md-2 col-lg-2">
-              <span class="text-muted"> Seal# </span><br>
-            </div>
-
-            <div class="col-sm-2 col-md-2 col-lg-2">
-              <span class="text-muted"> Weight </span><br>
-            </div>
-          </div>
-          <ng-container *ngFor="let field of doHeader.orderdetails; index as i">
-
-            <div class="row">
-              <div class="col-sm-2 col-md-2 col-lg-2">
-                <span><b>{{field.ContainerNo}}</b></span>
-              </div>
-
-              <div class="col-sm-2 col-md-2 col-lg-2">
-                <span><b>{{field.ContainerSizeDesc}} </b></span>
-              </div>
-
-              <div class="col-sm-2 col-md-2 col-lg-2">
-                <span><b>{{field.Chassis}}</b></span>
-              </div>
-
-              <div class="col-sm-2 col-md-2 col-lg-2">
-                <span><b>{{field.SealNo}} </b></span>
-              </div>
-
-              <div class="col-sm-2 col-md-2 col-lg-2">
-                <span><b> {{field.Weight}}</b></span>
-              </div>
-            </div>
-          </ng-container>
-
-        </div>
-      </div> -->
+      </ng-container>     
     </div>
   </div>
-
-  <!-- <div class="card">
-      <div class="card-header" id="headingTwo">
-        <h5 class="mb-0">
-          <p class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-            aria-controls="collapseTwo">
-            Container details
-          </p>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-12">
-              <app-container (ContainerDetailsOutput)="onSelectedContainerDetails($event)"
-                [ContainerDetails]=doHeader.orderdetails [isContainerAttributeVisible]="isContainerAttributeVisible">
-              </app-container>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header" id="headingThree">
-        <h5 class="mb-0">
-          <p class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
-            aria-controls="collapseThree">
-            Collapsible Group Item #3
-          </p>
-        </h5>
-      </div>
-      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
-          officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf
-          moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim
-          keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-          butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably
-          haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
-    </div> -->
 </div>

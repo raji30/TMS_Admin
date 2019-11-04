@@ -27,35 +27,42 @@ namespace TMS.Api.Controllers
         public HttpResponseMessage GetCustomers()
         {
             CustomerRepository repo = new CustomerRepository();
-            List<Data.customer> customer = repo.GetAll().ToList();
+          //  List<Data.customer> customer = repo.GetAll().ToList();
+
+            List<CustomerBO> customer =cusObj.GetCustomers();
             List<CustomerBO> customerBOList = new List<CustomerBO>();
 
-            if(customer.Count>0)
+            if (customer.Count > 0)
             {
-            foreach (var cust in customer)
-            {
-                CustomerBO customerBO = new CustomerBO();
-                customerBO.CustomerKey = cust.custkey;
-                customerBO.CustId = cust.custid;
-                customerBO.CustName = cust.custname;
-                customerBO.CustomerGroup = cust.customergroup;
-                customerBO.CreditLimit = cust.creditlimit;
-                customerBO.CreditStatus = cust.creditstatus;
-                var address = new AddressRepository().GetbyId(cust.addrkey);
-                customerBO.Address = new AddressBO()
+                foreach (var cust in customer)
                 {
-                    AddrKey = address.addrkey,
-                    Address1 = address.address1,
-                    Address2 = address.address2,
-                    City = address.city,
-                    State = address.state,
-                    Zip = address.zipcode,
-                    Email = address.email,
-                    Phone = address.phone,
-                    Fax = address.fax
-                };
-                customerBOList.Add(customerBO);
-            }
+                    CustomerBO customerBO = new CustomerBO();
+                    customerBO.CustomerKey = cust.CustomerKey;
+                    customerBO.CustId = cust.CustId;
+                    customerBO.CustName = cust.CustName;
+                    customerBO.CustomerGroup = cust.CustomerGroup;
+                    customerBO.CreditLimit = cust.CreditLimit;
+                    customerBO.CreditStatus = cust.CreditStatus;
+                    customerBO.CreditCheck = cust.CreditCheck;
+                    customerBO.achrequired = cust.achrequired;
+                    customerBO.paymentterms = cust.paymentterms;
+
+                    var address = new AddressRepository().GetbyId(cust.addrkey);
+                    customerBO.Address = new AddressBO()
+                    {
+                        AddrKey = address.addrkey,
+                        Address1 = address.address1,
+                        Address2 = address.address2,
+                        City = address.city,
+                        State = address.state,
+                        Zip = address.zipcode,
+                        Email = address.email,
+                        Phone = address.phone,
+                        Fax = address.fax,
+                        Website = address.website
+                    };
+                    customerBOList.Add(customerBO);
+                }
                 return Request.CreateResponse(HttpStatusCode.OK, customerBOList, Configuration.Formatters.JsonFormatter);
             }
             else
@@ -72,16 +79,21 @@ namespace TMS.Api.Controllers
         public HttpResponseMessage GetCustomerByID(string custkey)
         {
             CustomerRepository repo = new CustomerRepository();
-            Data.customer customer = repo.GetbyId(Guid.Parse(custkey));
+         //   Data.customer customer = repo.GetbyId(Guid.Parse(custkey));
+
+            CustomerBO customer = cusObj.GetCustomerbykey(Guid.Parse(custkey));
             if (customer != null)
             {
                 CustomerBO customerBO = new CustomerBO();
-                customerBO.CustomerKey = customer.custkey;
-                customerBO.CustId = customer.custid;
-                customerBO.CustName = customer.custname;
-                customerBO.CustomerGroup = customer.customergroup;
-                customerBO.CreditLimit = customer.creditlimit;
-                customerBO.CreditStatus = customer.creditstatus;
+                customerBO.CustomerKey = customer.CustomerKey;
+                customerBO.CustId = customer.CustId;
+                customerBO.CustName = customer.CustName;
+                customerBO.CustomerGroup = customer.CustomerGroup;
+                customerBO.CreditLimit = customer.CreditLimit;
+                customerBO.CreditStatus = customer.CreditStatus;
+                customerBO.CreditCheck = customer.CreditCheck;
+                customerBO.achrequired = customer.achrequired;
+                customerBO.paymentterms = customer.paymentterms;
                 var address = new AddressRepository().GetbyId(customer.addrkey);
                 customerBO.Address = new AddressBO()
                 {
@@ -154,15 +166,19 @@ namespace TMS.Api.Controllers
         [Route("CreateCustomer")]
         public HttpResponseMessage Post([FromBody] CustomerBO customer)
         {
+          
+
             CustomerRepository repo = new CustomerRepository();
-            Data.customer _customer = new Data.customer();
-            _customer.custid = customer.CustId;
-            _customer.custname = customer.CustName;
-            _customer.creditstatus = customer.CreditStatus;
-            _customer.creditlimit = customer.CreditLimit;
-            _customer.creditstatus = customer.CreditStatus;
-            _customer.customergroup = customer.CustomerGroup;
-            if(customer.Address != null)
+
+            //Data.customer _customer = new Data.customer();
+            //_customer.custid = customer.CustId;
+            //_customer.custname = customer.CustName;
+            //_customer.creditstatus = customer.CreditStatus;
+            //_customer.creditlimit = customer.CreditLimit;
+            //_customer.creditstatus = customer.CreditStatus;
+            //_customer.customergroup = customer.CustomerGroup;           
+
+            if (customer.Address != null)
             {
                 var custaddress = new Data.address()
                 {
@@ -177,11 +193,14 @@ namespace TMS.Api.Controllers
                     addrname = customer.CustName
                 };
                 var addrkey = new AddressRepository().Add(custaddress);
-                _customer.addrkey = addrkey;
+                // _customer.addrkey = addrkey;
+                customer.addrkey = addrkey;
             }
-           Guid custId =repo.Add(_customer);
-            if(custId != null && custId != Guid.Empty)
-            return Request.CreateResponse(HttpStatusCode.OK, custId, Configuration.Formatters.JsonFormatter);
+            var custkey = cusObj.insertCustomer(customer);
+
+            // Guid custkey =repo.Add(_customer);
+            if (custkey != null && custkey != Guid.Empty)
+            return Request.CreateResponse(HttpStatusCode.OK, custkey, Configuration.Formatters.JsonFormatter);
             else
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
@@ -197,14 +216,19 @@ namespace TMS.Api.Controllers
         public HttpResponseMessage Put([FromBody]CustomerBO customer)
         {
             CustomerRepository repo = new CustomerRepository();
-            Data.customer _customer = new Data.customer();
-            _customer.custid = customer.CustId;
-            _customer.custname = customer.CustName;
-            _customer.creditstatus = customer.CreditStatus;
-            _customer.creditlimit = customer.CreditLimit;
-            _customer.creditstatus = customer.CreditStatus;
-            _customer.customergroup = customer.CustomerGroup;
-            _customer.custkey = customer.CustomerKey;
+
+
+
+            //Data.customer _customer = new Data.customer();
+            //_customer.custid = customer.CustId;
+            //_customer.custname = customer.CustName;
+            //_customer.creditstatus = customer.CreditStatus;
+            //_customer.creditlimit = customer.CreditLimit;
+            //_customer.achrequired = customer.achrequired;
+            //_customer.paymentterms = customer.paymentterms;
+            //_customer.customergroup = customer.CustomerGroup;
+            //_customer.custkey = customer.CustomerKey;
+            
             if (customer.Address != null)
             {
                 var custaddress = new Data.address()
@@ -219,12 +243,14 @@ namespace TMS.Api.Controllers
                     email = customer.Address.Email,
                     fax = customer.Address.Fax,
                     phone =customer.Address.Phone,
+                    website =customer.Address.Website,
                     addrname = customer.CustName
                 };
                 bool updated = new AddressRepository().Update(custaddress);
                 
             }
-            bool result= repo.Update(_customer);
+          //  bool result= repo.Update(_customer);
+            bool result = cusObj.updateCustomer(customer);
             if (result)
                 return Request.CreateResponse(HttpStatusCode.OK);
             else

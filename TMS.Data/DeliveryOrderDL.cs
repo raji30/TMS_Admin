@@ -36,19 +36,56 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_billtoaddrkey", NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.BillToAddress);
                     cmd.Parameters.AddWithValue("_sourceaddrkey", NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.SourceAddress);
                     cmd.Parameters.AddWithValue("_destinationaddrkey",NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.DestinationAddress);
+                   
                     cmd.Parameters.AddWithValue("_returnaddrkey", NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.ReturnAddress);
+                    
                     //cmd.Parameters.AddWithValue("_source",NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Source);
                     cmd.Parameters.AddWithValue("_ordertype", NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.OrderType);
-                    cmd.Parameters.AddWithValue("_status",NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Status);
+                    cmd.Parameters.AddWithValue("_status",NpgsqlTypes.NpgsqlDbType.Smallint, 1);//1- Inprogress- orderBO.Status
                     //cmd.Parameters.AddWithValue("_statusdate",NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(orderBO.StatusDate));
                     cmd.Parameters.AddWithValue("_brokerkey",NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.Brokerkey);
-                    cmd.Parameters.AddWithValue("_brokerrefno", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BrokerRefNo);
-                    cmd.Parameters.AddWithValue("_portoforiginkey",NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.PortofOriginKey);
-                    cmd.Parameters.AddWithValue("_portofdestinationkey",NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.PortofDestinationKey);
-                    cmd.Parameters.AddWithValue("_carrierkey",NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.CarrierKey);
-                    cmd.Parameters.AddWithValue("_vesselname",NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.VesselName);
-                    cmd.Parameters.AddWithValue("_billoflading",NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BillofLading);
-                    cmd.Parameters.AddWithValue("_bookingno",NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BookingNo);
+
+                    if(String.IsNullOrWhiteSpace(orderBO.BrokerRefNo)|| String.IsNullOrEmpty(orderBO.BrokerRefNo))
+                    {
+                        cmd.Parameters.AddWithValue("_brokerrefno", NpgsqlTypes.NpgsqlDbType.Varchar, "");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("_brokerrefno", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BrokerRefNo);
+                    }
+                   
+                    if (String.IsNullOrWhiteSpace(orderBO.VesselName) || String.IsNullOrEmpty(orderBO.VesselName))
+                    {
+                        cmd.Parameters.AddWithValue("_vesselname", NpgsqlTypes.NpgsqlDbType.Varchar, "");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("_vesselname", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.VesselName);
+                    }                   
+                        cmd.Parameters.AddWithValue("_portoforiginkey", NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.PortofOriginKey);                   
+                        cmd.Parameters.AddWithValue("_portofdestinationkey", NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.PortofDestinationKey);
+                    cmd.Parameters.AddWithValue("_carrierkey", NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.CarrierKey);
+                   
+
+                    if (String.IsNullOrWhiteSpace(orderBO.BookingNo) || String.IsNullOrEmpty(orderBO.BookingNo))
+                    {
+                        cmd.Parameters.AddWithValue("_bookingno", NpgsqlTypes.NpgsqlDbType.Varchar, "");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("_bookingno", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BookingNo);
+                    }
+
+                    if (String.IsNullOrWhiteSpace(orderBO.BillofLading) || String.IsNullOrEmpty(orderBO.BillofLading))
+                    {
+                        cmd.Parameters.AddWithValue("_billoflading", NpgsqlTypes.NpgsqlDbType.Varchar, "");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("_billoflading", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BillofLading);
+                    }
+
+                    
                     cmd.Parameters.AddWithValue("_comment", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.Comment);
 
                     if (orderBO.CutOffDate==null)
@@ -408,7 +445,7 @@ namespace TMS.Data
                             orderDetail.StatusDate = Utils.CustomParse<string>(reader["statusdate"]);
                             orderDetail.HoldDate = Utils.CustomParse<string>(reader["holddate"]);
                             orderDetail.HoldReason = Utils.CustomParse<short>(reader["holdreason"]);
-                            orderDetail.Comment = Utils.CustomParse<string>(reader["comment_description"]);
+                            orderDetail.Comments = Utils.CustomParse<string>(reader["comment_description"]);
                             orderDetail.Weight = Utils.CustomParse<string>(reader["weight"]);
                             orderDetail.StatusDesc = Utils.CustomParse<string>(reader["status_description"]);
                             orderDetail.ContainerSizeDesc = Utils.CustomParse<string>(reader["containersize_description"]);
@@ -474,7 +511,7 @@ namespace TMS.Data
                             orderDetail.StatusDate = Utils.CustomParse<string>(reader["statusdate"]);
                             orderDetail.HoldDate = Utils.CustomParse<string>(reader["holddate"]);
                             orderDetail.HoldReason = Utils.CustomParse<short>(reader["holdreason"]);
-                            orderDetail.Comment = Utils.CustomParse<string>(reader["comment_description"]);
+                            orderDetail.Comments = Utils.CustomParse<string>(reader["comment_description"]);
                             orderDetail.Weight= Utils.CustomParse<string>(reader["weight"]);
                             orderDetail.StatusDesc = Utils.CustomParse<string>(reader["status_description"]);
                             orderDetail.ContainerSizeDesc = Utils.CustomParse<string>(reader["containersize_description"]);
@@ -514,7 +551,7 @@ namespace TMS.Data
                        
                             cmd.Parameters.AddWithValue("_containersize",NpgsqlTypes.NpgsqlDbType.Smallint, obj.ContainerSize);
                         
-                        if(String.IsNullOrEmpty(obj.Chassis))
+                        if(String.IsNullOrEmpty(obj.Chassis) || String.IsNullOrWhiteSpace(obj.Chassis))
                         {
                             cmd.Parameters.AddWithValue("_chassis", NpgsqlTypes.NpgsqlDbType.Varchar, string.Empty);
                         }
@@ -522,7 +559,7 @@ namespace TMS.Data
                         {
                             cmd.Parameters.AddWithValue("_chassis",NpgsqlTypes.NpgsqlDbType.Varchar, Convert.ToString(obj.Chassis));
                         }
-                        if (String.IsNullOrEmpty(obj.SealNo))
+                        if (String.IsNullOrEmpty(obj.SealNo) || String.IsNullOrWhiteSpace(obj.SealNo))
                         {
                             cmd.Parameters.AddWithValue("_sealno",NpgsqlTypes.NpgsqlDbType.Varchar, string.Empty);
                         }
@@ -530,7 +567,7 @@ namespace TMS.Data
                         {
                             cmd.Parameters.AddWithValue("_sealno", NpgsqlTypes.NpgsqlDbType.Varchar, obj.SealNo);
                         }
-                        if (String.IsNullOrEmpty(obj.Weight))
+                        if (String.IsNullOrEmpty(obj.Weight) || String.IsNullOrWhiteSpace(obj.Weight))
                         {   
                             cmd.Parameters.AddWithValue("_weight", NpgsqlTypes.NpgsqlDbType.Numeric, 0);
                         }
@@ -538,6 +575,16 @@ namespace TMS.Data
                         {
                             cmd.Parameters.AddWithValue("_weight", NpgsqlTypes.NpgsqlDbType.Numeric, Convert.ToDecimal(obj.Weight));
                         }
+
+                        if (String.IsNullOrEmpty(obj.Comments)|| String.IsNullOrWhiteSpace(obj.Comments))
+                        {
+                            cmd.Parameters.AddWithValue("_comment_notes", NpgsqlTypes.NpgsqlDbType.Varchar, "");
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("_comment_notes", NpgsqlTypes.NpgsqlDbType.Varchar, obj.Comments);
+                        }
+                        cmd.Parameters.AddWithValue("_createuserkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.CreatedBy);
                         //cmd.Parameters.AddWithValue("_apptdatefrom",
                         //    NpgsqlTypes.NpgsqlDbType.Timestamp, obj.AppDateFrom);
                         //cmd.Parameters.AddWithValue("_apptdateto",
@@ -550,7 +597,7 @@ namespace TMS.Data
                         //    NpgsqlTypes.NpgsqlDbType.Smallint, obj.HoldReason);
                         //cmd.Parameters.AddWithValue("_holddate",
                         //    NpgsqlTypes.NpgsqlDbType.Timestamp, obj.HoldDate);
-                        
+
                         var reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {                            
@@ -578,6 +625,7 @@ namespace TMS.Data
             //   ",status=@status where orderdetailkey=@orderdetailkey and orderkey=@orderkey";
 
 
+
             string sql = "dbo.fn_update_order_details";
 
             try
@@ -593,12 +641,13 @@ namespace TMS.Data
                         cmd.Parameters.AddWithValue("_orderdetailkey", NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderDetailKey);
                         cmd.Parameters.AddWithValue("_apptdatefrom", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(detail.AppDateFrom, System.Globalization.CultureInfo.InvariantCulture));
                         cmd.Parameters.AddWithValue("_apptdateto", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(detail.AppDateTo, System.Globalization.CultureInfo.InvariantCulture));
-                        cmd.Parameters.AddWithValue("_status",
-                          NpgsqlTypes.NpgsqlDbType.Smallint, detail.Status);
-                        cmd.Parameters.AddWithValue("_statusdate",
-                            NpgsqlTypes.NpgsqlDbType.Date, DateTime.Now);
+                        cmd.Parameters.AddWithValue("_status",   NpgsqlTypes.NpgsqlDbType.Smallint, detail.Status);
+                        cmd.Parameters.AddWithValue("_statusdate", NpgsqlTypes.NpgsqlDbType.Date, DateTime.Now);
                         cmd.Parameters.AddWithValue("_pickupdatetime", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(detail.PickupDateTime, System.Globalization.CultureInfo.InvariantCulture));
                         cmd.Parameters.AddWithValue("_dropoffdatetime", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(detail.DropOffDateTime, System.Globalization.CultureInfo.InvariantCulture));
+
+                        cmd.Parameters.AddWithValue("_schedulernotes", NpgsqlTypes.NpgsqlDbType.Varchar, detail.SchedulerNotes);
+                        cmd.Parameters.AddWithValue("_lastfreeday", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(detail.LastFreeDay, System.Globalization.CultureInfo.InvariantCulture));
 
 
                         //int returnvalue = cmd.ExecuteNonQuery();
@@ -626,6 +675,42 @@ namespace TMS.Data
             
                 
             }
+
+
+
+        public bool UpdateDeliveryOrderDetailsStatus(DeliveryOrderDetailBO detail)
+        {          
+            string sql = @"update dbo.tms_orderdetail set status=@status , statusdate = @statusdate where orderdetailkey=@orderdetailkey and orderkey=@orderkey";
+
+            try
+            {
+                using (connection)
+                {
+                    connection.Open();
+                    using (var cmd = new NpgsqlCommand(sql, connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        cmd.Parameters.AddWithValue("@orderkey", NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderKey);
+                        cmd.Parameters.AddWithValue("@orderdetailkey", NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderDetailKey);
+                        cmd.Parameters.AddWithValue("@status", NpgsqlTypes.NpgsqlDbType.Smallint, detail.Status);
+                        cmd.Parameters.AddWithValue("@statusdate", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(DateTime.Now.ToLongDateString(), System.Globalization.CultureInfo.InvariantCulture));
+
+                        int returnvalue = cmd.ExecuteNonQuery();
+                        if (returnvalue < 0)
+                        {
+                            return false;
+                        }
+                        else return true;
+                    }
+                }               
+            }
+            catch
+            {
+                return false;
+            }
+
+
         }
+    }
     
 }

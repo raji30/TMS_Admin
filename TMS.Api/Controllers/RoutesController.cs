@@ -17,6 +17,16 @@ namespace TMS.Api.Controllers
     {
         RoutesDL routes = new RoutesDL();
 
-        
+
+        [HttpPost]
+        [Route("AddRoutes")]
+        [SwaggerOperation("AddRoutes")]
+        public HttpResponseMessage Post([FromBody]RoutesBO objList)
+        {
+            DispatchAssignmentDL dl = new DispatchAssignmentDL();
+            var list = routes.AddRoutes(objList);
+            return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
+        }
+
     }
 }

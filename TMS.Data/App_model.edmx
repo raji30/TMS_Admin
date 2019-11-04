@@ -107,6 +107,8 @@
           <Property Name="creditlimit" Type="numeric" Precision="18" Scale="2" />
           <Property Name="creditstatus" Type="int2" />
           <Property Name="creditcheck" Type="bool" />
+          <Property Name="achrequired" Type="bool" />
+          <Property Name="paymentterms" Type="int2" />
         </EntityType>
         <EntityType Name="customeraddress">
           <Key>

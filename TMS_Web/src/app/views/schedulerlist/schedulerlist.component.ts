@@ -10,6 +10,11 @@ import { DeliveryOrderService } from "../../_services/deliveryOrder.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { NavigationComponent } from "../navigation/navigation.component";
+import { Item } from "../../_models/item";
+import { RoutesService } from "../../_services/routes.service";
+import { Tms_routes } from "../../_models/tms_routes";
+import { AccountingOptions } from "../../_models/accountingOptions";
+import { AccountingoptionsService } from "../../_services/accountingoptions.service";
 
 @Component({
   providers: [NavigationComponent],
@@ -22,9 +27,11 @@ export class SchedulerlistComponent implements OnInit {
   HeaderData: DeliveryOrderHeader;
   DetailData: Order_details;
   DetailsData: Array<Order_details> = [];
+  AccountingOptions: Array<Item> = [];
   statuslist: Status[] = [];
+  itemlist: Item[] = [];
   statuslistFiltered: Status[] = [];
-  dataSaved = false;
+  dataSaved:boolean;
   message = null;
   public searchText: string;
 
@@ -38,11 +45,18 @@ export class SchedulerlistComponent implements OnInit {
   public AppDateTo: string;
   public PickupDateTime: string;
   public DropOffDateTime: string;
+  public Legtype: number;
+  public LastFreeDay: string;
+  public DriverNotes: string;
+  public SchedulerNotes: string;
   public status: string;
+  public tmsroutes: Tms_routes;
 
   showScheduler = false;
   showImage = true;
   showSchedulerDiv = true;
+
+  optionsChecked = [];
 
   constructor(
     private NaviComp: NavigationComponent,
@@ -52,35 +66,30 @@ export class SchedulerlistComponent implements OnInit {
     private master: MasterService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private routesService: RoutesService,
+    private accountingoptionsService: AccountingoptionsService
   ) {
     //this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     // NaviComp.test(6);
   }
 
   ngOnInit() {
-    // this.bsConfig = Object.assign(
-    //   {},
-    //   { containerClass: "theme-orange" },
-    //   { dateInputFormat: "MM/DD/YYYY" }
-    // );
-
-    // this.booksByStoreID = this.books.filter(
-    //   book => book.store_id === this.store.id );
-
     this.master.getStatusList().subscribe(
       data => {
-        this.statuslist = data;       
+        this.statuslist = data;
       },
       error => console.log(error),
       () => console.log("Get statuslist", this.statuslist)
     );
 
-    // for (let prop of this.statuslistFiltered) {
-    //   if (prop.name === "OnHold" || prop.name === "SendtoDispatchAssignment") {
-    //     this.statuslist.push(prop);
-    //   }
-    // }
+    this.master.getItemList(1).subscribe(
+      data => {
+        this.itemlist = data;
+      },
+      error => console.log(error),
+      () => console.log("Get itemlist", this.itemlist)
+    );
 
     this.loaddata();
   }
@@ -89,7 +98,6 @@ export class SchedulerlistComponent implements OnInit {
     if (
       this.AppDateFrom == null ||
       this.AppDateTo == null ||
-      this.status == null ||
       this.PickupDateTime == null ||
       this.DropOffDateTime == null
     ) {
@@ -97,25 +105,70 @@ export class SchedulerlistComponent implements OnInit {
       return;
     }
 
+    //Order Details
     this.DetailData.AppDateFrom = this.AppDateFrom;
     this.DetailData.AppDateTo = this.AppDateTo;
     this.DetailData.PickupDateTime = this.PickupDateTime;
     this.DetailData.DropOffDateTime = this.DropOffDateTime;
-    this.DetailData.status = this.status;
+    this.DetailData.status = this.status = "4"; //4 - SendtoDispatchAssignment
+    this.DetailData.LastFreeDay = this.LastFreeDay;
+    this.DetailData.SchedulerNotes = this.SchedulerNotes;
 
-    this.orderService.updateOrderDetails(this.DetailData).subscribe(
-      () => {
-        this.dataSaved = true;
-        this.message = "Scheduled Successfully";
-        this.showSuccess("Container Scheduled successfully", "Scheduler");
-        this.loaddata();
-       
-        this.showImage = true;
-       this.showScheduler =false;
-      },
-      error => console.log(error),
-      () => console.log("Scheduler  ", this.message)
-    );
+    //TMS route details
+    var tmsroutes = new Tms_routes();
+    tmsroutes.OrderDetailKey = this.DetailData.OrderDetailKey;
+    tmsroutes.OrderKey = this.DetailData.OrderKey;
+    tmsroutes.scheduledarrival = this.PickupDateTime;
+    tmsroutes.scheduleddeparture = this.DropOffDateTime;
+    tmsroutes.legtype = this.Legtype;
+    tmsroutes.drivernotes = this.DriverNotes;
+
+    //accounting options
+    var AccOptionsChecked = Array<AccountingOptions>();
+    AccOptionsChecked = this.optionsChecked;
+
+    this.orderService
+      .updateOrderDetails(this.DetailData)
+      .subscribe(result => this.dataSaved, error => console.log(error));
+
+    if (this.dataSaved == true) {
+      this.dataSaved = false;
+      this.routesService
+        .insertRoutesDetails(tmsroutes)
+        .subscribe(
+          result => {this.dataSaved=true},
+           error => {console.log(error)}
+           );
+
+    }
+    if (this.dataSaved = true) {
+      this.dataSaved = false;
+      this.accountingoptionsService
+        .insertAccountingoptions(AccOptionsChecked)
+        .subscribe(result => this.dataSaved=true, error => console.log(error));
+    }        
+      var DOdetail = this.DetailData;
+      DOdetail.status = "4"; //4- send to Dispatch Assignment
+
+      if (this.dataSaved = true) { 
+        this.dataSaved = false;
+      this.orderService
+        .UpdateDOdetailStatus(this.DetailData)
+        .subscribe(result => this.dataSaved=true, error => console.log(error));
+    }
+
+    if (this.dataSaved = true) {
+      this.message = "Scheduled Successfully";
+      this.showSuccess("Container Scheduled successfully", "Scheduler");
+      this.showImage = true;
+      this.showScheduler = false;
+      this.DetailsData = null;
+      this.loaddata();
+     }
+     else{
+      this.showSuccess("An Unexpected Error Occured.", "Scheduler");
+      return;
+     }   
   }
 
   // onSubmit(field: Order_details) {
@@ -154,7 +207,7 @@ export class SchedulerlistComponent implements OnInit {
       this.DetailData = value;
       console.log("Testing DetailData ", this.DetailData);
     }
-    this.selectedKey = value.OrderKey;
+    this.selectedKey = value.OrderDetailKey;
     this.orderService.GetbyKey(value.OrderKey).subscribe(
       data => {
         this.HeaderData = data;
@@ -167,14 +220,14 @@ export class SchedulerlistComponent implements OnInit {
 
     this.showScheduler = true;
     this.showImage = false;
-    this.showSchedulerDiv= true;
+    this.showSchedulerDiv = true;
   }
 
   showSuccess(message: string, title: string) {
-    this.toastr.success(message, title, { timeOut: 4000, closeButton: true });
+    this.toastr.success(message, title, { timeOut: 2000, closeButton: true });
   }
   showError(message: string, title: string) {
-    this.toastr.error(message, "Oops!", { timeOut: 4000, closeButton: true });
+    this.toastr.error(message, "Oops!", { timeOut: 2000, closeButton: true });
   }
 
   loaddata() {
@@ -185,5 +238,19 @@ export class SchedulerlistComponent implements OnInit {
       error => console.log(error),
       () => console.log("Get OrderDetail", this.DetailsData)
     );
+  }
+  onCheckboxChange(option, event) {
+    if (event.target.checked) {
+      option.orderdetailkey = this.DetailsData[0].OrderDetailKey;
+      option.customerkey = this.DetailsData[0].OrderKey;
+      this.optionsChecked.push(option);
+    } else {
+      for (var i = 0; i < this.itemlist.length; i++) {
+        if (this.optionsChecked[i].itemkey == option.itemkey) {
+          this.optionsChecked.splice(i, 1);
+        }
+      }
+    }
+    console.log(this.optionsChecked);
   }
 }

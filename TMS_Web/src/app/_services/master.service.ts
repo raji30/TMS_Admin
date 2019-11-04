@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppSettings } from '../_constants/appsettings';
 import { Containersize, Priority, OrderType ,Source, HoldReason, Status, Carrier, LoadDischargePort} from '../common/master';
+import { Item } from '../_models/item';
 
 @Injectable({
   providedIn: 'root'
@@ -119,6 +120,16 @@ public getMaxcount_Customer(custname:any) {
 
   return this.http.get<number>(AppSettings._BaseURL + 'GetCustomerMaxcount/'+ custname);  
 }
+public getItemList(itemType:number) {
+  var token = JSON.parse(localStorage.getItem("currentUser"));
 
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+  return this.http.get<Item[]>(AppSettings._BaseURL + 'GetItemsbyType/'+ itemType);  
+}
 
 }
