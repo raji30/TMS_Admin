@@ -5,6 +5,8 @@ import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Address } from "../../../../../_models/address";
 import { Broker } from "../../../../../_models/broker";
 import { BrokerService } from "../../../../../_services/broker.service";
+import { ToastrService } from "ngx-toastr";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 @Component({
   selector: 'app-brokerlist',
   templateUrl: './brokerlist.component.html',
@@ -21,11 +23,14 @@ export class BrokerlistComponent implements OnInit {
   show_addupdateBroker: boolean = false;
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
+  show_btnCreateBroker : boolean = true; 
+  show_BrokerInfo: boolean = false;
 
   constructor(
     private formbulider: FormBuilder,
     private Service: BrokerService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.dataModel = null;
   }
@@ -54,28 +59,39 @@ export class BrokerlistComponent implements OnInit {
       this.message = null;
       this.dataSaved = false;
     });
-    this.show_addupdateBroker = true;
+  
     this.isCancelbtnhidden = true;
     this.isResetbtnhidden = false;
+
+    this.show_btnCreateBroker = true;
+    this.show_addupdateBroker = false;
+    this.show_BrokerInfo = true;
   }
 
   CreateBroker() {
     if (this.updateBroker == null) {
       this.Service.CreateBroker(this.dataModel).subscribe(() => {
-        this.dataSaved = true;
-        this.message = "Driver Record saved Successfully";
+        this.dataSaved = true;       
+        this.showSuccess("saved successfully", "Create");
         this.loadAllBrokers();
         this.updateBroker = null;
         this.show_addupdateBroker = false;
+        this.show_btnCreateBroker = true;
+      },
+      error => {
+        this.showError("Error in Creation", "Error");
       });
     } else {
       this.dataModel.BrokerKey = this.updateBroker;
       this.Service.UpdateBroker(this.dataModel).subscribe(() => {
-        this.dataSaved = true;
-        this.message = "Driver Record Updated Successfully";
+        this.dataSaved = true;       
+        this.showSuccess("Updated successfully", "Update");
         this.loadAllBrokers();
         this.updateBroker = null;
         this.show_addupdateBroker = false;
+        this.show_btnCreateBroker = true;
+      },error => {
+        this.showError("Error in Update", "Error");
       });
     }
   }
@@ -91,7 +107,10 @@ export class BrokerlistComponent implements OnInit {
   }
 
   toggle() {
+    this.show_btnCreateBroker = false;
     this.show_addupdateBroker = true;
+    this.show_BrokerInfo = false;
+  
     this.isResetbtnhidden = true;
     this.resetForm();
   }
@@ -99,6 +118,7 @@ export class BrokerlistComponent implements OnInit {
   cancel() {
     this.isResetbtnhidden = false;
     this.show_addupdateBroker = false;
+    this.show_btnCreateBroker = true;
   }
 
   // convenience getter for easy access to form fields
@@ -108,6 +128,27 @@ export class BrokerlistComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  bindFormControls() {    
+    this.show_btnCreateBroker = false;
+    this.show_addupdateBroker = true;
+    this.show_BrokerInfo = false;
+  }
+  showSuccess(message: string, title: string) {
+    this.toastr.success(message, title, { timeOut: 2000, closeButton: true });
+  }
+
+  showError(message: string, title: string) {
+    this.toastr.error(message, "Oops!", { timeOut: 2000, closeButton: true });
+  }
+
+  showWarning(message: string, title: string) {
+    this.toastr.warning(message, title, { timeOut: 2000, closeButton: true });
+  }
+
+  showInfo(message: string, title: string) {
+    this.toastr.info(message, title, { timeOut: 2000, closeButton: true });
   }
 }
 

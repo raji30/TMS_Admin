@@ -16,9 +16,17 @@ namespace TMS.Data.TableOperations
         }
         public Guid Add(addressmaster t)
         {
+            
             var addressnew = entities.addressmasters.Add(t);
+            try
+            {               
 
-            entities.SaveChanges();
+                entities.SaveChanges();
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
             return addressnew.addrkey;
         }
 

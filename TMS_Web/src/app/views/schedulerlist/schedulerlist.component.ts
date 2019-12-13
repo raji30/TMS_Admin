@@ -31,7 +31,10 @@ export class SchedulerlistComponent implements OnInit {
   statuslist: Status[] = [];
   itemlist: Item[] = [];
   statuslistFiltered: Status[] = [];
-  dataSaved:boolean;
+  dataSaved: boolean = false;
+  routesdataSaved: boolean = false;
+  accountingoptionsSaved: boolean = false;
+  alldataSaved: boolean = false;
   message = null;
   public searchText: string;
 
@@ -99,7 +102,8 @@ export class SchedulerlistComponent implements OnInit {
       this.AppDateFrom == null ||
       this.AppDateTo == null ||
       this.PickupDateTime == null ||
-      this.DropOffDateTime == null
+      this.DropOffDateTime == null ||
+      this.LastFreeDay == null
     ) {
       this.showError("Enter the missing fields.", "Scheduler");
       return;
@@ -127,48 +131,67 @@ export class SchedulerlistComponent implements OnInit {
     var AccOptionsChecked = Array<AccountingOptions>();
     AccOptionsChecked = this.optionsChecked;
 
-    this.orderService
-      .updateOrderDetails(this.DetailData)
-      .subscribe(result => this.dataSaved, error => console.log(error));
+    this.orderService.updateOrderDetails(this.DetailData).subscribe(
+      result => {
+        this.dataSaved = true;
+        if (this.dataSaved == true) {
+          this.dataSaved = false;
+          this.routesService.insertRoutesDetails(tmsroutes).subscribe(
+            result => {
+              this.routesdataSaved = true;
+              if (
+                this.routesdataSaved == true &&
+                AccOptionsChecked.length > 1
+              ) {
+                this.routesdataSaved = false;
+                this.accountingoptionsService
+                  .insertAccountingoptions(AccOptionsChecked)
+                  .subscribe(
+                    result => {
+                      this.accountingoptionsSaved = true;
+                      var DOdetail = this.DetailData;
+                      DOdetail.status = "4"; //4- send to Dispatch Assignment
 
-    if (this.dataSaved == true) {
-      this.dataSaved = false;
-      this.routesService
-        .insertRoutesDetails(tmsroutes)
-        .subscribe(
-          result => {this.dataSaved=true},
-           error => {console.log(error)}
-           );
+                      if (this.accountingoptionsSaved == true) {
+                        this.accountingoptionsSaved = false;
+                        this.orderService
+                          .UpdateDOdetailStatus(this.DetailData)
+                          .subscribe(
+                            result => {
+                              this.alldataSaved = true;
+                              if (this.alldataSaved == true) {
+                                this.alldataSaved = false;
+                                this.AccountingOptions = [];
+                                this.message = "Scheduled Successfully";
+                                this.showSuccess("Container Scheduled successfully", "Scheduler");
+                                this.showImage = true;
+                                this.showScheduler = false;
+                                this.DetailsData = null;
+                                this.loaddata();
+                              } else {
+                                this.showError("An Unexpected Error Occured.", "Scheduler");
+                                return;
+                              }
+                            },
+                            error => {console.log(error);
+                              this.showError("An Unexpected Error Occured:"+ error, "Scheduler");}
+                          );
+                      }
+                    },
+                    error => console.log(error)
+                  );
+              }
+            },
+            error => {
+              console.log(error);
+            }
+          );
+        }
+      },
+      error => console.log(error)
+    );
 
-    }
-    if (this.dataSaved = true) {
-      this.dataSaved = false;
-      this.accountingoptionsService
-        .insertAccountingoptions(AccOptionsChecked)
-        .subscribe(result => this.dataSaved=true, error => console.log(error));
-    }        
-      var DOdetail = this.DetailData;
-      DOdetail.status = "4"; //4- send to Dispatch Assignment
-
-      if (this.dataSaved = true) { 
-        this.dataSaved = false;
-      this.orderService
-        .UpdateDOdetailStatus(this.DetailData)
-        .subscribe(result => this.dataSaved=true, error => console.log(error));
-    }
-
-    if (this.dataSaved = true) {
-      this.message = "Scheduled Successfully";
-      this.showSuccess("Container Scheduled successfully", "Scheduler");
-      this.showImage = true;
-      this.showScheduler = false;
-      this.DetailsData = null;
-      this.loaddata();
-     }
-     else{
-      this.showSuccess("An Unexpected Error Occured.", "Scheduler");
-      return;
-     }   
+    
   }
 
   // onSubmit(field: Order_details) {

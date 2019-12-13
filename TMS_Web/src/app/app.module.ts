@@ -78,7 +78,9 @@ import { VendorlistComponent } from "./views/_master/_vendor/vendorlist/vendorli
 import { BrokerlistComponent } from "./views/_master/_broker/brokerlist/brokerlist/brokerlist.component";
 import { CarrierlistComponent } from "./views/_master/_carrier/carrierlist/carrierlist.component";
 import { InvoiceComponent } from "./views/invoice/invoice/invoice.component";
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { UserlistComponent } from "./views/_master/_user/userlist/userlist.component";
+import { RatesheetlistComponent } from "./views/_master/_ratesheet/ratesheetlist/ratesheetlist.component";
+import { ItemlistComponent } from "./views/_master/_item/itemlist/itemlist.component";
 
 @NgModule({
   imports: [
@@ -98,7 +100,6 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ProgressbarModule.forRoot(),
     ToastrModule.forRoot(),
     TabsModule.forRoot(),
-    NgMultiSelectDropDownModule.forRoot(),
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -118,9 +119,12 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     AppComponent,
     ...APP_CONTAINERS,
     LoginComponent,
+    UserlistComponent,
     DOIntakeComponent,
     AddressComponent,
     CustomerComponent,
+    RatesheetlistComponent,
+    ItemlistComponent,
     AddcustomerComponent,
     ListcustomerComponent,    
     ListcityComponent,

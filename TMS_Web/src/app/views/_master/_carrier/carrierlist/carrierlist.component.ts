@@ -5,10 +5,11 @@ import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Address } from "../../../../_models/address";
 import { Carrier } from "../../../../common/master";
 import { CarrierService } from "../../../../_services/carrier.service";
+import { ToastrService } from "ngx-toastr";
 @Component({
-  selector: 'app-carrierlist',
-  templateUrl: './carrierlist.component.html',
-  styleUrls: ['./carrierlist.component.scss']
+  selector: "app-carrierlist",
+  templateUrl: "./carrierlist.component.html",
+  styleUrls: ["./carrierlist.component.scss"]
 })
 export class CarrierlistComponent implements OnInit {
   carriers: Carrier[];
@@ -21,11 +22,14 @@ export class CarrierlistComponent implements OnInit {
   show_addupdateCarrier: boolean = false;
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
+  show_CarrierInfo: boolean = false;
+  show_btnCreateCarrier: boolean = true;
 
   constructor(
     private formbulider: FormBuilder,
     private Service: CarrierService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.dataModel = null;
   }
@@ -54,28 +58,34 @@ export class CarrierlistComponent implements OnInit {
       this.message = null;
       this.dataSaved = false;
     });
-    this.show_addupdateCarrier = true;
+    this.show_addupdateCarrier = false;
+    this.show_CarrierInfo = true;
     this.isCancelbtnhidden = true;
     this.isResetbtnhidden = false;
+    this.show_btnCreateCarrier = true;
   }
 
   CreateCarrier() {
     if (this.updateCarrier == null) {
       this.Service.CreateCarrier(this.dataModel).subscribe(() => {
-        this.dataSaved = true;
-        this.message = "Driver Record saved Successfully";
+        this.dataSaved = true;   
+        this.showSuccess("created successfully", "Create");
         this.loadAllCarriers();
         this.updateCarrier = null;
         this.show_addupdateCarrier = false;
+      }, error => {
+        this.showError("Error in Creation", "Error");
       });
     } else {
       // this.dataModel.CarrierKey = this.updateCarrier;
       this.Service.UpdateCarrier(this.dataModel).subscribe(() => {
-        this.dataSaved = true;
-        this.message = "Driver Record Updated Successfully";
+        this.dataSaved = true;        
+        this.showSuccess("Updated successfully", "Updated");
         this.loadAllCarriers();
         this.updateCarrier = null;
         this.show_addupdateCarrier = false;
+      }, error => {
+        this.showError("Error in update", "Error");
       });
     }
   }
@@ -91,7 +101,9 @@ export class CarrierlistComponent implements OnInit {
   }
 
   toggle() {
+    this.show_btnCreateCarrier = false;
     this.show_addupdateCarrier = true;
+    this.show_CarrierInfo = false;
     this.isResetbtnhidden = true;
     this.resetForm();
   }
@@ -99,6 +111,8 @@ export class CarrierlistComponent implements OnInit {
   cancel() {
     this.isResetbtnhidden = false;
     this.show_addupdateCarrier = false;
+    this.show_CarrierInfo = true;
+    this.show_btnCreateCarrier = true;
   }
 
   // convenience getter for easy access to form fields
@@ -109,5 +123,25 @@ export class CarrierlistComponent implements OnInit {
     }
     return true;
   }
-}
 
+  showSuccess(message: string, title: string) {
+    this.toastr.success(message, title, { timeOut: 4000, closeButton: true });
+  }
+
+  showError(message: string, title: string) {
+    this.toastr.error(message, "Oops!", { timeOut: 4000, closeButton: true });
+  }
+
+  showWarning(message: string, title: string) {
+    this.toastr.warning(message, title);
+  }
+
+  showInfo(message: string, title: string) {
+    this.toastr.info(message, title, { timeOut: 4000, closeButton: true });
+  }
+  bindFormControls() {
+    this.show_addupdateCarrier = true;
+    this.show_CarrierInfo = false;
+    this.show_btnCreateCarrier = false;
+  }
+}

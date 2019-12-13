@@ -1,14 +1,71 @@
+
+  <br>
 <div id="accordion">
-    <div class="row">  
-      <div class="col-md-6">
-        <form (ngSubmit)="f.form.valid && onFormSubmit()" #f="ngForm" novalidate>
-          <br>
-          <button type="button" class="btn btn-info btn-sm" (click)="toggle()">Add Broker</button>
-  
-          <div *ngIf="show_addupdateBroker">
-            <br>
-            <br>
-            <div class="row" hidden ="true">
+  <div class="row">
+    <div class="col-8 col-sm-8 col-md-8">
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-6">
+          <h5 class="card-subtitle mb-2" style="color: black">
+            <img src="assets/img/brand/user-identity4.png" /> Brokers</h5>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6">
+          <div class="container text-right">
+            <div class="row">
+              <div class="col-11 col-sm-11 col-md-11">
+                <div class="form-group input-group input-group-sm">
+                  <div class="img-group-prepend">
+                    <img src="assets/img/brand/search16px.png" /> &nbsp;
+                  </div>
+                  <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text"
+                    placeholder="Search..">
+                </div>
+              </div>
+              <div class="col-1 col-sm-1 col-md-1">
+                <img src="assets/img/brand/broom16px.png" (click)="clear_search()" tooltip="clear" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 col-sm-4 col-md-4 text-right">
+      <button type="button" class="btn btn-info btn-sm" (click)="toggle()" *ngIf="show_btnCreateBroker">Create New
+        Broker</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8 col-md-8 col-lg-8 border-right">    
+
+      <table class="table table-sm">
+        <tr ngclass="btn-primary">
+          <th hidden="true">BrokerKey</th>
+          <th>ID</th>
+          <th>Name</th>           
+
+        </tr>
+        <tr *ngFor="let brok of brokers | grdFilter: {BrokerId: searchText,BrokerName: searchText}">
+          <td hidden="true">{{brok.BrokerKey}}</td>
+          <td>{{brok.BrokerId}}</td>
+          <td> <a [routerLink]="" (click)="EditBroker(brok.BrokerKey)">{{brok.BrokerName}}</a> </td>
+         
+          <!-- <td class="tbl2">
+            <button type="button" class="btn btn-info btn-sm" (click)="EditBroker(brok.BrokerKey)">Edit</button>
+          </td> -->
+          <!-- <td class="tbl2">
+            <button type="button" class="btn btn-danger btn-sm"
+              (click)="deleteCustomer(cust.CustomerKey)">Delete</button>
+          </td> -->
+        </tr>
+      </table>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <div class="row" *ngIf="show_addupdateBroker">
+        <form (ngSubmit)=" f.form.valid && onFormSubmit()" #f="ngForm" novalidate>
+          <div class="container">
+            <div class="form-group">
+              <label for="legno"> <b> Broker detail </b> </label>
+              <div class="row" hidden ="true">
                 <div class="form-group input-group input-group-sm col-md-4">
                   <div class="input-group-prepend">
                     <span class="input-group-text">BrokerKey</span>
@@ -35,19 +92,7 @@
                 <div *ngIf="f.submitted && BrokerId.invalid" class="invalid-feedback">
                   <div *ngIf="BrokerId.errors.required"> BrokerId is required</div>
                 </div>
-              </div>
-              <div class="form-group input-group input-group-sm col-md-6">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Address 1</span>
-                </div>
-                <input type="text" class="form-control form-control-sm" required
-                  [(ngModel)]="dataModel.Address.Address1" name="Address1" #Address1="ngModel"
-                  [ngClass]="{ 'is-invalid': f.submitted && Address1.invalid }">
-  
-                <div *ngIf="f.submitted && Address1.invalid" class="invalid-feedback">
-                  <div *ngIf="Address1.errors.required"> Address1 is required</div>
-                </div>
-              </div>
+              </div>            
   
             </div>
             <div class="row">
@@ -61,113 +106,183 @@
                 <div *ngIf="f.submitted && BrokerName.invalid" class="invalid-feedback">
                   <div *ngIf="BrokerName.errors.required"> Broker name is required</div>
                 </div>
-              </div>
-              <div class="form-group input-group input-group-sm col-md-6">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Address 2</span>
-                </div>
-                <input type="text" class="form-control form-control-sm" required
-                  [(ngModel)]="dataModel.Address.Address2" name="Address2">
-              </div>
+              </div>              
             </div>
-            <div class="row">
-              <div class="form-group input-group input-group-sm col-md-6">
-                
-              </div>
-              <div class="form-group input-group input-group-sm col-md-6">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">City</span>
-                </div>
-                <input type="text" class="form-control form-control-sm" required [(ngModel)]="dataModel.Address.City"
-                  name="City" #City="ngModel" [ngClass]="{ 'is-invalid': f.submitted && City.invalid }">
-                <div *ngIf="f.submitted && City.invalid" class="invalid-feedback">
-                  <div *ngIf="City.errors.required"> City is required</div>
-                </div>
-              </div>
-  
-  
             </div>
-            <div class="row">
-              <div class="form-group input-group input-group-sm col-md-6">
-               
+          </div>
+          <div class="container">
+            <div class="form-group">
+              <label for="legno"> <b> Address </b> </label>
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-12">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Line 1</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" required
+                    [(ngModel)]="dataModel.Address.Address1" name="Address1" #Address1="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && Address1.invalid }">
+
+                  <div *ngIf="f.submitted && Address1.invalid" class="invalid-feedback">
+                    <div *ngIf="Address1.errors.required"> Address1 is required</div>
+                  </div>
+                </div>
+
               </div>
-  
-              <div class="form-row col-md-6">
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-12">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Line 2</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" required
+                    [(ngModel)]="dataModel.Address.Address2" name="Address2">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-row col-md-12">
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">City</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" required
+                      [(ngModel)]="dataModel.Address.City" name="City" #City="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && City.invalid }">
+                    <div *ngIf="f.submitted && City.invalid" class="invalid-feedback">
+                      <div *ngIf="City.errors.required"> City is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group input-group input-group-sm col-md-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">State</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" required
+                      [(ngModel)]="dataModel.Address.State" name="State" #State="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && State.invalid }">
+                    <div *ngIf="f.submitted && State.invalid" class="invalid-feedback">
+                      <div *ngIf="State.errors.required"> State is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group input-group input-group-sm col-md-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Zip</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" required [(ngModel)]="dataModel.Address.Zip"
+                      name="Zip" (keypress)="numberOnly($event)" appBlockCopyPaste #Zip="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && Zip.invalid }">
+                    <div *ngIf="f.submitted && Zip.invalid" class="invalid-feedback">
+                      <div *ngIf="Zip.errors.required"> Zip is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Country</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Country"
+                    name="Country" #Country="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Country.invalid }">
+                  <div *ngIf="f.submitted && Country.invalid" class="invalid-feedback">
+                    <div *ngIf="Country.errors.required"> Country is required</div>
+                  </div>
+                </div>
+                <div class="form-group input-group input-group-sm col-md-8">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Website</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Website"
+                    name="Website" #Website="ngModel" appBlockCopyPaste>
+                  <!-- <div *ngIf="submitted && f.Address['controls'].website.errors" class="invalid-feedback">                   
+                              <div *ngIf="customerForm.controls.website.errors.pattern">website is not valid</div>                       
+                            </div> -->
+                </div>
+              </div>
+              <div class="row">
                 <div class="form-group input-group input-group-sm col-md-6">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">State</span>
+                    <span class="input-group-text">Phone</span>
                   </div>
-                  <input type="text" class="form-control form-control-sm" required [(ngModel)]="dataModel.Address.State"
-                    name="State" #State="ngModel" [ngClass]="{ 'is-invalid': f.submitted && State.invalid }">
-                  <div *ngIf="f.submitted && State.invalid" class="invalid-feedback">
-                    <div *ngIf="State.errors.required"> State is required</div>
-                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Phone"
+                    name="Phone" #Phone="ngModel" (keypress)="numberOnly($event)" appBlockCopyPaste>
+
                 </div>
                 <div class="form-group input-group input-group-sm col-md-6">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">Zip</span>
+                    <span class="input-group-text">Fax</span>
                   </div>
-                  <input type="text" class="form-control form-control-sm" required [(ngModel)]="dataModel.Address.Zip"
-                    name="Zip" (keypress)="numberOnly($event)" appBlockCopyPaste #Zip="ngModel"
-                    [ngClass]="{ 'is-invalid': f.submitted && Zip.invalid }">
-                  <div *ngIf="f.submitted && Zip.invalid" class="invalid-feedback">
-                    <div *ngIf="Zip.errors.required"> Zip is required</div>
-                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Fax" name="Fax"
+                    #Fax="ngModel" (keypress)="numberOnly($event)" appBlockCopyPaste>
                 </div>
               </div>
+
+
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-12">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">E-mail</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Email"
+                    name="Email" #Email="ngModel" appBlockCopyPaste>
+                </div>
+              </div>
+
             </div>
-  
-            <div class="form-group  row">
-              <div class="form-group col-md-8">
-                <p *ngIf="dataSaved" style="color:green;font-size:15px;font-weight:normal" align="left">
-                  {{message}}
-                </p>
+
+            <div class="row">
+              <div class="col-6 col-sm-6 col-md-6">
+
               </div>
-              <div class=" col-md-1">
-                <button type="reset" *ngIf="isCancelbtnhidden" class="btn btn-primary btn-sm"
-                  (click)="cancel()">Cancel</button>
+              <div class="col-1 col-sm-1 col-md-1 text-left">
+                <button type="reset" *ngIf="isResetbtnhidden" class="btn btn-primary btn-sm"
+                  (click)="resetForm()">Clear</button>
               </div>
-              <div class=" col-md-1">
+              <div class="col-2 col-sm-2 col-md-2 text-right">
+                <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
+              </div>
+              <div class="col-1 col-sm-1 col-md-1 text-left">
                 <button type="submit" class="btn btn-primary btn-sm">Submit</button>
               </div>
-              <div class=" col-md-1">
-                <button type="reset" *ngIf="isResetbtnhidden" class="btn btn-primary btn-sm"
-                  (click)="resetForm()">Reset</button>
-              </div>
             </div>
-  
-  
           </div>
         </form>
       </div>
-    </div>
-  
-    <div class="row">
-  
-      <div class="col-md-8">
-        <br><br>
-        <table class="table table-sm">
-          <tr ngclass="btn-primary">
-            <th hidden="true">BrokerKey</th>
-            <th>ID</th>
-            <th>Name</th>           
+      <div class="row" *ngIf="show_BrokerInfo">
+        <div class="container text-right">
+          <span style="color:green;" (click)="bindFormControls()"> <i class="fa fa-pencil" aria-hidden="true"></i>
+            <b> edit</b>..</span>
+        </div>
+        <div class="container ml-2">
 
-          </tr>
-          <tr *ngFor="let brok of brokers">
-            <td hidden="true">{{brok.BrokerKey}}</td>
-            <td>{{brok.BrokerId}}</td>
-            <td>{{brok.BrokerName}}</td>
-           
-            <td class="tbl2">
-              <button type="button" class="btn btn-info btn-sm" (click)="EditBroker(brok.BrokerKey)">Edit</button>
-            </td>
-            <!-- <td class="tbl2">
-              <button type="button" class="btn btn-danger btn-sm"
-                (click)="deleteCustomer(cust.CustomerKey)">Delete</button>
-            </td> -->
-          </tr>
-        </table>
+          <h5> {{dataModel.BrokerName}} </h5>
+          <span class="text-muted">Id <b>{{dataModel.BrokerId}}</b> </span>
+          <br><br>
+
+          <span class="text" style="color: chocolate;"> <b> Address </b></span><br>
+
+          <span class="text-muted">Line 1 :<b> {{dataModel.Address.Address1}}</b> </span><br>
+          <span class="text-muted">Line 2 :<b> {{dataModel.Address.Address2}}</b> </span> <br>
+          <span class="text-muted">City :<b> {{dataModel.Address.City}} </b></span> <br>
+          <span class="text-muted">State :<b> {{dataModel.Address.State}} </b></span> <br>
+          <span class="text-muted">Zip :<b> {{dataModel.Address.Zip}} </b></span> <br>
+          <span class="text-muted">Country: <b> {{dataModel.Address.Country}} </b></span> <br><br>
+          <span class="text-muted">Website <b> {{dataModel.Address.Website}} </b></span> <br><br>
+          <span class="text-muted">Email </span><br>
+          <span><b> {{dataModel.Address.Email}} </b></span> <br><br>
+
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <span class="text-muted">Fax </span><br>
+              <span><b> {{dataModel.Address.Fax}} </b></span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <span class="text-muted">Mobile </span><br>
+              <span><b> {{dataModel.Address.Phone}} </b></span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+            </div>
+          </div>
+        </div>
       </div>
-  
     </div>
   </div>
+</div>

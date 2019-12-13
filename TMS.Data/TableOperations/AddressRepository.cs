@@ -15,10 +15,8 @@ namespace TMS.Data.TableOperations
             entities = new App_modelEntities();
         }
         public Guid Add(address t)
-        {
-            
+        {            
             var addressnew=  entities.addresses.Add(t);
-
             entities.SaveChanges();
             return addressnew.addrkey;
         }
@@ -46,6 +44,10 @@ namespace TMS.Data.TableOperations
         public bool Update(address t)
         {
             var addresstoUpdate = GetbyId(t.addrkey);
+            if(addresstoUpdate == null)
+            {
+                return false;
+            }
             addresstoUpdate.address1 = t.address1;
             addresstoUpdate.address2 = t.address2;
             addresstoUpdate.city = t.city;

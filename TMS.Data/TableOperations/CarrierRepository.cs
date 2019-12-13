@@ -37,6 +37,7 @@ namespace TMS.Data.TableOperations
         public carrier GetbyId(Guid id)
         {
             return entity.carriers.FirstOrDefault(d => d.carrierkey == id);
+
         }
 
         public bool Update(carrier t)

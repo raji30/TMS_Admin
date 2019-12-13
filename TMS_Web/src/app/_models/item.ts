@@ -3,6 +3,6 @@ export class Item {
     itemid :string;
     description :string;
     itemtype :number;
-    unitprice :string;
-    unitcost :string;
+    unitprice :number;
+    unitcost :number;
 }

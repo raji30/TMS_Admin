@@ -1,0 +1,245 @@
+<br>
+<div id="jumbotron">
+  <div class="row">
+    <div class="col-6 col-sm-6 col-md-6">
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-6">
+          <h5 class="card-subtitle mb-2" style="color: black">
+            <img src="assets/img/brand/user-identity4.png" /> Ratesheet</h5>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6">
+          <!-- <div class="container text-right">
+            <div class="row">
+              <div class="col-11 col-sm-11 col-md-11">
+                <div class="form-group input-group input-group-sm">
+                  <div class="img-group-prepend">
+                    <img src="assets/img/brand/search16px.png" /> &nbsp;
+                  </div>
+                  <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text"
+                    placeholder="Search..">
+                </div>
+              </div>
+              <div class="col-1 col-sm-1 col-md-1">
+                <img src="assets/img/brand/broom16px.png" (click)="clear_search()" tooltip="clear" />
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-md-6 text-right">
+      <button type="button" class="btn btn-info btn-sm" (click)="toggle()" *ngIf="show_btnAdd">Add Rate
+      </button>
+      <h5 for="new" *ngIf="show_lblAdd"> Add Item </h5>
+      <h5 for="edit" *ngIf="show_lblEdit"> Edit Item </h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-sm-6 col-md-6 ScrollStyle">
+      <div class="row">
+        <div class="form-group input-group input-group-sm col-sm-6 col-md-6 col-lg-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Customer</span>
+          </div>
+          <select id="drpCustomer" class="form-control form-control-sm" [ngModel]="selectedCustomer"
+            (change)="drpCustomer_ChangedEvent($event.target.value)">
+            <option [value]="0" disabled>--select-- </option>
+            <option [value]="Customer.CustomerKey" *ngFor="let Customer of customers">
+              {{Customer.CustName}}
+            </option>
+          </select>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6">
+          <div class="container text-right">
+            <span style="color:green;" (click)="GetRateByCustomer()"> <i class="fa fa-pencil" aria-hidden="true"></i>
+              <b> edit</b>..</span>
+          </div>
+        </div>
+      </div>
+      <!-- <table class="table table-sm">
+        <tr ngclass="btn-primary">
+          <th hidden="true">itemkey</th>
+          <th>Id</th>
+          <th>Description</th>
+
+        </tr>
+        <tr *ngFor="let rate of rates | grdFilter: {itemid: searchText,description: searchText}">
+          <td hidden="true">{{rate.item.itemkey}}</td>
+          <td> <a [routerLink]="" (click)="getItemById(item.itemkey)">{{item.itemid}}</a> </td>
+          <td>{{rate.item.description}}</td>
+         
+        </tr>
+      </table> -->
+      <div class="row">
+        <table class="table table-borderless table-sm">
+          <tr ngclass="btn-primary">
+            <th>Description</th>
+            <th>Unit Price</th>
+          </tr>
+          <tr *ngFor="let rate of ratesbycustomer;let i=index">
+            <td> {{rate.description}}</td>
+            <td> {{rate.unitprice}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-md-6">
+      <div class="row" *ngIf="show_DivAddUpdate">
+        <div class="container bg-light" style="border-radius: 25px;">
+          <form name="form" (ngSubmit)=" f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="container">
+              <div class="form-group">
+                <br>
+                <!-- <label for="user"> <b> Item detail </b> </label> -->
+                <div class="row">
+                  <div class="col-6 col-sm-6 col-md-6">
+
+                  </div>
+                  <div class="col-1 col-sm-1 col-md-1 text-left">
+                    <!-- <button type="reset" *ngIf="isResetbtnhidden" class="btn btn-primary btn-sm"
+                      (click)="resetForm()">Clear</button> -->
+                  </div>
+                  <div class="col-2 col-sm-2 col-md-2 text-right">
+                    <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
+                  </div>
+                  <div class="col-1 col-sm-1 col-md-1 text-right">
+                    <button class="btn btn-primary btn-sm">Submit</button>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-sm-6 col-md-6 col-lg-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Customer</span>
+                    </div>
+                    <select id="drpCustomer1" class="form-control form-control-sm" [(ngModel)]="addModel.customerkey"
+                      name="addModel.customerkey">
+                      <option [value]="0" disabled>--select-- </option>
+                      <option [value]="Customer.CustomerKey" *ngFor="let Customer of customers">
+                        {{Customer.CustName}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <table id="containerRatesheet" class="table table-sm table-borderless bg-light" cellspacing="0"
+                    width="100%">
+                    <thead>
+                      <tr>
+                        <th hidden="true">itemkey</th>
+                        <th>Description</th>
+                        <th>Unit Price</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of ratesheet; let i = index">
+                        <td hidden="true">
+                          {{item.itemkey}} </td>
+                        <td>{{item.description}}</td>
+                        <td>
+                          <input [(ngModel)]="item.unitprice" class="form-control form-control-sm " type="text"
+                            name="{{item.unitprice}}" /> </td>
+                        <td>
+                          <button class="btn btn-default small" type="button" (click)="deleteFieldValue(i)">
+                            <img src="assets/img/brand/trash-icon16px.png" /></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <select id="drpItem" class="form-control form-control-sm" [(ngModel)]="newAttribute.itemkey"
+                            name="newAttribute.itemkey" (change)="drpAddnewCharge_ChangedEvent($event.target.value)">
+                            <option [value]="0" disabled>--select-- </option>
+                            <option [value]="itm.itemkey" *ngFor="let itm of item">
+                              {{itm.description}}
+                            </option>
+                          </select>
+                        </td>
+                        <td>
+                          <input class="form-control form-control-sm" type="text" id="newAttributePrice"
+                            [(ngModel)]="newAttribute.unitprice" name="newAttributePrice" />
+                        </td>
+                        <td>
+                          <button class="btn btn-default" type="button" (click)="addFieldValue()">Add</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row" *ngIf="show_DivInfo">
+
+        <div class="container">
+          <div class="row">
+            <span>Customer :<b> {{selectedCustomer.CustName}}</b></span>
+
+            <table id="container" class="table table-sm table-borderless" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>Ratekey</th>
+                  <th>itemkey</th>
+                  <th>Description</th>
+                  <th>Unit Price</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of dataModel; let i = index">
+                  <td>{{item.ratekey}} </td>
+                  <td>{{item.itemkey}} </td>
+                  <td>{{item.description}}</td>
+                  <td>
+                    <input [(ngModel)]="item.unitprice" class="form-control form-control-sm " type="text"
+                      name="{{item.unitprice}}" /> </td>
+                  <td *ngIf="item.ratekey == null">
+                    <button class="btn btn-default small" type="button" (click)="deleteFieldValueInRateSheet(i)">
+                      <img src="assets/img/brand/trash-icon16px.png" /></button>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+
+            <table id="containerAttributes" class="table table-sm table-borderless" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th hidden="true">itemkey</th>
+                  <th>Description</th>
+                  <th>Unit Price</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <select class="form-control form-control-sm"
+                      [(ngModel)]="newAttributeinRate.itemkey" name="newAttributeinRate.itemkey"
+                      (change)="drpAddnewCharge_ChangedEventEdit($event.target.value)">
+                      <option [value]="0" disabled>--select-- </option>
+                      <option *ngFor="let i of item" [value]="i.itemkey" >
+                        {{i.description}}
+                      </option>
+                    </select>                    
+                  </td>
+                  <td>
+                    <input class="form-control form-control-sm" type="text" id="newAttributeinRatePrice"
+                      [(ngModel)]="newAttributeinRate.unitprice" name="newAttributeinRatePrice" />
+                  </td>
+                  <td>
+                    <button class="btn btn-default" type="button" (click)="addNewRowinRateSheet()">Add</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

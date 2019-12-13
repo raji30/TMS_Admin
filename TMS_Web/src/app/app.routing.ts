@@ -21,6 +21,9 @@ import { VendorlistComponent } from "./views/_master/_vendor/vendorlist/vendorli
 import { BrokerlistComponent } from "./views/_master/_broker/brokerlist/brokerlist/brokerlist.component";
 import { CarrierlistComponent } from "./views/_master/_carrier/carrierlist/carrierlist.component";
 import { InvoiceComponent } from "./views/invoice/invoice/invoice.component";
+import { UserlistComponent } from "./views/_master/_user/userlist/userlist.component";
+import { RatesheetlistComponent } from "./views/_master/_ratesheet/ratesheetlist/ratesheetlist.component";
+import { ItemlistComponent } from "./views/_master/_item/itemlist/itemlist.component";
 
 export const routes: Routes = [
   {
@@ -73,6 +76,14 @@ export const routes: Routes = [
         component: ListcustomerComponent
       },
       {
+        path: "RateSheet",
+        component: RatesheetlistComponent
+      },      
+      {
+        path: "Items",
+        component: ItemlistComponent
+      },
+      {
         path: "Drivers",
         component: ListdriverComponent
       },
@@ -83,6 +94,10 @@ export const routes: Routes = [
       {
         path: "Brokers",
         component: BrokerlistComponent
+      },
+      {
+        path: "Users",
+        component: UserlistComponent
       },
       {
         path: "Carriers",

@@ -42,18 +42,21 @@ namespace TMS.Api.Controllers
                     vendorBO.statusdate = driv.statusdate;
 
                     var address = new AddressRepository().GetbyId(driv.addrkey);
-                    vendorBO.Address = new AddressBO()
+                    if (address != null)
                     {
-                        AddrKey = address.addrkey,
-                        Address1 = address.address1,
-                        Address2 = address.address2,
-                        City = address.city,
-                        State = address.state,
-                        Zip = address.zipcode,
-                        Email = address.email,
-                        Phone = address.phone,
-                        Fax = address.fax
-                    };
+                        vendorBO.Address = new AddressBO()
+                        {
+                            AddrKey = address.addrkey,
+                            Address1 = address.address1,
+                            Address2 = address.address2,
+                            City = address.city,
+                            State = address.state,
+                            Zip = address.zipcode,
+                            Email = address.email,
+                            Phone = address.phone,
+                            Fax = address.fax
+                        };                       
+                    }
                     vendorList.Add(vendorBO);
                 }
                 return Request.CreateResponse(HttpStatusCode.OK, vendorList, Configuration.Formatters.JsonFormatter);
@@ -83,19 +86,23 @@ namespace TMS.Api.Controllers
                 vendorBO.statusdate = vendor.statusdate;
 
                 var address = new AddressRepository().GetbyId(vendor.addrkey);
-                vendorBO.Address = new AddressBO()
+                if (address != null)
                 {
-                    AddrKey = address.addrkey,
-                    Address1 = address.address1,
-                    Address2 = address.address2,
-                    City = address.city,
-                    State = address.state,
-                    Zip = address.zipcode,
-                    Email = address.email,
-                    Phone = address.phone,
-                    Fax = address.fax
-                };
-
+                    vendorBO.Address = new AddressBO()
+                    {
+                        AddrKey = address.addrkey,
+                        Address1 = address.address1,
+                        Address2 = address.address2,
+                        City = address.city,
+                        State = address.state,
+                        Zip = address.zipcode,
+                        Email = address.email,
+                        Phone = address.phone,
+                        Fax = address.fax,
+                        Website = address.website,
+                        Country = address.country
+                    };
+                }
                 return Request.CreateResponse(HttpStatusCode.OK, vendorBO, Configuration.Formatters.JsonFormatter);
 
             }
@@ -123,6 +130,7 @@ namespace TMS.Api.Controllers
             {
                 var custaddress = new Data.address()
                 {
+                    addrkey = vendorBO.Address.AddrKey,
                     address1 = vendorBO.Address.Address1,
                     address2 = vendorBO.Address.Address2,
                     city = vendorBO.Address.City,
@@ -131,7 +139,10 @@ namespace TMS.Api.Controllers
                     zipcode = vendorBO.Address.Zip,
                     email = vendorBO.Address.Email,
                     fax = vendorBO.Address.Fax,
+                    phone = vendorBO.Address.Phone,
+                    website = vendorBO.Address.Website,
                     addrname = _vendor.vendid
+                    
                 };
                 var addrkey = new AddressRepository().Add(custaddress);
                 _vendor.addrkey = addrkey;
@@ -153,6 +164,7 @@ namespace TMS.Api.Controllers
         public HttpResponseMessage Put([FromBody]VendorBO vendorBO)
         {
             Data.vendor _vendor = new Data.vendor();
+            _vendor.vendkey = vendorBO.vendkey;
             _vendor.vendid = vendorBO.vendid;
             _vendor.vendname = vendorBO.vendname;
             _vendor.status = 1;
@@ -170,6 +182,8 @@ namespace TMS.Api.Controllers
                     zipcode = vendorBO.Address.Zip,
                     email = vendorBO.Address.Email,
                     fax = vendorBO.Address.Fax,
+                    phone= vendorBO.Address.Phone,
+                    website = vendorBO.Address.Website,
                     addrname = _vendor.vendname
                 };
                 bool updated = new AddressRepository().Update(custaddress);

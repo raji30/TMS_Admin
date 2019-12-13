@@ -39,8 +39,15 @@ namespace TMS.Data
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("_orderkey",NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderKey);
-                    cmd.Parameters.AddWithValue("_orderdetailkey",NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderDetailKey);                   
-                    cmd.Parameters.AddWithValue("_drivernotes", NpgsqlTypes.NpgsqlDbType.Varchar, obj.drivernotes);
+                    cmd.Parameters.AddWithValue("_orderdetailkey",NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderDetailKey);  
+                    if(String.IsNullOrEmpty(obj.drivernotes)|| String.IsNullOrWhiteSpace(obj.drivernotes))
+                    {
+                        cmd.Parameters.AddWithValue("_drivernotes", NpgsqlTypes.NpgsqlDbType.Varchar, string.Empty);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("_drivernotes", NpgsqlTypes.NpgsqlDbType.Varchar, obj.drivernotes);
+                    }
                     cmd.Parameters.AddWithValue("_scheduledarrival", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.scheduledarrival);
                     cmd.Parameters.AddWithValue("_scheduleddeparture", NpgsqlTypes.NpgsqlDbType.Timestamp, obj.scheduleddeparture);
                     //cmd.Parameters.AddWithValue("_scheduledarrival", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(obj.scheduleddeparture, System.Globalization.CultureInfo.InvariantCulture));

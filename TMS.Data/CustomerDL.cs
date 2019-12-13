@@ -29,14 +29,14 @@ namespace TMS.Data
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;                    
 
-                    cmd.Parameters.AddWithValue("_custid", NpgsqlTypes.NpgsqlDbType.Uuid, customer.CustId);
+                    cmd.Parameters.AddWithValue("_custid", NpgsqlTypes.NpgsqlDbType.Varchar, customer.CustId);
                     cmd.Parameters.AddWithValue("_custname", NpgsqlTypes.NpgsqlDbType.Varchar, customer.CustName);                 
-                    cmd.Parameters.AddWithValue("_creditlimit", NpgsqlTypes.NpgsqlDbType.Bit, customer.CreditLimit);
+                    cmd.Parameters.AddWithValue("_creditlimit", NpgsqlTypes.NpgsqlDbType.Numeric, customer.CreditLimit);
                     cmd.Parameters.AddWithValue("_addrkey", NpgsqlTypes.NpgsqlDbType.Uuid, customer.addrkey);
-                    cmd.Parameters.AddWithValue("_customergroup", NpgsqlTypes.NpgsqlDbType.Varchar, customer.CustomerGroup);
-                    cmd.Parameters.AddWithValue("_creditcheck", NpgsqlTypes.NpgsqlDbType.Varchar, customer.CreditCheck);
-                    cmd.Parameters.AddWithValue("_paymentterms", NpgsqlTypes.NpgsqlDbType.Varchar, customer.paymentterms);
-                    cmd.Parameters.AddWithValue("_ach_required", NpgsqlTypes.NpgsqlDbType.Varchar, customer.achrequired);                   
+                    //cmd.Parameters.AddWithValue("_customergroup", NpgsqlTypes.NpgsqlDbType.Smallint, 0);
+                    //cmd.Parameters.AddWithValue("_creditcheck", NpgsqlTypes.NpgsqlDbType.Bit, '0');
+                    cmd.Parameters.AddWithValue("_paymentterms", NpgsqlTypes.NpgsqlDbType.Smallint, customer.paymentterms);
+                    cmd.Parameters.AddWithValue("_ach_required", NpgsqlTypes.NpgsqlDbType.Bit, customer.achrequired);                   
                     
 
                     var customerKey = cmd.ExecuteScalar();
@@ -56,16 +56,16 @@ namespace TMS.Data
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("_custkey", NpgsqlTypes.NpgsqlDbType.Uuid, customer.CustomerKey);
-                    cmd.Parameters.AddWithValue("_custid", NpgsqlTypes.NpgsqlDbType.Uuid, customer.CustId);
+                    cmd.Parameters.AddWithValue("_custid", NpgsqlTypes.NpgsqlDbType.Varchar, customer.CustId);
                     cmd.Parameters.AddWithValue("_custname", NpgsqlTypes.NpgsqlDbType.Varchar, customer.CustName);
-                    cmd.Parameters.AddWithValue("_status", NpgsqlTypes.NpgsqlDbType.Varchar, customer.Status);
-                    cmd.Parameters.AddWithValue("_creditlimit", NpgsqlTypes.NpgsqlDbType.Bit, customer.CreditLimit); 
-                    cmd.Parameters.AddWithValue("_creditcheck", NpgsqlTypes.NpgsqlDbType.Varchar, customer.CreditCheck);
-                    cmd.Parameters.AddWithValue("_paymentterms", NpgsqlTypes.NpgsqlDbType.Varchar, customer.paymentterms);
-                    cmd.Parameters.AddWithValue("_ach_required", NpgsqlTypes.NpgsqlDbType.Varchar, customer.achrequired);
+                    cmd.Parameters.AddWithValue("_status", NpgsqlTypes.NpgsqlDbType.Smallint, customer.Status);
+                    cmd.Parameters.AddWithValue("_creditlimit", NpgsqlTypes.NpgsqlDbType.Numeric, customer.CreditLimit); 
+                   // cmd.Parameters.AddWithValue("_creditcheck", NpgsqlTypes.NpgsqlDbType.Varchar, customer.CreditCheck);
+                    cmd.Parameters.AddWithValue("_paymentterms", NpgsqlTypes.NpgsqlDbType.Smallint, customer.paymentterms);
+                    cmd.Parameters.AddWithValue("_ach_required", NpgsqlTypes.NpgsqlDbType.Bit, customer.achrequired);
 
                     var customerKey = cmd.ExecuteNonQuery();
-                    return bool.Parse(customerKey.ToString());
+                    return true;
                 }
             }
         }

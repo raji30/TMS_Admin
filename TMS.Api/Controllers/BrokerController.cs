@@ -148,7 +148,9 @@ namespace TMS.Api.Controllers
                     Zip = address.zipcode,
                     Email = address.email,
                     Phone = address.phone,
-                    Fax = address.fax
+                    Fax = address.fax,
+                    Country = address.country,
+                    Website = address.website,
                 };              
                 return Request.CreateResponse(HttpStatusCode.OK, brokerBO, Configuration.Formatters.JsonFormatter);
             }
@@ -169,6 +171,8 @@ namespace TMS.Api.Controllers
 
             _broker.brokername = brokerBO.BrokerName;
             _broker.brokerid = brokerBO.BrokerId;
+            _broker.brokerkey = brokerBO.BrokerKey;
+            
 
             if (brokerBO.Address != null)
             {
@@ -183,6 +187,8 @@ namespace TMS.Api.Controllers
                     zipcode = brokerBO.Address.Zip,
                     email = brokerBO.Address.Email,
                     fax = brokerBO.Address.Fax,
+                    phone =brokerBO.Address.Phone,
+                    website = brokerBO.Address.Website,
                     addrname = _broker.brokerid
                 };
                 bool updated = new AddressRepository().Update(custaddress);

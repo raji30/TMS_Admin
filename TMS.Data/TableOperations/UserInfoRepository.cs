@@ -15,17 +15,24 @@ namespace TMS.BusinessLayer
         {
             entity = new App_SecurityEntities();
         }
-        
+
         public Guid Add(userinfo t)
         {
-            
-            using (var entity = new App_SecurityEntities())
+            try
             {
-                t.userkey = Guid.NewGuid();
-               var newlyadded =   entity.userinfoes.Add(t);
-               
-                entity.SaveChanges();
-              return  newlyadded.userkey;
+
+                using (var entity = new App_SecurityEntities())
+                {
+                    t.userkey = Guid.NewGuid();
+                    var newlyadded = entity.userinfoes.Add(t);
+
+                    entity.SaveChanges();
+                    return newlyadded.userkey;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -38,7 +45,7 @@ namespace TMS.BusinessLayer
         public bool Update(userinfo t)
         {
             var existing = entity.userinfoes.Where(u => u.userid == t.userid).FirstOrDefault();
-           // existing.address = t.address;
+            existing.addressmaster = t.addressmaster;
             existing.firstname = t.firstname;
             existing.lastname = t.lastname;
             return true;

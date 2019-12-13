@@ -15,6 +15,6 @@ namespace TMS.BusinessObjects
         public string Password { get; set; }
         public List<string> UserActivity { get; set; }
         public Guid? CompanyKey { get; set; }
-        public AddressBO address { get; set; }
+        public AddressBO Address { get; set; }
     }
 }

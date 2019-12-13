@@ -4,13 +4,17 @@
   <div class="row">
     <div class="col-sm-2 col-md-2 col-lg-2 border-right ScrollStyle">
       <ul class="list-unstyled">
-        <li> <h5>Containers <span class="badge badge-dark">Recent</span></h5><br></li>
+        <li>
+          <h5>Containers <span class="badge badge-dark">Recent</span></h5><br>
+        </li>
         <li *ngFor="let order of ContainerDetails; let ind=index;">
           <ul>
-            <li> <p style="font-family:calibri;"> <a [routerLink]="" (click)="rowclickEvent(order)">{{order.ContainerNo}}  
-              <span class="badge" *ngIf="selectedKey===order.OrderDetailKey">
-                <img src="assets/img/brand/symbol-check16px.png" /> </span>
-              </a> </p></li>
+            <li>
+              <p style="font-family:calibri;"> <a [routerLink]="" (click)="rowclickEvent(order)">{{order.ContainerNo}}
+                  <span class="badge" *ngIf="selectedKey===order.OrderDetailKey">
+                    <img src="assets/img/brand/symbol-check16px.png" /> </span>
+                </a> </p>
+            </li>
           </ul>
         </li>
       </ul>
@@ -20,7 +24,7 @@
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-6">
           <h5 class="card-subtitle mb-2" style="color: black">
-              <img src="assets/img/brand/lorry24px.png" /> Dispatch Delivery</h5>
+            <img src="assets/img/brand/lorry24px.png" /> Dispatch Delivery</h5>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6" *ngIf="showDispatch">
           <div class="container text-right">
@@ -35,50 +39,84 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-md-2">
-                          <div class="input-group input-group-sm">                           
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="SealNo">Chassis</label>
+
+                        <input class="form-control form-control-sm" type="text" name="Chassis" [(ngModel)]="Chassis"
+                          placeholder="Chassis" />
+                      </div>
+                      <!-- <div class="input-group input-group-sm">                           
                             <input class="form-control form-control-sm" type="text" name="Chassis"
                               [(ngModel)]="Chassis" placeholder="Chassis" />
-                          </div>
-                        </div>
-                        <div class="col-md-2">
-                          <div class="input-group input-group-sm">                          
+                          </div> -->
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="legno">Leg </label>
+
+                        <input class="form-control form-control-sm" type="text" name="legno" [(ngModel)]="legno"
+                          placeholder="Leg no" />
+                      </div>
+                      <!-- <div class="input-group input-group-sm">                          
                             <input class="form-control form-control-sm" type="text" name="legno"
                               [(ngModel)]="legno" placeholder="Leg no" />
-                          </div>
-                        </div>
-                        <div class="col-md-2">
-                          <div class="input-group input-group-sm">                           
+                          </div> -->
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="LegType">Leg Type</label>
+
+                        <input class="form-control form-control-sm" type="text" name="legtype" [(ngModel)]="legtype"
+                          placeholder="Leg Type" />
+                      </div>
+                      <!-- <div class="input-group input-group-sm">                           
                             <input class="form-control form-control-sm" type="text" name="legtype"
                               [(ngModel)]="legtype" placeholder="Leg Type" />
-                          </div>
-                        </div>
-                        <div class="col-md-2">
-                          <div class="input-group input-group-sm">                           
+                          </div> -->
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="ActualPickup">Pickup</label>
+
+                        <input class="form-control form-control-sm" type="text" name="actualarrival"
+                          [(ngModel)]="actualarrival" placeholder="Actual Pickup" [owlDateTimeTrigger]="dtactualarrival"
+                          [owlDateTime]="dtactualarrival" required />
+                        <owl-date-time [pickerType]="'both'" #dtactualarrival [hour12Timer]="false"></owl-date-time>
+                      </div>
+                      <!-- <div class="input-group input-group-sm">                           
                             <input class="form-control form-control-sm" type="text" name="actualarrival"
                               [(ngModel)]="actualarrival" placeholder="Actual Pickup" 
                               [owlDateTimeTrigger]="dtactualarrival" [owlDateTime]="dtactualarrival" required />
                               <owl-date-time [pickerType]="'both'" #dtactualarrival [hour12Timer]="false"></owl-date-time>
-                          </div>
-                        </div>
-                        <div class="col-md-2">
-                          <div class="input-group input-group-sm">                           
+                          </div> -->
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="ActualDropOff">Drop</label>
+
+                        <input class="form-control form-control-sm" type="text" name="actualdeparture"
+                          [(ngModel)]="actualdeparture" placeholder="Actual Drop-Off"
+                          [owlDateTimeTrigger]="dtactualdeparture" [owlDateTime]="dtactualdeparture" required />
+                        <owl-date-time [pickerType]="'both'" #dtactualdeparture [hour12Timer]="false"></owl-date-time>
+                      </div>
+                      <!-- <div class="input-group input-group-sm">                           
                             <input class="form-control form-control-sm" type="text" name="actualdeparture"
                               [(ngModel)]="actualdeparture" placeholder="Actual DropOff"
                               [owlDateTimeTrigger]="dtactualdeparture" [owlDateTime]="dtactualdeparture" required />
                             <owl-date-time [pickerType]="'both'" #dtactualdeparture [hour12Timer]="false"></owl-date-time>
-                          </div>
-                        </div>
-                        
-                      </div>
+                          </div> -->
+                    </div>
+
+                  </div>
                   <div class="row">
 
                     <div class="col-sm-3">
-                      
+
                     </div>
                     <div class="col-sm-6">
-                     
+
                     </div>
                   </div>
                   <hr>

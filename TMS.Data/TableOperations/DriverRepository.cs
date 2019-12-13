@@ -50,6 +50,7 @@ namespace TMS.Data.TableOperations
             var driv = GetbyId(t.driverkey);
             if (driv != null)
             {
+                driv.driverid = t.driverid;
                 driv.firstname = t.firstname;
                 driv.lastname = t.lastname;
                 driv.carrierkey = t.carrierkey;

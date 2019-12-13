@@ -73,7 +73,7 @@ namespace TMS.Data
                             BO.CarrierId = Utils.CustomParse<string>(reader["carrierid"]);
                             BO.CarrierName = Utils.CustomParse<string>(reader["carriername"]);
                             BO.AddrKey = Guid.Parse(reader["addrkey"].ToString());
-                          
+                            BO.ScacCode = Utils.CustomParse<string>(reader["scaccode"]);    
                             carrierlist.Add(BO);
                         }
                     }

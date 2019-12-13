@@ -140,12 +140,13 @@ namespace TMS.Api.Controllers
         {
             Data.carrier _carrier = new Data.carrier();
 
+            _carrier.carrierkey = carrierBO.CarrierKey;
             _carrier.carrierid = carrierBO.CarrierId;
             _carrier.carriername = carrierBO.CarrierName;
             _carrier.licenseplate = carrierBO.LicensePlate;
             _carrier.licenseplateexpirydate = carrierBO.LicensePlateExpiryDate;
             _carrier.scaccode = carrierBO.ScacCode;
-          
+            _carrier.addrkey = carrierBO.AddrKey;
             if (carrierBO.Address != null)
             {
                 var custaddress = new Data.address()
@@ -158,7 +159,8 @@ namespace TMS.Api.Controllers
                     zipcode = carrierBO.Address.Zip,
                     email = carrierBO.Address.Email,
                     fax = carrierBO.Address.Fax,
-                    addrname = _carrier.carrierid
+                    addrname = _carrier.carrierid,
+                    addrkey = carrierBO.AddrKey
                 };
                 bool updated = new AddressRepository().Update(custaddress);
             }

@@ -1,164 +1,148 @@
+
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { CustomerService } from "../../../../_services/customer.service";
-import { Customer } from "../../../../_models/customer";
-import { Observable } from "rxjs";
-import { FormBuilder, Validators, FormGroup } from "@angular/forms";
-import { Address } from "../../../../_models/address";
+import { ToastrService } from "ngx-toastr";
+import { ItemType } from "../../../../_models/ItemType";
+import { City } from "../../../../_models/city";
+import { CityService } from "../../../../_services/city.service";
 
 @Component({
-  selector: 'app-listcity',
-  templateUrl: './listcity.component.html',
-  styleUrls: ['./listcity.component.scss']
+  selector: "app-listcity",
+  templateUrl: "./listcity.component.html",
+  styleUrls: ["./listcity.component.scss"]
 })
 export class ListcityComponent implements OnInit {
-  customers: Observable<Customer[]>;
-  dataSaved = false;
-  customerForm: FormGroup;
-  customerUpdate = null;
-  message = null;
-  show_addupdatecustomer: boolean = false;
-  submitted: boolean = false;
-  customer: Customer;
-  address: Address;
-
+  citylist: City[];
+  public dataModel: City;
+ 
+  show_DivAddUpdate: boolean = false;
+  show_DivInfo: boolean = false;
+  show_btnAdd: boolean = true;
+  show_lblAdd: boolean = false;
+  show_lblEdit: boolean = false;
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
+  itemKey: string;
 
   constructor(
-    private formbulider: FormBuilder,
-    private Service: CustomerService,
-    private router: Router
+    private cityService: CityService,
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
-  ngOnInit() {
-    this.customerForm = this.formbulider.group({
-      CustomerKey: [],
-      custid: ['', [Validators.required]],
-      CustName: ['', [Validators.required]],
-      creditlimit: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(3)]],      
-      Address: this.formbulider.group({
-        AddrKey: [''],
-        Address1: ['', [Validators.required]],
-        Address2: ['', [Validators.required]],
-        City: ['', [Validators.required]],
-        State: ['', [Validators.required]],
-        Zip: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern("^[0-9]*$"),
-            Validators.minLength(3),
-            Validators.maxLength(3),
-          ]
-        ]
-      })
-    });
+  ngOnInit() {   
 
-    this.loadAllCustomers();
+    this.loadAllItems();
   }
 
-  loadAllCustomers() {
-    this.customers = this.Service.getCustomers();
+  loadAllItems() {
+    this.cityService.GetCity()
+    .subscribe(
+      data => (this.citylist = data),
+      error => console.log(error),
+      () => console.log("Get citylist", this.citylist)
+    );
   }
-  onFormSubmit() {
-    this.submitted = true;
-    if (this.customerForm.invalid) {
-      return;
-    }
-    this.dataSaved = false;
 
-    let cust: Customer = this.customerForm.value;
-    cust.CustomerKey = "";
-    cust.CustomerGroup = 0;
-    cust.CustomerKey = "";
-    cust.Status = 1;
-    cust.addrkey = "";
-    cust.CreditCheck = true;
-
-    this.CreateCustomer(cust);
-    this.customerForm.reset();
-    // this.toggle();
+  getcityById(cityKey: string) {
+    this.cityService.GetCityByID(cityKey).subscribe(
+      _userbyId => {
+        this.dataModel = _userbyId;
+        this.itemKey = cityKey;
+        this.show_DivInfo = true;
+        this.show_lblEdit = false;
+        this.show_lblAdd = false;
+        this.show_DivAddUpdate = false;
+        this.show_btnAdd = true;
+        console.log("user by Id", this.dataModel);
+      },
+      error => {
+        this.showError("Error in getting user ", "Error");
+      }
+    );
   }
-  loadCustomerToEdit(customerkey: string) {
-    this.Service.getCustomerById(customerkey).subscribe(customer_edit => {
-      this.message = null;
-      this.dataSaved = false;
-      this.customerUpdate = customer_edit.CustomerKey;
 
-      this.customerForm.controls["CustomerKey"].setValue(
-        customer_edit.CustomerKey
+  onSubmit() {
+   
+    if (this.itemKey == null) {
+      this.cityService.AddCity(this.dataModel).subscribe(
+        () => {
+          this.showSuccess("created successfully", "Create");
+          this.loadAllItems();
+          this.itemKey = null;
+          this.show_DivAddUpdate = false;
+          this.show_btnAdd = true;
+          this.show_lblAdd=false;
+        },
+        error => {
+          this.showError("Error in Creation", "Error");
+        }
       );
-      this.customerForm.controls["custid"].setValue(customer_edit.CustId);
-      this.customerForm.controls["CustName"].setValue(customer_edit.CustName);
-      this.customerForm.controls["creditlimit"].setValue(
-        customer_edit.CreditLimit
-      );
-
-      this.customerForm["controls"].Address["controls"].AddrKey.setValue(
-        customer_edit.Address["AddrKey"]
-      );
-      this.customerForm["controls"].Address["controls"].Address1.setValue(
-        customer_edit.Address["Address1"]
-      );
-      this.customerForm["controls"].Address["controls"].Address2.setValue(
-        customer_edit.Address["Address2"]
-      );
-      this.customerForm["controls"].Address["controls"].City.setValue(
-        customer_edit.Address["City"]
-      );
-      this.customerForm["controls"].Address["controls"].State.setValue(
-        customer_edit.Address["State"]
-      );
-      this.customerForm["controls"].Address["controls"].Zip.setValue(
-        customer_edit.Address["Zip"]
-      );
-    });
-    this.show_addupdatecustomer = true;
-    this.isCancelbtnhidden = true;
-    this.isResetbtnhidden = false;
-  }
-  CreateCustomer(customer: Customer) {
-    if (this.customerUpdate == null) {
-      this.Service.createCustomer(customer).subscribe(() => {
-        this.dataSaved = true;
-        this.message = "Customer Record saved Successfully";
-        this.loadAllCustomers();
-        this.customerUpdate = null;
-        this.customerForm.reset();
-      });
     } else {
-      customer.CustomerKey = this.customerUpdate;
-      this.Service.updateCustomer(customer).subscribe(() => {
-        this.dataSaved = true;
-        this.message = "Customer Record Updated Successfully";
-        this.loadAllCustomers();
-        this.customerUpdate = null;
-        this.customerForm.reset();
-      });
+      this.cityService.UpdateCity(this.dataModel).subscribe(
+        () => {
+          this.showSuccess("Updated successfully", "Update");
+          this.loadAllItems();
+          this.itemKey = null;
+          this.show_DivAddUpdate = false;
+          this.show_btnAdd = true;
+          this.show_lblEdit=false;
+        },
+        error => {
+          this.showError("Error in Update", "Error");
+        }
+      );
     }
+  }
+
+  bindFormControls() {
+    this.show_DivAddUpdate = true;
+    this.show_DivInfo = false;
+    this.show_btnAdd = false;
+    this.show_lblAdd = false;
+    this.show_lblEdit = true;
   }
 
   resetForm() {
-    this.customerForm.reset();
-    this.message = null;
-    this.dataSaved = false;
+    this.dataModel = null;
+    this.dataModel = new City();
+    this.itemKey = null;
   }
 
   toggle() {
-    // if (this.show_addupdatecustomer) this.show_addupdatecustomer = false;
-    // else if (!this.show_addupdatecustomer) this.show_addupdatecustomer = true;
-
-    this.show_addupdatecustomer = true;
+    this.show_DivAddUpdate = true;
     this.isResetbtnhidden = true;
+    this.show_btnAdd = false;
+    this.show_lblAdd = true;
+    this.show_lblEdit = false;
+    this.show_DivInfo = false;
+    this.resetForm();
   }
 
   cancel() {
     this.isResetbtnhidden = false;
-    this.show_addupdatecustomer = false;
+    if (this.dataModel != null) {
+      this.show_DivInfo = false;
+    }
+    this.show_DivAddUpdate = false;
+    this.show_btnAdd = true;
+    this.show_lblAdd = false;
+    this.show_lblEdit = false;
   }
 
-    // convenience getter for easy access to form fields
-    get f() { return this.customerForm.controls; }
+  showSuccess(message: string, title: string) {
+    this.toastr.success(message, title, { timeOut: 2000, closeButton: true });
+  }
 
+  showError(message: string, title: string) {
+    this.toastr.error(message, "Oops!", { timeOut: 2000, closeButton: true });
+  }
+
+  showWarning(message: string, title: string) {
+    this.toastr.warning(message, title,{ timeOut: 2000, closeButton: true });
+  }
+
+  showInfo(message: string, title: string) {
+    this.toastr.info(message, title, { timeOut: 2000, closeButton: true });
+  }
 }

@@ -26,6 +26,7 @@ export class ListcustomerComponent implements OnInit {
   selectedCustomer: Customer;
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
+  show_btnCreateCustomer: boolean = true;
 
   searchText: string;
 
@@ -166,7 +167,8 @@ export class ListcustomerComponent implements OnInit {
       );
     });
     this.show_customerInfo = true;
-    this.show_addupdatecustomer = false;
+    this.show_addupdatecustomer = false;    
+    this.show_btnCreateCustomer = true;
 
     this.isCancelbtnhidden = true;
     this.isResetbtnhidden = false;
@@ -174,26 +176,31 @@ export class ListcustomerComponent implements OnInit {
   bindFormControls() {
     this.show_customerInfo = false;
     this.show_addupdatecustomer = true;
+    this.show_btnCreateCustomer  = false;
   }
   CreateCustomer(customer: Customer) {
     if (this.customerUpdate == null) {
       this.Service.createCustomer(customer).subscribe(() => {
         this.dataSaved = true;
-        this.message = "Customer Record saved Successfully";
+        this.show_addupdatecustomer = false;
+        this.showSuccess("Customer created successfully", "Create");
         this.loadAllCustomers();
         this.customerUpdate = null;
         this.customerForm.reset();
+      }, error => {
+        this.showError("Error in Customer creation", "Error");
       });
     } else {
       customer.CustomerKey = this.customerUpdate;
       this.Service.updateCustomer(customer).subscribe(() => {
         this.dataSaved = true;
-        this.message = "Customer Record Updated Successfully";
+        this.show_addupdatecustomer = false;       
         this.showSuccess("Customer updated successfully", "Edit");
         this.loadAllCustomers();
         this.customerUpdate = null;
-        this.customerForm.reset();
-        this.show_addupdatecustomer = false;
+        this.customerForm.reset();       
+      }, error => {
+        this.showError("Error in Customer update", "Error");
       });
     }
   }
@@ -205,16 +212,24 @@ export class ListcustomerComponent implements OnInit {
   }
 
   toggle() {
+    this.customerForm.reset();
+    this.message = null;
+    this.dataSaved = false;
     this.show_addupdatecustomer = true;
     this.show_customerInfo = false;
     this.isResetbtnhidden = true;
+    this.show_btnCreateCustomer = false;
   }
 
   cancel() {
     this.isResetbtnhidden = false;
-
-    this.show_customerInfo = true;
+    if(this.selectedCustomer != null)
+    {
+      this.show_customerInfo = true;
+     
+    }    
     this.show_addupdatecustomer = false;
+    this.show_btnCreateCustomer  = true;
   }
 
   // convenience getter for easy access to form fields

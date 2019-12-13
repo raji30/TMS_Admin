@@ -44,7 +44,7 @@ namespace TMS.Data.TableOperations
             {
                 broker.brokername = t.brokername;
                 broker.brokerid = t.brokerid;
-                broker.addrkey = t.addrkey;
+                //broker.addrkey = t.addrkey;
 
                 entity.SaveChanges();
                 return true;

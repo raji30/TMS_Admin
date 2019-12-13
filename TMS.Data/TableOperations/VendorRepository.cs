@@ -45,7 +45,7 @@ namespace TMS.Data.TableOperations
             {
                 vend.vendname = t.vendname;
                 vend.vendid = t.vendid;
-                vend.addrkey = t.addrkey;
+               // vend.addrkey = t.addrkey;
                 entities.SaveChanges();
                 return true;
             }

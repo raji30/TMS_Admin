@@ -118,6 +118,7 @@
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
     <Compile Include="CarrierDL.cs" />
+    <Compile Include="CityDL.cs" />
     <Compile Include="comment.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
@@ -166,6 +167,7 @@
     </Compile>
     <Compile Include="ItemDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RateSheetDL.cs" />
     <Compile Include="RoutesDL.cs" />
     <Compile Include="SchedulingDL.cs" />
     <Compile Include="shippingport.cs">

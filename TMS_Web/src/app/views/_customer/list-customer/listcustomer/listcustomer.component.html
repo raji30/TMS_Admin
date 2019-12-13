@@ -29,11 +29,12 @@
       </div>
     </div>
     <div class="col-4 col-sm-4 col-md-4 text-right">
-      <button type="button" class="btn btn-info btn-sm" (click)="toggle()">Create New Customer</button>
+      <button type="button" class="btn btn-info btn-sm" (click)="toggle()" *ngIf="show_btnCreateCustomer">Create New
+        Customer</button>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-8 col-md-8 col-lg-8 border-right ScrollStyle">
+    <div class="col-sm-8 col-md-8 col-lg-8 ScrollStyle">
       <table class="table table-sm">
         <tr ngclass="btn-primary">
           <th hidden="true">custkey</th>
@@ -67,13 +68,13 @@
             <div class="container">
               <div class="row">
                 <div class="col-12 col-sm-8 col-md-8">
-                  <h4> Customer Edit</h4>
+                  <label> <b> Customer detail </b> </label>
                 </div>
                 <div class="col-12 col-sm-2 col-md-2 text-right">
-                  <button type="reset" class="btn btn-secondary btn-sm" (click)="cancel()">Cancel</button>
+                  <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
                 </div>
                 <div class="col-12 col-sm-2 col-md-2 text-right">
-                  <button type="submit" class="btn btn-secondary btn-sm">Submit</button>
+                  <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                 </div>
               </div>
               <div class="row" hidden="true">
@@ -88,7 +89,7 @@
               <div class="row">
                 <div class="form-group input-group input-group-sm col-md-8">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">ID</span>
+                    <span class="input-group-text">Id</span>
                   </div>
                   <input type="text" class="form-control form-control-sm" formControlName="custid">
                 </div>
@@ -116,9 +117,26 @@
                     <div *ngIf="f.creditlimit.errors.minLength">minlength is required</div>
                   </div>
                 </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Payment Terms</span>
+                      </div>
+                      <select id="drppaymentterms" class="form-control" formControlName="paymentterms">
+                        <option [value]="null">Select</option>
+                        <option [value]="0">0 days</option>
+                        <option [value]="15"> 15 days</option>
+                        <option [value]="30">30 days</option>
+                        <option [value]="45"> 45 days</option>
+                        <option [value]="60">60 days</option>
+                        <option [value]="90"> 90 days</option>
+                      </select>
+                    </div>
+                  </div>
               </div>
 
               <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4"></div>
                 <div class="col-sm-4 col-md-4 col-lg-4">
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="ACHrequired" formControlName="achrequired"
@@ -126,148 +144,125 @@
                     <label class="form-check-label" for="ACH required">ACH required</label>
                   </div>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-6">
-                  <div class="form-group input-group input-group-sm">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Payment Terms</span>
-                    </div>
-                    <select id="drppaymentterms" class="form-control" formControlName="paymentterms">
-                      <option [value]="null">Select</option>
-                      <option [value]="0">0 days</option>
-                      <option [value]="15"> 15 days</option>
-                      <option [value]="30">30 days</option>
-                      <option [value]="45"> 45 days</option>
-                      <option [value]="60">60 days</option>
-                      <option [value]="90"> 90 days</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <!-- <div class="row">
-                    <div class="form-group input-group input-group-sm col-sm-3 col-md-3 col-lg-3 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Payment Terms</span>
-                          </div>
-                            <input type="checkbox" class="form-check-input" value="1" formControlName="paymentterms">                         
-                    </div>
-                    <div class="col-sm-3 col-md-3 col-lg-3 ">
-                      
-                      </div>
-                  </div> -->
-
-              <div class="row" formGroupName="Address" hidden="true">
-                <div class="form-group input-group input-group-sm col-md-6">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Address Key</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="AddrKey">
-                </div>
-
-              </div>
-              <div class="row" formGroupName="Address">
-                <div class="form-group input-group input-group-sm col-md-8">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Address line 1</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="Address1">
-                </div>
-              </div>
-
-              <div class="row" formGroupName="Address">
-                <div class="form-group input-group input-group-sm col-md-8">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Address line 2</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="Address2">
-                </div>
-              </div>
-
-
-              <div class="row" formGroupName="Address">
-                <div class="form-group input-group input-group-sm col-md-5">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">City</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="City">
-                </div>
-
-                <div class="form-group input-group input-group-sm col-md-4">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">State</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="State">
-                </div>
-                <div class="form-group input-group input-group-sm col-md-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Zip</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="Zip"
-                    [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Zip.errors }"
-                    (keypress)="numberOnly($event)" appBlockCopyPaste>
-                  <div *ngIf="submitted && f.Address['controls'].Zip.errors" class="invalid-feedback">
-                    <div *ngIf="f.Address['controls'].Zip.errors.required">Zip is required</div>
-                    <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
-                    <div *ngIf="f.Address['controls'].Zip.errors.minLength">minlength is required</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row" formGroupName="Address">
-                <div class="form-group input-group input-group-sm col-md-8">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Country</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="Country"
-                    [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Country.errors }">
-                  <div *ngIf="submitted && f.Address['controls'].Country.errors" class="invalid-feedback">
-                    <div *ngIf="f.Address['controls'].Country.errors.minLength">minlength is required</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row" formGroupName="Address">
-                <div class="form-group input-group input-group-sm col-md-8">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Website</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="Website" appBlockCopyPaste>
-                  <!-- <div *ngIf="submitted && f.Address['controls'].website.errors" class="invalid-feedback">                   
-                        <div *ngIf="customerForm.controls.website.errors.pattern">website is not valid</div>                       
-                      </div> -->
-                </div>
-              </div>
-              <div class="row" formGroupName="Address">
-                <div class="form-group input-group input-group-sm col-md-8">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Phone</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="Phone"
-                    [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Phone.errors }"
-                    (keypress)="numberOnly($event)" appBlockCopyPaste>
-                  <div *ngIf="submitted && f.Address['controls'].Phone.errors" class="invalid-feedback">
-                    <div *ngIf="f.Address['controls'].Phone.errors.minLength">minlength is required</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row" formGroupName="Address">
-                <div class="form-group input-group input-group-sm col-md-8">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">E-mail</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="Email" appBlockCopyPaste>
-                </div>
-              </div>
-              <div class="row" formGroupName="Address">
-                <div class="form-group input-group input-group-sm col-md-8">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Fax</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="Fax"
-                    (keypress)="numberOnly($event)" appBlockCopyPaste>
-
-                </div>
+               
               </div>
             </div>
+            <div class="container">
+              <div class="form-group">
+                <label for="legno"> <b> Address </b> </label>
+                <div class="row" formGroupName="Address" hidden="true">
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Address Key</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="AddrKey">
+                  </div>
+
+                </div>
+                <div class="row" formGroupName="Address">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Line 1</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="Address1">
+                  </div>
+                </div>
+
+                <div class="row" formGroupName="Address">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Line 2</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="Address2">
+                  </div>
+                </div>
+
+
+                <div class="row" formGroupName="Address">
+                  <div class="form-group input-group input-group-sm col-md-5">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">City</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="City">
+                  </div>
+
+                  <div class="form-group input-group input-group-sm col-md-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">State</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="State">
+                  </div>
+                  <div class="form-group input-group input-group-sm col-md-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Zip</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="Zip"
+                      [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Zip.errors }"
+                      (keypress)="numberOnly($event)" appBlockCopyPaste>
+                    <div *ngIf="submitted && f.Address['controls'].Zip.errors" class="invalid-feedback">
+                      <div *ngIf="f.Address['controls'].Zip.errors.required">Zip is required</div>
+                      <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
+                      <div *ngIf="f.Address['controls'].Zip.errors.minLength">minlength is required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row" formGroupName="Address">
+                  <div class="form-group input-group input-group-sm col-md-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Country</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="Country"
+                      [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Country.errors }">
+                    <div *ngIf="submitted && f.Address['controls'].Country.errors" class="invalid-feedback">
+                      <div *ngIf="f.Address['controls'].Country.errors.minLength">minlength is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group input-group input-group-sm col-md-8">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Website</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="Website" appBlockCopyPaste>
+                    <!-- <div *ngIf="submitted && f.Address['controls'].website.errors" class="invalid-feedback">                   
+                          <div *ngIf="customerForm.controls.website.errors.pattern">website is not valid</div>                       
+                        </div> -->
+                  </div>
+                </div>
+
+                <div class="row" formGroupName="Address">
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Phone</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="Phone"
+                      [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Phone.errors }"
+                      (keypress)="numberOnly($event)" appBlockCopyPaste>
+                    <div *ngIf="submitted && f.Address['controls'].Phone.errors" class="invalid-feedback">
+                      <div *ngIf="f.Address['controls'].Phone.errors.minLength">minlength is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Fax</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="Fax"
+                      (keypress)="numberOnly($event)" appBlockCopyPaste>
+
+                  </div>
+                </div>
+                <div class="row" formGroupName="Address">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">E-mail</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" formControlName="Email" appBlockCopyPaste>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
           </div>
         </form>
       </div>
@@ -291,7 +286,7 @@
               <span><b> {{selectedCustomer.achrequired}}</b></span> </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
               <span class="text-muted">Payment Term </span><br>
-              <span><b> {{selectedCustomer.paymentterms}}</b></span>
+              <span><b> {{selectedCustomer.paymentterms}} days</b></span>
             </div>
           </div>
           <br><br>
@@ -312,16 +307,16 @@
               <span class="text-muted">Fax </span><br>
               <span><b> {{selectedCustomer.Address.Fax}} </b></span>
             </div>
-              <div class="col-sm-4 col-md-4 col-lg-4">
-                <span class="text-muted">Mobile </span><br>
-                <span><b> {{selectedCustomer.Address.Phone}} </b></span>
-              </div>
-              <div class="col-sm-4 col-md-4 col-lg-4">
-              </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <span class="text-muted">Mobile </span><br>
+              <span><b> {{selectedCustomer.Address.Phone}} </b></span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
             </div>
           </div>
         </div>
       </div>
     </div>
-    <br>
   </div>
+  <br>
+</div>
