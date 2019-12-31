@@ -67,6 +67,7 @@
     <Compile Include="RoutesBO.cs" />
     <Compile Include="ScheduleOrderBO.cs" />
     <Compile Include="StateBO.cs" />
+    <Compile Include="ThinInvoiceBO.cs" />
     <Compile Include="ThinOrderDO.cs" />
     <Compile Include="LoginRequest.cs" />
     <Compile Include="UserDetailsBO.cs" />

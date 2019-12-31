@@ -206,5 +206,19 @@ namespace TMS.Api.Controllers
             Int64 result = dl.GetInvoiceMaxcount();
             return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="custname"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetInvoiceTotals")]
+        [SwaggerOperation("GetInvoiceTotals")]
+        public HttpResponseMessage GetInvoiceTotals(string orderkey)
+        {
+            var invoicetotals = dl.AutoPullInvoiceCosts(orderkey);
+            return Request.CreateResponse(HttpStatusCode.OK, invoicetotals, Configuration.Formatters.JsonFormatter);
+        }
     }
 }
