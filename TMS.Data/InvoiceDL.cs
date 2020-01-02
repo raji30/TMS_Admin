@@ -234,6 +234,8 @@ namespace TMS.Data
                 using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("_orderkey",
+                  NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(orderKey));
                     var reader = cmd.ExecuteReader();
                     do
                     {
