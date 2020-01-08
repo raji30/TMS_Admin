@@ -246,6 +246,7 @@ namespace TMS.Data
                             bo.ContainerNo = Utils.CustomParse<string>(reader["containerno"]);
                             bo.ItemId = Utils.CustomParse<string>(reader["itemid"]);
                             bo.UnitPrice = Convert.ToDouble(reader["unitprice"].ToString());
+                            bo.ItemKey = Utils.CustomParse<Guid>(reader["itemkey"].ToString());
                             InvoiceTotals.Add(bo);
                         }
                     } while (reader.NextResult());
