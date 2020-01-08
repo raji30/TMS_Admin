@@ -8,6 +8,14 @@ using System.Web.Http;
 using TMS.BusinessObjects;
 using TMS.Data;
 using TMS.Data.TableOperations;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using System.Reflection;
+using System.IO;
+using System.Web;
+using System.Net.Http.Headers;
 
 namespace TMS.Api.Controllers
 {/// <summary>
@@ -219,6 +227,58 @@ namespace TMS.Api.Controllers
         {
             var invoicetotals = dl.AutoPullInvoiceCosts(orderkey);
             return Request.CreateResponse(HttpStatusCode.OK, invoicetotals, Configuration.Formatters.JsonFormatter);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="custname"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("DownloadInvoice")]
+        [SwaggerOperation("DownloadInvoice")]
+        public HttpResponseMessage DownloadInvoice(string orderkey)
+        {
+            var invoicetotals = dl.AutoPullInvoiceCosts(orderkey);
+            var fileuploadPath = HttpContext.Current.Server.MapPath("~/App_Data/Files/");
+            //Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            PdfDocument pdfDoc = new PdfDocument(new PdfWriter(Path.Combine(fileuploadPath, $"invoice_{orderkey}.pdf")));
+            Document doc = new Document(pdfDoc);
+            // By default column width is calculated automatically for the best fit.
+            // useAllAvailableWidth() method set table to use the whole page's width while placing the content.
+            Table table = new Table(UnitValue.CreatePercentArray(3)).UseAllAvailableWidth();
+            table.AddHeaderCell(new Cell().Add(new Paragraph("ContainerNo")));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("ItemId")));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("UnitPrice")));
+            foreach (var record in invoicetotals)
+            {
+                table.AddCell(new Cell().Add(new Paragraph(record.ContainerNo)));
+                table.AddCell(new Cell().Add(new Paragraph(record.ItemId)));
+                table.AddCell(new Cell().Add(new Paragraph(record.UnitPrice.ToString())));
+            }
+            table.AddCell(new Cell().Add(new Paragraph()));
+            table.AddCell(new Cell().Add(new Paragraph("Totals:")));
+            table.AddCell(new Cell().Add(new Paragraph(invoicetotals.Select(x => x.UnitPrice).Sum().ToString())));
+            doc.Add(table);
+            doc.Close();
+            if (doc != null) { 
+            byte[] bytes = File.ReadAllBytes(Path.Combine(fileuploadPath, $"invoice_{orderkey}.pdf"));
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            //Set the Response Content.
+            response.Content = new ByteArrayContent(bytes);
+
+            //Set the Response Content Length.
+            response.Content.Headers.ContentLength = bytes.LongLength;
+
+            //Set the Content Disposition Header Value and FileName.
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = $"invoice_{orderkey}.pdf";
+
+            //Set the File Content Type.
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue(MimeMapping.GetMimeMapping($"invoice_{orderkey}.pdf"));
+            return response;
+            }
+            return Request.CreateResponse(HttpStatusCode.InternalServerError, string.Empty, Configuration.Formatters.JsonFormatter);
         }
     }
 }
