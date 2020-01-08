@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+
 import { DeliveryOrderService } from "../../_services/deliveryOrder.service";
 import { DeliveryOrderHeader } from "../../_models/DeliveryOrderHeader";
-import { Router, ActivatedRoute } from "@angular/router";
+
 import { Order_details } from "../../_models/order_details";
 import { NgbModal, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { TabComponent } from "../tab/tab.component";
+import { Router, ActivatedRoute } from '@angular/router';
+import { OnInit, Component } from '@angular/core';
 
 @Component({
   selector: "app-orderlist",

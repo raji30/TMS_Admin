@@ -1,5 +1,6 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap/modal';
+import { OnInit, Component } from '@angular/core';
+
+//import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-billingrates',

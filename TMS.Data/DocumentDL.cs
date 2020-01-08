@@ -10,40 +10,52 @@ namespace TMS.Data
 {
    public class DocumentDL : BaseConnection
     {
+        string connString = "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";
+        NpgsqlConnection connection;
+        public DocumentDL()
+        {
+            connection = new NpgsqlConnection(connString);
+
+        }
         public bool InsertDOHeaderDocument(OrderHeaderDocumentBO docBO)
         {
-          var connection= OpenConnection();
+            try
+            { 
+       
             string sql = "dbo.fn_insert_orderheader_document";
             using (connection)
             {
+                if(connection.State.ToString()=="Closed")
+                {
+                    connection = new NpgsqlConnection(connString);
+                }
+               
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("documentkey",
-                        NpgsqlTypes.NpgsqlDbType.Uuid, docBO.Document.Dockey);
-                    cmd.Parameters.AddWithValue("documenttype",
-                        NpgsqlTypes.NpgsqlDbType.Integer, Convert.ToInt16(docBO.Document.DocType));
-                    cmd.Parameters.AddWithValue("createdate",
-                        NpgsqlTypes.NpgsqlDbType.Date, docBO.Document.CreatedOn);
-                    cmd.Parameters.AddWithValue("createuserkey",
-                       NpgsqlTypes.NpgsqlDbType.Uuid, docBO.Document.CreatedBy);
-                    cmd.Parameters.AddWithValue("originalfilename",
-                       NpgsqlTypes.NpgsqlDbType.Char, docBO.Document.FileName);
-                    cmd.Parameters.AddWithValue("originalfiletype",
-                       NpgsqlTypes.NpgsqlDbType.Char, docBO.Document.FileType);
-                    cmd.Parameters.AddWithValue("filesizeinmb",
-                       NpgsqlTypes.NpgsqlDbType.Integer, docBO.Document.FileSizeInMB);
-                    cmd.Parameters.AddWithValue("orderkey",
-                       NpgsqlTypes.NpgsqlDbType.Uuid, docBO.Orderkey);
+                    cmd.Parameters.AddWithValue("documentkey", NpgsqlTypes.NpgsqlDbType.Uuid, docBO.Document.Dockey);
+                    cmd.Parameters.AddWithValue("documenttype",NpgsqlTypes.NpgsqlDbType.Smallint, Convert.ToInt16(docBO.Document.DocType));
+                    //cmd.Parameters.AddWithValue("createdate",
+                    //    NpgsqlTypes.NpgsqlDbType.Date, docBO.Document.CreatedOn);
+                    cmd.Parameters.AddWithValue("createuserkey",NpgsqlTypes.NpgsqlDbType.Uuid, docBO.Document.CreatedBy);
+                    cmd.Parameters.AddWithValue("originalfilename", NpgsqlTypes.NpgsqlDbType.Varchar, docBO.Document.FileName);
+                    cmd.Parameters.AddWithValue("originalfiletype",  NpgsqlTypes.NpgsqlDbType.Varchar, docBO.Document.FileType);
+                    cmd.Parameters.AddWithValue("filesizeinmb",NpgsqlTypes.NpgsqlDbType.Integer, docBO.Document.FileSizeInMB);
+                    cmd.Parameters.AddWithValue("orderno", NpgsqlTypes.NpgsqlDbType.Varchar, docBO.OrderNo);
                     
                    var reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        var result = bool.Parse(reader[0].ToString());
-                        return result;
+                        while (reader.Read())
+                        {
+                            var result = bool.Parse(reader[0].ToString());
+                            return result;
+                        }
                     }
                 }
+            }
+            catch
+            {
+                throw ;
             }
             return false;
         }

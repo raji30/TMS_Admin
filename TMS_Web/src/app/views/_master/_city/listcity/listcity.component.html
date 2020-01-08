@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-6 col-sm-6 col-md-6">
           <h5 class="card-subtitle mb-2" style="color: black">
-            <img src="assets/img/brand/user-identity4.png" /> Items</h5>
+            <img src="assets/img/brand/user-identity4.png" /> City List</h5>
         </div>
         <div class="col-6 col-sm-6 col-md-6">
           <div class="container text-right">
@@ -29,9 +29,9 @@
     </div>
     <div class="col-4 col-sm-4 col-md-4 text-right">
       <button type="button" class="btn btn-info btn-sm" (click)="toggle()" *ngIf="show_btnAdd">Create New
-        Item</button>
-      <h5 for="new" *ngIf="show_lblAdd"> Add Item </h5>
-      <h5 for="edit" *ngIf="show_lblEdit"> Edit Item </h5>
+        City</button>
+      <h5 for="new" *ngIf="show_lblAdd"> Add City </h5>
+      <h5 for="edit" *ngIf="show_lblEdit"> Edit City </h5>
     </div>
   </div>
 
@@ -40,8 +40,8 @@
       <table class="table table-sm">
         <tr ngclass="btn-primary">
           <th hidden="true">itemkey</th>
-          <th>Id</th>
-          <th>Description</th>
+          <th>ID</th>
+          <th>City</th>
          
         </tr>
         <tr *ngFor="let city of citylist | grdFilter: {cityid: searchText,cityname: searchText}">
@@ -59,7 +59,7 @@
             <div class="container">
               <div class="form-group">
                 <br>
-                <label for="user"> <b> Item detail </b> </label>
+                <label for="user"> <b> City Detail </b> </label>
                 <div class="row" hidden="true">
                   <div class="form-group input-group input-group-sm col-md-4">
                     <div class="input-group-prepend">
@@ -74,27 +74,27 @@
                 <div class="row">
                   <div class="form-group input-group input-group-sm col-md-12">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">User Id</span>
+                      <span class="input-group-text">Id</span>
                     </div>
                     <input type="text" class="form-control form-control-sm" name="cityid" [(ngModel)]="dataModel.cityid"
                       #cityid="ngModel" [ngClass]="{ 'is-invalid': f.submitted && cityid.invalid }" required
                       minlength="2" />
 
                     <div *ngIf="f.submitted && cityid.invalid" class="invalid-feedback">
-                      <div *ngIf="cityid.errors.required"> City Id is required</div>
+                      <div *ngIf="cityid.errors.required"> Id is required</div>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group input-group input-group-sm col-md-12">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">Name</span>
+                      <span class="input-group-text">City</span>
                     </div>
                     <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.cityname"
                       id="cityname" name="cityname" #cityname="ngModel"
                       [ngClass]="{ 'is-invalid': f.submitted && cityname.invalid }" required>
                     <div *ngIf="f.submitted && cityname.invalid" class="invalid-feedback">
-                      <div *ngIf="cityname.errors.required"> city name is required</div>
+                      <div *ngIf="cityname.errors.required"> city is required</div>
                     </div>
                   </div>
                 </div>

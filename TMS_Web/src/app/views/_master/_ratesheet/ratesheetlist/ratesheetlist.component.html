@@ -33,6 +33,7 @@
       <h5 for="new" *ngIf="show_lblAdd"> Add Item </h5>
       <h5 for="edit" *ngIf="show_lblEdit"> Edit Item </h5>
     </div>
+
   </div>
 
   <div class="row">
@@ -42,13 +43,15 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Customer</span>
           </div>
-          <select id="drpCustomer" class="form-control form-control-sm" [ngModel]="selectedCustomer"
+          <select id="drpCustomer" class="form-control form-control-sm"
             (change)="drpCustomer_ChangedEvent($event.target.value)">
             <option [value]="0" disabled>--select-- </option>
             <option [value]="Customer.CustomerKey" *ngFor="let Customer of customers">
               {{Customer.CustName}}
             </option>
           </select>
+
+
         </div>
         <div class="col-6 col-sm-6 col-md-6">
           <div class="container text-right">
@@ -174,16 +177,15 @@
         </div>
       </div>
       <div class="row" *ngIf="show_DivInfo">
-
         <div class="container">
           <div class="row">
-            <span>Customer :<b> {{selectedCustomer.CustName}}</b></span>
-
+            <h5> <b> {{selectedCustomer.CustName}}</b></h5>
+            <br>
             <table id="container" class="table table-sm table-borderless" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                  <th>Ratekey</th>
-                  <th>itemkey</th>
+                  <th hidden="true">Ratekey</th>
+                  <th hidden="true">itemkey</th>
                   <th>Description</th>
                   <th>Unit Price</th>
                   <th></th>
@@ -191,8 +193,8 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of dataModel; let i = index">
-                  <td>{{item.ratekey}} </td>
-                  <td>{{item.itemkey}} </td>
+                  <td hidden="true">{{item.ratekey}} </td>
+                  <td hidden="true">{{item.itemkey}} </td>
                   <td>{{item.description}}</td>
                   <td>
                     <input [(ngModel)]="item.unitprice" class="form-control form-control-sm " type="text"
@@ -202,10 +204,20 @@
                       <img src="assets/img/brand/trash-icon16px.png" /></button>
                   </td>
                 </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td class="text-right">
+                    <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
+                  </td>
 
+                  <td class="text-right">
+                    <button class="btn btn-primary btn-sm" (click)="updateRate()">Submit</button>
+                  </td>
+                  <td></td>
+                </tr>
               </tbody>
             </table>
-
             <table id="containerAttributes" class="table table-sm table-borderless" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -218,14 +230,14 @@
               <tbody>
                 <tr>
                   <td>
-                    <select class="form-control form-control-sm"
-                      [(ngModel)]="newAttributeinRate.itemkey" name="newAttributeinRate.itemkey"
+                    <select class="form-control form-control-sm" [(ngModel)]="newAttributeinRate.itemkey"
+                      name="newAttributeinRate.itemkey"
                       (change)="drpAddnewCharge_ChangedEventEdit($event.target.value)">
                       <option [value]="0" disabled>--select-- </option>
-                      <option *ngFor="let i of item" [value]="i.itemkey" >
+                      <option *ngFor="let i of item" [value]="i.itemkey">
                         {{i.description}}
                       </option>
-                    </select>                    
+                    </select>
                   </td>
                   <td>
                     <input class="form-control form-control-sm" type="text" id="newAttributeinRatePrice"

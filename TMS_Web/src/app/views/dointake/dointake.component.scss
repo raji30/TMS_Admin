@@ -18,3 +18,60 @@
   max-height: 600px;
   overflow-y: scroll;
 }
+
+
+
+
+@media (min-width: 768px) {
+  .modal-xl {
+    width: 100%;
+   max-width:1200px;
+  }
+}
+
+
+div.a {
+  line-height: normal;
+}
+
+// th {
+//   // background-color: rgb(130, 174, 192);
+//   background-color: rgb(66, 81, 88);
+//   color: white;
+// } 
+
+span.font{
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+letter-spacing: 1.2px;
+word-spacing: 2.8px;
+font-weight: 400;
+text-decoration: none solid rgb(68, 68, 68);
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+}
+
+
+.tag {
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  display: inline-block;
+}
+
+.tag-default {
+  background-color: gray;
+}
+
+.tag-success {
+  background-color: green;
+}
+
+.tag-warning {
+  background-color: orange;
+}
+
+.tag-danger {
+  background-color: red;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+
 import { DeliveryOrderHeader } from "../../../_models/DeliveryOrderHeader";
 import { Order_details } from "../../../_models/order_details";
 import { InvoiceService } from "../../../_services/invoice.service";
@@ -8,7 +8,7 @@ import { Address } from "./../../../_models/address";
 import { Item } from "../../../_models/item";
 import { ItemService } from "../../../_services/item.service";
 import { Invoicedetails } from "../../../_models/invoicedetails";
-import { forEach } from "@angular/router/src/utils/collection";
+import { OnInit, Component } from '@angular/core';
 
 @Component({
   selector: "app-invoice",
@@ -87,7 +87,7 @@ export class InvoiceComponent implements OnInit {
     this.showInvoice = true;
     this.showImage =false;
     console.log("Get invoiceModel", this.invoiceModel);
-    console.log("Get invoiceModel", this.invoiceModel.BillFrom["Name"]);
+    //console.log("Get invoiceModel", this.invoiceModel.BillFrom["Name"]);
   }
 
   addFieldValue() {

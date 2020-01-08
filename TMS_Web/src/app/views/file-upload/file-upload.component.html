@@ -1,0 +1,59 @@
+<div class="row">
+
+	<div class="col-md-3">
+		<h3>Select files</h3>
+		<!-- <input type="file" #fileInput multiple (change)="addToQueue()" /> -->
+		<input type="file"  multiple (change)="addToQueue($event)">
+	</div>
+</div>
+<div class="row">
+
+	<div class="col-md-6">
+		<h3>Upload queue</h3>
+		<table class="table table-borderless table-sm">
+			<thead>
+				<tr>
+					<th class="text-left">Name</th>
+					<th class="text-right">Size</th>
+					<th class="text-left">Progress</th>
+					<th class="text-center">Status</th>
+					<th class="text-right">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of queue | async">
+					<td>{{ item?.file?.name }}</td>
+					<td class="text-right">{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+					<td>						
+						  <div class="progress " >
+							<div class="progress-bar progress-bar-striped bg-primary" role="progressbar" [style.width.%]="item.progress" aria-valuenow="0"
+							  aria-valuemin="0" aria-valuemax="100">{{item.progress}}%</div>
+						  </div>
+					</td>
+					<td class="text-center">
+						<small *ngIf="item.isPending()" class="tag tag-default"></small>
+						<small *ngIf="item.isSuccess()" class="tag tag-success"></small>
+						<small *ngIf="item.inProgress()" class="tag tag-warning"></small>
+						<small *ngIf="item.isError()" class="tag tag-danger"></small>
+					</td>
+					<td class="text-right">
+						<a tooltip="Upload file" (click)="item.upload()" *ngIf="item.isUploadable()">
+							<i class="fa fa-upload"></i>
+						</a> &nbsp;
+						<a tooltip="Cancel upload" (click)="item.cancel()" *ngIf="item.inProgress()">
+							<i class="fa fa-times-circle"></i>
+						</a> &nbsp;
+						<a tooltip="Remove from queue" (click)="item.remove()" *ngIf="!item.inProgress()">
+							<i class="fa fa-trash"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div>		
+			<a type="button" class="btn btn-primary btn-sm" (click)="uploader.clearQueue()">Clear queue</a>&nbsp;&nbsp;
+			<a type="button" class="btn btn-primary btn-sm" (click)="upload()">Upload all</a>
+		</div>
+	</div>
+
+</div>

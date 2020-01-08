@@ -15,6 +15,9 @@ namespace TMS.BusinessObjects
         public Guid BillToAddress { get; set; }
         public Guid SourceAddress { get; set; }
         public Guid DestinationAddress { get; set; }
+        public string BillToAddr { get; set; }
+        public string SourceAddr { get; set; }
+        public string DestinationAddr { get; set; }
         public Guid ReturnAddress { get; set; }
         public short Source { get; set; }
         public short OrderType { get; set; }

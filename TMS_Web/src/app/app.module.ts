@@ -10,9 +10,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
 import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
-import { ModalModule, ProgressbarModule } from "ngx-bootstrap";
-import { TooltipModule } from "ngx-bootstrap/tooltip";
-import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -32,8 +29,6 @@ import {
 // Import routing module
 import { AppRoutingModule } from "./app.routing";
 // Import 3rd party components
-import { BsDropdownModule } from "ngx-bootstrap/dropdown";
-import { TabsModule } from "ngx-bootstrap/tabs";
 import { ChartsModule } from "ng2-charts/ng2-charts";
 import { LoginComponent } from "./views/login/login.component";
 import { DOIntakeComponent } from "./views/dointake/dointake.component";
@@ -46,13 +41,6 @@ import { CustomerComponent } from "./views/child/_address/customer/customer.comp
 import { AddressService } from "./_services/address.service";
 import { ContainerComponent } from "./views/child/container/container.component";
 import { BrokerComponent } from "./views/child/_broker/broker.component";
-import { A11yModule } from "@angular/cdk/a11y";
-import { DragDropModule } from "@angular/cdk/drag-drop";
-import { PortalModule } from "@angular/cdk/portal";
-import { ScrollingModule } from "@angular/cdk/scrolling";
-import { CdkStepperModule } from "@angular/cdk/stepper";
-import { CdkTableModule } from "@angular/cdk/table";
-import { CdkTreeModule } from "@angular/cdk/tree";
 import { OrderlistComponent } from "./views/orderlist/orderlist.component";
 import { OrderinfoComponent } from "./views/child/orderinfo/orderinfo.component";
 import { ContainersizeComponent } from "./views/child/containersize/containersize.component";
@@ -81,10 +69,13 @@ import { InvoiceComponent } from "./views/invoice/invoice/invoice.component";
 import { UserlistComponent } from "./views/_master/_user/userlist/userlist.component";
 import { RatesheetlistComponent } from "./views/_master/_ratesheet/ratesheetlist/ratesheetlist.component";
 import { ItemlistComponent } from "./views/_master/_item/itemlist/itemlist.component";
-
+import { FileUploadComponent } from "./views/file-upload/file-upload.component";
+import { FileUploaderService } from "./_services/file-uploader.service";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   imports: [
-    NgbModule,
+  NgbModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -94,26 +85,15 @@ import { ItemlistComponent } from "./views/_master/_item/itemlist/itemlist.compo
     AppHeaderModule,
     AppSidebarModule,
     PerfectScrollbarModule,
-    BsDropdownModule.forRoot(),
-    TooltipModule.forRoot(),
-    BsDatepickerModule.forRoot(),
-    ProgressbarModule.forRoot(),
-    ToastrModule.forRoot(),
-    TabsModule.forRoot(),
+    ToastrModule.forRoot(),    
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
-    ModalModule.forRoot(),
-    HttpClientModule,
-    A11yModule,
-    CdkStepperModule,
-    CdkTableModule,
-    CdkTreeModule,
-    DragDropModule,
-    PortalModule,
-    ScrollingModule,
+    HttpClientModule,    
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   declarations: [
     AppComponent,
@@ -140,19 +120,18 @@ import { ItemlistComponent } from "./views/_master/_item/itemlist/itemlist.compo
     OrderinfoComponent,
     ContainersizeComponent,
     InvoiceComponent,
-    TabComponent,
-    SchedulerComponent,
+    TabComponent,    
     SchedulerlistComponent,
     NavigationComponent,
     FileuploadComponent,
     DispatchComponent,
     DispatchAssignmentComponent,
     DispathdeliveryComponent,
-    
+    FileUploadComponent,    
     GrdFilterPipe,
     BlockCopyPaste
   ],
-  providers: [UserService, AddressService, DatePipe],
+  providers: [UserService, AddressService, DatePipe,FileUploaderService],
   bootstrap: [AppComponent],
   entryComponents: [TabComponent]
 })

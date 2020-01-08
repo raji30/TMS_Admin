@@ -5,11 +5,11 @@ import { Comments } from './comments';
 export class Order_details {
         OrderDetailKey :string;
         OrderKey:string;
-        containerSize:string;
-        containerNo:string;
-        chassis:string;
-        sealNo: string;
-        weight:number;
+        ContainerSize:string;
+        ContainerNo:string;
+        Chassis:string;
+        SealNo: string;
+        Weight:number;
         AppDateFrom:string;
         AppDateTo:string;
         PickupDateTime:string;       
@@ -22,7 +22,7 @@ export class Order_details {
         statusdate:string;
         holdreason:string;
         holddate:string;
-        containerSizeDesc:string;
+        ContainerSizeDesc:string;
         StatusDesc:string;
         HoldReasonDesc:string;  
         orderroutes:Tms_routes;

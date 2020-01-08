@@ -1,7 +1,7 @@
 <app-header [fixed]="true"
   [navbarBrandFull]="{src: 'assets/img/brand/layer-group-icon.png', width: 30, height: 30, alt: 'CoreUI Logo'}"
   [navbarBrandMinimized]="{src: 'assets/img/brand/layer-group-icon.png', width: 40, height: 40, alt: 'CoreUI Logo'}"
-  [sidebarToggler]="false" [mobileSidebarToggler]="false" [asideMenuToggler]="false">
+  [sidebarToggler]="false" [mobileSidebarToggler]="false" [asideMenuToggler]="false" class="bg-light">
 
   <ul class="nav navbar-nav d-md-down-none mr-auto">
     <li class="nav-item px-3">
@@ -65,7 +65,7 @@
             Customer</a>
           <a class="dropdown-item" routerLink="/Drivers"> <img src="assets/img/brand/star16px.png" hspace="5" />
             Driver</a>
-          <a class="dropdown-item" routerLink="/Vendors"> <img src="assets/img/brand/star16px.png" hspace="5" />
+          <!-- <a class="dropdown-item" routerLink="/Vendors"> <img src="assets/img/brand/star16px.png" hspace="5" />
             Vendor</a>
           <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/star16px.png" hspace="5" />
             Warehouse</a>
@@ -73,7 +73,7 @@
           <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/star16px.png" hspace="5" />
             Terminal</a>
           <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/star16px.png" hspace="5" />
-            Company</a>
+            Company</a> -->
           <a class="dropdown-item" routerLink="/Carriers"> <img src="assets/img/brand/star16px.png" hspace="5" />
             Carrier</a>
           <a class="dropdown-item" routerLink="/Brokers"><img src="assets/img/brand/star16px.png" hspace="5" />
@@ -131,13 +131,13 @@
     <app-navigation></app-navigation>
   </app-sidebar> -->
   <!-- Main content -->
-  <main class="main">
+  <main class="main bg-white">
     <!-- Breadcrumb -->
     <!-- <ol class="breadcrumb">
       <app-breadcrumb></app-breadcrumb>
     </ol> -->
-    <div class="container-fluid">
-      <router-outlet></router-outlet>
+    <div class="container-fluid bg-white">
+      <router-outlet class="bg-white"></router-outlet>
     </div><!-- /.container-fluid -->
   </main>
 

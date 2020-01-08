@@ -131,34 +131,39 @@ namespace TMS.Data
             }
         }
 
-        public bool UpdateRate(RateSheetBO rate)
+        public bool UpdateRate(RateSheetBO[] rate)
         {
             string query = "dbo.fn_update_rate";
-            using (connection)
+
+            try
             {
-                connection.Open();
-                using (var cmd = new NpgsqlCommand(query, connection))
+                using (connection)
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    //cmd.Parameters.AddWithValue("_ratekey", NpgsqlTypes.NpgsqlDbType.Uuid, rate.ratekey);
-                    //cmd.Parameters.AddWithValue("_customerkey", NpgsqlTypes.NpgsqlDbType.Uuid, rate.customerkey);
-                    //cmd.Parameters.AddWithValue("_itemkey", NpgsqlTypes.NpgsqlDbType.Uuid, rate.item.itemkey);
-                    //cmd.Parameters.AddWithValue("_unitprice", NpgsqlTypes.NpgsqlDbType.Varchar, rate.item.unitprice);
-                    //cmd.Parameters.AddWithValue("_unitcost", NpgsqlTypes.NpgsqlDbType.Varchar, rate.item.unitcost);
-                    //cmd.Parameters.AddWithValue("_userkey", NpgsqlTypes.NpgsqlDbType.Uuid, rate.userkey);
-
-                    var reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    connection.Open();
+                    foreach (var item in rate)
                     {
-                        var result = bool.Parse(reader[0].ToString());
-                        return result;
+                        using (var cmd = new NpgsqlCommand(query, connection))
+                        {
+                            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("_ratekey", NpgsqlTypes.NpgsqlDbType.Uuid, item.ratekey);
+                            cmd.Parameters.AddWithValue("_customerkey", NpgsqlTypes.NpgsqlDbType.Uuid, item.customerkey);
+                            cmd.Parameters.AddWithValue("_itemkey", NpgsqlTypes.NpgsqlDbType.Uuid, item.itemkey);
+                            cmd.Parameters.AddWithValue("_unitprice", NpgsqlTypes.NpgsqlDbType.Numeric, item.unitprice);
+                            cmd.Parameters.AddWithValue("_userkey", NpgsqlTypes.NpgsqlDbType.Uuid, item.userkey);
+
+                            var reader = cmd.ExecuteNonQuery();
+
+                        }
                     }
+                    return true;
                 }
             }
-            return false;
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
-
 
     }
 }

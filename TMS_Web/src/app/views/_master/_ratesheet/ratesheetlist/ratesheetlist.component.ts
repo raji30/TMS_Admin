@@ -7,6 +7,7 @@ import { Customer } from "../../../../_models/customer";
 import { RateService } from "../../../../_services/rate.service";
 import { CustomerService } from "../../../../_services/customer.service";
 import { ItemService } from "../../../../_services/item.service";
+//import { nlLocale } from "ngx-bootstrap";
 
 @Component({
   selector: "app-ratesheetlist",
@@ -197,6 +198,10 @@ export class RatesheetlistComponent implements OnInit {
     if (Object.keys(this.newAttributeinRate).length === 0) {
       return;
     }
+    if (this.newAttributeinRate.unitprice === undefined||this.newAttributeinRate.unitprice === null ) {
+      this.showInfo("Add Rate", "Enter Unit Price.");
+      return;
+    }
     for (var data of this.dataModel) {
       if (data.itemkey == this.itemKey) {
         this.showInfo("Add Rate", "Rate already available.");
@@ -204,6 +209,14 @@ export class RatesheetlistComponent implements OnInit {
       }
     }
     this.newItem = this.newAttributeinRate;
+    this.newItem.ratekey = null;
+    this.newItem.customerkey = this.CustomerKey;
+    this.newItem.createdate= null;
+    this.newItem.userkey = null;
+    this.newItem.customername=null;
+    this.newItem.Item= null;
+    this.newItem.lastupdatedate = null;
+
     this.dataModel.push(this.newItem);
     this.newAttributeinRate = {};
   }
@@ -239,6 +252,27 @@ export class RatesheetlistComponent implements OnInit {
     );
     this.ratesbycustomer = this.rates.filter(x => x.customerkey == CustomerKey);
     console.log("Rates By Customer", this.ratesbycustomer);
+  }
+
+  updateRate()
+  {
+    this.rateService.UpdateRate(this.dataModel).subscribe(
+      () => {
+        this.showSuccess("Updated successfully", "Update");
+        this.loadAllCustomerRates();
+        this.show_DivInfo = false;        
+        this.dataModel = null;
+        this.CustomerKey = null;
+        this.selectedCustomer = null;
+        this.itemKey = null;
+        this.show_DivAddUpdate = false;
+        this.show_btnAdd = true;
+        this.show_lblEdit = false;
+      },
+      error => {
+        this.showError("Error in Update", "Error");
+      }
+    );
   }
 
   showSuccess(message: string, title: string) {

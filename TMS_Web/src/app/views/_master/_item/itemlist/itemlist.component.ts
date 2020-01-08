@@ -24,7 +24,7 @@ export class ItemlistComponent implements OnInit {
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
   itemKey: string;
-
+  searchText: string;
   constructor(
     private itmService: ItemService,
     private router: Router,
@@ -153,5 +153,9 @@ export class ItemlistComponent implements OnInit {
 
   showInfo(message: string, title: string) {
     this.toastr.info(message, title, { timeOut: 2000, closeButton: true });
+  }
+  clear_search()
+  {
+    this.searchText = undefined;
   }
 }

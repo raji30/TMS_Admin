@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Order_details } from "../../_models/order_details";
-import { BsDatepickerConfig } from "ngx-bootstrap";
 import { Router, ActivatedRoute } from "@angular/router";
 import { DeliveryOrderHeader } from "../../_models/DeliveryOrderHeader";
 import { MasterService } from "../../_services/master.service";
@@ -23,7 +22,7 @@ import { AccountingoptionsService } from "../../_services/accountingoptions.serv
   styleUrls: ["./schedulerlist.component.scss"]
 })
 export class SchedulerlistComponent implements OnInit {
-  bsConfig: Partial<BsDatepickerConfig>;
+ // bsConfig: Partial<BsDatepickerConfig>;
   HeaderData: DeliveryOrderHeader;
   DetailData: Order_details;
   DetailsData: Array<Order_details> = [];

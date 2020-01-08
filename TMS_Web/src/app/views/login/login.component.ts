@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { first } from "rxjs/operators";
+
 import { AuthenticationService } from "../../_services/authentication.service";
+import { OnInit, Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs-compat/operator/first';
 
 @Component({
   selector: "app-login",
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
     this.authenticationService
       .login(this.model.username, this.model.password, this.model.company)
-      .pipe(first())
+      .pipe()
       .subscribe(
         data => {     
           this.router.navigate(["dashboard"]);

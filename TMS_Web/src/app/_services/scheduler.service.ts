@@ -6,7 +6,6 @@ import { AppSettings } from './../_constants/appsettings';
 import { DeliveryOrderHeader } from '../_models/DeliveryOrderHeader';
 import { Order_details } from './../_models/order_details';
 import { now } from 'moment';
-import { getDate } from 'ngx-bootstrap/chronos/utils/date-getters';
 
 @Injectable({
   providedIn: 'root'

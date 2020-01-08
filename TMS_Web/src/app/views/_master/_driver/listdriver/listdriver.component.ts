@@ -24,7 +24,7 @@ export class ListdriverComponent implements OnInit {
   submitted: boolean = false;
   public driverModel: any;
   address: Address;
-
+  searchText: string;
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
 
@@ -165,5 +165,10 @@ export class ListdriverComponent implements OnInit {
 
   showInfo(message: string, title: string) {
     this.toastr.info(message, title, { timeOut: 4000, closeButton: true });
+  }
+
+  clear_search()
+  {
+    this.searchText = undefined;
   }
 }

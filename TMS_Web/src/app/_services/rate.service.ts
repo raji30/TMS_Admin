@@ -44,7 +44,8 @@ export class RateService {
     );
   }
 
-  UpdateRate(rate: Ratesheet[]) {
+  UpdateRate(rate: Ratesheet[]) {   
+
     var token = JSON.parse(localStorage.getItem("currentUser"));
     const httpOptions = {
       headers: new HttpHeaders({
@@ -53,7 +54,10 @@ export class RateService {
       })
     };
 
-    return this.http.put<Ratesheet>(
+    for (var item of rate) {
+      item.userkey = token.userId;
+    }
+    return this.http.put<Ratesheet[]>(
       AppSettings._BaseURL + "UpdateRate",
       rate,
       httpOptions

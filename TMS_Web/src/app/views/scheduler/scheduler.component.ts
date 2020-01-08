@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Order_details } from "../../_models/order_details";
-import { BsDatepickerConfig } from "ngx-bootstrap";
 import { DeliveryOrderService } from "../../_services/deliveryOrder.service";
 import { Router, ActivatedRoute } from "@angular/router";
 
@@ -10,7 +9,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ["./scheduler.component.scss"]
 })
 export class SchedulerComponent implements OnInit {
-  bsConfig: Partial<BsDatepickerConfig>;
+  //bsConfig: Partial<BsDatepickerConfig>;
   @Input() orderKeyinput: string;
   @Input() public ContainerDetails: Array<Order_details> = [];
   @Input() isContainerAttributeVisible: boolean = false;
@@ -33,11 +32,11 @@ export class SchedulerComponent implements OnInit {
   ngOnInit() {
     this.collapsesign = "+";
 
-    this.bsConfig = Object.assign(
-      {},
-      { containerClass: "theme-orange" },
-      { dateInputFormat: "MM/DD/YYYY" }
-    );
+    // this.bsConfig = Object.assign(
+    //   {},
+    //   { containerClass: "theme-orange" },
+    //   { dateInputFormat: "MM/DD/YYYY" }
+    // );
 
     this.service.GetOrderDetails().subscribe(
       data => {

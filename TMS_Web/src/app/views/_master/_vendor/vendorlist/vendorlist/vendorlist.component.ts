@@ -14,7 +14,7 @@ export class VendorlistComponent implements OnInit {
   public dataModel: Vendor;
   address: Address;
   key: string;
-
+  searchText: string;
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
 
@@ -143,5 +143,10 @@ export class VendorlistComponent implements OnInit {
 
   showInfo(message: string, title: string) {
     this.toastr.info(message, title, { timeOut: 2000, closeButton: true });
+  }
+
+  clear_search()
+  {
+    this.searchText = undefined;
   }
 }

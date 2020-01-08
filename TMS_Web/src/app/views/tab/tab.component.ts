@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
-import { BsModalRef, BsModalService } from "ngx-bootstrap";
+//import { BsModalRef, BsModalService } from "ngx-bootstrap";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { DeliveryOrderService } from "../../_services/deliveryOrder.service";
 import { DeliveryOrderHeader } from "../../_models/DeliveryOrderHeader";
@@ -24,7 +24,7 @@ export class TabComponent implements OnInit, OnChanges, OnDestroy {
   public orderinfo: Order_details[];
 
   subscription: Subscription;
-  modalRef: BsModalRef;
+  //modalRef: BsModalRef;
   constructor(  private service: DeliveryOrderService,
     private router: Router,
     private route: ActivatedRoute,

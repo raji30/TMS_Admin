@@ -1,7 +1,6 @@
 
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Order_details } from "../../_models/order_details";
-import { BsDatepickerConfig } from "ngx-bootstrap";
 import { DeliveryOrderService } from "../../_services/deliveryOrder.service";
 import { Router, ActivatedRoute, Routes } from "@angular/router";
 import { RoutesService } from "../../_services/routes.service";
@@ -14,7 +13,7 @@ import { Driver } from "../../_models/driver";
   styleUrls: ['./dispatch.component.scss']
 })
 export class DispatchComponent implements OnInit {
-  bsConfig: Partial<BsDatepickerConfig>;
+  //bsConfig: Partial<BsDatepickerConfig>;
   @Input() orderKeyinput: string;
   @Input() public ContainerDetails: Array<Order_details> = [];
   @Input() isContainerAttributeVisible: boolean = false;
@@ -37,11 +36,11 @@ export class DispatchComponent implements OnInit {
   ngOnInit() {
     this.collapsesign = "+";
 
-    this.bsConfig = Object.assign(
-      {},
-      { containerClass: "theme-orange" },
-      { dateInputFormat: "MM/DD/YYYY" }
-    );
+    // this.bsConfig = Object.assign(
+    //   {},
+    //   { containerClass: "theme-orange" },
+    //   { dateInputFormat: "MM/DD/YYYY" }
+    // );
 
     this.service
       .GetOrderDetailsbyKey(this.orderKeyinput)

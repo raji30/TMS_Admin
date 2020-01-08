@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { Order_details } from "../../../_models/order_details";
-import { BsDatepickerConfig } from "ngx-bootstrap/datepicker";
+//import { BsDatepickerConfig } from "ngx-bootstrap/datepicker";
 import { MasterService } from "../../../_services/master.service";
 import { Containersize } from "../../../common/master";
 
@@ -10,7 +10,7 @@ import { Containersize } from "../../../common/master";
   styleUrls: ["./container.component.scss"]
 })
 export class ContainerComponent implements OnInit {
-  bsConfig: Partial<BsDatepickerConfig>;
+  //bsConfig: Partial<BsDatepickerConfig>;
   @Input() public ContainerDetails: Array<Order_details> = [];
   @Input() isContainerAttributeVisible: boolean = false;
   private AddContainerDetails: Array<Order_details> = [];
@@ -38,11 +38,11 @@ export class ContainerComponent implements OnInit {
   constructor(private service: MasterService) {}
 
   ngOnInit() {
-    this.bsConfig = Object.assign(
-      {},
-      { containerClass: "theme-orange" },
-      { dateInputFormat: "MM/DD/YYYY" }
-    );
+    // this.bsConfig = Object.assign(
+    //   {},
+    //   { containerClass: "theme-orange" },
+    //   { dateInputFormat: "MM/DD/YYYY" }
+    // );
 
     this.service
       .getContainerSizeList()
@@ -170,5 +170,10 @@ export class ContainerComponent implements OnInit {
   drpcontainersizeChanged(value:any)
   {
     this.containerSizeDesc = this.containersizelist.find(x => x.containersize == value).description;   
+  }
+  edit(index:any)
+  {
+    var selectedcontainerdetails = this.ContainerDetails.filter(x=>x.OrderDetailKey==index);
+    
   }
 }

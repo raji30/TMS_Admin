@@ -33,7 +33,7 @@
     <small style="color: midnightblue;"> {{selectedCustomer.State}} {{selectedCustomer.Zip}}</small>
 </div> -->
 
-<div class="card">
+<!-- <div class="card">
     <div class="card-header" style="height: 30px;">
       <h6 class="card-title" style="text-align:left">{{AddrName}}</h6>
     </div>
@@ -47,12 +47,33 @@
                 <a class="dropdown-item">{{Address.Name}}</a>
               </li>
         </div><br>      
-          <small style="color:darkblue;">{{selectedCustomer.Address1}} &nbsp;{{selectedCustomer.Address2}}
-          </small><br>
-          <small style="color: darkblue;"> {{selectedCustomer.City}} </small><br>
-          <small style="color: darkblue;"> {{selectedCustomer.State}} {{selectedCustomer.Zip}}</small>
+          <small class="text-center text-capitalize" style="color:darkblue;">{{selectedCustomer.Address1}} &nbsp;{{selectedCustomer.Address2}}
+         <br>
+           {{selectedCustomer.City}}, {{selectedCustomer.State}}-{{selectedCustomer.Zip}}</small>
       </div>   
+  </div> -->
+
+  <div class="form-group">
+    <label class="font-weight-bold">{{AddrName}}</label>
+    <div> 
+    <div class="dropdown">
+      <button class="btn btn-outline-secondary dropdown-toggle form-control-sm btn-block" style="border-radius: 1rem;" type="button" 
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">          
+          {{billtoCustomerName}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="drpcompany">
+            <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer" (click)="onSelect(Address)">
+                <a class="dropdown-item">{{Address.Name}}</a>
+              </li>
+        </div>
+    </div>
+    <h6 class="text-center text-capitalize" style="color:darkblue;">{{selectedCustomer.Address1}} &nbsp;{{selectedCustomer.Address2}}
+      <br>
+        {{selectedCustomer.City}}, {{selectedCustomer.State}}-{{selectedCustomer.Zip}}</h6>
   </div>
+  </div>
+  
+  
 
 <!-- <div class="form-row "><p>{{selectedCustomer.Address1}} </p> </div> 
           <div class="form-row "> <p> {{selectedCustomer.Address2}} ,  {{selectedCustomer.City}} </p>  </div> 

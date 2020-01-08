@@ -113,12 +113,22 @@ namespace TMS.Api.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, orderid, Configuration.Formatters.JsonFormatter);
         }
+
         [HttpPost]
         [Route("UpdateDeliveryOrderStatus")]
         [SwaggerOperation("UpdateDeliveryOrderStatus")]
         public HttpResponseMessage UpdateOrderStatus(string OrderKey, int Status)
         {           
             bool result=  doObj.UpdateDOStatus(OrderKey, Status, HttpContext.Current.User.Identity.Name);
+            return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpPut]
+        [Route("UpdateOrder")]
+        [SwaggerOperation("UpdateOrder")]
+        public HttpResponseMessage UpdateOrder([FromBody]DeliveryOrderBO obj)
+        {
+            bool result = doObj.UpdateOrderHeader(obj);
             return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
         }
 

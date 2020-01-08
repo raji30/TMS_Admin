@@ -165,7 +165,8 @@
                         <th scope="col">Seal#</th>
                         <th scope="col">Weight</th>
                         <th scope="col">Comment</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -195,6 +196,12 @@
                             <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)"><img
                                     src="assets/img/brand/trash-icon16px.png" /></button>
                         </td>
+                        <td>
+                            <button class="btn btn-default" type="button" (click)="edit(i)"><span class="fa fa-pencil-square-o"></span></button>
+
+                                    
+                        </td>
+
                     </tr>
                 </tbody>
             </table>

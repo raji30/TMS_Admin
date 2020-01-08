@@ -4,7 +4,8 @@ import {
   HttpEvent,
   HttpErrorResponse,
   HttpEventType,
-  HttpHeaders
+  HttpHeaders,
+  HttpRequest, HttpResponse, HttpProgressEvent
 } from "@angular/common/http";
 import { throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
@@ -80,7 +81,7 @@ export class FileUploadService {
     }
   }
 
-  private fileUploadProgress(event) {
+  private fileUploadProgress(event: HttpProgressEvent) {
     const percentDone = Math.round((100 * event.loaded) / event.total);
     return { status: "progress", message: percentDone };
   }

@@ -74,7 +74,7 @@ namespace TMS.Api.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("UpdateRate")]
-        public HttpResponseMessage UpdateRate([FromBody]RateSheetBO rate)
+        public HttpResponseMessage UpdateRate([FromBody]RateSheetBO[] rate)
         {
 
             bool result = dl.UpdateRate(rate);

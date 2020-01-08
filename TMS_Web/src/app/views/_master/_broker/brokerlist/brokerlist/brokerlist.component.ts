@@ -25,6 +25,7 @@ export class BrokerlistComponent implements OnInit {
   isResetbtnhidden: boolean = true;
   show_btnCreateBroker : boolean = true; 
   show_BrokerInfo: boolean = false;
+  searchText: string;
 
   constructor(
     private formbulider: FormBuilder,
@@ -149,6 +150,10 @@ export class BrokerlistComponent implements OnInit {
 
   showInfo(message: string, title: string) {
     this.toastr.info(message, title, { timeOut: 2000, closeButton: true });
+  }
+  clear_search()
+  {
+    this.searchText = undefined;
   }
 }
 

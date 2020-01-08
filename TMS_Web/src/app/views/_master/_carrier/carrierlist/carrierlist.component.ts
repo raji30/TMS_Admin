@@ -24,7 +24,7 @@ export class CarrierlistComponent implements OnInit {
   isResetbtnhidden: boolean = true;
   show_CarrierInfo: boolean = false;
   show_btnCreateCarrier: boolean = true;
-
+  searchText: string;
   constructor(
     private formbulider: FormBuilder,
     private Service: CarrierService,
@@ -143,5 +143,9 @@ export class CarrierlistComponent implements OnInit {
     this.show_addupdateCarrier = true;
     this.show_CarrierInfo = false;
     this.show_btnCreateCarrier = false;
+  }
+  clear_search()
+  {
+    this.searchText = undefined;
   }
 }

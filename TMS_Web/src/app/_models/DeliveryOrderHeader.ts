@@ -8,8 +8,11 @@ export class DeliveryOrderHeader {
         public CustKey:string ;
         public OrderDate:Date ;
         public BillToAddress: string ;
+        public BillToAddr: string ;
         public SourceAddress: string ;
+        public SourceAddr: string ;
         public DestinationAddress: string ;
+        public DestinationAddr: string ;
         public ReturnAddress: string ;
         public Source:string ;
         public OrderType:number ;
