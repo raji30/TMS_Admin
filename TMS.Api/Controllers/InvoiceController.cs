@@ -239,27 +239,74 @@ namespace TMS.Api.Controllers
         [SwaggerOperation("DownloadInvoice")]
         public HttpResponseMessage DownloadInvoice(string orderkey)
         {
-            var invoicetotals = dl.AutoPullInvoiceCosts(orderkey);
+            // var invoicetotals = dl.AutoPullInvoiceCosts(orderkey);
             var fileuploadPath = HttpContext.Current.Server.MapPath("~/App_Data/Files/");
-            //Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             PdfDocument pdfDoc = new PdfDocument(new PdfWriter(Path.Combine(fileuploadPath, $"invoice_{orderkey}.pdf")));
+            DeliveryOrderDL doObj = new DeliveryOrderDL();
+            var orderHeader = doObj.GetDeliveryOrder(orderkey);
+            var customer = new CustomerDL().GetCustomerbykey(orderHeader.CustKey);
+
+            var orderdetaillist = doObj.GetOrderDetailsByKey(orderkey);
             Document doc = new Document(pdfDoc);
+            doc.Add(new List().SetSymbolIndent(12).Add("Bill To").Add(customer.CustName).Add(customer.Address.Address1)
+                .Add(customer.Address.Address2).Add(customer.Address.City).Add(customer.Address.State)
+                .Add(customer.Address.Zip));
+            
+            List header = new List();
+            foreach (var orderdetail in orderdetaillist)
+            {
+                
+                Table dtlTable = new Table(UnitValue.CreatePercentArray(3)).UseAllAvailableWidth();
+                dtlTable.AddHeaderCell(new Cell().Add(new Paragraph("Container no")));
+                dtlTable.AddHeaderCell(new Cell().Add(new Paragraph("Container size")));
+                dtlTable.AddHeaderCell(new Cell().Add(new Paragraph("Chassis")));
+                dtlTable.AddCell(new Cell().Add(new Paragraph(orderdetail.ContainerNo)));
+                dtlTable.AddCell(new Cell().Add(new Paragraph(orderdetail.ContainerSize.ToString())));
+                dtlTable.AddCell(new Cell().Add(new Paragraph(orderdetail.Chassis)));
+                ListItem dtl = new ListItem();
+                dtl.Add(new Paragraph().Add(dtlTable));
+              
+               // doc.Add(dtlTable);
+                InvoiceDL dl = new InvoiceDL();
+               var invoicedtl=  dl.GetInvoiceDetail(orderdetail.OrderDetailKey.ToString());
+                ListItem invoice = new ListItem();
+                Table table = new Table(UnitValue.CreatePercentArray(5));
+                table.AddHeaderCell(new Cell().Add(new Paragraph("Item")));
+                table.AddHeaderCell(new Cell().Add(new Paragraph("Price")));
+                table.AddHeaderCell(new Cell().Add(new Paragraph("Quantity")));
+                table.AddHeaderCell(new Cell().Add(new Paragraph("UnitPrice")));
+                table.AddHeaderCell(new Cell().Add(new Paragraph("Excess Amount")));
+                foreach(var invoiceline in invoicedtl)
+                {
+                    table.AddCell(new Cell().Add(new Paragraph(invoiceline.Description)));
+                    table.AddCell(new Cell().Add(new Paragraph(invoiceline.Price.ToString())));
+                    table.AddCell(new Cell().Add(new Paragraph(invoiceline.Quantity.ToString())));
+                    table.AddCell(new Cell().Add(new Paragraph(invoiceline.UnitPrice.ToString())));
+                    table.AddCell(new Cell().Add(new Paragraph(invoiceline.ExcessAmount.ToString())));
+
+                }
+                invoice.Add(new Paragraph().SetFirstLineIndent(25).Add(table));
+                dtl.Add(invoice);
+                header.Add(dtl);
+            }
+            doc.Add(header);
+            //Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+           
+            
             // By default column width is calculated automatically for the best fit.
             // useAllAvailableWidth() method set table to use the whole page's width while placing the content.
-            Table table = new Table(UnitValue.CreatePercentArray(3)).UseAllAvailableWidth();
-            table.AddHeaderCell(new Cell().Add(new Paragraph("ContainerNo")));
-            table.AddHeaderCell(new Cell().Add(new Paragraph("ItemId")));
-            table.AddHeaderCell(new Cell().Add(new Paragraph("UnitPrice")));
-            foreach (var record in invoicetotals)
-            {
-                table.AddCell(new Cell().Add(new Paragraph(record.ContainerNo)));
-                table.AddCell(new Cell().Add(new Paragraph(record.ItemId)));
-                table.AddCell(new Cell().Add(new Paragraph(record.UnitPrice.ToString())));
-            }
-            table.AddCell(new Cell().Add(new Paragraph()));
-            table.AddCell(new Cell().Add(new Paragraph("Totals:")));
-            table.AddCell(new Cell().Add(new Paragraph(invoicetotals.Select(x => x.UnitPrice).Sum().ToString())));
-            doc.Add(table);
+           
+            //foreach (var record in invoicetotals)
+            //{
+            //    table.AddCell(new Cell().Add(new Paragraph(record.ContainerNo)));
+            //    table.AddCell(new Cell().Add(new Paragraph(record.ItemId)));
+            //    table.AddCell(new Cell().Add(new Paragraph(record.UnitPrice.ToString())));
+            //}
+            //table.AddCell(new Cell().Add(new Paragraph()));
+            //table.AddCell(new Cell().Add(new Paragraph("Totals:")));
+            //table.AddCell(new Cell().Add(new Paragraph(invoicetotals.Select(x => x.UnitPrice).Sum().ToString())));
+            //doc.Add(table);
+            //}
             doc.Close();
             if (doc != null) { 
             byte[] bytes = File.ReadAllBytes(Path.Combine(fileuploadPath, $"invoice_{orderkey}.pdf"));
