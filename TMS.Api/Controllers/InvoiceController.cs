@@ -253,6 +253,7 @@ namespace TMS.Api.Controllers
                 .Add(customer.Address.Zip));
             
             List header = new List();
+            double runningtotal = 0.0;
             foreach (var orderdetail in orderdetaillist)
             {
                 
@@ -276,6 +277,7 @@ namespace TMS.Api.Controllers
                 table.AddHeaderCell(new Cell().Add(new Paragraph("Quantity")));
                 table.AddHeaderCell(new Cell().Add(new Paragraph("UnitPrice")));
                 table.AddHeaderCell(new Cell().Add(new Paragraph("Excess Amount")));
+              
                 foreach(var invoiceline in invoicedtl)
                 {
                     table.AddCell(new Cell().Add(new Paragraph(invoiceline.Description)));
@@ -283,12 +285,14 @@ namespace TMS.Api.Controllers
                     table.AddCell(new Cell().Add(new Paragraph(invoiceline.Quantity.ToString())));
                     table.AddCell(new Cell().Add(new Paragraph(invoiceline.UnitPrice.ToString())));
                     table.AddCell(new Cell().Add(new Paragraph(invoiceline.ExcessAmount.ToString())));
-
+                    runningtotal += invoiceline.Price * (double) invoiceline.Quantity;
                 }
+                
                 invoice.Add(new Paragraph().SetFirstLineIndent(25).Add(table));
                 dtl.Add(invoice);
                 header.Add(dtl);
             }
+            header.SetSymbolIndent(80).Add($"Total:{runningtotal.ToString()}");
             doc.Add(header);
             //Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
            
