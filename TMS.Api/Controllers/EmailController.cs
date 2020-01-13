@@ -12,7 +12,7 @@ namespace TMS.Api.Controllers
 {
     public class EmailController : ApiController
     {
-        public const string apiKey = "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";
+        public const string apiKey = "";
         public async Task<Response> Send(string from, string to, string subject, string body)
         {
             
