@@ -80,7 +80,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   editmode = false;
   showDO = false;
   showImage = false;
-
+  customer_disabled = false;
   selectedKey: string;
 
   orderNo: string;
@@ -517,7 +517,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
 
   view(inputKey: string) {
     this.getOrderInfo(inputKey);
-
+    this.customer_disabled = true;
     this.display = "block";
     this.showDO = false;
     this.ShowOrderList = true;
@@ -568,7 +568,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.doHeader.Brokerkey = "";
     this.doHeader.Comment = "";
     this.ContainerDetails = new Array<Order_details>();
-
+    this.customer_disabled = false;
     this.CreateOrEditOrder = true;
     this.lblCreateOrEdit = "Create";
     this.btnShowcreateNewOrder = false;

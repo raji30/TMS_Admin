@@ -50,6 +50,7 @@ namespace TMS.BusinessObjects
         public string statusdescription{ get; set; }
 
         public CommentBO commentBO { get; set; }
+        public List<DocumentBO> file { get; set; }
         public AddressBO BillToAddressBO { get; set; }
         public AddressBO SourceAddressBO { get; set; }
         public AddressBO DestinationAddressBO { get; set; }

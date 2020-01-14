@@ -39,7 +39,7 @@ namespace TMS.Data
                     //cmd.Parameters.AddWithValue("createdate",
                     //    NpgsqlTypes.NpgsqlDbType.Date, docBO.Document.CreatedOn);
                     cmd.Parameters.AddWithValue("createuserkey",NpgsqlTypes.NpgsqlDbType.Uuid, docBO.Document.CreatedBy);
-                    cmd.Parameters.AddWithValue("originalfilename", NpgsqlTypes.NpgsqlDbType.Varchar, docBO.Document.FileName);
+                    cmd.Parameters.AddWithValue("originalfilename", NpgsqlTypes.NpgsqlDbType.Varchar, docBO.Document.name);
                     cmd.Parameters.AddWithValue("originalfiletype",  NpgsqlTypes.NpgsqlDbType.Varchar, docBO.Document.FileType);
                     cmd.Parameters.AddWithValue("filesizeinmb",NpgsqlTypes.NpgsqlDbType.Integer, docBO.Document.FileSizeInMB);
                     cmd.Parameters.AddWithValue("orderno", NpgsqlTypes.NpgsqlDbType.Varchar, docBO.OrderNo);
@@ -66,7 +66,8 @@ namespace TMS.Data
             string sql = "SELECT originalfilename, originalfiletype from dbo.document d (nolock) inner join dbo.tms_orderheaderdocuments dod" +
                 "on d.documentkey =dod.documentkey where dod.orderkey = _orderKey";
             var list = new List<DocumentBO>();
-            using (var cmd = new NpgsqlCommand(sql, connection))
+           
+                using (var cmd = new NpgsqlCommand(sql, connection))
             {
 
                 cmd.Parameters.AddWithValue("_orderKey", Orderkey);
@@ -78,7 +79,7 @@ namespace TMS.Data
 
                     var docDO = new DocumentBO()
                     {
-                        FileName = Convert.ToString(reader["originalfilename"]),
+                        name = Convert.ToString(reader["originalfilename"]),
                         FileType = Convert.ToString(reader["originalfiletype"])
                     };
                     list.Add(docDO);
@@ -88,7 +89,47 @@ namespace TMS.Data
                 connection.Close();
                 return list;
             }
+
+
+        public IList<DocumentBO> GetSupportingDocuments(string Orderno)
+        {
+            
+            string sql = "SELECT d.originalfilename,d.filesizeinmb, d.originalfiletype from dbo.document d inner join dbo.tms_orderheaderdocuments dod" +
+                @" on d.documentkey =dod.documentkey where dod.orderno ="+ "'"+Orderno+"'";
+            var list = new List<DocumentBO>();
+            using (connection)
+            {
+                if (connection.State.ToString() == "Closed")
+                {
+                    connection = new NpgsqlConnection(connString);
+                    connection.Open();
+                }
+               
+               // connection.Open();
+                using (var cmd = new NpgsqlCommand(sql, connection))
+            {
+               // cmd.Parameters.AddWithValue("_orderno", Orderno);
+                cmd.CommandType = System.Data.CommandType.Text;
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    var docDO = new DocumentBO()
+                    {
+                        name = Convert.ToString(reader["originalfilename"]),
+                        FileType = Convert.ToString(reader["originalfiletype"]),
+                        size= Convert.ToInt32(reader["filesizeinmb"]),
+                    };
+                    list.Add(docDO);
+                }
+
+                }
+            }
+            connection.Close();
+            return list;
         }
+    }
 
     }
 

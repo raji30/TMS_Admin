@@ -20,3 +20,24 @@
   .tag-danger {
     background-color: red;
   }
+
+  
+.ScrollStyle {
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.table-custom {
+  tbody {
+    display: block;
+    height: 100px;
+    overflow: auto;
+  }
+  
+}
+thead,
+  tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }

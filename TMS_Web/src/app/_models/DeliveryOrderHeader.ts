@@ -1,6 +1,7 @@
 import { Order_details } from "./order_details";
 import { Address } from "./address";
 import { Comments } from "./comments";
+import { Files } from './files';
 
 export class DeliveryOrderHeader {         
         public OrderKey: string;
@@ -47,6 +48,7 @@ export class DeliveryOrderHeader {
         public BrokerAddressBO : Address;
 
         public orderdetails:Order_details[];
+        public files:Files[];
         
 
 }

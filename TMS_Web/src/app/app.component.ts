@@ -1,9 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
+import { FiledownloadService } from './_services/filedownload.service';
 @Component({
   // tslint:disable-next-line
   selector: "body",
-  template: "<router-outlet></router-outlet>"
+  template: "<router-outlet></router-outlet>",
+  providers: [ FiledownloadService]
 })
 export class AppComponent implements OnInit {
   constructor(private router: Router) {}

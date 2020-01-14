@@ -23,7 +23,7 @@ export class CompanyComponent implements OnInit {
   customercount: any;
   Orderno: any;
 
-  selectedCustomer: Address = new Address();
+  selectedCustomer: Address;// = new Address();
   constructor(private service: AddressService, private master: MasterService) {}
 
   ngOnInit() {

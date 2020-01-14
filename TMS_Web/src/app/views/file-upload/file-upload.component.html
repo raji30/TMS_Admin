@@ -1,59 +1,133 @@
 <div class="row">
-
 	<div class="col-md-3">
-		<h3>Select files</h3>
-		<!-- <input type="file" #fileInput multiple (change)="addToQueue()" /> -->
-		<input type="file"  multiple (change)="addToQueue($event)">
+		<h5>Documents</h5>
 	</div>
-</div>
-<div class="row">
-
 	<div class="col-md-6">
-		<h3>Upload queue</h3>
-		<table class="table table-borderless table-sm">
-			<thead>
-				<tr>
-					<th class="text-left">Name</th>
-					<th class="text-right">Size</th>
-					<th class="text-left">Progress</th>
-					<th class="text-center">Status</th>
-					<th class="text-right">Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let item of queue | async">
-					<td>{{ item?.file?.name }}</td>
-					<td class="text-right">{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-					<td>						
-						  <div class="progress " >
-							<div class="progress-bar progress-bar-striped bg-primary" role="progressbar" [style.width.%]="item.progress" aria-valuenow="0"
-							  aria-valuemin="0" aria-valuemax="100">{{item.progress}}%</div>
-						  </div>
-					</td>
-					<td class="text-center">
-						<small *ngIf="item.isPending()" class="tag tag-default"></small>
-						<small *ngIf="item.isSuccess()" class="tag tag-success"></small>
-						<small *ngIf="item.inProgress()" class="tag tag-warning"></small>
-						<small *ngIf="item.isError()" class="tag tag-danger"></small>
-					</td>
-					<td class="text-right">
-						<a tooltip="Upload file" (click)="item.upload()" *ngIf="item.isUploadable()">
-							<i class="fa fa-upload"></i>
-						</a> &nbsp;
-						<a tooltip="Cancel upload" (click)="item.cancel()" *ngIf="item.inProgress()">
-							<i class="fa fa-times-circle"></i>
-						</a> &nbsp;
-						<a tooltip="Remove from queue" (click)="item.remove()" *ngIf="!item.inProgress()">
-							<i class="fa fa-trash"></i>
-						</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<div>		
-			<a type="button" class="btn btn-primary btn-sm" (click)="uploader.clearQueue()">Clear queue</a>&nbsp;&nbsp;
-			<a type="button" class="btn btn-primary btn-sm" (click)="upload()">Upload all</a>
+		<!--<h5>Choose files to upload</h5>
+		 <input type="file" #fileInput multiple (change)="addToQueue()" /> -->
+
+		<div class="input-group input-group-sm">
+			<input type="file" class="custom-file-input form-control-sm" multiple (change)="addToQueue($event)">
+			<div class="input-group-prepend">
+				<span class="custom-file-label" placeholder="Choose files to upload"> {{ fileUploadcount }} file(s)
+					selected</span>
+			</div>
 		</div>
 	</div>
+	<div class="col-md-3 text-right">
+		<a type="button" class="btn alert-dark btn-sm" (click)="clear()">Clear</a>&nbsp;&nbsp;
+		<a type="button" class="btn alert-dark btn-sm" (click)="upload()">
+			<i class="fa fa-cloud-upload" aria-hidden="true"></i> &nbsp;Upload</a>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-12">
+		<div class="table-responsive" style="overflow-x: auto">
+			<table class="table table-custom table-sm table-hover table-primary " cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th class="text-left">File</th>
+						<th class="text-left" hidden="true">FilePath</th>
+						<th class="text-right" hidden="true">Size</th>
+						<th class="text-center" style="width: 100px;">Progress</th>
+						<th class="text-center" style="width: 100px;">Status</th>
+						<th class="text-left" style="width: 100px;">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let item of queue | async">
+						<td hidden="true"> {{ item?.file?.name }} </td>
+						<td> {{ item?.file?.name }}
+							<div class="progress" *ngIf="item.isNew">
+								<div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+									[style.width.%]="item.progress" aria-valuenow="0" aria-valuemin="0"
+									aria-valuemax="100">
+									{{item.progress}}%</div>
+							</div>
+						</td>
+						<td class="text-right" hidden="true"> <small> {{ item?.file?.size/1024/1024 | number:'.2' }} MB
+							</small></td>
+						<td class="text-center" style="width: 100px;">
+							<div class="progress" *ngIf="item.isNew">
+								<div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+									[style.width.%]="item.progress" aria-valuenow="0" aria-valuemin="0"
+									aria-valuemax="100">
+									{{item.progress}}%</div>
+							</div>
+							<small *ngIf="!item.isNew">100%</small>
+						</td>
+						<td class="text-center" style="width: 100px;">
+							<small *ngIf="item.isPending() && item.isNew" class="tag tag-default"></small>
+							<small *ngIf="item.isSuccess() && item.isNew" class="tag tag-success"></small>
+							<small *ngIf="item.inProgress() && item.isNew" class="tag tag-warning"></small>
+							<small *ngIf="item.isError() && item.isNew" class="tag tag-danger"></small>
+							<small *ngIf="!item.isNew" class="tag tag-success"></small>
+						</td>
+						<td class="text-center" style="width: 100px;">
 
+							<button *ngIf="item.file.FileType==='PDF'" type="text" class="btn btn-outline-dark btn-sm"
+								data-toggle="modal" data-target=".bd-view-modal-lg" (click)="viewFile()"> <i
+									class="fa fa-eye"></i></button>
+							&nbsp;
+							<a data-toggle="tooltip" title="Download file" (click)="DownLoadFiles(item?.file?.name)">
+								<i class="fa fa-arrow-circle-o-down"></i>
+							</a>
+							&nbsp;
+							<a data-toggle="tooltip" title="Cancel upload" (click)="item.cancel()"
+								*ngIf="item.inProgress()">
+								<i class="fa fa-times-circle"></i>
+							</a>
+
+
+
+
+							<!-- <a data-toggle="tooltip" title="View file" (click)="viewFile()">
+								<i class="fa fa-eye"></i> </a>-->
+
+							<!-- <a data-toggle="tooltip" title="Upload file" (click)="item.upload()" *ngIf="item.isUploadable()">
+								<i class="fa fa-upload"></i>
+							</a> &nbsp; -->
+
+							<!-- <a data-toggle="tooltip" title="Remove from queue" (click)="item.remove()" *ngIf="!item.inProgress()">
+								<i class="fa fa-trash"></i>
+							</a> -->
+
+						</td>
+					</tr>
+
+					<tr>
+						<td colspan="6">
+							<!-- <app-pdfviewcomponent></app-pdfviewcomponent></td> -->
+					</tr>
+
+
+
+				</tbody>
+			</table>
+			<!-- <div>
+			<a type="button" class="btn alert-dark btn-sm" (click)="clear()">Clear</a>&nbsp;&nbsp;
+			<a type="button" class="btn alert-dark btn-sm" (click)="upload()">
+				<i class="fa fa-cloud-upload" aria-hidden="true"></i> &nbsp;Upload</a>
+		</div> -->
+		</div>
+	</div>
+</div>
+<div class="modal fade bd-view-modal-lg" tabindex="-1" role="dialog" id="myLargeModalLabel"
+	aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static"
+	[ngStyle]="{'display':display}" style="width:90%">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header" style="height: 40px;">
+				<h5 class="modal-title" id="exampleModalLabel">File</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"
+					(click)="closeModalDialog()">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body ScrollStyle">
+				<app-pdfviewcomponent></app-pdfviewcomponent>
+			</div>
+		</div>
+	</div>
 </div>

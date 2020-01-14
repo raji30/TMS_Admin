@@ -17,7 +17,8 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    // [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [JwtAuthentication]
     public class FileUploadController : ApiController
     {
         [HttpPost]
@@ -51,7 +52,7 @@ namespace TMS.Api.Controllers
                                 CreatedBy = new UserInfoRepository().GetbyField(CreatedBy).userkey,
                                 FileSizeInMB = (int)finfo.Length / 1024,
                                 FileType = string.Empty, //not sure
-                                FileName = finfo.Name
+                                name = finfo.Name
                             };
                             OrderHeaderDocumentBO orderBO = new OrderHeaderDocumentBO
                             {
@@ -92,7 +93,7 @@ namespace TMS.Api.Controllers
         {
             DocumentDL dl = new DocumentDL();
             List<DocumentBO> list = dl.GetSupportingDocumentsForDO(Guid.Parse(DO)).ToList();
-            List<string> FileNames = list.Select(y => y.FileName).ToList();
+            List<string> FileNames = list.Select(y => y.name).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, FileNames, Configuration.Formatters.JsonFormatter);
         }
         [HttpPost]

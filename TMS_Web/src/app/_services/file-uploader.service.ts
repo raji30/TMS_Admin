@@ -9,6 +9,7 @@ import { Injectable, Output } from "@angular/core";
 import { BehaviorSubject, Subscription } from "rxjs";
 import { HttpEventType } from "@angular/common/http";
 import * as _ from 'lodash';
+import { AppSettings } from '../_constants/appsettings';
 
 export enum FileQueueStatus {
   Pending,
@@ -23,6 +24,7 @@ export class FileQueueObject {
   public progress: number = 0;
   public request: Subscription = null;
   public response: HttpResponse<any> | HttpErrorResponse = null;
+  public isNew:boolean=false;
 
   constructor(file: any) {
     this.file = file;
@@ -52,7 +54,7 @@ export class FileQueueObject {
 // tslint:disable-next-line:max-classes-per-file
 @Injectable()
 export class FileUploaderService {
-  public url: string = "http://localhost:51902/FileUpload";
+  public url: string =  AppSettings._BaseURL +"FileUpload";
  
   private _queue: BehaviorSubject<FileQueueObject[]>;
   private _files: FileQueueObject[] = [];
@@ -79,6 +81,11 @@ export class FileUploaderService {
     _.each(data, (file: any) => this._addToQueue(file,Orderno,CreatedBy));
   }
 
+  public addToQueue2(data: any,Orderno:string ,CreatedBy:string) {
+    // add file to the queue
+    _.each(data, (file: any) => this._addToQueue2(file,Orderno,CreatedBy));
+  }
+
   public clearQueue() {
     // clear the queue
     this._files = [];
@@ -87,8 +94,14 @@ export class FileUploaderService {
 
   public uploadAll(Orderno:string ,CreatedBy:string ) {
     // upload all except already successfull or in progress
+    // _.each(this._files, (queueObj: FileQueueObject) => {
+    //   if (queueObj.isUploadable()) {
+    //     this._upload(queueObj,Orderno,CreatedBy);
+    //   }
+    // });
+
     _.each(this._files, (queueObj: FileQueueObject) => {
-      if (queueObj.isUploadable()) {
+      if (queueObj.isNew) {
         this._upload(queueObj,Orderno,CreatedBy);
       }
     });
@@ -97,7 +110,21 @@ export class FileUploaderService {
   // private functions
   private _addToQueue(file: any,Orderno:string,CreatedBy:string) {
     const queueObj = new FileQueueObject(file);
+    queueObj.isNew= true;
+    // set the individual object events
+    queueObj.upload = () => this._upload(queueObj,Orderno,CreatedBy);
+    queueObj.remove = () => this._removeFromQueue(queueObj);
+    queueObj.cancel = () => this._cancel(queueObj);
 
+    // push to the queue
+    this._files.push(queueObj);
+    this._queue.next(this._files);
+  }
+
+  
+  // private functions
+  private _addToQueue2(file: any,Orderno:string,CreatedBy:string) {
+    const queueObj = new FileQueueObject(file);    
     // set the individual object events
     queueObj.upload = () => this._upload(queueObj,Orderno,CreatedBy);
     queueObj.remove = () => this._removeFromQueue(queueObj);
@@ -180,6 +207,7 @@ export class FileUploaderService {
     queueObj.progress = 100;
     queueObj.status = FileQueueStatus.Success;
     queueObj.response = response;
+    queueObj.isNew = false;
     this._queue.next(this._files);
     this.onCompleteItem(queueObj, response.body);
   }

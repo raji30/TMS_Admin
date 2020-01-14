@@ -28,8 +28,16 @@ namespace TMS.Api.Controllers
         [SwaggerOperation("GetbyKey")]
        
         public HttpResponseMessage GetbyKey(string OrderKey)
-        {           
-            DeliveryOrderBO dorder= doObj.GetDeliveryOrder(OrderKey);
+        {
+            DeliveryOrderBO dorder = new DeliveryOrderBO();           
+            DocumentDL dl = new DocumentDL();
+            dorder = doObj.GetDeliveryOrder(OrderKey);
+            if (dorder.OrderNo.ToString().Trim() != string.Empty)
+            {
+                List<DocumentBO> list = dl.GetSupportingDocuments(dorder.OrderNo).ToList();
+                dorder.file = list;
+            }          
+
             return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
         }
         /// <summary>

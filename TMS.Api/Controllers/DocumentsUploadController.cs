@@ -16,7 +16,8 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [JwtAuthentication]
     public class DocumentsUploadController : ApiController
     {
         [HttpPost]
@@ -146,7 +147,7 @@ namespace TMS.Api.Controllers
                     //renaming the random file to Original file name
                     string uploadingFile = file.LocalFileName;
                     string originalFile = String.Concat(fileuploadPath,DO + "\\" + (file.Headers.ContentDisposition.FileName).Trim(new Char[] { '"' }));
-
+                    string strFileName = file.Headers.ContentDisposition.FileName.Replace('"',' ').Trim();
                     if (File.Exists(originalFile))
                     {
                         File.Delete(originalFile);
@@ -167,7 +168,7 @@ namespace TMS.Api.Controllers
                         CreatedBy = Guid.Parse(CreatedBy),
                         FileSizeInMB = (int)finfo.Length / 1024,
                         FileType = finfo.Extension.Replace('.', ' ').Trim().ToUpper(), //not sure
-                        FileName = originalFile
+                        name = strFileName
                     };
                  
                     OrderHeaderDocumentBO orderBO = new OrderHeaderDocumentBO
@@ -189,6 +190,14 @@ namespace TMS.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError,new StringContent("Upload Failed"), Configuration.Formatters.JsonFormatter);
             }
 
+        }
+
+        public List<DocumentBO> GetDocNames(string DO)
+        {
+            DocumentDL dl = new DocumentDL();
+            List<DocumentBO> list = dl.GetSupportingDocuments(DO).ToList();
+            return list;
+           // List<string> FileNames = list.Select(y => y.FileName).ToList();
         }
     }
 

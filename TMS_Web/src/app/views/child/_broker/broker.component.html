@@ -1,14 +1,17 @@
 <h6 class="card-title" style="text-align:left">Broker</h6>
 <!-- <div class="btn-group btn-group-sm bd-dark" role="group" aria-label="Button group with nested dropdown">
   <button type="button" class="btn btn-secondary">Broker</button> -->
-  <div class="btn-group" role="group">
-    <button class="btn btn-secondary dropdown-toggle form-control-sm" style="border-radius: 1rem;" type="button" id="drpbroker"
-      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{brokerName}}
-    </button>
-    <div class="dropdown-menu" aria-labelledby="drpbroker">
-      <li *ngFor="let Broker of broker" (click)="onSelect(Broker)">
-        <a class="dropdown-item">{{Broker.BrokerName}}</a>
-      </li>
-    </div>
+<div class="btn-group" role="group">
+  <button class="btn btn-secondary dropdown-toggle form-control-sm" style="border-radius: 1rem; margin-top: 0px;
+    margin-bottom: 0px;    margin-right: 0px;    margin-left: 0px;    max-width: 200px;    min-width: 200px;
+    overflow: hidden;    text-overflow: ellipsis;" type="button" id="drpbroker" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">
+    <small><b > {{brokerName}}</b></small> 
+  </button>
+  <div class="dropdown-menu" aria-labelledby="drpbroker">
+    <li *ngFor="let Broker of broker" (click)="onSelect(Broker)">
+      <a class="dropdown-item">{{Broker.BrokerName}}</a>
+    </li>
   </div>
+</div>
 <!-- </div> -->

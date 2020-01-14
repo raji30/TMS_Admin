@@ -1,0 +1,12 @@
+<div class="pdf-container" >
+  <input (change)="onFileSelected()" type="file" id="file">
+<pdf-viewer [src]="pdfSrc"
+      [render-text]="true"
+      [page]="page" 
+      [show-all]="true"
+      style="display: block;">
+    </pdf-viewer>
+  </div>
+  
+  
+

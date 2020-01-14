@@ -27,18 +27,20 @@ export class CustomerComponent implements OnInit {
   @Input() customerKeyTobind: string;
   @Output() CustomerSelectedOutput = new EventEmitter<string>();
   @Output() OrdernoGenerated = new EventEmitter<string>();
+  @Input() disabled: boolean = false;
 
   customercount: any;
   Orderno: any;
   creditCheck: boolean;
 
-  selectedCustomer: Customer = new Customer();
+  selectedCustomer: Customer;// = new Customer();
   constructor(
     private service: CustomerService,
     private master: MasterService
   ) {}
 
   ngOnInit() {
+   
     this.service
       .getCustomers()
       .subscribe(
@@ -49,6 +51,7 @@ export class CustomerComponent implements OnInit {
   }
 
   ngOnChanges() {
+   
     if (this.customerKeyTobind != undefined) {
       this.service.getCustomers().subscribe(
         (data: any) => {
@@ -112,5 +115,14 @@ export class CustomerComponent implements OnInit {
     let s = num + "";
     while (s.length < size) s = "0" + s;
     return s;
+  }
+        // Calling this enables the component
+    onEnableComponent() {
+      this.disabled = false;
+  }
+
+  // Calling this disables the component
+  onDisableComponent() {
+      this.disabled = true;
   }
 }

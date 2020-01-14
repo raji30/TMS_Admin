@@ -73,9 +73,13 @@ import { FileUploadComponent } from "./views/file-upload/file-upload.component";
 import { FileUploaderService } from "./_services/file-uploader.service";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { FiledownloadService } from './_services/filedownload.service';
+import { PdfviewcomponentComponent } from './views/pdfviewcomponent/pdfviewcomponent.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
 @NgModule({
   imports: [
-  NgbModule,
+  NgbModule,PdfViewerModule,PdfJsViewerModule ,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -94,6 +98,7 @@ import {MatInputModule} from '@angular/material/input';
     OwlNativeDateTimeModule,
     MatFormFieldModule,
     MatInputModule
+    
   ],
   declarations: [
     AppComponent,
@@ -127,11 +132,11 @@ import {MatInputModule} from '@angular/material/input';
     DispatchComponent,
     DispatchAssignmentComponent,
     DispathdeliveryComponent,
-    FileUploadComponent,    
+    FileUploadComponent,  PdfviewcomponentComponent,  
     GrdFilterPipe,
     BlockCopyPaste
   ],
-  providers: [UserService, AddressService, DatePipe,FileUploaderService],
+  providers: [UserService, AddressService, DatePipe,FileUploaderService,FiledownloadService],
   bootstrap: [AppComponent],
   entryComponents: [TabComponent]
 })

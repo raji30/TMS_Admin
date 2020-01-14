@@ -24,28 +24,48 @@
          {{selectedCustomer.Address.City}}, {{selectedCustomer.Address.State}}-{{selectedCustomer.Address.Zip}}</small>
     </div>   
 </div> -->
-<div class="form-group">
-  <!-- <label class="font-weight-bold">Customer</label> -->
-  <div>
-  <div class="dropdown">
-    <button class="btn btn-outline-secondary dropdown-toggle form-control-sm btn-block" style="border-radius: 1rem;" type="button" id="drpcustomer"
-      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <img *ngIf="creditCheck" src="assets/img/brand/tick-circle-icon16px.png" />
-      <img *ngIf="!creditCheck" src="assets/img/brand/close16px.png" />
-      <b> {{billtoCustomerName}}</b>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="drpBillTo">
-      <li *ngFor="let cust of customer" [class.selected]="cust === selectedCustomer" (click)="onSelect(cust)">
-        <a class="dropdown-item">{{cust.CustName}}</a>
-      </li>
-    </div>
-  </div>
-  <h6 class="text-center text-capitalize" style="color:darkblue;">{{selectedCustomer.Address.Address1}}
-    &nbsp;{{selectedCustomer.Address.Address2}}
-    <br>
-    {{selectedCustomer.Address.City}}, {{selectedCustomer.Address.State}}-{{selectedCustomer.Address.Zip}}</h6>
-</div>
-</div>
+
+<table>
+  <tbody>
+    <tr>
+      <td> 
+        <h6 class="card-title  badge badge-pill badge-primary" style="text-align:left">Customer</h6>
+          <div class="dropdown" style="width: 10rem;">
+            <button class="btn btn-light dropdown-toggle form-control-sm btn-block" 
+            style="border-radius: 1rem; margin-top: 0px;
+            margin-bottom: 0px;
+            margin-right: 0px;
+            margin-left: 0px;
+            max-width: 200px;
+            min-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;" type="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              <img *ngIf="creditCheck" src="assets/img/brand/tick-circle-icon16px.png" />
+              <img *ngIf="!creditCheck" src="assets/img/brand/close16px.png" />
+              <small><b > {{billtoCustomerName}}</b></small>
+            </button>
+            <div class="dropdown-menu" >
+              <li *ngFor="let cust of customer" [class.selected]="cust === selectedCustomer" (click)="onSelect(cust)">
+                <a class="dropdown-item">{{cust.CustName}}</a>
+              </li>
+            </div>
+          </div>  
+      </td>      
+    </tr>
+    <tr *ngIf="selectedCustomer">
+      <td>
+        <div style="margin: 5px;">
+        <p class="text-left text-capitalize" style="color:darkblue;">
+          <small><b style="word-wrap: break-word;">{{selectedCustomer.CustName}}</b></small><br>
+          {{selectedCustomer.Address.Address1}},&nbsp;{{selectedCustomer.Address.Address2}}
+          <br>
+          {{selectedCustomer.Address.City}}, {{selectedCustomer.Address.State}}-{{selectedCustomer.Address.Zip}}</p>          
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
 
