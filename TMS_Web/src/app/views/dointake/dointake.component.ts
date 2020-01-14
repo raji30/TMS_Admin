@@ -659,6 +659,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     console.log("Testing....", this.ContainerNo);
 
     if (this.OrderDetailKey != "") {
+
       this.doHeader.orderdetails[this.rowindex].ContainerNo = this.ContainerNo;
       this.doHeader.orderdetails[
         this.rowindex
@@ -684,7 +685,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     containerDetails.SealNo = this.SealNo;
     containerDetails.Weight = this.Weight;
     containerDetails.Comments = this.Comments = this.CommentItems.toString();
-
+    containerDetails.Id= this.doHeader.OrderNo + "-"+ ( this.doHeader.orderdetails.length +1 );
     this.doHeader.orderdetails.push(containerDetails);
 
     this.rowRefresh();

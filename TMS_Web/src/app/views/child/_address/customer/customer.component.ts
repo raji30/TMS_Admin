@@ -86,7 +86,7 @@ export class CustomerComponent implements OnInit {
         console.log("x[1].length", x.length);
         if (x.length == 1) {
           this.Orderno =
-            x[0].substr(0, 4).toUpperCase() +
+            x[0].substr(0, 4).toUpperCase() +"-"+
             year
               .getUTCFullYear()
               .toString()
@@ -96,7 +96,7 @@ export class CustomerComponent implements OnInit {
         } else {
           this.Orderno =
             x[0].substr(0, 2).toUpperCase() +
-            x[1].substr(0, 2).toUpperCase() +
+            x[1].substr(0, 2).toUpperCase() +"-" +
             year
               .getUTCFullYear()
               .toString()

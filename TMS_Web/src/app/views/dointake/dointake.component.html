@@ -499,11 +499,11 @@
       <!-- <hr style="border: none; border-bottom: 3px solid slategray;"> -->
       <div class="row ">
         <div class="col-sm-4 col-md-4 col-lg-4">
-          <h4 style="color: rgb(114, 29, 14);">Order/
+          <h4 style="color:olivedrab"><b>Order</b>/
             #<b>{{doHeader.OrderNo}}/</b>
-            <span class="badge badge-pill badge-secondary"><i class="fa fa-calendar" style="color rgb(114, 29, 14);"
+            <span class="badge badge-pill badge-secondary"><i class="fa fa-calendar" 
                 aria-hidden="true"></i>
-              <small style="color:rgb(114, 29, 14);"> <b> {{doHeader.OrderDate | date}}</b></small>
+              <small style="color:olivedrab" > <b> {{doHeader.OrderDate | date}}</b></small>
             </span>
           </h4>
         </div>
@@ -778,6 +778,7 @@
                       <thead>
                         <tr>
                           <th scope="col" class="text-left" hidden="true">OrderDetailKey</th>
+                          <th scope="col" class="text-left">Id</th>
                           <th scope="col" class="text-left">Container</th>
                           <th scope="col" class="text-center" hidden="true"> Size</th>
                           <th scope="col" class="text-center"> Size</th>
@@ -790,6 +791,9 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let field of doHeader.orderdetails; let i = index">
+                          <td class="text-left">
+                            {{field.Id}}
+                          </td>
                           <td class="text-left">
                             <!-- <input [(ngModel)]="field.ContainerNo" class="form-control form-control-sm " type="text"
                         name="{{field.ContainerNo}}" /> -->
