@@ -13,7 +13,7 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-   // [JwtAuthentication]
+    [JwtAuthentication]
     public class DeliveryOrderDetailsController : ApiController
     {
         DeliveryOrderDL doObj = new DeliveryOrderDL();

@@ -168,7 +168,7 @@ export class DeliveryOrderService {
     };
     
     return this.http.put<Order_details>(
-      AppSettings._BaseURL + "UpdateDeliveryOrderDetails/",
+      AppSettings._BaseURL + "UpdateScheduler/",
       Orderdetails
     );
   }

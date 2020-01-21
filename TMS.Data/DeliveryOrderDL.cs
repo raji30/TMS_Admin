@@ -84,9 +84,16 @@ namespace TMS.Data
                     {
                         cmd.Parameters.AddWithValue("_billoflading", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BillofLading);
                     }
+                    if (String.IsNullOrEmpty(orderBO.Comment) || String.IsNullOrWhiteSpace(orderBO.Comment))
+                    {
+                        cmd.Parameters.AddWithValue("_comment", NpgsqlTypes.NpgsqlDbType.Varchar, "");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("_comment", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.Comment);
+                    }
 
                     
-                    cmd.Parameters.AddWithValue("_comment", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.Comment);
 
                     if (orderBO.CutOffDate==null)
                     {
@@ -368,9 +375,18 @@ namespace TMS.Data
                     {
                         cmd.Parameters.AddWithValue("_billoflading", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.BillofLading);
                     }
+                    if (String.IsNullOrWhiteSpace(orderBO.Comment) || String.IsNullOrEmpty(orderBO.Comment))
+                    {
+
+                        cmd.Parameters.AddWithValue("_comment", NpgsqlTypes.NpgsqlDbType.Varchar, "");
+                    }
+                    else
+                    {
+
+                        cmd.Parameters.AddWithValue("_comment", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.Comment);
+                    }
 
 
-                    cmd.Parameters.AddWithValue("_comment", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.Comment);
 
                     if (orderBO.CutOffDate == null)
                     {
@@ -532,6 +548,7 @@ namespace TMS.Data
                             //orderHeader.ordertypedescription = reader["ordertypedescription"].ToString();
 
                             orderHeader.OrderDetails.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);
+                            orderHeader.OrderDetails.containerid = Utils.CustomParse<string>(reader["containerid"]);
                             orderHeader.OrderDetails.ContainerNo = Utils.CustomParse<string>(reader["containerno"]);
                             orderHeader.OrderDetails.ContainerSize = Utils.CustomParse<short>(reader["containersize"]);
                             orderHeader.OrderDetails.Chassis = Utils.CustomParse<string>(reader["chassis"]);
@@ -564,7 +581,8 @@ namespace TMS.Data
                         {
                             var orderDetail = new DeliveryOrderDetailBO();
                             orderDetail.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
-                            orderDetail.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);                            
+                            orderDetail.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);
+                            orderDetail.containerid = Utils.CustomParse<string>(reader["containerid"]);
                             orderDetail.ContainerNo = Utils.CustomParse<string>(reader["containerno"]);
                             orderDetail.ContainerSize = Utils.CustomParse<short>(reader["containersize"]);
                             orderDetail.Chassis = Utils.CustomParse<string>(reader["chassis"]);                                                       
@@ -607,6 +625,7 @@ namespace TMS.Data
                             var orderDetail = new DeliveryOrderDetailBO();
                             orderDetail.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);
                             orderDetail.OrderKey = Guid.Parse(orderkey);
+                            orderDetail.containerid = Utils.CustomParse<string>(reader["containerid"]);
                             orderDetail.ContainerNo = Utils.CustomParse<string>(reader["containerno"]);
                             orderDetail.ContainerSize = Utils.CustomParse<short>(reader["containersize"]);
                             orderDetail.Chassis = Utils.CustomParse<string>(reader["chassis"]);
@@ -668,6 +687,7 @@ namespace TMS.Data
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("_orderkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderKey);
+                        cmd.Parameters.AddWithValue("_containerid", NpgsqlTypes.NpgsqlDbType.Varchar,obj.containerid);
                         if (String.IsNullOrEmpty(obj.ContainerNo))
                         {
                             cmd.Parameters.AddWithValue("_containerno", NpgsqlTypes.NpgsqlDbType.Varchar, string.Empty);
@@ -761,6 +781,7 @@ namespace TMS.Data
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("_orderkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.OrderKey);
+                    cmd.Parameters.AddWithValue("_containerId", NpgsqlTypes.NpgsqlDbType.Varchar,obj.containerid);
                         if (String.IsNullOrEmpty(obj.ContainerNo))
                         {
                             cmd.Parameters.AddWithValue("_containerno", NpgsqlTypes.NpgsqlDbType.Varchar, string.Empty);

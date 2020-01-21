@@ -11,6 +11,7 @@ using TMS.Data;
 
 namespace TMS.Api.Controllers
 {
+    [JwtAuthentication]
     public class ScheduleController : ApiController
     {
         // GET: Schedule
@@ -49,6 +50,17 @@ namespace TMS.Api.Controllers
             var list = dl.GetOrderstoSchedule();
             return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
 
+        }
+
+        [HttpPut]
+        [Route("UpdateScheduler")]
+        [SwaggerOperation("UpdateScheduler")]
+        public HttpResponseMessage Put([FromBody]DeliveryOrderDetailBO schedulerData)
+        {
+            SchedulingDL dl = new SchedulingDL();
+            var orderdetailCollection = dl.UpdateScheduler(schedulerData);
+                
+            return Request.CreateResponse(HttpStatusCode.OK, true, Configuration.Formatters.JsonFormatter);
         }
 
 

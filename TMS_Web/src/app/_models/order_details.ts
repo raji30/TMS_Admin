@@ -4,7 +4,7 @@ import { Comments } from './comments';
 
 export class Order_details {
         OrderDetailKey :string;
-        Id:string;
+        containerid:string;
         OrderKey:string;
         ContainerSize:string;
         ContainerNo:string;

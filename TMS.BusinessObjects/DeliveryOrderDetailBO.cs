@@ -10,6 +10,7 @@ namespace TMS.BusinessObjects
     {
         public Guid OrderDetailKey { get; set; }
         public Guid OrderKey { get; set; }
+        public string containerid { get; set; }
         public string ContainerNo { get; set; }
         public short ContainerSize { get; set; }
         public string ContainerSizeDesc { get; set; }

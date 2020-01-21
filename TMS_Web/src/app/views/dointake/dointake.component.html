@@ -506,6 +506,15 @@
               <small style="color:olivedrab" > <b> {{doHeader.OrderDate | date}}</b></small>
             </span>
           </h4>
+          <input type="text" id="OrderKey" readonly class="form-control" name="OrderKey" tooltip="OrderKey"
+          [(ngModel)]="doHeader.OrderKey" #OrderKey="ngModel" hidden="true"  />
+          <input type="text" id="OrderNo" readonly class="form-control" name="OrderNo" tooltip="Order No"
+          [(ngModel)]="doHeader.OrderNo" #OrderNo="ngModel" hidden="true"  />
+          <input type="text" class="form-control " name="OrderDate" id="OrderDate" readonly
+                        [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="Order Date"
+                        [(ngModel)]="doHeader.OrderDate" #OrderDate="ngModel"  hidden="true" />
+                      <owl-date-time [pickerType]="'calendar'" #dt3 [hour12Timer]="false"></owl-date-time>
+
         </div>
         <div class="col-sm-2 col-md-2 col-lg-2">
 
@@ -792,7 +801,7 @@
                       <tbody>
                         <tr *ngFor="let field of doHeader.orderdetails; let i = index">
                           <td class="text-left">
-                            {{field.Id}}
+                            {{field.containerid}}
                           </td>
                           <td class="text-left">
                             <!-- <input [(ngModel)]="field.ContainerNo" class="form-control form-control-sm " type="text"
@@ -843,6 +852,7 @@
                       <thead>
                         <tr>
                           <th scope="col" class="text-left" hidden="true">OrderDetailKey</th>
+                          <th scope="col" class="text-left" hidden="true">Id</th>
                           <th scope="col" class="text-left" hidden="true">Container</th>
                           <th scope="col" class="text-center" hidden="true"> Size</th>
                           <th scope="col" class="text-center" hidden="true"> Size</th>
@@ -858,6 +868,10 @@
                           <td hidden="true">
                             <input class="form-control form-control-sm " type="text" placeholder="OrderDetailKey"
                               [(ngModel)]="OrderDetailKey" name="OrderDetailKey" />
+                          </td>
+                          <td hidden="true">
+                            <input class="form-control form-control-sm " type="text" placeholder="containerid"
+                              [(ngModel)]="containerid" name="containerid" />
                           </td>
                           <td>
                             <input class="form-control form-control-sm " type="text" placeholder="Container"

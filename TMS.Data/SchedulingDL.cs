@@ -127,6 +127,7 @@ namespace TMS.Data
                             var orderDetail = new DeliveryOrderDetailBO();
                             orderDetail.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
                             orderDetail.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);
+                            orderDetail.containerid = Utils.CustomParse<string>(reader["containerid"]);
                             orderDetail.ContainerNo = Utils.CustomParse<string>(reader["containerno"]);
                             orderDetail.ContainerSize = Utils.CustomParse<short>(reader["containersize"]);
                             orderDetail.ContainerSizeDesc = Utils.CustomParse<string>(reader["containersizeDesc"]);
@@ -142,6 +143,82 @@ namespace TMS.Data
             }
             return orderDetails;
         }
-        
+
+        public bool UpdateScheduler(DeliveryOrderDetailBO detail)
+        {
+            //string sql = @"update dbo.tms_orderdetail set apptdatefrom=@apptdatefrom, apptdateto=@apptdateto, " +
+            //    "status=@status,statusdate = @statusdate,holdreason=@holdreason, holddate=@holddate where orderdetailkey=@orderdetailkey and orderkey=@orderkey";
+
+            //string sql = @"update dbo.tms_orderdetail set apptdatefrom=@apptdatefrom, apptdateto=@apptdateto,Pickupdate = @Pickupdate, Pickuptime = @Pickuptime,DropOffdate = @DropOffdate, DropOfftime = @DropOfftime " +
+            //   ",status=@status where orderdetailkey=@orderdetailkey and orderkey=@orderkey";
+
+
+
+            string sql = "dbo.fn_update_order_details";
+
+            try
+            {
+
+                using (connection)
+                {
+                    connection.Open();
+                    using (var cmd = new NpgsqlCommand(sql, connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("_orderkey", NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderKey);
+                        cmd.Parameters.AddWithValue("_orderdetailkey", NpgsqlTypes.NpgsqlDbType.Uuid, detail.OrderDetailKey);
+                        cmd.Parameters.AddWithValue("_apptdatefrom", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(detail.AppDateFrom, System.Globalization.CultureInfo.InvariantCulture));
+                        cmd.Parameters.AddWithValue("_apptdateto", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(detail.AppDateTo, System.Globalization.CultureInfo.InvariantCulture));
+                        cmd.Parameters.AddWithValue("_status", NpgsqlTypes.NpgsqlDbType.Smallint, detail.Status);
+                        cmd.Parameters.AddWithValue("_statusdate", NpgsqlTypes.NpgsqlDbType.Date, DateTime.Now);
+                        cmd.Parameters.AddWithValue("_pickupdatetime", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(detail.PickupDateTime, System.Globalization.CultureInfo.InvariantCulture));
+                        cmd.Parameters.AddWithValue("_dropoffdatetime", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(detail.DropOffDateTime, System.Globalization.CultureInfo.InvariantCulture));
+
+                        if (detail.SchedulerNotes == null)
+                        {
+                            cmd.Parameters.AddWithValue("_schedulernotes", NpgsqlTypes.NpgsqlDbType.Varchar, string.Empty);
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("_schedulernotes", NpgsqlTypes.NpgsqlDbType.Varchar, detail.SchedulerNotes);
+                        }
+
+                        if (detail.LastFreeDay == null)
+                        {
+                            cmd.Parameters.AddWithValue("_lastfreeday", NpgsqlTypes.NpgsqlDbType.Timestamp, null);
+
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("_lastfreeday", NpgsqlTypes.NpgsqlDbType.Timestamp, DateTime.Parse(detail.LastFreeDay, System.Globalization.CultureInfo.InvariantCulture));
+
+                        }
+
+
+                        //int returnvalue = cmd.ExecuteNonQuery();
+                        //if (returnvalue < 0)
+                        //{
+                        //    return false;
+                        //}
+                        //else return true;
+
+                        var reader = cmd.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            var RouteDetailID = Guid.Parse(reader[0].ToString());
+
+                        }
+                    }
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+
+        }
     }
 }

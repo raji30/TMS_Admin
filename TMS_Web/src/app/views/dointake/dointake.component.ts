@@ -113,6 +113,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   dropdownSettings = {};
 
   public OrderDetailKey: string = "";
+  public containerid:string="";
   public ContainerSize: string = "";
   public ContainerSizeDesc: string = "";
   public ContainerNo: string = "";
@@ -660,6 +661,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
 
     if (this.OrderDetailKey != "") {
 
+      this.doHeader.orderdetails[this.rowindex].containerid=this.containerid;
       this.doHeader.orderdetails[this.rowindex].ContainerNo = this.ContainerNo;
       this.doHeader.orderdetails[
         this.rowindex
@@ -685,13 +687,14 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     containerDetails.SealNo = this.SealNo;
     containerDetails.Weight = this.Weight;
     containerDetails.Comments = this.Comments = this.CommentItems.toString();
-    containerDetails.Id= this.doHeader.OrderNo + "-"+ ( this.doHeader.orderdetails.length +1 );
+    containerDetails.containerid= this.doHeader.OrderNo + "-"+ ( this.doHeader.orderdetails.length +1 );
     this.doHeader.orderdetails.push(containerDetails);
 
     this.rowRefresh();
   }
   rowRefresh() {
     this.OrderDetailKey = "";
+    this.containerid="";
     this.ContainerNo = undefined;
     this.ContainerSize = undefined;
     this.ContainerSizeDesc = undefined;
@@ -719,6 +722,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   }
   edit(details: Order_details, index: number) {
     this.rowindex = index;
+   this.containerid= details.containerid;
     this.ContainerNo = details.ContainerNo;
     this.OrderDetailKey = details.OrderDetailKey;
     this.ContainerSize = details.ContainerSize;
