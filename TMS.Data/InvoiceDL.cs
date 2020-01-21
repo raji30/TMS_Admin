@@ -223,6 +223,37 @@ namespace TMS.Data
             return DOHeaders;
         }
 
+        public IList<ThinInvoiceBO> AutoPullInvoiceCosts(string orderKey)
+        {
+            var InvoiceTotals = new List<ThinInvoiceBO>();
+            string sql = "dbo.fn_autopullinvoicetotals";
+            
+            using (appmodelConnection)
+            {
+                appmodelConnection.Open();
+                using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("_orderkey",
+                  NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(orderKey));
+                    var reader = cmd.ExecuteReader();
+                    do
+                    {
+                        while (reader.Read())
+                        {
+                            ThinInvoiceBO bo = new ThinInvoiceBO();
+                            
+                            bo.ContainerNo = Utils.CustomParse<string>(reader["containerno"]);
+                            bo.ItemId = Utils.CustomParse<string>(reader["itemid"]);
+                            bo.UnitPrice = Convert.ToDouble(reader["unitprice"].ToString());
+                            bo.ItemKey = Utils.CustomParse<Guid>(reader["itemkey"].ToString());
+                            InvoiceTotals.Add(bo);
+                        }
+                    } while (reader.NextResult());
+                }
+            }
+            return InvoiceTotals;
+         }
 
         public Int64 GetInvoiceMaxcount()
         {
