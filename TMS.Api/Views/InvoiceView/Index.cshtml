@@ -6,11 +6,6 @@
     var orderDtl = Model.OrderDtl;
 }
 
-@*<h2>Index</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
 <div id="left" style="display:inline-block;float:left;">
     <h4>
         JUNCTION COLLABORATIVE TRANSPORTS
@@ -153,78 +148,90 @@
         @{
             foreach (var dtl in orderDtl)
             {
+    <div style="width:80%;display:inline-block;height:auto;">
+        <div id="invoicedt" style="display:inline-block;width:35%;float:left;">
 
-    <div id="invoicedt" style="display:inline-block;width:35%;float:left;">
+            <table>
+                <tr style="background-color:black;color:white;font-family:'Times New Roman'">
 
-        <table>
-            <tr style="background-color:black;color:white;font-family:'Times New Roman'">
+                    <th style="padding:10px">INVOICE NO</th>
+                    <th style="padding:10px">INVOICE DATE</th>
+                </tr>
+                <tr>
 
-                <th style="padding:10px">INVOICE NO</th>
-                <th style="padding:10px">INVOICE DATE</th>
-            </tr>
-            <tr>
+                    <td style="padding:10px">@dtl.InvoiceHeader.InvoiceNo</td>
+                    <td style="padding:10px">@dtl.InvoiceHeader.InvoiceDate.ToString("MM/dd/yyyy")</td>
+                </tr>
+            </table>
+            <table style="width:100%">
+                <tr style="font-family:'Times New Roman';font-weight:bold">
+                    <td>
+                        Due Date:@dtl.InvoiceHeader.DueDate.ToString("MM/dd/yyyy")
+                    </td>
 
-                <td style="padding:10px">@dtl.InvoiceHeader.InvoiceNo</td>
-                <td style="padding:10px">@dtl.InvoiceHeader.InvoiceDate.ToString("MM/dd/yyyy")</td>
-            </tr>
-        </table>
-        <table style="width:100%">
-            <tr style="font-family:'Times New Roman';font-weight:bold">
-                <td>
-                    Due Date:@dtl.InvoiceHeader.DueDate.ToString("MM/dd/yyyy")
-                </td>
+                </tr>
+            </table>
+            <table style="width:100%">
+                <tr style="font-family:'Times New Roman';font-weight:bold">
+                    <td>
+                        Container No:@dtl.ContainerNo
+                    </td>
 
-            </tr>
-        </table>
-        <table style="width:100%">
-            <tr style="font-family:'Times New Roman';font-weight:bold">
-                <td>
-                    Container No:@dtl.ContainerNo
-                </td>
-
-            </tr>
-        </table>
+                </tr>
+            </table>
+        </div>
+        <div id="charges" style="display:inline-block;width:65%;padding-left:5%;border:solid;float:right;margin-top:20px">
+            <h4 style="background-color:black;color:white;float:left">
+                CHARGES
+            </h4>
+            <table style="width:100%">
+                <thead style="font-weight:bold">
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                @foreach (var invoiceDtl in dtl.InvoiceDetail)
+                {
+                    <tbody>
+                        <tr>
+                            <td style="font:bold">@invoiceDtl.Description</td>
+                            <td>@invoiceDtl.Price</td>
+                        </tr>
+                    </tbody>
+                }
+                <tfoot style="font-weight:bold">
+                    <tr>
+                        <td>
+                            <hr>
+                        </td>
+                        <td>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td style="font:bold">
+                            Total Due:$ @dtl.InvoiceHeader.InvoiceAmt
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
-                <div id="charges" style="display:inline-block;width:65%;padding-left:5%;border:solid;float:right">
-                    <h4 style="background-color:black;color:white;float:left">
-                        CHARGES
-                    </h4>
-                    <table style="width:100%">
-                        <thead style="font-weight:bold">
-                            <tr>
-                                <th>Item</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        @foreach (var invoiceDtl in dtl.InvoiceDetail)
-                        {
-                            <tbody>
-                                <tr>
-                                    <td style="font:bold">@invoiceDtl.Description</td>
-                                    <td>@invoiceDtl.Price</td>
-                                </tr>
-                            </tbody>
-                        }
-                            <tfoot style="font-weight:bold">
-                                <tr>
-                                    <td>
-                                        <hr>
-                                    </td>
-                                    <td>
-                                        <hr>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td style="font:bold">
-                                        Total Due:$ @dtl.InvoiceHeader.InvoiceAmt
-                                    </td>
-                                </tr>
-                            </tfoot>
-                    </table>
-                </div>
-                <hr>
 
+                <hr>
+<br />
             }
         }
-   
+                <div style="display:inline-block;width:100%;text-align:center;">
+                    <footer>
+                        <p style="color:red;font-weight:bold">
+                            THIS INVOICE HAS BEEN ASSIGNED AND MUST BE PAID DIRECTLY TO: <br />
+                            Orange Commercial Credit <br />
+                            P.O. Box 11099 <br />
+                            Olympia, WA  98508-1099 <br />
+                            Report claims to (800) 231-3878 <br />
+                        </p>
+                    </footer>
+                </div>
