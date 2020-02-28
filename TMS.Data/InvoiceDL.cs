@@ -15,13 +15,14 @@ namespace TMS.Data
         NpgsqlConnection appmodelConnection;
         public InvoiceDL()
         {
-            appmodelConnection = new NpgsqlConnection(connString);
+           
           
         }
         public InvoiceHeaderBO GetInvoice(string invoiceNo)
         {
             string sql = "fn_getInvoice";
             var invoiceHeader = new InvoiceHeaderBO();
+            using (appmodelConnection = new NpgsqlConnection(connString)) { 
             appmodelConnection.Open();
             using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
             {
@@ -42,11 +43,12 @@ namespace TMS.Data
                 }
                 return invoiceHeader;
             }
+            }
         }
         public InvoiceHeaderBO PostInvoice(InvoiceHeaderBO invoice)
         {
             string sql = "dbo.fn_insertinvoiceheader";
-            using (appmodelConnection)
+            using (appmodelConnection = new NpgsqlConnection(connString))
             {
                 appmodelConnection.Open();
                 using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
@@ -78,9 +80,10 @@ namespace TMS.Data
         }
         public InvoiceHeaderBO GetInvoicebyOrderDetailKey(string OrderDetailKey)
         {
-            string sql = "fn_getInvoicebyOrderDetailKey";
+            string sql = "dbo.fn_getInvoicebyOrderDetailKey";
             var invoiceHeader = new InvoiceHeaderBO();
-            appmodelConnection.Open();
+            using (appmodelConnection = new NpgsqlConnection(connString)) { 
+                appmodelConnection.Open();
             using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -90,55 +93,60 @@ namespace TMS.Data
                 while (reader.Read())
                 {
                     invoiceHeader.InvoiceNo = int.Parse(reader["invoiceNo"].ToString());
-                    invoiceHeader.Invoicekey = Guid.Parse(reader["invoicekey"].ToString());
-                    invoiceHeader.CustKey = Utils.CustomParse<Guid>(reader["custkey"].ToString());
-                    invoiceHeader.BilltoAddrKey = Utils.CustomParse<Guid>(reader["billtoaddrkey"]);
-                    invoiceHeader.BilltoAddrCopy = Utils.CustomParse<Guid>(reader["billtocopyaddrkey"]);
+                    invoiceHeader.InvoiceType = int.Parse(reader["invoicetype"].ToString());
+                    invoiceHeader.CustKey = Guid.Parse(reader["custkey"].ToString());
+                    invoiceHeader.BilltoAddrKey = Guid.Parse(reader["billtoaddrkey"].ToString());
+                   // invoiceHeader.BilltoAddrCopy = Guid.TR(reader["billtocopyaddrkey"].ToString());
                     invoiceHeader.InvoiceAmt = Utils.CustomParse<decimal>(reader["invoiceamount"]);
                     invoiceHeader.DueDate = Convert.ToDateTime(reader["duedate"].ToString());
                     invoiceHeader.InvoiceDate = Convert.ToDateTime(reader["invoicedate"].ToString());
                 }
                 return invoiceHeader;
             }
+            }
         }
         public List<InvoiceDetailBO> GetInvoiceDetail(string OrderDetailKey)
         {
             var InvDtllist = new List<InvoiceDetailBO>();
-            var sql = "fn_getinvoicedetail";
-            using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
+            var sql = "dbo.fn_getinvoicedetail";
+            using (appmodelConnection = new NpgsqlConnection(connString))
             {
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("_orderdetailkey",
-                   NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(OrderDetailKey));
-                var reader = cmd.ExecuteReader();
-                do
+                appmodelConnection.Open();
+                using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
                 {
-                    while (reader.Read())
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("_orderdetailkey",
+                       NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(OrderDetailKey));
+                    var reader = cmd.ExecuteReader();
+                    do
                     {
-                        var BO = new InvoiceDetailBO
+                        while (reader.Read())
                         {
-                            Itemkey = Utils.CustomParse<Guid>(reader["itemkey"]),
-                            Description = Utils.CustomParse<string>(reader["description"]),
-                            Price = Utils.CustomParse<double>(reader["price"]),
-                            ItemType = Utils.CustomParse<short>(reader["itemtype"]),
-                            Quantity = Utils.CustomParse<decimal>(reader["quantity"]),
-                            InvoiceDescription = reader["invoicedescription"].ToString(),
-                            UnitPrice = Utils.CustomParse<decimal>(reader["unitprice"]),
-                            ExcessAmount = Utils.CustomParse<decimal>(reader["excessamount"])
-                        };
-                        InvDtllist.Add(BO);
+                            var BO = new InvoiceDetailBO
+                            {
+                                Itemkey = Utils.CustomParse<Guid>(reader["itemkey"]),
+                                Description = Utils.CustomParse<string>(reader["description"]),
+                                Price = Utils.CustomParse<double>(reader["price"]),
+                                ItemType = Utils.CustomParse<short>(reader["itemtype"]),
+                                Quantity = Utils.CustomParse<decimal>(reader["quantity"]),
+                                InvoiceDescription = reader["invoicedescription"].ToString(),
+                                UnitPrice = Utils.CustomParse<decimal>(reader["unitprice"]),
+                                ExcessAmount = Utils.CustomParse<decimal>(reader["excessamount"])
+                            };
+                            InvDtllist.Add(BO);
 
+                        }
                     }
+                    while (reader.NextResult());
                 }
-                while (reader.NextResult());
+                return InvDtllist;
             }
-            return InvDtllist;
         }
 
         public InvoiceDetailBO PostInvoiceDetail(InvoiceDetailBO detailBO)
         {
-            string sql = "fn_insertinvoicedetail";
-            using (appmodelConnection)
+            string sql = "dbo.fn_insertinvoicedetail";
+            using (appmodelConnection = new NpgsqlConnection(connString))
             {
                 appmodelConnection.Open();
                 using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
@@ -170,7 +178,7 @@ namespace TMS.Data
             var DOHeaders = new List<DeliveryOrderBO>();           
             string sql = "dbo.fn_GetOrderstoGenerateInvoice";
             DeliveryOrderBO bo = new DeliveryOrderBO();
-            using (appmodelConnection)
+            using (appmodelConnection = new NpgsqlConnection(connString))
             {
                 appmodelConnection.Open();
                 using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
@@ -228,7 +236,7 @@ namespace TMS.Data
             var InvoiceTotals = new List<ThinInvoiceBO>();
             string sql = "dbo.fn_autopullinvoicetotals";
             
-            using (appmodelConnection)
+            using (appmodelConnection = new NpgsqlConnection(connString))
             {
                 appmodelConnection.Open();
                 using (var cmd = new NpgsqlCommand(sql, appmodelConnection))
@@ -258,7 +266,7 @@ namespace TMS.Data
         public Int64 GetInvoiceMaxcount()
         {
             string sql = "SELECT COUNT(*) AS cnt FROM dbo.invoiceheader";
-            using (appmodelConnection)
+            using (appmodelConnection = new NpgsqlConnection(connString))
             {
                 appmodelConnection.Open();
                 using (var cmd = new NpgsqlCommand(sql, appmodelConnection))

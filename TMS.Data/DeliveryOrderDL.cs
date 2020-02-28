@@ -16,15 +16,16 @@ namespace TMS.Data
         NpgsqlConnection connection;
         public DeliveryOrderDL()
         {
-            connection = new NpgsqlConnection(connString);
+            
         }
         public Guid CreateDeliveryOrder(DeliveryOrderBO orderBO)
         {
             Guid Orderkey = Guid.Empty;
             string sql = "dbo.fn_insert_order_header";
 
-            using (connection)
+            using (connection = new NpgsqlConnection(connString))
             {
+                
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))
                 {
@@ -131,7 +132,7 @@ namespace TMS.Data
             Guid commentkey = Guid.Empty;
             string sql = "dbo.fn_insert_comment";
 
-            using (connection )
+            using (connection = new NpgsqlConnection(connString))
             {
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))
@@ -152,7 +153,7 @@ namespace TMS.Data
         {            
             string sql = "dbo.fn_insert_order_header_comment";
 
-            using (connection)
+            using (connection = new NpgsqlConnection(connString))
             {
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))
@@ -172,7 +173,7 @@ namespace TMS.Data
         {
             string sql = "dbo.fn_get_orders_by_user";
             List<string> list = new List<string>();
-            using (connection)
+            using (connection = new NpgsqlConnection(connString))
             {
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))
@@ -203,7 +204,7 @@ namespace TMS.Data
             string sql = "dbo.fn_get_All_tms_order_header";
             List <DeliveryOrderBO> DOlist = new List <DeliveryOrderBO>();
             List<string> list = new List<string>();
-            using (connection)
+            using (connection = new NpgsqlConnection(connString))
             {
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))
@@ -243,7 +244,7 @@ namespace TMS.Data
         {
             string sql = "update dbo.tms_orderheader set status=@status, lastupdatedate = NOW(), lastupdateuserkey =" +
                 "@userkey  where orderkey = @orderkey";
-            using (connection)
+            using (connection = new NpgsqlConnection(connString))
             {
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))
@@ -269,7 +270,7 @@ namespace TMS.Data
         {
             string sql = "dbo.fn_get_tms_order_header";
             DeliveryOrderBO bo = new DeliveryOrderBO();
-            using (connection)
+            using (connection = new NpgsqlConnection(connString))
             {
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql,connection))
@@ -311,7 +312,7 @@ namespace TMS.Data
                         bo.Priority = Utils.CustomParse<short>(reader["priority"]);
                         bo.CreatedDate = Convert.ToDateTime(reader["createdate"]);
                         bo.CreatedBy = Utils.CustomParse<Guid>(reader["createuserkey"]);
-                        bo.Comment = Utils.CustomParse<string>(reader["commentdesc"]);
+                     //   bo.Comment = Utils.CustomParse<string>(reader["commentdesc"]);
                         bo.statusdescription = reader["statusdescription"].ToString();
                         bo.ordertypedescription = reader["ordertypedescription"].ToString();
 
@@ -329,6 +330,8 @@ namespace TMS.Data
                     //}
                     return bo;
                 }
+                
+               
             }
         }
 
@@ -359,7 +362,7 @@ namespace TMS.Data
             var DOHeaders = new List<DeliveryOrderBO>();
             string sql = "dbo.fn_getAllDOHeaderandDetails";
             DeliveryOrderBO bo = new DeliveryOrderBO();
-            using (connection)
+            using (connection = new NpgsqlConnection(connString))
             {
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))
@@ -423,7 +426,7 @@ namespace TMS.Data
             var orderDetails = new List<DeliveryOrderDetailBO>();
             string sql = "dbo.fn_getOrderDetails";
             DeliveryOrderBO bo = new DeliveryOrderBO();
-            using (connection)
+            using (connection = new NpgsqlConnection(connString))
             {
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))
@@ -464,7 +467,7 @@ namespace TMS.Data
             var orderDetails = new List<DeliveryOrderDetailBO>();
             string sql = "dbo.fn_get_order_detail";
             DeliveryOrderBO bo = new DeliveryOrderBO();
-            using (connection)
+            using (connection = new NpgsqlConnection(connString))
             {
                 connection.Open();
                 using (var cmd = new NpgsqlCommand(sql, connection))
@@ -531,7 +534,7 @@ namespace TMS.Data
             var OrderDetailCollection = new List<Guid>();
             //string sql = "dbo.fn_insert_order_details";
             string sql = "dbo.fn_insert_order_details_DOIntake";
-            using (connection)
+            using (connection = new NpgsqlConnection(connString))
             {
                 connection.Open();
                 foreach (var obj in objList)
@@ -631,7 +634,7 @@ namespace TMS.Data
             try
             {
 
-                using (connection)
+                using (connection = new NpgsqlConnection(connString))
                 {
                     connection.Open();
                     using (var cmd = new NpgsqlCommand(sql, connection))
@@ -701,7 +704,7 @@ namespace TMS.Data
 
             try
             {
-                using (connection)
+                using (connection = new NpgsqlConnection(connString))
                 {
                     connection.Open();
                     using (var cmd = new NpgsqlCommand(sql, connection))
