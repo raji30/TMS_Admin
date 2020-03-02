@@ -106,7 +106,7 @@ namespace TMS.Data
         {           
             try
             {
-                string sql = "fn_getInvoicebyOrderDetailKey";
+                string sql = "dbo.fn_getInvoicebyOrderDetailKey";
                 var invoiceHeader = new InvoiceHeaderBO();
 
                 conn = new NpgsqlConnection(connString);
@@ -142,12 +142,12 @@ namespace TMS.Data
                 conn.Close();
             }
         }
-        public List<InvoiceDetailBO> GetInvoiceDetail(string OrderDetailKey)
+        public InvoiceHeaderBO GetInvoicebyinvoiceKey(string invoicekey)
         {
             try
             {
-                var InvDtllist = new List<InvoiceDetailBO>();
-                var sql = "fn_getinvoicedetail";
+                string sql = "dbo.fn_getinvoicebyinvoicekey";
+                var invoiceHeader = new InvoiceHeaderBO();
 
                 conn = new NpgsqlConnection(connString);
                 conn.Open();
@@ -155,8 +155,49 @@ namespace TMS.Data
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("_orderdetailkey",
-                       NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(OrderDetailKey));
+                    cmd.Parameters.AddWithValue("_invoicekey",
+                        NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(invoicekey));
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        invoiceHeader.InvoiceNo = int.Parse(reader["invoiceNo"].ToString());
+                        invoiceHeader.Invoicekey = Guid.Parse(reader["invoicekey"].ToString());
+                        invoiceHeader.CustKey = Guid.Parse(reader["custkey"].ToString());
+                        invoiceHeader.BilltoAddrKey = Guid.Parse(reader["billtoaddrkey"].ToString());
+                        //invoiceHeader.BilltoAddrCopy = Utils.CustomParse<Guid>(reader["billtocopyaddrkey"]);
+                        invoiceHeader.InvoiceAmt = Utils.CustomParse<decimal>(reader["invoiceamount"]);
+                        invoiceHeader.DueDate = Convert.ToDateTime(reader["duedate"].ToString());
+                        invoiceHeader.InvoiceDate = Convert.ToDateTime(reader["invoicedate"].ToString());
+                    }
+                    reader.Close();
+                    return invoiceHeader;
+                }
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<InvoiceDetailBO> GetInvoiceDetail(string invoicekey)
+        {
+            try
+            {
+                var InvDtllist = new List<InvoiceDetailBO>();
+                var sql = "dbo.fn_getinvoicedetail";
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("_invoicekey",
+                       NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(invoicekey));
                     var reader = cmd.ExecuteReader();
                     do
                     {
@@ -167,11 +208,11 @@ namespace TMS.Data
                                 Itemkey = Utils.CustomParse<Guid>(reader["itemkey"]),
                                 Description = Utils.CustomParse<string>(reader["description"]),
                                 Price = Utils.CustomParse<decimal>(reader["price"]),
-                                ItemType = Utils.CustomParse<short>(reader["itemtype"]),
+                                //ItemType = Utils.CustomParse<short>(reader["itemtype"]),
                                 Quantity = Utils.CustomParse<decimal>(reader["quantity"]),
-                                InvoiceDescription = reader["invoicedescription"].ToString(),
+                                InvoiceDescription = reader["description"].ToString(),
                                 UnitPrice = Utils.CustomParse<decimal>(reader["unitprice"]),
-                                ExcessAmount = Utils.CustomParse<decimal>(reader["excessamount"])
+                                ExcessAmount = Utils.CustomParse<decimal>(reader["price"])
                             };
                             InvDtllist.Add(BO);
 
@@ -765,6 +806,36 @@ namespace TMS.Data
                         return (Int64)cmd.ExecuteScalar();
                     }
                     else return 0;
+                }
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public string getOrderkeybyInvoicekey(string invoicekey)
+        {
+            try
+            {
+                string sql = "SELECT orderkey FROM dbo.tms_orderinvoices where invoicekey = " +
+                   " '" + invoicekey + "' ";
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;                
+                    //cmd.Parameters.AddWithValue("_invoicekey", NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(invoicekey));
+                   
+                    var reader = cmd.ExecuteScalar();
+
+                    return reader.ToString();
                 }
             }
             catch (Exception msg)

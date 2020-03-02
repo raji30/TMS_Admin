@@ -10,6 +10,7 @@ import { Invoicedetails } from "../../../_models/invoicedetails";
 import { OnInit, Component } from "@angular/core";
 import { Rate } from "../../../_models/rate";
 import { ToastrService } from "ngx-toastr";
+import { saveAs } from "file-saver";
 
 @Component({
   selector: "app-invoice",
@@ -35,7 +36,8 @@ export class InvoiceComponent implements OnInit {
   public invoiceDet: Invoicedetails;
 
   public invoiceHeaderResult: Invoice;
-
+  public OrderKey: string;
+  public OrderNo: string;  
   public InvoiceKey: string;
   public InvoiceNo: number;
   public invoiceDate: Date;
@@ -60,11 +62,10 @@ export class InvoiceComponent implements OnInit {
   public lblrowaddupdate: string;
   public lblInvoice: string;
 
-
   isDesc: boolean = false;
   column: string = "InvoiceNo";
-p: number = 1;
- count: number;
+  p: number = 1;
+  count: number;
 
   constructor(
     private invoiceService: InvoiceService,
@@ -86,12 +87,10 @@ p: number = 1;
     );
 
     this.load_NewInvoiceList();
-this.load_InvoiceList();
-  
+    this.load_InvoiceList();
   }
 
-  load_InvoiceList()
-  {
+  load_InvoiceList() {
     this.invoiceService.getInvoiceHeaderList().subscribe(
       data => {
         this.invoiceHeaderList = data;
@@ -105,8 +104,7 @@ this.load_InvoiceList();
       () => console.log("Get invoiceHeaderList", this.invoiceHeaderList)
     );
   }
-  load_NewInvoiceList()
-  {
+  load_NewInvoiceList() {
     this.invoiceService.GetOrderstoGenerateInvoice().subscribe(
       data => {
         this.Data = data;
@@ -118,8 +116,8 @@ this.load_InvoiceList();
 
   getOrderdata(orderKey: string) {
     this.invoiceDet = null;
-    this.invoiceDetail = null; 
-    this.invoiceDetail =  new Array<Invoicedetails>();
+    this.invoiceDetail = null;
+    this.invoiceDetail = new Array<Invoicedetails>();
 
     this.invoiceService.GetInvoiceMaxcount().subscribe(
       data => {
@@ -156,11 +154,13 @@ this.load_InvoiceList();
             this.invoiceDet.InvoiceKey = undefined;
             this.invoiceDet.InvoiceDescription = "";
             this.invoiceDet.ExcessAmount = "";
+            this.invoiceDet.containerno = item.containerno;
             this.invoiceDetail.push(this.invoiceDet);
             console.log("this.invoiceDetail", this.invoiceDetail);
           } else {
             for (var items of this.invoiceDetail) {
               if (items.Itemkey == item.itemkey) {
+                this.invoiceDetail[count].containerno =  this.invoiceDetail[count].containerno + ','+ items.containerno;
                 this.invoiceDetail[count].Quantity = items.Quantity + 1;
                 this.invoiceDetail[count].Price =
                   this.invoiceDetail[count].Quantity * items.UnitPrice;
@@ -174,6 +174,7 @@ this.load_InvoiceList();
               this.invoiceDet.Itemkey = item.itemkey;
               this.invoiceDet.Description = item.description;
               this.invoiceDet.Quantity = 1;
+              this.invoiceDet.containerno = item.containerno;
               this.invoiceDet.UnitPrice = item.unitprice;
               this.invoiceDet.Price = this.invoiceDet.UnitPrice;
               this.invoiceDet.InvoiceLineKey = undefined;
@@ -218,6 +219,8 @@ this.load_InvoiceList();
 
     this.invoiceModel = new Invoicemodel();
     this.invoiceModel.order = new DeliveryOrderHeader();
+    this.invoiceModel.order.OrderKey = model.OrderKey;
+    this.OrderKey = model.OrderKey;
     this.invoiceModel.order.BillToAddressBO = new Address();
     this.invoiceModel.order.SourceAddressBO = new Address();
     this.invoiceModel.order.DestinationAddressBO = new Address();
@@ -229,12 +232,14 @@ this.load_InvoiceList();
     this.InvoiceNo = model.InvoiceNo;
     this.invoiceDate = model.InvoiceDate;
     this.dueDate = model.DueDate;
-    this.InvoiceAmt = +model.InvoiceAmt.toFixed(2); 
+    this.InvoiceAmt = +model.InvoiceAmt.toFixed(2);
 
     this.invoiceService.getOrderDatabyKey(model.OrderKey).subscribe(
       data => {
         this.invoiceModel = data;
+        this.OrderNo = this.invoiceModel.order.OrderNo;
         console.log("Edit for Invoice:  -- ", this.invoiceModel);
+        console.log("OrderNo:  -- ", this.invoiceModel.order.OrderNo);
       },
       error => {
         console.log(error);
@@ -249,8 +254,7 @@ this.load_InvoiceList();
       error => {
         console.log(error);
       }
-    );
-
+    );    
     this.BillToAddress = this.invoiceModel.order.BillToAddressBO;
     console.log(
       " this.BillToAddress ",
@@ -329,9 +333,11 @@ this.load_InvoiceList();
       this.invoiceItem.Itemkey = itemData.itemkey;
       this.invoiceItem.Description = itemData.description;
       this.invoiceItem.Quantity = this.ContainerQuantity;
-      this.invoiceItem.Price = (this.ItemRate * this.invoiceItem.Quantity).toFixed(2);
+      this.invoiceItem.Price = (
+        this.ItemRate * this.invoiceItem.Quantity
+      ).toFixed(2);
       this.invoiceItem.UnitPrice = this.ItemRate;
-      this.invoiceItem.InvoiceKey = this.InvoiceKey;    
+      this.invoiceItem.InvoiceKey = this.InvoiceKey;
       var itemdetails = this.invoiceItem;
       this.invoiceDetail.push(itemdetails);
 
@@ -416,18 +422,20 @@ this.load_InvoiceList();
       }
     );
 
-    this.invoiceService
-      .UpdateInvoiceDetail(this.invoiceDetail)
-      .subscribe(res => {if (res) {
-        this.load_NewInvoiceList();
-        this.load_InvoiceList();
-        this.showInvoice = false;
-        this.showSuccess("Invoice updated successfully", "Invoice");}
+    this.invoiceService.UpdateInvoiceDetail(this.invoiceDetail).subscribe(
+      res => {
+        if (res) {
+          this.load_NewInvoiceList();
+          this.load_InvoiceList();
+          this.showInvoice = false;
+          this.showSuccess("Invoice updated successfully", "Invoice");
+        }
       },
       error => {
         this.showError(error, "Invoice Update");
         return;
-      });
+      }
+    );
   }
 
   createInvoice() {
@@ -463,7 +471,7 @@ this.load_InvoiceList();
                 this.showInvoice = false;
                 this.showSuccess("Invoice Created successfully", "Invoice");
               }
-            });
+            });            
         }
       },
       error => {
@@ -471,6 +479,33 @@ this.load_InvoiceList();
       }
     );
   }
+
+  downloadPDF() {
+    this.invoiceService.downloadInvoice(this.OrderNo).subscribe(
+      result => {
+        if (confirm("Are you sure to download the file? ")) {
+          saveAs(result, this.OrderNo+ '.pdf');
+      }},
+      error => {
+        this.showError(error, "Server error while downloading file.");
+        return;
+      }
+    );    
+  }
+
+  
+  createPDF() {
+    this.invoiceService.createPDF(this.InvoiceKey).subscribe(
+      result => {
+        this.showSuccess("Invoice PDF Created successfully", "Invoice PDF");
+      },
+      error => {
+        this.showError(error, "PDF Creation");
+        return;
+      }
+    );
+  }
+
   showSuccess(message: string, title: string) {
     this.toastr.success(message, title, { timeOut: 2000, closeButton: true });
   }
@@ -486,48 +521,47 @@ this.load_InvoiceList();
     this.toastr.info(message, title, { timeOut: 1000, closeButton: true });
   }
 
-  
   sort(column) {
     this.isDesc = !this.isDesc; //change the direction
     this.column = column;
-    let direction = this.isDesc ? 1 : -1;    
+    let direction = this.isDesc ? 1 : -1;
 
     this.invoiceHeaderList = [...this.invoiceHeaderList].sort((n1, n2) => {
-      if ((this.column == "InvoiceNo")) {
+      if (this.column == "InvoiceNo") {
         if (n1.InvoiceNo > n2.InvoiceNo) {
-          return 1* direction;
+          return 1 * direction;
         } else if (n1.InvoiceNo < n2.InvoiceNo) {
-          return -1* direction;
+          return -1 * direction;
         } else return 0;
       }
 
-      if ((this.column == "CustName")) {
+      if (this.column == "CustName") {
         if (n1.CustName > n2.CustName) {
-          return 1* direction;
+          return 1 * direction;
         } else if (n1.CustName < n2.CustName) {
-          return -1* direction;
+          return -1 * direction;
         } else return 0;
       }
-      if ((this.column == "InvoiceAmt")) {
+      if (this.column == "InvoiceAmt") {
         if (n1.InvoiceAmt > n2.InvoiceAmt) {
-          return 1* direction;
+          return 1 * direction;
         } else if (n1.InvoiceAmt < n2.InvoiceAmt) {
-          return -1* direction;
+          return -1 * direction;
         } else return 0;
       }
 
-      if ((this.column == "DueDate")) {
+      if (this.column == "DueDate") {
         if (n1.DueDate > n2.DueDate) {
-          return 1* direction;
+          return 1 * direction;
         } else if (n1.DueDate < n2.DueDate) {
-          return -1* direction;
+          return -1 * direction;
         } else return 0;
       }
-      if ((this.column == "StatusDesc")) {
+      if (this.column == "StatusDesc") {
         if (n1.StatusDesc > n2.StatusDesc) {
-          return 1* direction;
+          return 1 * direction;
         } else if (n1.StatusDesc < n2.StatusDesc) {
-          return -1* direction;
+          return -1 * direction;
         } else return 0;
       }
     });

@@ -7,6 +7,7 @@ import { Invoicemodel } from '../_models/invoicemodel';
 import { Invoice } from '../_models/invoice';
 import { Invoicedetails } from '../_models/invoicedetails';
 import { Rate } from '../_models/rate';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -157,4 +158,45 @@ public UpdateInvoiceDetail(invoiceDetails: Invoicedetails[]) {
   };  
   return this.http.put<Invoicedetails[]>(AppSettings._BaseURL + "UpdateInvoiceDetail/",invoiceDetails);
 }
+
+public createPDF(invoicekey:string){
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+
+  return this.http.get<string>(
+    AppSettings._BaseURL + "CreatePDFforInvoice/" +invoicekey ); 
+}
+
+public downloadInvoice(orderno: string) {
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+  // return this.http.get<any>(
+  //   AppSettings._BaseURL + "DownloadInvoice/"+
+  //   orderno
+  // );
+
+  return this.http.get(AppSettings._BaseURL + "DownloadInvoice/"+
+  orderno, { headers: new HttpHeaders({
+    'Authorization': "bearer " + token.token,
+    'Content-Type': 'application/json',}), responseType: 'blob'}).pipe (
+  tap (
+      // Log the result or error
+      data => console.log('You received data'),
+      error => console.log(error)
+   )
+  );
+}
+
 }

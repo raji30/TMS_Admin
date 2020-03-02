@@ -1,0 +1,237 @@
+﻿@model TMS.Api.Models.InvoiceViewModel
+
+@{
+    ViewBag.Title = "Index";
+    var order = Model.Order;
+    var orderDtl = Model.OrderDtl;
+}
+
+<div id="left" style="display:inline-block;float:left;">
+    <h4>
+        JUNCTION COLLABORATIVE TRANSPORTS
+    </h4><br />
+    <span>
+        c/o ORANGE COMMERCIAL CREDIT
+    </span><br />
+    <span>
+        P.O. BOX 11099
+    </span><br />
+    <span>
+        OLYMPIA, WA  98508-1099
+    </span><br />
+    <span>
+        REPORT CLAIMS TO: (800) 231-3878
+    </span><br />
+</div>
+@*<div id="right" style="display:inline-block;width:45%;height:200px;float:right;">
+        <h3>
+            INVOICE
+        </h3><br />
+       <table>
+           <tr style="background-color:black;color:white;font-family:'Times New Roman'">
+               <th style="padding:4px">INVOICE NO</th>
+
+               <th style="padding:4px">INVOICE DATE</th>
+           </tr>
+           <tr>
+               <td>124456</td>
+               <td>12/12/2019</td>
+           </tr>
+       </table><br />
+        <span>
+            Due Date:01/20/2020
+        </span><br />
+    </div>*@
+<div id="billto" style="display:inline-block;width:100%;float:left;">
+    <div style="border:solid;width:40%">
+        <h4>
+            BILL TO
+        </h4>
+        <span style="font:x-small">
+            @order.BillToAddressBO.Name
+        </span><br />
+        <span style="font:x-small">
+            @order.BillToAddressBO.Address1 , @order.BillToAddressBO.Address2
+        </span><br />
+        <span style="font:x-small">
+            @order.BillToAddressBO.City, @order.BillToAddressBO.State - @order.BillToAddressBO.Zip
+        </span><br />
+        <span style="font:x-small">
+            Your payments should itemize all invoice # paid
+        </span><br />
+    </div>
+</div>
+<div id="ADDRESSES" style="display:inline-block;width:100%;float:left;padding-top:10px;margin-top:10px">
+    <div id="source" style="display:inline-block; border:solid;width:33%;float:left;">
+        <table>
+            <tr>
+                <th>
+                    PICK UP
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @order.SourceAddressBO.Name
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @order.SourceAddressBO.Address1, @order.SourceAddressBO.Address2
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @order.SourceAddressBO.City, @order.SourceAddressBO.State - @order.SourceAddressBO.Zip
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="destination" style="display:inline-block; border:solid;width:32%;margin-left:5px;">
+        <table>
+            <tr>
+                <th>
+                    DELIVERED TO
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @order.DestinationAddressBO.Name
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @order.DestinationAddressBO.Address1, @order.DestinationAddressBO.Address2
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @order.DestinationAddressBO.City, @order.DestinationAddressBO.State - @order.DestinationAddressBO.Zip
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="returnaddress" style="display:inline-block; border:solid;width:33%;float:right;">
+        <table>
+            <tr>
+                <th>
+                    RETURN <span style="font:smaller;font-weight:normal">(if different)</span>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @order.ReturnAddressBO.Name
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @order.ReturnAddressBO.Address1, @order.ReturnAddressBO.Address2
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @order.ReturnAddressBO.City, @order.ReturnAddressBO.State - @order.ReturnAddressBO.Zip
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+    <div style="width:33%;display:inline-block;float:right;">Booking No:@order.BookingNo</div>
+    <div style="width:33%;display:inline-block;float:right;">Bill of Lading: @order.BillofLading</div>
+    <div style="width:33%;display:inline-block;float:right;">Ref no: @order.BrokerRefNo</div>
+
+    <div style="display:inline-block;width:100%">
+        <h4>
+            INVOICE
+        </h4>
+    </div>
+        @{
+            foreach (var dtl in orderDtl)
+            {
+    <div style="width:80%;display:inline-block;height:auto;">
+        <div id="invoicedt" style="display:inline-block;width:35%;float:left;">
+
+            <table>
+                <tr style="background-color:black;color:white;font-family:'Times New Roman'">
+
+                    <th style="padding:10px">INVOICE NO</th>
+                    <th style="padding:10px">INVOICE DATE</th>
+                </tr>
+                <tr>
+
+                    <td style="padding:10px">@dtl.InvoiceHeader.InvoiceNo</td>
+                    <td style="padding:10px">@dtl.InvoiceHeader.InvoiceDate.ToString("MM/dd/yyyy")</td>
+                </tr>
+            </table>
+            <table style="width:100%">
+                <tr style="font-family:'Times New Roman';font-weight:bold">
+                    <td>
+                        Due Date:@dtl.InvoiceHeader.DueDate.ToString("MM/dd/yyyy")
+                    </td>
+
+                </tr>
+            </table>
+            <table style="width:100%">
+                <tr style="font-family:'Times New Roman';font-weight:bold">
+                    <td>
+                        Container No:@dtl.ContainerNo
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+        <div id="charges" style="display:inline-block;width:65%;padding-left:5%;border:solid;float:right;margin-top:20px">
+            <h4 style="background-color:black;color:white;float:left">
+                CHARGES
+            </h4>
+            <table style="width:100%">
+                <thead style="font-weight:bold">
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                @foreach (var invoiceDtl in dtl.InvoiceDetail)
+                {
+                    <tbody>
+                        <tr>
+                            <td style="font:bold">@invoiceDtl.Description</td>
+                            <td>@invoiceDtl.Price</td>
+                        </tr>
+                    </tbody>
+                }
+                <tfoot style="font-weight:bold">
+                    <tr>
+                        <td>
+                            <hr>
+                        </td>
+                        <td>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td style="font:bold">
+                            Total Due:$ @dtl.InvoiceHeader.InvoiceAmt
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+                <hr>
+<br />
+            }
+        }
+                <div style="display:inline-block;width:100%;text-align:center;">
+                    <footer>
+                        <p style="color:red;font-weight:bold">
+                            THIS INVOICE HAS BEEN ASSIGNED AND MUST BE PAID DIRECTLY TO: <br />
+                            Orange Commercial Credit <br />
+                            P.O. Box 11099 <br />
+                            Olympia, WA  98508-1099 <br />
+                            Report claims to (800) 231-3878 <br />
+                        </p>
+                    </footer>
+                </div>

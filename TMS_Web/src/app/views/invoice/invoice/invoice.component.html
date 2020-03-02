@@ -1,5 +1,5 @@
 <br>
-<div class="row">
+<div class="row" *ngIf="showInvoiceList">
     <div class="col-sm-2 col-md-2 col-lg-2 scrollbar" id="style" >
         <h5>&nbsp; Invoice<span class="badge badge-warning"> New</span></h5>
         <br>
@@ -27,8 +27,98 @@
         </table>
    
     </div>
-    <div class="col-sm-10 col-md-10 col-lg-10 ">
-        <div *ngIf="showInvoice">
+    <div class="col-sm-10 col-md-10 col-lg-10 ">       
+            <div class="row">
+                <div class="col-8 col-sm-8 col-md-8"> </div>
+                <div class="col-4 col-sm-4 col-md-4">
+                    <div class="container text-right">
+                        <div class="form-group input-group input-group-sm">
+                            <div class="img-group-prepend">
+                                <img src="assets/img/brand/search16px.png" /> &nbsp;
+                            </div>
+                            <input [(ngModel)]="searchText" class="form-control form-control-sm"
+                                style="border-radius: 1rem;" type="text" placeholder="Search..">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-sm table-borderless ">
+                <thead class="thead-dark shadow">
+                    <tr>
+                        <th scope="col" class="pointer text-muted"  hidden="true">invoiceKey</th>
+                        <th scope="col" class="pointer text-muted" (click)="sort('InvoiceNo')" >Invoice &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                        <th scope="col" class="pointer text-muted" (click)="sort('CustName')" >Customer &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                        <th scope="col" class="pointer text-muted" (click)="sort('InvoiceAmt')" >Amount &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                        <th scope="col" class="pointer text-muted" (click)="sort('DueDate')" >Duedate &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                        <th scope="col" class="pointer text-muted" (click)="sort('StatusDesc')"  >Status &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                        <th scope="col" class="pointer text-muted">Next Action</th>
+                    </tr>
+                </thead>
+                <tbody>                  
+                    <tr
+                        *ngFor="let inv of invoiceHeaderList| grdFilter: {InvoiceNo: searchText,CustName: searchText
+                            ,InvoiceAmt: searchText,DueDate: searchText,StatusDesc: searchText}
+                        |paginate:{itemsPerPage:5,currentPage:p,totalItems: count}
+                         ; let ind=index;">
+                        <td class="text-left" hidden="true"> {{ inv.Invoicekey }}</td>
+                        <td>
+                            <span class="font-weight-bold">
+                                #{{ inv.InvoiceNo }} &nbsp;
+                                <span><i class="fa fa-calendar" aria-hidden="true"></i>
+                                    <small> <b> {{inv.InvoiceDate  | date}}</b></small>
+                                </span>
+                            </span>
+                        </td>
+
+                        <td>
+                            <span> <b> {{ inv.CustName }}</b> <br>
+                                <!-- <small style="color: cornflowerblue;">
+                            {{ inv.BillToAddressBO.Address1 }},{{ inv.BillToAddressBO.Address2 }}<br>
+                            {{ inv.BillToAddressBO.City }} {{ inv.BillToAddressBO.State}} {{ inv.BillToAddressBO.Zip}}
+                          </small> -->
+                            </span>
+                        </td>
+
+                        <td class="text-left"> ${{ inv.InvoiceAmt |number: '1.1-2'}}</td>
+                        <td class="text-left"> {{ inv.DueDate |date}}</td>
+                        <td class="text-left"> </td>
+                        <td>
+                            <strong> <i class="cil-chevron-circle-right-alt" style="color: yellowgreen;"></i></strong>
+                            &nbsp;
+                            <small *ngIf="inv.StatusDesc == 'Schedule onhold'" class="font-weight-normal" style="color: orange;">
+                              {{inv.nextaction}} </small>
+                            <small *ngIf="inv.StatusDesc == 'Schedule inprogress'" class="font-weight-normal" style="color: green;">
+                              {{inv.nextaction}} </small>
+                            &nbsp;
+                            <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;"
+                              (click)="load_invoiceHeaderandDetailData(inv)">
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="invoiceHeaderList.length===0">
+                        <td colspan="3">
+                          <h4 style="color: darkorange;">No records found! </h4>
+                        </td>
+                      </tr>
+                </tbody>
+            </table>
+            <div class="container text-right"> 
+                <pagination-controls 
+                (pageChange)="p=$event"
+                autoHide="true"
+                responsive="true"> </pagination-controls>     
+              </div>
+    </div>
+</div>
+<div class="row" *ngIf="showInvoice">
+    <div class="col-sm-12 col-md-12 col-lg-12 ">
+        <div >
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-6 border-right">
                     <h4>Invoice #<b>{{InvoiceNo}}</b></h4>
@@ -122,11 +212,11 @@
                     <span> <b><u>Shipment</u> </b></span>
                     <div class="row">
                         <div class="col-sm-4 col-md-4 col-lg-4">
-                            <span style="color:  #659CEF;">Carrier </span>
+                            <span class="text-muted">Carrier </span>
                             <br>
                         </div>
                         <div class="col-sm-4 col-md-4 col-lg-4">
-                            <span style="color:  #659CEF;">Vessel Name </span>
+                            <span class="text-muted">Vessel Name </span>
                             <br>
                             {{invoiceModel.order.VesselName}}
                         </div>
@@ -168,7 +258,9 @@
                                 &nbsp;
                                 <button class="btn btn-outline-secondary btn-sm small" type="button">Send</button>
                                 &nbsp;
-                                <button class="btn btn-outline-primary btn-sm small" type="button">Export</button>
+                                <button class="btn btn-outline-primary btn-sm small" type="button" (click)="createPDF()">Export to PDF</button>
+                                &nbsp;
+                                <button class="btn btn-outline-primary btn-sm small" type="button" (click)="downloadPDF()">Download PDF</button>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
@@ -206,8 +298,17 @@
                                         <td height="30" hidden="true"> <span>{{Data.Itemkey}} </span></td>
                                         <td height="30" class="text-left "> <span>{{Data.Description}} </span></td>
                                         <td height="30" class="text-center">
-                                            <span *ngIf="Data.Quantity > 1"> {{Data.Quantity}} container(s)</span>
-                                            <span *ngIf="Data.Quantity == 1"> {{Data.Quantity}} container</span>
+
+                                            <span *ngIf="Data.Description=='Base Rate'"> -
+                                                <br> <small style="color: #659CEF;"> {{Data.containerno}}</small>                                              
+                                            </span>
+
+                                            <span *ngIf="Data.Quantity > 1 && Data.Description != 'Base Rate'"> {{Data.Quantity}} container(s) 
+                                                <br> <small style="color: #659CEF;"> {{Data.containerno}}    </small>                                              
+                                            </span>
+                                            <span *ngIf="Data.Quantity == 1 && Data.Description != 'Base Rate'"> {{Data.Quantity}} container
+                                                <br> <small style="color: #659CEF;"> {{Data.containerno}}  </small>  
+                                            </span>
                                         </td>
                                         <td height="30" class="text-center"> <span> ${{Data.UnitPrice|number: '1.1-2'}}</span>
                                         </td>
@@ -309,97 +410,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div *ngIf="showInvoiceList">
-            <div class="row">
-                <div class="col-8 col-sm-8 col-md-8"> </div>
-                <div class="col-4 col-sm-4 col-md-4">
-                    <div class="container text-right">
-                        <div class="form-group input-group input-group-sm">
-                            <div class="img-group-prepend">
-                                <img src="assets/img/brand/search16px.png" /> &nbsp;
-                            </div>
-                            <input [(ngModel)]="searchText" class="form-control form-control-sm"
-                                style="border-radius: 1rem;" type="text" placeholder="Search..">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <table class="table table-sm table-borderless ">
-                <thead class="thead-dark shadow">
-                    <tr>
-                        <th scope="col" class="pointer text-muted"  hidden="true">invoiceKey</th>
-                        <th scope="col" class="pointer text-muted" (click)="sort('InvoiceNo')" >Invoice &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
-                        </th>
-                        <th scope="col" class="pointer text-muted" (click)="sort('CustName')" >Customer &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
-                        </th>
-                        <th scope="col" class="pointer text-muted" (click)="sort('InvoiceAmt')" >Amount &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
-                        </th>
-                        <th scope="col" class="pointer text-muted" (click)="sort('DueDate')" >Duedate &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
-                        </th>
-                        <th scope="col" class="pointer text-muted" (click)="sort('StatusDesc')"  >Status &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
-                        </th>
-                        <th scope="col" class="pointer text-muted">Next Action</th>
-                    </tr>
-                </thead>
-                <tbody>                  
-                    <tr
-                        *ngFor="let inv of invoiceHeaderList| grdFilter: {InvoiceNo: searchText,CustName: searchText
-                            ,InvoiceAmt: searchText,DueDate: searchText,StatusDesc: searchText}
-                        |paginate:{itemsPerPage:5,currentPage:p,totalItems: count}
-                         ; let ind=index;">
-                        <td class="text-left" hidden="true"> {{ inv.Invoicekey }}</td>
-                        <td>
-                            <span class="font-weight-bold">
-                                #{{ inv.InvoiceNo }} &nbsp;
-                                <span><i class="fa fa-calendar" aria-hidden="true"></i>
-                                    <small> <b> {{inv.InvoiceDate  | date}}</b></small>
-                                </span>
-                            </span>
-                        </td>
-
-                        <td>
-                            <span> <b> {{ inv.CustName }}</b> <br>
-                                <!-- <small style="color: cornflowerblue;">
-                            {{ inv.BillToAddressBO.Address1 }},{{ inv.BillToAddressBO.Address2 }}<br>
-                            {{ inv.BillToAddressBO.City }} {{ inv.BillToAddressBO.State}} {{ inv.BillToAddressBO.Zip}}
-                          </small> -->
-                            </span>
-                        </td>
-
-                        <td class="text-left"> ${{ inv.InvoiceAmt |number: '1.1-2'}}</td>
-                        <td class="text-left"> {{ inv.DueDate |date}}</td>
-                        <td class="text-left"> </td>
-                        <td>
-                            <strong> <i class="cil-chevron-circle-right-alt" style="color: yellowgreen;"></i></strong>
-                            &nbsp;
-                            <small *ngIf="inv.StatusDesc == 'Schedule onhold'" class="font-weight-normal" style="color: orange;">
-                              {{inv.nextaction}} </small>
-                            <small *ngIf="inv.StatusDesc == 'Schedule inprogress'" class="font-weight-normal" style="color: green;">
-                              {{inv.nextaction}} </small>
-                            &nbsp;
-                            <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;"
-                              (click)="load_invoiceHeaderandDetailData(inv)">
-                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr *ngIf="invoiceHeaderList.length===0">
-                        <td colspan="3">
-                          <h4 style="color: darkorange;">No records found! </h4>
-                        </td>
-                      </tr>
-                </tbody>
-            </table>
-            <div class="container text-right"> 
-                <pagination-controls 
-                (pageChange)="p=$event"
-                autoHide="true"
-                responsive="true"> </pagination-controls>     
-              </div>
-
-        </div>
-      
+        </div>   
     </div>
 </div>
-<br>
