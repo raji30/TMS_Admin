@@ -1,8 +1,11 @@
 export class Container {
-    containerSize:string;
-    containerType:string;
-    chassisNo:string;
-    seaNo: string;
+    ContainerId :string;
+    ContainerNo:string;
+    ContainerSize:string; 
+    ContainerSizeDesc:string; 
+    Chassis:string;
+    SealNo: string;
+    Weight: string;
 }
 
 

@@ -49,7 +49,7 @@ import { SchedulerComponent } from "./views/scheduler/scheduler.component";
 import { NavigationComponent } from "./views/navigation/navigation.component";
 import { ToastrModule } from "ngx-toastr";
 import { FileuploadComponent } from "./views/fileupload/fileupload.component";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule, NgbAlertModule, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 import { CompanyComponent } from "./views/child/_company/company/company.component";
 import { DispatchComponent } from "./views/dispatch/dispatch.component";
 import { ListcustomerComponent } from "./views/_customer/list-customer/listcustomer/listcustomer.component";
@@ -71,15 +71,29 @@ import { RatesheetlistComponent } from "./views/_master/_ratesheet/ratesheetlist
 import { ItemlistComponent } from "./views/_master/_item/itemlist/itemlist.component";
 import { FileUploadComponent } from "./views/file-upload/file-upload.component";
 import { FileUploaderService } from "./_services/file-uploader.service";
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import { FiledownloadService } from './_services/filedownload.service';
-import { PdfviewcomponentComponent } from './views/pdfviewcomponent/pdfviewcomponent.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { FiledownloadService } from "./_services/filedownload.service";
+import { PdfviewcomponentComponent } from "./views/pdfviewcomponent/pdfviewcomponent.component";
+import { PdfViewerModule } from "ng2-pdf-viewer";
+import { PdfJsViewerModule } from "ng2-pdfjs-viewer";
+import { ContainerStatusComponent } from "./views/container-status/container-status.component";
+import { SchedulerUpdateComponent } from "./views/scheduler-update/scheduler-update.component";
+import { FilterPipe } from "./_filter/filter.pipe";
+import { BaseratelistComponent } from "./views/_master/_baserate/baseratelist/baseratelist.component";
+import { TestComponent } from "./views/test/test.component";
+import { GroupByPipe } from "./_models/grdPipe";
+import { DispatchupdateComponent } from "./views/dispatchupdate/dispatchupdate.component";
+import { CompanylistComponent } from "./views/_master/_company/companylist/companylist.component";
+import { MatTableModule } from "@angular/material/table";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   imports: [
-  NgbModule,PdfViewerModule,PdfJsViewerModule ,
+    NgbModule,NgxPaginationModule,NgbAlertModule,NgbPaginationModule,
+    PdfViewerModule,
+    PdfJsViewerModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -89,18 +103,20 @@ import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
     AppHeaderModule,
     AppSidebarModule,
     PerfectScrollbarModule,
-    ToastrModule.forRoot(),    
+    ToastrModule.forRoot(),
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,    
+    HttpClientModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     MatFormFieldModule,
-    MatInputModule
-    
-  ],
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule    ,
+      ],
   declarations: [
+    FilterPipe,
     AppComponent,
     ...APP_CONTAINERS,
     LoginComponent,
@@ -109,11 +125,13 @@ import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
     AddressComponent,
     CustomerComponent,
     RatesheetlistComponent,
+    BaseratelistComponent,
     ItemlistComponent,
     AddcustomerComponent,
-    ListcustomerComponent,    
+    ListcustomerComponent,
     ListcityComponent,
     CompanyComponent,
+    CompanylistComponent,
     BrokerComponent,
     VendorlistComponent,
     BrokerlistComponent,
@@ -125,19 +143,36 @@ import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
     OrderinfoComponent,
     ContainersizeComponent,
     InvoiceComponent,
-    TabComponent,    
+    TabComponent,
+    ContainerStatusComponent,
     SchedulerlistComponent,
     NavigationComponent,
     FileuploadComponent,
     DispatchComponent,
     DispatchAssignmentComponent,
     DispathdeliveryComponent,
-    FileUploadComponent,  PdfviewcomponentComponent,  
+    DispatchupdateComponent,
+    FileUploadComponent,
+    PdfviewcomponentComponent,
+    SchedulerUpdateComponent,
     GrdFilterPipe,
-    BlockCopyPaste
+    GroupByPipe,
+    BlockCopyPaste,
+    TestComponent,
+    
   ],
-  providers: [UserService, AddressService, DatePipe,FileUploaderService,FiledownloadService],
+  providers: [
+    UserService,
+    AddressService,
+    DatePipe,
+    FileUploaderService,
+    FiledownloadService
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [TabComponent]
+  entryComponents: [
+    TabComponent,
+    SchedulerUpdateComponent,
+    DispatchupdateComponent
+  ]
 })
 export class AppModule {}

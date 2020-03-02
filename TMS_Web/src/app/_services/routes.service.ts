@@ -37,4 +37,32 @@ public updateRoutesDetails(routedetails:Tms_routes)
   
   return this.http.put<Tms_routes>( AppSettings._BaseURL + 'UpdateRoutes/',routedetails);
 }  
+public updateDriver(routedetails:Tms_routes)
+{
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+  
+  return this.http.put<Tms_routes>( AppSettings._BaseURL + 'UpdateDriver/',routedetails);
+
+}
+public updateDrivernotes(routedetails:Tms_routes)
+{
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+  
+  return this.http.put<Tms_routes>( AppSettings._BaseURL + 'UpdateDrivernotes/',routedetails);
+
+}
 }

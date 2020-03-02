@@ -48,8 +48,7 @@ CreateItem(item: Item) {
     };
     return this.http.post<Item >(
       AppSettings._BaseURL + "AddItem",
-      item,
-      httpOptions
+      item      
     );
   }
 
@@ -64,8 +63,7 @@ CreateItem(item: Item) {
 
     return this.http.put<Item>(
       AppSettings._BaseURL + "UpdateItem",
-      item,
-      httpOptions
+      item      
     );
   }
  
@@ -81,7 +79,7 @@ CreateItem(item: Item) {
     };
 
     return this.http.get<Item>(
-      AppSettings._BaseURL + "GetItemByKey" + "/" + id,httpOptions
+      AppSettings._BaseURL + "GetItemByKey" + "/" + id
     );
   }
 }

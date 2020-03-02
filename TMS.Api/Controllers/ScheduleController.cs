@@ -51,6 +51,41 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
 
         }
+        [HttpGet]
+        [Route("GetOrderDetailsbykey/{orderdetailkey}")]
+        [SwaggerOperation("GetOrderDetailsbykey")]
+        public HttpResponseMessage GetOrderDetailsbykey(string orderdetailkey)
+        {
+            SchedulingDL dl = new SchedulingDL();
+            var list = dl.GetOrderDetailsbykey(orderdetailkey);
+            return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
+
+        }
+        [HttpGet]
+        [Route("GetScheduledContainers")]
+        [SwaggerOperation("GetScheduledContainers")]
+        public HttpResponseMessage GetScheduledContainers()
+        {
+            SchedulingDL dl = new SchedulingDL();
+            var list = dl.GetScheduledContainers();
+            return Request.CreateResponse(HttpStatusCode.OK, list, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpGet]
+        [SwaggerOperation("GetScheduledContainer")]
+        [Route("GetScheduledContainer/{orderdetailkey}")]
+        public HttpResponseMessage GetScheduledContainerdata(string orderdetailkey)
+        {
+            SchedulingDL dl = new SchedulingDL();
+            AccountingDL obj = new AccountingDL();
+            var data = dl.GetScheduledContainer(orderdetailkey);
+            if(data != null)
+            {
+                List<AccountingBO> dorder = obj.GetAccountingOptionsbyKey(orderdetailkey);
+                data.accountingBO = dorder;
+            }           
+            return Request.CreateResponse(HttpStatusCode.OK, data, Configuration.Formatters.JsonFormatter);
+        }
 
         [HttpPut]
         [Route("UpdateScheduler")]
@@ -60,7 +95,7 @@ namespace TMS.Api.Controllers
             SchedulingDL dl = new SchedulingDL();
             var orderdetailCollection = dl.UpdateScheduler(schedulerData);
                 
-            return Request.CreateResponse(HttpStatusCode.OK, true, Configuration.Formatters.JsonFormatter);
+            return Request.CreateResponse(HttpStatusCode.OK, orderdetailCollection, Configuration.Formatters.JsonFormatter);
         }
 
 

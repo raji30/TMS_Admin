@@ -25,6 +25,14 @@ export class CarrierlistComponent implements OnInit {
   show_CarrierInfo: boolean = false;
   show_btnCreateCarrier: boolean = true;
   searchText: string;
+
+  isDesc: boolean = false;
+  column: string = "CustId";
+p: number = 1;
+ count: number;
+  
+
+
   constructor(
     private formbulider: FormBuilder,
     private Service: CarrierService,
@@ -147,5 +155,37 @@ export class CarrierlistComponent implements OnInit {
   clear_search()
   {
     this.searchText = undefined;
+  }
+
+  
+  sort(column) {
+    this.isDesc = !this.isDesc; //change the direction
+    this.column = column;
+    let direction = this.isDesc ? 1 : -1;    
+
+    this.carriers = [...this.carriers].sort((n1, n2) => {
+      if ((this.column == "CarrierName")) {
+        if (n1.CarrierName > n2.CarrierName) {
+          return 1* direction;
+        } else if (n1.CarrierName < n2.CarrierName) {
+          return -1* direction;
+        } else return 0;
+      }
+
+      if ((this.column == "ScacCode")) {
+        if (n1.ScacCode > n2.ScacCode) {
+          return 1* direction;
+        } else if (n1.ScacCode < n2.ScacCode) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "CarrierId")) {
+        if (n1.CarrierId > n2.CarrierId) {
+          return 1* direction;
+        } else if (n1.CarrierId < n2.CarrierId) {
+          return -1* direction;
+        } else return 0;
+      }
+    });
   }
 }

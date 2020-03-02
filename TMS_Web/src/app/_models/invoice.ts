@@ -3,13 +3,16 @@ import { Invoicedetails } from "./invoicedetails";
 export class Invoice {
   Invoicekey: string;
   InvoiceNo: number;
-  InvoiceDate: string;
+  InvoiceDate: Date;
   CustKey: string;
+  CustName: string;
   BilltoAddrKey: string;
   BilltoAddrCopy: string;
   InvoiceAmt: number;
-  DueDate: string;
+  DueDate: Date;
   InvoiceType: number;
-  OrderDetailKey: string;
+  OrderKey: string;
+  StatusDesc:string;
+  nextaction:string;
   invoicedetails:Invoicedetails[];
 }

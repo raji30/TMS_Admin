@@ -1,4 +1,4 @@
-import { Address } from "./address";
+import { Address } from './address';
 
 export class Customer {
   CustomerKey: string;
@@ -12,7 +12,8 @@ export class Customer {
   CreditLimit: number;
   CreditStatus: number;
   achrequired:boolean;
-  paymentterms :number;
-  Address = Address;
+  paymentterms :number; 
+  Address:Address;
+  address=Address;
   customer_edit: Address;
 }

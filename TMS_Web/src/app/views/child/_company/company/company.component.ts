@@ -9,9 +9,10 @@ import { MasterService } from "../../../../_services/master.service";
   styleUrls: ["./company.component.scss"]
 })
 export class CompanyComponent implements OnInit {
-  billtoCustomerName: string = "Select";
+  billtoCompanyName: string = "Select";
   AddrName: string = "";
-  customer: Address[];
+  company: Address[];
+  companyFilter: Address[];
   addressTobind: Address = new Address();
 
   @Input() Type: number;
@@ -22,43 +23,43 @@ export class CompanyComponent implements OnInit {
 
   customercount: any;
   Orderno: any;
+  searchText:string;
 
-  selectedCustomer: Address;// = new Address();
+  selectedCompany: Address;// = new Address();
   constructor(private service: AddressService, private master: MasterService) {}
 
   ngOnInit() {
-    console.log(this.addressKeyTobind);
+   // console.log(this.addressKeyTobind);
     this.service
       .getAddress(this.Type)
       .subscribe(
-        data => (this.customer = data),
+        data => (this.company = this.companyFilter=data),
         error => console.log(error),
-        () => console.log("Get customer complete")
+        () => console.log("Get customer complete",this.company)
       );
 
-    if (this.addressKeyTobind != undefined) {
-      this.addressTobind = this.customer.find(
-        x => x.AddrKey === this.addressKeyTobind
-      );
-      console.log(this.addressTobind);
-      this.onSelect(this.addressTobind);
-    }
+    // if (this.addressKeyTobind != undefined) {
+    //   this.addressTobind = this.company.find(
+    //     x => x.AddrKey === this.addressKeyTobind
+    //   );
+    //   console.log(this.addressTobind);
+    //   this.onSelect(this.addressTobind);
+    // }
   }
 
   ngOnChanges() {
-    if (this.addressKeyTobind != undefined) {
+    if (this.addressKeyTobind != "") {
       this.service.getAddress(this.Type).subscribe(
         (data: any) => {
-          this.customer = data;
+          this.company =this.companyFilter= data;
           if (this.addressKeyTobind) {
-            this.selectedCustomer = this.customer.find(
+            this.selectedCompany = this.company.find(
               x => x.AddrKey === this.addressKeyTobind
             );
-            this.billtoCustomerName = this.selectedCustomer.Name;
+            this.billtoCompanyName = this.selectedCompany.Name;
           }
         },
-        error => console.log(error),
-        () => console.log("Get customer complete")
+        error => console.log(error)        
       );
     }
 
@@ -77,34 +78,48 @@ export class CompanyComponent implements OnInit {
   }
 
   onSelect(CustomerSelected: Address): void {
-    this.selectedCustomer = CustomerSelected;
-    this.billtoCustomerName = this.selectedCustomer.Name;
-    console.log(this.selectedCustomer);
+    this.selectedCompany = CustomerSelected;
+    this.billtoCompanyName = this.selectedCompany.Name;
+    console.log(this.selectedCompany);
 
-    this.master.getMaxcount_Customer(this.selectedCustomer.Name).subscribe(
-      data => {
-        this.customercount = data;
+    // this.master.getMaxcount_Customer(this.selectedCompany.Name).subscribe(
+    //   data => {
+    //     this.customercount = data;
 
-        var year = new Date();
-        var autono = this.pad(this.customercount + 1, 4);
-        this.Orderno =
-          this.selectedCustomer.Name.substr(0, 2).toUpperCase() +
-          year
-            .getUTCFullYear()
-            .toString()
-            .substr(2, 2) +
-          autono;
+    //     var year = new Date();
+    //     var autono = this.pad(this.customercount + 1, 4);
+    //     this.Orderno =
+    //       this.selectedCompany.Name.substr(0, 2).toUpperCase() +
+    //       year
+    //         .getUTCFullYear()
+    //         .toString()
+    //         .substr(2, 2) +
+    //       autono;
 
-        this.CustomerSelectedOutput.emit(CustomerSelected.AddrKey);
-        this.OrdernoGenerated.emit(this.Orderno);
-      },
-      error => console.log(error),
-      () => console.log("Get customercount", this.customercount)
-    );
+    //     this.CustomerSelectedOutput.emit(CustomerSelected.AddrKey);
+    //     this.OrdernoGenerated.emit(this.Orderno);
+    //   },
+    //   error => console.log(error),
+    //   () => console.log("Get customercount", this.customercount)
+    // );
+
+    this.CustomerSelectedOutput.emit(CustomerSelected.AddrKey);
   }
   pad(num: number, size: number): string {
     let s = num + "";
     while (s.length < size) s = "0" + s;
     return s;
   }
+
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+     if(!searchValue){
+       this.assignCopy();
+   } // when nothing has typed
+   this.companyFilter = this.company.filter(item => item.Name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
+   )
+  }
+  assignCopy(){
+   this.companyFilter = Object.assign([], this.company);
+}
 }

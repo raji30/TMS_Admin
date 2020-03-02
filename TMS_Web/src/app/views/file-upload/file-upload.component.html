@@ -27,54 +27,51 @@
 			<table class="table table-custom table-sm table-hover table-primary " cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th class="text-left">File</th>
-						<th class="text-left" hidden="true">FilePath</th>
-						<th class="text-right" hidden="true">Size</th>
-						<th class="text-center" style="width: 100px;">Progress</th>
-						<th class="text-center" style="width: 100px;">Status</th>
-						<th class="text-left" style="width: 100px;">Actions</th>
+						<th class="text-left text-muted">File</th>
+						<th class="text-left text-muted" hidden="true">FilePath</th>
+						<th class="text-right text-muted">Size</th>
+						<th class="text-center text-muted" style="width: 100px;">Progress</th>
+						<th class="text-center text-muted" style="width: 100px;">Status</th>
+						<th class="text-left text-muted" style="width: 100px;">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let item of queue | async">
 						<td hidden="true"> {{ item?.file?.name }} </td>
-						<td> {{ item?.file?.name }}
-							<div class="progress" *ngIf="item.isNew">
-								<div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
-									[style.width.%]="item.progress" aria-valuenow="0" aria-valuemin="0"
-									aria-valuemax="100">
-									{{item.progress}}%</div>
-							</div>
+						<td style="color: midnightblue;"> {{ item?.file?.name }}
+
 						</td>
-						<td class="text-right" hidden="true"> <small> {{ item?.file?.size/1024/1024 | number:'.2' }} MB
+						<td class="text-right" style="color: midnightblue;"> <small>
+								{{ item?.file?.size/1024/1024 | number:'.2' }} MB
 							</small></td>
-						<td class="text-center" style="width: 100px;">
-							<div class="progress" *ngIf="item.isNew">
-								<div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
-									[style.width.%]="item.progress" aria-valuenow="0" aria-valuemin="0"
-									aria-valuemax="100">
-									{{item.progress}}%</div>
-							</div>
-							<small *ngIf="!item.isNew">100%</small>
+						<td class="text-center" style="width: 100px; color: midnightblue;">
+							<!-- <div class="progress" *ngIf="item.isNew"> -->
+							<div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+								[style.width.%]="item.progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+								{{item.progress}}%</div>
+							<!-- </div>
+							<small *ngIf="!item.isNew">100%</small> -->
 						</td>
-						<td class="text-center" style="width: 100px;">
+						<td class="text-center" style="width: 100px; color: midnightblue;">
 							<small *ngIf="item.isPending() && item.isNew" class="tag tag-default"></small>
 							<small *ngIf="item.isSuccess() && item.isNew" class="tag tag-success"></small>
 							<small *ngIf="item.inProgress() && item.isNew" class="tag tag-warning"></small>
 							<small *ngIf="item.isError() && item.isNew" class="tag tag-danger"></small>
 							<small *ngIf="!item.isNew" class="tag tag-success"></small>
 						</td>
-						<td class="text-center" style="width: 100px;">
+						<td class="text-center" style="width: 100px; color: black;">
 
-							<button *ngIf="item.file.FileType==='PDF'" type="text" class="btn btn-outline-dark btn-sm"
-								data-toggle="modal" data-target=".bd-view-modal-lg" (click)="viewFile()"> <i
+							<button [attr.disabled]="item.file.FileType !=='PDF' ? 'true' : null" type="text"
+								class="btn btn-outline-dark btn-sm" style="border:none;" data-toggle="modal"
+								data-target=".bd-view-modal-lg" type="button" (click)="viewFile()"> <i
 									class="fa fa-eye"></i></button>
 							&nbsp;
-							<a data-toggle="tooltip" title="Download file" (click)="DownLoadFiles(item?.file?.name)">
+							<a data-toggle="tooltip" title="Download file" type="button"
+								(click)="DownLoadFiles(item?.file?.name)">
 								<i class="fa fa-arrow-circle-o-down"></i>
 							</a>
 							&nbsp;
-							<a data-toggle="tooltip" title="Cancel upload" (click)="item.cancel()"
+							<a data-toggle="tooltip" title="Cancel upload" type="button" (click)="item.cancel()"
 								*ngIf="item.inProgress()">
 								<i class="fa fa-times-circle"></i>
 							</a>
@@ -115,17 +112,18 @@
 </div>
 <div class="modal fade bd-view-modal-lg" tabindex="-1" role="dialog" id="myLargeModalLabel"
 	aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static"
-	[ngStyle]="{'display':display}" style="width:90%">
+	[ngStyle]="{'display':display}" style="height: 80%;">
+
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
-			<div class="modal-header" style="height: 40px;">
+			<div class="modal-header" style="height: 40px; color: yellowgreen;">
 				<h5 class="modal-title" id="exampleModalLabel">File</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"
 					(click)="closeModalDialog()">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body ScrollStyle">
+			<div class="modal-body">
 				<app-pdfviewcomponent></app-pdfviewcomponent>
 			</div>
 		</div>

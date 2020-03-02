@@ -87,9 +87,9 @@ namespace TMS.Api.Controllers
         [SwaggerOperation("GetAllDOStatus")]
         public HttpResponseMessage GetallDOStatus()
         {
-
-          List<EnumValue> values=  EnumExtensions.GetEnumValues<DOStatus>();
-            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+            //List<EnumValue> values=  EnumExtensions.GetEnumValues<DOStatus>();
+            var values = new StatusDL().getOrderStatus();
+          return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
         }
         /// <summary>
         /// 

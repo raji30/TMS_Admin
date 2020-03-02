@@ -15,9 +15,18 @@
 }
 
 .ScrollStyle {
-  max-height: 600px;
-  overflow-y: scroll;
+  // max-height: 600px;
+  // overflow-y: scroll; 
+ 
+	height: 600px;	
+	overflow-y: scroll;
+
 }
+
+
+
+
+
 
 @media (min-width: 768px) {
   .modal-xl {
@@ -85,3 +94,43 @@ thead,
     width: 100%;
     table-layout: fixed;
   }
+  
+  //scroll bar with color  
+.scrollbar {  
+  float: left;
+  height: 300px;  
+  //background: black;
+  overflow-y: scroll; 
+}
+
+#style-10::-webkit-scrollbar-track { 
+  -webkit-box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  background-color: rgb(95, 92, 93);
+  border-radius: 10px;
+}
+
+#style-10::-webkit-scrollbar {
+  width: 7px;
+  background-color: rgb(26, 24, 24);
+}
+
+#style-10::-webkit-scrollbar-thumb
+{
+  background-color:darkslategrey;	  
+	background-image: -webkit-linear-gradient(90deg,
+	                                          rgba(255, 255, 255, .2) 25%,
+											  transparent 25%,
+											  transparent 50%,
+											  rgba(255, 255, 255, .2) 50%,
+											  rgba(255, 255, 255, .2) 75%,
+											  transparent 75%,
+											  transparent)
+}
+p {
+  font-family: Lato;
+}
+.pointer{
+    cursor: pointer;
+}

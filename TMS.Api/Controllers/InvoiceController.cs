@@ -16,6 +16,7 @@ using System.Reflection;
 using System.IO;
 using System.Web;
 using System.Net.Http.Headers;
+using TMS.BusinessLayer;
 
 namespace TMS.Api.Controllers
 {/// <summary>
@@ -24,6 +25,7 @@ namespace TMS.Api.Controllers
     public class InvoiceController : ApiController
     {
         //
+        InvoiceBL bl = new InvoiceBL();
         InvoiceDL dl = new InvoiceDL();
         [HttpGet]
         [Route("Get/{InvoiceNo}")]
@@ -63,10 +65,46 @@ namespace TMS.Api.Controllers
         [HttpPost]
         [Route("CreateInvoiceDetail")]
         [SwaggerOperation("CreateInvoiceDetail")]
-        public HttpResponseMessage CreateInvoiceDetail([FromBody]InvoiceDetailBO invoiceDetail)
+        public HttpResponseMessage CreateInvoiceDetail([FromBody]InvoiceDetailBO[] invoiceDetail)
         {
             var invoiceDtl = dl.PostInvoiceDetail(invoiceDetail);
             return Request.CreateResponse(HttpStatusCode.OK, invoiceDtl, Configuration.Formatters.JsonFormatter);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="invoiceDetail"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("UpdateInvoiceDetail")]
+        [SwaggerOperation("UpdateInvoiceDetail")]
+        public HttpResponseMessage UpdateInvoiceDetail([FromBody]InvoiceDetailBO[] invoiceDetail)
+        {
+
+            foreach(var inv in invoiceDetail)
+            {
+                if(inv.InvoiceLineKey==null)
+                {
+                    var invoiceDtl = dl.PostInvoiceDetail(inv);
+                }
+                else
+                {
+                    var invoiceDtl = dl.UpdateInvoiceDetail(inv);
+                }
+            }
+          
+            return Request.CreateResponse(HttpStatusCode.OK, true, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpPut]
+        [Route("UpdateInvoiceHeader")]
+        [SwaggerOperation("UpdateInvoiceHeader")]
+        public HttpResponseMessage UpdateInvoiceHeader([FromBody]InvoiceHeaderBO InvoiceHeader)
+        {
+            var invoiceDtl = dl.UpdateInvoice(InvoiceHeader);            
+
+            return Request.CreateResponse(HttpStatusCode.OK, true, Configuration.Formatters.JsonFormatter);
         }
 
 
@@ -201,6 +239,63 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, orders, Configuration.Formatters.JsonFormatter);
         }
 
+
+
+        [HttpGet]
+        [Route("getOrderDatabyKey/{orderkey}")]
+        [SwaggerOperation("getOrderDatabyKey")]
+        public HttpResponseMessage getOrderDatabyKey(string orderkey)
+        {
+            InvoiceBO invoiceBO = new InvoiceBO();
+            var orderdata = bl.getOrderDatabyKey(orderkey);
+                invoiceBO.order = orderdata;
+
+           var containerdata = dl.GetContainers(orderkey);
+
+            if (containerdata != null)
+            {
+                invoiceBO.containers = containerdata;
+            }
+
+            if (invoiceBO != null)
+                return Request.CreateResponse(HttpStatusCode.OK, invoiceBO, Configuration.Formatters.JsonFormatter);
+            else
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+        }
+
+        [HttpGet]
+        [Route("getorderratesbykey/{orderkey}")]
+        [SwaggerOperation("getorderratesbykey")]
+        public HttpResponseMessage getorderratesbykey(string orderkey)
+        {
+            var rates = bl.getorderratesbykey(orderkey);
+
+            if (rates != null)
+                return Request.CreateResponse(HttpStatusCode.OK, rates, Configuration.Formatters.JsonFormatter);
+            else
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+        }
+
+
+        [HttpGet]
+        [Route("GetInvoiceHeaderList")]
+        [SwaggerOperation("GetInvoiceHeaderList")]
+        public HttpResponseMessage GetInvoiceHeaderList()
+        {           
+            List<InvoiceHeaderBO> dorder = dl.GetInvoiceHeaderList();
+            return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
+        }
+
+
+        [HttpGet]
+        [Route("getinvoicedetail/{invoicekey}")]
+        [SwaggerOperation("getinvoicedetail")]
+        public HttpResponseMessage getinvoicedetail(string invoicekey)
+        {
+            List<InvoiceDetailBO> dorder = dl.getinvoicedetail(invoicekey);
+            return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -285,7 +380,7 @@ namespace TMS.Api.Controllers
                     table.AddCell(new Cell().Add(new Paragraph(invoiceline.Quantity.ToString())));
                     table.AddCell(new Cell().Add(new Paragraph(invoiceline.UnitPrice.ToString())));
                     table.AddCell(new Cell().Add(new Paragraph(invoiceline.ExcessAmount.ToString())));
-                    runningtotal += invoiceline.Price * (double) invoiceline.Quantity;
+                    runningtotal += (double)invoiceline.Price * (double) invoiceline.Quantity;
                 }
                 
                 invoice.Add(new Paragraph().SetFirstLineIndent(25).Add(table));

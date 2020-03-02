@@ -49,10 +49,9 @@ export class CustomerService {
       })
     };
 
-    return this.http.put<Customer>(
+    return this.http.put<any>(
       AppSettings._BaseURL + "UpdateCustomer",
-      customer,
-      httpOptions
+      customer      
     );
   }
   getCustomerById(id: string) {

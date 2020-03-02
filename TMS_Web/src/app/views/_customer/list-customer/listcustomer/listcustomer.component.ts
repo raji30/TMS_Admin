@@ -1,11 +1,24 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Directive,
+  Input,
+  EventEmitter,
+  Output,
+  QueryList,
+  ViewChildren
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { CustomerService } from "../../../../_services/customer.service";
 import { Customer } from "../../../../_models/customer";
-import { Observable } from "rxjs";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { Address } from "../../../../_models/address";
 import { ToastrService } from "ngx-toastr";
+import { FileUploadService } from "./../../../../_services/fileupload.service";
+import { CityService } from "../../../../_services/city.service";
+import { City } from "../../../../_models/city";
+
 
 @Component({
   selector: "app-listcustomer",
@@ -13,23 +26,27 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./listcustomer.component.scss"]
 })
 export class ListcustomerComponent implements OnInit {
+  
+  isDesc: boolean = false;
+  column: string = "CustId";
+
   customers: Customer[];
-  dataSaved = false;
-  customerForm: FormGroup;
+  citylist: City[];
   customerUpdate = null;
-  message = null;
   show_addupdatecustomer: boolean = false;
   show_customerInfo: boolean = false;
   submitted: boolean = false;
-  customer: Customer;
+  customer: any;
   address: Address;
   selectedCustomer: Customer;
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
   show_btnCreateCustomer: boolean = true;
+  isACHrequired: boolean = false;
 
   searchText: string;
-
+  p: number = 1;
+  count: number;
   emailPattern: string = "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$";
   websitePattern: string =
     "(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?";
@@ -38,204 +55,126 @@ export class ListcustomerComponent implements OnInit {
     private formbulider: FormBuilder,
     private Service: CustomerService,
     private router: Router,
+    private cityService: CityService,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this.customer = new Customer();
+    this.customer.Address = new Address();
+  }
 
   ngOnInit() {
-    this.customerForm = this.formbulider.group({
-      CustomerKey: [],
-      custid: ["", [Validators.required]],
-      CustName: ["", [Validators.required]],
-      creditlimit: [
-        "",
-        [
-          Validators.required,
-          Validators.pattern("^[0-9]*$"),
-          Validators.minLength(3)
-        ]
-      ],
-      achrequired: ["", []],
-      paymentterms: ["", []],
-      Address: this.formbulider.group({
-        AddrKey: [""],
-        Address1: ["", [Validators.required]],
-        Address2: ["", [Validators.required]],
-        City: ["", [Validators.required]],
-        State: ["", [Validators.required]],
-        Zip: [
-          "",
-          [
-            Validators.required,
-            Validators.pattern("^[0-9]*$"),
-            Validators.minLength(3),
-            Validators.maxLength(3)
-          ]
-        ],
-        Phone: [
-          "",
-          [
-            Validators.required,
-            Validators.pattern("^[0-9]*$"),
-            Validators.minLength(10),
-            Validators.maxLength(10)
-          ]
-        ],
-        Fax: ["", []],
-        Email: ["", []],
-        Country: ["", [Validators.minLength(2), Validators.maxLength(3)]],
-        Website: ["", []]
-      })
-    });
-
     this.loadAllCustomers();
+    this.loadAllCity();
+   
   }
 
   loadAllCustomers() {
     this.Service.getCustomers().subscribe(
-      data => (this.customers = data),
+      data => (
+        (this.customers = data),
+        (this.count = this.customers.length)       
+      ),
       error => console.log(error),
       () => console.log("Get customers complete")
     );
+    //this.dataSource.data = this.customers;
+    console.log("Get customers complete", this.customers);
+  }
+  loadAllCity() {
+    this.cityService.GetCity().subscribe(
+      data => (this.citylist = data),
+      error => console.log(error),
+      () => console.log("Get citylist", this.citylist)
+    );
   }
   onFormSubmit() {
-    this.submitted = true;
-    if (this.customerForm.invalid) {
-      return;
+    if (this.customerUpdate == null) {
+      this.createCustomer();
+    } else {
+      this.updateCustomer();
     }
-    this.dataSaved = false;
-
-    let cust: Customer = this.customerForm.value;
-    this.CreateCustomer(cust);
-    this.customerForm.reset();
   }
-  searchCustomer(customerkey: string) {}
 
   loadCustomerToEdit(customerkey: string) {
     this.Service.getCustomerById(customerkey).subscribe(customer_edit => {
-      // this.message = null;
-      // this.dataSaved = false;
       this.customerUpdate = customer_edit.CustomerKey;
       this.selectedCustomer = customer_edit;
-
-      this.customerForm.controls["CustomerKey"].setValue(
-        customer_edit.CustomerKey
-      );
-      this.customerForm.controls["custid"].setValue(customer_edit.CustId);
-      this.customerForm.controls["CustName"].setValue(customer_edit.CustName);
-      this.customerForm.controls["creditlimit"].setValue(
-        customer_edit.CreditLimit
-      );
-      this.customerForm.controls["achrequired"].setValue(
-        customer_edit.achrequired
-      );
-      this.customerForm.controls["paymentterms"].setValue(
-        customer_edit.paymentterms
-      );
-      this.customerForm["controls"].Address["controls"].AddrKey.setValue(
-        customer_edit.Address["AddrKey"]
-      );
-      this.customerForm["controls"].Address["controls"].Address1.setValue(
-        customer_edit.Address["Address1"]
-      );
-      this.customerForm["controls"].Address["controls"].Address2.setValue(
-        customer_edit.Address["Address2"]
-      );
-      this.customerForm["controls"].Address["controls"].City.setValue(
-        customer_edit.Address["City"]
-      );
-      this.customerForm["controls"].Address["controls"].State.setValue(
-        customer_edit.Address["State"]
-      );
-      this.customerForm["controls"].Address["controls"].Zip.setValue(
-        customer_edit.Address["Zip"]
-      );
-
-      this.customerForm["controls"].Address["controls"].Phone.setValue(
-        customer_edit.Address["Phone"]
-      );
-      this.customerForm["controls"].Address["controls"].Fax.setValue(
-        customer_edit.Address["Fax"]
-      );
-      this.customerForm["controls"].Address["controls"].Email.setValue(
-        customer_edit.Address["Email"]
-      );
-      this.customerForm["controls"].Address["controls"].Country.setValue(
-        customer_edit.Address["Country"]
-      );
-      this.customerForm["controls"].Address["controls"].Website.setValue(
-        customer_edit.Address["Website"]
-      );
+      this.customer = customer_edit;
     });
     this.show_customerInfo = true;
-    this.show_addupdatecustomer = false;    
+    this.show_addupdatecustomer = false;
     this.show_btnCreateCustomer = true;
 
     this.isCancelbtnhidden = true;
     this.isResetbtnhidden = false;
   }
-  bindFormControls() {
+  edit_click() {
     this.show_customerInfo = false;
     this.show_addupdatecustomer = true;
-    this.show_btnCreateCustomer  = false;
+    this.show_btnCreateCustomer = false;
   }
-  CreateCustomer(customer: Customer) {
-    if (this.customerUpdate == null) {
-      this.Service.createCustomer(customer).subscribe(() => {
-        this.dataSaved = true;
+  createCustomer() {
+    console.log("createCustomer", this.customer.Address);
+    console.log("createCustomer", this.customer.address);
+    this.customer.achrequired = this.isACHrequired;
+
+    this.Service.createCustomer(this.customer).subscribe(
+      () => {
         this.show_addupdatecustomer = false;
         this.showSuccess("Customer created successfully", "Create");
         this.loadAllCustomers();
+        this.show_btnCreateCustomer = true;
         this.customerUpdate = null;
-        this.customerForm.reset();
-      }, error => {
-        this.showError("Error in Customer creation", "Error");
-      });
-    } else {
-      customer.CustomerKey = this.customerUpdate;
-      this.Service.updateCustomer(customer).subscribe(() => {
-        this.dataSaved = true;
-        this.show_addupdatecustomer = false;       
+      },
+      error => {
+        this.showError("Error in Customer creation: " + error, "Error");
+      }
+    );
+  }
+  updateCustomer() {
+    this.customer.achrequired = this.isACHrequired;
+
+    this.customer.CustomerKey = this.customerUpdate;
+    this.Service.updateCustomer(this.customer).subscribe(
+      () => {
+        this.show_addupdatecustomer = false;
         this.showSuccess("Customer updated successfully", "Edit");
         this.loadAllCustomers();
+        this.show_btnCreateCustomer = true;
         this.customerUpdate = null;
-        this.customerForm.reset();       
-      }, error => {
-        this.showError("Error in Customer update", "Error");
-      });
-    }
+      },
+      error => {
+        this.showError("Error in Customer update: " + error, "Error");
+      }
+    );
   }
 
-  resetForm() {
-    this.customerForm.reset();
-    this.message = null;
-    this.dataSaved = false;
-  }
+  clear() {
+    this.customer = null;
+    this.customer = new Customer();
+    this.customer.Address = new Address();
 
-  toggle() {
-    this.customerForm.reset();
-    this.message = null;
-    this.dataSaved = false;
     this.show_addupdatecustomer = true;
     this.show_customerInfo = false;
     this.isResetbtnhidden = true;
     this.show_btnCreateCustomer = false;
+    this.customerUpdate = null;
+    this.customer.paymentterms = -1;
   }
 
   cancel() {
     this.isResetbtnhidden = false;
-    if(this.selectedCustomer != null)
-    {
+    if (this.selectedCustomer != null) {
       this.show_customerInfo = true;
-     
-    }    
+    }
     this.show_addupdatecustomer = false;
-    this.show_btnCreateCustomer  = true;
+    this.show_btnCreateCustomer = true;
   }
 
   // convenience getter for easy access to form fields
-  get f() {
-    return this.customerForm.controls;
-  }
+  // get f() {
+  //   return this.customerForm.controls;
+  // }
 
   numberOnly(event): boolean {
     const charCode = event.which ? event.which : event.keyCode;
@@ -263,8 +202,39 @@ export class ListcustomerComponent implements OnInit {
   clear_search() {
     this.searchText = undefined;
   }
-  Checkbox_Change(value:any)
-  {
+  Checkbox_Change(value: any) {
+    this.isACHrequired = value.target.checked;
+    //alert(this.isACHrequired);
+  }
 
+  sort(column) {
+    this.isDesc = !this.isDesc; //change the direction
+    this.column = column;
+    let direction = this.isDesc ? 1 : -1;    
+
+    this.customers = [...this.customers].sort((n1, n2) => {
+      if ((this.column == "CustId")) {
+        if (n1.CustId > n2.CustId) {
+          return 1* direction;
+        } else if (n1.CustId < n2.CustId) {
+          return -1* direction;
+        } else return 0;
+      }
+
+      if ((this.column == "CustName")) {
+        if (n1.CustName > n2.CustName) {
+          return 1* direction;
+        } else if (n1.CustName < n2.CustName) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "CreditLimit")) {
+        if (n1.CreditLimit > n2.CreditLimit) {
+          return 1* direction;
+        } else if (n1.CreditLimit < n2.CreditLimit) {
+          return -1* direction;
+        } else return 0;
+      }
+    });
   }
 }

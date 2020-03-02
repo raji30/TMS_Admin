@@ -32,12 +32,19 @@ export class RatesheetlistComponent implements OnInit {
 
   show_DivAddUpdate: boolean = false;
   show_DivInfo: boolean = false;
-  show_btnAdd: boolean = true;
+  show_btnAdd: boolean = false;
+  show_btnEdit: boolean = false;
   show_lblAdd: boolean = false;
   show_lblEdit: boolean = false;
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
+  ratesCount: boolean = true;
   itemKey: string;
+
+  isDesc: boolean = false;
+  column: string = "CustId";
+  p: number = 1;
+  count: number;
 
   constructor(
     private rateService: RateService,
@@ -85,13 +92,10 @@ export class RatesheetlistComponent implements OnInit {
     }
     this.rateService.GetRateByCustomer(this.CustomerKey).subscribe(
       _ratesByCustomer => {
-        this.dataModel = _ratesByCustomer;
+        this.dataModel = _ratesByCustomer;      
 
-        this.show_lblEdit = false;
-        this.show_lblAdd = false;
         this.show_DivInfo = true;
         this.show_DivAddUpdate = false;
-        this.show_btnAdd = true;
         console.log("user by Id", this.dataModel);
       },
       error => {
@@ -106,9 +110,17 @@ export class RatesheetlistComponent implements OnInit {
     console.log("On Submit Data", this.item);
     console.log("Ratesheet list", this.ratesheet);
 
+    if (this.addModel.customerkey == "0") {
+      this.showError("Please select Customer!", "Customer");
+      return;
+    }
+    if (this.ratesheet.length == 0) {
+      this.showError("No Rate-Items found to add!", "Customer");
+      return;
+    }
     //this.dataModel.item = new Item();
     //this.dataModel.item=  Object.assign({}, ...this.ratesheet);
-
+    this.addModel.customerkey = this.CustomerKey;
     this.addModel.item = this.ratesheet;
 
     if (this.itemKey == null) {
@@ -118,7 +130,6 @@ export class RatesheetlistComponent implements OnInit {
           this.loadAllCustomerRates();
           this.itemKey = null;
           this.show_DivAddUpdate = false;
-          this.show_btnAdd = true;
           this.show_lblAdd = false;
         },
         error => {
@@ -132,7 +143,6 @@ export class RatesheetlistComponent implements OnInit {
           this.loadAllCustomerRates();
           this.itemKey = null;
           this.show_DivAddUpdate = false;
-          this.show_btnAdd = true;
           this.show_lblEdit = false;
         },
         error => {
@@ -156,7 +166,7 @@ export class RatesheetlistComponent implements OnInit {
     this.itemKey = null;
   }
 
-  toggle() {   
+  toggle() {
     this.show_DivAddUpdate = true;
     this.isResetbtnhidden = true;
     this.show_btnAdd = false;
@@ -164,6 +174,9 @@ export class RatesheetlistComponent implements OnInit {
     this.show_lblEdit = false;
     this.show_DivInfo = false;
     this.resetForm();
+    this.addModel.customerkey = "0";
+    this.ratesheet = null;
+    this.ratesheet =new  Array<Item>();
   }
 
   cancel() {
@@ -172,7 +185,6 @@ export class RatesheetlistComponent implements OnInit {
       this.show_DivInfo = false;
     }
     this.show_DivAddUpdate = false;
-    this.show_btnAdd = true;
     this.show_lblAdd = false;
     this.show_lblEdit = false;
   }
@@ -183,7 +195,7 @@ export class RatesheetlistComponent implements OnInit {
     }
 
     for (var item of this.ratesheet) {
-      if (item.itemkey == this.itemKey) {
+      if (item.itemkey ==this.newAttribute.itemkey) {
         this.showInfo("Add Rate", "Rate already fixed.");
         return;
       }
@@ -198,7 +210,10 @@ export class RatesheetlistComponent implements OnInit {
     if (Object.keys(this.newAttributeinRate).length === 0) {
       return;
     }
-    if (this.newAttributeinRate.unitprice === undefined||this.newAttributeinRate.unitprice === null ) {
+    if (
+      this.newAttributeinRate.unitprice === undefined ||
+      this.newAttributeinRate.unitprice === null
+    ) {
       this.showInfo("Add Rate", "Enter Unit Price.");
       return;
     }
@@ -211,10 +226,10 @@ export class RatesheetlistComponent implements OnInit {
     this.newItem = this.newAttributeinRate;
     this.newItem.ratekey = null;
     this.newItem.customerkey = this.CustomerKey;
-    this.newItem.createdate= null;
+    this.newItem.createdate = null;
     this.newItem.userkey = null;
-    this.newItem.customername=null;
-    this.newItem.Item= null;
+    this.newItem.customername = null;
+    this.newItem.Item = null;
     this.newItem.lastupdatedate = null;
 
     this.dataModel.push(this.newItem);
@@ -251,22 +266,30 @@ export class RatesheetlistComponent implements OnInit {
       x => x.CustomerKey == CustomerKey
     );
     this.ratesbycustomer = this.rates.filter(x => x.customerkey == CustomerKey);
+    if (this.ratesbycustomer.length > 0) {
+      this.show_btnEdit = true;
+      this.ratesCount = false;
+      this.show_btnAdd = false;
+    } else {
+      this.show_btnEdit = false;
+      this.ratesCount = false;
+      this.show_btnAdd = true;
+    }
+
     console.log("Rates By Customer", this.ratesbycustomer);
   }
 
-  updateRate()
-  {
+  updateRate() {
     this.rateService.UpdateRate(this.dataModel).subscribe(
       () => {
         this.showSuccess("Updated successfully", "Update");
         this.loadAllCustomerRates();
-        this.show_DivInfo = false;        
+        this.show_DivInfo = false;
         this.dataModel = null;
         this.CustomerKey = null;
         this.selectedCustomer = null;
         this.itemKey = null;
         this.show_DivAddUpdate = false;
-        this.show_btnAdd = true;
         this.show_lblEdit = false;
       },
       error => {
@@ -289,5 +312,29 @@ export class RatesheetlistComponent implements OnInit {
 
   showInfo(message: string, title: string) {
     this.toastr.info(message, title, { timeOut: 2000, closeButton: true });
+  }
+
+  sort(column) {
+    this.isDesc = !this.isDesc; //change the direction
+    this.column = column;
+    let direction = this.isDesc ? 1 : -1;
+
+    this.ratesbycustomer = [...this.ratesbycustomer].sort((n1, n2) => {
+      if (this.column == "description") {
+        if (n1.description > n2.description) {
+          return 1 * direction;
+        } else if (n1.description < n2.description) {
+          return -1 * direction;
+        } else return 0;
+      }
+
+      if (this.column == "unitprice") {
+        if (n1.unitprice > n2.unitprice) {
+          return 1 * direction;
+        } else if (n1.unitprice < n2.unitprice) {
+          return -1 * direction;
+        } else return 0;
+      }
+    });
   }
 }

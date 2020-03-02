@@ -6,8 +6,10 @@ export class Address {
     State:string;
     Zip:string;    
     Phone: string;
+    Phone2: string;
     Fax: string;
     Email: string;
+    Email2: string;
     Country: string;
     Website:string;
     AddrKey: string;    

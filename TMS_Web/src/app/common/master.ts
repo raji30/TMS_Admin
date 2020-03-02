@@ -17,8 +17,8 @@ export class OrderType {
 }
 
 export class Status {
-  name: string;
-  value: number;
+  description: string;
+  status: number;
 }
 
 export class AddressType {

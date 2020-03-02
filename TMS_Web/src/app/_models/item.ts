@@ -5,4 +5,5 @@ export class Item {
     itemtype :number;
     unitprice :number;
     unitcost :number;
+    isChecked:boolean;
 }

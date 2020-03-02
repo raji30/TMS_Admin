@@ -47,20 +47,25 @@ namespace TMS.Api.Controllers
                     customerBO.achrequired = cust.achrequired;
                     customerBO.paymentterms = cust.paymentterms;
 
-                    var address = new AddressRepository().GetbyId(cust.addrkey);
+                   var address = new AddressDL().GetAddressByKey(cust.addrkey);
                     customerBO.Address = new AddressBO()
                     {
-                        AddrKey = address.addrkey,
-                        Address1 = address.address1,
-                        Address2 = address.address2,
-                        City = address.city,
-                        State = address.state,
-                        Zip = address.zipcode,
-                        Email = address.email,
-                        Phone = address.phone,
-                        Fax = address.fax,
-                        Website = address.website
+                        AddrKey = address.AddrKey,
+                        Address1 = address.Address1,
+                        Address2 = address.Address2,
+                        City = address.City,
+                        State = address.State,
+                        Zip = address.Zip,
+                        Email = address.Email,
+                        Phone = address.Phone,
+                        Fax = address.Fax,
+                        Country = address.Country,
+                        Website = address.Website,
+                        Phone2 = address.Phone2,
+                        Email2 = address.Email2
                     };
+
+
                     customerBOList.Add(customerBO);
                 }
                 return Request.CreateResponse(HttpStatusCode.OK, customerBOList, Configuration.Formatters.JsonFormatter);
@@ -94,21 +99,23 @@ namespace TMS.Api.Controllers
                 customerBO.CreditCheck = customer.CreditCheck;
                 customerBO.achrequired = customer.achrequired;
                 customerBO.paymentterms = customer.paymentterms;
-                var address = new AddressRepository().GetbyId(customer.addrkey);
+               // var address = new AddressRepository().GetbyId(customer.addrkey);
+                var address = new AddressDL().GetAddressByKey(customer.addrkey);
                 customerBO.Address = new AddressBO()
                 {
-                    AddrKey = address.addrkey,
-                    Address1 = address.address1,
-                    Address2 = address.address2,
-                    City = address.city,
-                    State = address.state,
-                    Zip = address.zipcode,
-                    Email = address.email,
-                    Phone = address.phone,
-                    Fax = address.fax,
-                    Country = address.country,
-                    Website = address.website
-                    
+                    AddrKey = address.AddrKey,
+                    Address1 = address.Address1,
+                    Address2 = address.Address2,
+                    City = address.City,
+                    State = address.State,
+                    Zip = address.Zip,
+                    Email = address.Email,
+                    Phone = address.Phone,
+                    Fax = address.Fax,
+                    Country = address.Country,
+                    Website = address.Website,
+                    Phone2 =address.Phone2,
+                    Email2=address.Email2
                 };
 
                 return Request.CreateResponse(HttpStatusCode.OK, customerBO, Configuration.Formatters.JsonFormatter);
@@ -166,9 +173,10 @@ namespace TMS.Api.Controllers
         [Route("CreateCustomer")]
         public HttpResponseMessage Post([FromBody] CustomerBO customer)
         {
-          
+            AddressDL addr = new AddressDL();
 
             CustomerRepository repo = new CustomerRepository();
+
 
             //Data.customer _customer = new Data.customer();
             //_customer.custid = customer.CustId;
@@ -180,19 +188,21 @@ namespace TMS.Api.Controllers
 
             if (customer.Address != null)
             {
-                var custaddress = new Data.address()
-                {
-                    address1 = customer.Address.Address1,
-                    address2 = customer.Address.Address2,
-                    city = customer.Address.City,
-                    state = customer.Address.State,
-                    country = customer.Address.Country,
-                    zipcode = customer.Address.Zip,
-                    email = customer.Address.Email,
-                    fax = customer.Address.Fax,
-                    addrname = customer.CustName
-                };
-                var addrkey = new AddressRepository().Add(custaddress);
+                //var custaddress = new Data.address()
+                //{
+                //    address1 = customer.Address.Address1,
+                //    address2 = customer.Address.Address2,
+                //    city = customer.Address.City,
+                //    state = customer.Address.State,
+                //    country = customer.Address.Country,
+                //    zipcode = customer.Address.Zip,
+                //    email = customer.Address.Email,
+                //    fax = customer.Address.Fax,
+                //    addrname = customer.CustName
+                //};
+                //var addrkey = new AddressRepository().Add(custaddress);
+
+                var addrkey = new AddressDL().InsertAddress(customer.Address);
                 // _customer.addrkey = addrkey;
                 customer.addrkey = addrkey;
             }
@@ -231,23 +241,29 @@ namespace TMS.Api.Controllers
             
             if (customer.Address != null)
             {
-                var custaddress = new Data.address()
-                {
-                    addrkey = customer.Address.AddrKey,
-                    address1 = customer.Address.Address1,
-                    address2 = customer.Address.Address2,
-                    city = customer.Address.City,
-                    state = customer.Address.State,
-                    country = customer.Address.Country,
-                    zipcode = customer.Address.Zip,
-                    email = customer.Address.Email,
-                    fax = customer.Address.Fax,
-                    phone =customer.Address.Phone,
-                    website =customer.Address.Website,
-                    addrname = customer.CustName
-                };
-                bool updated = new AddressRepository().Update(custaddress);
-                
+                //var custaddress = new Data.address()
+                //{
+                //    addrkey = customer.Address.AddrKey,
+                //    address1 = customer.Address.Address1,
+                //    address2 = customer.Address.Address2,
+                //    city = customer.Address.City,
+                //    state = customer.Address.State,
+                //    country = customer.Address.Country,
+                //    zipcode = customer.Address.Zip,
+                //    email = customer.Address.Email,
+                //    email2 = customer.Address.Email2,
+                //    fax = customer.Address.Fax,
+                //    phone =customer.Address.Phone,
+                //    phone2 = customer.Address.Phone2,
+                //    website =customer.Address.Website,
+                //    addrname = customer.CustName
+                //};
+                //bool updated = new AddressRepository().Update(custaddress);
+
+                AddressDL addr = new AddressDL();
+                bool updated =  addr.UpdateAddress(customer.Address);
+
+
             }
           //  bool result= repo.Update(_customer);
             bool result = cusObj.updateCustomer(customer);

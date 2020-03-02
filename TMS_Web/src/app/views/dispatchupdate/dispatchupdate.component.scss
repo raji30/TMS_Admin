@@ -1,0 +1,16 @@
+.table-custom {
+    tbody.thead {
+      display: block;
+      height: 200px;   
+      width: 1000px;        
+      overflow-y: scroll;
+      overflow-x: scroll;
+    }
+    
+  }
+  thead,
+    tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }

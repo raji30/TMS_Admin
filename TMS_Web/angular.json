@@ -25,6 +25,7 @@
               "node_modules/@coreui/icons/css/coreui-icons.css",
               "node_modules/flag-icon-css/css/flag-icon.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css" ,
               "node_modules/simple-line-icons/css/simple-line-icons.css",
               "src/scss/style.scss",
               "node_modules/font-awesome/scss/font-awesome.scss",
@@ -37,6 +38,8 @@
             },
             "scripts": [
               "node_modules/chart.js/dist/Chart.min.js",
+              "node_modules/jquery/dist/jquery.slim.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },

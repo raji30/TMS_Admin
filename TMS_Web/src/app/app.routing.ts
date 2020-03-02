@@ -24,6 +24,10 @@ import { InvoiceComponent } from "./views/invoice/invoice/invoice.component";
 import { UserlistComponent } from "./views/_master/_user/userlist/userlist.component";
 import { RatesheetlistComponent } from "./views/_master/_ratesheet/ratesheetlist/ratesheetlist.component";
 import { ItemlistComponent } from "./views/_master/_item/itemlist/itemlist.component";
+import { ContainerStatusComponent } from './views/container-status/container-status.component';
+import { BaseratelistComponent } from './views/_master/_baserate/baseratelist/baseratelist.component';
+import { TestComponent } from './views/test/test.component';
+import { CompanylistComponent } from './views/_master/_company/companylist/companylist.component';
 
 export const routes: Routes = [
   {
@@ -58,6 +62,10 @@ export const routes: Routes = [
       {
         path: "orderinfo/:order",
         component: OrderinfoComponent
+      },      
+      {
+        path: "Containers",
+        component: ContainerStatusComponent
       },
       {
         path: "Scheduler",
@@ -75,6 +83,11 @@ export const routes: Routes = [
         path: "Customers",
         component: ListcustomerComponent
       },
+      {
+        path: "Company",
+        component: CompanylistComponent
+      },
+      
       {
         path: "RateSheet",
         component: RatesheetlistComponent
@@ -110,8 +123,17 @@ export const routes: Routes = [
       {
         path: "GetOrderstoGenerateInvoice",
         component: InvoiceComponent
+      },      
+      
+      {
+        path: "BaseRate",
+        component: BaseratelistComponent
       },
       
+      {
+        path: "TestComponent",
+        component: TestComponent
+      },
       { path: "tab/:order", component: TabComponent },
       { path: "tab", component: TabComponent }
       // {

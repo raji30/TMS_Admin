@@ -3,12 +3,39 @@
 
 // Import styles with default layout.
 // If you are going to use dark layout please comment next line
-@import "node_modules/@coreui/coreui-pro/scss/coreui";
+//@import "node_modules/@coreui/coreui-pro/scss/coreui";
 
-@import "~bootstrap/dist/css/bootstrap.css";
+//@import "~bootstrap/dist/css/bootstrap.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
 // Import nstyles with dark layout
 // If you want to use dark layout uncomment next line
-//@import "node_modules/@coreui/coreui-pro/scss/themes/dark/coreui-dark";
+@import "node_modules/@coreui/coreui-pro/scss/themes/dark/coreui-dark";
 @import "~ng-pick-datetime/assets/style/picker.min.css";
 // If you want to add something do it here
 @import "custom";
+
+// .cdk-overlay-container {
+//     position: fixed;
+//     pointer-events: none;
+//     top: 0;
+//     left: 0;
+//     height: 100%;
+//     width: 100%;
+//     display: flex;
+//     position: absolute;
+//     z-index: 9999999 !important;
+// }
+// .cdk-global-overlay-wrapper, .cdk-overlay-container {
+//     pointer-events: none;
+//     top: 0;
+//     left: 0;
+//     height: 100%;
+//     width: 100%;
+//     display: flex;
+//     position: absolute;
+//     z-index: 9999999 !important;
+// }
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+    z-index: 99999 !important;
+  }

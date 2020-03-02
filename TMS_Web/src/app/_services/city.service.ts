@@ -70,7 +70,7 @@ AddCity(city: City) {
     };
 
     return this.http.get<City>(
-      AppSettings._BaseURL + "GetCityByID" + "/" + id,httpOptions
+      AppSettings._BaseURL + "GetCityByID" + "/" + id
     );
   }
 }

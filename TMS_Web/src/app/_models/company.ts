@@ -1,8 +1,11 @@
 import { Address } from "./address";
 
 export class Company {
-  CompanyKey: string;
-  CompanyName: string;
+  compkey: string;
+  compid : string;
+  compname: string;
   ParentCompanyKey: string;
-  AddressBO = Address;
+  addrkey:string;
+  status : number; 
+  Address:Address;
 }

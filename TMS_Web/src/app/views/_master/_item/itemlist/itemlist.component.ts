@@ -25,6 +25,13 @@ export class ItemlistComponent implements OnInit {
   isResetbtnhidden: boolean = true;
   itemKey: string;
   searchText: string;
+
+  isDesc: boolean = false;
+  column: string = "CustId";
+p: number = 1;
+ count: number;
+
+
   constructor(
     private itmService: ItemService,
     private router: Router,
@@ -157,5 +164,30 @@ export class ItemlistComponent implements OnInit {
   clear_search()
   {
     this.searchText = undefined;
+  }
+
+  
+  sort(column) {
+    this.isDesc = !this.isDesc; //change the direction
+    this.column = column;
+    let direction = this.isDesc ? 1 : -1;    
+
+    this.Items = [...this.Items].sort((n1, n2) => {
+      if ((this.column == "itemid")) {
+        if (n1.itemid > n2.itemid) {
+          return 1* direction;
+        } else if (n1.itemid < n2.itemid) {
+          return -1* direction;
+        } else return 0;
+      }
+
+      if ((this.column == "description")) {
+        if (n1.description > n2.description) {
+          return 1* direction;
+        } else if (n1.description < n2.description) {
+          return -1* direction;
+        } else return 0;
+      }     
+    });
   }
 }

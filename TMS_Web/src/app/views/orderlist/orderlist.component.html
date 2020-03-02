@@ -107,6 +107,11 @@
 
 
                   </tr>
+                  <tr *ngIf="Orderlist.length===0">
+                    <td colspan="3">
+                      <h4 style="color: darkorange;">No records found! </h4>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>

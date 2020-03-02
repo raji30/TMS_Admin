@@ -4,8 +4,8 @@
     <div class="col-8 col-sm-8 col-md-8">
       <div class="row">
         <div class="col-6 col-sm-6 col-md-6">
-          <h5 class="card-subtitle mb-2" style="color: black">
-            <img src="assets/img/brand/user-identity4.png" /> City List</h5>
+          <h5 class="card-subtitle mb-2" >
+           Cities</h5>
         </div>
         <div class="col-6 col-sm-6 col-md-6">
           <div class="container text-right">
@@ -40,23 +40,31 @@
       <table class="table table-sm">
         <tr ngclass="btn-primary">
           <th hidden="true">itemkey</th>
-          <th>ID</th>
-          <th>City</th>
-         
+          <th scope="col" class="pointer"  (click)="sort('cityid')" >ID &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer"  (click)="sort('cityname')" >City &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+          </th>
+
         </tr>
-        <tr *ngFor="let city of citylist | grdFilter: {cityid: searchText,cityname: searchText}">
+        <tr *ngFor="let city of citylist | grdFilter: {cityid: searchText,cityname: searchText}
+        |paginate:{itemsPerPage:15,currentPage:p,totalItems: count}">
           <td hidden="true">{{city.citykey}}</td>
           <td> <a [routerLink]="" (click)="getcityById(city.citykey)">{{city.cityid}}</a> </td>
           <td>{{city.cityname}}</td>
-         
         </tr>
       </table>
+      <div class="container text-right"> 
+        <pagination-controls 
+        (pageChange)="p=$event"
+        autoHide="true"
+        responsive="true"> </pagination-controls>     
+      </div>
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
       <div class="row" *ngIf="show_DivAddUpdate">
-        <div class="container bg-light" style="border-radius: 25px;">
+        <div class="container bg-dark" >
           <form name="form" (ngSubmit)=" f.form.valid && onSubmit()" #f="ngForm" novalidate>
-            <div class="container">
+            <div class="container bg-dark">
               <div class="form-group">
                 <br>
                 <label for="user"> <b> City Detail </b> </label>
@@ -69,7 +77,7 @@
                       name="citykey" #citykey="ngModel">
                   </div>
 
-                  
+
                 </div>
                 <div class="row">
                   <div class="form-group input-group input-group-sm col-md-12">
@@ -98,10 +106,10 @@
                     </div>
                   </div>
                 </div>
-               
+
                 <div class="row">
                   <div class="col-6 col-sm-6 col-md-6">
-  
+
                   </div>
                   <div class="col-1 col-sm-1 col-md-1 text-left">
                     <!-- <button type="reset" *ngIf="isResetbtnhidden" class="btn btn-primary btn-sm"
@@ -114,10 +122,10 @@
                     <button class="btn btn-primary btn-sm">Submit</button>
                   </div>
                 </div>
-               
+
               </div>
             </div>
-           
+
           </form>
         </div>
       </div>
@@ -132,10 +140,10 @@
 
           <span class="text-muted">cityname </span> <br>
           <span><b> {{dataModel.cityname}} </b></span> <br>
-         
+
           <br><br>
 
-                  
+
         </div>
       </div>
     </div>

@@ -60,32 +60,39 @@
       <td>
         <h6 class="card-title badge badge-pill badge-primary" style="text-align:left">{{AddrName}}</h6>
         <div class="dropdown">
-          <button class="btn btn-light dropdown-toggle form-control-sm btn-block" style="border-radius: 1rem; margin-top: 0px;
+          <button class="btn btn-secondary dropdown-toggle form-control-sm btn-block" style="border-radius: 1rem; margin-top: 0px;
               margin-bottom: 0px;
               margin-right: 0px;
               margin-left: 0px; max-width: 200px;
             min-width: 200px;
             overflow: hidden;
             text-overflow: ellipsis;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{billtoCustomerName}}
+            {{billtoCompanyName}}
           </button>
           <div class="dropdown-menu" aria-labelledby="drpcompany">
-            <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer"
+            <form class="px-4 py-2">
+              <input type="search" class="form-control  form-control-sm" placeholder="search.." autofocus="autofocus"
+              (input)="onSearchChange($event.target.value)">
+          </form>
+          <div class="menuItems">
+            <li *ngFor="let Address of companyFilter  let ind=index;" [class.selected]="Address === selectedCompany"
               (click)="onSelect(Address)">
               <a class="dropdown-item">{{Address.Name}}</a>
             </li>
           </div>
+            <div style="display:none;" class="dropdown-header dropdown_empty">No entry found</div>
+          </div>
         </div>
       </td>
     </tr>
-    <tr *ngIf="selectedCustomer">
+    <tr *ngIf="selectedCompany">
       <td>
         <div style="margin: 5px;">
-          <p class="text-left text-capitalize" style="color:darkblue;">
-            <small><b style="word-wrap: break-word;">{{billtoCustomerName}}</b></small><br>
-            {{selectedCustomer.Address1}} &nbsp;{{selectedCustomer.Address2}}
+          <p class="text-left text-capitalize" >
+            <small><b style="word-wrap: break-word;color:CCCC99;" >{{billtoCompanyName}}</b></small><br>
+            {{selectedCompany.Address1}} &nbsp;{{selectedCompany.Address2}}
             <br>
-            {{selectedCustomer.City}}, {{selectedCustomer.State}}-{{selectedCustomer.Zip}}</p>
+            {{selectedCompany.City}} {{selectedCompany.State}} {{selectedCompany.Zip}}</p>
         </div>
       </td>
     </tr>

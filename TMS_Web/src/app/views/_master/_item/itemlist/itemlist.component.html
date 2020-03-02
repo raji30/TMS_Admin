@@ -4,8 +4,8 @@
     <div class="col-8 col-sm-8 col-md-8">
       <div class="row">
         <div class="col-6 col-sm-6 col-md-6">
-          <h5 class="card-subtitle mb-2" style="color: black">
-            <img src="assets/img/brand/user-identity4.png" /> Items</h5>
+          <h5 class="card-subtitle mb-2">
+            Items</h5>
         </div>
         <div class="col-6 col-sm-6 col-md-6">
           <div class="container text-right">
@@ -16,7 +16,7 @@
                     <img src="assets/img/brand/search16px.png" /> &nbsp;
                   </div>
                   <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text"
-                    placeholder="Search..">
+                    style="border-radius: 1rem;" placeholder="Search..">
                 </div>
               </div>
               <div class="col-1 col-sm-1 col-md-1">
@@ -36,21 +36,32 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-8 col-md-8 col-lg-8 ScrollStyle">
+    <div class="col-sm-8 col-md-8 col-lg-8">
       <table class="table table-sm">
         <tr ngclass="btn-primary">
           <th hidden="true">itemkey</th>
-          <th>Id</th>
-          <th>Description</th>
-         
+          <th scope="col" class="pointer" (click)="sort('itemid')">Id &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer" (click)="sort('description')">Description &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i>
+          </th>
         </tr>
-        <tr *ngFor="let item of Items | grdFilter: {itemid: searchText,description: searchText}">
+        <tr *ngFor="let item of Items | grdFilter: {itemid: searchText,description: searchText}
+        |paginate:{itemsPerPage:15,currentPage:p,totalItems: count}">
           <td hidden="true">{{item.itemkey}}</td>
           <td> <a [routerLink]="" (click)="getItemById(item.itemkey)">{{item.itemid}}</a> </td>
           <td>{{item.description}}</td>
-         
+
         </tr>
       </table>
+      
+ <div class="container text-right"> 
+  <pagination-controls 
+  (pageChange)="p=$event"
+  autoHide="true"
+  responsive="true"> </pagination-controls>     
+</div>
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
       <div class="row" *ngIf="show_DivAddUpdate">
@@ -69,7 +80,7 @@
                       name="itemkey" #itemkey="ngModel">
                   </div>
 
-                  
+
                 </div>
                 <div class="row">
                   <div class="form-group input-group input-group-sm col-md-12">
@@ -107,11 +118,11 @@
                       id="itemtype" name="itemtype" #itemtype="ngModel"
                       [ngClass]="{ 'is-invalid': f.submitted && itemtype.invalid }" required> -->
 
-                      <select class="form-control form-control-sm"  [(ngModel)]="dataModel.itemtype"
-                      id="itemtype" name="itemtype" #itemtype="ngModel"
-                      [ngClass]="{ 'is-invalid': f.submitted && itemtype.invalid }" required >
-                        <option [value]="item.itemtypeid" *ngFor="let item of ItemTypes">{{item.description}}</option>
-                      </select>
+                    <select class="form-control form-control-sm" [(ngModel)]="dataModel.itemtype" id="itemtype"
+                      name="itemtype" #itemtype="ngModel" [ngClass]="{ 'is-invalid': f.submitted && itemtype.invalid }"
+                      required>
+                      <option [value]="item.itemtypeid" *ngFor="let item of ItemTypes">{{item.description}}</option>
+                    </select>
                     <div *ngIf="f.submitted && itemtype.invalid" class="invalid-feedback">
                       <div *ngIf="itemtype.errors.required"> Item type is required</div>
                     </div>
@@ -119,7 +130,7 @@
                 </div>
                 <div class="row">
                   <div class="col-6 col-sm-6 col-md-6">
-  
+
                   </div>
                   <div class="col-1 col-sm-1 col-md-1 text-left">
                     <!-- <button type="reset" *ngIf="isResetbtnhidden" class="btn btn-primary btn-sm"
@@ -132,10 +143,10 @@
                     <button class="btn btn-primary btn-sm">Submit</button>
                   </div>
                 </div>
-               
+
               </div>
             </div>
-           
+
           </form>
         </div>
       </div>
@@ -156,7 +167,7 @@
           </span>
           <br><br>
 
-                  
+
         </div>
       </div>
     </div>

@@ -1,49 +1,56 @@
 <app-header [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/layer-group-icon.png', width: 30, height: 30, alt: 'CoreUI Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/brand/layer-group-icon.png', width: 40, height: 40, alt: 'CoreUI Logo'}"
-  [sidebarToggler]="false" [mobileSidebarToggler]="false" [asideMenuToggler]="false" class="bg-light">
+  [navbarBrandFull]="{src: 'assets/img/brand/lorry24px.png', alt: 'CoreUI Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/large-tiles-icon16px.png', width: 40, height: 40, alt: 'CoreUI Logo'}"
+  [sidebarToggler]="false" [mobileSidebarToggler]="false" [asideMenuToggler]="true">
 
   <ul class="nav navbar-nav d-md-down-none mr-auto">
     <li class="nav-item px-3">
-
-      <a class="nav-link" [routerLink]="['/dashboard']">
+      <a class="nav-link" [routerLink]="['/dashboard']" (click)="changeColor('Dashboard')">
         <!-- <i class="fa fa-dashboard"></i>  -->
-        <img src="assets/img/brand/large-tiles-icon16px.png" />
-        &nbsp; Dashboard</a>
+        <!-- <img src="assets/img/brand/large-tiles-icon16px.png" /> -->
+        <strong [ngStyle]="{'color':lblDashboardColor}" > Dashboard</strong></a>
     </li>
     <li class="nav-item px-3">
-      <a class="nav-link" routerLink="/doIntake"> <img src="assets/img/brand/standard-notes-icon16px.png" />
-        &nbsp; DO Intake</a>
+      <a class="nav-link" routerLink="/doIntake" (click)="changeColor('Orders')"> 
+        <!-- <img src="assets/img/brand/standard-notes-icon16px.png" /> -->
+        &nbsp;  <strong [ngStyle]="{'color':lblOrdersColor}" > Orders</strong></a>
+      <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
+    </li>
+
+    <!-- <li class="nav-item px-3">
+      <a class="nav-link" style="color: darkblue;" routerLink="/Containers"> <img src="assets/img/brand/schedule-icon16px.png" />
+        &nbsp; Containers</a>    
+    </li> -->
+
+    <li class="nav-item px-3">
+      <a class="nav-link" routerLink="/Scheduler" (click)="changeColor('Scheduler')"> 
+        <!-- <img src="assets/img/brand/schedule-icon16px.png" /> -->
+        <!-- <img src="assets/img/brand/overtime24px.png" style="color: cornflowerblue;" /> -->
+        &nbsp;  <strong [ngStyle]="{'color':lblSchedulersColor}" > Scheduler</strong></a>
+        <!-- <i class="cil-caret-bottom" style="color: cornflowerblue;"></i> -->
       <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
     </li>
 
     <li class="nav-item px-3">
-      <a class="nav-link" routerLink="/Scheduler"> <img src="assets/img/brand/schedule-icon16px.png" />
-        &nbsp; Scheduler</a>
-      <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
-    </li>
-
-    <li class="nav-item px-3">
-      <!-- <a class="nav-link" routerLink="/Customers"> <img src="assets/img/brand/standard-notes-icon24px.png" />
-          &nbsp; Customers</a> -->
-      <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
-      <div class="dropdown show">
-        <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          <img src="assets/img/brand/system-box-icon16px.png" /> Dispatch
-        </a>
+      <a class="nav-link" routerLink="/DispatchDelivery" (click)="changeColor('Dispatch')">
+        <!-- <img src="assets/img/brand/system-box-icon16px.png" />  -->
+         <strong [ngStyle]="{'color':lblDispatchColor}" > Dispatch</strong>
+      </a>
+      <!-- <div class="dropdown show">
+       
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item" routerLink="/DispatchAssignment"> Dispatch Assignment</a>
           <a class="dropdown-item" routerLink="/DispatchDelivery">Dispatch Delivery</a>
         </div>
-      </div>
+      </div> -->
     </li>
     <li class="nav-item px-3">
-      <!-- <a class="nav-link" routerLink="/doIntake"> <img src="assets/img/brand/Cash-icon.png" />
-        &nbsp; Billing</a> -->
+      <a class="nav-link" routerLink="/GetOrderstoGenerateInvoice" (click)="changeColor('Invoice')"> 
+        <!-- <img src="assets/img/brand/Cash-icon.png" /> -->
+        &nbsp; <strong  [ngStyle]="{'color':lblInvoiceColor}" > Invoice</strong></a>
       <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
-      <div class="dropdown show">
-        <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+      <!-- <div class="dropdown show">
+        <a class="nav-item" style="color: darkblue;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
           <img src="assets/img/brand/invoice-icon16px.png" /> Invoice
         </a>
@@ -52,18 +59,21 @@
           <a class="dropdown-item" routerLink="/GetOrderstoGenerateInvoice">Create Invoice</a>
           <a class="dropdown-item" routerLink="/GetInvoiceList">Invoice List</a>
         </div>
-      </div>
+      </div> -->
     </li>
     <li class="nav-item px-3">
       <div class="dropdown show">
-        <a class="nav-item" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+        <a class="nav-link" role="button" id="dropdownMenuLink"  data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
-          <img src="assets/img/brand/setting-icon16px.png" /> Admin
+          <!-- <img src="assets/img/brand/setting-icon16px.png" />  -->          
+          <strong [ngStyle]="{'color':lblAdminColor}"> Admin</strong>  
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/star16px.png" hspace="5" />
+          <a class="dropdown-item" routerLink="/Customers" (click)="changeColor('Admin')"> <img src="assets/img/brand/star16px.png" hspace="5" />
             Customer</a>
-          <a class="dropdown-item" routerLink="/Drivers"> <img src="assets/img/brand/star16px.png" hspace="5" />
+          <a class="dropdown-item" routerLink="/Company" (click)="changeColor('Admin')"> <img src="assets/img/brand/star16px.png" hspace="5" />
+            Company</a>
+          <a class="dropdown-item" routerLink="/Drivers" (click)="changeColor('Admin')"> <img src="assets/img/brand/star16px.png" hspace="5" />
             Driver</a>
           <!-- <a class="dropdown-item" routerLink="/Vendors"> <img src="assets/img/brand/star16px.png" hspace="5" />
             Vendor</a>
@@ -74,35 +84,37 @@
             Terminal</a>
           <a class="dropdown-item" routerLink="/Customers"> <img src="assets/img/brand/star16px.png" hspace="5" />
             Company</a> -->
-          <a class="dropdown-item" routerLink="/Carriers"> <img src="assets/img/brand/star16px.png" hspace="5" />
+          <a class="dropdown-item" routerLink="/Carriers" (click)="changeColor('Admin')"> <img src="assets/img/brand/star16px.png" hspace="5" />
             Carrier</a>
-          <a class="dropdown-item" routerLink="/Brokers"><img src="assets/img/brand/star16px.png" hspace="5" />
+          <a class="dropdown-item" routerLink="/Brokers" (click)="changeColor('Admin')"><img src="assets/img/brand/star16px.png" hspace="5" />
             Broker</a>
-          <a class="dropdown-item" routerLink="/Users"> <img src="assets/img/brand/star16px.png" hspace="5" />
+          <a class="dropdown-item" routerLink="/Users" (click)="changeColor('Admin')"> <img src="assets/img/brand/star16px.png" hspace="5" />
             User</a>
-          <a class="dropdown-item" routerLink="/Items"><img src="assets/img/brand/star16px.png" hspace="5" />
+          <a class="dropdown-item" routerLink="/Items" (click)="changeColor('Admin')"><img src="assets/img/brand/star16px.png" hspace="5" />
             Item</a>
-            <a class="dropdown-item" routerLink="/City"><img src="assets/img/brand/star16px.png" hspace="5" />
-              City</a>
+          <a class="dropdown-item" routerLink="/City" (click)="changeColor('Admin')"><img src="assets/img/brand/star16px.png" hspace="5" />
+            City</a>
 
-          <a class="dropdown-item" routerLink="/RateSheet"><img src="assets/img/brand/star16px.png" hspace="5" /> Rate
+          <a class="dropdown-item" routerLink="/RateSheet" (click)="changeColor('Admin')"><img src="assets/img/brand/star16px.png" hspace="5" /> Rate
             Sheet</a>
+          <a class="dropdown-item" routerLink="/BaseRate" (click)="changeColor('Admin')"><img src="assets/img/brand/star16px.png" hspace="5" /> Base
+            Rate
+          </a>
+
         </div>
       </div>
     </li>
   </ul>
-
-  
-
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item dropdown" dropdown placement="bottom left">
       <!-- <a class="nav-link" role="button" aria-haspopup="true" aria-expanded="false" (click)="logout()">           
         <img src="assets/img/brand/cross-icon16px.png" >
         <h6>Logout</h6>      
       </a> -->
+
+      <strong class="font-bold" > Hi {{currentUser.firstname}}!&nbsp;&nbsp;&nbsp;</strong>
+      <!-- <h5 class="badge bg-warning">Hi {{currentUser.firstname}}! </h5> -->
       
-      <strong class="font-bold" style="color:saddlebrown">  Hi {{currentUser.firstname}}!&nbsp;&nbsp;&nbsp;</strong>
-         
       <!-- <div class="container"> 
           <img src="assets/img/brand/customer.png" hspace="5" />
           <strong> Hi {{currentUser.firstname}}</strong> 
@@ -112,8 +124,9 @@
           </p> 
       </div>  -->
 
-      <button type="button" class="btn btn-sm" data-toggle="tooltip" data-placement="left" title="logout" (click)="logout()">
-        <img src="assets/img/brand/delete-1-icon16px.png"> 
+      <button type="button" class="btn btn-sm" data-toggle="tooltip" data-placement="left" title="logout"
+        (click)="logout()">
+        <img src="assets/img/brand/delete-1-icon16px.png">
         <!-- <p class="text-danger">Logout</p> -->
       </button>
     </li>
@@ -131,17 +144,17 @@
     <app-navigation></app-navigation>
   </app-sidebar> -->
   <!-- Main content -->
-  <main class="main bg-secondary">
+  <main class="main bg-dark">
     <!-- Breadcrumb -->
     <!-- <ol class="breadcrumb">
       <app-breadcrumb></app-breadcrumb>
     </ol> -->
-    <div class="container-fluid bg-secondary">
-      <router-outlet class="bg-secondary"></router-outlet>
+    <div class="container-fluid ">
+      <router-outlet></router-outlet>
     </div><!-- /.container-fluid -->
   </main>
 
-  <app-aside [fixed]="true" [display]="false" style="background-color:black">
+  <!-- <app-aside [fixed]="false">
     <aside class="aside-menu">
       <div>
         <div class="dropdown-header text-center"><strong>Settings </strong></div>
@@ -153,8 +166,8 @@
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
       </div>
     </aside>
-  </app-aside>
+  </app-aside> -->
 </div>
 <app-footer>
-  <span>&copy; 2019 Trikaiser</span>
+  <span>&copy; 2020 Trikaiser</span>
 </app-footer>

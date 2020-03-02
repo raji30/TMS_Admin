@@ -46,6 +46,7 @@
     <Compile Include="CarrierBL.cs" />
     <Compile Include="Common\EnumExtensions.cs" />
     <Compile Include="CompanyDetailsBL.cs" />
+    <Compile Include="InvoiceBL.cs" />
     <Compile Include="Security\CompanyAccessFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\UserAccessFacade.cs" />

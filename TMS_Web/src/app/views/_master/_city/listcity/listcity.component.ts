@@ -24,7 +24,13 @@ export class ListcityComponent implements OnInit {
   isResetbtnhidden: boolean = true;
   itemKey: string;
   searchText: string;
+  
+isDesc: boolean = false;
+column: string = "CustId";
+p: number = 1;
+count: number;
 
+  
   constructor(
     private cityService: CityService,
     private router: Router,
@@ -149,5 +155,31 @@ export class ListcityComponent implements OnInit {
   clear_search()
   {
     this.searchText = undefined;
+  }
+
+  
+
+  sort(column) {
+    this.isDesc = !this.isDesc; //change the direction
+    this.column = column;
+    let direction = this.isDesc ? 1 : -1;    
+
+    this.citylist = [...this.citylist].sort((n1, n2) => {
+      if ((this.column == "cityid")) {
+        if (n1.cityid > n2.cityid) {
+          return 1* direction;
+        } else if (n1.cityid < n2.cityid) {
+          return -1* direction;
+        } else return 0;
+      }
+
+      if ((this.column == "cityname")) {
+        if (n1.cityname > n2.cityname) {
+          return 1* direction;
+        } else if (n1.cityname < n2.cityname) {
+          return -1* direction;
+        } else return 0;
+      }     
+    });
   }
 }

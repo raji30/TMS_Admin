@@ -29,4 +29,31 @@ public insertAccountingoptions(options:AccountingOptions[])
   return this.http.post<AccountingOptions[]>( AppSettings._BaseURL + 'AddAccountingOptions/',options);
 }  
 
+public GetAccountingOptionsbyKey(orderdetailKey:string) {
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+  return this.http.get<AccountingOptions[]>(
+    AppSettings._BaseURL + "GetAccountingOptionsbyKey/"+ orderdetailKey
+  );
+}
+
+public UpdateAccountingOptions(orderdetailKey:string) {
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+  return this.http.put<any>(
+    AppSettings._BaseURL + "UpdateAccountingOptions/"+ orderdetailKey,httpOptions
+  );
+}
 }

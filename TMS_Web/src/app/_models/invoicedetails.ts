@@ -1,11 +1,11 @@
 export class Invoicedetails {
   Itemkey: string;
   Description: string;
-  Price: string;
+  Price: number;
   ItemType: number;
-  Quantity: string;
+  Quantity: number;
   InvoiceDescription: string;
-  UnitPrice: string;
+  UnitPrice: number;
   ExcessAmount: string;
   InvoiceLineKey: string;
   InvoiceKey: string;

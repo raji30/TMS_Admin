@@ -295,6 +295,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountingController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\BaseRateController.cs" />
     <Compile Include="Controllers\BrokerController.cs" />
     <Compile Include="Controllers\CarrierController.cs" />
     <Compile Include="Controllers\CityController.cs" />

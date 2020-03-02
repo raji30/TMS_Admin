@@ -1,52 +1,40 @@
 <br>
 <div class="row">
-    <div class="col-sm-2 col-md-2 col-lg-2 border-right ScrollStyle ">
-        <!-- <span class="block m-t-xs">
-                <h5>Containers <span class="badge badge-dark">Recent</span></h5><br>
-        </span>
+    <div class="col-sm-2 col-md-2 col-lg-2 scrollbar" id="style" >
+        <h5>&nbsp; Invoice<span class="badge badge-warning"> New</span></h5>
         <br>
-        <nav class="navbar-default navbar-static-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav metismenu" id="side-menu">
-                    <li *ngFor="let field of Data| slice:0:25; let ind=index;">
-
-                        <ul class="fa-ul">
-                            <li> <p style="font-family:calibri;"> 
-                                <a [routerLink]="" class="text-primary" (click)="getOrderdata(field.order.OrderKey)"
-                                    style="color:black">
-                                    {{field.order.OrderNo}}</a> </p>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+        <div class="form-group input-group input-group-sm">
+            <div class="img-group-prepend">
+                <img src="assets/img/brand/search16px.png" /> &nbsp;
             </div>
-        </nav> -->
+            <input [(ngModel)]="searchText" class="form-control form-control-sm" style="border-radius: 1rem;"
+                type="text" placeholder="Search..">
+        </div>
 
-        <ul class="list-unstyled">
-            <li>
-                <h5>Containers <span class="badge badge-dark">Recent</span></h5><br>
-            </li>
-            <li *ngFor="let field of Data; let ind=index;">
-                <ul>
-                    <li>
-                        <p style="font-family:calibri;">
-                            <a [routerLink]="" class="text-primary" (click)="getOrderdata(field.order.OrderKey)"
-                                style="color:black">
-                                {{field.order.OrderNo}}</a> </p>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-
+        <table class="table table-sm table-dark">
+            <tbody>
+                <tr *ngFor="let field of Data; let ind=index;">
+                    <td>
+                        <span class="font-weight-bold" style="color:olivedrab">
+                            Invoice ({{field.order.OrderNo}})
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <button type="button" class="btn btn-outline-success btn-sm"
+                            (click)="getOrderdata(field.order.OrderKey)"> Create</button></td>
+                </tr>
+            </tbody>
+        </table>
+   
     </div>
     <div class="col-sm-10 col-md-10 col-lg-10 ">
         <div *ngIf="showInvoice">
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-6 border-right">
-                    <span>Invoice #<b>{{InvoiceNo}}</b></span>
+                    <h4>Invoice #<b>{{InvoiceNo}}</b></h4>
                     <br>
                     <div class="row">
-                        <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
                             <div class="input-group input-group-sm">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <b>Date </b></span>
@@ -56,11 +44,9 @@
                                     [owlDateTime]="dt1" />
                                 <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                             </div>
-
                         </div>
 
-                        <div class="col-sm-3 col-md-3 col-lg-3">
-
+                        <div class="col-sm-4 col-md-4 col-lg-4">
                             <div class="input-group input-group-sm">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> <b>Due</b></span>
@@ -83,14 +69,16 @@
                         {{invoiceModel.BillFrom["Zip"]}}
                     </span>
                     <br> -->
-                    <img src="assets/img/brand/circle-black16px.png" /> <span><span class="text-muted"> Bill
-                            to</span>
-                        <b>
-                            {{invoiceModel.BillTo["Name"]}}</b></span>
+                    <img src="assets/img/brand/circle-black16px.png" /> <span><span style="color:  #659CEF;"> Bill
+                            to </span>
+                        <b>{{invoiceModel.order.BillToAddr}}</b>
+                    </span>
                     <br>
-                    <span> {{invoiceModel.BillTo["Address1"]}} {{invoiceModel.BillTo["Address2"]}}
-                        {{invoiceModel.BillTo["City"]}} {{invoiceModel.BillTo["State"]}}
-                        {{invoiceModel.BillTo["Zip"]}}
+                    <span>
+                        <!-- {{invoiceModel.BillToAddressBO["Address1"]}} 
+                         {{invoiceModel.BillToAddressBO.Address2}}
+                        {{invoiceModel.BillToAddressBO.City}} {{invoiceModel.BillToAddressBO.State}}
+                        {{invoiceModel.BillToAddressBO.Zip}} -->
                     </span>
                     <br>
                     <br>
@@ -99,11 +87,10 @@
                         <span><b> <u> Route</u> </b></span>
                         <div class="row">
                             <div class="col-sm-6 col-md-6 col-lg-6">
-                                <span class="text-muted">Pickup </span><br>
-                                <span>
-                                    {{invoiceModel.Pickup["Name"]}}</span>
+                                <span style="color:  #659CEF;">Pickup </span><br>
+                                <span> {{invoiceModel.order.SourceAddr}}</span>
                                 <br>
-                                <span> {{invoiceModel.Pickup["Address1"]}}, {{invoiceModel.Pickup["Address2"]}}
+                                <!-- <span> {{invoiceModel.Pickup["Address1"]}}, {{invoiceModel.Pickup["Address2"]}}
                                 </span>
                                 <br>
                                 <span>
@@ -111,14 +98,14 @@
                                 </span>
                                 <br>
                                 <span> {{invoiceModel.Pickup["State"]}}
-                                </span>
+                                </span> -->
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-6">
-                                <span class="text-muted">Delivery </span>
+                                <span style="color:  #659CEF;">Delivery </span>
                                 <br>
-                                <span>{{invoiceModel.Delivery["Name"]}}</span>
+                                <span>{{invoiceModel.order.DestinationAddr}}</span>
                                 <br>
-                                <span> {{invoiceModel.Delivery["Address1"]}}, {{invoiceModel.Delivery["Address2"]}}
+                                <!-- <span> {{invoiceModel.Delivery["Address1"]}}, {{invoiceModel.Delivery["Address2"]}}
                                 </span>
                                 <br>
                                 <span>
@@ -126,7 +113,7 @@
                                 </span>
                                 <br>
                                 <span> {{invoiceModel.Delivery["State"]}}
-                                </span>
+                                </span> -->
                             </div>
                         </div>
                     </div>
@@ -135,11 +122,11 @@
                     <span> <b><u>Shipment</u> </b></span>
                     <div class="row">
                         <div class="col-sm-4 col-md-4 col-lg-4">
-                            <span class="text-muted">Carrier </span>
+                            <span style="color:  #659CEF;">Carrier </span>
                             <br>
                         </div>
                         <div class="col-sm-4 col-md-4 col-lg-4">
-                            <span class="text-muted">Vessel Name </span>
+                            <span style="color:  #659CEF;">Vessel Name </span>
                             <br>
                             {{invoiceModel.order.VesselName}}
                         </div>
@@ -148,41 +135,49 @@
 
                     <br>
                     <div class="row">
-                        <table class="table table-sm table-borderless">
-                            <thead>
-                                <tr>
-                                    <th scope="col " class="text-muted">Container</th>
-                                    <th scope="col" class="text-muted">Size</th>
-                                    <th scope="col" class="text-muted">Chassis</th>
-                                    <th scope="col" class="text-muted">SealNo</th>
-                                    <th scope="col" class="text-muted">Weight</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let field of invoiceModel.orderDetails">
-                                    <td>{{field.ContainerNo}}</td>
-                                    <td>{{field.ContainerSizeDesc}} </td>
-                                    <td>{{field.Chassis}}</td>
-                                    <td>{{field.SealNo}}</td>
-                                    <td>{{field.Weight}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <table class="table table-sm table-striped table-borderless">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col" class="text-muted">Container</th>
+                                        <th scope="col" class="text-muted">Size</th>
+                                        <th scope="col" class="text-muted">Chassis</th>
+                                        <th scope="col" class="text-muted">SealNo</th>
+                                        <th scope="col" class="text-muted">Weight</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let field of invoiceModel.containers">
+                                        <td> <small>{{field.ContainerNo}} </small></td>
+                                        <td> <small>{{field.ContainerSizeDesc}} </small> </td>
+                                        <td> <small>{{field.Chassis}} </small></td>
+                                        <td> <small>{{field.SealNo}} </small></td>
+                                        <td> <small>{{field.Weight}} </small></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-sm-6 col-md-6 col-lg-6">
                     <div class="row">
-                        <div class="col-sm-4 col-md-4 col-lg-4">
-                            <button class="btn  btn-outline-secondary btn-sm small" type="button">Actions </button>
-                            &nbsp;
-                            <button class="btn btn-outline-secondary btn-sm small" type="button">Send</button>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="container text-left">
+                                <button class="btn  btn-outline-secondary btn-sm small" type="button">Actions </button>
+                                &nbsp;
+                                <button class="btn btn-outline-secondary btn-sm small" type="button">Send</button>
+                                &nbsp;
+                                <button class="btn btn-outline-primary btn-sm small" type="button">Export</button>
+                            </div>
                         </div>
-                        <div class="col-sm-4 col-md-4 col-lg-4">
-                            <div class="row text-right">
-                                <button class="btn btn-primary btn-sm small" type="button">Export</button> &nbsp;
-                                <button class="btn btn-primary btn-sm small" type="button"
-                                    (click)="createInvoice()">Create Invoice</button>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="container text-right">
+                                <button class="btn btn-primary btn-sm small" type="button" (click)="submit()">
+                                    {{lblInvoice}}</button>
+                                &nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-outline-danger btn-sm small" type="button"
+                                    (click)="CancelCreateInvoice()">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -190,80 +185,221 @@
 
                     <div class="row">
                         <span> <b> &nbsp;&nbsp;&nbsp; <u> Invoice Details </u></b></span>
-                        <table class="table table-sm table-borderless">
-                            <thead>
-                                <tr>
-                                    <th hidden="true">InvoiceLineKey</th>
-                                    <th hidden="true">InvoiceKey</th>
-                                    <th hidden="true">Itemkey</th>
-                                    <th>Item</th>
-                                    <th>Quantity/Weight</th>
-                                    <th>Rate</th>
-                                    <th>Charge</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let Data of invoiceDetail; let i = index">
-                                    <td height="30" hidden="true"> <span> {{Data.InvoiceLineKey}} </span></td>
-                                    <td height="30" hidden="true"> <span> {{Data.InvoiceKey}} </span></td>
-                                    <td height="30" hidden="true"> <span>{{Data.Itemkey}} </span></td>
-                                    <td height="30"> <span>{{Data.Description}} </span></td>
-                                    <td height="30"> <span> {{Data.Quantity}} </span></td>
-                                    <td height="30"> <span> ${{Data.UnitPrice}}</span></td>
-                                    <td height="30"> <span>${{Data.Price}} </span></td>
-                                    <td height="30"> <button class="btn btn-default small" type="button"
-                                            (click)="deleteFieldValue(i)">
-                                            <img src="assets/img/brand/trash-icon16px.png" /></button></td>
-                                </tr>
-                                <tr>
-                                    <td hidden="true"> </td>
-                                    <td hidden="true"> </td>
-                                    <td hidden="true"> </td>
-                                    <td> </td>
-                                    <td> </td>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <table class="table table-sm table-hover table-striped">
+                                <thead>
+                                    <tr class="thead-light">
+                                        <th scope="col" hidden="true">InvoiceLineKey</th>
+                                        <th scope="col" hidden="true">InvoiceKey</th>
+                                        <th scope="col" hidden="true">Itemkey</th>
+                                        <th scope="col" class="text-left text-muted">Item</th>
+                                        <th scope="col" class="text-center text-muted">Quantity</th>
+                                        <th scope="col" class="text-center text-muted">Rate</th>
+                                        <th scope="col" class="text-right text-muted">Charge(s)</th>
+                                        <th scope="col" class="text-right text-muted">Action(s)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let Data of invoiceDetail; let i = index">
+                                        <td height="30" hidden="true"> <span> {{Data.InvoiceLineKey}} </span></td>
+                                        <td height="30" hidden="true"> <span> {{Data.InvoiceKey}} </span></td>
+                                        <td height="30" hidden="true"> <span>{{Data.Itemkey}} </span></td>
+                                        <td height="30" class="text-left "> <span>{{Data.Description}} </span></td>
+                                        <td height="30" class="text-center">
+                                            <span *ngIf="Data.Quantity > 1"> {{Data.Quantity}} container(s)</span>
+                                            <span *ngIf="Data.Quantity == 1"> {{Data.Quantity}} container</span>
+                                        </td>
+                                        <td height="30" class="text-center"> <span> ${{Data.UnitPrice|number: '1.1-2'}}</span>
+                                        </td>
+                                        <td height="30" class="text-right"> <span>${{Data.Price|number: '1.1-2'}} </span></td>
+                                        <td height="30" class="text-right">
+                                            <!-- <button class="btn btn-default small" type="button"
+                                                (click)="deleteItem(i)">
+                                                <img src="assets/img/brand/trash-icon16px.png" />
+                                            </button> -->
+                                            <a tooltip=" file" (click)="editItem(Data,i)">
+                                                <i class="fa fa-pencil" style="color: darkorange"></i>
+                                            </a> &nbsp;&nbsp;
 
-                                    <td colspan="2">
-                                        <div class="input-group input-group-sm">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"> <b>Total </b></span>
+                                            <!-- <a tooltip="Remove/Delete Container" (click)="deleteItem(i)">
+                                                <i class="fa fa-trash" style="color: lightskyblue;"></i> </a> -->
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td hidden="true"> </td>
+                                        <td hidden="true"> </td>
+                                        <td hidden="true"> </td>
+                                        <td>
+                                            <span class="nav-link text-success" (click)="showChargeDiv()">Add new
+                                                charge</span>
+                                            <!-- <span class="nav-link text-success" data-toggle="collapse"
+                                                data-target="#AddNewCharge" aria-expanded="false"
+                                                aria-controls="AddNewCharge" (click)="showChargeDiv()"> Add new charge
+                                            </span> -->
+                                            <!-- <span class="nav-link text-success" data-toggle="collapse"
+                                                data-target="#AddNewCharge" aria-expanded="false"
+                                                aria-controls="AddNewCharge" (click)="showChargeDiv()"> Add new charge
+                                            </span> -->
+                                        </td>
+                                        <td> </td>
+
+                                        <td colspan="3">
+                                            <div class="container text-right">
+                                                <div class="input-group input-group-sm">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"> <b>Total $ </b></span>
+                                                    </div>
+                                                    <input type="text" disabled
+                                                        style="font-size: 100%;color:yellow;font-weight: bolder;"
+                                                        class="form-control bg-secondary text-right" name="InvoiceAmt"
+                                                        [(ngModel)]="InvoiceAmt" />
+                                                </div>
                                             </div>
-                                            <input type="text" class="form-control bg-secondary text-right"
-                                                name="InvoiceAmt" [(ngModel)]="InvoiceAmt" />
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4 col-md-4 col-lg-4">
-                            <select id="drpCarrier" class="form-control form-control-sm" [(ngModel)]='drpCharge'
-                                (change)="drpAddnewCharge_ChangedEvent($event.target.value)">
-                                <option [value]="0">--select--
-                                </option>
-                                <option [value]="item.itemkey" *ngFor="let item of Itemlist">
-                                    {{item.description}}
-                                </option>
-                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <span class="nav-link text-success" (click)="addFieldValue()">Add new charge</span>
                     </div>
-                    <br>
+                    <div id="AddNewCharge" *ngIf="showAddUpdateDiv">
+                        <div class="row">
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <b>Item </b></span>
+                                    </div>
+                                    <select id="drprate" class="form-control form-control-sm" [(ngModel)]='drpCharge'
+                                        (change)="drpAddnewCharge_ChangedEvent($event.target.value)">
+                                        <option [value]="0"> No item selected
+                                        </option>
+                                        <option [value]="item.itemkey" *ngFor="let item of Itemlist">
+                                            {{item.description}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <b>Qty </b></span>
+                                    </div>
+                                    <input type="text" name="ContainerQuantity" [(ngModel)]="ContainerQuantity"
+                                        class="form-control form-control-sm bg-secondary" />
+                                </div>
+                            </div>
 
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <b>Rate($)</b></span>
+                                    </div>
+                                    <input type="text" name="ItemRate" [(ngModel)]="ItemRate"
+                                        class="form-control form-control-sm bg-secondary" />
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                <button class="btn btn-outline-primary btn-sm small" type="button"
+                                    (click)="addupdateItem()">{{lblrowaddupdate}}</button>
+                                &nbsp; &nbsp;
+                                <button class="btn btn-outline-primary btn-sm small" type="button"
+                                    (click)="ClearRow()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div *ngIf="showInvoiceList">
+            <div class="row">
+                <div class="col-8 col-sm-8 col-md-8"> </div>
+                <div class="col-4 col-sm-4 col-md-4">
+                    <div class="container text-right">
+                        <div class="form-group input-group input-group-sm">
+                            <div class="img-group-prepend">
+                                <img src="assets/img/brand/search16px.png" /> &nbsp;
+                            </div>
+                            <input [(ngModel)]="searchText" class="form-control form-control-sm"
+                                style="border-radius: 1rem;" type="text" placeholder="Search..">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-sm table-borderless ">
+                <thead class="thead-dark shadow">
+                    <tr>
+                        <th scope="col" class="pointer text-muted"  hidden="true">invoiceKey</th>
+                        <th scope="col" class="pointer text-muted" (click)="sort('InvoiceNo')" >Invoice &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                        <th scope="col" class="pointer text-muted" (click)="sort('CustName')" >Customer &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                        <th scope="col" class="pointer text-muted" (click)="sort('InvoiceAmt')" >Amount &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                        <th scope="col" class="pointer text-muted" (click)="sort('DueDate')" >Duedate &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                        <th scope="col" class="pointer text-muted" (click)="sort('StatusDesc')"  >Status &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+                        </th>
+                        <th scope="col" class="pointer text-muted">Next Action</th>
+                    </tr>
+                </thead>
+                <tbody>                  
+                    <tr
+                        *ngFor="let inv of invoiceHeaderList| grdFilter: {InvoiceNo: searchText,CustName: searchText
+                            ,InvoiceAmt: searchText,DueDate: searchText,StatusDesc: searchText}
+                        |paginate:{itemsPerPage:5,currentPage:p,totalItems: count}
+                         ; let ind=index;">
+                        <td class="text-left" hidden="true"> {{ inv.Invoicekey }}</td>
+                        <td>
+                            <span class="font-weight-bold">
+                                #{{ inv.InvoiceNo }} &nbsp;
+                                <span><i class="fa fa-calendar" aria-hidden="true"></i>
+                                    <small> <b> {{inv.InvoiceDate  | date}}</b></small>
+                                </span>
+                            </span>
+                        </td>
+
+                        <td>
+                            <span> <b> {{ inv.CustName }}</b> <br>
+                                <!-- <small style="color: cornflowerblue;">
+                            {{ inv.BillToAddressBO.Address1 }},{{ inv.BillToAddressBO.Address2 }}<br>
+                            {{ inv.BillToAddressBO.City }} {{ inv.BillToAddressBO.State}} {{ inv.BillToAddressBO.Zip}}
+                          </small> -->
+                            </span>
+                        </td>
+
+                        <td class="text-left"> ${{ inv.InvoiceAmt |number: '1.1-2'}}</td>
+                        <td class="text-left"> {{ inv.DueDate |date}}</td>
+                        <td class="text-left"> </td>
+                        <td>
+                            <strong> <i class="cil-chevron-circle-right-alt" style="color: yellowgreen;"></i></strong>
+                            &nbsp;
+                            <small *ngIf="inv.StatusDesc == 'Schedule onhold'" class="font-weight-normal" style="color: orange;">
+                              {{inv.nextaction}} </small>
+                            <small *ngIf="inv.StatusDesc == 'Schedule inprogress'" class="font-weight-normal" style="color: green;">
+                              {{inv.nextaction}} </small>
+                            &nbsp;
+                            <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;"
+                              (click)="load_invoiceHeaderandDetailData(inv)">
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="invoiceHeaderList.length===0">
+                        <td colspan="3">
+                          <h4 style="color: darkorange;">No records found! </h4>
+                        </td>
+                      </tr>
+                </tbody>
+            </table>
+            <div class="container text-right"> 
+                <pagination-controls 
+                (pageChange)="p=$event"
+                autoHide="true"
+                responsive="true"> </pagination-controls>     
+              </div>
 
         </div>
-        <div *ngIf="showImage">
-            <div class="row "> </div>
-            <div class="row "> </div>
-            <div class="row ">
-                <div class="col-md-4"> </div>
-                <div class="col-md-4"> <img src="assets/img/brand/Actions-gear-icon128px.png" /></div>
-                <div class="col-md-4"> </div>
-            </div>
-        </div>
+      
     </div>
 </div>
 <br>

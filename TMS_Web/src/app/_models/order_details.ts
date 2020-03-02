@@ -11,13 +11,13 @@ export class Order_details {
         Chassis:string;
         SealNo: string;
         Weight:number;
-        AppDateFrom:string;
-        AppDateTo:string;
-        PickupDateTime:string;       
-        DropOffDateTime:string;      
+        AppDateFrom:Date;
+        AppDateTo:Date;
+        PickupDateTime:Date;       
+        DropOffDateTime:Date;      
         ActualPickupDateTime:string;
         ActualDropOffDateTime:string;  
-        LastFreeDay:string; 
+        LastFreeDay:Date; 
         SchedulerNotes:string;    
         status:string;
         statusdate:string;
@@ -27,7 +27,8 @@ export class Order_details {
         StatusDesc:string;
         HoldReasonDesc:string;  
         orderroutes:Tms_routes;
-        Comments:string;       
+        Comments:string;     
+        nextaction:string; 
 
         CreatedBy:string;
         createdDate:string;

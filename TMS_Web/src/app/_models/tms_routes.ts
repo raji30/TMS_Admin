@@ -11,11 +11,11 @@ export class Tms_routes {
   status: string;
   driverkey: string;
   drivernotes: string;
-  scheduledarrival: string;
-  scheduleddeparture: string;
+  scheduledarrival: Date;
+  scheduleddeparture: Date;
   odometeratsource: string;
-  actualarrival: string;
-  actualdeparture: string;
+  actualarrival: Date;
+  actualdeparture: Date;
   odometeratdestination: string;
   Chassis:string;
 }

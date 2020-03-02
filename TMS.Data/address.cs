@@ -48,7 +48,9 @@ namespace TMS.Data
         public string country { get; set; }
         public string website { get; set; }
         public string phone { get; set; }
+        public string phone2 { get; set; }
         public string email { get; set; }
+        public string email2 { get; set; }
         public string fax { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

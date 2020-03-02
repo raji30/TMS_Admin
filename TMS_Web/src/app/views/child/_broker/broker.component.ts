@@ -31,7 +31,7 @@ export class BrokerComponent implements OnInit {
   }
 
   ngOnChanges() {
-    if (this.brokerKeyTobind != undefined) {
+    if (this.brokerKeyTobind != "") {
       this.service.GetBrokers().subscribe(
         (data: any) => {
           this.broker = data;
@@ -40,8 +40,7 @@ export class BrokerComponent implements OnInit {
           );
           this.brokerName = this.selectedBroker.BrokerName;
         },
-        error => console.log(error),
-        () => console.log("Get customer complete")
+        error => console.log(error)
       );    
     }
   }

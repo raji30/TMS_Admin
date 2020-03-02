@@ -28,6 +28,11 @@ export class ListdriverComponent implements OnInit {
   isCancelbtnhidden: boolean = true;
   isResetbtnhidden: boolean = true;
 
+  isDesc: boolean = false;
+  column: string = "CustId";
+p: number = 1;
+ count: number;
+
   constructor(
     private Service: DriverService,
     private master: MasterService,
@@ -170,5 +175,50 @@ export class ListdriverComponent implements OnInit {
   clear_search()
   {
     this.searchText = undefined;
+  }
+
+  
+  sort(column) {
+    this.isDesc = !this.isDesc; //change the direction
+    this.column = column;
+    let direction = this.isDesc ? 1 : -1;    
+
+    this.drivers = [...this.drivers].sort((n1, n2) => {
+      if ((this.column == "DriverId")) {
+        if (n1.DriverId > n2.DriverId) {
+          return 1* direction;
+        } else if (n1.DriverId < n2.DriverId) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "FirstName")) {
+        if (n1.FirstName > n2.FirstName) {
+          return 1* direction;
+        } else if (n1.FirstName < n2.FirstName) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "LastName")) {
+        if (n1.LastName > n2.LastName) {
+          return 1* direction;
+        } else if (n1.LastName < n2.LastName) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "DriversLicenseNo")) {
+        if (n1.DriversLicenseNo > n2.DriversLicenseNo) {
+          return 1* direction;
+        } else if (n1.DriversLicenseNo < n2.DriversLicenseNo) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "LicenseExpiryDate")) {
+        if (n1.LicenseExpiryDate > n2.LicenseExpiryDate) {
+          return 1* direction;
+        } else if (n1.LicenseExpiryDate < n2.LicenseExpiryDate) {
+          return -1* direction;
+        } else return 0;
+      }
+    });
   }
 }

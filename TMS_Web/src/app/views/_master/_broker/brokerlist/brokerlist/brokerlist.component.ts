@@ -27,6 +27,13 @@ export class BrokerlistComponent implements OnInit {
   show_BrokerInfo: boolean = false;
   searchText: string;
 
+  
+isDesc: boolean = false;
+column: string = "CustId";
+p: number = 1;
+count: number;
+
+
   constructor(
     private formbulider: FormBuilder,
     private Service: BrokerService,
@@ -154,6 +161,32 @@ export class BrokerlistComponent implements OnInit {
   clear_search()
   {
     this.searchText = undefined;
+  }
+
+  
+  sort(column) {
+    this.isDesc = !this.isDesc; //change the direction
+    this.column = column;
+    let direction = this.isDesc ? 1 : -1;    
+
+    this.brokers = [...this.brokers].sort((n1, n2) => {
+      if ((this.column == "BrokerId")) {
+        if (n1.BrokerId > n2.BrokerId) {
+          return 1* direction;
+        } else if (n1.BrokerId < n2.BrokerId) {
+          return -1* direction;
+        } else return 0;
+      }
+
+      if ((this.column == "BrokerName")) {
+        if (n1.BrokerName > n2.BrokerName) {
+          return 1* direction;
+        } else if (n1.BrokerName < n2.BrokerName) {
+          return -1* direction;
+        } else return 0;
+      }
+      
+    });
   }
 }
 

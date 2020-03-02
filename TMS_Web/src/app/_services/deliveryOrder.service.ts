@@ -203,4 +203,11 @@ export class DeliveryOrderService {
       AppSettings._BaseURL + "GetAllDOHeaderandDetails"
     );
   }
+
+///................................. Table Sorting / Pagination etc
+
+
+
+
+
 }

@@ -60,8 +60,10 @@ namespace TMS.Api.Controllers
                 State = address.state,
                 Zip = address.zipcode,
                 Email = address.email,
+                Email2=address.email2,
                 Fax = address.fax,
                 Phone = address.phone,
+                Phone2 = address.phone2,
                 Name = address.addrname
             };
             return Request.CreateResponse(HttpStatusCode.OK, bo, 

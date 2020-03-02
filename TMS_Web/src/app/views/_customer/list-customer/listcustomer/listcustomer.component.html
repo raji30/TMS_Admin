@@ -1,129 +1,141 @@
 <div id="accordion">
   <br>
   <div class="row">
-    <div class="col-8 col-sm-8 col-md-8">
+    <!-- <div class="col-sm-7 col-md-7 col-lg-7  scrollbar" id="style-10"> -->
+    <div class="col-sm-7 col-md-7 col-lg-7 ">
+
       <div class="row">
-        <div class="col-6 col-sm-6 col-md-6">
-          <h5 class="card-subtitle mb-2" style="color: black">
-            <img src="assets/img/brand/user-identity4.png" /> Customers</h5>
-        </div>
-        <div class="col-6 col-sm-6 col-md-6">
-          <div class="container text-right">
-            <div class="row">
-              <div class="col-11 col-sm-11 col-md-11">
+        <div class="col-12 col-sm-12 col-md-12">
+          <div class="row">
+            <div class="col-3 col-sm-3 col-md-3">
+              <h5 class="card-subtitle mb-2">
+                Customers</h5>
+            </div>
+            <div class="col-7 col-sm-7 col-md-7">
+              <div class="container text-right">
                 <div class="form-group input-group input-group-sm">
                   <div class="img-group-prepend">
-                    <img src="assets/img/brand/search16px.png" /> &nbsp;
+                    <i class="fa fa-search" aria-hidden="true"></i> &nbsp;
                   </div>
-                  <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text"
-                    placeholder="Search..">
+                  <input [(ngModel)]="searchText" class="form-control form-control-sm" style="border-radius: 1rem;"
+                    type="text" placeholder="Search..">
+
                 </div>
               </div>
-              <div class="col-1 col-sm-1 col-md-1">
-                <img src="assets/img/brand/broom16px.png" (click)="clear_search()" tooltip="clear" />
-              </div>
+            </div>
+            <div class="col-2 col-sm-2 col-md-2">
+              <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;" (click)="clear()"
+                *ngIf="show_btnCreateCustomer">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> New
+              </button>
             </div>
           </div>
-
         </div>
       </div>
-    </div>
-    <div class="col-4 col-sm-4 col-md-4 text-right">
-      <button type="button" class="btn btn-info btn-sm" (click)="toggle()" *ngIf="show_btnCreateCustomer">Create New
-        Customer</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-8 col-md-8 col-lg-8 ScrollStyle">
       <table class="table table-sm">
         <tr ngclass="btn-primary">
           <th hidden="true">custkey</th>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Credit Limit</th>
+          <th scope="col" class="pointer" (click)="sort('CustId')">ID &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i></th>
+          <th scope="col" class="pointer" (click)="sort('CustName')">Name &nbsp; <i class="fa fa-sort"
+              aria-hidden="true"></i></th>
+          <th scope="col" class="pointer" (click)="sort('CreditLimit')">Credit Limit &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i></th>
         </tr>
         <tr
-          *ngFor="let cust of customers | grdFilter: {CustName: searchText,CustId: searchText, CreditLimit: searchText}">
+          *ngFor="let cust of customers | grdFilter: {CustName: searchText,CustId: searchText, CreditLimit: searchText}|paginate:{itemsPerPage:20,currentPage:p,totalItems: count}">
           <td hidden="true">{{cust.CustomerKey}}</td>
           <td>{{cust.CustId}}</td>
           <td> <a [routerLink]="" (click)="loadCustomerToEdit(cust.CustomerKey)">
               {{cust.CustName}}</a> </td>
-          <td>{{cust.CreditLimit}}</td>
-          <!-- <td class="tbl2">
-            <button type="button" class="btn btn-info btn-sm"
-              (click)="loadCustomerToEdit(cust.CustomerKey)">Edit</button>
-          </td> -->
-          <!-- <td class="tbl2">
-                    <button type="button" class="btn btn-danger btn-sm"
-                      (click)="deleteCustomer(cust.CustomerKey)">Delete</button>
-                  </td> -->
+          <td>${{cust.CreditLimit|number}}</td>
         </tr>
       </table>
+      <div class="container text-right">
+        <pagination-controls (pageChange)="p=$event" autoHide="true" responsive="true"> </pagination-controls>
+      </div>
     </div>
 
-    <div class="col-sm-4 col-md-4 col-lg-4">
+    <div class="col-sm-5 col-md-5 col-lg-5">
       <div class="row" *ngIf="show_addupdatecustomer">
-        <form [formGroup]="customerForm" (ngSubmit)="onFormSubmit()">
-          <div>
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <form (ngSubmit)=" f.form.valid && onFormSubmit()" #f="ngForm">
             <div class="container">
-              <div class="row">
-                <div class="col-12 col-sm-8 col-md-8">
-                  <label> <b> Customer detail </b> </label>
-                </div>
-                <div class="col-12 col-sm-2 col-md-2 text-right">
-                  <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
-                </div>
-                <div class="col-12 col-sm-2 col-md-2 text-right">
-                  <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                </div>
-              </div>
               <div class="row" hidden="true">
                 <div class="form-group input-group input-group-sm col-md-4">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Customer Key</span>
                   </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="CustomerKey">
-                </div>
-
-              </div>
-              <div class="row">
-                <div class="form-group input-group input-group-sm col-md-8">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Id</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="custid">
-                </div>
-
-              </div>
-              <div class="row">
-                <div class="form-group input-group input-group-sm col-md-12">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Customer</span>
-                  </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="CustName">
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.CustomerKey"
+                    name="CustomerKey">
                 </div>
               </div>
 
+
               <div class="row">
-                <div class="form-group input-group input-group-sm col-md-6">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Credit limit</span>
+                <div class="container text-right">
+                  <button type="reset" class="btn btn-outline-info btn-sm" (click)="cancel()">Cancel</button> &nbsp;&nbsp;
+                  <button type="submit" class="btn btn-info btn-sm">Submit</button>
+                </div>
+              </div>
+             <br>
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-8">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">ID</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.CustId" name="CustId"
+                      #CustId="ngModel" [ngClass]="{ 'is-invalid': f.submitted && CustId.invalid }" required
+                      maxlength="20">
+
+                    <div *ngIf="f.submitted && CustId.invalid" class="invalid-feedback">
+                      <div *ngIf="CustId.errors.required">Cust Id is required</div>
+                    </div>
+
                   </div>
-                  <input type="text" class="form-control form-control-sm" formControlName="creditlimit"
-                    [ngClass]="{ 'is-invalid': submitted && f.creditlimit.errors }">
-                  <div *ngIf="submitted && f.creditlimit.errors" class="invalid-feedback">
-                    <div *ngIf="f.creditlimit.errors.required">creditlimit is required</div>
-                    <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
-                    <div *ngIf="f.creditlimit.errors.minLength">minlength is required</div>
+                  <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="ACHrequired"
+                        [(ngModel)]="customer.achrequired" name="achrequired" (change)="Checkbox_Change($event)">
+                      <small class="form-check-label" for="ACH required">ACH required</small>
+                    </div>
                   </div>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Customer</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.CustName"
+                      name="CustName" #CustName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && CustName.invalid }"
+                      required>
+                    <div *ngIf="f.submitted && CustName.invalid" class="invalid-feedback">
+                      <div *ngIf="CustName.errors.required">Customer is required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Credit limit</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.CreditLimit"
+                      name="CreditLimit" #CreditLimit="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && CreditLimit.invalid }" required minlength="3">
+                    <div *ngIf="f.submitted && CreditLimit.invalid" class="invalid-feedback">
+                      <div *ngIf="CreditLimit.errors.required">Creditlimit is required</div>
+                      <div *ngIf="CreditLimit.errors.minLength">minlength is required</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group input-group input-group-sm">
                       <div class="input-group-prepend">
                         <span class="input-group-text">Payment Terms</span>
                       </div>
-                      <select id="drppaymentterms" class="form-control" formControlName="paymentterms">
-                        <option [value]="null">Select</option>
+                      <select id="drppaymentterms" class="form-control" [(ngModel)]="customer.paymentterms"
+                        name="paymentterms">
+                        <option [value]="-1">Select</option>
                         <option [value]="0">0 days</option>
                         <option [value]="15"> 15 days</option>
                         <option [value]="30">30 days</option>
@@ -133,165 +145,195 @@
                       </select>
                     </div>
                   </div>
-              </div>
 
-              <div class="row">
-                  <div class="col-sm-4 col-md-4 col-lg-4"></div>
-                <div class="col-sm-4 col-md-4 col-lg-4">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="ACHrequired" formControlName="achrequired"
-                      (change)="Checkbox_Change($event)">
-                    <label class="form-check-label" for="ACH required">ACH required</label>
-                  </div>
-                </div>
                
+
               </div>
-            </div>
-            <div class="container">
               <div class="form-group">
                 <label for="legno"> <b> Address </b> </label>
-                <div class="row" formGroupName="Address" hidden="true">
+                <div class="row" hidden="true">
                   <div class="form-group input-group input-group-sm col-md-6">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Address Key</span>
                     </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="AddrKey">
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.AddrKey"
+                      name="AddrKey">
                   </div>
 
                 </div>
-                <div class="row" formGroupName="Address">
+                <div class="row">
                   <div class="form-group input-group input-group-sm col-md-12">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Line 1</span>
                     </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="Address1">
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.Address1"
+                      name="Address1" #Address1="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && Address1.invalid }" required>
+                    <div *ngIf="f.submitted && Address1.invalid" class="invalid-feedback">
+                      <div *ngIf="Address1.errors.required">Address line is required</div>
+                    </div>
                   </div>
                 </div>
 
-                <div class="row" formGroupName="Address">
+                <div class="row">
                   <div class="form-group input-group input-group-sm col-md-12">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Line 2</span>
                     </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="Address2">
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.Address2"
+                      name="Address2">
                   </div>
                 </div>
 
 
-                <div class="row" formGroupName="Address">
+                <div class="row">
                   <div class="form-group input-group input-group-sm col-md-5">
                     <div class="input-group-prepend">
                       <span class="input-group-text">City</span>
                     </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="City">
+                    <!-- <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.City"
+        name="City" #City="ngModel" [ngClass]="{ 'is-invalid': f.submitted && City.invalid }"
+        required> -->
+                    <select id="drpSource" class="form-control form-control-sm" [(ngModel)]="customer.Address.City"
+                      name="City" #City="ngModel" [ngClass]="{ 'is-invalid': f.submitted && City.invalid }">
+                      <option [value]="city.citykey" *ngFor="let city of citylist">{{city.cityname}}
+                      </option>
+                    </select>
+                    <div *ngIf="f.submitted && City.invalid" class="invalid-feedback">
+                      <div *ngIf="City.errors.required">City is required</div>
+                    </div>
                   </div>
 
                   <div class="form-group input-group input-group-sm col-md-4">
                     <div class="input-group-prepend">
                       <span class="input-group-text">State</span>
                     </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="State">
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.State"
+                      name="State" #State="ngModel" [ngClass]="{ 'is-invalid': f.submitted && State.invalid }"
+                      required>
+                    <div *ngIf="f.submitted && State.invalid" class="invalid-feedback">
+                      <div *ngIf="State.errors.required">State is required</div>
+                    </div>
                   </div>
                   <div class="form-group input-group input-group-sm col-md-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Zip</span>
                     </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="Zip"
-                      [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Zip.errors }"
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.Zip"
+                      name="Zip" #Zip="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Zip.invalid }" required
                       (keypress)="numberOnly($event)" appBlockCopyPaste>
-                    <div *ngIf="submitted && f.Address['controls'].Zip.errors" class="invalid-feedback">
-                      <div *ngIf="f.Address['controls'].Zip.errors.required">Zip is required</div>
+                    <div *ngIf="f.submitted && Zip.invalid" class="invalid-feedback">
+                      <div *ngIf="Zip.errors.required">Zip is required</div>
                       <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
-                      <div *ngIf="f.Address['controls'].Zip.errors.minLength">minlength is required</div>
+                      <div *ngIf="Zip.errors.minLength">minlength is required</div>
                     </div>
                   </div>
                 </div>
 
-                <div class="row" formGroupName="Address">
+                <div class="row">
                   <div class="form-group input-group input-group-sm col-md-4">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Country</span>
                     </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="Country"
-                      [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Country.errors }">
-                    <div *ngIf="submitted && f.Address['controls'].Country.errors" class="invalid-feedback">
-                      <div *ngIf="f.Address['controls'].Country.errors.minLength">minlength is required</div>
-                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.Country"
+                      name="Country" #CustId="ngModel">
+
                   </div>
                   <div class="form-group input-group input-group-sm col-md-8">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Website</span>
                     </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="Website" appBlockCopyPaste>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.Website"
+                      name="Website" appBlockCopyPaste>
                     <!-- <div *ngIf="submitted && f.Address['controls'].website.errors" class="invalid-feedback">                   
-                          <div *ngIf="customerForm.controls.website.errors.pattern">website is not valid</div>                       
-                        </div> -->
+          <div *ngIf="customerForm.controls.website.errors.pattern">website is not valid</div>                       
+        </div> -->
                   </div>
                 </div>
 
-                <div class="row" formGroupName="Address">
+                <div class="row">
                   <div class="form-group input-group input-group-sm col-md-6">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">Phone</span>
+                      <span class="input-group-text">Primary Phone</span>
                     </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="Phone"
-                      [ngClass]="{ 'is-invalid': submitted && f.Address['controls'].Phone.errors }"
-                      (keypress)="numberOnly($event)" appBlockCopyPaste>
-                    <div *ngIf="submitted && f.Address['controls'].Phone.errors" class="invalid-feedback">
-                      <div *ngIf="f.Address['controls'].Phone.errors.minLength">minlength is required</div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.Phone"
+                      name="Phone" #Phone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Phone.invalid }"
+                      required (keypress)="numberOnly($event)" appBlockCopyPaste minLength=10 maxLength=10>
+                    <div *ngIf="f.submitted && Phone.invalid" class="invalid-feedback">
+                      <div *ngIf="Phone.errors.required">Phone is required</div>
+                      <div *ngIf="Phone.errors.minLength">minlength is required</div>
                     </div>
                   </div>
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Secondary Phone</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.Phone2"
+                      name="Phone2" (keypress)="numberOnly($event)" appBlockCopyPaste>
+                  </div>
+                </div>
+                <div class="row">
+
                   <div class="form-group input-group input-group-sm col-md-6">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Fax</span>
                     </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="Fax"
-                      (keypress)="numberOnly($event)" appBlockCopyPaste>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.Fax"
+                      name="Fax" (keypress)="numberOnly($event)" appBlockCopyPaste>
 
                   </div>
                 </div>
-                <div class="row" formGroupName="Address">
+                <div class="row">
                   <div class="form-group input-group input-group-sm col-md-12">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">E-mail</span>
+                      <span class="input-group-text">Primary E-mail</span>
                     </div>
-                    <input type="text" class="form-control form-control-sm" formControlName="Email" appBlockCopyPaste>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.Email"
+                      name="Email" appBlockCopyPaste>
                   </div>
                 </div>
-
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Secondary E-mail</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.Email2"
+                      name="Email2" appBlockCopyPaste>
+                  </div>
+                </div>
               </div>
             </div>
-
-
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
       <div class="row" *ngIf="show_customerInfo">
         <div class="container text-right">
-          <span style="color:green;" (click)="bindFormControls()"> <i class="fa fa-pencil" aria-hidden="true"></i>
+          <span style="color:chocolate;" (click)="edit_click()"> <i class="fa fa-pencil" aria-hidden="true"></i>
             <b> edit</b>..</span>
         </div>
         <div class="container ml-2">
 
           <h5> {{selectedCustomer.CustName}}</h5>
 
-          <span class="text-muted">ID <b>{{selectedCustomer.CustId}}</b> </span>
-          <br><br>
+          <span class="text-muted">ID:- <b>{{selectedCustomer.CustId}}</b> </span>
+          <hr style="background-color:lightslategray;">
           <div class="row">
             <div class="col-sm-4 col-md-4 col-lg-4">
               <span class="text-muted">Credit Limit </span><br>
               <span><b> {{selectedCustomer.CreditLimit}} </b></span> </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
               <span class="text-muted">ACH Required </span><br>
-              <span><b> {{selectedCustomer.achrequired}}</b></span> </div>
+              <span><b> {{selectedCustomer.achrequired}}</b></span>
+            </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
               <span class="text-muted">Payment Term </span><br>
               <span><b> {{selectedCustomer.paymentterms}} days</b></span>
             </div>
           </div>
           <br><br>
-          <span class="text" style="color: chocolate;"> <b> Address </b></span><br>
-
+          <span class="text" style="color:cornflowerblue;">
+            <h5> <u>Address</u> </h5>
+          </span>
           <span class="text-muted">Line 1 :<b> {{selectedCustomer.Address.Address1}}</b> </span><br>
           <span class="text-muted">Line 2 :<b> {{selectedCustomer.Address.Address2}}</b> </span> <br>
           <span class="text-muted">City :<b> {{selectedCustomer.Address.City}} </b></span> <br>
@@ -299,8 +341,10 @@
           <span class="text-muted">Zip :<b> {{selectedCustomer.Address.Zip}} </b></span> <br>
           <span class="text-muted">Country: <b> {{selectedCustomer.Address.Country}} </b></span> <br><br>
           <span class="text-muted">Website <b> {{selectedCustomer.Address.Website}} </b></span> <br><br>
-          <span class="text-muted">Email </span><br>
+          <span class="text-muted">Email (Primary) </span><br>
           <span><b> {{selectedCustomer.Address.Email}} </b></span> <br><br>
+          <span class="text-muted">Email (Secondary) </span><br>
+          <span><b> {{selectedCustomer.Address.Email2}} </b></span> <br><br>
 
           <div class="row">
             <div class="col-sm-4 col-md-4 col-lg-4">
@@ -308,10 +352,12 @@
               <span><b> {{selectedCustomer.Address.Fax}} </b></span>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
-              <span class="text-muted">Mobile </span><br>
+              <span class="text-muted">Mobile (Primary) </span><br>
               <span><b> {{selectedCustomer.Address.Phone}} </b></span>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
+              <span class="text-muted">Mobile (Secondary) </span><br>
+              <span><b> {{selectedCustomer.Address.Phone2}} </b></span>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -12,13 +13,15 @@ namespace TMS.Data
 {
     public class DriverDL
     {
-        string connString = "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";
-        NpgsqlConnection connection;
+        string connString;//= "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";      
+        NpgsqlConnection conn;
+        NpgsqlCommand cmd;
 
         public DriverDL()
         {
-            connection = new NpgsqlConnection(connString);
+            connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
         }
+
         public IList<Guid> InsertDriverDetails(DriverBO[] obj)
         {
             //routekey, orderdetailkey, orderkey, legno, legtype, sourceaddrkey, destinationaddrkey,
@@ -62,14 +65,16 @@ namespace TMS.Data
 
         public List<DriverBO> GetDrivers()
         {
-            string sql = "dbo.fn_get_drivers";
-            List<DriverBO> driverlist = new List<DriverBO>();
-            List<string> list = new List<string>();
-
-            using (connection)
+            try
             {
-                connection.Open();
-                using (var cmd = new NpgsqlCommand(sql, connection))
+                string sql = "dbo.fn_get_drivers";
+                List<DriverBO> driverlist = new List<DriverBO>();
+                List<string> list = new List<string>();
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     var reader = cmd.ExecuteReader();
@@ -84,9 +89,18 @@ namespace TMS.Data
                         }
                     }
                     while (reader.NextResult());
+                    reader.Close();
                 }
+                return driverlist;
             }
-            return driverlist;
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

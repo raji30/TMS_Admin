@@ -18,20 +18,23 @@ import { Customer } from "./../../../../_models/customer";
   styleUrls: ["./customer.component.scss"]
 })
 export class CustomerComponent implements OnInit {
-  billtoCustomerName: string = "";
+  billtoCustomerName: string = "No Customer Selected";
   customer: Customer[];
+  customerFilter : Customer[];
   addressTobind: Address = new Address();
 
   @Input() Type: number;
   @Input() AddressType: number;
   @Input() customerKeyTobind: string;
-  @Output() CustomerSelectedOutput = new EventEmitter<string>();
+  @Output() CustomerSelectedOutput = new EventEmitter<Customer>();   
   @Output() OrdernoGenerated = new EventEmitter<string>();
   @Input() disabled: boolean = false;
 
   customercount: any;
   Orderno: any;
-  creditCheck: boolean;
+  creditCheck: boolean=undefined;
+  searchText:string;
+
 
   selectedCustomer: Customer;// = new Customer();
   constructor(
@@ -44,7 +47,7 @@ export class CustomerComponent implements OnInit {
     this.service
       .getCustomers()
       .subscribe(
-        data => (this.customer = data),
+        data => (this.customer =this.customerFilter= data),
         error => console.log(error),
         () => console.log("Get customer complete", this.customer)
       );
@@ -55,7 +58,7 @@ export class CustomerComponent implements OnInit {
     if (this.customerKeyTobind != undefined) {
       this.service.getCustomers().subscribe(
         (data: any) => {
-          this.customer = data;
+          this.customer = this.customerFilter = data;
           if (this.customerKeyTobind) {
             this.selectedCustomer = this.customer.find(
               x => x.CustomerKey === this.customerKeyTobind
@@ -104,7 +107,7 @@ export class CustomerComponent implements OnInit {
             autono;
           console.log("length is > 1");
         }
-        this.CustomerSelectedOutput.emit(CustomerSelected.CustomerKey);
+        this.CustomerSelectedOutput.emit(this.selectedCustomer);       
         this.OrdernoGenerated.emit(this.Orderno);
       },
       error => console.log(error),
@@ -125,4 +128,15 @@ export class CustomerComponent implements OnInit {
   onDisableComponent() {
       this.disabled = true;
   }
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+     if(!searchValue){
+       this.assignCopy();
+   } // when nothing has typed
+   this.customerFilter = this.customer.filter(item => item.CustName.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
+   )
+  }
+  assignCopy(){
+   this.customerFilter = Object.assign([], this.customer);
+}
 }

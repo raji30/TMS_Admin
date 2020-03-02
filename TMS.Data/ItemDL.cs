@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -12,25 +13,26 @@ namespace TMS.Data
 {
    public class ItemDL
     {
-        string connString = "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";
-        NpgsqlConnection connection;
-
+        string connString;//= "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";      
+        NpgsqlConnection conn;
+        NpgsqlCommand cmd;
 
         public ItemDL()
         {
-            connection = new NpgsqlConnection(connString);
+            connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
         }
 
         public List<ItemBO> GetItems()
         {
-            
-            string sql = "dbo.fn_get_items";
-            List<ItemBO> itemlist = new List<ItemBO>();
-           
-            using (connection)
+            try
             {
-                connection.Open();
-                using (var cmd = new NpgsqlCommand(sql, connection))
+                string sql = "dbo.fn_get_items";
+                List<ItemBO> itemlist = new List<ItemBO>();
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     var reader = cmd.ExecuteReader();
@@ -49,21 +51,32 @@ namespace TMS.Data
                         }
                     }
                     while (reader.NextResult());
+                    reader.Close();
                 }
+
+                return itemlist;
             }
-            return itemlist;
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public List<ItemTypeBO> GetItemTypes()
-        {
-
-            string sql = "dbo.fn_getItemTypes";
-            List<ItemTypeBO> itemlist = new List<ItemTypeBO>();
-
-            using (connection)
+        {           
+            try
             {
-                connection.Open();
-                using (var cmd = new NpgsqlCommand(sql, connection))
+                string sql = "dbo.fn_getItemTypes";
+                List<ItemTypeBO> itemlist = new List<ItemTypeBO>();
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     var reader = cmd.ExecuteReader();
@@ -76,25 +89,38 @@ namespace TMS.Data
                             BO.itemtypeid = Utils.CustomParse<short>(reader["itemtypeid"]);
                             BO.description = Utils.CustomParse<string>(reader["description"]);
                             //BO.createdate = Utils.CustomParse<DateTime>(reader["createdate"]);
-                           // BO.createuserkey = Utils.CustomParse<Guid>(reader["createuserkey"]);
-                           
+                            // BO.createuserkey = Utils.CustomParse<Guid>(reader["createuserkey"]);
+
                             itemlist.Add(BO);
 
                         }
                     }
                     while (reader.NextResult());
+                    reader.Close();
                 }
+
+                return itemlist;
             }
-            return itemlist;
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public Guid InsertItem(ItemBO item)
-        {
-            string sql = "dbo.fn_insert_tms_item";
-            using (connection)
+        {           
+           try
             {
-                connection.Open();
-                using (var cmd = new NpgsqlCommand(sql, connection))
+                string sql = "dbo.fn_insert_tms_item";
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -107,16 +133,27 @@ namespace TMS.Data
 
                 }
             }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
 
         }
 
         public bool UpdateItem(ItemBO item)
-        {           
-            string query = "dbo.fn_update_tms_item";
-            using (connection)
+        {  
+            try
             {
-                connection.Open();
-                using (var cmd = new NpgsqlCommand(query, connection))
+                string query = "dbo.fn_update_tms_item";
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(query, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("_itemkey", NpgsqlTypes.NpgsqlDbType.Uuid, item.itemkey);
@@ -130,45 +167,59 @@ namespace TMS.Data
                         var result = bool.Parse(reader[0].ToString());
                         return result;
                     }
+                    reader.Close();
                 }
+
+                return false;
             }
-            return false;
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public ItemBO GetItemByKey(Guid itemKey)
         {
-            string sql = "dbo.fn_get_ItembyKey";
-            ItemBO item = new ItemBO();
-
             try
             {
+                string sql = "dbo.fn_get_ItembyKey";
+                ItemBO item = new ItemBO();
 
-                using (connection)
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    connection.Open();
-                    using (var cmd = new NpgsqlCommand(sql, connection))
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("_itemkey", NpgsqlTypes.NpgsqlDbType.Uuid, itemKey);
+                    var reader = cmd.ExecuteReader();
+                    do
                     {
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("_itemkey", NpgsqlTypes.NpgsqlDbType.Uuid, itemKey);
-                        var reader = cmd.ExecuteReader();
-                        do
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                item.itemkey = Utils.CustomParse<Guid>(reader["itemkey"]);
-                                item.itemid = Utils.CustomParse<string>(reader["itemid"]);
-                                item.itemtype = Utils.CustomParse<short>(reader["itemtype"]);
-                                item.description = Utils.CustomParse<string>(reader["description"]);                                                         
-                            }
+                            item.itemkey = Utils.CustomParse<Guid>(reader["itemkey"]);
+                            item.itemid = Utils.CustomParse<string>(reader["itemid"]);
+                            item.itemtype = Utils.CustomParse<short>(reader["itemtype"]);
+                            item.description = Utils.CustomParse<string>(reader["description"]);
                         }
-                        while (reader.NextResult());
                     }
+                    while (reader.NextResult());
+                    reader.Close();
                 }
+
                 return item;
             }
-            catch
+            catch (Exception msg)
             {
-                throw;
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
     }

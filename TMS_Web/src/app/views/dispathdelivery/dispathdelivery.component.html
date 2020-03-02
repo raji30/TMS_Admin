@@ -1,326 +1,658 @@
 <br>
 
-<div id="accordion">
-  <div class="row">
-    <div class="col-sm-2 col-md-2 col-lg-2 border-right ScrollStyle">
+<div class="row">
+  <div class="col-sm-2 col-md-2 col-lg-2">
+    <div class="scrollbar" id="scrollbar-style" style="position:relative;width:100%;height:100%;">
       <ul class="list-unstyled">
         <li>
-          <h5>Containers <span class="badge badge-dark">Recent</span></h5><br>
+          <h5>Containers <span class="badge badge-warning">Recent</span></h5><br>
         </li>
-        <li *ngFor="let order of ContainerDetails; let ind=index;">
-          <ul>
+        <li>
+          <div class="container text-left">
+            <div class="form-group input-group input-group-sm">
+              <div class="img-group-prepend">
+                <img src="assets/img/brand/search16px.png" /> &nbsp;
+              </div>
+              <input [(ngModel)]="SearchRecentContainer" class="form-control form-control-sm"
+                style="border-radius: 1rem;" type="text" placeholder="Search..">
+            </div>
+          </div>
+          <br>
+        </li>
+        <li *ngFor="let order of ContainerDetails| grdFilter: {containerid: SearchRecentContainer,ContainerNo: SearchRecentContainer} ; let ind=index;">
+          <ul class="list-unstyled">
             <li>
-              <p style="font-family:calibri;"> <a [routerLink]="" (click)="rowclickEvent(order)">{{order.ContainerNo}}
+              <p style="font-family:calibri;"> <a [routerLink]="" (click)="rowclickEvent(order)">
+                  {{order.containerid}}<br> <small class="text-muted"> - {{ order.ContainerNo }} </small>
                   <span class="badge" *ngIf="selectedKey===order.OrderDetailKey">
                     <img src="assets/img/brand/symbol-check16px.png" /> </span>
                 </a> </p>
             </li>
           </ul>
         </li>
+
       </ul>
     </div>
+  </div>
 
-    <div class="col-sm-10 col-md-10 col-lg-10">
+  <div class="col-sm-10 col-md-10 col-lg-10">
+    <div *ngIf="showaddupdatedispatchitems">
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-6">
-          <h5 class="card-subtitle mb-2" style="color: black">
-            <img src="assets/img/brand/lorry24px.png" /> Dispatch Delivery</h5>
+          <!-- <h5 class="card-subtitle mb-2" style="color:cornflowerblue">
+            <img src="assets/img/brand/lorry24px.png" /> Dispatch Delivery</h5> -->
+
+          <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#Orderdata"
+            aria-expanded="false" aria-controls="Orderdata">
+            Delivery ID - <b>{{HeaderData.OrderNo}} </b>
+          </button>
+
+          &nbsp;
+          <button id="AddDispatchEntry" class="btn btn-outline-warning btn-sm small" type="button"
+            (click)="showaddupdateEntry()">
+            Add Entry
+          </button>
         </div>
-        <div class="col-sm-6 col-md-6 col-lg-6" *ngIf="showDispatch">
+        <div class="col-sm-6 col-md-6 col-lg-6">
           <div class="container text-right">
-            <button class="btn btn-primary btn-sm small" type="button" (click)="update()">Send to Invoice</button>
+            <button class="btn btn-outline-primary btn-sm small" type="button" (click)="hold_Dispatch()">Hold</button> &nbsp;
+            <button class="btn btn-outline-primary btn-sm small" type="button" (click)="Submit()">Save</button> &nbsp;
+            <button class="btn btn-outline-primary btn-sm small" type="button" (click)="Complete_Dispatch()">Delivery
+              complete</button>
+            &nbsp;&nbsp;
+            <button class="btn btn-outline-danger btn-sm small" type="button" (click)="Cancel()">Cancel</button>
           </div>
         </div>
       </div>
+      <br>
 
-      <div class="row" *ngIf="showDispatch">
-        <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="collapse show" id="Orderdata">
+        <div class="card card-body">
           <div class="row">
-            <div class="card-body">
+            <div class="col-sm-4 col-md-4 col-lg-4">
               <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                  <div class="row">
-                    <div class="col-md-2">
-                      <div class="form-group">
-                        <label for="SealNo">Chassis</label>
-
-                        <input class="form-control form-control-sm" type="text" name="Chassis" [(ngModel)]="Chassis"
-                          placeholder="Chassis" />
-                      </div>
-                      <!-- <div class="input-group input-group-sm">                           
-                            <input class="form-control form-control-sm" type="text" name="Chassis"
-                              [(ngModel)]="Chassis" placeholder="Chassis" />
-                          </div> -->
-                    </div>
-                    <div class="col-md-2">
-                      <div class="form-group">
-                        <label for="legno">Leg </label>
-
-                        <input class="form-control form-control-sm" type="text" name="legno" [(ngModel)]="legno"
-                          placeholder="Leg no" />
-                      </div>
-                      <!-- <div class="input-group input-group-sm">                          
-                            <input class="form-control form-control-sm" type="text" name="legno"
-                              [(ngModel)]="legno" placeholder="Leg no" />
-                          </div> -->
-                    </div>
-                    <div class="col-md-2">
-                      <div class="form-group">
-                        <label for="LegType">Leg Type</label>
-
-                        <input class="form-control form-control-sm" type="text" name="legtype" [(ngModel)]="legtype"
-                          placeholder="Leg Type" />
-                      </div>
-                      <!-- <div class="input-group input-group-sm">                           
-                            <input class="form-control form-control-sm" type="text" name="legtype"
-                              [(ngModel)]="legtype" placeholder="Leg Type" />
-                          </div> -->
-                    </div>
-                    <div class="col-md-2">
-                      <div class="form-group">
-                        <label for="ActualPickup">Pickup</label>
-
-                        <input class="form-control form-control-sm" type="text" name="actualarrival"
-                          [(ngModel)]="actualarrival" placeholder="Actual Pickup" [owlDateTimeTrigger]="dtactualarrival"
-                          [owlDateTime]="dtactualarrival" required />
-                        <owl-date-time [pickerType]="'both'" #dtactualarrival [hour12Timer]="false"></owl-date-time>
-                      </div>
-                      <!-- <div class="input-group input-group-sm">                           
-                            <input class="form-control form-control-sm" type="text" name="actualarrival"
-                              [(ngModel)]="actualarrival" placeholder="Actual Pickup" 
-                              [owlDateTimeTrigger]="dtactualarrival" [owlDateTime]="dtactualarrival" required />
-                              <owl-date-time [pickerType]="'both'" #dtactualarrival [hour12Timer]="false"></owl-date-time>
-                          </div> -->
-                    </div>
-                    <div class="col-md-2">
-                      <div class="form-group">
-                        <label for="ActualDropOff">Drop</label>
-
-                        <input class="form-control form-control-sm" type="text" name="actualdeparture"
-                          [(ngModel)]="actualdeparture" placeholder="Actual Drop-Off"
-                          [owlDateTimeTrigger]="dtactualdeparture" [owlDateTime]="dtactualdeparture" required />
-                        <owl-date-time [pickerType]="'both'" #dtactualdeparture [hour12Timer]="false"></owl-date-time>
-                      </div>
-                      <!-- <div class="input-group input-group-sm">                           
-                            <input class="form-control form-control-sm" type="text" name="actualdeparture"
-                              [(ngModel)]="actualdeparture" placeholder="Actual DropOff"
-                              [owlDateTimeTrigger]="dtactualdeparture" [owlDateTime]="dtactualdeparture" required />
-                            <owl-date-time [pickerType]="'both'" #dtactualdeparture [hour12Timer]="false"></owl-date-time>
-                          </div> -->
-                    </div>
-
-                  </div>
-                  <div class="row">
-
-                    <div class="col-sm-3">
-
-                    </div>
-                    <div class="col-sm-6">
-
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <!-- <span style="color: white">Order no </span><br> -->
-                      <div class="panel-heading">
-                        <span class="panel-title" style="color:black">Order No :</span>
-                        <span style="color:black"> <b> {{HeaderData.OrderNo}}</b> </span>
-                      </div>
-
-                      <!-- <span style="color:white"> Date </span><br> -->
-                      <div class="panel-heading">
-                        <span class="panel-title" style="color:black">Date :</span>
-                        <span style="color:black"> <b> {{HeaderData.OrderDate|date}}</b></span>
-                      </div>
-                      <!-- <span style="color: white"> Type </span><br> -->
-                      <div class="panel-heading">
-                        <span class="panel-title" style="color:black">Type :</span>
-                        <span style="color: black"> <b> {{HeaderData.ordertypedescription}}</b></span>
-                      </div>
-
-                    </div>
-                    <div class="col-sm-4">
-                      <!-- <span style="color:white"> Broker </span><br> -->
-                      <div class="panel-heading">
-                        <span class="panel-title" style="color:black">Broker :</span>
-                        <span style="color: black"> <b> {{HeaderData.BrokerName}} </b></span>
-                      </div>
-                      <!-- <span style="color:white"> Broker Ref# </span><br> -->
-                      <div class="panel-heading">
-                        <span class="panel-title" style="color:black">Broker Reference :</span>
-                        <span style="color: black"> <b> {{HeaderData.BrokerRefNo}} </b></span>
-                      </div>
-                      <!-- <span style="color:white"> Booking# </span><br> -->
-                      <div class="panel-heading">
-                        <span class="panel-title" style="color:black">Booking No :</span>
-                        <span style="color: black"> <b> {{HeaderData.BookingNo}} </b></span>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                      <!-- <span style="color:white"> Vessel </span><br> -->
-                      <div class="panel-heading">
-                        <span class="panel-title" style="color:black">Vessel :</span>
-                        <span style="color: black"> <b> {{HeaderData.VesselName}} </b></span>
-                      </div>
-                      <!-- <span style="color:white"> Bill of Lading </span><br> -->
-                      <div class="panel-heading">
-                        <span class="panel-title" style="color:black">Bill of Lading : </span>
-                        <span style="color: black"> <b> {{HeaderData.BillofLading}} </b></span>
-                      </div>
-                      <!-- <span style="color:white"> Cut-Off Date </span><br> -->
-                      <div class="panel-heading">
-                        <span class="panel-title" style="color:black">Cut-Off Date :</span>
-                        <span style="color:black"> <b> {{HeaderData.CutOffDate|date}} </b></span>
-                      </div>
-                    </div>
-
-                  </div>
-                  <br>
-                  <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">
-
-                      <div class="panel-heading">
-                        <h6 class="panel-title">BillTo</h6>
-                      </div>
-                      <div class="card alert-secondary text-center p-3">
-                        <!-- <blockquote class="blockquote mb-0"> -->
-                        <span> {{HeaderData.BillToAddressBO.Name}}</span>
-                        <span> {{HeaderData.BillToAddressBO.Address1}}, {{HeaderData.BillToAddressBO.Address2}} </span>
-                        <span> {{HeaderData.BillToAddressBO.City}} - {{HeaderData.BillToAddressBO.Zip}} </span>
-                        <span> {{HeaderData.BillToAddressBO.State}}</span>
-                        <!-- </blockquote> -->
-                      </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3 col-lg-3">
-
-                      <div class="panel-heading">
-                        <h6 class="panel-title">Pickup</h6>
-                      </div>
-                      <div class="card alert-primary text-center p-3">
-                        <!-- <blockquote class="blockquote mb-0"> -->
-                        <span> {{HeaderData.SourceAddressBO.Name}}</span>
-                        <span> {{HeaderData.SourceAddressBO.Address1}}, {{HeaderData.SourceAddressBO.Address2}} </span>
-                        <span> {{HeaderData.SourceAddressBO.City}} - {{HeaderData.SourceAddressBO.Zip}} </span>
-                        <span> {{HeaderData.SourceAddressBO.State}}</span>
-                        <!-- </blockquote> -->
-                      </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3 col-lg-3">
-
-                      <div class="panel-heading">
-                        <h6 class="panel-title">Delivery</h6>
-                      </div>
-                      <div class="card alert-secondary text-center p-3">
-                        <!-- <blockquote class="blockquote mb-0"> -->
-                        <span> {{HeaderData.DestinationAddressBO.Name}}</span>
-                        <span> {{HeaderData.DestinationAddressBO.Address1}},
-                          {{HeaderData.DestinationAddressBO.Address2}}
-                        </span>
-                        <span> {{HeaderData.DestinationAddressBO.City}} - {{HeaderData.DestinationAddressBO.Zip}}
-                        </span>
-                        <span> {{HeaderData.DestinationAddressBO.State}}</span>
-                        <!-- </blockquote> -->
-                      </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3 col-lg-3">
-
-                      <div class="panel-heading">
-                        <h6 class="panel-title">Return</h6>
-                      </div>
-                      <div class="card alert-primary text-center p-3">
-                        <!-- <blockquote class="blockquote mb-0"> -->
-                        <span> {{HeaderData.ReturnAddressBO.Name}}</span>
-                        <span> {{HeaderData.ReturnAddressBO.Address1}}, {{HeaderData.ReturnAddressBO.Address2}} </span>
-                        <span> {{HeaderData.ReturnAddressBO.City}} - {{HeaderData.ReturnAddressBO.Zip}} </span>
-                        <span> {{HeaderData.ReturnAddressBO.State}}</span>
-                        <!-- </blockquote> -->
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel panel-warning">
-                    <div class="panel-heading">
-                      <h6 class="panel-title">Container Detail</h6>
-                    </div>
-                    <div class="panel-body">
-                      <table class="table table-sm small alert-warning">
-                        <thead class="thead-light">
-                          <tr>
-                            <th scope="col" style="display:none">OrderDetailKey</th>
-                            <th scope="col">ContainerSize</th>
-                            <th scope="col">Seal#</th>
-                            <th scope="col">Weight</th>
-                            <th scope="col">ApptDate_From</th>
-                            <th scope="col">ApptDate_To</th>
-                            <th scope="col">PickupDate/Time</th>
-                            <th scope="col">DropOffDate/Time</th>
-
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-
-                            <td hidden="true" style="display:none">
-                              {{DetailsData.OrderDetailKey}}
-                            </td>
-                            <td>
-                              {{DetailsData.ContainerSizeDesc}}
-                            </td>
-                            <td>
-                              {{DetailsData.SealNo}}
-                            </td>
-                            <td>
-                              {{DetailsData.Weight}}
-                            </td>
-                            <td>
-                              {{DetailsData.AppDateFrom}}
-                            </td>
-                            <td>
-                              {{DetailsData.AppDateTo}}
-                            </td>
-                            <td>
-                              {{DetailsData.PickupDateTime}}
-                            </td>
-
-                            <td>
-                              {{DetailsData.DropOffDateTime}}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                      <!-- <span style="color:black"> Comments </span><br> -->
-                      <div class="panel-heading">
-                        <h6 class="panel-title">Comments</h6>
-                      </div>
-                      <div class="card text-center p-3">
-                        <small>
-                          <p>{{HeaderData.Comment}}</p>
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+                <div class="col-sm-3 col-md-3 col-lg-3"> <span class="text-muted">Date</span></div>
+                <div class="col-sm-9 col-md-9 col-lg-9"><span>{{HeaderData.OrderDate|date}} </span></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3"> <span class="text-muted">Type</span></div>
+                <div class="col-sm-9 col-md-9 col-lg-9"><span> {{HeaderData.ordertypedescription}} </span></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3"> <span class="text-muted">Broker</span></div>
+                <div class="col-sm-9 col-md-9 col-lg-9"><span> {{HeaderData.BrokerName}} </span></div>
               </div>
             </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Broker Ref</span></div>
+                <div class="col-sm-8 col-md-8 col-lg-8"><span> {{HeaderData.BrokerRefNo}} </span></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Booking No</span></div>
+                <div class="col-sm-8 col-md-8 col-lg-8"><span> {{HeaderData.BookingNo}} </span></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Vessel</span></div>
+                <div class="col-sm-8 col-md-8 col-lg-8"><span> {{HeaderData.VesselName}} </span></div>
+              </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Bill of Lading</span></div>
+                <div class="col-sm-8 col-md-8 col-lg-8"><span> {{HeaderData.BillofLading}} </span></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Cut-Off Date</span></div>
+                <div class="col-sm-8 col-md-8 col-lg-8"><span> {{HeaderData.CutOffDate|date}} </span></div>
+              </div>
+            </div>
+          </div>
+          <hr style="color: slategray;">
+          <div class="row">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                  <span class="text-muted">Bill to</span>
+                </div>
+                <div class="col-sm-8 col-md-8 col-lg-8">
+                  <div style="word-wrap: break-word;">
+                    {{HeaderData.BillToAddressBO.Name}}
+                    {{HeaderData.BillToAddressBO.Address1}} {{HeaderData.BillToAddressBO.Address2}}
+                    {{HeaderData.BillToAddressBO.City}} {{HeaderData.BillToAddressBO.Zip}}
+                    {{HeaderData.BillToAddressBO.State}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                  <span class="text-muted">Pickup</span>
+                </div>
+                <div class="col-sm-8 col-md-8 col-lg-8">
+                  <div style="word-wrap: break-word;">
+                    {{HeaderData.SourceAddressBO.Name}}
+                    {{HeaderData.SourceAddressBO.Address1}}  {{HeaderData.SourceAddressBO.Address2}}
+                    {{HeaderData.SourceAddressBO.City}}  {{HeaderData.SourceAddressBO.Zip}}
+                    {{HeaderData.SourceAddressBO.State}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                  <span class="text-muted">Delivery</span>
+                </div>
+                <div class="col-sm-8 col-md-8 col-lg-8">
+                  <div style="word-wrap: break-word;">
+                    {{HeaderData.DestinationAddressBO.Name}}
+                    {{HeaderData.DestinationAddressBO.Address1}}  {{HeaderData.DestinationAddressBO.Address2}}
+                    {{HeaderData.DestinationAddressBO.City}}  {{HeaderData.DestinationAddressBO.Zip}}
+                    {{HeaderData.DestinationAddressBO.State}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                  <span class="text-muted">Return</span>
+                </div>
+                <div class="col-sm-8 col-md-8 col-lg-8">
+                  <div style="word-wrap: break-word;">
+                    {{HeaderData.ReturnAddressBO.Name}}
+                    {{HeaderData.ReturnAddressBO.Address1}}  {{HeaderData.ReturnAddressBO.Address2}}
+                    {{HeaderData.ReturnAddressBO.City}}  {{HeaderData.ReturnAddressBO.Zip}}
+                    {{HeaderData.ReturnAddressBO.State}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr style="color: slategray;">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <div class="panel panel-warning">
+                <div class="panel-body">
+                  <h6 class="text-muted">Container</h6>
+                  <table class="table table-sm small table-striped">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col" style="display:none">OrderDetailKey</th>
+                        <th scope="col" class="text-muted">Id</th>
+                        <th scope="col" class="text-muted">No</th>
+                        <th scope="col" class="text-muted">Size</th>
+                        <th scope="col" class="text-muted">Seal#</th>
+                        <th scope="col" class="text-muted">Weight</th>
+                        <th scope="col" class="text-muted">Comment</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td hidden="true" style="display:none">
+                          {{DetailsData.OrderDetailKey}}
+                        </td>
+                        <td>
+                          {{DetailsData.containerid}}
+                        </td>
+                        <td>
+                          {{DetailsData.ContainerNo}}
+                        </td>
+                        <td>
+                          {{DetailsData.ContainerSizeDesc}}
+                        </td>
+                        <td>
+                          {{DetailsData.SealNo}}
+                        </td>
+                        <td>
+                          {{DetailsData.Weight}}
+                        </td>
+                        <td>
+                          {{DetailsData.Comments}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8 col-md-8 col-lg-8">
+              <h6 class="text-muted">Scheduler</h6>
+              <table class="table table-sm small table-striped">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col" class="text-muted">Appointment Date</th>
+                    <th scope="col" class="text-muted">Pickup DateTime</th>
+                    <th scope="col" class="text-muted">DropOff Date/Time</th>
+                    <th scope="col" class="text-muted">Last Free Day</th>
+                    <th scope="col" class="text-muted">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {{DetailsData.AppDateFrom|date}} - {{DetailsData.AppDateTo|date}}
+                    </td>
+                    <td>
+                      {{DetailsData.PickupDateTime|date: 'dd/MM/yyyy hh:mm a'}}
+                    </td>
 
+                    <td>
+                      {{DetailsData.DropOffDateTime|date: 'dd/MM/yyyy hh:mm a'}}
+                    </td>
+                    <td>
+                      {{DetailsData.LastFreeDay|date}}
+                    </td>
+                    <td>
+                      {{DetailsData.SchedulerNotes}}
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="panel-heading">
+                <h6 class="text-muted">Comments</h6>
+              </div>
+              <p><small> {{HeaderData.Comment}}</small></p>
+            </div>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="card text-dark alert-warning">
+            <div class="card-body text-dark border-light ">
+              <!-- <h5>Containers </h5> -->
+              <div class="row">
+                <div class="table-responsive" style="overflow-x: auto">
+                  <table id = "DISPATCH" class="table table-custom table-sm table-hover table-striped table-warning ">
+                    <thead >
+                      <tr> 
+                        <th scope="col" class="text-left text-muted">Appointment No</th>
+                        <th scope="col" class="text-left text-muted"> Chassis</th>
+                        <th scope="col" class="text-left text-muted">Legno</th>
+                        <th scope="col" class="text-left text-muted">Leg Type</th>
+                        <th scope="col" class="text-left text-muted">Wait From/to at Port</th>
+                        <th scope="col" class="text-left text-muted">Wait From/to at Customer</th>
+                        <th scope="col" class="text-left text-muted">Pickup-Drop</th>
+                        <th scope="col" class="text-left text-muted">Driver</th>
+                        <th scope="col" class="text-left text-muted"> Drivernotes</th>
+                        <th scope="col" class="text-center text-muted">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of dispatchDetails;let i = index">
+                        <td  style="color: darkslategrey;">
+                          {{data.appointmentno}}
+                        </td>
+                        <td style="color: darkslategrey;">
+                          {{data.Chassis}}
+                        </td>
+                        <td  style="color: darkslategrey;">
+                          {{data.legno}}
+                        </td>
+                        <td  style="color: darkslategrey;">
+                          {{data.legtype}}
+                        </td>
+                        <td  style="color: darkslategrey;">
+                          {{ data.portwaitingtimefrom|date}} - {{data.portwaitingtimeto|date}}
 
+                        </td>
+                        <td  style="color: darkslategrey;">
+                          {{ data.customerwaitingtimefrom|date}} - {{data.customerwaitingtimeto|date}}
+                        </td>
+                        <td  style="color: darkslategrey;">
+                          {{data.actualarrival|date}}-{{data.actualdeparture|date}}
+                        </td>
+                        <td   style="color: darkslategrey;">
+                            Driver
+                        </td>
+                        <td   style="color: darkslategrey;">
+                          {{data.drivernotes}}
+                        </td>
+                        <td  style="color: darkslategrey;">
+                          <a tooltip="Upload file" (click)="editRow(data,i)">
+                            <i class="fa fa-pencil"></i>
+                          </a> &nbsp;&nbsp;
 
-      <div *ngIf="showImage">
-        <div class="row "> </div>
-        <div class="row "> </div>
-        <div class="row ">
-          <div class="col-md-4"> </div>
-          <div class="col-md-4"> <img src="assets/img/brand/Actions-gear-icon128px.png" /></div>
-          <div class="col-md-4"> </div>
+                          <a tooltip="Remove/Delete Container" (click)="deleteRow(data,i)">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+                <!-- <ng-container *ngIf="dispatchDetails.length==0">
+                  <h5 style="color: darkred;">No records found!</h5>
+                </ng-container> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showaddupdateEntryDiv">
+
+        <div class="row">
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <div class="form-group" hidden="true">
+              <h6 class="text-muted">Routekey </h6>
+              <input class="form-control form-control-sm" type="text" name="routekey" [(ngModel)]="routekey"
+                placeholder="" />
+            </div>
+            <div class="form-group">
+              <h6 class="text-muted">Appointment No </h6>
+              <input class="form-control form-control-sm" type="text" name="AppointmentNo" [(ngModel)]="appointmentNo"
+                placeholder="" />
+            </div>
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <div class="form-group">
+              <h6 class="text-muted">Driver</h6>
+              <select id="drpdriver" class="form-control form-control-sm" name="driverkey" [(ngModel)]="driverkey">
+                <option [value]="driver.DriverKey" *ngFor="let driver of driverList">{{driver.DriverId}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <textarea class="form-control" id="txtNotes" placeholder="Driver Notes" name="drivernotes"
+              [(ngModel)]="drivernotes"></textarea>
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <div class="form-group">
+              <h6 class="text-muted">Chassis</h6>
+              <input class="form-control form-control-sm" type="text" name="Chassis" [(ngModel)]="Chassis"
+                placeholder="" />
+            </div>
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <div class="form-group">
+              <h6 class="text-muted">Leg</h6>
+              <input class="form-control form-control-sm" type="text" name="legno" [(ngModel)]="legno" placeholder="" />
+            </div>
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <div class="form-group">
+              <h6 class="text-muted">Leg Type</h6>
+              <select id="drpStatus" class="form-control form-control-sm" placeholder="Legtype" name="Legtype"
+                [(ngModel)]="legtype">
+                <option [value]='1'>L</option>
+                <option [value]="2">D</option>
+                <option [value]="3">D/S</option>
+
+              </select>
+            </div>
+          </div>
+         
+
+        </div>
+        <div class="row">
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="form-group">
+              <h6 class="text-muted">Port waiting time </h6>
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="input-group input-group-sm">
+                          <input class="form-control form-control-sm" type="text" name="dtPortWaitingTimeFrom"
+                            [(ngModel)]="PortWaitingTimeFrom" placeholder="From"
+                            [owlDateTimeTrigger]="dtPortWaitingTimeFrom" [owlDateTime]="dtPortWaitingTimeFrom"
+                            required />
+                          <owl-date-time [pickerType]="'both'" #dtPortWaitingTimeFrom [hour12Timer]="false">
+                          </owl-date-time>
+                        </div>
+                      </td>
+                      <td>:</td>
+                      <td>
+                        <div class="input-group input-group-sm">
+                          <input class="form-control form-control-sm" type="text" name="dtPortWaitingTimeTo"
+                            [(ngModel)]="PortWaitingTimeTo" placeholder="to" [owlDateTimeTrigger]="dtPortWaitingTimeTo"
+                            [owlDateTime]="dtPortWaitingTimeTo" required />
+                          <owl-date-time [pickerType]="'both'" #dtPortWaitingTimeTo [hour12Timer]="false">
+                          </owl-date-time>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="form-group">
+              <h6 class="text-muted">Customer waiting time </h6>
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="input-group input-group-sm">
+                          <input class="form-control form-control-sm" type="text" name="CustomerWaitingTimeFrom"
+                            [(ngModel)]="CustomerWaitingTimeFrom" placeholder="From"
+                            [owlDateTimeTrigger]="dtCustomerWaitingTimeFrom" [owlDateTime]="dtCustomerWaitingTimeFrom"
+                            required />
+                          <owl-date-time [pickerType]="'both'" #dtCustomerWaitingTimeFrom [hour12Timer]="false">
+                          </owl-date-time>
+                        </div>
+                      </td>
+                      <td>:</td>
+                      <td>
+                        <div class="input-group input-group-sm">
+                          <input class="form-control form-control-sm" type="text" name="dtPortWaitingTimeFrom"
+                            [(ngModel)]="CustomerWaitingTimeTo" placeholder="to"
+                            [owlDateTimeTrigger]="dtCustomerWaitingTimeTo" [owlDateTime]="dtCustomerWaitingTimeTo"
+                            required />
+                          <owl-date-time [pickerType]="'both'" #dtCustomerWaitingTimeTo [hour12Timer]="false">
+                          </owl-date-time>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="form-group">
+              <h6 class="text-muted">Actual Pickup/Drop </h6>
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="input-group input-group-sm">
+                          <input class="form-control form-control-sm" type="text" name="actualarrival"
+                            [(ngModel)]="actualarrival" placeholder="Pickup" [owlDateTimeTrigger]="dtactualarrival"
+                            [owlDateTime]="dtactualarrival" required />
+                          <owl-date-time [pickerType]="'both'" #dtactualarrival [hour12Timer]="false"></owl-date-time>
+                        </div>
+                      </td>
+                      <td>:</td>
+                      <td>
+                        <div class="input-group input-group-sm">
+                          <input class="form-control form-control-sm" type="text" name="actualdeparture"
+                            [(ngModel)]="actualdeparture" placeholder="Drop" [owlDateTimeTrigger]="dtactualdeparture"
+                            [owlDateTime]="dtactualdeparture" required />
+                          <owl-date-time [pickerType]="'both'" #dtactualdeparture [hour12Timer]="false"></owl-date-time>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="text-right">
+<label>.</label>
+              <a type="button" class="btn btn-primary btn-sm" (click)="clear()">Clear</a>&nbsp;&nbsp;
+              <button type="button" class="btn alert-dark btn-sm" style="border-radius: 1rem;"
+                (click)="addupdateDispatch()"> <i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <div *ngIf="showdispatchitemlist">
+      <div class="row">
+        <div class="col-8 col-sm-8 col-md-8"> </div>
+        <div class="col-4 col-sm-4 col-md-4">
+          <div class="container text-right">
+            <div class="form-group input-group input-group-sm">
+              <div class="img-group-prepend">
+                <img src="assets/img/brand/search16px.png" /> &nbsp;
+              </div>
+              <input [(ngModel)]="searchText" class="form-control form-control-sm" style="border-radius: 1rem;"
+                type="text" placeholder="Search..">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <table class="table table-sm table-borderless ">
+          <thead class="thead-dark shadow">
+            <tr>
+              <th scope="col" class="text-muted">ID</th>
+              <th scope="col" class="text-muted">Container</th>
+              <th scope="col" class="text-muted" colspan="8"></th>
+              <th scope="col" class="text-muted">Action</th>
+            </tr>
+          </thead>
+          <tbody
+            *ngFor="let data of dispatchList| 
+          grdFilter: {containerid: searchText,ContainerNo: searchText,appointmentno: searchText,legno: searchText} ; 
+          let ind=index;">
+            <tr >
+              <td> {{data.OrderDetails.containerid}}
+              </td>
+              <td>{{data.OrderDetails.ContainerNo}}
+              </td>
+              <td colspan="8">
+                <table class="table table-sm table-striped table-borderless">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col" class="text-muted"> <small>Appointment no</small></th>
+                      <th scope="col" class="text-muted"><small>Legno </small></th>
+                      <th scope="col" class="text-muted"><small>Leg type </small></th>
+                      <th scope="col" class="text-muted"><small>Driver </small></th>
+                      <th scope="col" class="text-muted"><small>Driver notes </small></th>
+                      <th scope="col" class="text-muted"><small>Pickup </small></th>
+                      <th scope="col" class="text-muted"> <small> Delivery </small></th>
+                      <th scope="col" class="text-muted"> <small> Wait time at Port </small></th>
+                      <th scope="col" class="text-muted"> <small> Wait time at Customer </small></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let dispatch of data.dispatchdetails">
+                      <td><small> {{dispatch.appointmentno}}</small>
+                      </td>
+                      <td><small>{{dispatch.legno}}</small>
+                      </td>
+                      <td><small>{{dispatch.legtypeDesc}}</small>
+                      </td>
+                      <td><small>{{dispatch.driverid}}</small>
+                      </td>
+                      <td><small>{{dispatch.drivernotes}}</small>
+                      </td>
+                      <td><small>{{dispatch.actualarrival}}</small>
+                      </td>
+                      <td><small>{{dispatch.actualdeparture}}</small>
+                      </td>
+                      <td><small>{{dispatch.portwaitingtimefrom}} - {{dispatch.portwaitingtimeto}}</small>
+                      </td>
+                      <td><small>{{dispatch.customerwaitingtimefrom}} - {{dispatch.customerwaitingtimeto}}</small>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </td>
+              <td>
+                <!-- <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;"
+                data-toggle="modal"  data-target=".modal-editdispatch"  (click)="updateclick(data)">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  Update
+                </button> -->
+                <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;"
+                  (click)="load_DispatchForEdit(data)">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  Update
+                </button>
+              </td>
+            </tr>            
+          </tbody>
+          <tr *ngIf="dispatchList.length===0">
+            <td colspan="3">
+              <h4 style="color: darkorange;">No records found! </h4>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="modal fade modal-editdispatch" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true" data-backdrop="static">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+          </div>
         </div>
       </div>
     </div>
+  </div>
+
+
+  <!-- <tr
+              *ngFor="let data of dispatchList | groupBy:'OrderDetailKey'| 
+            grdFilter: {containerid: searchText,ContainerNo: searchText,appointmentno: searchText,legno: searchText} ; let ind=index;">
+              <td> {{data.containerid}}
+              </td>
+              <td>{{data.containerno}}
+              </td>
+              <td>{{data.appointmentno}}
+              </td>
+              <td>{{data.legno}}
+              </td>
+              <td>{{data.legtypeDesc}}
+              </td>
+              <td>{{data.driverid}}
+              </td>
+              <td>{{data.drivernotes}}
+              </td>
+              <td>{{data.actualarrival}}
+              </td>
+              <td>{{data.actualdeparture}}
+              </td>
+              <td>{{data.portwaitingtimefrom}} - {{data.portwaitingtimeto}}
+              </td>
+              <td>{{data.customerwaitingtimefrom}} - {{data.customerwaitingtimeto}}
+              </td>
+              <td>
+                <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;"
+                data-toggle="modal" data-target=".modal-editdispatch">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  Update
+                </button>
+
+              </td>
+            </tr> -->

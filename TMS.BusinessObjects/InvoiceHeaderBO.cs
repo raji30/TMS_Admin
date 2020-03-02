@@ -12,11 +12,14 @@ namespace TMS.BusinessObjects
         public int InvoiceNo { get; set; }
         public DateTime InvoiceDate { get; set; }
         public Guid CustKey { get; set; }
+        public string CustName { get; set; }
         public Guid BilltoAddrKey { get; set; }
         public Guid BilltoAddrCopy { get; set; }
         public decimal InvoiceAmt { get; set; }
         public DateTime DueDate { get; set; }
         public int InvoiceType { get; set; }
-        public Guid OrderDetailKey { get; set; }
+        public Guid OrderKey { get; set; }
+
+
     }
 }

@@ -29,26 +29,31 @@
   <tbody>
     <tr>
       <td> 
-        <h6 class="card-title  badge badge-pill badge-primary" style="text-align:left">Customer</h6>
-          <div class="dropdown" style="width: 10rem;">
-            <button class="btn btn-light dropdown-toggle form-control-sm btn-block" 
+        <h6 class="card-title  badge badge-pill badge-primary" style="text-align:left">Bill To / Customer</h6>
+          <div class="dropdown" >
+            <button class="btn btn-secondary dropdown-toggle form-control-sm btn-block" 
             style="border-radius: 1rem; margin-top: 0px;
             margin-bottom: 0px;
             margin-right: 0px;
             margin-left: 0px;
-            max-width: 200px;
-            min-width: 200px;
+            max-width: 280px;
+            min-width: 250px;
             overflow: hidden;
             text-overflow: ellipsis;" type="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
               <img *ngIf="creditCheck" src="assets/img/brand/tick-circle-icon16px.png" />
-              <img *ngIf="!creditCheck" src="assets/img/brand/close16px.png" />
+              <img *ngIf="!creditCheck" src="assets/img/brand/delete-1-icon16px.png" />
               <small><b > {{billtoCustomerName}}</b></small>
             </button>
             <div class="dropdown-menu" >
-              <li *ngFor="let cust of customer" [class.selected]="cust === selectedCustomer" (click)="onSelect(cust)">
-                <a class="dropdown-item">{{cust.CustName}}</a>
-              </li>
+              <form class="px-4 py-2">
+                <input type="search" class="form-control  form-control-sm" placeholder="search.." autofocus="autofocus"
+                (input)="onSearchChange($event.target.value)">
+            </form>
+            <div class="menuItems">
+              <li *ngFor="let cust of customerFilter;  let ind=index;" [class.selected]="cust === selectedCustomer" (click)="onSelect(cust)">
+                <a class="dropdown-item">{{cust.CustName}} -  {{cust.Address.City}}</a>
+              </li></div>             
             </div>
           </div>  
       </td>      
@@ -56,11 +61,11 @@
     <tr *ngIf="selectedCustomer">
       <td>
         <div style="margin: 5px;">
-        <p class="text-left text-capitalize" style="color:darkblue;">
-          <small><b style="word-wrap: break-word;">{{selectedCustomer.CustName}}</b></small><br>
+        <p class="text-left text-capitalize" >
+          <small><b style="word-wrap: break-word;color: #CCCC99;" >{{selectedCustomer.CustName}}</b></small><br>
           {{selectedCustomer.Address.Address1}},&nbsp;{{selectedCustomer.Address.Address2}}
           <br>
-          {{selectedCustomer.Address.City}}, {{selectedCustomer.Address.State}}-{{selectedCustomer.Address.Zip}}</p>          
+          {{selectedCustomer.Address.City}} {{selectedCustomer.Address.State}} {{selectedCustomer.Address.Zip}}</p>          
         </div>
       </td>
     </tr>

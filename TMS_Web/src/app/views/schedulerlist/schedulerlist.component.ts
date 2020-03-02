@@ -14,6 +14,13 @@ import { RoutesService } from "../../_services/routes.service";
 import { Tms_routes } from "../../_models/tms_routes";
 import { AccountingOptions } from "../../_models/accountingOptions";
 import { AccountingoptionsService } from "../../_services/accountingoptions.service";
+import {
+  NgbActiveModal,
+  NgbModal,
+  NgbModalRef
+} from "@ng-bootstrap/ng-bootstrap";
+import { SchedulerUpdateComponent } from "../scheduler-update/scheduler-update.component";
+import { Scheduler } from "../../_models/scheduler";
 
 @Component({
   providers: [NavigationComponent],
@@ -22,13 +29,16 @@ import { AccountingoptionsService } from "../../_services/accountingoptions.serv
   styleUrls: ["./schedulerlist.component.scss"]
 })
 export class SchedulerlistComponent implements OnInit {
- // bsConfig: Partial<BsDatepickerConfig>;
+  // bsConfig: Partial<BsDatepickerConfig>;
   HeaderData: DeliveryOrderHeader;
   DetailData: Order_details;
   DetailsData: Array<Order_details> = [];
+  scheduledContainerList: Array<Order_details> = [];
   AccountingOptions: Array<Item> = [];
+  acccountingOptions: Array<AccountingOptions> = [];
   statuslist: Status[] = [];
   itemlist: Item[] = [];
+  AccOpts: number;
   statuslistFiltered: Status[] = [];
   dataSaved: boolean = false;
   routesdataSaved: boolean = false;
@@ -36,31 +46,43 @@ export class SchedulerlistComponent implements OnInit {
   alldataSaved: boolean = false;
   message = null;
   public searchText: string;
+  public SearchRecentContainer: string;
 
   registerForm: FormGroup;
   submitted = false;
   selectedKey: string;
   dataShow: boolean;
   tempOrderDetailKey: string;
+  OrderDetailKey: string;
+  customerKey: string;
 
-  public AppDateFrom: string;
-  public AppDateTo: string;
-  public PickupDateTime: string;
-  public DropOffDateTime: string;
+  public AppDateFrom: Date;
+  public AppDateTo: Date;
+  public PickupDateTime: Date;
+  public DropOffDateTime: Date;
   public Legtype: number;
-  public LastFreeDay: string;
+  public LastFreeDay: Date;
   public DriverNotes: string;
   public SchedulerNotes: string;
   public status: string;
   public tmsroutes: Tms_routes;
+  public schedulerData: Scheduler;
 
   showScheduler = false;
   showImage = true;
   showSchedulerDiv = true;
+  showScheduledContainerList: boolean;
 
   optionsChecked = [];
+  modalRef: NgbModalRef;
+
+  isDesc: boolean = false;
+  column: string = "containerid";
+p: number = 1;
+ count: number;
 
   constructor(
+    private _NgbModal: NgbModal,
     private NaviComp: NavigationComponent,
     private formBuilder: FormBuilder,
     private schedulerService: SchedulerService,
@@ -94,6 +116,15 @@ export class SchedulerlistComponent implements OnInit {
     );
 
     this.loaddata();
+    this.loadScheduleddata();
+    this.sliceItems();
+  }
+
+  sliceItems() {
+    var size = 4;
+    this.AccOpts = Math.floor(13 / size) + 1;
+    console.log("Itemlist : = ", this.itemlist.length);
+    console.log("AccOpts  : = ", this.AccOpts);
   }
 
   onSubmit() {
@@ -109,127 +140,119 @@ export class SchedulerlistComponent implements OnInit {
     }
 
     //Order Details
-    this.DetailData.AppDateFrom = this.AppDateFrom;
-    this.DetailData.AppDateTo = this.AppDateTo;
-    this.DetailData.PickupDateTime = this.PickupDateTime;
-    this.DetailData.DropOffDateTime = this.DropOffDateTime;
-    this.DetailData.status = this.status = "4"; //4 - SendtoDispatchAssignment
-    this.DetailData.LastFreeDay = this.LastFreeDay;
+    this.DetailData.AppDateFrom = new Date(this.AppDateFrom); 
+    this.DetailData.AppDateTo = new Date(this.AppDateTo); 
+    this.DetailData.LastFreeDay = new Date(this.LastFreeDay);
     this.DetailData.SchedulerNotes = this.SchedulerNotes;
 
     //TMS route details
     var tmsroutes = new Tms_routes();
     tmsroutes.OrderDetailKey = this.DetailData.OrderDetailKey;
     tmsroutes.OrderKey = this.DetailData.OrderKey;
-    tmsroutes.scheduledarrival = this.PickupDateTime;
-    tmsroutes.scheduleddeparture = this.DropOffDateTime;
+    tmsroutes.scheduledarrival = new Date(this.PickupDateTime);
+    tmsroutes.scheduleddeparture = new Date(this.DropOffDateTime);
     tmsroutes.legtype = this.Legtype;
     tmsroutes.drivernotes = this.DriverNotes;
 
     //accounting options
     var AccOptionsChecked = Array<AccountingOptions>();
     AccOptionsChecked = this.optionsChecked;
+    var updateAccOptions = false;
 
     this.orderService.updateOrderDetails(this.DetailData).subscribe(
-      result => {
-        this.dataSaved = true;
-        if (this.dataSaved == true) {
-          this.dataSaved = false;
-          this.routesService.insertRoutesDetails(tmsroutes).subscribe(
-            result => {
-              this.routesdataSaved = true;
-              if (
-                this.routesdataSaved == true &&
-                AccOptionsChecked.length > 1
-              ) {
-                this.routesdataSaved = false;
-                this.accountingoptionsService
-                  .insertAccountingoptions(AccOptionsChecked)
-                  .subscribe(
-                    result => {
-                      this.accountingoptionsSaved = true;
-                      var DOdetail = this.DetailData;
-                      DOdetail.status = "4"; //4- send to Dispatch Assignment
-
-                      if (this.accountingoptionsSaved == true) {
-                        this.accountingoptionsSaved = false;
-                        this.orderService
-                          .UpdateDOdetailStatus(this.DetailData)
-                          .subscribe(
-                            result => {
-                              this.alldataSaved = true;
-                              if (this.alldataSaved == true) {
-                                this.alldataSaved = false;
-                                this.AccountingOptions = [];
-                                this.message = "Scheduled Successfully";
-                                this.showSuccess("Container Scheduled successfully", "Scheduler");
-                                this.showImage = true;
-                                this.showScheduler = false;
-                                this.DetailsData = null;
-                                this.loaddata();
-                              } else {
-                                this.showError("An Unexpected Error Occured.", "Scheduler");
-                                return;
-                              }
-                            },
-                            error => {console.log(error);
-                              this.showError("An Unexpected Error Occured:"+ error, "Scheduler");}
-                          );
-                      }
-                    },
-                    error => console.log(error)
-                  );
-              }
-            },
-            error => {
-              console.log(error);
-            }
-          );
-        }
-      },
-      error => console.log(error)
+      result => {},
+      error => {
+        console.log(error);
+        this.showError("An Unexpected Error Occured.", "Scheduler-Update");
+        return;
+      }
     );
 
+    this.routesService.insertRoutesDetails(tmsroutes).subscribe(
+      result => {},
+      error => {
+        console.log(error);
+        this.showError("An Unexpected Error Occured.", "Scheduler-Update");
+        return;
+      }
+    );
+
+    //deleting existing data before adding
+    this.accountingoptionsService
+      .UpdateAccountingOptions(this.DetailData.OrderDetailKey)
+      .subscribe(
+        result => {
+          // this.isUpdated = true;
+          //alert(result);
+        },
+        error => {
+          console.log(error);
+          this.showError("An Unexpected Error Occured.", "Scheduler-Update");
+          return;
+        }
+      );
+
+    if (AccOptionsChecked.length > 0) {
+      this.accountingoptionsService
+        .insertAccountingoptions(AccOptionsChecked)
+        .subscribe(
+          result => {},
+          error => {
+            console.log(error);
+            this.showError("An Unexpected Error Occured.", "Scheduler-Update");
+            return;
+          }
+        );
+    } 
+
+    var DOdetail = this.DetailData;
+    DOdetail.status = "3"; //In progress
+
+    this.orderService.UpdateDOdetailStatus(this.DetailData).subscribe(
+      result => {
+        this.loaddata();
+        this.loadScheduleddata();
+        this.showScheduledContainerList = true;
+        this.showScheduler  = false;
+        this.showSuccess("Container - " + DOdetail.ContainerNo + " Holded!", "Scheduler-Update");
+        return;
+
+      },
+      error => {
+        console.log(error);
+        this.showError("An Unexpected Error Occured.", "Scheduler-Update");
+        return;
+      }
+    );
+
+    this.showScheduler = false;
+    this.DetailsData = null;
+    this.optionsChecked = null;
+
+    for (var j = 0; j < this.itemlist.length; j++) {
+      this.itemlist[j].isChecked = false;
+    }
+    this.loaddata();
+    this.loadScheduleddata();
     
+    this.showSuccess("Container Scheduled successfully", "Scheduler");
   }
-
-  // onSubmit(field: Order_details) {
-  //   if (
-  //     field.AppDateFrom == null ||
-  //     field.AppDateTo == null ||
-  //     field.status == null ||
-  //     field.PickupDateTime == null ||
-  //     field.DropOffDateTime == null
-  //   ) {
-  //     this.showError("Enter the missing fields.", "Scheduler");
-  //     return;
-  //   }
-
-  //   this.orderService.updateOrderDetails(field).subscribe(
-  //     () => {
-  //       this.dataSaved = true;
-  //       this.message = "Scheduled Successfully";
-  //       this.loaddata();
-  //     },
-  //     error => console.log(error),
-  //     () => console.log("Scheduler  ", this.message)
-  //   );
-  // }
 
   ngOnChanges() {}
 
   rowclickEvent(value: Order_details) {
-    if (this.tempOrderDetailKey == value.OrderDetailKey) {
-      this.dataShow = false;
-      this.tempOrderDetailKey = null;
-      this.selectedKey = null;
-      return;
-    } else {
-      this.dataShow = true;
-      this.DetailData = value;
-      console.log("Testing DetailData ", this.DetailData);
-    }
-    this.selectedKey = value.OrderDetailKey;
+    // if (this.tempOrderDetailKey == value.OrderDetailKey) {
+    //   this.dataShow = false;
+    //   this.tempOrderDetailKey = null;
+    //   this.selectedKey = null;
+    //   return;
+    // } else {
+    //   this.dataShow = true;
+    //   this.DetailData = value;
+    //   console.log("Testing DetailData ", this.DetailData);
+    // }
+    this.OrderDetailKey = value.OrderDetailKey;
+
     this.orderService.GetbyKey(value.OrderKey).subscribe(
       data => {
         this.HeaderData = data;
@@ -239,10 +262,12 @@ export class SchedulerlistComponent implements OnInit {
       error => console.log(error),
       () => console.log("order Header Data ", this.HeaderData)
     );
-
+    this.GetOrderDetailsbykey(this.OrderDetailKey);
+    this.Legtype = 0;
     this.showScheduler = true;
     this.showImage = false;
     this.showSchedulerDiv = true;
+    this.showScheduledContainerList = false;
   }
 
   showSuccess(message: string, title: string) {
@@ -261,10 +286,32 @@ export class SchedulerlistComponent implements OnInit {
       () => console.log("Get OrderDetail", this.DetailsData)
     );
   }
+  loadScheduleddata() {
+    this.schedulerService.GetScheduledContainers().subscribe(
+      data => {
+        this.scheduledContainerList = data;       
+      },
+      error => console.log(error),
+      () => console.log("Get OrderstoSchedule", this.scheduledContainerList)
+    );
+    this.showScheduledContainerList = true;
+  }
+
+  GetOrderDetailsbykey(orderdetailkey: string) {
+    this.schedulerService.GetOrderDetailsbykey(orderdetailkey).subscribe(
+      data => {
+        this.DetailData = data;
+      },
+      error => console.log(error)
+    );
+    this.showScheduledContainerList = true;
+  }
+
+  //onCheckboxChange
   onCheckboxChange(option, event) {
     if (event.target.checked) {
-      option.orderdetailkey = this.DetailsData[0].OrderDetailKey;
-      option.customerkey = this.DetailsData[0].OrderKey;
+      option.orderdetailkey = this.OrderDetailKey;
+      //   option.customerkey = this.DetailsData[0].OrderKey;
       this.optionsChecked.push(option);
     } else {
       for (var i = 0; i < this.itemlist.length; i++) {
@@ -274,5 +321,212 @@ export class SchedulerlistComponent implements OnInit {
       }
     }
     console.log(this.optionsChecked);
+  }
+
+  openModal(data: Order_details) {
+    this.modalRef = this._NgbModal.open(SchedulerUpdateComponent, {
+      backdrop: "static",
+      size: "lg",
+      keyboard: true,
+      centered: true
+    });
+    this.modalRef.componentInstance.OrderDetailKey = data.OrderDetailKey;
+    this.modalRef.componentInstance.containerId = data.containerid;
+    this.modalRef.componentInstance.OrderDetail = data;
+
+    this.modalRef.result.then(
+      result => {
+        if (result === "success") {
+          this.loadScheduleddata(); // Refresh Data in table grid
+          console.log("Refresh Data ", "success");
+        }
+      },
+      reason => {}
+    );
+  }
+
+  onCancel() {
+    this.showScheduledContainerList = true;
+    this.showScheduler = false;
+
+    for (var j = 0; j < this.itemlist.length; j++) {
+      this.itemlist[j].isChecked = false;
+    }
+  }
+
+  loaddata_forEdit(data: Order_details) {
+    this.OrderDetailKey = data.OrderDetailKey;
+
+    this.orderService.GetbyKey(data.OrderKey).subscribe(
+      data => {
+        this.HeaderData = data;
+      },
+      error => console.log(error),
+      () => console.log("order Header Data ", this.HeaderData)
+    );
+
+    this.schedulerService.GetOrderDetailsbykey(data.OrderDetailKey).subscribe(
+      data => {
+        this.DetailData = data;
+        console.log(" this.DetailData for edit", this.DetailData);
+      },
+      error => console.log(error)
+    );
+
+    this.schedulerService.GetScheduledContainer(data.OrderDetailKey).subscribe(
+      data => {
+        this.schedulerData = data;
+
+        this.AppDateFrom = new Date(this.schedulerData.AppDateFrom);
+        this.AppDateTo = new Date(this.schedulerData.AppDateTo);
+        this.LastFreeDay = new Date(this.schedulerData.LastFreeDay);
+        this.SchedulerNotes = this.schedulerData.SchedulerNotes;
+        this.Legtype = this.schedulerData.LegType;
+        this.PickupDateTime = this.schedulerData.ScheduleArrival;
+        this.DropOffDateTime = this.schedulerData.ScheduleDeparture;
+        this.DriverNotes = this.schedulerData.DriverNotes;
+        this.optionsChecked = this.acccountingOptions = this.schedulerData.accountingBO;
+        this.showScheduledContainerList = false;
+        this.showScheduler = true;
+      },
+      error => console.log(error),
+      () => console.log("Get scheduler Data", this.schedulerData)
+    );
+
+    if (this.schedulerData.accountingBO.length > 0) {
+      this.master.getItemList(1).subscribe(
+        data => {
+          this.itemlist = data;
+          for (var i = 0; i < this.schedulerData.accountingBO.length; i++) {
+            for (var j = 0; j < this.itemlist.length; j++) {
+              if (
+                this.acccountingOptions[i].itemkey == this.itemlist[j].itemkey
+              ) {
+                this.itemlist[j].isChecked = true;
+              }
+            }
+          }
+        },
+        error => console.log(error),
+        () => console.log("Get itemlist", this.itemlist)
+      );
+    }
+
+    // this.accountingoption
+    //   .GetAccountingOptionsbyKey(this.OrderDetailKey)
+    //   .subscribe(
+    //     data => {
+    //       this.acccountingOptions = data;
+    //     },
+    //     error => console.log(error),
+    //     () => console.log("Get acccounting Options", this.acccountingOptions)
+    //   );
+  }
+
+  hold_Schedule()
+  {
+      var DOdetail = this.DetailData;
+    DOdetail.status = "4"; //4- Hold
+
+    this.orderService.UpdateDOdetailStatus(this.DetailData).subscribe(
+      result => {
+        this.loaddata();
+        this.loadScheduleddata();
+        this.showScheduledContainerList = true;
+        this.showScheduler  = false;
+        this.showSuccess("Container - " + DOdetail.ContainerNo + " Holded!", "Scheduler-Update");
+        return;
+
+      },
+      error => {
+        console.log(error);
+        this.showError("An Unexpected Error Occured.", "Scheduler-Update");
+        return;
+      }
+    );
+  }
+  complete_Schedule()
+  {
+  var DOdetail = this.DetailData;
+    DOdetail.status = "5"; //4- complete schedule
+
+    this.orderService.UpdateDOdetailStatus(this.DetailData).subscribe(
+      result => {
+        this.loaddata();
+        this.loadScheduleddata();
+        this.showScheduledContainerList = true;
+        this.showScheduler  = false;
+        this.showSuccess("Schedule Completed for the Container :" +this.DetailData.ContainerNo ! , "Scheduler-Update");
+        return;
+
+      },
+      error => {
+        console.log(error);
+        this.showError("An Unexpected Error Occured.", "Scheduler-Update");
+        return;
+      }
+    );
+  }
+
+
+  
+  sort(column) {
+    this.isDesc = !this.isDesc; //change the direction
+    this.column = column;
+    let direction = this.isDesc ? 1 : -1;    
+
+    this.scheduledContainerList = [...this.scheduledContainerList].sort((n1, n2) => {
+      if ((this.column == "containerid")) {
+        if (n1.containerid > n2.containerid) {
+          return 1* direction;
+        } else if (n1.containerid < n2.containerid) {
+          return -1* direction;
+        } else return 0;
+      }
+
+      if ((this.column == "ContainerNo")) {
+        if (n1.ContainerNo > n2.ContainerNo) {
+          return 1* direction;
+        } else if (n1.ContainerNo < n2.ContainerNo) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "ContainerSizeDesc")) {
+        if (n1.ContainerSizeDesc > n2.ContainerSizeDesc) {
+          return 1* direction;
+        } else if (n1.ContainerSizeDesc < n2.ContainerSizeDesc) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "LastFreeDay")) {
+        if (n1.LastFreeDay > n2.LastFreeDay) {
+          return 1* direction;
+        } else if (n1.LastFreeDay < n2.LastFreeDay) {
+          return -1* direction;
+        } else return 0;
+      }
+
+      if ((this.column == "PickupDateTime")) {
+        if (n1.PickupDateTime > n2.PickupDateTime) {
+          return 1* direction;
+        } else if (n1.PickupDateTime < n2.PickupDateTime) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "DropOffDateTime")) {
+        if (n1.DropOffDateTime > n2.DropOffDateTime) {
+          return 1* direction;
+        } else if (n1.DropOffDateTime < n2.DropOffDateTime) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "StatusDesc")) {
+        if (n1.StatusDesc > n2.StatusDesc) {
+          return 1* direction;
+        } else if (n1.StatusDesc < n2.StatusDesc) {
+          return -1* direction;
+        } else return 0;
+      }
+    });
   }
 }

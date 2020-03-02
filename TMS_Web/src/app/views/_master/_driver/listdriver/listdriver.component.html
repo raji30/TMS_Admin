@@ -4,8 +4,8 @@
     <div class="col-8 col-sm-8 col-md-8">
       <div class="row">
         <div class="col-6 col-sm-6 col-md-6">
-          <h5 class="card-subtitle mb-2" style="color: black">
-            <img src="assets/img/brand/user-identity4.png" /> Drivers</h5>
+          <h5 class="card-subtitle mb-2">
+            Drivers</h5>
         </div>
         <div class="col-6 col-sm-6 col-md-6">
           <div class="container text-right">
@@ -16,12 +16,12 @@
                     <img src="assets/img/brand/search16px.png" /> &nbsp;
                   </div>
                   <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text"
-                    placeholder="Search..">
+                    style="border-radius: 1rem;" placeholder="Search..">
                 </div>
               </div>
-              <div class="col-1 col-sm-1 col-md-1">
+              <!-- <div class="col-1 col-sm-1 col-md-1">
                 <img src="assets/img/brand/broom16px.png" (click)="clear_search()" tooltip="clear" />
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -39,31 +39,37 @@
       <table class="table table-sm">
         <tr ngclass="btn-primary">
           <th hidden="true">Driverkey</th>
-          <th>ID</th>
-          <th>FirstName</th>
-          <th>LastName</th>
-          <th>LicenseNo</th>
-          <th>LicenseExpiryDate</th>
+          <th scope="col" class="pointer" (click)="sort('DriverId')">ID &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer" (click)="sort('FirstName')">First Name &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer" (click)="sort('LastName')">Last Name &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer" (click)="sort('DriversLicenseNo')">License No &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer" (click)="sort('LicenseExpiryDate')">License Expiry Date &nbsp;<i
+              class="fa fa-sort" aria-hidden="true"></i>
+          </th>
         </tr>
-        <tr *ngFor="let driv of drivers | grdFilter: {DriverId: searchText,FirstName: searchText, LastName: searchText}">
+        <tr *ngFor="let driv of drivers | grdFilter: {DriverId: searchText,FirstName: searchText, LastName: searchText,
+          DriversLicenseNo: searchText, LicenseExpiryDate: searchText}|paginate:{itemsPerPage:10,currentPage:p,totalItems: count}
+          ">
           <td hidden="true">{{driv.DriverKey}}</td>
           <td>{{driv.DriverId}}</td>
           <td> <a [routerLink]="" (click)="loadCustomerToEdit(driv.DriverKey)">
               {{driv.FirstName}}</a> </td>
           <td>{{driv.LastName}}</td>
           <td>{{driv.DriversLicenseNo}}</td>
-          <td>{{driv.LicenseExpiryDate|date}} </td>
-
-
-          <!-- <td class="tbl2">
-            <button type="button" class="btn btn-info btn-sm" (click)="loadCustomerToEdit(driv.DriverKey)">Edit</button>
-          </td> -->
-          <!-- <td class="tbl2">
-                  <button type="button" class="btn btn-danger btn-sm"
-                    (click)="deleteCustomer(cust.CustomerKey)">Delete</button>
-                </td> -->
+          <td>{{driv.LicenseExpiryDate|date}} </td>        
         </tr>
       </table>
+      <div class="container text-right">
+        <pagination-controls (pageChange)="p=$event" autoHide="true" responsive="true"> </pagination-controls>
+      </div>
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
       <div class="row" *ngIf="show_addupdatedriver">
@@ -295,7 +301,7 @@
 
           <span class="text-muted">Id <b>{{driverModel.DriverId}}</b> </span><br>
           <span class="text-muted">License no </span> <br>
-           <span><b> {{driverModel.DriversLicenseNo}} </b>
+          <span><b> {{driverModel.DriversLicenseNo}} </b>
           </span>
           <br><br>
           <span class="text-muted"> Expiry Date </span><br>
@@ -332,5 +338,3 @@
     </div>
   </div>
 </div>
-
-

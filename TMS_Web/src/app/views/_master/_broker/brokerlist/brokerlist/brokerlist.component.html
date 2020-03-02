@@ -5,8 +5,8 @@
     <div class="col-8 col-sm-8 col-md-8">
       <div class="row">
         <div class="col-6 col-sm-6 col-md-6">
-          <h5 class="card-subtitle mb-2" style="color: black">
-            <img src="assets/img/brand/user-identity4.png" /> Brokers</h5>
+          <h5 class="card-subtitle mb-2">
+           Brokers</h5>
         </div>
         <div class="col-6 col-sm-6 col-md-6">
           <div class="container text-right">
@@ -16,7 +16,7 @@
                   <div class="img-group-prepend">
                     <img src="assets/img/brand/search16px.png" /> &nbsp;
                   </div>
-                  <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text"
+                  <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text" style="border-radius: 1rem;"
                     placeholder="Search..">
                 </div>
               </div>
@@ -40,11 +40,14 @@
       <table class="table table-sm">
         <tr ngclass="btn-primary">
           <th hidden="true">BrokerKey</th>
-          <th>ID</th>
-          <th>Name</th>           
+          <th scope="col" class="pointer"  (click)="sort('CustId')"   >ID &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer"  (click)="sort('CustId')"   >Name &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+          </th>           
 
         </tr>
-        <tr *ngFor="let brok of brokers | grdFilter: {BrokerId: searchText,BrokerName: searchText}">
+        <tr *ngFor="let brok of brokers | grdFilter: {BrokerId: searchText,BrokerName: searchText}|paginate:{itemsPerPage:20,currentPage:p,totalItems: count}
+        ">
           <td hidden="true">{{brok.BrokerKey}}</td>
           <td>{{brok.BrokerId}}</td>
           <td> <a [routerLink]="" (click)="EditBroker(brok.BrokerKey)">{{brok.BrokerName}}</a> </td>
@@ -58,6 +61,13 @@
           </td> -->
         </tr>
       </table>
+      
+ <div class="container text-right"> 
+  <pagination-controls 
+  (pageChange)="p=$event"
+  autoHide="true"
+  responsive="true"> </pagination-controls>     
+</div>
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
       <div class="row" *ngIf="show_addupdateBroker">

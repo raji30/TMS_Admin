@@ -17,6 +17,14 @@ export class DefaultLayoutComponent {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement = document.body;
+  public menuColor: string;
+
+  public lblDashboardColor: string;
+  public lblOrdersColor: string;
+  public lblSchedulersColor: string;
+  public lblDispatchColor: string;
+  public lblInvoiceColor: string;
+  public lblAdminColor: string;
 
   currentUser: Loginresult;
 
@@ -38,6 +46,27 @@ export class DefaultLayoutComponent {
     this.authenticationService.currentUser.subscribe(
       x => (this.currentUser = x)
     );
+  }
+
+  changeColor(menu: string) {
+    this.refreshColor();
+    if (menu == "Dashboard") {
+      this.lblDashboardColor = "cornflowerblue" ;
+    } else if (menu == "Orders") {
+      this.lblOrdersColor = "cornflowerblue";
+    } else if (menu == "Scheduler") {
+      this.lblSchedulersColor = "cornflowerblue";
+    } else if (menu == "Dispatch") {
+      this.lblDispatchColor = "cornflowerblue";
+    } else if (menu == "Invoice") {
+      this.lblInvoiceColor = "cornflowerblue";
+    } else if (menu == "Admin") {
+      this.lblAdminColor = "cornflowerblue";
+    }
+  }
+  refreshColor() {
+    this.lblDashboardColor = this.lblOrdersColor = this.lblSchedulersColor = this.lblDispatchColor = this.lblInvoiceColor = this.lblAdminColor =
+      "white";
   }
 
   logout() {

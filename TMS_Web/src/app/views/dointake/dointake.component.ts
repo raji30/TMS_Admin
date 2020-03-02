@@ -39,6 +39,7 @@ import { AppSettings } from "./../../_constants/appsettings";
 import { FileUploadService } from "../../_services/fileupload.service";
 import { findLast } from "@angular/compiler/src/directive_resolver";
 import { FileUploaderService } from "../../_services/file-uploader.service";
+import { Customer } from '../../_models/customer';
 
 //const URL = "https://evening-anchorage-3159.herokuapp.com/api/";
 //const URL = 'http://localhost:4200/api';
@@ -49,12 +50,8 @@ import { FileUploaderService } from "../../_services/file-uploader.service";
   styleUrls: ["./dointake.component.scss"]
 })
 export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
-  subscription: Subscription;
- // bsConfig: Partial<BsDatepickerConfig>;
-  @Input() orderKeyinput: string;
-  // broker: Broker[];
-  // brokerName: string = "Select Broker";
-
+  subscription: Subscription; 
+  @Input() orderKeyinput: string;  
   Orderlist: Array<DeliveryOrderHeader> = [];
 
   ordertypelist: OrderType[];
@@ -132,6 +129,11 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   IsTrixaleChecked: boolean = false;
   IsNeedstobescaledChecked: boolean = false;
 
+  isDesc: boolean = false;
+  column: string = "OrderNo";
+  p: number = 1;
+  count: number;
+
   constructor(
     private toastr: ToastrService,
     private http: HttpClient,
@@ -140,18 +142,19 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private fileUploadService: FileUploadService,
-    private fileUploaderService:FileUploaderService
+    private fileUploaderService:FileUploaderService,
   ) {
     this.doHeader = null;
     // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
-  onSelectedCustKeyAddress(addressKey: string) {
-    this.doHeader.CustKey = addressKey;
+  onSelectedCustKeyAddress(customer: Customer) {
+    this.doHeader.CustKey =customer.CustomerKey; 
+    this.doHeader.BillToAddress = customer.addrkey;
   }
-  onSelectedBilltoAddress(addressKey: string) {
-    this.doHeader.BillToAddress = addressKey;
-  }
+  // onSelectedBilltoAddress(addressKey: string) {
+  //   this.doHeader.BillToAddress = addressKey;
+  // }
   onSelectedPickupAddress(addressKey: string) {
     this.doHeader.SourceAddress = addressKey;
   }
@@ -180,8 +183,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.doHeader.orderdetails = new Array<Order_details>();
     //this.orderNo = this.route.snapshot.paramMap.get("order");
     this.orderNo = this.orderKeyinput;
-
     this.showDO = false;
+    this.fileUploaderService.clearQueue();
     
     this.master.getContainerSizeList().subscribe(
       data => (this.containersizelist = data),
@@ -232,7 +235,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     );
 
     this.service.getOrderlist().subscribe(
-      data => (this.Orderlist = data),
+      data => (this.Orderlist = data, 
+        this.count =this.Orderlist.length ),
       error => console.log(error),
       () => console.log("Get OrderList complete", this.Orderlist)
     );
@@ -293,14 +297,14 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
       this.showError("Customer is required", "Header");
       return;
     }
-    if (
-      this.doHeader.BillToAddress == null ||
-      this.doHeader.BillToAddress == undefined ||
-      this.doHeader.BillToAddress == ""
-    ) {
-      this.showError("Consignee is required", "Header");
-      return;
-    }
+    // if (
+    //   this.doHeader.BillToAddress == null ||
+    //   this.doHeader.BillToAddress == undefined ||
+    //   this.doHeader.BillToAddress == ""
+    // ) {
+    //   this.showError("Consignee is required", "Header");
+    //   return;
+    // }
     if (
       this.doHeader.SourceAddress == null ||
       this.doHeader.SourceAddress == undefined ||
@@ -325,6 +329,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
       this.showError("Container data is missing!!", "Container");
       return;
     }
+    
+    this.doHeader.BillToAddress = this.doHeader.CustKey;
     if (!this.isEditmode) {
       this.service.saveDOHeader(form.value).subscribe(
         result => {
@@ -363,7 +369,8 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
         results => {
           this.showSuccess("Order Updated successfully", "Order Update");
           this.service.getOrderlist().subscribe(
-            data => (this.Orderlist = data),
+            data => (this.Orderlist = data,
+            this.count = this.Orderlist.length),
             error => console.log(error),
             () => console.log("Get OrderList complete", this.Orderlist)
           );
@@ -439,7 +446,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   StatusDropDownChanged(val: number) {
-    if (val.toString() === "10") {
+    if (val.toString() === "8") {
       //OnHold
       this.HolddropdownVisible = true;
     } else {
@@ -592,6 +599,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     this.CreateOrEditOrder = false;
     this.showImage = false;
     this.isEditmode = false;
+    this.fileUploaderService.clearQueue();
   }
 
   /////////////////////////////////////////////
@@ -755,5 +763,57 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   onCompleteItem($event) {
     console.log($event);
   //  alert("Upload Complete");
+  }
+  
+  sort(column) {
+    this.isDesc = !this.isDesc; //change the direction
+    this.column = column;
+    let direction = this.isDesc ? 1 : -1;    
+
+    this.Orderlist = [...this.Orderlist].sort((n1, n2) => {
+      if ((this.column == "OrderNo")) {
+        if (n1.OrderNo > n2.OrderNo) {
+          return 1* direction;
+        } else if (n1.OrderNo < n2.OrderNo) {
+          return -1* direction;
+        } else return 0;
+      }
+
+      if ((this.column == "ordertypedescription")) {
+        if (n1.ordertypedescription > n2.ordertypedescription) {
+          return 1* direction;
+        } else if (n1.ordertypedescription < n2.ordertypedescription) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "BillToAddr")) {
+        if (n1.BillToAddr > n2.BillToAddr) {
+          return 1* direction;
+        } else if (n1.BillToAddr < n2.BillToAddr) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "SourceAddr")) {
+        if (n1.SourceAddr > n2.SourceAddr) {
+          return 1* direction;
+        } else if (n1.SourceAddr < n2.SourceAddr) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "DestinationAddr")) {
+        if (n1.DestinationAddr > n2.DestinationAddr) {
+          return 1* direction;
+        } else if (n1.DestinationAddr < n2.DestinationAddr) {
+          return -1* direction;
+        } else return 0;
+      }
+      if ((this.column == "statusdescription")) {
+        if (n1.statusdescription > n2.statusdescription) {
+          return 1* direction;
+        } else if (n1.statusdescription < n2.statusdescription) {
+          return -1* direction;
+        } else return 0;
+      }     
+    });
   }
 }
