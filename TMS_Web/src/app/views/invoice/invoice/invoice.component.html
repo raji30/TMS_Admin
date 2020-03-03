@@ -3,7 +3,7 @@
     <div class="col-sm-2 col-md-2 col-lg-2 scrollbar" id="style" >
         <h5>&nbsp; Invoice<span class="badge badge-warning"> New</span></h5>
         <br>
-        <div class="form-group input-group input-group-sm">
+        <div class="form-group input-group input-group-sm" *ngIf="Data.length != 0">
             <div class="img-group-prepend">
                 <img src="assets/img/brand/search16px.png" /> &nbsp;
             </div>
@@ -25,6 +25,9 @@
                 </tr>
             </tbody>
         </table>
+        <div *ngIf="Data.length === 0">
+            <h6 style="color: darkorange;">No Orders for Invoice! </h6>
+          </div>
    
     </div>
     <div class="col-sm-10 col-md-10 col-lg-10 ">       

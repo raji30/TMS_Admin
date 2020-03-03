@@ -50,8 +50,7 @@ public getDrivers() {
 
     return this.http.put<Driver>(
       AppSettings._BaseURL + "UpdateDriver",
-      driver,
-      httpOptions
+      driver      
     );
   }
   getDriverById(id: string) {

@@ -12,6 +12,7 @@ import { ToastrService } from "ngx-toastr";
 import { Dispatch } from "../../_models/dispatch";
 import { DispatchupdateComponent } from "../dispatchupdate/dispatchupdate.component";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+import { CityService } from '../../_services/city.service';
 
 @Component({
   selector: "app-dispathdelivery",
@@ -45,6 +46,7 @@ export class DispathdeliveryComponent implements OnInit {
   routekey: string = "";
   OrderDetailKey: string = "";
   driverkey: string;
+  driver: string;
   drivernotes: string;
   appointmentNo: string;
   PortWaitingTimeFrom: Date;
@@ -63,6 +65,7 @@ export class DispathdeliveryComponent implements OnInit {
   showaddupdatedispatchitems: boolean = false;
   searchText: string;
   modalRef: NgbModalRef;
+  userData:any;
   constructor(
     private _NgbModal: NgbModal,
     private orderService: DeliveryOrderService,
@@ -71,9 +74,17 @@ export class DispathdeliveryComponent implements OnInit {
     private driverservice: DriverService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private cityService: CityService
   ) {
     //this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.cityService.GetCity().subscribe(
+      data => {
+        Object.assign(this.userData, data);
+      },
+      error => {
+        console.log("Something wrong here");
+      }); 
   }
 
   ngOnInit() {
@@ -250,6 +261,8 @@ export class DispathdeliveryComponent implements OnInit {
     this.showdispatchitemlist = true;
     this.showaddupdatedispatchitems = false;
     this.selectedKey = "";
+    this.GetOrderstoDispatchDelivery();
+    this.loadDispatchItemsList();
   }
 
   addupdateDispatch() {
@@ -271,6 +284,7 @@ export class DispathdeliveryComponent implements OnInit {
     if (this.routekey != "" || this.rowindex >= 0) {
       this.dispatchDetails[this.rowindex].appointmentno = this.appointmentNo;
       this.dispatchDetails[this.rowindex].driverkey = this.driverkey;
+      this.dispatchDetails[this.rowindex].driver = this.driver;
       this.dispatchDetails[this.rowindex].drivernotes = this.drivernotes;
       this.dispatchDetails[this.rowindex].chassis = this.Chassis;
       this.dispatchDetails[this.rowindex].legno = this.legno;
@@ -291,7 +305,8 @@ export class DispathdeliveryComponent implements OnInit {
       this.dispatchDetails[
         this.rowindex
       ].actualdeparture = this.actualdeparture;
-
+      this.clear();
+      this.showaddupdateEntryDiv = false;
       return;
     }
 
@@ -299,6 +314,7 @@ export class DispathdeliveryComponent implements OnInit {
     newRow.OrderDetailKey = this.DetailsData.OrderDetailKey;
     newRow.appointmentno = this.appointmentNo;
     newRow.driverkey = this.driverkey;
+    newRow.driver = this.driver;
     newRow.drivernotes = this.drivernotes;
     newRow.chassis = this.Chassis;
     newRow.legno = this.legno;
@@ -339,6 +355,12 @@ export class DispathdeliveryComponent implements OnInit {
     this.actualdeparture = details.actualdeparture;
     this.showaddupdateEntryDiv = true;
     this.lbladdupdate = "Update";
+  }
+
+  drpdriver_ChangedEvent(driverkey: string) {
+    var Data = this.driverList.find(key => key.DriverKey == driverkey);
+    this.driverkey = Data.DriverKey;
+    this.driver = Data.DriverId;
   }
 
   deleteRow(details: Dispatch, index: number) {
@@ -384,26 +406,39 @@ export class DispathdeliveryComponent implements OnInit {
   load_DispatchForEdit(data: any) {
     this.showaddupdatedispatchitems = true;
     this.showdispatchitemlist = false;
-  
-    this.HeaderData = new DeliveryOrderHeader();
-    this.HeaderData.orderdetails = new Array<Order_details>();
 
-    this.dispatchDeliveryService.GetDispatch_OrderandDetails(data.OrderDetails.OrderDetailKey).subscribe(
-      result => {this.HeaderData =result;       
+    //this.HeaderData = new DeliveryOrderHeader();
+    //this.HeaderData.orderdetails = new Array<Order_details>();
+
+    this.orderService.GetbyKey(data.OrderKey).subscribe(
+      data => {
+        this.HeaderData = data;
       },
-      error => console.log(error),
-      () => console.log("Get dispatchList", this.dispatchList)
+      error => {
+        console.log(error);
+        this.showImage = true;
+      }
     );
+    console.log("data", data);
+    this.dispatchList = data;
 
-    this.dispatchDetails =  new  Array<Dispatch>(); 
-    this.dispatchDetails = data.dispatchDetails;
+    // this.dispatchDeliveryService.GetDispatch_OrderandDetails(data.OrderDetails.OrderDetailKey).subscribe(
+    //   result => {this.HeaderData =result;console.log("Get HeaderData", this.HeaderData);
+    //   },
+    //   error => console.log(error),
+    //   () => console.log("Get HeaderData", this.HeaderData)
+    // );
+    //this.dispatchList  = data;
+    //console.log("Get dispatchList", this.dispatchList)
+
+    this.dispatchDetails = data.dispatchdetails;
+    console.log("Get orderdetails", this.dispatchDetails);
     this.DetailsData = data.OrderDetails;
+    console.log("Get orderdetails", this.DetailsData);
 
-    // this.HeaderData = new DeliveryOrderHeader();
-    //  this.HeaderData.OrderNo =data.OrderNo;
+    //this.HeaderData.OrderNo =data.OrderNo;
     //  this.HeaderData.OrderDate =data.OrderDate;
     //  this.HeaderData.ordertypedescription =data.ordertypedescription;
-   
   }
 
   showSuccess(message: string, title: string) {
@@ -419,7 +454,5 @@ export class DispathdeliveryComponent implements OnInit {
 
   showInfo(message: string, title: string) {
     this.toastr.info(message, title, { timeOut: 2000, closeButton: true });
-  }
-
-
+  } 
 }

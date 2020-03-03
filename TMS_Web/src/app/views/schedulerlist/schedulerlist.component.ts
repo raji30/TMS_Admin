@@ -78,8 +78,8 @@ export class SchedulerlistComponent implements OnInit {
 
   isDesc: boolean = false;
   column: string = "containerid";
-p: number = 1;
- count: number;
+  p: number = 1;
+  count: number;
 
   constructor(
     private _NgbModal: NgbModal,
@@ -140,8 +140,9 @@ p: number = 1;
     }
 
     //Order Details
-    this.DetailData.AppDateFrom = new Date(this.AppDateFrom); 
-    this.DetailData.AppDateTo = new Date(this.AppDateTo); 
+    //this.DetailData = new Order_details();
+    this.DetailData.AppDateFrom = new Date(this.AppDateFrom);
+    this.DetailData.AppDateTo = new Date(this.AppDateTo);
     this.DetailData.LastFreeDay = new Date(this.LastFreeDay);
     this.DetailData.SchedulerNotes = this.SchedulerNotes;
 
@@ -203,7 +204,7 @@ p: number = 1;
             return;
           }
         );
-    } 
+    }
 
     var DOdetail = this.DetailData;
     DOdetail.status = "3"; //In progress
@@ -213,10 +214,12 @@ p: number = 1;
         this.loaddata();
         this.loadScheduleddata();
         this.showScheduledContainerList = true;
-        this.showScheduler  = false;
-        this.showSuccess("Container - " + DOdetail.ContainerNo + " Holded!", "Scheduler-Update");
+        this.showScheduler = false;
+        this.showSuccess(
+          "Container - " + DOdetail.ContainerNo + " Holded!",
+          "Scheduler-Update"
+        );
         return;
-
       },
       error => {
         console.log(error);
@@ -225,16 +228,10 @@ p: number = 1;
       }
     );
 
-    this.showScheduler = false;
-    this.DetailsData = null;
-    this.optionsChecked = null;
-
-    for (var j = 0; j < this.itemlist.length; j++) {
-      this.itemlist[j].isChecked = false;
-    }
+    this.showScheduler = false; 
     this.loaddata();
     this.loadScheduleddata();
-    
+    this.clear();
     this.showSuccess("Container Scheduled successfully", "Scheduler");
   }
 
@@ -251,6 +248,8 @@ p: number = 1;
     //   this.DetailData = value;
     //   console.log("Testing DetailData ", this.DetailData);
     // }
+    this.clear();
+
     this.OrderDetailKey = value.OrderDetailKey;
 
     this.orderService.GetbyKey(value.OrderKey).subscribe(
@@ -289,7 +288,7 @@ p: number = 1;
   loadScheduleddata() {
     this.schedulerService.GetScheduledContainers().subscribe(
       data => {
-        this.scheduledContainerList = data;       
+        this.scheduledContainerList = data;
       },
       error => console.log(error),
       () => console.log("Get OrderstoSchedule", this.scheduledContainerList)
@@ -348,10 +347,7 @@ p: number = 1;
   onCancel() {
     this.showScheduledContainerList = true;
     this.showScheduler = false;
-
-    for (var j = 0; j < this.itemlist.length; j++) {
-      this.itemlist[j].isChecked = false;
-    }
+    this.clear();    
   }
 
   loaddata_forEdit(data: Order_details) {
@@ -423,9 +419,8 @@ p: number = 1;
     //   );
   }
 
-  hold_Schedule()
-  {
-      var DOdetail = this.DetailData;
+  hold_Schedule() {
+    var DOdetail = this.DetailData;
     DOdetail.status = "4"; //4- Hold
 
     this.orderService.UpdateDOdetailStatus(this.DetailData).subscribe(
@@ -433,10 +428,12 @@ p: number = 1;
         this.loaddata();
         this.loadScheduleddata();
         this.showScheduledContainerList = true;
-        this.showScheduler  = false;
-        this.showSuccess("Container - " + DOdetail.ContainerNo + " Holded!", "Scheduler-Update");
+        this.showScheduler = false;
+        this.showSuccess(
+          "Container - " + DOdetail.ContainerNo + " Holded!",
+          "Scheduler-Update"
+        );
         return;
-
       },
       error => {
         console.log(error);
@@ -445,9 +442,8 @@ p: number = 1;
       }
     );
   }
-  complete_Schedule()
-  {
-  var DOdetail = this.DetailData;
+  complete_Schedule() {
+    var DOdetail = this.DetailData;
     DOdetail.status = "5"; //4- complete schedule
 
     this.orderService.UpdateDOdetailStatus(this.DetailData).subscribe(
@@ -455,10 +451,13 @@ p: number = 1;
         this.loaddata();
         this.loadScheduleddata();
         this.showScheduledContainerList = true;
-        this.showScheduler  = false;
-        this.showSuccess("Schedule Completed for the Container :" +this.DetailData.ContainerNo ! , "Scheduler-Update");
+        this.showScheduler = false;
+        this.showSuccess(
+          "Schedule Completed for the Container :" +
+            this.DetailData.ContainerNo!,
+          "Scheduler-Update"
+        );
         return;
-
       },
       error => {
         console.log(error);
@@ -468,65 +467,82 @@ p: number = 1;
     );
   }
 
-
-  
   sort(column) {
     this.isDesc = !this.isDesc; //change the direction
     this.column = column;
-    let direction = this.isDesc ? 1 : -1;    
+    let direction = this.isDesc ? 1 : -1;
 
-    this.scheduledContainerList = [...this.scheduledContainerList].sort((n1, n2) => {
-      if ((this.column == "containerid")) {
-        if (n1.containerid > n2.containerid) {
-          return 1* direction;
-        } else if (n1.containerid < n2.containerid) {
-          return -1* direction;
-        } else return 0;
-      }
+    this.scheduledContainerList = [...this.scheduledContainerList].sort(
+      (n1, n2) => {
+        if (this.column == "containerid") {
+          if (n1.containerid > n2.containerid) {
+            return 1 * direction;
+          } else if (n1.containerid < n2.containerid) {
+            return -1 * direction;
+          } else return 0;
+        }
 
-      if ((this.column == "ContainerNo")) {
-        if (n1.ContainerNo > n2.ContainerNo) {
-          return 1* direction;
-        } else if (n1.ContainerNo < n2.ContainerNo) {
-          return -1* direction;
-        } else return 0;
-      }
-      if ((this.column == "ContainerSizeDesc")) {
-        if (n1.ContainerSizeDesc > n2.ContainerSizeDesc) {
-          return 1* direction;
-        } else if (n1.ContainerSizeDesc < n2.ContainerSizeDesc) {
-          return -1* direction;
-        } else return 0;
-      }
-      if ((this.column == "LastFreeDay")) {
-        if (n1.LastFreeDay > n2.LastFreeDay) {
-          return 1* direction;
-        } else if (n1.LastFreeDay < n2.LastFreeDay) {
-          return -1* direction;
-        } else return 0;
-      }
+        if (this.column == "ContainerNo") {
+          if (n1.ContainerNo > n2.ContainerNo) {
+            return 1 * direction;
+          } else if (n1.ContainerNo < n2.ContainerNo) {
+            return -1 * direction;
+          } else return 0;
+        }
+        if (this.column == "ContainerSizeDesc") {
+          if (n1.ContainerSizeDesc > n2.ContainerSizeDesc) {
+            return 1 * direction;
+          } else if (n1.ContainerSizeDesc < n2.ContainerSizeDesc) {
+            return -1 * direction;
+          } else return 0;
+        }
+        if (this.column == "LastFreeDay") {
+          if (n1.LastFreeDay > n2.LastFreeDay) {
+            return 1 * direction;
+          } else if (n1.LastFreeDay < n2.LastFreeDay) {
+            return -1 * direction;
+          } else return 0;
+        }
 
-      if ((this.column == "PickupDateTime")) {
-        if (n1.PickupDateTime > n2.PickupDateTime) {
-          return 1* direction;
-        } else if (n1.PickupDateTime < n2.PickupDateTime) {
-          return -1* direction;
-        } else return 0;
+        if (this.column == "PickupDateTime") {
+          if (n1.PickupDateTime > n2.PickupDateTime) {
+            return 1 * direction;
+          } else if (n1.PickupDateTime < n2.PickupDateTime) {
+            return -1 * direction;
+          } else return 0;
+        }
+        if (this.column == "DropOffDateTime") {
+          if (n1.DropOffDateTime > n2.DropOffDateTime) {
+            return 1 * direction;
+          } else if (n1.DropOffDateTime < n2.DropOffDateTime) {
+            return -1 * direction;
+          } else return 0;
+        }
+        if (this.column == "StatusDesc") {
+          if (n1.StatusDesc > n2.StatusDesc) {
+            return 1 * direction;
+          } else if (n1.StatusDesc < n2.StatusDesc) {
+            return -1 * direction;
+          } else return 0;
+        }
       }
-      if ((this.column == "DropOffDateTime")) {
-        if (n1.DropOffDateTime > n2.DropOffDateTime) {
-          return 1* direction;
-        } else if (n1.DropOffDateTime < n2.DropOffDateTime) {
-          return -1* direction;
-        } else return 0;
-      }
-      if ((this.column == "StatusDesc")) {
-        if (n1.StatusDesc > n2.StatusDesc) {
-          return 1* direction;
-        } else if (n1.StatusDesc < n2.StatusDesc) {
-          return -1* direction;
-        } else return 0;
-      }
-    });
+    );
+  }
+
+  clear() {
+    this.AppDateFrom = undefined;
+    this.AppDateTo = undefined;
+    this.LastFreeDay = undefined;
+    this.SchedulerNotes = undefined;
+    //this.DetailData = null;
+    this.PickupDateTime = undefined;
+    this.DropOffDateTime = undefined;
+    this.Legtype = undefined;
+    this.DriverNotes = undefined;
+    //this.optionsChecked = null;
+
+    for (var j = 0; j < this.itemlist.length; j++) {
+      this.itemlist[j].isChecked = false;
+    }
   }
 }

@@ -49,9 +49,7 @@ CreateBroker(broker: Broker) {
 
     return this.http.put<Broker>(
       AppSettings._BaseURL + "UpdateBroker",
-      broker,
-      httpOptions
-    );
+      broker);
   }
   GetBrokerByID(id: string) {
     var token = JSON.parse(localStorage.getItem("currentUser"));

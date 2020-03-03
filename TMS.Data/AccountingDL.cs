@@ -151,15 +151,14 @@ namespace TMS.Data
         {
             try
             {
-                string sql = " delete from dbo.itemsforaccounting " +
-                "where orderdetailkey= orderdetailkey ";
+                string sql = " delete from dbo.itemsforaccounting where orderdetailkey=" + " '" + orderdetailkey + "' "; 
 
                 conn = new NpgsqlConnection(connString);
                 conn.Open();
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.Parameters.AddWithValue("@orderdetailkey", NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(orderdetailkey));
+                   // cmd.Parameters.AddWithValue("@orderdetailkey", NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(orderdetailkey));
                     int returnvalue = cmd.ExecuteNonQuery();
                 }
                 return true;

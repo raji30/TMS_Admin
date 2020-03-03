@@ -42,8 +42,7 @@ public GetCarriers() {
 
     return this.http.post<Carrier>(
       AppSettings._BaseURL + "UpdateCarrier",
-      carrier,
-      httpOptions
+      carrier      
     );
   }
   GetCarrierByID(id: string) {

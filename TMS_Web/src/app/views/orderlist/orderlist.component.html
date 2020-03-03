@@ -34,29 +34,29 @@
                           <span>{{ order.OrderKey}} </span>
                         </td>
 
-                    <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'InProgress'"><span
+                    <td *ngIf=" order.statusdescription  == 'In Progress'"><span
                         class="badge badge-pill badge-primary">{{ order.statusdescription }}</span></td>
-                    <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'OnHold'"><span
+                    <td *ngIf=" order.statusdescription  == 'On Hold'"><span
                         class="badge badge-pill badge-warning">{{ order.statusdescription }}</span></td>
-                    <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'Complete'"><span
+                    <td *ngIf=" order.statusdescription  == 'Completed'"><span
                         class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-                    <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'CreditDenied'"><span
+                    <td *ngIf="order.statusdescription  == 'Credit Denied'"><span
                         class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-                    <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'SenttoScheduler'">
+                    <td *ngIf=" order.statusdescription  == 'Send to Scheduler'">
                       <span class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-                    <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'SenttoDispatch'">
+                    <td *ngIf=" order.statusdescription  == 'Send to Dispatch'">
                       <span class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-                    <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'SenttoBilling'"><span
+                    <td *ngIf=" order.statusdescription  == 'Send to Billing'"><span
                         class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-                    <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'InvoiceGenerated'">
+                    <td *ngIf="order.statusdescription  == 'Invoice Generated'">
                       <span class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
-                    <td *ngIf="order.statusdescription !=undefined && order.statusdescription  == 'Reviewed'"><span
+                    <td *ngIf=" order.statusdescription  == 'Review completed'"><span
                         class="badge badge-pill badge-success">{{ order.statusdescription }}</span></td>
 
                     <td hidden="true">
@@ -104,8 +104,6 @@
 
                       <!-- <app-tab [orderKeyinput]= order.OrderKey></app-tab> -->
                     </td>
-
-
                   </tr>
                   <tr *ngIf="Orderlist.length===0">
                     <td colspan="3">

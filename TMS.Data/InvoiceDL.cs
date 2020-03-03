@@ -765,7 +765,7 @@ namespace TMS.Data
                             rate.itemid = Utils.CustomParse<string>(reader["itemid"]);
                             rate.description = Utils.CustomParse<string>(reader["itemdesc"]);
                             rate.unitprice = Utils.CustomParse<decimal>(reader["unitprice"]);
-                            rate.baserate = Utils.CustomParse<decimal>(reader["baserate"]);
+                           // rate.baserate = Utils.CustomParse<decimal>(reader["baserate"]);
                             rateList.Add(rate);
                         }
                     } while (reader.NextResult());

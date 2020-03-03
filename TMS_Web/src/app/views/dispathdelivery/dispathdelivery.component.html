@@ -8,7 +8,7 @@
           <h5>Containers <span class="badge badge-warning">Recent</span></h5><br>
         </li>
         <li>
-          <div class="container text-left">
+          <div class="container text-left" *ngIf="ContainerDetails.length>0">
             <div class="form-group input-group input-group-sm">
               <div class="img-group-prepend">
                 <img src="assets/img/brand/search16px.png" /> &nbsp;
@@ -17,9 +17,13 @@
                 style="border-radius: 1rem;" type="text" placeholder="Search..">
             </div>
           </div>
+          <div *ngIf="ContainerDetails.length === 0">
+            <h6 style="color: darkorange;">No Containers for Dispatch! </h6>
+          </div>
           <br>
         </li>
-        <li *ngFor="let order of ContainerDetails| grdFilter: {containerid: SearchRecentContainer,ContainerNo: SearchRecentContainer} ; let ind=index;">
+        <li
+          *ngFor="let order of ContainerDetails| grdFilter: {containerid: SearchRecentContainer,ContainerNo: SearchRecentContainer} ; let ind=index;">
           <ul class="list-unstyled">
             <li>
               <p style="font-family:calibri;"> <a [routerLink]="" (click)="rowclickEvent(order)">
@@ -55,7 +59,8 @@
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6">
           <div class="container text-right">
-            <button class="btn btn-outline-primary btn-sm small" type="button" (click)="hold_Dispatch()">Hold</button> &nbsp;
+            <button class="btn btn-outline-primary btn-sm small" type="button" (click)="hold_Dispatch()">Hold</button>
+            &nbsp;
             <button class="btn btn-outline-primary btn-sm small" type="button" (click)="Submit()">Save</button> &nbsp;
             <button class="btn btn-outline-primary btn-sm small" type="button" (click)="Complete_Dispatch()">Delivery
               complete</button>
@@ -133,8 +138,8 @@
                 <div class="col-sm-8 col-md-8 col-lg-8">
                   <div style="word-wrap: break-word;">
                     {{HeaderData.SourceAddressBO.Name}}
-                    {{HeaderData.SourceAddressBO.Address1}}  {{HeaderData.SourceAddressBO.Address2}}
-                    {{HeaderData.SourceAddressBO.City}}  {{HeaderData.SourceAddressBO.Zip}}
+                    {{HeaderData.SourceAddressBO.Address1}} {{HeaderData.SourceAddressBO.Address2}}
+                    {{HeaderData.SourceAddressBO.City}} {{HeaderData.SourceAddressBO.Zip}}
                     {{HeaderData.SourceAddressBO.State}}
                   </div>
                 </div>
@@ -148,8 +153,8 @@
                 <div class="col-sm-8 col-md-8 col-lg-8">
                   <div style="word-wrap: break-word;">
                     {{HeaderData.DestinationAddressBO.Name}}
-                    {{HeaderData.DestinationAddressBO.Address1}}  {{HeaderData.DestinationAddressBO.Address2}}
-                    {{HeaderData.DestinationAddressBO.City}}  {{HeaderData.DestinationAddressBO.Zip}}
+                    {{HeaderData.DestinationAddressBO.Address1}} {{HeaderData.DestinationAddressBO.Address2}}
+                    {{HeaderData.DestinationAddressBO.City}} {{HeaderData.DestinationAddressBO.Zip}}
                     {{HeaderData.DestinationAddressBO.State}}
                   </div>
                 </div>
@@ -163,8 +168,8 @@
                 <div class="col-sm-8 col-md-8 col-lg-8">
                   <div style="word-wrap: break-word;">
                     {{HeaderData.ReturnAddressBO.Name}}
-                    {{HeaderData.ReturnAddressBO.Address1}}  {{HeaderData.ReturnAddressBO.Address2}}
-                    {{HeaderData.ReturnAddressBO.City}}  {{HeaderData.ReturnAddressBO.Zip}}
+                    {{HeaderData.ReturnAddressBO.Address1}} {{HeaderData.ReturnAddressBO.Address2}}
+                    {{HeaderData.ReturnAddressBO.City}} {{HeaderData.ReturnAddressBO.Zip}}
                     {{HeaderData.ReturnAddressBO.State}}
                   </div>
                 </div>
@@ -271,9 +276,10 @@
               <!-- <h5>Containers </h5> -->
               <div class="row">
                 <div class="table-responsive" style="overflow-x: auto">
-                  <table id = "DISPATCH" class="table table-custom table-sm table-hover table-striped table-warning ">
-                    <thead >
-                      <tr> 
+                  <table id="DISPATCH"
+                    class="table table-custom table-sm table-hover table-striped table-warning scrollbar ">
+                    <thead>
+                      <tr>
                         <th scope="col" class="text-left text-muted">Appointment No</th>
                         <th scope="col" class="text-left text-muted"> Chassis</th>
                         <th scope="col" class="text-left text-muted">Legno</th>
@@ -283,40 +289,41 @@
                         <th scope="col" class="text-left text-muted">Pickup-Drop</th>
                         <th scope="col" class="text-left text-muted">Driver</th>
                         <th scope="col" class="text-left text-muted"> Drivernotes</th>
+                        <th scope="col" class="text-left text-muted"> Status</th>
                         <th scope="col" class="text-center text-muted">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let data of dispatchDetails;let i = index">
-                        <td  style="color: darkslategrey;">
+                        <td style="color: darkslategrey;">
                           {{data.appointmentno}}
                         </td>
                         <td style="color: darkslategrey;">
                           {{data.Chassis}}
                         </td>
-                        <td  style="color: darkslategrey;">
+                        <td style="color: darkslategrey;">
                           {{data.legno}}
                         </td>
-                        <td  style="color: darkslategrey;">
+                        <td style="color: darkslategrey;">
                           {{data.legtype}}
                         </td>
-                        <td  style="color: darkslategrey;">
+                        <td style="color: darkslategrey;">
                           {{ data.portwaitingtimefrom|date}} - {{data.portwaitingtimeto|date}}
 
                         </td>
-                        <td  style="color: darkslategrey;">
+                        <td style="color: darkslategrey;">
                           {{ data.customerwaitingtimefrom|date}} - {{data.customerwaitingtimeto|date}}
                         </td>
-                        <td  style="color: darkslategrey;">
+                        <td style="color: darkslategrey;">
                           {{data.actualarrival|date}}-{{data.actualdeparture|date}}
                         </td>
-                        <td   style="color: darkslategrey;">
-                            Driver
+                        <td style="color: darkslategrey;">
+                          {{data.driver}}
                         </td>
-                        <td   style="color: darkslategrey;">
+                        <td style="color: darkslategrey;">
                           {{data.drivernotes}}
                         </td>
-                        <td  style="color: darkslategrey;">
+                        <td style="color: darkslategrey;">
                           <a tooltip="Upload file" (click)="editRow(data,i)">
                             <i class="fa fa-pencil"></i>
                           </a> &nbsp;&nbsp;
@@ -356,7 +363,8 @@
           <div class="col-sm-2 col-md-2 col-lg-2">
             <div class="form-group">
               <h6 class="text-muted">Driver</h6>
-              <select id="drpdriver" class="form-control form-control-sm" name="driverkey" [(ngModel)]="driverkey">
+              <select id="drpdriver" class="form-control form-control-sm" name="driverkey" [(ngModel)]="driverkey"
+                (change)="drpdriver_ChangedEvent($event.target.value)">
                 <option [value]="driver.DriverKey" *ngFor="let driver of driverList">{{driver.DriverId}}
                 </option>
               </select>
@@ -370,8 +378,8 @@
           <div class="col-sm-2 col-md-2 col-lg-2">
             <div class="form-group">
               <h6 class="text-muted">Chassis</h6>
-              <input class="form-control form-control-sm" type="text" name="Chassis" [(ngModel)]="Chassis"
-                placeholder="" />
+              <input class="form-control form-control-sm" type="text"  id="dynamicchassis" name="Chassis" [(ngModel)]="Chassis"
+                placeholder="Search"  (keyup)="getChassis($event)" />
             </div>
           </div>
           <div class="col-sm-2 col-md-2 col-lg-2">
@@ -392,7 +400,7 @@
               </select>
             </div>
           </div>
-         
+
 
         </div>
         <div class="row">
@@ -495,7 +503,7 @@
           </div>
           <div class="col-sm-3 col-md-3 col-lg-3">
             <div class="text-right">
-<label>.</label>
+              <label>.</label>
               <a type="button" class="btn btn-primary btn-sm" (click)="clear()">Clear</a>&nbsp;&nbsp;
               <button type="button" class="btn alert-dark btn-sm" style="border-radius: 1rem;"
                 (click)="addupdateDispatch()"> <i class="fa fa-plus" aria-hidden="true"></i> Add</button>
@@ -503,7 +511,6 @@
           </div>
         </div>
       </div>
-      
     </div>
 
     <div *ngIf="showdispatchitemlist">
@@ -528,17 +535,17 @@
               <th scope="col" class="text-muted">ID</th>
               <th scope="col" class="text-muted">Container</th>
               <th scope="col" class="text-muted" colspan="8"></th>
-              <th scope="col" class="text-muted">Action</th>
+              <th scope="col" class="text-muted">Status</th>
+              <th scope="col" class="text-muted">Next Action</th>
             </tr>
           </thead>
-          <tbody
-            *ngFor="let data of dispatchList| 
+          <tbody *ngFor="let data of dispatchList| 
           grdFilter: {containerid: searchText,ContainerNo: searchText,appointmentno: searchText,legno: searchText} ; 
           let ind=index;">
-            <tr >
-              <td> {{data.OrderDetails.containerid}}
+            <tr>
+              <td> <small> {{data.OrderDetails.containerid}}</small>
               </td>
-              <td>{{data.OrderDetails.ContainerNo}}
+              <td> <small style="color: cornflowerblue;" > {{data.OrderDetails.ContainerNo}} </small>
               </td>
               <td colspan="8">
                 <table class="table table-sm table-striped table-borderless">
@@ -581,18 +588,29 @@
 
               </td>
               <td>
+                <small *ngIf="data.OrderDetails.StatusDesc == 'Dispatch inprogress'" style="color:olivedrab;"> {{data.OrderDetails.StatusDesc}} </small>
+                <small  *ngIf="data.OrderDetails.StatusDesc != 'Dispatch inprogress'" style="color: cornflowerblue;"> {{data.OrderDetails.StatusDesc}} </small>
+              </td>
+              <td>
                 <!-- <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;"
                 data-toggle="modal"  data-target=".modal-editdispatch"  (click)="updateclick(data)">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   Update
-                </button> -->
+                </button> -->              
+
+                <strong> <i class="cil-chevron-circle-right-alt" style="color: yellowgreen;"></i></strong>
+                &nbsp;
+                <small  *ngIf="data.OrderDetails.StatusDesc == 'Dispatch inprogress'"  class="font-weight-normal" style="color: orange;">
+                  Proceed to Complete </small>
+                <small  *ngIf="data.OrderDetails.StatusDesc != 'Dispatch inprogress'" class="font-weight-normal" style="color: green;">
+                  Proceed to UnHold</small>
+                &nbsp;
                 <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;"
-                  (click)="load_DispatchForEdit(data)">
+                (click)="load_DispatchForEdit(data)">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  Update
                 </button>
               </td>
-            </tr>            
+            </tr>
           </tbody>
           <tr *ngIf="dispatchList.length===0">
             <td colspan="3">

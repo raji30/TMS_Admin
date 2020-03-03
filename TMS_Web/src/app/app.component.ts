@@ -1,15 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
-import { FiledownloadService } from './_services/filedownload.service';
-
+import { FiledownloadService } from "./_services/filedownload.service";
 @Component({
   // tslint:disable-next-line
   selector: "body",
   template: "<router-outlet></router-outlet>",
-  providers: [ FiledownloadService]
+  providers: [FiledownloadService]
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    //Get the user data from users.json
+  }
 
   ngOnInit() {
     this.router.events.subscribe(evt => {
@@ -18,6 +19,5 @@ export class AppComponent implements OnInit {
       }
       window.scrollTo(0, 0);
     });
-    
-  } 
+  }
 }
