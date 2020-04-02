@@ -72,6 +72,7 @@ export class SchedulerlistComponent implements OnInit {
   showImage = true;
   showSchedulerDiv = true;
   showScheduledContainerList: boolean;
+  btnCompleteScheduleDisabled: boolean = true;
 
   optionsChecked = [];
   modalRef: NgbModalRef;
@@ -128,6 +129,10 @@ export class SchedulerlistComponent implements OnInit {
   }
 
   onSubmit() {
+    if (!confirm("Are you sure you want to Save? ")) {    
+      return;
+    }
+
     if (
       this.AppDateFrom == null ||
       this.AppDateTo == null ||
@@ -345,6 +350,9 @@ export class SchedulerlistComponent implements OnInit {
   }
 
   onCancel() {
+    if (!confirm("Are you sure you want to cancel?")) {
+      return;
+    }
     this.showScheduledContainerList = true;
     this.showScheduler = false;
     this.clear();    
@@ -420,6 +428,9 @@ export class SchedulerlistComponent implements OnInit {
   }
 
   hold_Schedule() {
+    if (!confirm("Are you sure you want to Hold? ")) {
+      return;
+    }
     var DOdetail = this.DetailData;
     DOdetail.status = "4"; //4- Hold
 
@@ -443,6 +454,9 @@ export class SchedulerlistComponent implements OnInit {
     );
   }
   complete_Schedule() {
+    if (!confirm("Are you sure you want to Complete Schedule?")) {
+      return;
+    }
     var DOdetail = this.DetailData;
     DOdetail.status = "5"; //4- complete schedule
 

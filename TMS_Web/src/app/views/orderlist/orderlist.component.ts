@@ -22,13 +22,14 @@ export class OrderlistComponent implements OnInit {
   modalOrderKey: string;
   public orderinfo: Order_details[];
 
-  public pieChartLabels: string[] = [
+  public pieChartLabels: string[] = [    
+    "In Progress",
     "Scheduled",
-    "Pending Verification",
     "Dispatched",
+    "Hold",
     "Completed"
   ];
-  public pieChartData: number[] = [30, 5, 10, 5];
+  public pieChartData: number[] = [30, 5, 10, 5,89];
   public pieChartType = "pie";
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
@@ -39,7 +40,6 @@ export class OrderlistComponent implements OnInit {
   public barChartLabels: string[] = ["Dec 2018"];
   public barChartType = "bar";
   public barChartLegend = true;
-
 
   public barChartData: any[] = [
     { data: [65], label: "Total Orders" },
@@ -62,6 +62,17 @@ export class OrderlistComponent implements OnInit {
         error => console.log(error),
         () => console.log("Get OrderList complete", this.Orderlist)
       );
+
+   
+      this.service
+      .getorderstatusfordashboard()
+      .subscribe(
+        data => (this.pieChartData = data as any[]),
+        error => console.log(error),
+        () => console.log("Get pieChart Data", this.pieChartData)
+      );
+
+      console.log("Get pieChart Data", this.pieChartData)
   }
   open(orderParams) {
    // this.order = orderParams;

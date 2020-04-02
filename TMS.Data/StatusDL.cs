@@ -59,6 +59,45 @@ namespace TMS.Data
                 conn.Close();
             }
         }
+
+        public Int64[] fn_get_orderstatusfordashboard()
+        {
+            try
+            {
+                string sql = "dbo.fn_get_orderstatusfordashboard";
+                Int64[] list = new Int64[5];
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    var reader = cmd.ExecuteReader();
+                    int i = 0;
+                    do
+                    {
+                        while (reader.Read())
+                        {
+                            list[i]= Utils.CustomParse<Int64>(reader["status"]);
+                            i++;
+                        }
+                        
+                    }
+                    while (reader.NextResult());
+                    reader.Close();
+                }
+
+                return list;
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 
 }

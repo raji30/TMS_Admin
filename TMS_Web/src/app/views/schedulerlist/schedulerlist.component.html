@@ -51,11 +51,11 @@
         </div>
 
         <div class="col-sm-8 col-md-8 col-lg-8 text-right">
-          <button class="btn btn-outline-primary btn-sm small" type="button" (click)="hold_Schedule()">Hold Container</button> &nbsp;
+          <button class="btn btn-outline-primary btn-sm small" type="button" (click)="hold_Schedule()"> <i class="fa fa-pause-circle-o" aria-hidden="true"></i> Hold Container</button> &nbsp;
           &nbsp;
-          <button class="btn btn-outline-primary btn-sm small" type="button" (click)="onSubmit()">Save</button> &nbsp;
+          <button class="btn btn-outline-primary btn-sm small" type="button" (click)="onSubmit()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button> &nbsp;
           &nbsp;
-          <button class="btn btn-outline-primary btn-sm small" type="button" (click)="complete_Schedule()">Complete Schedule</button> &nbsp;
+          <button class="btn btn-outline-primary btn-sm small" type="button" (click)="complete_Schedule()" [disabled]="btnCompleteScheduleDisabled"> <i class="fa fa-check-circle-o" aria-hidden="true"></i> Complete Schedule</button> &nbsp;
           &nbsp;
           <button class="btn btn-outline-danger btn-sm small" type="button" (click)="onCancel()"> <i class="fa fa-ban"
               aria-hidden="true"></i>&nbsp;Cancel</button>

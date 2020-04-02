@@ -1,16 +1,16 @@
 <br>
 <div id="jumbotron">
   <div class="row">
-    <div class="col-8 col-sm-8 col-md-8">
+    <div class="col-sm-6 col-md-6 col-lg-6">
       <div class="row">
         <div class="col-6 col-sm-6 col-md-6">
-          <h5 class="card-subtitle mb-2" style="color: black">
+          <h5 class="card-subtitle mb-2" >
             <img src="assets/img/brand/user-identity4.png" /> Users</h5>
         </div>
         <div class="col-6 col-sm-6 col-md-6">
           <div class="container text-right">
             <div class="row">
-              <div class="col-11 col-sm-11 col-md-11">
+              <div class="col-12 col-sm-12 col-md-12">
                 <div class="form-group input-group input-group-sm">
                   <div class="img-group-prepend">
                     <img src="assets/img/brand/search16px.png" /> &nbsp;
@@ -19,15 +19,15 @@
                     placeholder="Search..">
                 </div>
               </div>
-              <div class="col-1 col-sm-1 col-md-1">
+              <!-- <div class="col-1 col-sm-1 col-md-1">
                 <img src="assets/img/brand/broom16px.png" (click)="clear_search()" tooltip="clear" />
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-4 col-sm-4 col-md-4 text-right">
+    <div class="col-sm-6 col-md-6 col-lg-6 text-right">
       <button type="button" class="btn btn-info btn-sm" (click)="toggle()" *ngIf="show_btnCreateUser">Create New
         User</button>
       <h5 for="new" *ngIf="show_lblAddNewUser"> Add New User </h5>
@@ -36,7 +36,7 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-8 col-md-8 col-lg-8 ScrollStyle">
+    <div class="col-sm-6 col-md-6 col-lg-6 ScrollStyle">
       <table class="table table-sm">
         <tr ngclass="btn-primary">
           <th hidden="true">userkey</th>
@@ -52,9 +52,9 @@
         </tr>
       </table>
     </div>
-    <div class="col-sm-4 col-md-4 col-lg-4">
+    <div class="col-sm-6 col-md-6 col-lg-6">
       <div class="row" *ngIf="show_addupdateUser">
-        <div class="container bg-light" style="border-radius: 25px;">
+        
           <form name="form" (ngSubmit)=" f.form.valid && onSubmit()" #f="ngForm" novalidate>
             <div class="container">
               <div class="form-group">
@@ -262,7 +262,7 @@
               <br>
             </div>
           </form>
-        </div>
+       
       </div>
       <div class="row" *ngIf="show_UserInfo">
         <div class="container text-right">

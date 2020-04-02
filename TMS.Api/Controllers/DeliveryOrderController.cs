@@ -188,6 +188,25 @@ namespace TMS.Api.Controllers
         //    List<EnumValue> values = EnumExtensions.GetEnumValues<Carrier>();
         //    return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
         //}
+                       
+        [HttpGet]
+        [Route("GetOrderStatus")]
+        [SwaggerOperation("GetOrderStatus")]
+        public HttpResponseMessage GetOrderStatus()
+        {
+            List<EnumValue> values = EnumExtensions.GetEnumValues<Source>();
+            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpGet]
+        [Route("GetStatusforDashboard")]
+        [SwaggerOperation("GetStatusforDashboard")]
+        public HttpResponseMessage GetStatusforDashboard()
+        {
+            //List<EnumValue> values=  EnumExtensions.GetEnumValues<DOStatus>();
+            var values = new StatusDL().fn_get_orderstatusfordashboard();
+            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        }
 
     }
 }

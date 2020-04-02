@@ -257,22 +257,22 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="container text-left">
-                                <button class="btn  btn-outline-secondary btn-sm small" type="button">Actions </button>
+                                <button class="btn  btn-outline-secondary btn-sm small" type="button"><i class="fa fa-bars" aria-hidden="true"></i> Actions </button>
                                 &nbsp;
-                                <button class="btn btn-outline-secondary btn-sm small" type="button">Send</button>
+                                <button class="btn btn-outline-secondary btn-sm small" type="button"> <i class="fa fa-envelope" aria-hidden="true"></i> Send</button>
                                 &nbsp;
-                                <button class="btn btn-outline-primary btn-sm small" type="button" (click)="createPDF()">Export to PDF</button>
+                                <button class="btn btn-outline-primary btn-sm small" type="button" (click)="createPDF()"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Export to PDF</button>
                                 &nbsp;
-                                <button class="btn btn-outline-primary btn-sm small" type="button" (click)="downloadPDF()">Download PDF</button>
+                                <button class="btn btn-outline-primary btn-sm small" type="button" (click)="downloadPDF()"> <i class="fa fa-download" aria-hidden="true"></i> Download PDF</button>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="container text-right">
                                 <button class="btn btn-primary btn-sm small" type="button" (click)="submit()">
-                                    {{lblInvoice}}</button>
+                                    <i class="fa fa-floppy-o" aria-hidden="true"></i> {{lblInvoice}}</button>
                                 &nbsp;&nbsp;&nbsp;
                                 <button class="btn btn-outline-danger btn-sm small" type="button"
-                                    (click)="CancelCreateInvoice()">Cancel</button>
+                                    (click)="CancelCreateInvoice()"><i class="fa fa-ban" aria-hidden="true"></i> Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -398,7 +398,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <b>Rate($)</b></span>
                                     </div>
-                                    <input type="text" name="ItemRate" [(ngModel)]="ItemRate"
+                                    <input type="number" name="ItemRate" [(ngModel)]="ItemRate"
                                         class="form-control form-control-sm bg-secondary" />
                                 </div>
                             </div>

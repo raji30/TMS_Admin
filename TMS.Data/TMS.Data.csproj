@@ -239,6 +239,7 @@
     <Compile Include="userinfo.cs">
       <DependentUpon>App_Security.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserPermissionsDL.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="vendor.cs">
       <DependentUpon>App_model.tt</DependentUpon>

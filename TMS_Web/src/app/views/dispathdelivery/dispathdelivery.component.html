@@ -58,14 +58,15 @@
           </button>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6">
-          <div class="container text-right">
-            <button class="btn btn-outline-primary btn-sm small" type="button" (click)="hold_Dispatch()">Hold</button>
+          <div class="container text-right">         
+            <button class="btn btn-outline-primary btn-sm small" type="button" (click)="hold_Dispatch()"> <i class="fa fa-pause-circle-o" aria-hidden="true"></i> Hold Dispatch</button> &nbsp;
             &nbsp;
-            <button class="btn btn-outline-primary btn-sm small" type="button" (click)="Submit()">Save</button> &nbsp;
-            <button class="btn btn-outline-primary btn-sm small" type="button" (click)="Complete_Dispatch()">Delivery
-              complete</button>
-            &nbsp;&nbsp;
-            <button class="btn btn-outline-danger btn-sm small" type="button" (click)="Cancel()">Cancel</button>
+            <button class="btn btn-outline-primary btn-sm small" type="button" (click)="onSubmit()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button> &nbsp;
+            &nbsp;
+            <button class="btn btn-outline-primary btn-sm small" type="button" (click)="Complete_Dispatch()" [disabled]="btnCompleteScheduleDisabled"> <i class="fa fa-check-circle-o" aria-hidden="true"></i> Complete Dispacth</button> &nbsp;
+            &nbsp;
+            <button class="btn btn-outline-danger btn-sm small" type="button" (click)="Cancel()"> <i class="fa fa-ban"
+                aria-hidden="true"></i>&nbsp;Cancel</button>
           </div>
         </div>
       </div>

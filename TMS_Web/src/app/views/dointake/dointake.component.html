@@ -572,7 +572,7 @@
           <div class="col-sm-3 col-md-3 col-lg-3">
             <app-customer name="CustKey" [(ngModel)]="doHeader.CustKey" #CustKey="ngModel"
               (CustomerSelectedOutput)="onSelectedCustKeyAddress($event)" [Type]=1 [AddressType]=1
-              [customerKeyTobind]="doHeader.CustKey" (OrdernoGenerated)="onOrdernoGenerated($event)">
+              [customerKeyTobind]="doHeader.CustKey" (OrdernoGenerated)="onOrdernoGenerated($event)" [editmode]="editmode">
             </app-customer>
           </div>
           <!-- <div class="col-sm-3 col-md-3 col-lg-3">

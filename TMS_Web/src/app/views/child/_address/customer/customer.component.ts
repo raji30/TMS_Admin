@@ -28,7 +28,7 @@ export class CustomerComponent implements OnInit {
   @Input() customerKeyTobind: string;
   @Output() CustomerSelectedOutput = new EventEmitter<Customer>();   
   @Output() OrdernoGenerated = new EventEmitter<string>();
-  @Input() disabled: boolean = false;
+  @Input() editmode: boolean;
 
   customercount: any;
   Orderno: any;
@@ -121,12 +121,12 @@ export class CustomerComponent implements OnInit {
   }
         // Calling this enables the component
     onEnableComponent() {
-      this.disabled = false;
+      //this.disabled = false;
   }
 
   // Calling this disables the component
   onDisableComponent() {
-      this.disabled = true;
+     // this.disabled = true;
   }
   onSearchChange(searchValue: string): void {  
     console.log(searchValue);

@@ -1,12 +1,12 @@
 
-<div *ngIf="!Orderlist" class="row">
+<!-- <div *ngIf="!Orderlist" class="row">
   No customer found
-</div>
+</div> -->
 <br>
 <div class="animated fadeIn">
   <div class="row">
-    <div class="col-sm-8">
-      <div class="card">
+    <!-- <div class="col-sm-8"> -->
+      <!-- <div class="card">
         <div class="card-header">
           Orders
         </div>
@@ -27,8 +27,7 @@
                     <th scope="col" hidden="true">Testing</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <!--bgcolor="#F8F9F9" -->
+                <tbody>                 
                   <tr *ngFor="let order of Orderlist">
                       <td hidden="true">
                           <span>{{ order.OrderKey}} </span>
@@ -66,16 +65,8 @@
                         data-toggle="modal" data-target="#myModal" tooltip="View Order information"> <i
                           class="fa fa-eye fa-1x" style="color:slateblue"></i>
                       </button>
-
-                      <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(order)">Launch demo modal</button> -->
-
                     </td>
-                    <td>
-                      <!-- <span>{{ order.OrderNo}} </span> -->
-                       <!-- <a [routerLink]="" (click)="open(order.OrderKey)">
-                         {{ order.OrderNo }}</a>  -->
-                         <!-- <a [routerLink]=""  (click)="navigatetoTab(order.OrderKey)" >
-                            {{ order.OrderNo }}</a>      -->
+                    <td>                     
                             {{ order.OrderNo }}
                     </td>
 
@@ -84,12 +75,7 @@
                     <td>{{ order.ordertypedescription}}</td>
 
                     <td hidden="true">
-                      <!-- <button type="button" class="btn btn-link" label="Click"
-                            (click)="viewOrder(order.OrderKey)">
-                            <i class="fa fa-pencil-square-o fa-2x" ></i>            
-                          </button> -->
-                      <!-- <a [routerLink]="['/dointake', order.OrderKey]" >{{ order.OrderNo }}</a>  -->
-
+                   
                       <button type="button" class="btn btn-link" label="Click" (click)="navigatetoTab(order.OrderKey)">
                         <i class="fa fa-pencil-square-o fa-2x"></i>
                       </button>
@@ -99,10 +85,9 @@
                       <button type="button" class="btn " label="Click" 
                       (click)="open(order.OrderKey,content)"
                         tooltip="Go to validate"> <i
-                          class="fa fa-eye fa-1x" style="color:slateblue"></i>
-                      </button>
+                          class="fa fa-eye fa-1x" style="color:slateblue"></i>                     </button>
 
-                      <!-- <app-tab [orderKeyinput]= order.OrderKey></app-tab> -->
+                    
                     </td>
                   </tr>
                   <tr *ngIf="Orderlist.length===0">
@@ -115,10 +100,10 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
 
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <div class="card">
         <div class="card-header">
           Order Status
@@ -130,6 +115,8 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-sm-6">     
       <div class="card">
         <div class="card-header">
           Order Numbers

@@ -88,6 +88,7 @@ import { CompanylistComponent } from "./views/_master/_company/companylist/compa
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UserpermissionsComponent } from './views/_master/userpermissions/userpermissions.component';
 
 @NgModule({
   imports: [
@@ -136,6 +137,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     VendorlistComponent,
     BrokerlistComponent,
     CarrierlistComponent,
+    UserpermissionsComponent,
     ListdriverComponent,
     BillingratesComponent,
     ContainerComponent,

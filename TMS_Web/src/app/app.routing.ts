@@ -28,6 +28,7 @@ import { ContainerStatusComponent } from './views/container-status/container-sta
 import { BaseratelistComponent } from './views/_master/_baserate/baseratelist/baseratelist.component';
 import { TestComponent } from './views/test/test.component';
 import { CompanylistComponent } from './views/_master/_company/companylist/companylist.component';
+import { UserpermissionsComponent } from './views/_master/userpermissions/userpermissions.component';
 
 export const routes: Routes = [
   {
@@ -111,6 +112,10 @@ export const routes: Routes = [
       {
         path: "Users",
         component: UserlistComponent
+      },      
+      {
+        path: "UserPermissions",
+        component: UserpermissionsComponent
       },
       {
         path: "Carriers",

@@ -1,0 +1,174 @@
+<br>
+<h5>Permissions</h5>
+<div id="jumbotron">
+  <div class="row">
+    <div class="form-group input-group input-group-sm col-4 col-sm-4 col-md-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text">User</span>
+      </div>
+      <select id="drpUsers" class="form-control form-control-sm" (change)="drpUsers_ChangedEvent($event.target.value)">
+        <option [value]="0"> Select </option>
+        <option [value]="user.UserKey" *ngFor="let user of Users">
+          {{user.FirstName}} {{user.LastName}}
+        </option>
+      </select>
+    </div>
+    <div class="col-4 col-sm-4 col-md-4">
+      <div class="container text-left">
+        <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;" (click)="fnNew_click()"
+          *ngIf="show_btnAdd">
+          <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Permission
+        </button>
+        <button type="button" class="btn btn-outline-info btn-sm" style="border-radius: 1rem;"
+          (click)="fnUpdate_click()" *ngIf="show_btnEdit">
+          <i class="fa fa-pencil" aria-hidden="true"></i> Edit Permission
+        </button>
+      </div>
+    </div>
+    <div class="col-4 col-sm-4 col-md-4">
+      <div class="container text-right" *ngIf="show_AddCancel">
+        <button type="submit"  class="btn btn-primary btn-sm" (click)="onSubmit()">Submit</button> &nbsp;
+        <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="show_DivInfo">
+    <div class="col-12 col-sm-12 col-md-12">
+      <table class="table table-sm">
+        <tr ngclass="btn-primary">
+          <th scope="col" hidden="true">UserKey &nbsp;</th>
+          <th scope="col"> &nbsp;</th>
+          <th scope="col">View &nbsp;</th>
+          <th scope="col">Add &nbsp;</th>
+          <th scope="col">Edit &nbsp;</th>
+          <th scope="col">Delete &nbsp;</th>
+
+        </tr>
+        <tr *ngFor="let permissions of UserPermissions | grdFilter: {userkey: searchText,modulename: searchText} 
+      |paginate:{itemsPerPage:10,currentPage:p,totalItems: count};let i=index">
+          <td hidden="true"> {{permissions.UserKey}}</td>
+          <td> {{permissions.Modulename|titlecase }}</td>
+          <td>
+            <div>
+              <span *ngIf="permissions.fView == 1" class="badge badge-pill badge-success"><b> YES</b></span>
+              <span *ngIf="!permissions.fView == 1" class="badge badge-pill badge-danger"><b> NO</b></span>
+            </div>
+          </td>
+          <td>
+            <div>
+              <span *ngIf="permissions.fNew == 1" class="badge badge-pill badge-success"><b> YES</b></span>
+              <span *ngIf="!permissions.fNew == 1" class="badge badge-pill badge-danger"><b> NO</b></span>
+            </div>
+          </td>
+          <td>
+            <div>
+              <span *ngIf="permissions.fEdit == 1" class="badge badge-pill badge-success"><b> YES</b></span>
+              <span *ngIf="!permissions.fEdit == 1" class="badge badge-pill badge-danger"><b> NO</b></span>
+            </div>
+          </td>
+          <td>
+            <div>
+              <span *ngIf="permissions.fDelete == 1" class="badge badge-pill badge-success"><b> YES</b></span>
+              <span *ngIf="!permissions.fDelete == 1" class="badge badge-pill badge-danger"><b> NO</b></span>
+            </div>
+          </td>
+        </tr>
+        <!-- <tr *ngIf="ratesCount">
+          <td colspan="1">
+            <h4 style="color: darkorange;">No records found! </h4>
+          </td>
+        </tr> -->
+      </table>
+      <div class="container text-right">
+        <pagination-controls (pageChange)="p=$event" autoHide="true" responsive="true"> </pagination-controls>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="show_DivAddUpdate">
+    <div class="container">
+      <form name="form" (ngSubmit)=" f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="container">
+          <div class="form-group">
+            <br>
+            <!-- <div class="row">
+              <div class="col-6 col-sm-6 col-md-6">
+                <h6> <b> {{selectedCustomer.CustName}}</b></h6>
+                <button class="btn btn-primary btn-sm">Submit</button> &nbsp;
+                <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
+              </div>
+            </div> -->
+
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12">
+
+                <table class="table table-sm">
+                  <tr ngclass="btn-primary">
+                    <th scope="col" hidden="true">UserKey &nbsp;</th>
+                    <th scope="col"> Title&nbsp;</th>
+                    <th scope="col">View &nbsp;</th>
+                    <th scope="col">Add &nbsp;</th>
+                    <th scope="col">Edit &nbsp;</th>
+                    <th scope="col">Delete &nbsp;</th>
+                  </tr>
+                  <tr *ngFor="let data of AddUpdateUserPermissions ;let i=index">
+                    <td hidden="true"> {{data.UserKey}}</td>
+                    <td>
+                      <h5> <b> {{data.Modulename|titlecase }} </b></h5>
+                    </td>
+                    <td>
+                      <div>
+                        <input id="chk_+i" type="checkbox" [(ngModel)]="data.fView" value="{{data.fView}}"
+                          [ngModelOptions]="{standalone: true}" (change)="onViewCheckboxChange(data,$event)" />
+                        &nbsp;<span *ngIf="data.fView == 1" class="badge badge-pill badge-success"><b>
+                            YES</b></span>
+                        <span *ngIf="!data.fView == 1" class="badge badge-pill badge-danger"><b>
+                            NO</b></span>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <input type="checkbox" [(ngModel)]="data.fNew" value="{{data.fNew}}"
+                          [ngModelOptions]="{standalone: true}" (change)="onNewCheckboxChange(data,$event)" />
+                        &nbsp; <span *ngIf="data.fNew == 1" class="badge badge-pill badge-success"><b>
+                            YES</b></span>
+                        <span *ngIf="!data.fNew == 1" class="badge badge-pill badge-danger"><b>
+                            NO</b></span>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <input type="checkbox" [(ngModel)]="data.fEdit" value="{{data.fEdit}}"
+                          [ngModelOptions]="{standalone: true}" (change)="onEditCheckboxChange(data,$event)" />
+
+                        &nbsp;<span *ngIf="data.fEdit == 1" class="badge badge-pill badge-success"><b>
+                            YES</b></span>
+                        <span *ngIf="!data.fEdit == 1" class="badge badge-pill badge-danger"><b>
+                            NO</b></span>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <input type="checkbox" [(ngModel)]="data.fDelete" value="{{data.fDelete}}"
+                          [ngModelOptions]="{standalone: true}" (change)="onDeleteCheckboxChange(data,$event)" />
+                        &nbsp;<span *ngIf="data.fDelete == 1" class="badge badge-pill badge-success"><b>
+                            YES</b></span>
+                        <span *ngIf="!data.fDelete == 1" class="badge badge-pill badge-danger"><b>
+                            NO</b></span>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- <tr *ngIf="ratesCount">
+                  <td colspan="1">
+                    <h4 style="color: darkorange;">No records found! </h4>
+                  </td>
+                </tr> -->
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

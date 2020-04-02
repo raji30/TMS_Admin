@@ -40,7 +40,7 @@
             min-width: 250px;
             overflow: hidden;
             text-overflow: ellipsis;" type="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  [disabled]="editmode">
               <img *ngIf="creditCheck" src="assets/img/brand/tick-circle-icon16px.png" />
               <img *ngIf="!creditCheck" src="assets/img/brand/delete-1-icon16px.png" />
               <small><b > {{billtoCustomerName}}</b></small>

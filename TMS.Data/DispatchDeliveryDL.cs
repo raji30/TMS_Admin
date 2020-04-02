@@ -195,7 +195,7 @@ namespace TMS.Data
                             //order.OrderDetails.DropOffDateTime = Utils.CustomParse<string>(reader["scheduleddeparture"]);
                             order.OrderDetails.LastFreeDay = Utils.CustomParse<DateTime>(reader["LastFreeDay"]);
                             order.OrderDetails.SchedulerNotes = Utils.CustomParse<string>(reader["schedulernotes"]);
-
+                            order.OrderDetails.StatusDesc = Utils.CustomParse<string>(reader["status"]);
                             orderData.Add(order);
                         }
                     }
