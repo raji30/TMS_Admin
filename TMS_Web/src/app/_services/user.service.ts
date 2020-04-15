@@ -72,8 +72,7 @@ export class UserService {
 
     return this.http.put<User>(
       AppSettings._BaseURL + "UpdateUser",
-      user,
-      httpOptions
+      user
     );
   }
   

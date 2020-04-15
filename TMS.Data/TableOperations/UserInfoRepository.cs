@@ -45,10 +45,22 @@ namespace TMS.BusinessLayer
         public bool Update(userinfo t)
         {
             var existing = entity.userinfoes.Where(u => u.userid == t.userid).FirstOrDefault();
-            existing.addressmaster = t.addressmaster;
-            existing.firstname = t.firstname;
-            existing.lastname = t.lastname;
-            return true;
+
+            if(existing!= null)
+            {
+                existing.firstname = t.firstname;
+                existing.lastname = t.lastname;
+                existing.userid = t.userid;
+
+                if(t.addressmaster!=null)
+                {
+                    existing.addressmaster = t.addressmaster;
+                }
+                entity.SaveChanges();
+                return true;
+            }
+          
+            return false;
         }
 
        public IEnumerable<userinfo> GetAll()

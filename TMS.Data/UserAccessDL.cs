@@ -35,8 +35,12 @@ namespace TMS.Data
                     u_info.firstname = reader["firstname"].ToString();
                     u_info.lastname = reader["lastname"].ToString();
                     u_info.status = Convert.ToInt16(reader["status"].ToString());
-                    u_info.lastlogindate = Convert.ToDateTime(reader["lastlogindate"].ToString());
-                    u_info.loginattempts = Convert.ToInt16(reader["loginattempts"].ToString());
+                    //if(reader["lastlogindate"]!= null)
+                    //{
+                    //    u_info.lastlogindate = Convert.ToDateTime(reader["lastlogindate"].ToString());
+                    //}
+                   
+                    //u_info.loginattempts = Convert.ToInt16(reader["loginattempts"].ToString());
                 }
                 reader.Close();
                 securityconnection.Close();

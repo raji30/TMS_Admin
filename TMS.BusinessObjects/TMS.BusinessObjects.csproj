@@ -78,6 +78,7 @@
     <Compile Include="LoginRequest.cs" />
     <Compile Include="UserDetailsBO.cs" />
     <Compile Include="UserPermissionsBO.cs" />
+    <Compile Include="UserRoleBO.cs" />
     <Compile Include="VendorBO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

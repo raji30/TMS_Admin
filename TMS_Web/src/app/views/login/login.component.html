@@ -31,13 +31,13 @@
                           [(ngModel)]="model.password" name="password" >
                           </div>
     
-                        <div class="input-group mb-3">  
+                        <!-- <div class="input-group mb-3">  
                             <div class="input-group-prepend">  
                               <span class="input-group-text"><i class="icon-globe"></i></span>  
                             </div>  
                             <input type="text" class="form-control" placeholder="Company" autocomplete="current-company" required 
                             [(ngModel)]="model.company" name="company">  
-                          </div>
+                          </div> -->
 
                           <div *ngIf="error" class="alert alert-danger">{{error}}</div>
                           <!-- <div [hidden]="isContainerAttributeVisible">
@@ -46,7 +46,10 @@
                          <br>
                         <div class="row">  
                           <div class="col-6"> 
-                            <button  class="btn btn-primary px-4" type="submit">Login</button>  
+                            <button  class="btn btn-outline-primary" style="border-radius: 1rem;" type="submit">
+                               <i class="fa fa-sign-in"></i>
+                              
+                              Login</button>  
                           </div>
       
                           <div class="col-6 text-right">  

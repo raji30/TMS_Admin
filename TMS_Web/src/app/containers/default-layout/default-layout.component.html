@@ -4,13 +4,13 @@
   [sidebarToggler]="false" [mobileSidebarToggler]="false" [asideMenuToggler]="true">
 
   <ul class="nav navbar-nav d-md-down-none mr-auto">
-    <li class="nav-item px-3">
+    <li class="nav-item px-3" *ngIf="Show_Dashboard">
       <a class="nav-link" [routerLink]="['/dashboard']" (click)="changeColor('Dashboard')">
         <!-- <i class="fa fa-dashboard"></i>  -->
         <!-- <img src="assets/img/brand/large-tiles-icon16px.png" /> -->
         <strong [ngStyle]="{'color':lblDashboardColor}" > <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</strong></a>
     </li>
-    <li class="nav-item px-3">
+    <li class="nav-item px-3" *ngIf="Show_Orders">
       <a class="nav-link" routerLink="/doIntake" (click)="changeColor('Orders')"> 
         <!-- <img src="assets/img/brand/standard-notes-icon16px.png" /> -->
         &nbsp;  <strong [ngStyle]="{'color':lblOrdersColor}" ><i class="fa fa-window-restore" aria-hidden="true"></i> Orders</strong></a>
@@ -22,7 +22,7 @@
         &nbsp; Containers</a>    
     </li> -->
 
-    <li class="nav-item px-3">
+    <li class="nav-item px-3" *ngIf="Show_Scheduler">
       <a class="nav-link" routerLink="/Scheduler" (click)="changeColor('Scheduler')"> 
         <!-- <img src="assets/img/brand/schedule-icon16px.png" /> -->
         <!-- <img src="assets/img/brand/overtime24px.png" style="color: cornflowerblue;" /> -->
@@ -31,7 +31,7 @@
       <!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
     </li>
 
-    <li class="nav-item px-3">
+    <li class="nav-item px-3" *ngIf="Show_Dispatch">
       <a class="nav-link" routerLink="/DispatchDelivery" (click)="changeColor('Dispatch')">
         <!-- <img src="assets/img/brand/system-box-icon16px.png" />  -->
          <strong [ngStyle]="{'color':lblDispatchColor}" ><i class="fa fa-taxi" aria-hidden="true"></i> Dispatch</strong>
@@ -44,7 +44,7 @@
         </div>
       </div> -->
     </li>
-    <li class="nav-item px-3">
+    <li class="nav-item px-3" *ngIf="Show_Invoice">
       <a class="nav-link" routerLink="/GetOrderstoGenerateInvoice" (click)="changeColor('Invoice')"> 
         <!-- <img src="assets/img/brand/Cash-icon.png" /> -->
         &nbsp; <strong  [ngStyle]="{'color':lblInvoiceColor}" ><i class="fa fa-barcode" aria-hidden="true"></i> Invoice</strong></a>
@@ -61,7 +61,7 @@
         </div>
       </div> -->
     </li>
-    <li class="nav-item px-3">
+    <li class="nav-item px-3" *ngIf="Show_Admin">
       <div class="dropdown show">
         <a class="nav-link" role="button" id="dropdownMenuLink"  data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
@@ -100,7 +100,7 @@
           <a class="dropdown-item" routerLink="/BaseRate" (click)="changeColor('Admin')"><img src="assets/img/brand/star16px.png" hspace="5" /> Base
             Rate
           </a>
-          <a class="dropdown-item" routerLink="/UserPermissions" (click)="changeColor('Admin')"><img src="assets/img/brand/star16px.png" hspace="5" /> User Permissions
+          <a class="dropdown-item" routerLink="/UserPermissions" (click)="changeColor('Admin')"><img src="assets/img/brand/star16px.png" hspace="5" /> Roles & Permissions
           </a>
 
 

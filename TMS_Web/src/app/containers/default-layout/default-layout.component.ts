@@ -7,6 +7,8 @@ import { Loginresult } from "../../_models/loginresult";
 import { Subscription } from "rxjs";
 import { UserService } from "../../_services/user.service";
 import { DeliveryOrderService } from "../../_services/deliveryOrder.service";
+import { UserpermissionService } from "../../_services/userpermission.service";
+import { UserPermissions } from "../../_models/UserPermissions";
 
 @Component({
   selector: "app-dashboard",
@@ -26,12 +28,21 @@ export class DefaultLayoutComponent {
   public lblInvoiceColor: string;
   public lblAdminColor: string;
 
-  currentUser: Loginresult;
+  public UserPermissions: UserPermissions[];
+  public currentUser: Loginresult;
+
+  private Show_Dashboard: boolean = false;
+  private Show_Orders: boolean = false;
+  private Show_Scheduler: boolean = false;
+  private Show_Dispatch: boolean = false;
+  private Show_Invoice: boolean = false;
+  private Show_Admin: boolean = false;
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private userService: UserService
+    private userService: UserService,
+    private userpermission: UserpermissionService
   ) {
     this.changes = new MutationObserver(mutations => {
       this.sidebarMinimized = document.body.classList.contains(
@@ -46,12 +57,147 @@ export class DefaultLayoutComponent {
     this.authenticationService.currentUser.subscribe(
       x => (this.currentUser = x)
     );
+
+   
+   // }
+  }
+
+  ngOnInit() {
+    this.getPermissionsByUser(this.currentUser.userId);
+
+    console.log("current UserId:",this.currentUser.userId);
+    console.log("User Permissions:",this.UserPermissions);
+    //if (this.UserPermissions.length > 0) {
+    //  for (var i = 0; i < this.UserPermissions.length; i++) {
+       
+        //DASHBOARD menu show or hide
+        // if (this.UserPermissions[i].Modulename.toUpperCase() == "DASHBOARD") {
+        //   if (this.UserPermissions[i].fView == 1) {
+        //     this.Show_Dashboard = true;
+        //   } else {
+        //     this.Show_Dashboard = false;
+        //   }
+        // }
+
+        //ORDERS menu show or hide
+        // if (this.UserPermissions[i].Modulename.toUpperCase() == "DOINTAKE") {
+        //   if (this.UserPermissions[i].fView == 1) {
+        //     this.Show_Orders = true;
+        //   } else {
+        //     this.Show_Orders = false;
+        //   }
+        // }
+
+        //SHEDULER menu show or hide
+        // if (this.UserPermissions[i].Modulename.toUpperCase() == "SCHEDULING") {
+        //   if (this.UserPermissions[i].fView == 1) {
+        //     this.Show_Scheduler = true;
+        //   } else {
+        //     this.Show_Scheduler = false;
+        //   }
+        // }
+         //DISPATCH menu show or hide
+        //  if (this.UserPermissions[i].Modulename.toUpperCase() == "DISPATCHING") {
+        //   if (this.UserPermissions[i].fView == 1) {
+        //     this.Show_Dispatch = true;
+        //   } else {
+        //     this.Show_Dispatch = false;
+        //   }
+        // }
+
+         //ADMIN menu show or hide
+        //  if (this.UserPermissions[i].Modulename.toUpperCase() == "INVOICE") {
+        //   if (this.UserPermissions[i].fView == 1) {
+        //     this.Show_Invoice = true;
+        //   } else {
+        //     this.Show_Invoice = false;
+        //   }
+        // }
+
+         //ADMIN menu show or hide
+        //  if (this.UserPermissions[i].Modulename.toUpperCase() == "ADMIN") {
+        //   if (this.UserPermissions[i].fView == 1) {
+        //     this.Show_Admin = true;
+        //   } else {
+        //     this.Show_Admin = false;
+        //   }
+        // }
+     // }
+
+  }
+
+  getPermissionsByUser(UserKey: string) {
+    this.userpermission.getpermissionsByuserkey(UserKey).subscribe(
+      data => {
+        this.UserPermissions = data;
+        console.log("User Permissions:",this.UserPermissions);
+        //if (this.UserPermissions.length > 0) {
+        for (var i = 0; i < this.UserPermissions.length; i++) {
+       
+        //DASHBOARD menu show or hide
+        if (this.UserPermissions[i].Modulename.toUpperCase() == "DASHBOARD") {
+          if (this.UserPermissions[i].fView == 1) {
+            this.Show_Dashboard = true;
+          } else {
+            this.Show_Dashboard = false;
+          }
+        }
+
+        //ORDERS menu show or hide
+        if (this.UserPermissions[i].Modulename.toUpperCase() == "DOINTAKE") {
+          if (this.UserPermissions[i].fView == 1) {
+            this.Show_Orders = true;
+          } else {
+            this.Show_Orders = false;
+          }
+        }
+
+        //SHEDULER menu show or hide
+        if (this.UserPermissions[i].Modulename.toUpperCase() == "SCHEDULING") {
+          if (this.UserPermissions[i].fView == 1) {
+            this.Show_Scheduler = true;
+          } else {
+            this.Show_Scheduler = false;
+          }
+        }
+         //DISPATCH menu show or hide
+         if (this.UserPermissions[i].Modulename.toUpperCase() == "DISPATCHING") {
+          if (this.UserPermissions[i].fView == 1) {
+            this.Show_Dispatch = true;
+          } else {
+            this.Show_Dispatch = false;
+          }
+        }
+
+         //ADMIN menu show or hide
+         if (this.UserPermissions[i].Modulename.toUpperCase() == "INVOICE") {
+          if (this.UserPermissions[i].fView == 1) {
+            this.Show_Invoice = true;
+          } else {
+            this.Show_Invoice = false;
+          }
+        }
+
+         //ADMIN menu show or hide
+         if (this.UserPermissions[i].Modulename.toUpperCase() == "ADMIN") {
+          if (this.UserPermissions[i].fView == 1) {
+            this.Show_Admin = true;
+          } else {
+            this.Show_Admin = false;
+          }
+        }
+     }
+      },
+      error => {
+        //this.showError("Error in getting user ", "Error");
+      }
+    );
   }
 
   changeColor(menu: string) {
     this.refreshColor();
     if (menu == "Dashboard") {
-      this.lblDashboardColor = "cornflowerblue" ;
+      this.lblDashboardColor = "cornflowerblue";
     } else if (menu == "Orders") {
       this.lblOrdersColor = "cornflowerblue";
     } else if (menu == "Scheduler") {

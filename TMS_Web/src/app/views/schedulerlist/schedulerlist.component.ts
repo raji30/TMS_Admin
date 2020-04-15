@@ -260,6 +260,7 @@ export class SchedulerlistComponent implements OnInit {
     this.orderService.GetbyKey(value.OrderKey).subscribe(
       data => {
         this.HeaderData = data;
+        this.btnCompleteScheduleDisabled=true;
         this.dataShow = true;
         this.tempOrderDetailKey = value.OrderDetailKey;
       },
@@ -364,6 +365,7 @@ export class SchedulerlistComponent implements OnInit {
     this.orderService.GetbyKey(data.OrderKey).subscribe(
       data => {
         this.HeaderData = data;
+        this.btnCompleteScheduleDisabled = false;
       },
       error => console.log(error),
       () => console.log("order Header Data ", this.HeaderData)

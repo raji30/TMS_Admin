@@ -66,7 +66,7 @@ namespace TMS.BusinessLayer
                 firstname = userDetailsBO.FirstName,
                 lastname = userDetailsBO.LastName,
                 password = userDetailsBO.Password,
-                //userid= userDetailsBO.UserId
+               userid= userDetailsBO.UserId
         });
             if (userDetailsBO.Address != null)
             {

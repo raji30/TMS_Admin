@@ -9,13 +9,13 @@ using TMS.BusinessObjects;
 
 namespace TMS.Data
 {
-    public class UserPermissionsDL
+    public class UserRoleAndPermissionsDL
     {
         string connString;//= "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";      
         NpgsqlConnection conn;
         NpgsqlCommand cmd;
 
-        public UserPermissionsDL()
+        public UserRoleAndPermissionsDL()
         {
             connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
         }
@@ -24,7 +24,7 @@ namespace TMS.Data
         {
             try
             {
-                string sql = "SELECT userkey, modulename, fview, fnew, fedit, fdelete, status, statusdate FROM dbo.user_permissions where userkey=@userkey and status=1 order by modulename asc";
+                string sql = "SELECT permissionkey,userkey, modulename, fview, fnew, fedit, fdelete, status, statusdate FROM dbo.user_permissions where userkey=@userkey and status=1 order by modulename asc";
                 List<UserPermissionsBO> permissionlist = new List<UserPermissionsBO>();
 
                 conn = new NpgsqlConnection(connString);
@@ -40,6 +40,7 @@ namespace TMS.Data
                         while (reader.Read())
                         {
                             var BO = new UserPermissionsBO();
+                            BO.PermissionKey = Guid.Parse(reader["permissionkey"].ToString());
                             BO.UserKey = Guid.Parse(reader["userkey"].ToString());
                             BO.Modulename = Utils.CustomParse<string>(reader["modulename"]);
                             BO.fView = Utils.CustomParse<Int16>(reader["fview"]);
@@ -220,6 +221,182 @@ namespace TMS.Data
                     returnvalue = cmd.ExecuteNonQuery();
                 }
                 
+                return returnvalue;
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+        public List<UserRoleBO> getRoles()
+        {
+            try
+            {
+                string sql = "SELECT rolekey, descrption FROM dbo.approles  order by descrption asc";
+                List<UserRoleBO> rolelist = new List<UserRoleBO>();
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    var reader = cmd.ExecuteReader();
+                    do
+                    {
+                        while (reader.Read())
+                        {
+                            var BO = new UserRoleBO();
+                            BO.rolekey = Utils.CustomParse<Guid>(reader["rolekey"]);
+                            BO.description = Utils.CustomParse<string>(reader["descrption"]);
+                            rolelist.Add(BO);
+                        }
+                    }
+                    while (reader.NextResult());
+                    reader.Close();
+                }
+
+                return rolelist;
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public UserRoleBO getUserRoleByRolekey(string rolekey)
+        {
+            try
+            {
+                string sql = "SELECT rolekey, descrption FROM dbo.approles where rolekey=@rolekey asc";
+                var BO = new UserRoleBO();
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("rolekey", NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(rolekey));
+                    var reader = cmd.ExecuteReader();
+                    do
+                    {
+                        while (reader.Read())
+                        {                            
+                            BO.rolekey = Utils.CustomParse<Guid>(reader["rolekey"]);
+                            BO.description = Utils.CustomParse<string>(reader["descrption"]);                            
+                        }
+                    }
+                    while (reader.NextResult());
+                    reader.Close();
+                }
+
+                return BO;
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public UserRoleBO getUserRoleByUserkey(string userkey)
+        {
+            try
+            {
+                string sql = "SELECT rolekey, userkey FROM dbo.userroles where userkey=@userkey";
+                var BO = new UserRoleBO();
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("userkey", NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(userkey));
+                    var reader = cmd.ExecuteReader();
+                    do
+                    {
+                        while (reader.Read())
+                        {
+                            BO.rolekey = Utils.CustomParse<Guid>(reader["rolekey"]);
+                            BO.userkey = Utils.CustomParse<Guid>(reader["userkey"]);
+                        }
+                    }
+                    while (reader.NextResult());
+                    reader.Close();
+                }
+
+                return BO;
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public int AddUserRole(UserRoleBO obj)
+        {
+            try
+            {
+                int returnvalue;
+                string sql = "Insert into dbo.userroles (rolekey,userkey)values( @rolekey ,@userkey)";
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("userkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.userkey);
+                    cmd.Parameters.AddWithValue("rolekey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.rolekey);
+                    returnvalue = cmd.ExecuteNonQuery();
+                }
+
+                return returnvalue;
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public int UpdateUserRole(UserRoleBO obj)
+        {
+            try
+            {                
+                int returnvalue;
+                string sql = "update dbo.userroles set rolekey = @rolekey where userkey=@userkey";
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("userkey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.userkey);
+                    cmd.Parameters.AddWithValue("rolekey", NpgsqlTypes.NpgsqlDbType.Uuid, obj.rolekey);
+                    returnvalue = cmd.ExecuteNonQuery();
+                }
+
                 return returnvalue;
             }
             catch (Exception msg)

@@ -110,10 +110,10 @@ export class RatesheetlistComponent implements OnInit {
     console.log("On Submit Data", this.item);
     console.log("Ratesheet list", this.ratesheet);
 
-    if (this.addModel.customerkey == "0") {
-      this.showError("Please select Customer!", "Customer");
-      return;
-    }
+    // if (this.addModel.customerkey == "0") {
+    //   this.showError("Please select Customer!", "Customer");
+    //   return;
+    // }
     if (this.ratesheet.length == 0) {
       this.showError("No Rate-Items found to add!", "Customer");
       return;

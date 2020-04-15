@@ -4,6 +4,7 @@ import { UserService } from "../../../_services/user.service";
 import { ToastrService } from "ngx-toastr";
 import { UserPermissions } from "../../../_models/UserPermissions";
 import { UserpermissionService } from "../../../_services/userpermission.service";
+import { UserRole } from "../../../_models/UserRole";
 
 @Component({
   selector: "app-userpermissions",
@@ -18,9 +19,12 @@ export class UserpermissionsComponent implements OnInit {
   ) {}
 
   Users: User[];
+  roles: UserRole[];
+  role: UserRole;
   UserPermissions: UserPermissions[];
   AddUpdateUserPermissions: UserPermissions[];
-  public dataModel: User;
+  temp_AddUpdateUserPermissions: UserPermissions[];
+  
 
   show_DivAddUpdate: boolean = false;
   show_DivInfo: boolean = false;
@@ -29,21 +33,15 @@ export class UserpermissionsComponent implements OnInit {
   show_AddCancel: boolean = false;
 
   userKey: string;
+  roleKey: string;
+  roleDescription: string;
   IsNew: boolean;
   searchText: string;
 
   ngOnInit() {
     this.loadAllUsers();
-
-    this.userpermission.getMenus().subscribe(
-      data => {
-        this.AddUpdateUserPermissions = data;
-        console.log("AddUpdateUserPermissions ", this.AddUpdateUserPermissions);
-      },
-      error => {
-        this.showError("Error in getting user ", "Error");
-      }
-    );
+    this.loadMenus();
+    this.loadRoles();
   }
   loadAllUsers() {
     this.usrService.getAll().subscribe(
@@ -52,6 +50,26 @@ export class UserpermissionsComponent implements OnInit {
         this.showError("Error in getting All user ", "Error");
       },
       () => console.log("Users list", this.Users)
+    );
+  }
+  loadMenus() {
+    this.userpermission.getMenus().subscribe(
+      data => {
+        this.AddUpdateUserPermissions = this.temp_AddUpdateUserPermissions = data;
+        console.log("AddUpdateUserPermissions ", this.AddUpdateUserPermissions);
+      },
+      error => {
+        this.showError("Error in getting user ", "Error");
+      }
+    );
+  }
+  loadRoles() {
+    this.userpermission.getRoles().subscribe(
+      data => (this.roles = data),
+      error => {
+        this.showError("Error in getting Roles ", "Error");
+      },
+      () => console.log("User roles", this.roles)
     );
   }
 
@@ -67,39 +85,49 @@ export class UserpermissionsComponent implements OnInit {
     this.show_DivInfo = false;
     this.show_AddCancel = true;
 
-    this.AddUpdateUserPermissions =  this.UserPermissions;
+    this.AddUpdateUserPermissions = this.UserPermissions;
   }
 
   cancel() {
     this.show_AddCancel = false;
     this.show_DivAddUpdate = false;
     this.show_DivInfo = true;
+
+    this.AddUpdateUserPermissions = null;
+    this.AddUpdateUserPermissions = new Array<UserPermissions>();
   }
-  clear()
-  {
+  clear() {
     this.show_btnEdit = false;
     this.show_btnAdd = false;
     this.show_DivAddUpdate = false;
     this.show_DivInfo = false;
-    this.show_DivAddUpdate = false;    
+    this.show_DivAddUpdate = false;
     this.show_AddCancel = false;
   }
 
   drpUsers_ChangedEvent(UserKey: any) {
     if (UserKey == 0) {
-     this.clear();
+      this.clear();
       return;
     }
     this.userKey = UserKey;
+    this.getUserRoleByUserkey(UserKey);     
     this.getPermissionsByUser(UserKey);
   }
 
-  getPermissionsByUser(UserKey:string)
-  {
+  drpRoles_ChangedEvent(RoleKey: any) {
+    if (RoleKey == 0) {
+      return;
+    }
+    this.roleKey = RoleKey;
+  }
+
+  getPermissionsByUser(UserKey: string) {
     this.userpermission.getpermissionsByuserkey(UserKey).subscribe(
       data => {
         this.UserPermissions = data;
         console.log("UserPermissions ", this.UserPermissions);
+        this.show_AddCancel = false;
         if (this.UserPermissions.length > 0) {
           this.show_btnEdit = true;
           this.show_btnAdd = false;
@@ -115,6 +143,32 @@ export class UserpermissionsComponent implements OnInit {
       },
       error => {
         this.showError("Error in getting user ", "Error");
+      }
+    );
+  }
+
+  getUserRoleByRolekey(RoleKey: string) {
+    this.userpermission.getUserRoleByRolekey(RoleKey).subscribe(
+      data => {
+        this.role = data;
+      },
+      error => {
+        this.showError("Error in getting role ", "Error");
+      }
+    );
+  }
+
+  getUserRoleByUserkey(UserKey: string) {
+    this.userpermission.getUserRoleByUserkey(UserKey).subscribe(
+      data => {
+        this.role = data;
+         this.role.description = this.roles.find(x => x.rolekey == this.role.rolekey).description;
+    //this.role.rolekey = test.rolekey;
+  //  this.role.description = test.description;
+        console.log("Get_Role_ByUserkey",  this.role );
+      },
+      error => {
+        this.showError("Error in getting role ", "Error");
       }
     );
   }
@@ -190,39 +244,77 @@ export class UserpermissionsComponent implements OnInit {
 
   onSubmit() {
     if (this.userKey == "0") {
-      this.showError("Please select User!", "User");
+      this.showError("Please select User", "User");
+      return;
+    }
+    if (this.roleKey == "0" || this.roleKey == undefined) {
+      this.showError("Please select Role.", "User");
       return;
     }
 
-    if (this.IsNew) {
+    var role: any = {};
+    role.userkey = this.userKey;
+    role.rolekey = this.roleKey;
 
-      for (var i = 0; i < this.AddUpdateUserPermissions.length; i++) {     
-          this.AddUpdateUserPermissions[i].UserKey = this.userKey;;          
+    if (this.IsNew) {
+      //Adding role
+      this.userpermission.AddUserRole(role).subscribe(
+        () => {
+          // this.showSuccess("Permissions Created", "Add Permission");
+        },
+        error => {
+          this.showError("Error in Creation", "Error");
+          return;
         }
+      );
+
+      //adding user permissions
+      for (var i = 0; i < this.AddUpdateUserPermissions.length; i++) {
+        this.AddUpdateUserPermissions[i].UserKey = this.userKey;
+      }
 
       this.userpermission
         .AddUserPermissions(this.AddUpdateUserPermissions)
         .subscribe(
           () => {
-            this.showSuccess("Permissions Created", "Add Permission");
+            this.AddUpdateUserPermissions = null;
+            this.AddUpdateUserPermissions = new Array<UserPermissions>();
+            this.AddUpdateUserPermissions = this.temp_AddUpdateUserPermissions;
           },
           error => {
             this.showError("Error in Creation", "Error");
+            return;
           }
         );
+
+      this.showSuccess("Roles & Permission created.", "Roles & Permission");
     } else {
+      //Updating User Role
+      this.userpermission.UpdateUserRole(role).subscribe(
+        () => {
+          // this.showSuccess("Permissions Created", "Add Permission");
+        },
+        error => {
+          this.showError("Error in Update", "Error");
+        }
+      );
+
       this.userpermission
         .UpdateUserPermissions(this.AddUpdateUserPermissions)
         .subscribe(
-          () => {    
-            this.showSuccess("Permissions Updated.", "Update Permission");        
+          () => {
+            this.AddUpdateUserPermissions = null;
+            this.AddUpdateUserPermissions = new Array<UserPermissions>();
+            this.AddUpdateUserPermissions = this.temp_AddUpdateUserPermissions;
+
             this.getPermissionsByUser(this.userKey);
-            this.show_AddCancel=false;
           },
           error => {
             this.showError("Error in Update", "Error");
           }
         );
+
+      this.showSuccess("Permissions Updated.", "Update Permission");
     }
   }
 
