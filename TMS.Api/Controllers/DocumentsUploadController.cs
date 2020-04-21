@@ -17,7 +17,8 @@ using static TMS.BusinessObjects.Enums;
 namespace TMS.Api.Controllers
 {
     //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    [JwtAuthentication]
+    [AllowAnonymous]
+   // [JwtAuthentication]
     public class DocumentsUploadController : ApiController
     {
         [HttpPost]

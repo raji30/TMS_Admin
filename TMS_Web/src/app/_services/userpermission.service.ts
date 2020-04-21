@@ -9,10 +9,10 @@ import { UserRole } from '../_models/UserRole';
 
 @Injectable({ providedIn: 'root' })
 export class UserpermissionService {
-    private baseUrl : string
+    //private baseUrl : string
     
     constructor(private http:HttpClient) { 
-        this.baseUrl= 'http://localhost:51902/Token/';
+        //this.baseUrl= 'http://localhost:51902/Token/';
     }  
      
     getpermissionsByuserkey(userkey: string) {   

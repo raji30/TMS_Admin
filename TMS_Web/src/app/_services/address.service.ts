@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 import { Address } from '../_models/address';
+import { AppSettings } from './../_constants/appsettings';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { Address } from '../_models/address';
 export class AddressService {
   private baseUrl : string
 constructor(private http:HttpClient) {
- this.baseUrl= 'http://localhost:51902/';
+ this.baseUrl= AppSettings._BaseURL;//'http://localhost:51902/';
  //http://localhost:51902/api/address/GetAllByType/1
  }
   

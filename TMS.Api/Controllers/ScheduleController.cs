@@ -11,7 +11,8 @@ using TMS.Data;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+  //  [JwtAuthentication]
     public class ScheduleController : ApiController
     {
         // GET: Schedule

@@ -18,5 +18,6 @@ namespace TMS.BusinessObjects
         public decimal ExcessAmount { get; set; }
         public Guid? InvoiceLineKey { get; set; }
         public Guid? InvoiceKey { get; set; }
+        public string Container { get; set; }
     }
 }

@@ -9,12 +9,13 @@ import {
 } from "@angular/common/http";
 import { throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
+import { AppSettings } from '../_constants/appsettings';
 
 @Injectable({
   providedIn: "root"
 })
 export class FileUploadService {
-  apiUrl = "http://localhost:51902/FileUpload";
+  apiUrl = AppSettings._BaseURL+ "FileUpload";//"http://localhost:51902/FileUpload";
 
   constructor(private http: HttpClient) {}
 

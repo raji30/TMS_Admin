@@ -9,5 +9,6 @@ export class Invoicedetails {
   ExcessAmount: string;
   InvoiceLineKey: string;
   InvoiceKey: string;
-  containerno:string;
+  Container:string;
+  isEditable:boolean;
 }

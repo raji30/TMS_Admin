@@ -11,6 +11,7 @@ using TMS.Data;
 
 namespace TMS.Api.Controllers
 {
+    [AllowAnonymous]
     public class DispatchDeliveryController : ApiController
     {
         RoutesDL routes = new RoutesDL();

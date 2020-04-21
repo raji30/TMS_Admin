@@ -14,7 +14,8 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+   // [JwtAuthentication]
     public class DeliveryOrderController : ApiController
     {
         DeliveryOrderDL doObj = new DeliveryOrderDL();

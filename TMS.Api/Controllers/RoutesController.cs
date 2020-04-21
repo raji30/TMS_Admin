@@ -13,6 +13,7 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
 {
+    [AllowAnonymous]
     public class RoutesController : ApiController
     {
         RoutesDL routes = new RoutesDL();

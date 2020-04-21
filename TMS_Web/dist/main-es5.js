@@ -313,7 +313,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-header [fixed]=\"true\"\r\n  [navbarBrandFull]=\"{src: 'assets/img/brand/lorry24px.png', alt: 'CoreUI Logo'}\"\r\n  [navbarBrandMinimized]=\"{src: 'assets/img/brand/large-tiles-icon16px.png', width: 40, height: 40, alt: 'CoreUI Logo'}\"\r\n  [sidebarToggler]=\"false\" [mobileSidebarToggler]=\"false\" [asideMenuToggler]=\"true\">\r\n\r\n  <ul class=\"nav navbar-nav d-md-down-none mr-auto\">\r\n    <li class=\"nav-item px-3\">\r\n      <a class=\"nav-link\" [routerLink]=\"['/dashboard']\" (click)=\"changeColor('Dashboard')\">\r\n        <!-- <i class=\"fa fa-dashboard\"></i>  -->\r\n        <!-- <img src=\"assets/img/brand/large-tiles-icon16px.png\" /> -->\r\n        <strong [ngStyle]=\"{'color':lblDashboardColor}\" > Dashboard</strong></a>\r\n    </li>\r\n    <li class=\"nav-item px-3\">\r\n      <a class=\"nav-link\" routerLink=\"/doIntake\" (click)=\"changeColor('Orders')\"> \r\n        <!-- <img src=\"assets/img/brand/standard-notes-icon16px.png\" /> -->\r\n        &nbsp;  <strong [ngStyle]=\"{'color':lblOrdersColor}\" > Orders</strong></a>\r\n      <!-- <i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i> -->\r\n    </li>\r\n\r\n    <!-- <li class=\"nav-item px-3\">\r\n      <a class=\"nav-link\" style=\"color: darkblue;\" routerLink=\"/Containers\"> <img src=\"assets/img/brand/schedule-icon16px.png\" />\r\n        &nbsp; Containers</a>    \r\n    </li> -->\r\n\r\n    <li class=\"nav-item px-3\">\r\n      <a class=\"nav-link\" routerLink=\"/Scheduler\" (click)=\"changeColor('Scheduler')\"> \r\n        <!-- <img src=\"assets/img/brand/schedule-icon16px.png\" /> -->\r\n        <!-- <img src=\"assets/img/brand/overtime24px.png\" style=\"color: cornflowerblue;\" /> -->\r\n        &nbsp;  <strong [ngStyle]=\"{'color':lblSchedulersColor}\" > Scheduler</strong></a>\r\n        <!-- <i class=\"cil-caret-bottom\" style=\"color: cornflowerblue;\"></i> -->\r\n      <!-- <i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i> -->\r\n    </li>\r\n\r\n    <li class=\"nav-item px-3\">\r\n      <a class=\"nav-link\" routerLink=\"/DispatchDelivery\" (click)=\"changeColor('Dispatch')\">\r\n        <!-- <img src=\"assets/img/brand/system-box-icon16px.png\" />  -->\r\n         <strong [ngStyle]=\"{'color':lblDispatchColor}\" > Dispatch</strong>\r\n      </a>\r\n      <!-- <div class=\"dropdown show\">\r\n       \r\n        <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuLink\">\r\n          <a class=\"dropdown-item\" routerLink=\"/DispatchAssignment\"> Dispatch Assignment</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/DispatchDelivery\">Dispatch Delivery</a>\r\n        </div>\r\n      </div> -->\r\n    </li>\r\n    <li class=\"nav-item px-3\">\r\n      <a class=\"nav-link\" routerLink=\"/GetOrderstoGenerateInvoice\" (click)=\"changeColor('Invoice')\"> \r\n        <!-- <img src=\"assets/img/brand/Cash-icon.png\" /> -->\r\n        &nbsp; <strong  [ngStyle]=\"{'color':lblInvoiceColor}\" > Invoice</strong></a>\r\n      <!-- <i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i> -->\r\n      <!-- <div class=\"dropdown show\">\r\n        <a class=\"nav-item\" style=\"color: darkblue;\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\r\n          aria-expanded=\"false\">\r\n          <img src=\"assets/img/brand/invoice-icon16px.png\" /> Invoice\r\n        </a>\r\n\r\n        <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuLink\">\r\n          <a class=\"dropdown-item\" routerLink=\"/GetOrderstoGenerateInvoice\">Create Invoice</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/GetInvoiceList\">Invoice List</a>\r\n        </div>\r\n      </div> -->\r\n    </li>\r\n    <li class=\"nav-item px-3\">\r\n      <div class=\"dropdown show\">\r\n        <a class=\"nav-link\" role=\"button\" id=\"dropdownMenuLink\"  data-toggle=\"dropdown\" aria-haspopup=\"true\"\r\n          aria-expanded=\"false\">\r\n          <!-- <img src=\"assets/img/brand/setting-icon16px.png\" />  -->          \r\n          <strong [ngStyle]=\"{'color':lblAdminColor}\"> Admin</strong>  \r\n        </a>\r\n        <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuLink\">\r\n          <a class=\"dropdown-item\" routerLink=\"/Customers\" (click)=\"changeColor('Admin')\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Customer</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Company\" (click)=\"changeColor('Admin')\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Company</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Drivers\" (click)=\"changeColor('Admin')\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Driver</a>\r\n          <!-- <a class=\"dropdown-item\" routerLink=\"/Vendors\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Vendor</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Customers\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Warehouse</a>\r\n\r\n          <a class=\"dropdown-item\" routerLink=\"/Customers\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Terminal</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Customers\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Company</a> -->\r\n          <a class=\"dropdown-item\" routerLink=\"/Carriers\" (click)=\"changeColor('Admin')\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Carrier</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Brokers\" (click)=\"changeColor('Admin')\"><img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Broker</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Users\" (click)=\"changeColor('Admin')\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            User</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Items\" (click)=\"changeColor('Admin')\"><img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Item</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/City\" (click)=\"changeColor('Admin')\"><img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            City</a>\r\n\r\n          <a class=\"dropdown-item\" routerLink=\"/RateSheet\" (click)=\"changeColor('Admin')\"><img src=\"assets/img/brand/star16px.png\" hspace=\"5\" /> Rate\r\n            Sheet</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/BaseRate\" (click)=\"changeColor('Admin')\"><img src=\"assets/img/brand/star16px.png\" hspace=\"5\" /> Base\r\n            Rate\r\n          </a>\r\n\r\n        </div>\r\n      </div>\r\n    </li>\r\n  </ul>\r\n  <ul class=\"nav navbar-nav ml-auto\">\r\n    <li class=\"nav-item dropdown\" dropdown placement=\"bottom left\">\r\n      <!-- <a class=\"nav-link\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\" (click)=\"logout()\">           \r\n        <img src=\"assets/img/brand/cross-icon16px.png\" >\r\n        <h6>Logout</h6>      \r\n      </a> -->\r\n\r\n      <strong class=\"font-bold\" > Hi {{currentUser.firstname}}!&nbsp;&nbsp;&nbsp;</strong>\r\n      <!-- <h5 class=\"badge bg-warning\">Hi {{currentUser.firstname}}! </h5> -->\r\n      \r\n      <!-- <div class=\"container\"> \r\n          <img src=\"assets/img/brand/customer.png\" hspace=\"5\" />\r\n          <strong> Hi {{currentUser.firstname}}</strong> \r\n          <p> \r\n             logout\r\n               \r\n          </p> \r\n      </div>  -->\r\n\r\n      <button type=\"button\" class=\"btn btn-sm\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"logout\"\r\n        (click)=\"logout()\">\r\n        <img src=\"assets/img/brand/delete-1-icon16px.png\">\r\n        <!-- <p class=\"text-danger\">Logout</p> -->\r\n      </button>\r\n    </li>\r\n  </ul>\r\n</app-header>\r\n\r\n<div class=\"app-body\">\r\n\r\n  <!-- <app-sidebar [fixed]=\"true\" [display]=\"'lg'\">\r\n      <app-sidebar-nav [navItems]=\"navItems\" [perfectScrollbar] [disabled]=\"sidebarMinimized\">    \r\n    </app-sidebar-nav>    \r\n       <app-sidebar-minimizer></app-sidebar-minimizer>   \r\n  </app-sidebar> -->\r\n  <!-- <app-sidebar>\r\n    <app-navigation></app-navigation>\r\n  </app-sidebar> -->\r\n  <!-- Main content -->\r\n  <main class=\"main bg-dark\">\r\n    <!-- Breadcrumb -->\r\n    <!-- <ol class=\"breadcrumb\">\r\n      <app-breadcrumb></app-breadcrumb>\r\n    </ol> -->\r\n    <div class=\"container-fluid \">\r\n      <router-outlet></router-outlet>\r\n    </div><!-- /.container-fluid -->\r\n  </main>\r\n\r\n  <!-- <app-aside [fixed]=\"false\">\r\n    <aside class=\"aside-menu\">\r\n      <div>\r\n        <div class=\"dropdown-header text-center\"><strong>Settings </strong></div>\r\n        <a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-user\"></i> Profile</a>\r\n        <a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-wrench\"></i> Setting</a>\r\n\r\n        <div class=\"divider\"></div>\r\n        <a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-shield\"></i> Lock account</a>\r\n        <a class=\"dropdown-item\" (click)=\"logout()\"><i class=\"fa fa-lock\"></i> Logout</a>\r\n      </div>\r\n    </aside>\r\n  </app-aside> -->\r\n</div>\r\n<app-footer>\r\n  <span>&copy; 2020 Trikaiser</span>\r\n</app-footer>";
+    __webpack_exports__["default"] = "<app-header [fixed]=\"true\"\r\n  [navbarBrandFull]=\"{src: 'assets/img/brand/lorry24px.png', alt: 'CoreUI Logo'}\"\r\n  [navbarBrandMinimized]=\"{src: 'assets/img/brand/large-tiles-icon16px.png', width: 40, height: 40, alt: 'CoreUI Logo'}\"\r\n  [sidebarToggler]=\"false\" [mobileSidebarToggler]=\"false\" [asideMenuToggler]=\"true\">\r\n\r\n  <ul class=\"nav navbar-nav d-md-down-none mr-auto\">\r\n    <li class=\"nav-item px-3\">\r\n      <a class=\"nav-link\" [routerLink]=\"['/dashboard']\" (click)=\"changeColor('Dashboard')\">\r\n        <!-- <i class=\"fa fa-dashboard\"></i>  -->\r\n        <!-- <img src=\"assets/img/brand/large-tiles-icon16px.png\" /> -->\r\n        <strong [ngStyle]=\"{'color':lblDashboardColor}\" > <i class=\"fa fa-tachometer\" aria-hidden=\"true\"></i> Dashboard</strong></a>\r\n    </li>\r\n     <!-- *ngIf=\"Show_Orders\" *ngIf=\"Show_Scheduler\" *ngIf=\"Show_Dispatch\" *ngIf=\"Show_Invoice\" *ngIf=\"Show_Admin\"-->\r\n    <li class=\"nav-item px-3\">\r\n      <a class=\"nav-link\" routerLink=\"/doIntake\" (click)=\"changeColor('Orders')\"> \r\n        <!-- <img src=\"assets/img/brand/standard-notes-icon16px.png\" /> -->\r\n        &nbsp;  <strong [ngStyle]=\"{'color':lblOrdersColor}\" ><i class=\"fa fa-window-restore\" aria-hidden=\"true\"></i> Orders</strong></a>\r\n      <!-- <i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i> -->\r\n    </li>\r\n\r\n    <!-- <li class=\"nav-item px-3\">\r\n      <a class=\"nav-link\" style=\"color: darkblue;\" routerLink=\"/Containers\"> <img src=\"assets/img/brand/schedule-icon16px.png\" />\r\n        &nbsp; Containers</a>    \r\n    </li> -->\r\n\r\n    <li class=\"nav-item px-3\" >\r\n      <a class=\"nav-link\" routerLink=\"/Scheduler\" (click)=\"changeColor('Scheduler')\"> \r\n        <!-- <img src=\"assets/img/brand/schedule-icon16px.png\" /> -->\r\n        <!-- <img src=\"assets/img/brand/overtime24px.png\" style=\"color: cornflowerblue;\" /> -->\r\n        &nbsp;  <strong [ngStyle]=\"{'color':lblSchedulersColor}\" ><i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> Scheduler</strong></a>\r\n        <!-- <i class=\"cil-caret-bottom\" style=\"color: cornflowerblue;\"></i> -->\r\n      <!-- <i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i> -->\r\n    </li>\r\n\r\n    <li class=\"nav-item px-3\">\r\n      <a class=\"nav-link\" routerLink=\"/DispatchDelivery\" (click)=\"changeColor('Dispatch')\">\r\n        <!-- <img src=\"assets/img/brand/system-box-icon16px.png\" />  -->\r\n         <strong [ngStyle]=\"{'color':lblDispatchColor}\" ><i class=\"fa fa-taxi\" aria-hidden=\"true\"></i> Dispatch</strong>\r\n      </a>\r\n      <!-- <div class=\"dropdown show\">\r\n       \r\n        <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuLink\">\r\n          <a class=\"dropdown-item\" routerLink=\"/DispatchAssignment\"> Dispatch Assignment</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/DispatchDelivery\">Dispatch Delivery</a>\r\n        </div>\r\n      </div> -->\r\n    </li>\r\n    <li class=\"nav-item px-3\" >\r\n      <a class=\"nav-link\" routerLink=\"/GetOrderstoGenerateInvoice\" (click)=\"changeColor('Invoice')\"> \r\n        <!-- <img src=\"assets/img/brand/Cash-icon.png\" /> -->\r\n        &nbsp; <strong  [ngStyle]=\"{'color':lblInvoiceColor}\" ><i class=\"fa fa-barcode\" aria-hidden=\"true\"></i> Invoice</strong></a>\r\n      <!-- <i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i> -->\r\n      <!-- <div class=\"dropdown show\">\r\n        <a class=\"nav-item\" style=\"color: darkblue;\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\"\r\n          aria-expanded=\"false\">\r\n          <img src=\"assets/img/brand/invoice-icon16px.png\" /> Invoice\r\n        </a>\r\n\r\n        <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuLink\">\r\n          <a class=\"dropdown-item\" routerLink=\"/GetOrderstoGenerateInvoice\">Create Invoice</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/GetInvoiceList\">Invoice List</a>\r\n        </div>\r\n      </div> -->\r\n    </li>\r\n    <li class=\"nav-item px-3\" >\r\n      <div class=\"dropdown show\">\r\n        <a class=\"nav-link\" role=\"button\" id=\"dropdownMenuLink\"  data-toggle=\"dropdown\" aria-haspopup=\"true\"\r\n          aria-expanded=\"false\">\r\n          <!-- <img src=\"assets/img/brand/setting-icon16px.png\" />  -->          \r\n          <strong [ngStyle]=\"{'color':lblAdminColor}\"><i class=\"fa fa-cogs\" aria-hidden=\"true\"></i> Admin</strong>  \r\n        </a>\r\n        <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuLink\">\r\n          <a class=\"dropdown-item\" routerLink=\"/Customers\" (click)=\"changeColor('Admin')\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Customer</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Company\" (click)=\"changeColor('Admin')\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Company</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Drivers\" (click)=\"changeColor('Admin')\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Driver</a>\r\n          <!-- <a class=\"dropdown-item\" routerLink=\"/Vendors\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Vendor</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Customers\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Warehouse</a>\r\n\r\n          <a class=\"dropdown-item\" routerLink=\"/Customers\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Terminal</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Customers\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Company</a> -->\r\n          <a class=\"dropdown-item\" routerLink=\"/Carriers\" (click)=\"changeColor('Admin')\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Carrier</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Brokers\" (click)=\"changeColor('Admin')\"><img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Broker</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Users\" (click)=\"changeColor('Admin')\"> <img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            User</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/Items\" (click)=\"changeColor('Admin')\"><img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            Item</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/City\" (click)=\"changeColor('Admin')\"><img src=\"assets/img/brand/star16px.png\" hspace=\"5\" />\r\n            City</a>\r\n\r\n          <a class=\"dropdown-item\" routerLink=\"/RateSheet\" (click)=\"changeColor('Admin')\"><img src=\"assets/img/brand/star16px.png\" hspace=\"5\" /> Rate\r\n            Sheet</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/BaseRate\" (click)=\"changeColor('Admin')\"><img src=\"assets/img/brand/star16px.png\" hspace=\"5\" /> Base\r\n            Rate\r\n          </a>\r\n          <a class=\"dropdown-item\" routerLink=\"/UserPermissions\" (click)=\"changeColor('Admin')\"><img src=\"assets/img/brand/star16px.png\" hspace=\"5\" /> Roles & Permissions\r\n          </a>\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </li>\r\n  </ul>\r\n  <ul class=\"nav navbar-nav ml-auto\">\r\n    <li class=\"nav-item dropdown\" dropdown placement=\"bottom left\">\r\n      <!-- <a class=\"nav-link\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\" (click)=\"logout()\">           \r\n        <img src=\"assets/img/brand/cross-icon16px.png\" >\r\n        <h6>Logout</h6>      \r\n      </a> -->\r\n\r\n      <strong class=\"font-bold\" > Hi {{currentUser.firstname}}!&nbsp;&nbsp;&nbsp;</strong>\r\n      <!-- <h5 class=\"badge bg-warning\">Hi {{currentUser.firstname}}! </h5> -->\r\n      \r\n      <!-- <div class=\"container\"> \r\n          <img src=\"assets/img/brand/customer.png\" hspace=\"5\" />\r\n          <strong> Hi {{currentUser.firstname}}</strong> \r\n          <p> \r\n             logout\r\n               \r\n          </p> \r\n      </div>  -->\r\n\r\n      <button type=\"button\" class=\"btn btn-sm\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"logout\"\r\n        (click)=\"logout()\">\r\n        <img src=\"assets/img/brand/delete-1-icon16px.png\">\r\n        <!-- <p class=\"text-danger\">Logout</p> -->\r\n      </button>\r\n    </li>\r\n  </ul>\r\n</app-header>\r\n\r\n<div class=\"app-body\">\r\n\r\n  <!-- <app-sidebar [fixed]=\"true\" [display]=\"'lg'\">\r\n      <app-sidebar-nav [navItems]=\"navItems\" [perfectScrollbar] [disabled]=\"sidebarMinimized\">    \r\n    </app-sidebar-nav>    \r\n       <app-sidebar-minimizer></app-sidebar-minimizer>   \r\n  </app-sidebar> -->\r\n  <!-- <app-sidebar>\r\n    <app-navigation></app-navigation>\r\n  </app-sidebar> -->\r\n  <!-- Main content -->\r\n  <main class=\"main bg-dark\">\r\n    <!-- Breadcrumb -->\r\n    <!-- <ol class=\"breadcrumb\">\r\n      <app-breadcrumb></app-breadcrumb>\r\n    </ol> -->\r\n    <div class=\"container-fluid \">\r\n      <router-outlet></router-outlet>\r\n    </div><!-- /.container-fluid -->\r\n  </main>\r\n\r\n  <!-- <app-aside [fixed]=\"false\">\r\n    <aside class=\"aside-menu\">\r\n      <div>\r\n        <div class=\"dropdown-header text-center\"><strong>Settings </strong></div>\r\n        <a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-user\"></i> Profile</a>\r\n        <a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-wrench\"></i> Setting</a>\r\n\r\n        <div class=\"divider\"></div>\r\n        <a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-shield\"></i> Lock account</a>\r\n        <a class=\"dropdown-item\" (click)=\"logout()\"><i class=\"fa fa-lock\"></i> Logout</a>\r\n      </div>\r\n    </aside>\r\n  </app-aside> -->\r\n</div>\r\n<app-footer>\r\n  <span>&copy; 2020 Trikaiser</span>\r\n</app-footer>";
     /***/
   },
 
@@ -533,7 +533,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<br>\n<div id=\"jumbotron\">\n  <div class=\"row\">\n    <div class=\"col-8 col-sm-8 col-md-8\">\n      <div class=\"row\">\n        <div class=\"col-6 col-sm-6 col-md-6\">\n          <h5 class=\"card-subtitle mb-2\" style=\"color: black\">\n            <img src=\"assets/img/brand/user-identity4.png\" /> Users</h5>\n        </div>\n        <div class=\"col-6 col-sm-6 col-md-6\">\n          <div class=\"container text-right\">\n            <div class=\"row\">\n              <div class=\"col-11 col-sm-11 col-md-11\">\n                <div class=\"form-group input-group input-group-sm\">\n                  <div class=\"img-group-prepend\">\n                    <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\n                  </div>\n                  <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" type=\"text\"\n                    placeholder=\"Search..\">\n                </div>\n              </div>\n              <div class=\"col-1 col-sm-1 col-md-1\">\n                <img src=\"assets/img/brand/broom16px.png\" (click)=\"clear_search()\" tooltip=\"clear\" />\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-4 col-sm-4 col-md-4 text-right\">\n      <button type=\"button\" class=\"btn btn-info btn-sm\" (click)=\"toggle()\" *ngIf=\"show_btnCreateUser\">Create New\n        User</button>\n      <h5 for=\"new\" *ngIf=\"show_lblAddNewUser\"> Add New User </h5>\n      <h5 for=\"edit\" *ngIf=\"show_lblEditUserDetail\"> Edit User </h5>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-sm-8 col-md-8 col-lg-8 ScrollStyle\">\n      <table class=\"table table-sm\">\n        <tr ngclass=\"btn-primary\">\n          <th hidden=\"true\">userkey</th>\n          <th>User Id</th>\n          <th>First Name</th>\n          <th>Last Name</th>\n        </tr>\n        <tr *ngFor=\"let user of Users | grdFilter: {UserId: searchText,FirstName: searchText, LastName: searchText}\">\n          <td hidden=\"true\">{{user.UserKey}}</td>\n          <td> <a [routerLink]=\"\" (click)=\"getUserById(user.UserKey)\">{{user.UserId}}</a> </td>\n          <td>{{user.FirstName}}</td>\n          <td>{{user.LastName}}</td>\n        </tr>\n      </table>\n    </div>\n    <div class=\"col-sm-4 col-md-4 col-lg-4\">\n      <div class=\"row\" *ngIf=\"show_addupdateUser\">\n        <div class=\"container bg-light\" style=\"border-radius: 25px;\">\n          <form name=\"form\" (ngSubmit)=\" f.form.valid && onSubmit()\" #f=\"ngForm\" novalidate>\n            <div class=\"container\">\n              <div class=\"form-group\">\n                <br>\n                <label for=\"user\"> <b> User detail </b> </label>\n                <div class=\"row\" hidden=\"true\">\n                  <div class=\"form-group input-group input-group-sm col-md-4\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">UserKey</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.UserKey\" id=\"UserKey\"\n                      name=\"UserKey\" #UserKey=\"ngModel\">\n                  </div>\n\n                  <div class=\"form-group input-group input-group-sm col-md-6\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Address Key</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.AddrKey\"\n                      name=\"AddrKey\" #AddrKey=\"ngModel\">\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">User Id</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" name=\"UserId\" [(ngModel)]=\"dataModel.UserId\"\n                      #UserId=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && UserId.invalid }\" required\n                      minlength=\"6\" />\n\n                    <div *ngIf=\"f.submitted && UserId.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"UserId.errors.required\"> User Id is required</div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">First Name</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.FirstName\"\n                      id=\"FirstName\" name=\"FirstName\" #FirstName=\"ngModel\"\n                      [ngClass]=\"{ 'is-invalid': f.submitted && FirstName.invalid }\" required>\n                    <div *ngIf=\"f.submitted && FirstName.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"FirstName.errors.required\"> First Name is required</div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Last Name</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.LastName\"\n                      id=\"LastName\" name=\"LastName\" #LastName=\"ngModel\"\n                      [ngClass]=\"{ 'is-invalid': f.submitted && LastName.invalid }\" required>\n                    <div *ngIf=\"f.submitted && LastName.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"LastName.errors.required\"> Last Name is required</div>\n                    </div>\n                  </div>\n                </div>\n\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Password</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Password\"\n                      id=\"Password\" name=\"Password\" #Password=\"ngModel\"\n                      [ngClass]=\"{ 'is-invalid': f.submitted && Password.invalid }\" required>\n                    <div *ngIf=\"f.submitted && Password.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"Password.errors.required\"> Password is required</div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"container\">\n              <div class=\"form-group\">\n                <label for=\"legno\"> <b> Address </b> </label>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Line 1</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Address1\"\n                      name=\"Address1\" #Address1=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && Address1.invalid }\"\n                      required>\n                    <div *ngIf=\"f.submitted && Address1.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"Address1.errors.required\"> Address line 1 is required</div>\n                    </div>\n                  </div>\n\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Line 2</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Address2\"\n                      name=\"Address2\" #Address2=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && Address2.invalid }\" required>\n                    <div *ngIf=\"f.submitted && Address2.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"Address2.errors.required\"> Address line 2 is required</div>\n                    </div>\n                  </div>\n                </div>\n\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-6\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">City</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.City\"\n                      name=\"City\" #City=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && City.invalid }\" required>\n                    <div *ngIf=\"f.submitted && City.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"City.errors.required\"> City is required</div>\n                    </div>\n                  </div>\n                  <div class=\"form-group input-group input-group-sm col-md-3\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">State</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.State\"\n                      name=\"State\" #State=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && State.invalid }\" required>\n                    <div *ngIf=\"f.submitted && State.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"State.errors.required\"> State is required</div>\n                    </div>\n                  </div>\n                  <div class=\"form-group input-group input-group-sm col-md-3\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Zip</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Zip\"\n                      name=\"Zip\" (keypress)=\"numberOnly($event)\" appBlockCopyPaste #Zip=\"ngModel\"\n                      [ngClass]=\"{ 'is-invalid': f.submitted && Zip.invalid }\" required minlength=\"3\" maxlength=\"3\">\n                    <div *ngIf=\"f.submitted && Zip.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"Zip.errors.required\"> Zip is required</div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-4\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Country</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Country\"\n                      name=\"Country\" #Country=\"ngModel\">\n                  </div>\n                  <div class=\"form-group input-group input-group-sm col-md-8\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Website</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Website\"\n                      name=\"Website\" #Website=\"ngModel\" appBlockCopyPaste>\n\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-6\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Phone</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Phone\"\n                      name=\"Phone\" #Phone=\"ngModel\" (keypress)=\"numberOnly($event)\" appBlockCopyPaste>\n\n                  </div>\n                  <div class=\"form-group input-group input-group-sm col-md-6\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Fax</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Fax\"\n                      name=\"Fax\" #Fax=\"ngModel\" (keypress)=\"numberOnly($event)\" appBlockCopyPaste>\n                  </div>\n                </div>\n\n\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">E-mail</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Email\"\n                      name=\"Email\" #Email=\"ngModel\" appBlockCopyPaste>\n                  </div>\n                </div>\n\n              </div>\n\n              <div class=\"row\">\n                <div class=\"col-6 col-sm-6 col-md-6\">\n\n                </div>\n                <div class=\"col-1 col-sm-1 col-md-1 text-left\">\n                  <!-- <button type=\"reset\" *ngIf=\"isResetbtnhidden\" class=\"btn btn-primary btn-sm\"\n                    (click)=\"resetForm()\">Clear</button> -->\n                </div>\n                <div class=\"col-2 col-sm-2 col-md-2 text-right\">\n                  <button type=\"reset\" class=\"btn btn-primary btn-sm\" (click)=\"cancel()\">Cancel</button>\n                </div>\n                <div class=\"col-1 col-sm-1 col-md-1 text-right\">\n                  <button class=\"btn btn-primary btn-sm\">Submit</button>\n                </div>\n              </div>\n              <br>\n            </div>\n          </form>\n        </div>\n      </div>\n      <div class=\"row\" *ngIf=\"show_UserInfo\">\n        <div class=\"container text-right\">\n          <span style=\"color:green;\" (click)=\"bindFormControls()\"> <i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>\n            <b> edit</b>..</span>\n        </div>\n        <div class=\"container ml-2\">\n\n          <h5> {{dataModel.UserId}} </h5>\n\n          <span class=\"text-muted\">FirstName </span> <br>\n          <span><b> {{dataModel.FirstName}} </b></span> <br>\n\n          <span class=\"text-muted\">LastName </span> <br>\n          <span><b> {{dataModel.LastName}} </b>\n          </span>\n          <br><br>\n\n          <span class=\"text\" style=\"color: chocolate;\"> <b> Address </b></span><br>\n\n          <span class=\"text-muted\">Line 1 :<b> {{dataModel.Address.Address1}}</b> </span><br>\n          <span class=\"text-muted\">Line 2 :<b> {{dataModel.Address.Address2}}</b> </span> <br>\n          <span class=\"text-muted\">City :<b> {{dataModel.Address.City}} </b></span> <br>\n          <span class=\"text-muted\">State :<b> {{dataModel.Address.State}} </b></span> <br>\n          <span class=\"text-muted\">Zip :<b> {{dataModel.Address.Zip}} </b></span> <br>\n          <span class=\"text-muted\">Country: <b> {{dataModel.Address.Country}} </b></span> <br><br>\n          <span class=\"text-muted\">Website <b> {{dataModel.Address.Website}} </b></span> <br><br>\n          <span class=\"text-muted\">Email </span><br>\n          <span><b> {{dataModel.Address.Email}} </b></span> <br><br>\n\n          <div class=\"row\">\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\n              <span class=\"text-muted\">Fax </span><br>\n              <span><b> {{dataModel.Address.Fax}} </b></span>\n            </div>\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\n              <span class=\"text-muted\">Mobile </span><br>\n              <span><b> {{dataModel.Address.Phone}} </b></span>\n            </div>\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>";
+    __webpack_exports__["default"] = "<br>\n<div id=\"jumbotron\">\n  <div class=\"row\">\n    <div class=\"col-sm-6 col-md-6 col-lg-6\">\n      <div class=\"row\">\n        <div class=\"col-6 col-sm-6 col-md-6\">\n          <h5 class=\"card-subtitle mb-2\" >\n            <img src=\"assets/img/brand/user-identity4.png\" /> Users</h5>\n        </div>\n        <div class=\"col-6 col-sm-6 col-md-6\">\n          <div class=\"container text-right\">\n            <div class=\"row\">\n              <div class=\"col-12 col-sm-12 col-md-12\">\n                <div class=\"form-group input-group input-group-sm\">\n                  <div class=\"img-group-prepend\">\n                    <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\n                  </div>\n                  <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" type=\"text\"\n                    placeholder=\"Search..\">\n                </div>\n              </div>\n              <!-- <div class=\"col-1 col-sm-1 col-md-1\">\n                <img src=\"assets/img/brand/broom16px.png\" (click)=\"clear_search()\" tooltip=\"clear\" />\n              </div> -->\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-sm-6 col-md-6 col-lg-6 text-right\">\n      <button type=\"button\" class=\"btn btn-info btn-sm\" (click)=\"toggle()\" *ngIf=\"show_btnCreateUser\">Create New\n        User</button>\n      <h5 for=\"new\" *ngIf=\"show_lblAddNewUser\"> Add New User </h5>\n      <h5 for=\"edit\" *ngIf=\"show_lblEditUserDetail\"> Edit User </h5>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-sm-6 col-md-6 col-lg-6 ScrollStyle\">\n      <table class=\"table table-sm\">\n        <tr ngclass=\"btn-primary\">\n          <th hidden=\"true\">userkey</th>\n          <th>User Id</th>\n          <th>First Name</th>\n          <th>Last Name</th>\n        </tr>\n        <tr *ngFor=\"let user of Users | grdFilter: {UserId: searchText,FirstName: searchText, LastName: searchText}\">\n          <td hidden=\"true\">{{user.UserKey}}</td>\n          <td> <a [routerLink]=\"\" (click)=\"getUserById(user.UserKey)\">{{user.UserId}}</a> </td>\n          <td>{{user.FirstName}}</td>\n          <td>{{user.LastName}}</td>\n        </tr>\n      </table>\n    </div>\n    <div class=\"col-sm-6 col-md-6 col-lg-6\">\n      <div class=\"row\" *ngIf=\"show_addupdateUser\">\n        \n          <form name=\"form\" (ngSubmit)=\" f.form.valid && onSubmit()\" #f=\"ngForm\" novalidate>\n            <div class=\"container\">\n              <div class=\"form-group\">\n                <br>\n                <label for=\"user\"> <b> User detail </b> </label>\n                <div class=\"row\" hidden=\"true\">\n                  <div class=\"form-group input-group input-group-sm col-md-4\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">UserKey</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.UserKey\" id=\"UserKey\"\n                      name=\"UserKey\" #UserKey=\"ngModel\">\n                  </div>\n\n                  <div class=\"form-group input-group input-group-sm col-md-6\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Address Key</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.AddrKey\"\n                      name=\"AddrKey\" #AddrKey=\"ngModel\">\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">User Id</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" name=\"UserId\" [(ngModel)]=\"dataModel.UserId\"\n                      #UserId=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && UserId.invalid }\" required\n                      minlength=\"6\" />\n\n                    <div *ngIf=\"f.submitted && UserId.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"UserId.errors.required\"> User Id is required</div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">First Name</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.FirstName\"\n                      id=\"FirstName\" name=\"FirstName\" #FirstName=\"ngModel\"\n                      [ngClass]=\"{ 'is-invalid': f.submitted && FirstName.invalid }\" required>\n                    <div *ngIf=\"f.submitted && FirstName.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"FirstName.errors.required\"> First Name is required</div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Last Name</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.LastName\"\n                      id=\"LastName\" name=\"LastName\" #LastName=\"ngModel\"\n                      [ngClass]=\"{ 'is-invalid': f.submitted && LastName.invalid }\" required>\n                    <div *ngIf=\"f.submitted && LastName.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"LastName.errors.required\"> Last Name is required</div>\n                    </div>\n                  </div>\n                </div>\n\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Password</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Password\"\n                      id=\"Password\" name=\"Password\" #Password=\"ngModel\"\n                      [ngClass]=\"{ 'is-invalid': f.submitted && Password.invalid }\" required>\n                    <div *ngIf=\"f.submitted && Password.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"Password.errors.required\"> Password is required</div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n            <div class=\"container\">\n              <div class=\"form-group\">\n                <label for=\"legno\"> <b> Address </b> </label>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Line 1</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Address1\"\n                      name=\"Address1\" #Address1=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && Address1.invalid }\"\n                      required>\n                    <div *ngIf=\"f.submitted && Address1.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"Address1.errors.required\"> Address line 1 is required</div>\n                    </div>\n                  </div>\n\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Line 2</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Address2\"\n                      name=\"Address2\" #Address2=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && Address2.invalid }\" required>\n                    <div *ngIf=\"f.submitted && Address2.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"Address2.errors.required\"> Address line 2 is required</div>\n                    </div>\n                  </div>\n                </div>\n\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-6\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">City</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.City\"\n                      name=\"City\" #City=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && City.invalid }\" required>\n                    <div *ngIf=\"f.submitted && City.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"City.errors.required\"> City is required</div>\n                    </div>\n                  </div>\n                  <div class=\"form-group input-group input-group-sm col-md-3\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">State</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.State\"\n                      name=\"State\" #State=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && State.invalid }\" required>\n                    <div *ngIf=\"f.submitted && State.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"State.errors.required\"> State is required</div>\n                    </div>\n                  </div>\n                  <div class=\"form-group input-group input-group-sm col-md-3\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Zip</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Zip\"\n                      name=\"Zip\" (keypress)=\"numberOnly($event)\" appBlockCopyPaste #Zip=\"ngModel\"\n                      [ngClass]=\"{ 'is-invalid': f.submitted && Zip.invalid }\" required minlength=\"3\" maxlength=\"3\">\n                    <div *ngIf=\"f.submitted && Zip.invalid\" class=\"invalid-feedback\">\n                      <div *ngIf=\"Zip.errors.required\"> Zip is required</div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-4\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Country</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Country\"\n                      name=\"Country\" #Country=\"ngModel\">\n                  </div>\n                  <div class=\"form-group input-group input-group-sm col-md-8\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Website</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Website\"\n                      name=\"Website\" #Website=\"ngModel\" appBlockCopyPaste>\n\n                  </div>\n                </div>\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-6\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Phone</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Phone\"\n                      name=\"Phone\" #Phone=\"ngModel\" (keypress)=\"numberOnly($event)\" appBlockCopyPaste>\n\n                  </div>\n                  <div class=\"form-group input-group input-group-sm col-md-6\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">Fax</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Fax\"\n                      name=\"Fax\" #Fax=\"ngModel\" (keypress)=\"numberOnly($event)\" appBlockCopyPaste>\n                  </div>\n                </div>\n\n\n                <div class=\"row\">\n                  <div class=\"form-group input-group input-group-sm col-md-12\">\n                    <div class=\"input-group-prepend\">\n                      <span class=\"input-group-text\">E-mail</span>\n                    </div>\n                    <input type=\"text\" class=\"form-control form-control-sm\" [(ngModel)]=\"dataModel.Address.Email\"\n                      name=\"Email\" #Email=\"ngModel\" appBlockCopyPaste>\n                  </div>\n                </div>\n\n              </div>\n\n              <div class=\"row\">\n                <div class=\"col-6 col-sm-6 col-md-6\">\n\n                </div>\n                <div class=\"col-1 col-sm-1 col-md-1 text-left\">\n                  <!-- <button type=\"reset\" *ngIf=\"isResetbtnhidden\" class=\"btn btn-primary btn-sm\"\n                    (click)=\"resetForm()\">Clear</button> -->\n                </div>\n                <div class=\"col-2 col-sm-2 col-md-2 text-right\">\n                  <button type=\"reset\" class=\"btn btn-primary btn-sm\" (click)=\"cancel()\">Cancel</button>\n                </div>\n                <div class=\"col-1 col-sm-1 col-md-1 text-right\">\n                  <button class=\"btn btn-primary btn-sm\">Submit</button>\n                </div>\n              </div>\n              <br>\n            </div>\n          </form>\n       \n      </div>\n      <div class=\"row\" *ngIf=\"show_UserInfo\">\n        <div class=\"container text-right\">\n          <span style=\"color:green;\" (click)=\"bindFormControls()\"> <i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>\n            <b> edit</b>..</span>\n        </div>\n        <div class=\"container ml-2\">\n\n          <h5> {{dataModel.UserId}} </h5>\n\n          <span class=\"text-muted\">FirstName </span> <br>\n          <span><b> {{dataModel.FirstName}} </b></span> <br>\n\n          <span class=\"text-muted\">LastName </span> <br>\n          <span><b> {{dataModel.LastName}} </b>\n          </span>\n          <br><br>\n\n          <span class=\"text\" style=\"color: chocolate;\"> <b> Address </b></span><br>\n\n          <span class=\"text-muted\">Line 1 :<b> {{dataModel.Address.Address1}}</b> </span><br>\n          <span class=\"text-muted\">Line 2 :<b> {{dataModel.Address.Address2}}</b> </span> <br>\n          <span class=\"text-muted\">City :<b> {{dataModel.Address.City}} </b></span> <br>\n          <span class=\"text-muted\">State :<b> {{dataModel.Address.State}} </b></span> <br>\n          <span class=\"text-muted\">Zip :<b> {{dataModel.Address.Zip}} </b></span> <br>\n          <span class=\"text-muted\">Country: <b> {{dataModel.Address.Country}} </b></span> <br><br>\n          <span class=\"text-muted\">Website <b> {{dataModel.Address.Website}} </b></span> <br><br>\n          <span class=\"text-muted\">Email </span><br>\n          <span><b> {{dataModel.Address.Email}} </b></span> <br><br>\n\n          <div class=\"row\">\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\n              <span class=\"text-muted\">Fax </span><br>\n              <span><b> {{dataModel.Address.Fax}} </b></span>\n            </div>\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\n              <span class=\"text-muted\">Mobile </span><br>\n              <span><b> {{dataModel.Address.Phone}} </b></span>\n            </div>\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>";
     /***/
   },
 
@@ -558,6 +558,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/views/_master/userpermissions/userpermissions.component.html":
+  /*!********************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/views/_master/userpermissions/userpermissions.component.html ***!
+    \********************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppViews_masterUserpermissionsUserpermissionsComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<br>\n<h5>Roles & Permissions</h5>\n<div id=\"jumbotron\">\n  <div class=\"row\">\n    <div class=\"form-group input-group input-group-sm col-4 col-sm-4 col-md-4\">\n      <div class=\"input-group-prepend\">\n        <span class=\"input-group-text\">User</span>\n      </div>\n      <select id=\"drpUsers\" class=\"form-control form-control-sm\" (change)=\"drpUsers_ChangedEvent($event.target.value)\">\n        <option [value]=\"0\"> </option>\n        <option [value]=\"user.UserKey\" *ngFor=\"let user of Users\">\n          {{user.FirstName}} {{user.LastName}}\n        </option>\n      </select>\n    </div>\n    <div class=\"col-4 col-sm-4 col-md-4\">\n      <div class=\"container text-left\">\n        <button type=\"button\" class=\"btn btn-info btn-sm\" style=\"border-radius: 1rem;\" (click)=\"fnNew_click()\"\n          *ngIf=\"show_btnAdd\">\n          <i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i> Add Permission\n        </button>\n        <button type=\"button\" class=\"btn btn-outline-info btn-sm\" style=\"border-radius: 1rem;\"\n          (click)=\"fnUpdate_click()\" *ngIf=\"show_btnEdit\">\n          <i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> Edit Permission\n        </button>\n      </div>\n    </div>\n    <div class=\"col-4 col-sm-4 col-md-4\">\n      <div class=\"container text-right\" *ngIf=\"show_AddCancel\">\n        <button type=\"submit\" class=\"btn btn-primary btn-sm\" (click)=\"onSubmit()\">Submit</button> &nbsp;\n        <button type=\"reset\" class=\"btn btn-primary btn-sm\" (click)=\"cancel()\">Cancel</button>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"row\" *ngIf=\"show_DivInfo\">\n    <div class=\"col-4 col-sm-4 col-md-4\">\n      <span>Role</span>\n      <b> : {{role.description}}</b>\n    </div>\n    <div class=\"col-12 col-sm-12 col-md-12\">\n      <table class=\"table table-sm\">\n        <tr ngclass=\"btn-primary\">\n          <th scope=\"col\" hidden=\"true\">UserKey &nbsp;</th>\n          <th scope=\"col\"> &nbsp;</th>\n          <th scope=\"col\">View &nbsp;</th>\n          <th scope=\"col\">Add &nbsp;</th>\n          <th scope=\"col\">Edit &nbsp;</th>\n          <th scope=\"col\">Delete &nbsp;</th>\n\n        </tr>\n        <tr *ngFor=\"let permissions of UserPermissions | grdFilter: {userkey: searchText,modulename: searchText} \n      |paginate:{itemsPerPage:10,currentPage:p,totalItems: count};let i=index\">\n          <td hidden=\"true\"> {{permissions.UserKey}}</td>\n          <td> \n            <b style= \"color: lightblue;\">\n           {{permissions.Modulename|titlecase }}  </b></td> \n          <td>\n            <div>\n              <span *ngIf=\"permissions.fView == 1\" class=\"badge badge-pill badge-success\">\n                <i class=\"fa fa-check-circle  fa-lg\" style= \"color: green;\" aria-hidden=\"true\"></i> \n                <!-- <b> YES</b> -->\n              </span>\n              <span *ngIf=\"!permissions.fView == 1\" class=\"badge badge-pill badge-danger\">\n                <i class=\"fa fa-times-circle fa-lg\" style= \"color:darkred\" aria-hidden=\"true\"></i>\n                <!-- <b> NO</b> -->\n              </span>\n            </div>\n          </td>\n          <td>\n            <div>\n              <span *ngIf=\"permissions.fNew == 1\" class=\"badge badge-pill badge-success\">\n                <i class=\"fa fa-check-circle  fa-lg\" style= \"color: green;\" aria-hidden=\"true\"></i> \n                <!-- <b> YES</b> -->\n              </span>\n              <span *ngIf=\"!permissions.fNew == 1\" class=\"badge badge-pill badge-danger\">\n                <i class=\"fa fa-times-circle fa-lg\" style= \"color:darkred\" aria-hidden=\"true\"></i>\n                <!-- <b> NO</b> -->\n              </span>\n            </div>\n          </td>\n          <td>\n            <div>\n              <span *ngIf=\"permissions.fEdit == 1\" class=\"badge badge-pill badge-success\" >\n                <i class=\"fa fa-check-circle  fa-lg\" style= \"color: green;\" aria-hidden=\"true\"></i> \n                <!-- <b> YES</b> -->\n              </span>\n              <span *ngIf=\"!permissions.fEdit == 1\" class=\"badge badge-pill badge-danger\">\n                <i class=\"fa fa-times-circle fa-lg\" style= \"color:darkred\" aria-hidden=\"true\"></i>\n                <!-- <b> NO</b> -->\n              </span>\n            </div>\n          </td>\n          <td>\n            <div>\n              <span *ngIf=\"permissions.fDelete == 1\" class=\"badge badge-pill badge-success\">\n                <i class=\"fa fa-check-circle  fa-lg\" style= \"color: green;\" aria-hidden=\"true\"></i> \n                <!-- <b> YES</b> -->\n              </span>\n              <span *ngIf=\"!permissions.fDelete == 1\" class=\"badge badge-pill badge-danger\">\n                <i class=\"fa fa-times-circle fa-lg\" style= \"color:darkred\" aria-hidden=\"true\"></i>\n                <!-- <b> NO</b> -->\n              </span>\n            </div>\n          </td>\n        </tr>\n        <!-- <tr *ngIf=\"ratesCount\">\n          <td colspan=\"1\">\n            <h4 style=\"color: darkorange;\">No records found! </h4>\n          </td>\n        </tr> -->\n      </table>\n      <div class=\"container text-right\">\n        <pagination-controls (pageChange)=\"p=$event\" autoHide=\"true\" responsive=\"true\"> </pagination-controls>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\" *ngIf=\"show_DivAddUpdate\">\n    <div class=\"form-group input-group input-group-sm col-4 col-sm-4 col-md-4\">\n      <div class=\"input-group-prepend\">\n        <span class=\"input-group-text\">Role</span>\n      </div>\n      <select id=\"drpRoles\" class=\"form-control form-control-sm\"  name=\"role.rolekey\"  [(ngModel)]=\"role.rolekey\" (change)=\"drpRoles_ChangedEvent($event.target.value)\">\n        <option [value]=\"0\"> </option>\n        <option [value]=\"role.rolekey\" *ngFor=\"let role of roles\">\n          {{role.description}}\n        </option>\n      </select>\n      \n    </div>\n    <div class=\"col-12 col-sm-12 col-md-12\">\n      <table class=\"table table-sm\">\n        <tr ngclass=\"btn-primary\">\n          <th scope=\"col\" hidden=\"true\">UserKey &nbsp;</th>\n          <th scope=\"col\"> Title&nbsp;</th>\n          <th scope=\"col\">View &nbsp;</th>\n          <th scope=\"col\">Add &nbsp;</th>\n          <th scope=\"col\">Edit &nbsp;</th>\n          <th scope=\"col\">Delete &nbsp;</th>\n        </tr>\n        <tr *ngFor=\"let data of AddUpdateUserPermissions ;let i=index\">\n          <td hidden=\"true\"> {{data.UserKey}}</td>\n          <td>\n            <span> <b> {{data.Modulename|titlecase }} </b></span>\n          </td>\n          <td>\n            <div>\n              <input id=\"chk_+i\" type=\"checkbox\" [(ngModel)]=\"data.fView\" value=\"{{data.fView}}\"\n                [ngModelOptions]=\"{standalone: true}\" (change)=\"onViewCheckboxChange(data,$event)\" />\n                  &nbsp;\n                  <!-- <span *ngIf=\"data.fView == 1\" class=\"badge badge-pill badge-success\">\n                <b>YES</b>                 \n                </span> -->\n                <span *ngIf=\"data.fView == 1\" class=\"badge badge-pill badge-success\">\n                  <i class=\"fa fa-check-circle  fa-lg\" style= \"color: green;\" aria-hidden=\"true\"></i>                  \n                </span>\n                <span *ngIf=\"!data.fView == 1\" class=\"badge badge-pill badge-danger\">\n                  <i class=\"fa fa-times-circle fa-lg\" style= \"color:darkred\" aria-hidden=\"true\"></i>                 \n                </span>\n            </div>\n          </td>\n          <td>\n            <div>\n              <input type=\"checkbox\" [(ngModel)]=\"data.fNew\" value=\"{{data.fNew}}\" [ngModelOptions]=\"{standalone: true}\"\n                (change)=\"onNewCheckboxChange(data,$event)\" />\n              &nbsp; <span *ngIf=\"data.fNew == 1\" class=\"badge badge-pill badge-success\">\n                <i class=\"fa fa-check-circle  fa-lg\" style= \"color: green;\" aria-hidden=\"true\"></i>                  \n              </span>\n              <span *ngIf=\"!data.fNew == 1\" class=\"badge badge-pill badge-danger\">\n                <i class=\"fa fa-times-circle fa-lg\" style= \"color:darkred\" aria-hidden=\"true\"></i>                 \n              </span>\n            </div>\n          </td>\n          <td>\n            <div>\n              <input type=\"checkbox\" [(ngModel)]=\"data.fEdit\" value=\"{{data.fEdit}}\"\n                [ngModelOptions]=\"{standalone: true}\" (change)=\"onEditCheckboxChange(data,$event)\" />\n\n              &nbsp;<span *ngIf=\"data.fEdit == 1\" class=\"badge badge-pill badge-success\">\n                <i class=\"fa fa-check-circle  fa-lg\" style= \"color: green;\" aria-hidden=\"true\"></i>                  \n              </span>\n              <span *ngIf=\"!data.fEdit == 1\" class=\"badge badge-pill badge-danger\">\n                <i class=\"fa fa-times-circle fa-lg\" style= \"color:darkred\" aria-hidden=\"true\"></i>                 \n              </span>\n            </div>\n          </td>\n          <td>\n            <div>\n              <input type=\"checkbox\" [(ngModel)]=\"data.fDelete\" value=\"{{data.fDelete}}\"\n                [ngModelOptions]=\"{standalone: true}\" (change)=\"onDeleteCheckboxChange(data,$event)\" />\n              &nbsp;<span *ngIf=\"data.fDelete == 1\" class=\"badge badge-pill badge-success\">\n                <i class=\"fa fa-check-circle  fa-lg\" style= \"color: green;\" aria-hidden=\"true\"></i>                  \n              </span>\n              <span *ngIf=\"!data.fDelete == 1\" class=\"badge badge-pill badge-danger\">\n                <i class=\"fa fa-times-circle fa-lg\" style= \"color:darkred\" aria-hidden=\"true\"></i>                 \n              </span>\n            </div>\n          </td>\n        </tr>\n        <!-- <tr *ngIf=\"ratesCount\">\n                  <td colspan=\"1\">\n                    <h4 style=\"color: darkorange;\">No records found! </h4>\n                  </td>\n                </tr> -->\n      </table>\n    </div>\n  </div>\n</div>";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/views/child/_address/customer/customer.component.html":
   /*!*************************************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/views/child/_address/customer/customer.component.html ***!
@@ -573,7 +593,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!-- <div *ngIf=\"selectedCustomer!=null\"> -->\r\n\r\n<!-- <div *ngIf=\"selectedCustomer!=null\" class=\"btn-group btn-group-sm\" role=\"group\"\r\n      aria-label=\"Button group with nested dropdown\">\r\n      <button type=\"button\" class=\"btn btn-secondary\">Customer</button> -->\r\n<!-- <div class=\"card\">\r\n  <div class=\"card-header\" style=\"height: 30px;\">\r\n    <h6 class=\"card-title\" style=\"text-align:left\">Customer</h6>\r\n  </div>\r\n  <div class=\"card-body dropdown bg-secondary\" *ngIf=\"selectedCustomer!=null\">    \r\n      <button class=\"btn btn-secondary dropdown-toggle form-control-sm btn-block\" type=\"button\" id=\"drpcustomer\"\r\n        data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        <img *ngIf=\"creditCheck\" src=\"assets/img/brand/tick-circle-icon16px.png\" />\r\n        <img *ngIf=\"!creditCheck\" src=\"assets/img/brand/close16px.png\" />\r\n       <b> {{billtoCustomerName}}</b>\r\n      </button>\r\n      <div class=\"dropdown-menu\" aria-labelledby=\"drpBillTo\">\r\n        <li *ngFor=\"let cust of customer\" [class.selected]=\"cust === selectedCustomer\" (click)=\"onSelect(cust)\">\r\n          <a class=\"dropdown-item\">{{cust.CustName}}</a>\r\n        </li>\r\n      </div> <br>      \r\n        <small class=\"text-center text-capitalize\" style=\"color:darkblue;\">{{selectedCustomer.Address.Address1}} &nbsp;{{selectedCustomer.Address.Address2}}\r\n        <br>\r\n         {{selectedCustomer.Address.City}}, {{selectedCustomer.Address.State}}-{{selectedCustomer.Address.Zip}}</small>\r\n    </div>   \r\n</div> -->\r\n\r\n<table>\r\n  <tbody>\r\n    <tr>\r\n      <td> \r\n        <h6 class=\"card-title  badge badge-pill badge-primary\" style=\"text-align:left\">Bill To / Customer</h6>\r\n          <div class=\"dropdown\" >\r\n            <button class=\"btn btn-secondary dropdown-toggle form-control-sm btn-block\" \r\n            style=\"border-radius: 1rem; margin-top: 0px;\r\n            margin-bottom: 0px;\r\n            margin-right: 0px;\r\n            margin-left: 0px;\r\n            max-width: 280px;\r\n            min-width: 250px;\r\n            overflow: hidden;\r\n            text-overflow: ellipsis;\" type=\"button\"\r\n              data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" >\r\n              <img *ngIf=\"creditCheck\" src=\"assets/img/brand/tick-circle-icon16px.png\" />\r\n              <img *ngIf=\"!creditCheck\" src=\"assets/img/brand/delete-1-icon16px.png\" />\r\n              <small><b > {{billtoCustomerName}}</b></small>\r\n            </button>\r\n            <div class=\"dropdown-menu\" >\r\n              <form class=\"px-4 py-2\">\r\n                <input type=\"search\" class=\"form-control  form-control-sm\" placeholder=\"search..\" autofocus=\"autofocus\"\r\n                (input)=\"onSearchChange($event.target.value)\">\r\n            </form>\r\n            <div class=\"menuItems\">\r\n              <li *ngFor=\"let cust of customerFilter;  let ind=index;\" [class.selected]=\"cust === selectedCustomer\" (click)=\"onSelect(cust)\">\r\n                <a class=\"dropdown-item\">{{cust.CustName}} -  {{cust.Address.City}}</a>\r\n              </li></div>             \r\n            </div>\r\n          </div>  \r\n      </td>      \r\n    </tr>\r\n    <tr *ngIf=\"selectedCustomer\">\r\n      <td>\r\n        <div style=\"margin: 5px;\">\r\n        <p class=\"text-left text-capitalize\" >\r\n          <small><b style=\"word-wrap: break-word;color: #CCCC99;\" >{{selectedCustomer.CustName}}</b></small><br>\r\n          {{selectedCustomer.Address.Address1}},&nbsp;{{selectedCustomer.Address.Address2}}\r\n          <br>\r\n          {{selectedCustomer.Address.City}} {{selectedCustomer.Address.State}} {{selectedCustomer.Address.Zip}}</p>          \r\n        </div>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n\r\n\r\n\r\n<!-- \r\n<div class=\"dropdown\">\r\n    <button class=\"btn btn-secondary dropdown-toggle\" type=\"button\" id=\"dropdownMenu2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        {{billtoCustomerName}}\r\n    </button>\r\n    <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu2\">\r\n        <li *ngFor=\"let cust of customer\" [class.selected]=\"cust === selectedCustomer\" (click)=\"onSelect(cust)\">\r\n            <a class=\"dropdown-item\">{{cust.CustName}}</a>\r\n          </li>\r\n    </div>\r\n  </div> -->\r\n\r\n\r\n<!-- </div> -->\r\n\r\n\r\n<!-- <div class=\"input-group input-group-sm\" >\r\n        <div class=\"input-group-prepend\">\r\n          <span class=\"input-group-text\">Customer</span>\r\n        </div>\r\n        <br>\r\n        <select class=\"form-control form-control-sm\"\r\n        (change)=\"onSelect(cust)\" [value]=customerKeyTobind>\r\n         <option value=\"cust.CustKey\" *ngFor=\"let cust of customer\">{{cust.CustName}}</option>\r\n       </select>\r\n      </div>  -->\r\n\r\n<!-- <div class=\"form-row \"><p>{{selectedCustomer.Address1}} </p> </div> \r\n          <div class=\"form-row \"> <p> {{selectedCustomer.Address2}} ,  {{selectedCustomer.City}} </p>  </div> \r\n          <div class=\"form-row \">  <p> {{selectedCustomer.State}} {{selectedCustomer.Zip}}</p>  </div>  -->\r\n\r\n<!-- <div class=\"form-row \">                        \r\n             <div class=\"form-group\">\r\n              <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputAddress\" placeholder=\"Address1\"\r\n                [(ngModel)]=\"selectedCustomer.Address1\">\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputAddress2\" placeholder=\"Address2\"\r\n                [(ngModel)]=\"selectedCustomer.Address2\">\r\n            </div>\r\n            <div class=\"form-row \">\r\n              <div class=\" col-md-5\">\r\n                <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputCity\" placeholder=\"City\"\r\n                  [(ngModel)]=\"selectedCustomer.City\">\r\n              </div>\r\n              <div class=\"col-md-4\">            \r\n                <input type=\"text\" class=\"form-control form-control-sm\" name=\"inputState\"  id=\"inputState\" placeholder=\"State\"\r\n                  [(ngModel)]=\"selectedCustomer.State\">\r\n              </div>\r\n              <div class=\" col-md-3\">\r\n                <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputZip\" placeholder=\"Zip\"\r\n                  [(ngModel)]=\"selectedCustomer.Zip\">\r\n              </div>            \r\n            </div> -->\r\n<!-- </div> -->\r\n\r\n<!-- <div class=\"btn-group dropdown-menu-right\">                 \r\n    <div *ngIf=\"selectedCustomer!=null\">       \r\n        <div class=\"form-group \">\r\n            <button class=\"btn btn-secondary dropdown-toggle form-control-sm\" type=\"button\" id=\"drpBillTo\" data-toggle=\"dropdown\"\r\n                            aria-haspopup=\"true\" aria-expanded=\"false\">\r\n            {{billtoCustomerName}}\r\n            </button>\r\n            <div class=\"dropdown-menu\" aria-labelledby=\"drpBillTo\">\r\n                <li *ngFor=\"let Address of customer\" [class.selected]=\"Address === selectedCustomer\" (click)=\"onSelect(Address)\">\r\n                  <a class=\"dropdown-item\">{{Address.Name}}</a>\r\n                </li>\r\n            </div>\r\n      </div> \r\n        <div class=\"form-group \">\r\n          <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputAddress\" placeholder=\"Address1\"\r\n            [(ngModel)]=\"selectedCustomer.Address1\">\r\n        </div>\r\n        <div class=\"form-group \">\r\n          <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputAddress2\" placeholder=\"Address2\"\r\n            [(ngModel)]=\"selectedCustomer.Address2\">\r\n        </div>\r\n        <div class=\"form-row\">\r\n          <div class=\" col-md-5\">\r\n            <input type=\"text\" class=\"form-control form-control-sm \" id=\"inputCity\" placeholder=\"City\"\r\n              [(ngModel)]=\"selectedCustomer.City\">\r\n          </div>\r\n          <div class=\"col-md-4\">            \r\n            <input type=\"text\" class=\"form-control form-control-sm \" name=\"inputState\"  id=\"inputState\" placeholder=\"State\"\r\n              [(ngModel)]=\"selectedCustomer.State\">\r\n          </div>\r\n          <div class=\" col-md-3\">\r\n            <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputZip\" placeholder=\"Zip\"\r\n              [(ngModel)]=\"selectedCustomer.Zip\">\r\n          </div>\r\n        </div>\r\n    </div>                                              \r\n  </div> -->";
+    __webpack_exports__["default"] = "<!-- <div *ngIf=\"selectedCustomer!=null\"> -->\r\n\r\n<!-- <div *ngIf=\"selectedCustomer!=null\" class=\"btn-group btn-group-sm\" role=\"group\"\r\n      aria-label=\"Button group with nested dropdown\">\r\n      <button type=\"button\" class=\"btn btn-secondary\">Customer</button> -->\r\n<!-- <div class=\"card\">\r\n  <div class=\"card-header\" style=\"height: 30px;\">\r\n    <h6 class=\"card-title\" style=\"text-align:left\">Customer</h6>\r\n  </div>\r\n  <div class=\"card-body dropdown bg-secondary\" *ngIf=\"selectedCustomer!=null\">    \r\n      <button class=\"btn btn-secondary dropdown-toggle form-control-sm btn-block\" type=\"button\" id=\"drpcustomer\"\r\n        data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        <img *ngIf=\"creditCheck\" src=\"assets/img/brand/tick-circle-icon16px.png\" />\r\n        <img *ngIf=\"!creditCheck\" src=\"assets/img/brand/close16px.png\" />\r\n       <b> {{billtoCustomerName}}</b>\r\n      </button>\r\n      <div class=\"dropdown-menu\" aria-labelledby=\"drpBillTo\">\r\n        <li *ngFor=\"let cust of customer\" [class.selected]=\"cust === selectedCustomer\" (click)=\"onSelect(cust)\">\r\n          <a class=\"dropdown-item\">{{cust.CustName}}</a>\r\n        </li>\r\n      </div> <br>      \r\n        <small class=\"text-center text-capitalize\" style=\"color:darkblue;\">{{selectedCustomer.Address.Address1}} &nbsp;{{selectedCustomer.Address.Address2}}\r\n        <br>\r\n         {{selectedCustomer.Address.City}}, {{selectedCustomer.Address.State}}-{{selectedCustomer.Address.Zip}}</small>\r\n    </div>   \r\n</div> -->\r\n\r\n<table>\r\n  <tbody>\r\n    <tr>\r\n      <td> \r\n        <h6 class=\"card-title  badge badge-pill badge-primary\" style=\"text-align:left\">Bill To / Customer</h6>\r\n          <div class=\"dropdown\" >\r\n            <button class=\"btn btn-secondary dropdown-toggle form-control-sm btn-block\" \r\n            style=\"border-radius: 1rem; margin-top: 0px;\r\n            margin-bottom: 0px;\r\n            margin-right: 0px;\r\n            margin-left: 0px;\r\n            max-width: 280px;\r\n            min-width: 250px;\r\n            overflow: hidden;\r\n            text-overflow: ellipsis;\" type=\"button\"\r\n              data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"  [disabled]=\"editmode\">\r\n              <img *ngIf=\"creditCheck\" src=\"assets/img/brand/tick-circle-icon16px.png\" />\r\n              <img *ngIf=\"!creditCheck\" src=\"assets/img/brand/delete-1-icon16px.png\" />\r\n              <small><b > {{billtoCustomerName}}</b></small>\r\n            </button>\r\n            <div class=\"dropdown-menu\" >\r\n              <form class=\"px-4 py-2\">\r\n                <input type=\"search\" class=\"form-control  form-control-sm\" placeholder=\"search..\" autofocus=\"autofocus\"\r\n                (input)=\"onSearchChange($event.target.value)\">\r\n            </form>\r\n            <div class=\"menuItems\">\r\n              <li *ngFor=\"let cust of customerFilter;  let ind=index;\" [class.selected]=\"cust === selectedCustomer\" (click)=\"onSelect(cust)\">\r\n                <a class=\"dropdown-item\">{{cust.CustName}} -  {{cust.Address.City}}</a>\r\n              </li></div>             \r\n            </div>\r\n          </div>  \r\n      </td>      \r\n    </tr>\r\n    <tr *ngIf=\"selectedCustomer\">\r\n      <td>\r\n        <div style=\"margin: 5px;\">\r\n        <p class=\"text-left text-capitalize\" >\r\n          <small><b style=\"word-wrap: break-word;color: #CCCC99;\" >{{selectedCustomer.CustName}}</b></small><br>\r\n          {{selectedCustomer.Address.Address1}},&nbsp;{{selectedCustomer.Address.Address2}}\r\n          <br>\r\n          {{selectedCustomer.Address.City}} {{selectedCustomer.Address.State}} {{selectedCustomer.Address.Zip}}</p>          \r\n        </div>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n\r\n\r\n\r\n<!-- \r\n<div class=\"dropdown\">\r\n    <button class=\"btn btn-secondary dropdown-toggle\" type=\"button\" id=\"dropdownMenu2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        {{billtoCustomerName}}\r\n    </button>\r\n    <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu2\">\r\n        <li *ngFor=\"let cust of customer\" [class.selected]=\"cust === selectedCustomer\" (click)=\"onSelect(cust)\">\r\n            <a class=\"dropdown-item\">{{cust.CustName}}</a>\r\n          </li>\r\n    </div>\r\n  </div> -->\r\n\r\n\r\n<!-- </div> -->\r\n\r\n\r\n<!-- <div class=\"input-group input-group-sm\" >\r\n        <div class=\"input-group-prepend\">\r\n          <span class=\"input-group-text\">Customer</span>\r\n        </div>\r\n        <br>\r\n        <select class=\"form-control form-control-sm\"\r\n        (change)=\"onSelect(cust)\" [value]=customerKeyTobind>\r\n         <option value=\"cust.CustKey\" *ngFor=\"let cust of customer\">{{cust.CustName}}</option>\r\n       </select>\r\n      </div>  -->\r\n\r\n<!-- <div class=\"form-row \"><p>{{selectedCustomer.Address1}} </p> </div> \r\n          <div class=\"form-row \"> <p> {{selectedCustomer.Address2}} ,  {{selectedCustomer.City}} </p>  </div> \r\n          <div class=\"form-row \">  <p> {{selectedCustomer.State}} {{selectedCustomer.Zip}}</p>  </div>  -->\r\n\r\n<!-- <div class=\"form-row \">                        \r\n             <div class=\"form-group\">\r\n              <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputAddress\" placeholder=\"Address1\"\r\n                [(ngModel)]=\"selectedCustomer.Address1\">\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputAddress2\" placeholder=\"Address2\"\r\n                [(ngModel)]=\"selectedCustomer.Address2\">\r\n            </div>\r\n            <div class=\"form-row \">\r\n              <div class=\" col-md-5\">\r\n                <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputCity\" placeholder=\"City\"\r\n                  [(ngModel)]=\"selectedCustomer.City\">\r\n              </div>\r\n              <div class=\"col-md-4\">            \r\n                <input type=\"text\" class=\"form-control form-control-sm\" name=\"inputState\"  id=\"inputState\" placeholder=\"State\"\r\n                  [(ngModel)]=\"selectedCustomer.State\">\r\n              </div>\r\n              <div class=\" col-md-3\">\r\n                <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputZip\" placeholder=\"Zip\"\r\n                  [(ngModel)]=\"selectedCustomer.Zip\">\r\n              </div>            \r\n            </div> -->\r\n<!-- </div> -->\r\n\r\n<!-- <div class=\"btn-group dropdown-menu-right\">                 \r\n    <div *ngIf=\"selectedCustomer!=null\">       \r\n        <div class=\"form-group \">\r\n            <button class=\"btn btn-secondary dropdown-toggle form-control-sm\" type=\"button\" id=\"drpBillTo\" data-toggle=\"dropdown\"\r\n                            aria-haspopup=\"true\" aria-expanded=\"false\">\r\n            {{billtoCustomerName}}\r\n            </button>\r\n            <div class=\"dropdown-menu\" aria-labelledby=\"drpBillTo\">\r\n                <li *ngFor=\"let Address of customer\" [class.selected]=\"Address === selectedCustomer\" (click)=\"onSelect(Address)\">\r\n                  <a class=\"dropdown-item\">{{Address.Name}}</a>\r\n                </li>\r\n            </div>\r\n      </div> \r\n        <div class=\"form-group \">\r\n          <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputAddress\" placeholder=\"Address1\"\r\n            [(ngModel)]=\"selectedCustomer.Address1\">\r\n        </div>\r\n        <div class=\"form-group \">\r\n          <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputAddress2\" placeholder=\"Address2\"\r\n            [(ngModel)]=\"selectedCustomer.Address2\">\r\n        </div>\r\n        <div class=\"form-row\">\r\n          <div class=\" col-md-5\">\r\n            <input type=\"text\" class=\"form-control form-control-sm \" id=\"inputCity\" placeholder=\"City\"\r\n              [(ngModel)]=\"selectedCustomer.City\">\r\n          </div>\r\n          <div class=\"col-md-4\">            \r\n            <input type=\"text\" class=\"form-control form-control-sm \" name=\"inputState\"  id=\"inputState\" placeholder=\"State\"\r\n              [(ngModel)]=\"selectedCustomer.State\">\r\n          </div>\r\n          <div class=\" col-md-3\">\r\n            <input type=\"text\" class=\"form-control form-control-sm\" id=\"inputZip\" placeholder=\"Zip\"\r\n              [(ngModel)]=\"selectedCustomer.Zip\">\r\n          </div>\r\n        </div>\r\n    </div>                                              \r\n  </div> -->";
     /***/
   },
 
@@ -813,7 +833,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<br>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n    <div class=\"scrollbar\" id=\"scrollbar-style\" style=\"position:relative;width:100%;height:100%;\">\r\n      <ul class=\"list-unstyled\">\r\n        <li>\r\n          <h5>Containers <span class=\"badge badge-warning\">Recent</span></h5><br>\r\n        </li>\r\n        <li>\r\n          <div class=\"container text-left\" *ngIf=\"ContainerDetails.length>0\">\r\n            <div class=\"form-group input-group input-group-sm\">\r\n              <div class=\"img-group-prepend\">\r\n                <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n              </div>\r\n              <input [(ngModel)]=\"SearchRecentContainer\" class=\"form-control form-control-sm\"\r\n                style=\"border-radius: 1rem;\" type=\"text\" placeholder=\"Search..\">\r\n            </div>\r\n          </div>\r\n          <div *ngIf=\"ContainerDetails.length === 0\">\r\n            <h6 style=\"color: darkorange;\">No Containers for Dispatch! </h6>\r\n          </div>\r\n          <br>\r\n        </li>\r\n        <li\r\n          *ngFor=\"let order of ContainerDetails| grdFilter: {containerid: SearchRecentContainer,ContainerNo: SearchRecentContainer} ; let ind=index;\">\r\n          <ul class=\"list-unstyled\">\r\n            <li>\r\n              <p style=\"font-family:calibri;\"> <a [routerLink]=\"\" (click)=\"rowclickEvent(order)\">\r\n                  {{order.containerid}}<br> <small class=\"text-muted\"> - {{ order.ContainerNo }} </small>\r\n                  <span class=\"badge\" *ngIf=\"selectedKey===order.OrderDetailKey\">\r\n                    <img src=\"assets/img/brand/symbol-check16px.png\" /> </span>\r\n                </a> </p>\r\n            </li>\r\n          </ul>\r\n        </li>\r\n\r\n      </ul>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col-sm-10 col-md-10 col-lg-10\">\r\n    <div *ngIf=\"showaddupdatedispatchitems\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n          <!-- <h5 class=\"card-subtitle mb-2\" style=\"color:cornflowerblue\">\r\n            <img src=\"assets/img/brand/lorry24px.png\" /> Dispatch Delivery</h5> -->\r\n\r\n          <button class=\"btn btn-success\" type=\"button\" data-toggle=\"collapse\" data-target=\"#Orderdata\"\r\n            aria-expanded=\"false\" aria-controls=\"Orderdata\">\r\n            Delivery ID - <b>{{HeaderData.OrderNo}} </b>\r\n          </button>\r\n\r\n          &nbsp;\r\n          <button id=\"AddDispatchEntry\" class=\"btn btn-outline-warning btn-sm small\" type=\"button\"\r\n            (click)=\"showaddupdateEntry()\">\r\n            Add Entry\r\n          </button>\r\n        </div>\r\n        <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n          <div class=\"container text-right\">\r\n            <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"hold_Dispatch()\">Hold</button>\r\n            &nbsp;\r\n            <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"Submit()\">Save</button> &nbsp;\r\n            <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"Complete_Dispatch()\">Delivery\r\n              complete</button>\r\n            &nbsp;&nbsp;\r\n            <button class=\"btn btn-outline-danger btn-sm small\" type=\"button\" (click)=\"Cancel()\">Cancel</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <br>\r\n\r\n      <div class=\"collapse show\" id=\"Orderdata\">\r\n        <div class=\"card card-body\">\r\n          <div class=\"row\">\r\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Date</span></div>\r\n                <div class=\"col-sm-9 col-md-9 col-lg-9\"><span>{{HeaderData.OrderDate|date}} </span></div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Type</span></div>\r\n                <div class=\"col-sm-9 col-md-9 col-lg-9\"><span> {{HeaderData.ordertypedescription}} </span></div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Broker</span></div>\r\n                <div class=\"col-sm-9 col-md-9 col-lg-9\"><span> {{HeaderData.BrokerName}} </span></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Broker Ref</span></div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BrokerRefNo}} </span></div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Booking No</span></div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BookingNo}} </span></div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Vessel</span></div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.VesselName}} </span></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Bill of Lading</span></div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BillofLading}} </span></div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Cut-Off Date</span></div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.CutOffDate|date}} </span></div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <hr style=\"color: slategray;\">\r\n          <div class=\"row\">\r\n            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <span class=\"text-muted\">Bill to</span>\r\n                </div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                  <div style=\"word-wrap: break-word;\">\r\n                    {{HeaderData.BillToAddressBO.Name}}\r\n                    {{HeaderData.BillToAddressBO.Address1}} {{HeaderData.BillToAddressBO.Address2}}\r\n                    {{HeaderData.BillToAddressBO.City}} {{HeaderData.BillToAddressBO.Zip}}\r\n                    {{HeaderData.BillToAddressBO.State}}\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <span class=\"text-muted\">Pickup</span>\r\n                </div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                  <div style=\"word-wrap: break-word;\">\r\n                    {{HeaderData.SourceAddressBO.Name}}\r\n                    {{HeaderData.SourceAddressBO.Address1}} {{HeaderData.SourceAddressBO.Address2}}\r\n                    {{HeaderData.SourceAddressBO.City}} {{HeaderData.SourceAddressBO.Zip}}\r\n                    {{HeaderData.SourceAddressBO.State}}\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <span class=\"text-muted\">Delivery</span>\r\n                </div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                  <div style=\"word-wrap: break-word;\">\r\n                    {{HeaderData.DestinationAddressBO.Name}}\r\n                    {{HeaderData.DestinationAddressBO.Address1}} {{HeaderData.DestinationAddressBO.Address2}}\r\n                    {{HeaderData.DestinationAddressBO.City}} {{HeaderData.DestinationAddressBO.Zip}}\r\n                    {{HeaderData.DestinationAddressBO.State}}\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <span class=\"text-muted\">Return</span>\r\n                </div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                  <div style=\"word-wrap: break-word;\">\r\n                    {{HeaderData.ReturnAddressBO.Name}}\r\n                    {{HeaderData.ReturnAddressBO.Address1}} {{HeaderData.ReturnAddressBO.Address2}}\r\n                    {{HeaderData.ReturnAddressBO.City}} {{HeaderData.ReturnAddressBO.Zip}}\r\n                    {{HeaderData.ReturnAddressBO.State}}\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <hr style=\"color: slategray;\">\r\n          <div class=\"row\">\r\n            <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n              <div class=\"panel panel-warning\">\r\n                <div class=\"panel-body\">\r\n                  <h6 class=\"text-muted\">Container</h6>\r\n                  <table class=\"table table-sm small table-striped\">\r\n                    <thead class=\"thead-light\">\r\n                      <tr>\r\n                        <th scope=\"col\" style=\"display:none\">OrderDetailKey</th>\r\n                        <th scope=\"col\" class=\"text-muted\">Id</th>\r\n                        <th scope=\"col\" class=\"text-muted\">No</th>\r\n                        <th scope=\"col\" class=\"text-muted\">Size</th>\r\n                        <th scope=\"col\" class=\"text-muted\">Seal#</th>\r\n                        <th scope=\"col\" class=\"text-muted\">Weight</th>\r\n                        <th scope=\"col\" class=\"text-muted\">Comment</th>\r\n                      </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                      <tr>\r\n                        <td hidden=\"true\" style=\"display:none\">\r\n                          {{DetailsData.OrderDetailKey}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.containerid}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.ContainerNo}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.ContainerSizeDesc}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.SealNo}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.Weight}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.Comments}}\r\n                        </td>\r\n                      </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n              <h6 class=\"text-muted\">Scheduler</h6>\r\n              <table class=\"table table-sm small table-striped\">\r\n                <thead class=\"thead-light\">\r\n                  <tr>\r\n                    <th scope=\"col\" class=\"text-muted\">Appointment Date</th>\r\n                    <th scope=\"col\" class=\"text-muted\">Pickup DateTime</th>\r\n                    <th scope=\"col\" class=\"text-muted\">DropOff Date/Time</th>\r\n                    <th scope=\"col\" class=\"text-muted\">Last Free Day</th>\r\n                    <th scope=\"col\" class=\"text-muted\">Notes</th>\r\n                  </tr>\r\n                </thead>\r\n                <tbody>\r\n                  <tr>\r\n                    <td>\r\n                      {{DetailsData.AppDateFrom|date}} - {{DetailsData.AppDateTo|date}}\r\n                    </td>\r\n                    <td>\r\n                      {{DetailsData.PickupDateTime|date: 'dd/MM/yyyy hh:mm a'}}\r\n                    </td>\r\n\r\n                    <td>\r\n                      {{DetailsData.DropOffDateTime|date: 'dd/MM/yyyy hh:mm a'}}\r\n                    </td>\r\n                    <td>\r\n                      {{DetailsData.LastFreeDay|date}}\r\n                    </td>\r\n                    <td>\r\n                      {{DetailsData.SchedulerNotes}}\r\n                    </td>\r\n\r\n                  </tr>\r\n                </tbody>\r\n              </table>\r\n            </div>\r\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n              <div class=\"panel-heading\">\r\n                <h6 class=\"text-muted\">Comments</h6>\r\n              </div>\r\n              <p><small> {{HeaderData.Comment}}</small></p>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n          <div class=\"card text-dark alert-warning\">\r\n            <div class=\"card-body text-dark border-light \">\r\n              <!-- <h5>Containers </h5> -->\r\n              <div class=\"row\">\r\n                <div class=\"table-responsive\" style=\"overflow-x: auto\">\r\n                  <table id=\"DISPATCH\"\r\n                    class=\"table table-custom table-sm table-hover table-striped table-warning scrollbar \">\r\n                    <thead>\r\n                      <tr>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Appointment No</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\"> Chassis</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Legno</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Leg Type</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Wait From/to at Port</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Wait From/to at Customer</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Pickup-Drop</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Driver</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\"> Drivernotes</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\"> Status</th>\r\n                        <th scope=\"col\" class=\"text-center text-muted\">Action</th>\r\n                      </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                      <tr *ngFor=\"let data of dispatchDetails;let i = index\">\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.appointmentno}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.Chassis}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.legno}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.legtype}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{ data.portwaitingtimefrom|date}} - {{data.portwaitingtimeto|date}}\r\n\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{ data.customerwaitingtimefrom|date}} - {{data.customerwaitingtimeto|date}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.actualarrival|date}}-{{data.actualdeparture|date}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.driver}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.drivernotes}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          <a tooltip=\"Upload file\" (click)=\"editRow(data,i)\">\r\n                            <i class=\"fa fa-pencil\"></i>\r\n                          </a> &nbsp;&nbsp;\r\n\r\n                          <a tooltip=\"Remove/Delete Container\" (click)=\"deleteRow(data,i)\">\r\n                            <i class=\"fa fa-trash\"></i>\r\n                          </a>\r\n                        </td>\r\n                      </tr>\r\n                    </tbody>\r\n                  </table>\r\n\r\n                </div>\r\n                <!-- <ng-container *ngIf=\"dispatchDetails.length==0\">\r\n                  <h5 style=\"color: darkred;\">No records found!</h5>\r\n                </ng-container> -->\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div *ngIf=\"showaddupdateEntryDiv\">\r\n\r\n        <div class=\"row\">\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <div class=\"form-group\" hidden=\"true\">\r\n              <h6 class=\"text-muted\">Routekey </h6>\r\n              <input class=\"form-control form-control-sm\" type=\"text\" name=\"routekey\" [(ngModel)]=\"routekey\"\r\n                placeholder=\"\" />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Appointment No </h6>\r\n              <input class=\"form-control form-control-sm\" type=\"text\" name=\"AppointmentNo\" [(ngModel)]=\"appointmentNo\"\r\n                placeholder=\"\" />\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Driver</h6>\r\n              <select id=\"drpdriver\" class=\"form-control form-control-sm\" name=\"driverkey\" [(ngModel)]=\"driverkey\"\r\n                (change)=\"drpdriver_ChangedEvent($event.target.value)\">\r\n                <option [value]=\"driver.DriverKey\" *ngFor=\"let driver of driverList\">{{driver.DriverId}}\r\n                </option>\r\n              </select>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <textarea class=\"form-control\" id=\"txtNotes\" placeholder=\"Driver Notes\" name=\"drivernotes\"\r\n              [(ngModel)]=\"drivernotes\"></textarea>\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Chassis</h6>\r\n              <input class=\"form-control form-control-sm\" type=\"text\"  id=\"dynamicchassis\" name=\"Chassis\" [(ngModel)]=\"Chassis\"\r\n                placeholder=\"Search\"  (keyup)=\"getChassis($event)\" />\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Leg</h6>\r\n              <input class=\"form-control form-control-sm\" type=\"text\" name=\"legno\" [(ngModel)]=\"legno\" placeholder=\"\" />\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Leg Type</h6>\r\n              <select id=\"drpStatus\" class=\"form-control form-control-sm\" placeholder=\"Legtype\" name=\"Legtype\"\r\n                [(ngModel)]=\"legtype\">\r\n                <option [value]='1'>L</option>\r\n                <option [value]=\"2\">D</option>\r\n                <option [value]=\"3\">D/S</option>\r\n\r\n              </select>\r\n            </div>\r\n          </div>\r\n\r\n\r\n        </div>\r\n        <div class=\"row\">\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Port waiting time </h6>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"dtPortWaitingTimeFrom\"\r\n                            [(ngModel)]=\"PortWaitingTimeFrom\" placeholder=\"From\"\r\n                            [owlDateTimeTrigger]=\"dtPortWaitingTimeFrom\" [owlDateTime]=\"dtPortWaitingTimeFrom\"\r\n                            required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtPortWaitingTimeFrom [hour12Timer]=\"false\">\r\n                          </owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                      <td>:</td>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"dtPortWaitingTimeTo\"\r\n                            [(ngModel)]=\"PortWaitingTimeTo\" placeholder=\"to\" [owlDateTimeTrigger]=\"dtPortWaitingTimeTo\"\r\n                            [owlDateTime]=\"dtPortWaitingTimeTo\" required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtPortWaitingTimeTo [hour12Timer]=\"false\">\r\n                          </owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Customer waiting time </h6>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"CustomerWaitingTimeFrom\"\r\n                            [(ngModel)]=\"CustomerWaitingTimeFrom\" placeholder=\"From\"\r\n                            [owlDateTimeTrigger]=\"dtCustomerWaitingTimeFrom\" [owlDateTime]=\"dtCustomerWaitingTimeFrom\"\r\n                            required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtCustomerWaitingTimeFrom [hour12Timer]=\"false\">\r\n                          </owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                      <td>:</td>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"dtPortWaitingTimeFrom\"\r\n                            [(ngModel)]=\"CustomerWaitingTimeTo\" placeholder=\"to\"\r\n                            [owlDateTimeTrigger]=\"dtCustomerWaitingTimeTo\" [owlDateTime]=\"dtCustomerWaitingTimeTo\"\r\n                            required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtCustomerWaitingTimeTo [hour12Timer]=\"false\">\r\n                          </owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Actual Pickup/Drop </h6>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"actualarrival\"\r\n                            [(ngModel)]=\"actualarrival\" placeholder=\"Pickup\" [owlDateTimeTrigger]=\"dtactualarrival\"\r\n                            [owlDateTime]=\"dtactualarrival\" required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtactualarrival [hour12Timer]=\"false\"></owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                      <td>:</td>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"actualdeparture\"\r\n                            [(ngModel)]=\"actualdeparture\" placeholder=\"Drop\" [owlDateTimeTrigger]=\"dtactualdeparture\"\r\n                            [owlDateTime]=\"dtactualdeparture\" required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtactualdeparture [hour12Timer]=\"false\"></owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <div class=\"text-right\">\r\n              <label>.</label>\r\n              <a type=\"button\" class=\"btn btn-primary btn-sm\" (click)=\"clear()\">Clear</a>&nbsp;&nbsp;\r\n              <button type=\"button\" class=\"btn alert-dark btn-sm\" style=\"border-radius: 1rem;\"\r\n                (click)=\"addupdateDispatch()\"> <i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Add</button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div *ngIf=\"showdispatchitemlist\">\r\n      <div class=\"row\">\r\n        <div class=\"col-8 col-sm-8 col-md-8\"> </div>\r\n        <div class=\"col-4 col-sm-4 col-md-4\">\r\n          <div class=\"container text-right\">\r\n            <div class=\"form-group input-group input-group-sm\">\r\n              <div class=\"img-group-prepend\">\r\n                <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n              </div>\r\n              <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" style=\"border-radius: 1rem;\"\r\n                type=\"text\" placeholder=\"Search..\">\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <table class=\"table table-sm table-borderless \">\r\n          <thead class=\"thead-dark shadow\">\r\n            <tr>\r\n              <th scope=\"col\" class=\"text-muted\">ID</th>\r\n              <th scope=\"col\" class=\"text-muted\">Container</th>\r\n              <th scope=\"col\" class=\"text-muted\" colspan=\"8\"></th>\r\n              <th scope=\"col\" class=\"text-muted\">Status</th>\r\n              <th scope=\"col\" class=\"text-muted\">Next Action</th>\r\n            </tr>\r\n          </thead>\r\n          <tbody *ngFor=\"let data of dispatchList| \r\n          grdFilter: {containerid: searchText,ContainerNo: searchText,appointmentno: searchText,legno: searchText} ; \r\n          let ind=index;\">\r\n            <tr>\r\n              <td> <small> {{data.OrderDetails.containerid}}</small>\r\n              </td>\r\n              <td> <small style=\"color: cornflowerblue;\" > {{data.OrderDetails.ContainerNo}} </small>\r\n              </td>\r\n              <td colspan=\"8\">\r\n                <table class=\"table table-sm table-striped table-borderless\">\r\n                  <thead class=\"thead-light\">\r\n                    <tr>\r\n                      <th scope=\"col\" class=\"text-muted\"> <small>Appointment no</small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"><small>Legno </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"><small>Leg type </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"><small>Driver </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"><small>Driver notes </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"><small>Pickup </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"> <small> Delivery </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"> <small> Wait time at Port </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"> <small> Wait time at Customer </small></th>\r\n                    </tr>\r\n                  </thead>\r\n                  <tbody>\r\n                    <tr *ngFor=\"let dispatch of data.dispatchdetails\">\r\n                      <td><small> {{dispatch.appointmentno}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.legno}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.legtypeDesc}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.driverid}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.drivernotes}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.actualarrival}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.actualdeparture}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.portwaitingtimefrom}} - {{dispatch.portwaitingtimeto}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.customerwaitingtimefrom}} - {{dispatch.customerwaitingtimeto}}</small>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n\r\n              </td>\r\n              <td>\r\n                <small *ngIf=\"data.OrderDetails.StatusDesc == 'Dispatch inprogress'\" style=\"color:olivedrab;\"> {{data.OrderDetails.StatusDesc}} </small>\r\n                <small  *ngIf=\"data.OrderDetails.StatusDesc != 'Dispatch inprogress'\" style=\"color: cornflowerblue;\"> {{data.OrderDetails.StatusDesc}} </small>\r\n              </td>\r\n              <td>\r\n                <!-- <button type=\"button\" class=\"btn btn-info btn-sm\" style=\"border-radius: 1rem;\"\r\n                data-toggle=\"modal\"  data-target=\".modal-editdispatch\"  (click)=\"updateclick(data)\">\r\n                  <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n                  Update\r\n                </button> -->              \r\n\r\n                <strong> <i class=\"cil-chevron-circle-right-alt\" style=\"color: yellowgreen;\"></i></strong>\r\n                &nbsp;\r\n                <small  *ngIf=\"data.OrderDetails.StatusDesc == 'Dispatch inprogress'\"  class=\"font-weight-normal\" style=\"color: orange;\">\r\n                  Proceed to Complete </small>\r\n                <small  *ngIf=\"data.OrderDetails.StatusDesc != 'Dispatch inprogress'\" class=\"font-weight-normal\" style=\"color: green;\">\r\n                  Proceed to UnHold</small>\r\n                &nbsp;\r\n                <button type=\"button\" class=\"btn btn-info btn-sm\" style=\"border-radius: 1rem;\"\r\n                (click)=\"load_DispatchForEdit(data)\">\r\n                  <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n                </button>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n          <tr *ngIf=\"dispatchList.length===0\">\r\n            <td colspan=\"3\">\r\n              <h4 style=\"color: darkorange;\">No records found! </h4>\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"modal fade modal-editdispatch\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\"\r\n      aria-hidden=\"true\" data-backdrop=\"static\">\r\n      <div class=\"modal-dialog modal-xl\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Modal title</h5>\r\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <!-- <tr\r\n              *ngFor=\"let data of dispatchList | groupBy:'OrderDetailKey'| \r\n            grdFilter: {containerid: searchText,ContainerNo: searchText,appointmentno: searchText,legno: searchText} ; let ind=index;\">\r\n              <td> {{data.containerid}}\r\n              </td>\r\n              <td>{{data.containerno}}\r\n              </td>\r\n              <td>{{data.appointmentno}}\r\n              </td>\r\n              <td>{{data.legno}}\r\n              </td>\r\n              <td>{{data.legtypeDesc}}\r\n              </td>\r\n              <td>{{data.driverid}}\r\n              </td>\r\n              <td>{{data.drivernotes}}\r\n              </td>\r\n              <td>{{data.actualarrival}}\r\n              </td>\r\n              <td>{{data.actualdeparture}}\r\n              </td>\r\n              <td>{{data.portwaitingtimefrom}} - {{data.portwaitingtimeto}}\r\n              </td>\r\n              <td>{{data.customerwaitingtimefrom}} - {{data.customerwaitingtimeto}}\r\n              </td>\r\n              <td>\r\n                <button type=\"button\" class=\"btn btn-info btn-sm\" style=\"border-radius: 1rem;\"\r\n                data-toggle=\"modal\" data-target=\".modal-editdispatch\">\r\n                  <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n                  Update\r\n                </button>\r\n\r\n              </td>\r\n            </tr> -->";
+    __webpack_exports__["default"] = "<br>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n    <div class=\"scrollbar\" id=\"scrollbar-style\" style=\"position:relative;width:100%;height:100%;\">\r\n      <ul class=\"list-unstyled\">\r\n        <li>\r\n          <h5>Containers <span class=\"badge badge-warning\">Recent</span></h5><br>\r\n        </li>\r\n        <li>\r\n          <div class=\"container text-left\" *ngIf=\"ContainerDetails.length>0\">\r\n            <div class=\"form-group input-group input-group-sm\">\r\n              <div class=\"img-group-prepend\">\r\n                <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n              </div>\r\n              <input [(ngModel)]=\"SearchRecentContainer\" class=\"form-control form-control-sm\"\r\n                style=\"border-radius: 1rem;\" type=\"text\" placeholder=\"Search..\">\r\n            </div>\r\n          </div>\r\n          <div *ngIf=\"ContainerDetails.length === 0\">\r\n            <h6 style=\"color: darkorange;\">No Containers for Dispatch! </h6>\r\n          </div>\r\n          <br>\r\n        </li>\r\n        <li\r\n          *ngFor=\"let order of ContainerDetails| grdFilter: {containerid: SearchRecentContainer,ContainerNo: SearchRecentContainer} ; let ind=index;\">\r\n          <ul class=\"list-unstyled\">\r\n            <li>\r\n              <p style=\"font-family:calibri;\"> <a [routerLink]=\"\" (click)=\"rowclickEvent(order)\">\r\n                  {{order.containerid}}<br> <small class=\"text-muted\"> - {{ order.ContainerNo }} </small>\r\n                  <span class=\"badge\" *ngIf=\"selectedKey===order.OrderDetailKey\">\r\n                    <img src=\"assets/img/brand/symbol-check16px.png\" /> </span>\r\n                </a> </p>\r\n            </li>\r\n          </ul>\r\n        </li>\r\n\r\n      </ul>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col-sm-10 col-md-10 col-lg-10\">\r\n    <div *ngIf=\"showaddupdatedispatchitems\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n          <!-- <h5 class=\"card-subtitle mb-2\" style=\"color:cornflowerblue\">\r\n            <img src=\"assets/img/brand/lorry24px.png\" /> Dispatch Delivery</h5> -->\r\n\r\n          <button class=\"btn btn-success\" type=\"button\" data-toggle=\"collapse\" data-target=\"#Orderdata\"\r\n            aria-expanded=\"false\" aria-controls=\"Orderdata\">\r\n            Delivery ID - <b>{{HeaderData.OrderNo}} </b>\r\n          </button>\r\n\r\n          &nbsp;\r\n          <button id=\"AddDispatchEntry\" class=\"btn btn-outline-warning btn-sm small\" type=\"button\"\r\n            (click)=\"showaddupdateEntry()\">\r\n            Add Entry\r\n          </button>\r\n        </div>\r\n        <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n          <div class=\"container text-right\">         \r\n            <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"hold_Dispatch()\"> <i class=\"fa fa-pause-circle-o\" aria-hidden=\"true\"></i> Hold Dispatch</button> &nbsp;\r\n            &nbsp;\r\n            <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"onSubmit()\"><i class=\"fa fa-floppy-o\" aria-hidden=\"true\"></i> Save</button> &nbsp;\r\n            &nbsp;\r\n            <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"Complete_Dispatch()\" [disabled]=\"btnCompleteScheduleDisabled\"> <i class=\"fa fa-check-circle-o\" aria-hidden=\"true\"></i> Complete Dispacth</button> &nbsp;\r\n            &nbsp;\r\n            <button class=\"btn btn-outline-danger btn-sm small\" type=\"button\" (click)=\"Cancel()\"> <i class=\"fa fa-ban\"\r\n                aria-hidden=\"true\"></i>&nbsp;Cancel</button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <br>\r\n\r\n      <div class=\"collapse show\" id=\"Orderdata\">\r\n        <div class=\"card card-body\">\r\n          <div class=\"row\">\r\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Date</span></div>\r\n                <div class=\"col-sm-9 col-md-9 col-lg-9\"><span>{{HeaderData.OrderDate|date}} </span></div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Type</span></div>\r\n                <div class=\"col-sm-9 col-md-9 col-lg-9\"><span> {{HeaderData.ordertypedescription}} </span></div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Broker</span></div>\r\n                <div class=\"col-sm-9 col-md-9 col-lg-9\"><span> {{HeaderData.BrokerName}} </span></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Broker Ref</span></div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BrokerRefNo}} </span></div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Booking No</span></div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BookingNo}} </span></div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Vessel</span></div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.VesselName}} </span></div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Bill of Lading</span></div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BillofLading}} </span></div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Cut-Off Date</span></div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.CutOffDate|date}} </span></div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <hr style=\"color: slategray;\">\r\n          <div class=\"row\">\r\n            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <span class=\"text-muted\">Bill to</span>\r\n                </div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                  <div style=\"word-wrap: break-word;\">\r\n                    {{HeaderData.BillToAddressBO.Name}}\r\n                    {{HeaderData.BillToAddressBO.Address1}} {{HeaderData.BillToAddressBO.Address2}}\r\n                    {{HeaderData.BillToAddressBO.City}} {{HeaderData.BillToAddressBO.Zip}}\r\n                    {{HeaderData.BillToAddressBO.State}}\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <span class=\"text-muted\">Pickup</span>\r\n                </div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                  <div style=\"word-wrap: break-word;\">\r\n                    {{HeaderData.SourceAddressBO.Name}}\r\n                    {{HeaderData.SourceAddressBO.Address1}} {{HeaderData.SourceAddressBO.Address2}}\r\n                    {{HeaderData.SourceAddressBO.City}} {{HeaderData.SourceAddressBO.Zip}}\r\n                    {{HeaderData.SourceAddressBO.State}}\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <span class=\"text-muted\">Delivery</span>\r\n                </div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                  <div style=\"word-wrap: break-word;\">\r\n                    {{HeaderData.DestinationAddressBO.Name}}\r\n                    {{HeaderData.DestinationAddressBO.Address1}} {{HeaderData.DestinationAddressBO.Address2}}\r\n                    {{HeaderData.DestinationAddressBO.City}} {{HeaderData.DestinationAddressBO.Zip}}\r\n                    {{HeaderData.DestinationAddressBO.State}}\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <span class=\"text-muted\">Return</span>\r\n                </div>\r\n                <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                  <div style=\"word-wrap: break-word;\">\r\n                    {{HeaderData.ReturnAddressBO.Name}}\r\n                    {{HeaderData.ReturnAddressBO.Address1}} {{HeaderData.ReturnAddressBO.Address2}}\r\n                    {{HeaderData.ReturnAddressBO.City}} {{HeaderData.ReturnAddressBO.Zip}}\r\n                    {{HeaderData.ReturnAddressBO.State}}\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <hr style=\"color: slategray;\">\r\n          <div class=\"row\">\r\n            <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n              <div class=\"panel panel-warning\">\r\n                <div class=\"panel-body\">\r\n                  <h6 class=\"text-muted\">Container</h6>\r\n                  <table class=\"table table-sm small table-striped\">\r\n                    <thead class=\"thead-light\">\r\n                      <tr>\r\n                        <th scope=\"col\" style=\"display:none\">OrderDetailKey</th>\r\n                        <th scope=\"col\" class=\"text-muted\">Id</th>\r\n                        <th scope=\"col\" class=\"text-muted\">No</th>\r\n                        <th scope=\"col\" class=\"text-muted\">Size</th>\r\n                        <th scope=\"col\" class=\"text-muted\">Seal#</th>\r\n                        <th scope=\"col\" class=\"text-muted\">Weight</th>\r\n                        <th scope=\"col\" class=\"text-muted\">Comment</th>\r\n                      </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                      <tr>\r\n                        <td hidden=\"true\" style=\"display:none\">\r\n                          {{DetailsData.OrderDetailKey}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.containerid}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.ContainerNo}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.ContainerSizeDesc}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.SealNo}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.Weight}}\r\n                        </td>\r\n                        <td>\r\n                          {{DetailsData.Comments}}\r\n                        </td>\r\n                      </tr>\r\n                    </tbody>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n              <h6 class=\"text-muted\">Scheduler</h6>\r\n              <table class=\"table table-sm small table-striped\">\r\n                <thead class=\"thead-light\">\r\n                  <tr>\r\n                    <th scope=\"col\" class=\"text-muted\">Appointment Date</th>\r\n                    <th scope=\"col\" class=\"text-muted\">Pickup DateTime</th>\r\n                    <th scope=\"col\" class=\"text-muted\">DropOff Date/Time</th>\r\n                    <th scope=\"col\" class=\"text-muted\">Last Free Day</th>\r\n                    <th scope=\"col\" class=\"text-muted\">Notes</th>\r\n                  </tr>\r\n                </thead>\r\n                <tbody>\r\n                  <tr>\r\n                    <td>\r\n                      {{DetailsData.AppDateFrom|date}} - {{DetailsData.AppDateTo|date}}\r\n                    </td>\r\n                    <td>\r\n                      {{DetailsData.PickupDateTime|date: 'dd/MM/yyyy hh:mm a'}}\r\n                    </td>\r\n\r\n                    <td>\r\n                      {{DetailsData.DropOffDateTime|date: 'dd/MM/yyyy hh:mm a'}}\r\n                    </td>\r\n                    <td>\r\n                      {{DetailsData.LastFreeDay|date}}\r\n                    </td>\r\n                    <td>\r\n                      {{DetailsData.SchedulerNotes}}\r\n                    </td>\r\n\r\n                  </tr>\r\n                </tbody>\r\n              </table>\r\n            </div>\r\n            <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n              <div class=\"panel-heading\">\r\n                <h6 class=\"text-muted\">Comments</h6>\r\n              </div>\r\n              <p><small> {{HeaderData.Comment}}</small></p>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n          <div class=\"card text-dark alert-warning\">\r\n            <div class=\"card-body text-dark border-light \">\r\n              <!-- <h5>Containers </h5> -->\r\n              <div class=\"row\">\r\n                <div class=\"table-responsive\" style=\"overflow-x: auto\">\r\n                  <table id=\"DISPATCH\"\r\n                    class=\"table table-custom table-sm table-hover table-striped table-warning scrollbar \">\r\n                    <thead>\r\n                      <tr>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Appointment No</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\"> Chassis</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Legno</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Leg Type</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Wait From/to at Port</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Wait From/to at Customer</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Pickup-Drop</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\">Driver</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\"> Drivernotes</th>\r\n                        <th scope=\"col\" class=\"text-left text-muted\"> Status</th>\r\n                        <th scope=\"col\" class=\"text-center text-muted\">Action</th>\r\n                      </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                      <tr *ngFor=\"let data of dispatchDetails;let i = index\">\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.appointmentno}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.Chassis}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.legno}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.legtype}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{ data.portwaitingtimefrom|date}} - {{data.portwaitingtimeto|date}}\r\n\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{ data.customerwaitingtimefrom|date}} - {{data.customerwaitingtimeto|date}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.actualarrival|date}}-{{data.actualdeparture|date}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.driver}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          {{data.drivernotes}}\r\n                        </td>\r\n                        <td style=\"color: darkslategrey;\">\r\n                          <a tooltip=\"Upload file\" (click)=\"editRow(data,i)\">\r\n                            <i class=\"fa fa-pencil\"></i>\r\n                          </a> &nbsp;&nbsp;\r\n\r\n                          <a tooltip=\"Remove/Delete Container\" (click)=\"deleteRow(data,i)\">\r\n                            <i class=\"fa fa-trash\"></i>\r\n                          </a>\r\n                        </td>\r\n                      </tr>\r\n                    </tbody>\r\n                  </table>\r\n\r\n                </div>\r\n                <!-- <ng-container *ngIf=\"dispatchDetails.length==0\">\r\n                  <h5 style=\"color: darkred;\">No records found!</h5>\r\n                </ng-container> -->\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div *ngIf=\"showaddupdateEntryDiv\">\r\n\r\n        <div class=\"row\">\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <div class=\"form-group\" hidden=\"true\">\r\n              <h6 class=\"text-muted\">Routekey </h6>\r\n              <input class=\"form-control form-control-sm\" type=\"text\" name=\"routekey\" [(ngModel)]=\"routekey\"\r\n                placeholder=\"\" />\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Appointment No </h6>\r\n              <input class=\"form-control form-control-sm\" type=\"text\" name=\"AppointmentNo\" [(ngModel)]=\"appointmentNo\"\r\n                placeholder=\"\" />\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Driver</h6>\r\n              <select id=\"drpdriver\" class=\"form-control form-control-sm\" name=\"driverkey\" [(ngModel)]=\"driverkey\"\r\n                (change)=\"drpdriver_ChangedEvent($event.target.value)\">\r\n                <option [value]=\"driver.DriverKey\" *ngFor=\"let driver of driverList\">{{driver.DriverId}}\r\n                </option>\r\n              </select>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <textarea class=\"form-control\" id=\"txtNotes\" placeholder=\"Driver Notes\" name=\"drivernotes\"\r\n              [(ngModel)]=\"drivernotes\"></textarea>\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Chassis</h6>\r\n              <input class=\"form-control form-control-sm\" type=\"text\"  id=\"dynamicchassis\" name=\"Chassis\" [(ngModel)]=\"Chassis\"\r\n                placeholder=\"Search\"  (keyup)=\"getChassis($event)\" />\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Leg</h6>\r\n              <input class=\"form-control form-control-sm\" type=\"text\" name=\"legno\" [(ngModel)]=\"legno\" placeholder=\"\" />\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Leg Type</h6>\r\n              <select id=\"drpStatus\" class=\"form-control form-control-sm\" placeholder=\"Legtype\" name=\"Legtype\"\r\n                [(ngModel)]=\"legtype\">\r\n                <option [value]='1'>L</option>\r\n                <option [value]=\"2\">D</option>\r\n                <option [value]=\"3\">D/S</option>\r\n\r\n              </select>\r\n            </div>\r\n          </div>\r\n\r\n\r\n        </div>\r\n        <div class=\"row\">\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Port waiting time </h6>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"dtPortWaitingTimeFrom\"\r\n                            [(ngModel)]=\"PortWaitingTimeFrom\" placeholder=\"From\"\r\n                            [owlDateTimeTrigger]=\"dtPortWaitingTimeFrom\" [owlDateTime]=\"dtPortWaitingTimeFrom\"\r\n                            required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtPortWaitingTimeFrom [hour12Timer]=\"false\">\r\n                          </owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                      <td>:</td>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"dtPortWaitingTimeTo\"\r\n                            [(ngModel)]=\"PortWaitingTimeTo\" placeholder=\"to\" [owlDateTimeTrigger]=\"dtPortWaitingTimeTo\"\r\n                            [owlDateTime]=\"dtPortWaitingTimeTo\" required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtPortWaitingTimeTo [hour12Timer]=\"false\">\r\n                          </owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Customer waiting time </h6>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"CustomerWaitingTimeFrom\"\r\n                            [(ngModel)]=\"CustomerWaitingTimeFrom\" placeholder=\"From\"\r\n                            [owlDateTimeTrigger]=\"dtCustomerWaitingTimeFrom\" [owlDateTime]=\"dtCustomerWaitingTimeFrom\"\r\n                            required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtCustomerWaitingTimeFrom [hour12Timer]=\"false\">\r\n                          </owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                      <td>:</td>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"dtPortWaitingTimeFrom\"\r\n                            [(ngModel)]=\"CustomerWaitingTimeTo\" placeholder=\"to\"\r\n                            [owlDateTimeTrigger]=\"dtCustomerWaitingTimeTo\" [owlDateTime]=\"dtCustomerWaitingTimeTo\"\r\n                            required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtCustomerWaitingTimeTo [hour12Timer]=\"false\">\r\n                          </owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <div class=\"form-group\">\r\n              <h6 class=\"text-muted\">Actual Pickup/Drop </h6>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"actualarrival\"\r\n                            [(ngModel)]=\"actualarrival\" placeholder=\"Pickup\" [owlDateTimeTrigger]=\"dtactualarrival\"\r\n                            [owlDateTime]=\"dtactualarrival\" required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtactualarrival [hour12Timer]=\"false\"></owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                      <td>:</td>\r\n                      <td>\r\n                        <div class=\"input-group input-group-sm\">\r\n                          <input class=\"form-control form-control-sm\" type=\"text\" name=\"actualdeparture\"\r\n                            [(ngModel)]=\"actualdeparture\" placeholder=\"Drop\" [owlDateTimeTrigger]=\"dtactualdeparture\"\r\n                            [owlDateTime]=\"dtactualdeparture\" required />\r\n                          <owl-date-time [pickerType]=\"'both'\" #dtactualdeparture [hour12Timer]=\"false\"></owl-date-time>\r\n                        </div>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <div class=\"text-right\">\r\n              <label>.</label>\r\n              <a type=\"button\" class=\"btn btn-primary btn-sm\" (click)=\"clear()\">Clear</a>&nbsp;&nbsp;\r\n              <button type=\"button\" class=\"btn alert-dark btn-sm\" style=\"border-radius: 1rem;\"\r\n                (click)=\"addupdateDispatch()\"> <i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Add</button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div *ngIf=\"showdispatchitemlist\">\r\n      <div class=\"row\">\r\n        <div class=\"col-8 col-sm-8 col-md-8\"> </div>\r\n        <div class=\"col-4 col-sm-4 col-md-4\">\r\n          <div class=\"container text-right\">\r\n            <div class=\"form-group input-group input-group-sm\">\r\n              <div class=\"img-group-prepend\">\r\n                <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n              </div>\r\n              <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" style=\"border-radius: 1rem;\"\r\n                type=\"text\" placeholder=\"Search..\">\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <table class=\"table table-sm table-borderless \">\r\n          <thead class=\"thead-dark shadow\">\r\n            <tr>\r\n              <th scope=\"col\" class=\"text-muted\">ID</th>\r\n              <th scope=\"col\" class=\"text-muted\">Container</th>\r\n              <th scope=\"col\" class=\"text-muted\" colspan=\"8\"></th>\r\n              <th scope=\"col\" class=\"text-muted\">Status</th>\r\n              <th scope=\"col\" class=\"text-muted\">Next Action</th>\r\n            </tr>\r\n          </thead>\r\n          <tbody *ngFor=\"let data of dispatchList| \r\n          grdFilter: {containerid: searchText,ContainerNo: searchText,appointmentno: searchText,legno: searchText} ; \r\n          let ind=index;\">\r\n            <tr>\r\n              <td> <small> {{data.OrderDetails.containerid}}</small>\r\n              </td>\r\n              <td> <small style=\"color: cornflowerblue;\" > {{data.OrderDetails.ContainerNo}} </small>\r\n              </td>\r\n              <td colspan=\"8\">\r\n                <table class=\"table table-sm table-striped table-borderless\">\r\n                  <thead class=\"thead-light\">\r\n                    <tr>\r\n                      <th scope=\"col\" class=\"text-muted\"> <small>Appointment no</small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"><small>Legno </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"><small>Leg type </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"><small>Driver </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"><small>Driver notes </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"><small>Pickup </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"> <small> Delivery </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"> <small> Wait time at Port </small></th>\r\n                      <th scope=\"col\" class=\"text-muted\"> <small> Wait time at Customer </small></th>\r\n                    </tr>\r\n                  </thead>\r\n                  <tbody>\r\n                    <tr *ngFor=\"let dispatch of data.dispatchdetails\">\r\n                      <td><small> {{dispatch.appointmentno}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.legno}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.legtypeDesc}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.driverid}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.drivernotes}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.actualarrival}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.actualdeparture}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.portwaitingtimefrom}} - {{dispatch.portwaitingtimeto}}</small>\r\n                      </td>\r\n                      <td><small>{{dispatch.customerwaitingtimefrom}} - {{dispatch.customerwaitingtimeto}}</small>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n\r\n              </td>\r\n              <td>\r\n                <small *ngIf=\"data.OrderDetails.StatusDesc == 'Dispatch inprogress'\" style=\"color:olivedrab;\"> {{data.OrderDetails.StatusDesc}} </small>\r\n                <small  *ngIf=\"data.OrderDetails.StatusDesc != 'Dispatch inprogress'\" style=\"color: cornflowerblue;\"> {{data.OrderDetails.StatusDesc}} </small>\r\n              </td>\r\n              <td>\r\n                <!-- <button type=\"button\" class=\"btn btn-info btn-sm\" style=\"border-radius: 1rem;\"\r\n                data-toggle=\"modal\"  data-target=\".modal-editdispatch\"  (click)=\"updateclick(data)\">\r\n                  <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n                  Update\r\n                </button> -->              \r\n\r\n                <strong> <i class=\"cil-chevron-circle-right-alt\" style=\"color: yellowgreen;\"></i></strong>\r\n                &nbsp;\r\n                <small  *ngIf=\"data.OrderDetails.StatusDesc == 'Dispatch inprogress'\"  class=\"font-weight-normal\" style=\"color: orange;\">\r\n                  Proceed to Complete </small>\r\n                <small  *ngIf=\"data.OrderDetails.StatusDesc != 'Dispatch inprogress'\" class=\"font-weight-normal\" style=\"color: green;\">\r\n                  Proceed to UnHold</small>\r\n                &nbsp;\r\n                <button type=\"button\" class=\"btn btn-info btn-sm\" style=\"border-radius: 1rem;\"\r\n                (click)=\"load_DispatchForEdit(data)\">\r\n                  <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n                </button>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n          <tr *ngIf=\"dispatchList.length===0\">\r\n            <td colspan=\"3\">\r\n              <h4 style=\"color: darkorange;\">No records found! </h4>\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"modal fade modal-editdispatch\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\"\r\n      aria-hidden=\"true\" data-backdrop=\"static\">\r\n      <div class=\"modal-dialog modal-xl\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Modal title</h5>\r\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <!-- <tr\r\n              *ngFor=\"let data of dispatchList | groupBy:'OrderDetailKey'| \r\n            grdFilter: {containerid: searchText,ContainerNo: searchText,appointmentno: searchText,legno: searchText} ; let ind=index;\">\r\n              <td> {{data.containerid}}\r\n              </td>\r\n              <td>{{data.containerno}}\r\n              </td>\r\n              <td>{{data.appointmentno}}\r\n              </td>\r\n              <td>{{data.legno}}\r\n              </td>\r\n              <td>{{data.legtypeDesc}}\r\n              </td>\r\n              <td>{{data.driverid}}\r\n              </td>\r\n              <td>{{data.drivernotes}}\r\n              </td>\r\n              <td>{{data.actualarrival}}\r\n              </td>\r\n              <td>{{data.actualdeparture}}\r\n              </td>\r\n              <td>{{data.portwaitingtimefrom}} - {{data.portwaitingtimeto}}\r\n              </td>\r\n              <td>{{data.customerwaitingtimefrom}} - {{data.customerwaitingtimeto}}\r\n              </td>\r\n              <td>\r\n                <button type=\"button\" class=\"btn btn-info btn-sm\" style=\"border-radius: 1rem;\"\r\n                data-toggle=\"modal\" data-target=\".modal-editdispatch\">\r\n                  <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n                  Update\r\n                </button>\r\n\r\n              </td>\r\n            </tr> -->";
     /***/
   },
 
@@ -833,7 +853,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<br>\r\n<div id=\"accordion\" *ngIf=\"ShowOrderList\">\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col-7 col-sm-7 col-md-7\">\r\n\r\n    </div>\r\n    <div class=\"col-3 col-sm-3 col-md-3\">\r\n      <div class=\"form-group input-group input-group-sm\">\r\n        <div class=\"img-group-prepend\">\r\n          <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n        </div>\r\n        <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" style=\"border-radius: 0.5rem;\" type=\"text\"\r\n          placeholder=\"Search..\">\r\n      </div>\r\n    </div>\r\n    <!-- <div class=\"col-3 col-sm-3 col-md-3\">\r\n      <tr>\r\n        <td>\r\n          <select id=\"filterOrderType\" class=\"form-control form-control-sm text-muted\">\r\n            <option [value]=\"0\">Type</option>\r\n            <option [value]=\"otype.Value\" *ngFor=\"let otype of ordertypelist\">{{otype.Name}}</option>\r\n          </select>\r\n        </td>\r\n        &nbsp;\r\n        <td>\r\n          <select id=\"filterPriority\" class=\"form-control form-control-sm text-muted\">\r\n            <option [value]=\"0\">Priority</option>\r\n            <option [value]=\"priority.Value\" *ngFor=\"let priority of prioritylist\">{{priority.Name}}\r\n            </option>\r\n          </select>\r\n          &nbsp;\r\n        <td>\r\n          <select id=\"filterStatus\" class=\"form-control form-control-sm text-muted\">\r\n            <option [value]=\"0\">Status</option>\r\n            <option [value]=\"status.status\" *ngFor=\"let status of statuslist\">{{status.description}}</option>\r\n          </select>\r\n        </td>\r\n      </tr>\r\n      \r\n    </div> -->\r\n\r\n    <div class=\"col-2 col-sm-2 col-md-2\">\r\n      <button type=\"button\" class=\"btn btn-sm btn-primary \" style=\"border-radius: 1rem;\" (click)=\"createNewOrder()\"> <i\r\n          class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i> New </button>\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"row\" id=\"style-10\">\r\n    <!-- <div class=\"col-sm-2 col-md-2 col-lg-2 scrollbar\" id=\"style-10\">\r\n      <table class=\"table table-sm table-striped  table-dark\">\r\n        <tbody>\r\n          <tr>\r\n            <br>\r\n            <h5>&nbsp; Delivery Orders <span class=\"badge badge-warning\">Recent</span></h5>\r\n          </tr>\r\n          <tr\r\n            *ngFor=\"let order of Orderlist| grdFilter: {OrderNo: searchText,ordertypedescription: searchText} ; let ind=index;\">\r\n\r\n            <td>\r\n              <br>\r\n              <span class=\"font-weight-bold\" style=\"color:olivedrab\">\r\n                {{ order.OrderNo }} <br>\r\n                <small style=\"color:lightslategray\"> <i class=\"fa fa-commenting-o\"></i> {{order.ordertypedescription}}\r\n                </small>\r\n              </span>\r\n            </td>\r\n            <td class=\"text-right\" style=\"width: 40%;\">\r\n              <br>\r\n              <button type=\"button\" class=\"btn btn-success btn-sm\" data-toggle=\"modal\"\r\n                data-target=\".bd-example-modal-lg\" (click)=\"view(order.OrderKey)\"> <i class=\"fa fa-bullseye\"\r\n                  aria-hidden=\"true\"></i> View</button></td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n\r\n    </div> -->\r\n    <!-- <div class=\"col-sm-10 col-md-10 col-lg-10  scrollbar\" id=\"style-10\"> -->\r\n    <table class=\"table table-sm table-borderless\">\r\n      <thead class=\"thead-dark shadow\">\r\n        <tr style=\"border: 2px;\">\r\n          <th scope=\"col\" scope=\"col\"  (click)=\"sort('OrderNo')\"  class=\"pointer text-muted text-left border-right\">Order &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>          \r\n          </th>\r\n          <th scope=\"col\" scope=\"col\"  (click)=\"sort('ordertypedescription')\"  class=\" pointertext-muted text-left\">Type  &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>          \r\n          </th>\r\n          <th scope=\"col\" scope=\"col\"  (click)=\"sort('BillToAddr')\"      class=\" pointer text-muted text-left\">Customer &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>          \r\n          </th>\r\n          <th scope=\"col\" scope=\"col\"  (click)=\"sort('SourceAddr')\"    class=\"pointer text-muted text-left\">Pickup &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th> \r\n          \r\n          <th scope=\"col\" scope=\"col\"  (click)=\"sort('DestinationAddr')\"    class=\" pointer text-muted text-left\">Delivery &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n          <th scope=\"col\"  scope=\"col\" (click)=\"sort('statusdescription')\"  class=\" pointer text-muted text-left\" >Status &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>           \r\n          </th>\r\n          <th scope=\"col\" class=\"text-muted text-left\">Edit/View</th>\r\n          <!-- <th scope=\"col\" class=\"text-muted text-left border-left\">Next Action</th> -->\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr style=\" height: 10px\">\r\n          <td colspan=\"8\"></td>\r\n        </tr>\r\n        <tr\r\n          *ngFor=\"let order of Orderlist| grdFilter: {OrderNo: searchText,ordertypedescription: searchText,statusdescription:searchText \r\n            ,BillToAddr: searchText,\r\n            SourceAddr: searchText,\r\n            DestinationAddr: searchText}|paginate:{itemsPerPage:4,currentPage:p,totalItems: count} ; let ind=index;\">\r\n          <td scope=\"row\" class=\"text-left border-right\">\r\n            <small class=\"font-weight-bold\">\r\n              {{ order.OrderNo }} <br>\r\n              <span class=\"badge badge-pill badge-primary\"><i class=\"fa fa-calendar\" aria-hidden=\"true\"></i>\r\n                <small> <b> {{order.OrderDate  | date}}</b></small>\r\n              </span>\r\n            </small>\r\n          </td>\r\n\r\n          <td scope=\"row\" class=\"text-left\">\r\n            <small class=\"font-weight-normal\">\r\n              {{order.ordertypedescription}} </small>\r\n          </td>\r\n          <td class=\"text-left\">\r\n            <small> {{ order.BillToAddr }}</small> <br>\r\n            <small style=\"color: cornflowerblue;\">\r\n              {{ order.BillToAddressBO.Address1 }},{{ order.BillToAddressBO.Address2 }}<br>\r\n              {{ order.BillToAddressBO.City }}, {{ order.BillToAddressBO.State}}-{{ order.BillToAddressBO.Zip}}\r\n            </small>\r\n          </td>\r\n          <td>\r\n            <small> {{ order.SourceAddr }}</small> <br>\r\n            <small style=\"color: cornflowerblue;\">\r\n              {{ order.SourceAddressBO.Address1 }},{{ order.SourceAddressBO.Address2 }}<br>\r\n              {{ order.SourceAddressBO.City }}, {{ order.SourceAddressBO.State}}-{{ order.SourceAddressBO.Zip}}\r\n            </small>\r\n          </td>\r\n          <td>\r\n            <span> <small> {{ order.DestinationAddr }}</small> <br>\r\n              <small style=\"color: cornflowerblue;\">\r\n                {{ order.DestinationAddressBO.Address1 }},{{ order.DestinationAddressBO.Address2 }} <br>\r\n                {{ order.DestinationAddressBO.City }},\r\n                {{ order.DestinationAddressBO.State}}-{{ order.DestinationAddressBO.Zip}} </small> </span>\r\n          </td>\r\n          <td> <small> {{ order.statusdescription }} </small></td>\r\n          <td>\r\n            <button type=\"button\" class=\"btn btn-outline-info btn-sm\" style=\"border-radius: 0.5rem;\"\r\n              (click)=\"update(order.OrderKey)\">\r\n              <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n              Update\r\n            </button>\r\n            &nbsp; &nbsp;\r\n            <button type=\"button\" class=\"btn btn-outline-info btn-sm\" style=\"border-radius: 0.5rem;\" data-toggle=\"modal\"\r\n              data-target=\".bd-example-modal-lg\" (click)=\"view(order.OrderKey)\"> <i class=\"fa fa-bullseye\"\r\n                aria-hidden=\"true\"></i> View</button>\r\n          </td>\r\n          <!-- <td class=\"border-left\">\r\n            <div *ngIf=\"order.nextaction == '! '\">\r\n              <i class=\"cil-chevron-circle-right-alt\"></i>\r\n              &nbsp;         <small > {{ order.nextaction }}</small> &nbsp;\r\n              <button type=\"button\" class=\"btn btn-outline-success btn-sm\" style=\"border-radius: 1rem;\"\r\n                data-toggle=\"modal\" data-target=\".bd-example-modal-lg\" (click)=\"view(order.OrderKey)\" > Submit </button>  \r\n            </div>          \r\n          </td> -->\r\n        </tr>\r\n        <tr *ngIf=\"Orderlist.length===0\">\r\n          <td colspan=\"3\">\r\n            <h4 style=\"color: darkorange;\">No records found! </h4>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <div class=\"container text-right\"> \r\n      <pagination-controls \r\n      (pageChange)=\"p=$event\"\r\n      autoHide=\"true\"\r\n      responsive=\"true\"> </pagination-controls>     \r\n    </div>\r\n    <!-- </div> -->\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade bd-example-modal-lg\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\"\r\n  aria-hidden=\"true\" data-keyboard=\"false\" data-backdrop=\"static\" [ngStyle]=\"{'display':display}\" style=\"width:90%\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Order</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"closeModalDialog()\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <div class=\"row\">\r\n          <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n            <div class=\"card \">\r\n              <div class=\"card-body\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-sm-3\">\r\n                    <!-- <span style=\"color: white\">Order no </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Order No :</span>\r\n                      <span style=\"color:black\"> <b> {{doHeader.OrderNo}}</b> </span>\r\n                    </div>\r\n\r\n                    <!-- <span style=\"color:white\"> Date </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Date :</span>\r\n                      <span style=\"color:black\"> <b> {{doHeader.OrderDate|date}}</b></span>\r\n                    </div>\r\n                    <!-- <span style=\"color: white\"> Type </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Type :</span>\r\n                      <span style=\"color: black\"> <b> {{doHeader.ordertypedescription}}</b></span>\r\n                    </div>\r\n\r\n                  </div>\r\n                  <div class=\"col-sm-3\">\r\n                    <!-- <span style=\"color:white\"> Broker </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Broker :</span>\r\n                      <span style=\"color: black\"> <b> {{doHeader.BrokerName}} </b></span>\r\n                    </div>\r\n                    <!-- <span style=\"color:white\"> Broker Ref# </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Broker Reference :</span>\r\n                      <span style=\"color: black\"> <b> {{doHeader.BrokerRefNo}} </b></span>\r\n                    </div>\r\n                    <!-- <span style=\"color:white\"> Booking# </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Booking No :</span>\r\n                      <span style=\"color: black\"> <b> {{doHeader.BookingNo}} </b></span>\r\n                    </div>\r\n                  </div>\r\n\r\n                  <div class=\"col-sm-3\">\r\n                    <!-- <span style=\"color:white\"> Vessel </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Vessel :</span>\r\n                      <span> <b> {{doHeader.VesselName}} </b></span>\r\n                    </div>\r\n                    <!-- <span style=\"color:white\"> Bill of Lading </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\">Bill of Lading : </span>\r\n                      <span> <b> {{doHeader.BillofLading}} </b></span>\r\n                    </div>\r\n                    <!-- <span style=\"color:white\"> Cut-Off Date </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Cut-Off Date :</span>\r\n                      <span> <b> {{doHeader.CutOffDate|date}} </b></span>\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"col-sm-3 text-right\">\r\n\r\n                  </div>\r\n                </div>\r\n                <br>\r\n                <div class=\"row\">\r\n\r\n                  <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                    <!-- <div class=\"card text-white bg-secondary mb-3\" style=\"max-width: 18rem;\">\r\n                       <div class=\"card-header\">BillTo</div>\r\n                      <div class=\"card-body\">\r\n                         <span> {{doHeader.BillToAddr}}</span> \r\n                        <br>\r\n                        <span> {{doHeader.BillToAddressBO.Address1}}, {{doHeader.BillToAddressBO.Address2}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.BillToAddressBO.City}} - {{doHeader.BillToAddressBO.Zip}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.BillToAddressBO.State}}</span>\r\n                      </div>\r\n                    </div> -->\r\n\r\n\r\n                    <div class=\"panel-heading\">\r\n                      <h6 class=\"panel-title\">BillTo</h6>\r\n                    </div>\r\n                    <div class=\"card alert-secondary text-center p-3\">\r\n                      <!-- <blockquote class=\"blockquote mb-0\"> -->\r\n                      <!-- <span> {{doHeader.BillToAddressBO.Name}}</span> -->\r\n                      <!-- <span> {{doHeader.BillToAddressBO.Address1}}, {{doHeader.BillToAddressBO.Address2}} </span>\r\n                      <span> {{doHeader.BillToAddressBO.City}} - {{doHeader.BillToAddressBO.Zip}} </span>\r\n                      <span> {{doHeader.BillToAddressBO.State}}</span> -->\r\n                      <!-- </blockquote> -->\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                    <!-- <div class=\"card text-white bg-secondary mb-3\" style=\"max-width: 18rem;\">\r\n                      <div class=\"card-header\">Pickup</div>\r\n                      <div class=\"card-body\">\r\n                        <span> {{doHeader.SourceAddressBO.Name}}</span>\r\n                        <br>\r\n                        <span> {{doHeader.SourceAddressBO.Address1}}, {{doHeader.SourceAddressBO.Address2}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.SourceAddressBO.City}} - {{doHeader.SourceAddressBO.Zip}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.SourceAddressBO.State}}</span>\r\n                      </div>\r\n                    </div> -->\r\n                    <div class=\"panel-heading\">\r\n                      <h6 class=\"panel-title\" style=color:black>Pickup</h6>\r\n                    </div>\r\n                    <div class=\"card alert-primary text-center p-3\">\r\n                      <!-- <blockquote class=\"blockquote mb-0\"> -->\r\n                      <!-- <span> {{doHeader.SourceAddressBO.Name}}</span>\r\n                      <span> {{doHeader.SourceAddressBO.Address1}}, {{doHeader.SourceAddressBO.Address2}} </span>\r\n                      <span> {{doHeader.SourceAddressBO.City}} - {{doHeader.SourceAddressBO.Zip}} </span>\r\n                      <span> {{doHeader.SourceAddressBO.State}}</span> -->\r\n                      <!-- </blockquote> -->\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                    <!-- <div class=\"card text-white bg-secondary mb-3\" style=\"max-width: 18rem;\">\r\n                      <div class=\"card-header\">Delivery</div>\r\n                      <div class=\"card-body\">\r\n                        <span> {{doHeader.DestinationAddressBO.Name}}</span>\r\n                        <br>\r\n                        <span> {{doHeader.DestinationAddressBO.Address1}}, {{doHeader.DestinationAddressBO.Address2}}\r\n                        </span>\r\n                        <br>\r\n                        <span> {{doHeader.DestinationAddressBO.City}} - {{doHeader.DestinationAddressBO.Zip}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.DestinationAddressBO.State}}</span>\r\n                      </div>\r\n                    </div> -->\r\n                    <div class=\"panel-heading\">\r\n                      <h6 class=\"panel-title\" style=color:black>Delivery</h6>\r\n                    </div>\r\n                    <div class=\"card alert-secondary text-center p-3\">\r\n                      <!-- <blockquote class=\"blockquote mb-0\"> -->\r\n                      <!-- <span> {{doHeader.DestinationAddressBO.Name}}</span>\r\n                      <span> {{doHeader.DestinationAddressBO.Address1}}, {{doHeader.DestinationAddressBO.Address2}}\r\n                      </span>\r\n                      <span> {{doHeader.DestinationAddressBO.City}} - {{doHeader.DestinationAddressBO.Zip}} </span>\r\n                      <span> {{doHeader.DestinationAddressBO.State}}</span> -->\r\n                      <!-- </blockquote> -->\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                    <!-- <div class=\"card text-white bg-secondary mb-3\" style=\"max-width: 18rem;\">\r\n                      <div class=\"card-header\">Return</div>\r\n                      <div class=\"card-body\">\r\n\r\n                        <span> {{doHeader.ReturnAddressBO.Name}}</span>\r\n                        <br>\r\n                        <span> {{doHeader.ReturnAddressBO.Address1}}, {{doHeader.ReturnAddressBO.Address2}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.ReturnAddressBO.City}} - {{doHeader.ReturnAddressBO.Zip}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.ReturnAddressBO.State}}</span>\r\n                      </div>\r\n                    </div> -->\r\n                    <div class=\"panel-heading\">\r\n                      <h5 class=\"panel-title\" style=color:black>Return</h5>\r\n                    </div>\r\n                    <div class=\"card alert-primary text-center p-3\">\r\n                      <!-- <blockquote class=\"blockquote mb-0\"> -->\r\n                      <!-- <span> {{doHeader.ReturnAddressBO.Name}}</span>\r\n                      <span> {{doHeader.ReturnAddressBO.Address1}}, {{doHeader.ReturnAddressBO.Address2}} </span>\r\n                      <span> {{doHeader.ReturnAddressBO.City}} - {{doHeader.ReturnAddressBO.Zip}} </span>\r\n                      <span> {{doHeader.ReturnAddressBO.State}}</span> -->\r\n                      <!-- </blockquote> -->\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n\r\n                <div class=\"panel panel-warning\">\r\n                  <div class=\"panel-heading\">\r\n                    <h6 class=\"panel-title\" style=color:black>Container(s)</h6>\r\n                  </div>\r\n                  <div class=\"panel-body\">\r\n                    <div class=\"row\">\r\n                      <div class=\"col-sm-10 col-md-10 col-lg-10\">\r\n                        <!-- <div class=\"card bg-success text-white text-center p-3\">\r\n                                    <blockquote class=\"blockquote mb-0\">\r\n              \r\n                                      <span class=\"badge badge-pill badge-secondary\">Container Detail</span> <br><br>\r\n              \r\n                                      <div class=\"row\">\r\n                                        <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                          <span class=\"text-muted\"> Container </span><br>\r\n                                        </div>\r\n              \r\n                                        <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                          <span class=\"text-muted\"> Size </span><br>\r\n                                        </div>\r\n              \r\n                                        <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                          <span class=\"text-muted\"> Chassis </span><br>\r\n                                        </div>\r\n              \r\n                                        <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                          <span class=\"text-muted\"> Seal# </span><br>\r\n                                        </div>\r\n              \r\n                                        <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                          <span class=\"text-muted\"> Weight </span><br>\r\n                                        </div>\r\n                                      </div>\r\n                                      <ng-container *ngFor=\"let field of doHeader.orderdetails; index as i\">\r\n              \r\n                                        <div class=\"row\">\r\n                                          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                            <span><b>{{field.ContainerNo}}</b></span>\r\n                                          </div>\r\n              \r\n                                          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                            <span><b>{{field.ContainerSizeDesc}} </b></span>\r\n                                          </div>\r\n              \r\n                                          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                            <span><b>{{field.Chassis}}</b></span>\r\n                                          </div>\r\n              \r\n                                          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                            <span><b>{{field.SealNo}} </b></span>\r\n                                          </div>\r\n              \r\n                                          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                            <span><b> {{field.Weight}}</b></span>\r\n                                          </div>\r\n                                        </div>\r\n                                      </ng-container>\r\n              \r\n                                    </blockquote>\r\n                                  </div> -->\r\n\r\n                        <!-- <div class=\"card bg-secondary text-center p-3\"> -->\r\n                        <table class=\"table table-sm alert-warning\">\r\n                          <thead>\r\n                            <tr>\r\n                              <th scope=\"col\">Container</th>\r\n                              <th scope=\"col\">Size</th>\r\n                              <th scope=\"col\">Chassis</th>\r\n                              <th scope=\"col\">SealNo</th>\r\n                              <th scope=\"col\">Weight</th>\r\n                              <th scope=\"col\">Comments</th>\r\n                            </tr>\r\n                          </thead>\r\n                          <tbody>\r\n                            <tr *ngFor=\"let field of doHeader.orderdetails; index as i\">\r\n                              <td>{{field.ContainerNo}}</td>\r\n                              <td>{{field.ContainerSizeDesc}} </td>\r\n                              <td>{{field.Chassis}}</td>\r\n                              <td>{{field.SealNo}}</td>\r\n                              <td>{{field.Weight}}</td>\r\n                              <td>{{field.Comments}}</td>\r\n                            </tr>\r\n                          </tbody>\r\n                        </table>\r\n                        <!-- </div> -->\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n                <!-- <span style=\"color:black\"> Comments </span><br> -->\r\n                <div class=\"panel-heading\">\r\n                  <h6 class=\"panel-title\" style=color:black>Comments</h6>\r\n                </div>\r\n                <div class=\"card alert-success text-center p-3\">\r\n                  <blockquote class=\"blockquote mb-0\">\r\n                    <small>{{doHeader.Comment}}</small>\r\n                    <!-- <footer class=\"blockquote-footer\">\r\n                      <small>\r\n                        Someone famous in <cite title=\"Source Title\">Source Title</cite>\r\n                      </small>\r\n                    </footer> -->\r\n                  </blockquote>\r\n                </div>\r\n                <!-- <div class=\"card-columns\">\r\n                  <div class=\"card bg-primary text-white text-center p-3\">\r\n                    <blockquote class=\"blockquote mb-0\">\r\n                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>\r\n                      <footer class=\"blockquote-footer text-white\">\r\n                        <small>\r\n                          Someone famous in <cite title=\"Source Title\">Source Title</cite>\r\n                        </small>\r\n                      </footer>\r\n                    </blockquote>\r\n                  </div>\r\n\r\n                  <div class=\"card bg-primary text-white text-center p-3\">\r\n                    <blockquote class=\"blockquote mb-0\">\r\n                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>\r\n                      <footer class=\"blockquote-footer text-white\">\r\n                        <small>\r\n                          Someone famous in <cite title=\"Source Title\">Source Title</cite>\r\n                        </small>\r\n                      </footer>\r\n                    </blockquote>\r\n                  </div>\r\n\r\n                  <div class=\"card bg-primary text-white text-center p-3\">\r\n                    <blockquote class=\"blockquote mb-0\">\r\n                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>\r\n                      <footer class=\"blockquote-footer text-white\">\r\n                        <small>\r\n                          Someone famous in <cite title=\"Source Title\">Source Title</cite>\r\n                        </small>\r\n                      </footer>\r\n                    </blockquote>\r\n                  </div>\r\n                </div> -->\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeModalDialog()\">Close</button>\r\n      </div> -->\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"row\" *ngIf=\"CreateOrEditOrder\">\r\n  <!-- [class.disabled]=\"editmode\" -->\r\n  <div class=\"card card-body\">\r\n    <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n\r\n      <form (ngSubmit)=\"f.form.valid && OnSubmit(f)\" #f=\"ngForm\" novalidate>\r\n        <!-- <hr style=\"border: none; border-bottom: 3px solid slategray;\"> -->\r\n        <div class=\"row \">\r\n          <div class=\"col-sm-4 col-md-4 col-lg-4\">          \r\n              <h4 style=\"color: yellowgreen;\"><b >Order</b>  <span *ngIf=\"!doHeader.OrderNo==' '\"> <b> #{{doHeader.OrderNo}}</b>\r\n                <span class=\"badge badge-pill badge-success\"><i class=\"fa fa-calendar\" aria-hidden=\"true\"></i>\r\n                  <small style=\"color:black\"> <b> {{doHeader.OrderDate | date}}</b></small>\r\n                </span>\r\n              </span>\r\n              </h4>             \r\n             \r\n\r\n            <input type=\"text\" id=\"OrderKey\" readonly class=\"form-control\" name=\"OrderKey\" tooltip=\"OrderKey\"\r\n              [(ngModel)]=\"doHeader.OrderKey\" #OrderKey=\"ngModel\" hidden=\"true\" />\r\n            <input type=\"text\" id=\"OrderNo\" readonly class=\"form-control\" name=\"OrderNo\" tooltip=\"Order No\"\r\n              [(ngModel)]=\"doHeader.OrderNo\" #OrderNo=\"ngModel\" hidden=\"true\" />\r\n            <input type=\"text\" class=\"form-control \" name=\"OrderDate\" id=\"OrderDate\" readonly [owlDateTimeTrigger]=\"dt3\"\r\n              [owlDateTime]=\"dt3\" placeholder=\"Order Date\" [(ngModel)]=\"doHeader.OrderDate\" #OrderDate=\"ngModel\"\r\n              hidden=\"true\" />\r\n            <owl-date-time [pickerType]=\"'calendar'\" #dt3 [hour12Timer]=\"false\"></owl-date-time>\r\n\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2 text-right\">\r\n            <!-- <div class=\"container text-right\"> -->\r\n            <button class=\"btn btn-primary btn-sm\" type=\"submit\">\r\n              <i class=\"fa fa-floppy-o\" aria-hidden=\"true\"></i>&nbsp; {{lblCreateOrEdit}}</button>\r\n            &nbsp;&nbsp;\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"cancel()\">\r\n              <i class=\"fa fa-ban\" aria-hidden=\"true\"></i>&nbsp; Cancel</button>\r\n            <!-- </div> -->\r\n          </div>\r\n        </div>\r\n        <!-- <div class=\"row \">  \r\n        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n\r\n        </div>\r\n\r\n      </div> -->\r\n        <div class=\"row\">\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <app-customer name=\"CustKey\" [(ngModel)]=\"doHeader.CustKey\" #CustKey=\"ngModel\"\r\n              (CustomerSelectedOutput)=\"onSelectedCustKeyAddress($event)\" [Type]=1 [AddressType]=1\r\n              [customerKeyTobind]=\"doHeader.CustKey\" (OrdernoGenerated)=\"onOrdernoGenerated($event)\">\r\n            </app-customer>\r\n          </div>\r\n          <!-- <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n          <app-company id=\"BillToAddress\" name=\"BillToAddress\" [(ngModel)]=\"doHeader.BillToAddress\"\r\n            #BillToAddress=\"ngModel\" (CustomerSelectedOutput)=\"onSelectedBilltoAddress($event)\" [Type]=2\r\n            [AddressType]=1 [addressKeyTobind]=\"doHeader.BillToAddress\">\r\n          </app-company>\r\n         \r\n        </div> -->\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <app-company id=\"SourceAddress\" name=\"SourceAddress\" [(ngModel)]=\"doHeader.SourceAddress\"\r\n              (CustomerSelectedOutput)=\"onSelectedPickupAddress($event)\" [Type]=2 [AddressType]=2\r\n              [addressKeyTobind]=\"doHeader.SourceAddress\">\r\n            </app-company>\r\n          </div>\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <app-company id=\"DestinationAddress\" name=\"DestinationAddress\" [(ngModel)]=\"doHeader.DestinationAddress\"\r\n              (CustomerSelectedOutput)=\"onSelectedConsigneeAddress($event)\" [Type]=2 [AddressType]=3\r\n              [addressKeyTobind]=\"doHeader.DestinationAddress\">\r\n            </app-company>\r\n          </div>\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <app-company id=\"ReturnAddress\" name=\"ReturnAddress\" [(ngModel)]=\"doHeader.ReturnAddress\"\r\n              (CustomerSelectedOutput)=\"onSelectedReturnAddress($event)\" [Type]=2 [AddressType]=4\r\n              [addressKeyTobind]=\"doHeader.ReturnAddress\">\r\n            </app-company>\r\n          </div>\r\n        </div>\r\n        <div class=\"row \">\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <div class=\"card-body text-dark\">\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Type </span>\r\n                  </div>\r\n                  <select id=\"cboOrderType\" class=\"form-control\" name=\"OrderType\" [(ngModel)]=\"doHeader.OrderType\"\r\n                    #OrderType=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && OrderType.invalid }\" required>\r\n                    <option [value]=\"otype.Value\" *ngFor=\"let otype of ordertypelist\">{{otype.Name}}</option>\r\n                  </select>\r\n                  <div *ngIf=\"f.submitted && OrderType.invalid\" class=\"invalid-feedback\">\r\n                    <div *ngIf=\"OrderType.errors.required\"> Order Type is required</div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm \">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Priority</span>\r\n                  </div>\r\n                  <select id=\"drpPriority\" class=\"form-control form-control-sm\" name=\"Priority\"\r\n                    [(ngModel)]=\"doHeader.Priority\" #Priority=\"ngModel\"\r\n                    [ngClass]=\"{ 'is-invalid': f.submitted && Priority.invalid }\" required>\r\n                    <option [value]=\"priority.Value\" *ngFor=\"let priority of prioritylist\">{{priority.Name}}\r\n                    </option>\r\n                  </select>\r\n\r\n                  <div *ngIf=\"f.submitted && Priority.invalid\" class=\"invalid-feedback\">\r\n                    <div *ngIf=\"Priority.errors.required\"> Priority is required</div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Status</span>\r\n                  </div>\r\n                  <select id=\"drpStatus\" class=\"form-control form-control-sm\" name=\"Status\"\r\n                    (change)=\"StatusDropDownChanged($event.target.value)\" [(ngModel)]=\"doHeader.Status\"\r\n                    #Status=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && Status.invalid }\" required>\r\n                    <option [value]=\"status.status\" *ngFor=\"let status of statuslist\">{{status.description}}</option>\r\n                  </select>\r\n                  <div *ngIf=\"f.submitted && Status.invalid\" class=\"invalid-feedback\">\r\n                    <div *ngIf=\"Status.errors.required\"> Status is required</div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm mb-3\" *ngIf=\"HolddropdownVisible\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Reason</span>\r\n                  </div>\r\n                  <select id=\"drpHoldReason\" class=\"form-control form-control-sm\" name=\"HoldReason\"\r\n                    [(ngModel)]=\"doHeader.HoldReason\">\r\n                    <option [value]=\"reason.Value\" *ngFor=\"let reason of holdreasonlist\">{{reason.Name}}</option>\r\n                  </select>\r\n                </div>\r\n              </div>\r\n              <br>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\"> Booking</span>\r\n                  </div>\r\n                  <input type=\"text\" id=\"txtBookingNumBooking #\" class=\"form-control form-control-sm\" name=\"BookingNo\"\r\n                    [(ngModel)]=\"doHeader.BookingNo\" #BookingNo=\"ngModel\">\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && BookingNo.invalid }\" required />\r\n\r\n                      <div *ngIf=\"f.submitted && BookingNo.invalid\" class=\"invalid-feedback\">\r\n                        <div *ngIf=\"BookingNo.errors.required\"> Booking No is required</div>\r\n                      </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Cut-off Date</span>\r\n                  </div>\r\n\r\n                  <input type=\"text\" class=\"form-control form-control-sm\" name=\"CutOffDate\"\r\n                    [(ngModel)]=\"doHeader.CutOffDate\" #CutOffDate=\"ngModel\" placeholder=\"Cut-Off Date\"\r\n                    [ngClass]=\"{ 'is-invalid': f.submitted && CutOffDate.invalid }\" [owlDateTimeTrigger]=\"dt1\"\r\n                    [owlDateTime]=\"dt1\" required/>\r\n                  <owl-date-time [pickerType]=\"'calendar'\" #dt1></owl-date-time>\r\n                  <div *ngIf=\"f.submitted && CutOffDate.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"CutOffDate.errors.required\"> Cut-Off Date is required</div>\r\n                        </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Load Port</span>\r\n                  </div>\r\n                  <select id=\"drpSource\" class=\"form-control form-control-sm\" name=\"PortofOriginKey\"\r\n                    [(ngModel)]=\"doHeader.PortofOriginKey\" #PortofOriginKey=\"ngModel\">\r\n                    <option [value]=\"src.AddrKey\" *ngFor=\"let src of LoadDischargePortList\">{{src.Name}}\r\n                    </option>\r\n                  </select>\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && PortofOriginKey.invalid }\" > required\r\n                          \r\n                          <div *ngIf=\"f.submitted && PortofOriginKey.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"PortofOriginKey.errors.required\">Load Port is required</div>\r\n                        </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Dis Port</span>\r\n                  </div>\r\n                  <select id=\"drpPortofDestinationKey\" class=\"form-control form-control-sm\" name=\"PortofDestinationKey\"\r\n                    [(ngModel)]=\"doHeader.PortofDestinationKey\" #PortofDestinationKey=\"ngModel\">\r\n                    <option [value]=\"dest.AddrKey\" *ngFor=\"let dest of LoadDischargePortList\">{{dest.Name}}\r\n                    </option>\r\n                  </select>\r\n\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && PortofDestinationKey.invalid }\" required\r\n                        <div *ngIf=\"f.submitted && PortofDestinationKey.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"PortofDestinationKey.errors.required\"> Port of Destination is required</div>\r\n                        </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Bill of lading</span>\r\n                  </div>\r\n                  <input type=\"text\" id=\"txtBLNo\" class=\"form-control form-control-sm\" name=\"BillofLading\"\r\n                    [(ngModel)]=\"doHeader.BillofLading\" #BillofLading=\"ngModel\">\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && BillofLading.invalid }\" required />\r\n  \r\n                        <div *ngIf=\"f.submitted && BillofLading.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"BillofLading.errors.required\"> Bill of Loading is required</div>\r\n                        </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Carrier</span>\r\n                  </div>\r\n                  <select id=\"drpCarrier\" class=\"form-control form-control-sm\" name=\"CarrierKey\"\r\n                    [(ngModel)]=\"doHeader.CarrierKey\" #CarrierKey=\"ngModel\">\r\n                    <option [value]=\"carrier.CarrierKey\" *ngFor=\"let carrier of carrierlist\">\r\n                      {{carrier.CarrierId}}\r\n                    </option>\r\n                  </select>\r\n\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && CarrierKey.invalid }\" required\r\n                        <div *ngIf=\"f.submitted && CarrierKey.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"CarrierKey.errors.required\"> Carrier is required</div>\r\n                        </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\"> Vessel</span>\r\n                  </div>\r\n                  <input type=\"text\" id=\"txtVesselName\" class=\"form-control form-control-sm\" name=\"VesselName\"\r\n                    [(ngModel)]=\"doHeader.VesselName\" #VesselName=\"ngModel\">\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && VesselName.invalid }\" required />\r\n  \r\n                        <div *ngIf=\"f.submitted && VesselName.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"VesselName.errors.required\">Vessel Name is required</div>\r\n                        </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Broker Ref</span>\r\n                  </div>\r\n                  <input type=\"text\" class=\"form-control form-control-sm\" id=\"txtBrokerRefNo\" name=\"BrokerRefNo\"\r\n                    placeholder=\"Broker Ref no\" #BrokerRefNo=\"ngModel\" [(ngModel)]=\"doHeader.BrokerRefNo\">\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && BrokerRefNo.invalid }\" required />\r\n                          <div *ngIf=\"f.submitted && BrokerRefNo.invalid\" class=\"invalid-feedback\">\r\n                            <div *ngIf=\"BrokerRefNo.errors.required\">Broker Ref No is required</div>\r\n                          </div> -->\r\n                </div>\r\n              </div>\r\n              <br>\r\n              <div class=\"row\">\r\n                <app-broker id=\"Brokerkey\" name=\"Brokerkey\" [(ngModel)]=\"doHeader.Brokerkey\" #Brokerkey=\"ngModel\"\r\n                  (BrokerSelectedOutput)=\"onSelectedBroker($event)\" [brokerKeyTobind]=\"doHeader.Brokerkey\">\r\n                </app-broker>\r\n              </div>\r\n              <br><br>\r\n              <div class=\"row\">\r\n                <label>Comment</label>\r\n                <textarea class=\"form-control\" rows=\"6\" id=\"txtcomment\" placeholder=\"Comment\"\r\n                  [(ngModel)]=\"doHeader.Comment\" name=\"Comment\" #Comment=\"ngModel\"></textarea>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"col-sm-9 col-md-9 col-lg-9\"> <br>\r\n            <div class=\"row\">\r\n              <div class=\"card text-dark alert-warning\">\r\n                <div class=\"card-body text-dark border-light \">\r\n                  <h5>Containers </h5>\r\n                  <div class=\"row\">\r\n                    <div class=\"table-responsive\" style=\"overflow-x: auto\">\r\n                      <table id=\"containerAttributes\"\r\n                        class=\"table table-custom table-sm table-hover table-striped table-warning \" cellspacing=\"0\"\r\n                        width=\"100%\">\r\n                        <thead>\r\n                          <tr>\r\n                            <th scope=\"col\" class=\"text-left text-muted\" hidden=\"true\">OrderDetailKey</th>\r\n                            <th scope=\"col\" class=\"text-left text-muted\">Id</th>\r\n                            <th scope=\"col\" class=\"text-left text-muted\">Container</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\" hidden=\"true\"> Size</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\"> Size</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\" hidden=\"true\">Chassis</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\">Seal</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\">Weight</th>\r\n                            <th scope=\"col\" class=\"text-left text-muted\">Comment</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\">Actions</th>\r\n                          </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                          <tr *ngFor=\"let field of doHeader.orderdetails; let i = index\">\r\n                            <td class=\"text-left\" style=\"color: darkslategrey;\">\r\n                              {{field.containerid}}\r\n                            </td>\r\n                            <td class=\"text-left\" style=\"color: darkslategrey;\">\r\n                              <!-- <input [(ngModel)]=\"field.ContainerNo\" class=\"form-control form-control-sm \" type=\"text\"\r\n                        name=\"{{field.ContainerNo}}\" /> -->\r\n                              {{field.ContainerNo}} </td>\r\n                            <td hidden=\"true\" style=\"color: darkslategrey;\">\r\n\r\n                              <!-- <input [(ngModel)]=\"field.ContainerSize\" class=\"form-control form-control-sm\" type=\"text\"\r\n                        name=\"{{field.ContainerSize}}\" /> -->\r\n                              {{field.ContainerSize}}\r\n                            </td>\r\n                            <td class=\"text-center\" style=\"color: darkslategrey;\">\r\n                              <!-- <input [(ngModel)]=\"field.containerSizeDesc\" class=\"form-control form-control-sm\" type=\"text\"\r\n                        name=\"{{field.containerSizeDesc}}\" /> -->\r\n                              {{field.ContainerSizeDesc}}\r\n                            </td>\r\n                            <td hidden=\"true\" style=\"color: darkslategrey;\">\r\n                              <!--  <input [(ngModel)]=\"field.Chassis\" class=\"form-control form-control-sm\" type=\"text\"\r\n                        name=\"{{field.Chassis}}\" /> -->\r\n                              {{field.Chassis}}</td>\r\n                            <td class=\"text-center\" style=\"color: darkslategrey;\">\r\n                              <!-- <input [(ngModel)]=\"field.SealNo\" class=\"form-control form-control-sm \" type=\"text\"\r\n                        name=\"{{field.SealNo}}\" /> -->\r\n                              {{field.SealNo}}</td>\r\n                            <td class=\"text-center\" style=\"color: darkslategrey;\">\r\n                              <!-- <input [(ngModel)]=\"field.Weight\" class=\"form-control form-control-sm \" type=\"text\"\r\n                        name=\"{{field.Weight}}\" /> -->\r\n                              {{field.Weight}}</td>\r\n                            <td class=\"text-left\" style=\"color: darkslategrey;\">\r\n                              <!-- <input [(ngModel)]=\"field.Comments\" class=\"form-control form-control-sm \" type=\"text\"\r\n                        name=\"{{field.Comments}}\" /> -->\r\n                              {{field.Comments}}\r\n                            </td>\r\n                            <td class=\"text-center\" style=\"color: darkslategrey;\">\r\n                              <a tooltip=\"Upload file\" (click)=\"edit(field,i)\">\r\n                                <i class=\"fa fa-pencil\"></i>\r\n                              </a> &nbsp;&nbsp;\r\n\r\n                              <a tooltip=\"Remove/Delete Container\" (click)=\"deleteFieldValue(i)\">\r\n                                <i class=\"fa fa-trash\"></i>\r\n                              </a>\r\n                            </td>\r\n                          </tr>\r\n\r\n                        </tbody>\r\n                      </table>\r\n                      <table>\r\n                        <thead>\r\n                          <tr>\r\n                            <th scope=\"col\" class=\"text-left\" hidden=\"true\">OrderDetailKey</th>\r\n                            <th scope=\"col\" class=\"text-left\" hidden=\"true\">Id</th>\r\n                            <th scope=\"col\" class=\"text-left\" hidden=\"true\">Container</th>\r\n                            <th scope=\"col\" class=\"text-center\" hidden=\"true\"> Size</th>\r\n                            <th scope=\"col\" class=\"text-center\" hidden=\"true\"> Size</th>\r\n                            <th scope=\"col\" class=\"text-center\" hidden=\"true\">Chassis</th>\r\n                            <th scope=\"col\" class=\"text-center\" hidden=\"true\">Seal</th>\r\n                            <th scope=\"col\" class=\"text-center\" hidden=\"true\">Weight</th>\r\n                            <th scope=\"col\" class=\"text-left\" hidden=\"true\">Comment</th>\r\n                            <th scope=\"col\" class=\"text-right\" hidden=\"true\">Actions</th>\r\n                          </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                          <tr>\r\n                            <td hidden=\"true\">\r\n                              <input class=\"form-control form-control-sm \" type=\"text\" placeholder=\"OrderDetailKey\"\r\n                                [(ngModel)]=\"OrderDetailKey\" name=\"OrderDetailKey\" />\r\n                            </td>\r\n                            <td hidden=\"true\">\r\n                              <input class=\"form-control form-control-sm \" type=\"text\" placeholder=\"containerid\"\r\n                                [(ngModel)]=\"containerid\" name=\"containerid\" />\r\n                            </td>\r\n                            <td>\r\n                              <input class=\"form-control form-control-sm \" type=\"text\" placeholder=\"Container\"\r\n                                [(ngModel)]=\"ContainerNo\" name=\"ContainerNo\" />\r\n                            </td>\r\n                            <td>\r\n                              <select id=\"drpcontainerType\" class=\"form-control form-control-sm \"\r\n                                aria-placeholder=\"ContainerSize\" [(ngModel)]=\"ContainerSize\" name=\"ContainerSize\"\r\n                                (change)=\"drpcontainersizeChanged($event.target.value)\">\r\n                                <option [value]=\"container.containersize\" *ngFor=\"let container of containersizelist\">\r\n                                  {{container.description}}</option>\r\n                              </select>\r\n\r\n                            </td>\r\n                            <td hidden=\"true\">\r\n                              <input class=\"form-control form-control-sm\" type=\"text\" placeholder=\"Chassis\"\r\n                                [(ngModel)]=\"Chassis\" name=\"Chassis\" />\r\n                            </td>\r\n                            <td>\r\n                              <input class=\"form-control form-control-sm \" type=\"text\" placeholder=\"SealNo\"\r\n                                [(ngModel)]=\"SealNo\" name=\"SealNo\" />\r\n                            </td>\r\n                            <td>\r\n                              <input class=\"form-control form-control-sm \" type=\"number\" placeholder=\"Weight\"\r\n                                [(ngModel)]=\"Weight\" name=\"Weight\" />\r\n                            </td>\r\n                            <td colspan=\"5\">\r\n                              &nbsp; <input type=\"checkbox\" [(ngModel)]=\"IsHazardChecked\"\r\n                                [ngModelOptions]=\"{standalone: true}\" (change)=\"Checkbox1_Change($event)\" />\r\n                              <small class=\"badge badge-pill badge-secondary\">Hazard</small>\r\n\r\n                              &nbsp;<input type=\"checkbox\" value=\"Over weight\" [(ngModel)]=\"IsOverweightChecked\"\r\n                                [ngModelOptions]=\"{standalone: true}\" (change)=\"Checkbox2_Change($event)\" />\r\n                              <small class=\"badge badge-pill badge-secondary\">Over weight</small>\r\n\r\n                              &nbsp;<input type=\"checkbox\" value=\"Triaxle\" [(ngModel)]=\"IsTrixaleChecked\"\r\n                                [ngModelOptions]=\"{standalone: true}\" (change)=\"Checkbox3_Change($event)\" />\r\n                              <small class=\"badge badge-pill badge-secondary\">Triaxle</small>\r\n\r\n                              &nbsp;<input type=\"checkbox\" value=\"Needs to be scaled\"\r\n                                [(ngModel)]=\"IsNeedstobescaledChecked\" [ngModelOptions]=\"{standalone: true}\"\r\n                                (change)=\"Checkbox4_Change($event)\" />\r\n                              <small class=\"badge badge-pill badge-secondary\">Needs to be scaled</small>\r\n                            </td>\r\n                            <td>\r\n                              <button type=\"button\" class=\"btn alert-dark btn-sm\" style=\"border-radius: 1rem;\"\r\n                                (click)=\"add()\"> <i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Add</button>\r\n                            </td>\r\n                          </tr>\r\n                        </tbody>\r\n                      </table>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"card text-dark alert-primary\">\r\n                <div class=\"card-body text-dark border-light\">\r\n                  <app-file-upload (onCompleteItem)=\"onCompleteItem($event)\" [orderno]=\"doHeader.OrderNo\"\r\n                    [queue]=\"doHeader.file\" [CreatedBy]=\"doHeader.CreatedBy\"></app-file-upload>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </form>\r\n      <!-- \r\n    <div class=\"row\">\r\n      <div class=\"col-sm-4 col-md-4 col-lg-4 \">\r\n        <label>Comment</label>\r\n        <textarea class=\"form-control\" rows=\"5\" id=\"txtcomment\" placeholder=\"Comment\" [(ngModel)]=\"doHeader.Comment\"\r\n          name=\"Comment\" #Comment=\"ngModel\"></textarea>\r\n      </div>\r\n      <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n        <div class=\"card text-dark alert-primary\">\r\n          <div class=\"card-body text-dark border-light\">\r\n            <app-file-upload (onCompleteItem)=\"onCompleteItem($event)\" [orderno]=\"doHeader.OrderNo\"\r\n              [queue]=\"doHeader.file\" [CreatedBy]=\"doHeader.CreatedBy\"></app-file-upload>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div> -->\r\n    </div>\r\n  </div>\r\n</div>\r\n<div *ngIf=\"showImage\">\r\n  <div class=\"row \"> </div>\r\n  <div class=\"row \"> </div>\r\n  <div class=\"row \">\r\n    <div class=\"col-md-4\"> </div>\r\n    <div class=\"col-md-4\">\r\n      <!-- <img src=\"assets/img/brand/Actions-gear-icon128px.png\" /> -->\r\n    </div>\r\n    <div class=\"col-md-4\"> </div>\r\n  </div>\r\n</div>";
+    __webpack_exports__["default"] = "<br>\r\n<div id=\"accordion\" *ngIf=\"ShowOrderList\">\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col-7 col-sm-7 col-md-7\">\r\n\r\n    </div>\r\n    <div class=\"col-3 col-sm-3 col-md-3\">\r\n      <div class=\"form-group input-group input-group-sm\">\r\n        <div class=\"img-group-prepend\">\r\n          <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n        </div>\r\n        <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" style=\"border-radius: 0.5rem;\" type=\"text\"\r\n          placeholder=\"Search..\">\r\n      </div>\r\n    </div>\r\n    <!-- <div class=\"col-3 col-sm-3 col-md-3\">\r\n      <tr>\r\n        <td>\r\n          <select id=\"filterOrderType\" class=\"form-control form-control-sm text-muted\">\r\n            <option [value]=\"0\">Type</option>\r\n            <option [value]=\"otype.Value\" *ngFor=\"let otype of ordertypelist\">{{otype.Name}}</option>\r\n          </select>\r\n        </td>\r\n        &nbsp;\r\n        <td>\r\n          <select id=\"filterPriority\" class=\"form-control form-control-sm text-muted\">\r\n            <option [value]=\"0\">Priority</option>\r\n            <option [value]=\"priority.Value\" *ngFor=\"let priority of prioritylist\">{{priority.Name}}\r\n            </option>\r\n          </select>\r\n          &nbsp;\r\n        <td>\r\n          <select id=\"filterStatus\" class=\"form-control form-control-sm text-muted\">\r\n            <option [value]=\"0\">Status</option>\r\n            <option [value]=\"status.status\" *ngFor=\"let status of statuslist\">{{status.description}}</option>\r\n          </select>\r\n        </td>\r\n      </tr>\r\n      \r\n    </div> -->\r\n\r\n    <div class=\"col-2 col-sm-2 col-md-2\">\r\n      <button type=\"button\" class=\"btn btn-sm btn-primary \" style=\"border-radius: 1rem;\" (click)=\"createNewOrder()\"> <i\r\n          class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i> New </button>\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"row\" id=\"style-10\">\r\n    <!-- <div class=\"col-sm-2 col-md-2 col-lg-2 scrollbar\" id=\"style-10\">\r\n      <table class=\"table table-sm table-striped  table-dark\">\r\n        <tbody>\r\n          <tr>\r\n            <br>\r\n            <h5>&nbsp; Delivery Orders <span class=\"badge badge-warning\">Recent</span></h5>\r\n          </tr>\r\n          <tr\r\n            *ngFor=\"let order of Orderlist| grdFilter: {OrderNo: searchText,ordertypedescription: searchText} ; let ind=index;\">\r\n\r\n            <td>\r\n              <br>\r\n              <span class=\"font-weight-bold\" style=\"color:olivedrab\">\r\n                {{ order.OrderNo }} <br>\r\n                <small style=\"color:lightslategray\"> <i class=\"fa fa-commenting-o\"></i> {{order.ordertypedescription}}\r\n                </small>\r\n              </span>\r\n            </td>\r\n            <td class=\"text-right\" style=\"width: 40%;\">\r\n              <br>\r\n              <button type=\"button\" class=\"btn btn-success btn-sm\" data-toggle=\"modal\"\r\n                data-target=\".bd-example-modal-lg\" (click)=\"view(order.OrderKey)\"> <i class=\"fa fa-bullseye\"\r\n                  aria-hidden=\"true\"></i> View</button></td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n\r\n    </div> -->\r\n    <!-- <div class=\"col-sm-10 col-md-10 col-lg-10  scrollbar\" id=\"style-10\"> -->\r\n    <table class=\"table table-sm table-borderless\">\r\n      <thead class=\"thead-dark shadow\">\r\n        <tr style=\"border: 2px;\">\r\n          <th scope=\"col\" scope=\"col\"  (click)=\"sort('OrderNo')\"  class=\"pointer text-muted text-left border-right\">Order &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>          \r\n          </th>\r\n          <th scope=\"col\" scope=\"col\"  (click)=\"sort('ordertypedescription')\"  class=\" pointertext-muted text-left\">Type  &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>          \r\n          </th>\r\n          <th scope=\"col\" scope=\"col\"  (click)=\"sort('BillToAddr')\"      class=\" pointer text-muted text-left\">Customer &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>          \r\n          </th>\r\n          <th scope=\"col\" scope=\"col\"  (click)=\"sort('SourceAddr')\"    class=\"pointer text-muted text-left\">Pickup &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th> \r\n          \r\n          <th scope=\"col\" scope=\"col\"  (click)=\"sort('DestinationAddr')\"    class=\" pointer text-muted text-left\">Delivery &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n          <th scope=\"col\"  scope=\"col\" (click)=\"sort('statusdescription')\"  class=\" pointer text-muted text-left\" >Status &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>           \r\n          </th>\r\n          <th scope=\"col\" class=\"text-muted text-left\">Edit/View</th>\r\n          <!-- <th scope=\"col\" class=\"text-muted text-left border-left\">Next Action</th> -->\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr style=\" height: 10px\">\r\n          <td colspan=\"8\"></td>\r\n        </tr>\r\n        <tr\r\n          *ngFor=\"let order of Orderlist| grdFilter: {OrderNo: searchText,ordertypedescription: searchText,statusdescription:searchText \r\n            ,BillToAddr: searchText,\r\n            SourceAddr: searchText,\r\n            DestinationAddr: searchText}|paginate:{itemsPerPage:4,currentPage:p,totalItems: count} ; let ind=index;\">\r\n          <td scope=\"row\" class=\"text-left border-right\">\r\n            <small class=\"font-weight-bold\">\r\n              {{ order.OrderNo }} <br>\r\n              <span class=\"badge badge-pill badge-primary\"><i class=\"fa fa-calendar\" aria-hidden=\"true\"></i>\r\n                <small> <b> {{order.OrderDate  | date}}</b></small>\r\n              </span>\r\n            </small>\r\n          </td>\r\n\r\n          <td scope=\"row\" class=\"text-left\">\r\n            <small class=\"font-weight-normal\">\r\n              {{order.ordertypedescription}} </small>\r\n          </td>\r\n          <td class=\"text-left\">\r\n            <small> {{ order.BillToAddr }}</small> <br>\r\n            <small style=\"color: cornflowerblue;\">\r\n              {{ order.BillToAddressBO.Address1 }},{{ order.BillToAddressBO.Address2 }}<br>\r\n              {{ order.BillToAddressBO.City }}, {{ order.BillToAddressBO.State}}-{{ order.BillToAddressBO.Zip}}\r\n            </small>\r\n          </td>\r\n          <td>\r\n            <small> {{ order.SourceAddr }}</small> <br>\r\n            <small style=\"color: cornflowerblue;\">\r\n              {{ order.SourceAddressBO.Address1 }},{{ order.SourceAddressBO.Address2 }}<br>\r\n              {{ order.SourceAddressBO.City }}, {{ order.SourceAddressBO.State}}-{{ order.SourceAddressBO.Zip}}\r\n            </small>\r\n          </td>\r\n          <td>\r\n            <span> <small> {{ order.DestinationAddr }}</small> <br>\r\n              <small style=\"color: cornflowerblue;\">\r\n                {{ order.DestinationAddressBO.Address1 }},{{ order.DestinationAddressBO.Address2 }} <br>\r\n                {{ order.DestinationAddressBO.City }},\r\n                {{ order.DestinationAddressBO.State}}-{{ order.DestinationAddressBO.Zip}} </small> </span>\r\n          </td>\r\n          <td> <small> {{ order.statusdescription }} </small></td>\r\n          <td>\r\n            <button type=\"button\" class=\"btn btn-outline-info btn-sm\" style=\"border-radius: 0.5rem;\"\r\n              (click)=\"update(order.OrderKey)\">\r\n              <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n              Update\r\n            </button>\r\n            &nbsp; &nbsp;\r\n            <button type=\"button\" class=\"btn btn-outline-info btn-sm\" style=\"border-radius: 0.5rem;\" data-toggle=\"modal\"\r\n              data-target=\".bd-example-modal-lg\" (click)=\"view(order.OrderKey)\"> <i class=\"fa fa-bullseye\"\r\n                aria-hidden=\"true\"></i> View</button>\r\n          </td>\r\n          <!-- <td class=\"border-left\">\r\n            <div *ngIf=\"order.nextaction == '! '\">\r\n              <i class=\"cil-chevron-circle-right-alt\"></i>\r\n              &nbsp;         <small > {{ order.nextaction }}</small> &nbsp;\r\n              <button type=\"button\" class=\"btn btn-outline-success btn-sm\" style=\"border-radius: 1rem;\"\r\n                data-toggle=\"modal\" data-target=\".bd-example-modal-lg\" (click)=\"view(order.OrderKey)\" > Submit </button>  \r\n            </div>          \r\n          </td> -->\r\n        </tr>\r\n        <tr *ngIf=\"Orderlist.length===0\">\r\n          <td colspan=\"3\">\r\n            <h4 style=\"color: darkorange;\">No records found! </h4>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <div class=\"container text-right\"> \r\n      <pagination-controls \r\n      (pageChange)=\"p=$event\"\r\n      autoHide=\"true\"\r\n      responsive=\"true\"> </pagination-controls>     \r\n    </div>\r\n    <!-- </div> -->\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade bd-example-modal-lg\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\"\r\n  aria-hidden=\"true\" data-keyboard=\"false\" data-backdrop=\"static\" [ngStyle]=\"{'display':display}\" style=\"width:90%\">\r\n  <div class=\"modal-dialog modal-lg\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Order</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"closeModalDialog()\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <div class=\"row\">\r\n          <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n            <div class=\"card \">\r\n              <div class=\"card-body\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-sm-3\">\r\n                    <!-- <span style=\"color: white\">Order no </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Order No :</span>\r\n                      <span style=\"color:black\"> <b> {{doHeader.OrderNo}}</b> </span>\r\n                    </div>\r\n\r\n                    <!-- <span style=\"color:white\"> Date </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Date :</span>\r\n                      <span style=\"color:black\"> <b> {{doHeader.OrderDate|date}}</b></span>\r\n                    </div>\r\n                    <!-- <span style=\"color: white\"> Type </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Type :</span>\r\n                      <span style=\"color: black\"> <b> {{doHeader.ordertypedescription}}</b></span>\r\n                    </div>\r\n\r\n                  </div>\r\n                  <div class=\"col-sm-3\">\r\n                    <!-- <span style=\"color:white\"> Broker </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Broker :</span>\r\n                      <span style=\"color: black\"> <b> {{doHeader.BrokerName}} </b></span>\r\n                    </div>\r\n                    <!-- <span style=\"color:white\"> Broker Ref# </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Broker Reference :</span>\r\n                      <span style=\"color: black\"> <b> {{doHeader.BrokerRefNo}} </b></span>\r\n                    </div>\r\n                    <!-- <span style=\"color:white\"> Booking# </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Booking No :</span>\r\n                      <span style=\"color: black\"> <b> {{doHeader.BookingNo}} </b></span>\r\n                    </div>\r\n                  </div>\r\n\r\n                  <div class=\"col-sm-3\">\r\n                    <!-- <span style=\"color:white\"> Vessel </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Vessel :</span>\r\n                      <span> <b> {{doHeader.VesselName}} </b></span>\r\n                    </div>\r\n                    <!-- <span style=\"color:white\"> Bill of Lading </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\">Bill of Lading : </span>\r\n                      <span> <b> {{doHeader.BillofLading}} </b></span>\r\n                    </div>\r\n                    <!-- <span style=\"color:white\"> Cut-Off Date </span><br> -->\r\n                    <div class=\"panel-heading\">\r\n                      <span class=\"panel-title\" style=\"color:black\">Cut-Off Date :</span>\r\n                      <span> <b> {{doHeader.CutOffDate|date}} </b></span>\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"col-sm-3 text-right\">\r\n\r\n                  </div>\r\n                </div>\r\n                <br>\r\n                <div class=\"row\">\r\n\r\n                  <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                    <!-- <div class=\"card text-white bg-secondary mb-3\" style=\"max-width: 18rem;\">\r\n                       <div class=\"card-header\">BillTo</div>\r\n                      <div class=\"card-body\">\r\n                         <span> {{doHeader.BillToAddr}}</span> \r\n                        <br>\r\n                        <span> {{doHeader.BillToAddressBO.Address1}}, {{doHeader.BillToAddressBO.Address2}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.BillToAddressBO.City}} - {{doHeader.BillToAddressBO.Zip}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.BillToAddressBO.State}}</span>\r\n                      </div>\r\n                    </div> -->\r\n\r\n\r\n                    <div class=\"panel-heading\">\r\n                      <h6 class=\"panel-title\">BillTo</h6>\r\n                    </div>\r\n                    <div class=\"card alert-secondary text-center p-3\">\r\n                      <!-- <blockquote class=\"blockquote mb-0\"> -->\r\n                      <!-- <span> {{doHeader.BillToAddressBO.Name}}</span> -->\r\n                      <!-- <span> {{doHeader.BillToAddressBO.Address1}}, {{doHeader.BillToAddressBO.Address2}} </span>\r\n                      <span> {{doHeader.BillToAddressBO.City}} - {{doHeader.BillToAddressBO.Zip}} </span>\r\n                      <span> {{doHeader.BillToAddressBO.State}}</span> -->\r\n                      <!-- </blockquote> -->\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                    <!-- <div class=\"card text-white bg-secondary mb-3\" style=\"max-width: 18rem;\">\r\n                      <div class=\"card-header\">Pickup</div>\r\n                      <div class=\"card-body\">\r\n                        <span> {{doHeader.SourceAddressBO.Name}}</span>\r\n                        <br>\r\n                        <span> {{doHeader.SourceAddressBO.Address1}}, {{doHeader.SourceAddressBO.Address2}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.SourceAddressBO.City}} - {{doHeader.SourceAddressBO.Zip}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.SourceAddressBO.State}}</span>\r\n                      </div>\r\n                    </div> -->\r\n                    <div class=\"panel-heading\">\r\n                      <h6 class=\"panel-title\" style=color:black>Pickup</h6>\r\n                    </div>\r\n                    <div class=\"card alert-primary text-center p-3\">\r\n                      <!-- <blockquote class=\"blockquote mb-0\"> -->\r\n                      <!-- <span> {{doHeader.SourceAddressBO.Name}}</span>\r\n                      <span> {{doHeader.SourceAddressBO.Address1}}, {{doHeader.SourceAddressBO.Address2}} </span>\r\n                      <span> {{doHeader.SourceAddressBO.City}} - {{doHeader.SourceAddressBO.Zip}} </span>\r\n                      <span> {{doHeader.SourceAddressBO.State}}</span> -->\r\n                      <!-- </blockquote> -->\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                    <!-- <div class=\"card text-white bg-secondary mb-3\" style=\"max-width: 18rem;\">\r\n                      <div class=\"card-header\">Delivery</div>\r\n                      <div class=\"card-body\">\r\n                        <span> {{doHeader.DestinationAddressBO.Name}}</span>\r\n                        <br>\r\n                        <span> {{doHeader.DestinationAddressBO.Address1}}, {{doHeader.DestinationAddressBO.Address2}}\r\n                        </span>\r\n                        <br>\r\n                        <span> {{doHeader.DestinationAddressBO.City}} - {{doHeader.DestinationAddressBO.Zip}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.DestinationAddressBO.State}}</span>\r\n                      </div>\r\n                    </div> -->\r\n                    <div class=\"panel-heading\">\r\n                      <h6 class=\"panel-title\" style=color:black>Delivery</h6>\r\n                    </div>\r\n                    <div class=\"card alert-secondary text-center p-3\">\r\n                      <!-- <blockquote class=\"blockquote mb-0\"> -->\r\n                      <!-- <span> {{doHeader.DestinationAddressBO.Name}}</span>\r\n                      <span> {{doHeader.DestinationAddressBO.Address1}}, {{doHeader.DestinationAddressBO.Address2}}\r\n                      </span>\r\n                      <span> {{doHeader.DestinationAddressBO.City}} - {{doHeader.DestinationAddressBO.Zip}} </span>\r\n                      <span> {{doHeader.DestinationAddressBO.State}}</span> -->\r\n                      <!-- </blockquote> -->\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                    <!-- <div class=\"card text-white bg-secondary mb-3\" style=\"max-width: 18rem;\">\r\n                      <div class=\"card-header\">Return</div>\r\n                      <div class=\"card-body\">\r\n\r\n                        <span> {{doHeader.ReturnAddressBO.Name}}</span>\r\n                        <br>\r\n                        <span> {{doHeader.ReturnAddressBO.Address1}}, {{doHeader.ReturnAddressBO.Address2}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.ReturnAddressBO.City}} - {{doHeader.ReturnAddressBO.Zip}} </span>\r\n                        <br>\r\n                        <span> {{doHeader.ReturnAddressBO.State}}</span>\r\n                      </div>\r\n                    </div> -->\r\n                    <div class=\"panel-heading\">\r\n                      <h5 class=\"panel-title\" style=color:black>Return</h5>\r\n                    </div>\r\n                    <div class=\"card alert-primary text-center p-3\">\r\n                      <!-- <blockquote class=\"blockquote mb-0\"> -->\r\n                      <!-- <span> {{doHeader.ReturnAddressBO.Name}}</span>\r\n                      <span> {{doHeader.ReturnAddressBO.Address1}}, {{doHeader.ReturnAddressBO.Address2}} </span>\r\n                      <span> {{doHeader.ReturnAddressBO.City}} - {{doHeader.ReturnAddressBO.Zip}} </span>\r\n                      <span> {{doHeader.ReturnAddressBO.State}}</span> -->\r\n                      <!-- </blockquote> -->\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n\r\n                <div class=\"panel panel-warning\">\r\n                  <div class=\"panel-heading\">\r\n                    <h6 class=\"panel-title\" style=color:black>Container(s)</h6>\r\n                  </div>\r\n                  <div class=\"panel-body\">\r\n                    <div class=\"row\">\r\n                      <div class=\"col-sm-10 col-md-10 col-lg-10\">\r\n                        <!-- <div class=\"card bg-success text-white text-center p-3\">\r\n                                    <blockquote class=\"blockquote mb-0\">\r\n              \r\n                                      <span class=\"badge badge-pill badge-secondary\">Container Detail</span> <br><br>\r\n              \r\n                                      <div class=\"row\">\r\n                                        <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                          <span class=\"text-muted\"> Container </span><br>\r\n                                        </div>\r\n              \r\n                                        <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                          <span class=\"text-muted\"> Size </span><br>\r\n                                        </div>\r\n              \r\n                                        <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                          <span class=\"text-muted\"> Chassis </span><br>\r\n                                        </div>\r\n              \r\n                                        <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                          <span class=\"text-muted\"> Seal# </span><br>\r\n                                        </div>\r\n              \r\n                                        <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                          <span class=\"text-muted\"> Weight </span><br>\r\n                                        </div>\r\n                                      </div>\r\n                                      <ng-container *ngFor=\"let field of doHeader.orderdetails; index as i\">\r\n              \r\n                                        <div class=\"row\">\r\n                                          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                            <span><b>{{field.ContainerNo}}</b></span>\r\n                                          </div>\r\n              \r\n                                          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                            <span><b>{{field.ContainerSizeDesc}} </b></span>\r\n                                          </div>\r\n              \r\n                                          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                            <span><b>{{field.Chassis}}</b></span>\r\n                                          </div>\r\n              \r\n                                          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                            <span><b>{{field.SealNo}} </b></span>\r\n                                          </div>\r\n              \r\n                                          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                            <span><b> {{field.Weight}}</b></span>\r\n                                          </div>\r\n                                        </div>\r\n                                      </ng-container>\r\n              \r\n                                    </blockquote>\r\n                                  </div> -->\r\n\r\n                        <!-- <div class=\"card bg-secondary text-center p-3\"> -->\r\n                        <table class=\"table table-sm alert-warning\">\r\n                          <thead>\r\n                            <tr>\r\n                              <th scope=\"col\">Container</th>\r\n                              <th scope=\"col\">Size</th>\r\n                              <th scope=\"col\">Chassis</th>\r\n                              <th scope=\"col\">SealNo</th>\r\n                              <th scope=\"col\">Weight</th>\r\n                              <th scope=\"col\">Comments</th>\r\n                            </tr>\r\n                          </thead>\r\n                          <tbody>\r\n                            <tr *ngFor=\"let field of doHeader.orderdetails; index as i\">\r\n                              <td>{{field.ContainerNo}}</td>\r\n                              <td>{{field.ContainerSizeDesc}} </td>\r\n                              <td>{{field.Chassis}}</td>\r\n                              <td>{{field.SealNo}}</td>\r\n                              <td>{{field.Weight}}</td>\r\n                              <td>{{field.Comments}}</td>\r\n                            </tr>\r\n                          </tbody>\r\n                        </table>\r\n                        <!-- </div> -->\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n                <!-- <span style=\"color:black\"> Comments </span><br> -->\r\n                <div class=\"panel-heading\">\r\n                  <h6 class=\"panel-title\" style=color:black>Comments</h6>\r\n                </div>\r\n                <div class=\"card alert-success text-center p-3\">\r\n                  <blockquote class=\"blockquote mb-0\">\r\n                    <small>{{doHeader.Comment}}</small>\r\n                    <!-- <footer class=\"blockquote-footer\">\r\n                      <small>\r\n                        Someone famous in <cite title=\"Source Title\">Source Title</cite>\r\n                      </small>\r\n                    </footer> -->\r\n                  </blockquote>\r\n                </div>\r\n                <!-- <div class=\"card-columns\">\r\n                  <div class=\"card bg-primary text-white text-center p-3\">\r\n                    <blockquote class=\"blockquote mb-0\">\r\n                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>\r\n                      <footer class=\"blockquote-footer text-white\">\r\n                        <small>\r\n                          Someone famous in <cite title=\"Source Title\">Source Title</cite>\r\n                        </small>\r\n                      </footer>\r\n                    </blockquote>\r\n                  </div>\r\n\r\n                  <div class=\"card bg-primary text-white text-center p-3\">\r\n                    <blockquote class=\"blockquote mb-0\">\r\n                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>\r\n                      <footer class=\"blockquote-footer text-white\">\r\n                        <small>\r\n                          Someone famous in <cite title=\"Source Title\">Source Title</cite>\r\n                        </small>\r\n                      </footer>\r\n                    </blockquote>\r\n                  </div>\r\n\r\n                  <div class=\"card bg-primary text-white text-center p-3\">\r\n                    <blockquote class=\"blockquote mb-0\">\r\n                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>\r\n                      <footer class=\"blockquote-footer text-white\">\r\n                        <small>\r\n                          Someone famous in <cite title=\"Source Title\">Source Title</cite>\r\n                        </small>\r\n                      </footer>\r\n                    </blockquote>\r\n                  </div>\r\n                </div> -->\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeModalDialog()\">Close</button>\r\n      </div> -->\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"row\" *ngIf=\"CreateOrEditOrder\">\r\n  <!-- [class.disabled]=\"editmode\" -->\r\n  <div class=\"card card-body\">\r\n    <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n\r\n      <form (ngSubmit)=\"f.form.valid && OnSubmit(f)\" #f=\"ngForm\" novalidate>\r\n        <!-- <hr style=\"border: none; border-bottom: 3px solid slategray;\"> -->\r\n        <div class=\"row \">\r\n          <div class=\"col-sm-4 col-md-4 col-lg-4\">          \r\n              <h4 style=\"color: yellowgreen;\"><b >Order</b>  <span *ngIf=\"!doHeader.OrderNo==' '\"> <b> #{{doHeader.OrderNo}}</b>\r\n                <span class=\"badge badge-pill badge-success\"><i class=\"fa fa-calendar\" aria-hidden=\"true\"></i>\r\n                  <small style=\"color:black\"> <b> {{doHeader.OrderDate | date}}</b></small>\r\n                </span>\r\n              </span>\r\n              </h4>             \r\n             \r\n\r\n            <input type=\"text\" id=\"OrderKey\" readonly class=\"form-control\" name=\"OrderKey\" tooltip=\"OrderKey\"\r\n              [(ngModel)]=\"doHeader.OrderKey\" #OrderKey=\"ngModel\" hidden=\"true\" />\r\n            <input type=\"text\" id=\"OrderNo\" readonly class=\"form-control\" name=\"OrderNo\" tooltip=\"Order No\"\r\n              [(ngModel)]=\"doHeader.OrderNo\" #OrderNo=\"ngModel\" hidden=\"true\" />\r\n            <input type=\"text\" class=\"form-control \" name=\"OrderDate\" id=\"OrderDate\" readonly [owlDateTimeTrigger]=\"dt3\"\r\n              [owlDateTime]=\"dt3\" placeholder=\"Order Date\" [(ngModel)]=\"doHeader.OrderDate\" #OrderDate=\"ngModel\"\r\n              hidden=\"true\" />\r\n            <owl-date-time [pickerType]=\"'calendar'\" #dt3 [hour12Timer]=\"false\"></owl-date-time>\r\n\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n\r\n          </div>\r\n          <div class=\"col-sm-2 col-md-2 col-lg-2 text-right\">\r\n            <!-- <div class=\"container text-right\"> -->\r\n            <button class=\"btn btn-primary btn-sm\" type=\"submit\">\r\n              <i class=\"fa fa-floppy-o\" aria-hidden=\"true\"></i>&nbsp; {{lblCreateOrEdit}}</button>\r\n            &nbsp;&nbsp;\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"cancel()\">\r\n              <i class=\"fa fa-ban\" aria-hidden=\"true\"></i>&nbsp; Cancel</button>\r\n            <!-- </div> -->\r\n          </div>\r\n        </div>\r\n        <!-- <div class=\"row \">  \r\n        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n\r\n        </div>\r\n\r\n      </div> -->\r\n        <div class=\"row\">\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <app-customer name=\"CustKey\" [(ngModel)]=\"doHeader.CustKey\" #CustKey=\"ngModel\"\r\n              (CustomerSelectedOutput)=\"onSelectedCustKeyAddress($event)\" [Type]=1 [AddressType]=1\r\n              [customerKeyTobind]=\"doHeader.CustKey\" (OrdernoGenerated)=\"onOrdernoGenerated($event)\" [editmode]=\"editmode\">\r\n            </app-customer>\r\n          </div>\r\n          <!-- <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n          <app-company id=\"BillToAddress\" name=\"BillToAddress\" [(ngModel)]=\"doHeader.BillToAddress\"\r\n            #BillToAddress=\"ngModel\" (CustomerSelectedOutput)=\"onSelectedBilltoAddress($event)\" [Type]=2\r\n            [AddressType]=1 [addressKeyTobind]=\"doHeader.BillToAddress\">\r\n          </app-company>\r\n         \r\n        </div> -->\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <app-company id=\"SourceAddress\" name=\"SourceAddress\" [(ngModel)]=\"doHeader.SourceAddress\"\r\n              (CustomerSelectedOutput)=\"onSelectedPickupAddress($event)\" [Type]=2 [AddressType]=2\r\n              [addressKeyTobind]=\"doHeader.SourceAddress\">\r\n            </app-company>\r\n          </div>\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <app-company id=\"DestinationAddress\" name=\"DestinationAddress\" [(ngModel)]=\"doHeader.DestinationAddress\"\r\n              (CustomerSelectedOutput)=\"onSelectedConsigneeAddress($event)\" [Type]=2 [AddressType]=3\r\n              [addressKeyTobind]=\"doHeader.DestinationAddress\">\r\n            </app-company>\r\n          </div>\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <app-company id=\"ReturnAddress\" name=\"ReturnAddress\" [(ngModel)]=\"doHeader.ReturnAddress\"\r\n              (CustomerSelectedOutput)=\"onSelectedReturnAddress($event)\" [Type]=2 [AddressType]=4\r\n              [addressKeyTobind]=\"doHeader.ReturnAddress\">\r\n            </app-company>\r\n          </div>\r\n        </div>\r\n        <div class=\"row \">\r\n          <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n            <div class=\"card-body text-dark\">\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Type </span>\r\n                  </div>\r\n                  <select id=\"cboOrderType\" class=\"form-control\" name=\"OrderType\" [(ngModel)]=\"doHeader.OrderType\"\r\n                    #OrderType=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && OrderType.invalid }\" required>\r\n                    <option [value]=\"otype.Value\" *ngFor=\"let otype of ordertypelist\">{{otype.Name}}</option>\r\n                  </select>\r\n                  <div *ngIf=\"f.submitted && OrderType.invalid\" class=\"invalid-feedback\">\r\n                    <div *ngIf=\"OrderType.errors.required\"> Order Type is required</div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm \">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Priority</span>\r\n                  </div>\r\n                  <select id=\"drpPriority\" class=\"form-control form-control-sm\" name=\"Priority\"\r\n                    [(ngModel)]=\"doHeader.Priority\" #Priority=\"ngModel\"\r\n                    [ngClass]=\"{ 'is-invalid': f.submitted && Priority.invalid }\" required>\r\n                    <option [value]=\"priority.Value\" *ngFor=\"let priority of prioritylist\">{{priority.Name}}\r\n                    </option>\r\n                  </select>\r\n\r\n                  <div *ngIf=\"f.submitted && Priority.invalid\" class=\"invalid-feedback\">\r\n                    <div *ngIf=\"Priority.errors.required\"> Priority is required</div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Status</span>\r\n                  </div>\r\n                  <select id=\"drpStatus\" class=\"form-control form-control-sm\" name=\"Status\"\r\n                    (change)=\"StatusDropDownChanged($event.target.value)\" [(ngModel)]=\"doHeader.Status\"\r\n                    #Status=\"ngModel\" [ngClass]=\"{ 'is-invalid': f.submitted && Status.invalid }\" required>\r\n                    <option [value]=\"status.status\" *ngFor=\"let status of statuslist\">{{status.description}}</option>\r\n                  </select>\r\n                  <div *ngIf=\"f.submitted && Status.invalid\" class=\"invalid-feedback\">\r\n                    <div *ngIf=\"Status.errors.required\"> Status is required</div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm mb-3\" *ngIf=\"HolddropdownVisible\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Reason</span>\r\n                  </div>\r\n                  <select id=\"drpHoldReason\" class=\"form-control form-control-sm\" name=\"HoldReason\"\r\n                    [(ngModel)]=\"doHeader.HoldReason\">\r\n                    <option [value]=\"reason.Value\" *ngFor=\"let reason of holdreasonlist\">{{reason.Name}}</option>\r\n                  </select>\r\n                </div>\r\n              </div>\r\n              <br>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\"> Booking</span>\r\n                  </div>\r\n                  <input type=\"text\" id=\"txtBookingNumBooking #\" class=\"form-control form-control-sm\" name=\"BookingNo\"\r\n                    [(ngModel)]=\"doHeader.BookingNo\" #BookingNo=\"ngModel\">\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && BookingNo.invalid }\" required />\r\n\r\n                      <div *ngIf=\"f.submitted && BookingNo.invalid\" class=\"invalid-feedback\">\r\n                        <div *ngIf=\"BookingNo.errors.required\"> Booking No is required</div>\r\n                      </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Cut-off Date</span>\r\n                  </div>\r\n\r\n                  <input type=\"text\" class=\"form-control form-control-sm\" name=\"CutOffDate\"\r\n                    [(ngModel)]=\"doHeader.CutOffDate\" #CutOffDate=\"ngModel\" placeholder=\"Cut-Off Date\"\r\n                    [ngClass]=\"{ 'is-invalid': f.submitted && CutOffDate.invalid }\" [owlDateTimeTrigger]=\"dt1\"\r\n                    [owlDateTime]=\"dt1\" required/>\r\n                  <owl-date-time [pickerType]=\"'calendar'\" #dt1></owl-date-time>\r\n                  <div *ngIf=\"f.submitted && CutOffDate.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"CutOffDate.errors.required\"> Cut-Off Date is required</div>\r\n                        </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Load Port</span>\r\n                  </div>\r\n                  <select id=\"drpSource\" class=\"form-control form-control-sm\" name=\"PortofOriginKey\"\r\n                    [(ngModel)]=\"doHeader.PortofOriginKey\" #PortofOriginKey=\"ngModel\">\r\n                    <option [value]=\"src.AddrKey\" *ngFor=\"let src of LoadDischargePortList\">{{src.Name}}\r\n                    </option>\r\n                  </select>\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && PortofOriginKey.invalid }\" > required\r\n                          \r\n                          <div *ngIf=\"f.submitted && PortofOriginKey.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"PortofOriginKey.errors.required\">Load Port is required</div>\r\n                        </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Dis Port</span>\r\n                  </div>\r\n                  <select id=\"drpPortofDestinationKey\" class=\"form-control form-control-sm\" name=\"PortofDestinationKey\"\r\n                    [(ngModel)]=\"doHeader.PortofDestinationKey\" #PortofDestinationKey=\"ngModel\">\r\n                    <option [value]=\"dest.AddrKey\" *ngFor=\"let dest of LoadDischargePortList\">{{dest.Name}}\r\n                    </option>\r\n                  </select>\r\n\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && PortofDestinationKey.invalid }\" required\r\n                        <div *ngIf=\"f.submitted && PortofDestinationKey.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"PortofDestinationKey.errors.required\"> Port of Destination is required</div>\r\n                        </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Bill of lading</span>\r\n                  </div>\r\n                  <input type=\"text\" id=\"txtBLNo\" class=\"form-control form-control-sm\" name=\"BillofLading\"\r\n                    [(ngModel)]=\"doHeader.BillofLading\" #BillofLading=\"ngModel\">\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && BillofLading.invalid }\" required />\r\n  \r\n                        <div *ngIf=\"f.submitted && BillofLading.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"BillofLading.errors.required\"> Bill of Loading is required</div>\r\n                        </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Carrier</span>\r\n                  </div>\r\n                  <select id=\"drpCarrier\" class=\"form-control form-control-sm\" name=\"CarrierKey\"\r\n                    [(ngModel)]=\"doHeader.CarrierKey\" #CarrierKey=\"ngModel\">\r\n                    <option [value]=\"carrier.CarrierKey\" *ngFor=\"let carrier of carrierlist\">\r\n                      {{carrier.CarrierId}}\r\n                    </option>\r\n                  </select>\r\n\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && CarrierKey.invalid }\" required\r\n                        <div *ngIf=\"f.submitted && CarrierKey.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"CarrierKey.errors.required\"> Carrier is required</div>\r\n                        </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\"> Vessel</span>\r\n                  </div>\r\n                  <input type=\"text\" id=\"txtVesselName\" class=\"form-control form-control-sm\" name=\"VesselName\"\r\n                    [(ngModel)]=\"doHeader.VesselName\" #VesselName=\"ngModel\">\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && VesselName.invalid }\" required />\r\n  \r\n                        <div *ngIf=\"f.submitted && VesselName.invalid\" class=\"invalid-feedback\">\r\n                          <div *ngIf=\"VesselName.errors.required\">Vessel Name is required</div>\r\n                        </div> -->\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Broker Ref</span>\r\n                  </div>\r\n                  <input type=\"text\" class=\"form-control form-control-sm\" id=\"txtBrokerRefNo\" name=\"BrokerRefNo\"\r\n                    placeholder=\"Broker Ref no\" #BrokerRefNo=\"ngModel\" [(ngModel)]=\"doHeader.BrokerRefNo\">\r\n                  <!-- [ngClass]=\"{ 'is-invalid': f.submitted && BrokerRefNo.invalid }\" required />\r\n                          <div *ngIf=\"f.submitted && BrokerRefNo.invalid\" class=\"invalid-feedback\">\r\n                            <div *ngIf=\"BrokerRefNo.errors.required\">Broker Ref No is required</div>\r\n                          </div> -->\r\n                </div>\r\n              </div>\r\n              <br>\r\n              <div class=\"row\">\r\n                <app-broker id=\"Brokerkey\" name=\"Brokerkey\" [(ngModel)]=\"doHeader.Brokerkey\" #Brokerkey=\"ngModel\"\r\n                  (BrokerSelectedOutput)=\"onSelectedBroker($event)\" [brokerKeyTobind]=\"doHeader.Brokerkey\">\r\n                </app-broker>\r\n              </div>\r\n              <br><br>\r\n              <div class=\"row\">\r\n                <label>Comment</label>\r\n                <textarea class=\"form-control\" rows=\"6\" id=\"txtcomment\" placeholder=\"Comment\"\r\n                  [(ngModel)]=\"doHeader.Comment\" name=\"Comment\" #Comment=\"ngModel\"></textarea>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"col-sm-9 col-md-9 col-lg-9\"> <br>\r\n            <div class=\"row\">\r\n              <div class=\"card text-dark alert-warning\">\r\n                <div class=\"card-body text-dark border-light \">\r\n                  <h5>Containers </h5>\r\n                  <div class=\"row\">\r\n                    <div class=\"table-responsive\" style=\"overflow-x: auto\">\r\n                      <table id=\"containerAttributes\"\r\n                        class=\"table table-custom table-sm table-hover table-striped table-warning \" cellspacing=\"0\"\r\n                        width=\"100%\">\r\n                        <thead>\r\n                          <tr>\r\n                            <th scope=\"col\" class=\"text-left text-muted\" hidden=\"true\">OrderDetailKey</th>\r\n                            <th scope=\"col\" class=\"text-left text-muted\">Id</th>\r\n                            <th scope=\"col\" class=\"text-left text-muted\">Container</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\" hidden=\"true\"> Size</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\"> Size</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\" hidden=\"true\">Chassis</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\">Seal</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\">Weight</th>\r\n                            <th scope=\"col\" class=\"text-left text-muted\">Comment</th>\r\n                            <th scope=\"col\" class=\"text-center text-muted\">Actions</th>\r\n                          </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                          <tr *ngFor=\"let field of doHeader.orderdetails; let i = index\">\r\n                            <td class=\"text-left\" style=\"color: darkslategrey;\">\r\n                              {{field.containerid}}\r\n                            </td>\r\n                            <td class=\"text-left\" style=\"color: darkslategrey;\">\r\n                              <!-- <input [(ngModel)]=\"field.ContainerNo\" class=\"form-control form-control-sm \" type=\"text\"\r\n                        name=\"{{field.ContainerNo}}\" /> -->\r\n                              {{field.ContainerNo}} </td>\r\n                            <td hidden=\"true\" style=\"color: darkslategrey;\">\r\n\r\n                              <!-- <input [(ngModel)]=\"field.ContainerSize\" class=\"form-control form-control-sm\" type=\"text\"\r\n                        name=\"{{field.ContainerSize}}\" /> -->\r\n                              {{field.ContainerSize}}\r\n                            </td>\r\n                            <td class=\"text-center\" style=\"color: darkslategrey;\">\r\n                              <!-- <input [(ngModel)]=\"field.containerSizeDesc\" class=\"form-control form-control-sm\" type=\"text\"\r\n                        name=\"{{field.containerSizeDesc}}\" /> -->\r\n                              {{field.ContainerSizeDesc}}\r\n                            </td>\r\n                            <td hidden=\"true\" style=\"color: darkslategrey;\">\r\n                              <!--  <input [(ngModel)]=\"field.Chassis\" class=\"form-control form-control-sm\" type=\"text\"\r\n                        name=\"{{field.Chassis}}\" /> -->\r\n                              {{field.Chassis}}</td>\r\n                            <td class=\"text-center\" style=\"color: darkslategrey;\">\r\n                              <!-- <input [(ngModel)]=\"field.SealNo\" class=\"form-control form-control-sm \" type=\"text\"\r\n                        name=\"{{field.SealNo}}\" /> -->\r\n                              {{field.SealNo}}</td>\r\n                            <td class=\"text-center\" style=\"color: darkslategrey;\">\r\n                              <!-- <input [(ngModel)]=\"field.Weight\" class=\"form-control form-control-sm \" type=\"text\"\r\n                        name=\"{{field.Weight}}\" /> -->\r\n                              {{field.Weight}}</td>\r\n                            <td class=\"text-left\" style=\"color: darkslategrey;\">\r\n                              <!-- <input [(ngModel)]=\"field.Comments\" class=\"form-control form-control-sm \" type=\"text\"\r\n                        name=\"{{field.Comments}}\" /> -->\r\n                              {{field.Comments}}\r\n                            </td>\r\n                            <td class=\"text-center\" style=\"color: darkslategrey;\">\r\n                              <a tooltip=\"Upload file\" (click)=\"edit(field,i)\">\r\n                                <i class=\"fa fa-pencil\"></i>\r\n                              </a> &nbsp;&nbsp;\r\n\r\n                              <a tooltip=\"Remove/Delete Container\" (click)=\"deleteFieldValue(i)\">\r\n                                <i class=\"fa fa-trash\"></i>\r\n                              </a>\r\n                            </td>\r\n                          </tr>\r\n\r\n                        </tbody>\r\n                      </table>\r\n                      <table>\r\n                        <thead>\r\n                          <tr>\r\n                            <th scope=\"col\" class=\"text-left\" hidden=\"true\">OrderDetailKey</th>\r\n                            <th scope=\"col\" class=\"text-left\" hidden=\"true\">Id</th>\r\n                            <th scope=\"col\" class=\"text-left\" hidden=\"true\">Container</th>\r\n                            <th scope=\"col\" class=\"text-center\" hidden=\"true\"> Size</th>\r\n                            <th scope=\"col\" class=\"text-center\" hidden=\"true\"> Size</th>\r\n                            <th scope=\"col\" class=\"text-center\" hidden=\"true\">Chassis</th>\r\n                            <th scope=\"col\" class=\"text-center\" hidden=\"true\">Seal</th>\r\n                            <th scope=\"col\" class=\"text-center\" hidden=\"true\">Weight</th>\r\n                            <th scope=\"col\" class=\"text-left\" hidden=\"true\">Comment</th>\r\n                            <th scope=\"col\" class=\"text-right\" hidden=\"true\">Actions</th>\r\n                          </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                          <tr>\r\n                            <td hidden=\"true\">\r\n                              <input class=\"form-control form-control-sm \" type=\"text\" placeholder=\"OrderDetailKey\"\r\n                                [(ngModel)]=\"OrderDetailKey\" name=\"OrderDetailKey\" />\r\n                            </td>\r\n                            <td hidden=\"true\">\r\n                              <input class=\"form-control form-control-sm \" type=\"text\" placeholder=\"containerid\"\r\n                                [(ngModel)]=\"containerid\" name=\"containerid\" />\r\n                            </td>\r\n                            <td>\r\n                              <input class=\"form-control form-control-sm \" type=\"text\" placeholder=\"Container\"\r\n                                [(ngModel)]=\"ContainerNo\" name=\"ContainerNo\" />\r\n                            </td>\r\n                            <td>\r\n                              <select id=\"drpcontainerType\" class=\"form-control form-control-sm \"\r\n                                aria-placeholder=\"ContainerSize\" [(ngModel)]=\"ContainerSize\" name=\"ContainerSize\"\r\n                                (change)=\"drpcontainersizeChanged($event.target.value)\">\r\n                                <option [value]=\"container.containersize\" *ngFor=\"let container of containersizelist\">\r\n                                  {{container.description}}</option>\r\n                              </select>\r\n\r\n                            </td>\r\n                            <td hidden=\"true\">\r\n                              <input class=\"form-control form-control-sm\" type=\"text\" placeholder=\"Chassis\"\r\n                                [(ngModel)]=\"Chassis\" name=\"Chassis\" />\r\n                            </td>\r\n                            <td>\r\n                              <input class=\"form-control form-control-sm \" type=\"text\" placeholder=\"SealNo\"\r\n                                [(ngModel)]=\"SealNo\" name=\"SealNo\" />\r\n                            </td>\r\n                            <td>\r\n                              <input class=\"form-control form-control-sm \" type=\"number\" placeholder=\"Weight\"\r\n                                [(ngModel)]=\"Weight\" name=\"Weight\" />\r\n                            </td>\r\n                            <td colspan=\"5\">\r\n                              &nbsp; <input type=\"checkbox\" [(ngModel)]=\"IsHazardChecked\"\r\n                                [ngModelOptions]=\"{standalone: true}\" (change)=\"Checkbox1_Change($event)\" />\r\n                              <small class=\"badge badge-pill badge-secondary\">Hazard</small>\r\n\r\n                              &nbsp;<input type=\"checkbox\" value=\"Over weight\" [(ngModel)]=\"IsOverweightChecked\"\r\n                                [ngModelOptions]=\"{standalone: true}\" (change)=\"Checkbox2_Change($event)\" />\r\n                              <small class=\"badge badge-pill badge-secondary\">Over weight</small>\r\n\r\n                              &nbsp;<input type=\"checkbox\" value=\"Triaxle\" [(ngModel)]=\"IsTrixaleChecked\"\r\n                                [ngModelOptions]=\"{standalone: true}\" (change)=\"Checkbox3_Change($event)\" />\r\n                              <small class=\"badge badge-pill badge-secondary\">Triaxle</small>\r\n\r\n                              &nbsp;<input type=\"checkbox\" value=\"Needs to be scaled\"\r\n                                [(ngModel)]=\"IsNeedstobescaledChecked\" [ngModelOptions]=\"{standalone: true}\"\r\n                                (change)=\"Checkbox4_Change($event)\" />\r\n                              <small class=\"badge badge-pill badge-secondary\">Needs to be scaled</small>\r\n                            </td>\r\n                            <td>\r\n                              <button type=\"button\" class=\"btn alert-dark btn-sm\" style=\"border-radius: 1rem;\"\r\n                                (click)=\"add()\"> <i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Add</button>\r\n                            </td>\r\n                          </tr>\r\n                        </tbody>\r\n                      </table>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"card text-dark alert-primary\">\r\n                <div class=\"card-body text-dark border-light\">\r\n                  <app-file-upload (onCompleteItem)=\"onCompleteItem($event)\" [orderno]=\"doHeader.OrderNo\"\r\n                    [queue]=\"doHeader.file\" [CreatedBy]=\"doHeader.CreatedBy\"></app-file-upload>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </form>\r\n      <!-- \r\n    <div class=\"row\">\r\n      <div class=\"col-sm-4 col-md-4 col-lg-4 \">\r\n        <label>Comment</label>\r\n        <textarea class=\"form-control\" rows=\"5\" id=\"txtcomment\" placeholder=\"Comment\" [(ngModel)]=\"doHeader.Comment\"\r\n          name=\"Comment\" #Comment=\"ngModel\"></textarea>\r\n      </div>\r\n      <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n        <div class=\"card text-dark alert-primary\">\r\n          <div class=\"card-body text-dark border-light\">\r\n            <app-file-upload (onCompleteItem)=\"onCompleteItem($event)\" [orderno]=\"doHeader.OrderNo\"\r\n              [queue]=\"doHeader.file\" [CreatedBy]=\"doHeader.CreatedBy\"></app-file-upload>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div> -->\r\n    </div>\r\n  </div>\r\n</div>\r\n<div *ngIf=\"showImage\">\r\n  <div class=\"row \"> </div>\r\n  <div class=\"row \"> </div>\r\n  <div class=\"row \">\r\n    <div class=\"col-md-4\"> </div>\r\n    <div class=\"col-md-4\">\r\n      <!-- <img src=\"assets/img/brand/Actions-gear-icon128px.png\" /> -->\r\n    </div>\r\n    <div class=\"col-md-4\"> </div>\r\n  </div>\r\n</div>";
     /***/
   },
 
@@ -893,7 +913,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<br>\r\n<div class=\"row\" *ngIf=\"showInvoiceList\">\r\n    <div class=\"col-sm-2 col-md-2 col-lg-2 scrollbar\" id=\"style\" >\r\n        <h5>&nbsp; Invoice<span class=\"badge badge-warning\"> New</span></h5>\r\n        <br>\r\n        <div class=\"form-group input-group input-group-sm\" *ngIf=\"Data.length != 0\">\r\n            <div class=\"img-group-prepend\">\r\n                <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n            </div>\r\n            <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" style=\"border-radius: 1rem;\"\r\n                type=\"text\" placeholder=\"Search..\">\r\n        </div>\r\n\r\n        <table class=\"table table-sm table-dark\">\r\n            <tbody>\r\n                <tr *ngFor=\"let field of Data; let ind=index;\">\r\n                    <td>\r\n                        <span class=\"font-weight-bold\" style=\"color:olivedrab\">\r\n                            Invoice ({{field.order.OrderNo}})\r\n                        </span>\r\n                    </td>\r\n                    <td class=\"text-right\">\r\n                        <button type=\"button\" class=\"btn btn-outline-success btn-sm\"\r\n                            (click)=\"getOrderdata(field.order.OrderKey)\"> Create</button></td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n        <div *ngIf=\"Data.length === 0\">\r\n            <h6 style=\"color: darkorange;\">No Orders for Invoice! </h6>\r\n          </div>\r\n   \r\n    </div>\r\n    <div class=\"col-sm-10 col-md-10 col-lg-10 \">       \r\n            <div class=\"row\">\r\n                <div class=\"col-8 col-sm-8 col-md-8\"> </div>\r\n                <div class=\"col-4 col-sm-4 col-md-4\">\r\n                    <div class=\"container text-right\">\r\n                        <div class=\"form-group input-group input-group-sm\">\r\n                            <div class=\"img-group-prepend\">\r\n                                <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n                            </div>\r\n                            <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\"\r\n                                style=\"border-radius: 1rem;\" type=\"text\" placeholder=\"Search..\">\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <table class=\"table table-sm table-borderless \">\r\n                <thead class=\"thead-dark shadow\">\r\n                    <tr>\r\n                        <th scope=\"col\" class=\"pointer text-muted\"  hidden=\"true\">invoiceKey</th>\r\n                        <th scope=\"col\" class=\"pointer text-muted\" (click)=\"sort('InvoiceNo')\" >Invoice &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>\r\n                        </th>\r\n                        <th scope=\"col\" class=\"pointer text-muted\" (click)=\"sort('CustName')\" >Customer &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>\r\n                        </th>\r\n                        <th scope=\"col\" class=\"pointer text-muted\" (click)=\"sort('InvoiceAmt')\" >Amount &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>\r\n                        </th>\r\n                        <th scope=\"col\" class=\"pointer text-muted\" (click)=\"sort('DueDate')\" >Duedate &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>\r\n                        </th>\r\n                        <th scope=\"col\" class=\"pointer text-muted\" (click)=\"sort('StatusDesc')\"  >Status &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i>\r\n                        </th>\r\n                        <th scope=\"col\" class=\"pointer text-muted\">Next Action</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>                  \r\n                    <tr\r\n                        *ngFor=\"let inv of invoiceHeaderList| grdFilter: {InvoiceNo: searchText,CustName: searchText\r\n                            ,InvoiceAmt: searchText,DueDate: searchText,StatusDesc: searchText}\r\n                        |paginate:{itemsPerPage:5,currentPage:p,totalItems: count}\r\n                         ; let ind=index;\">\r\n                        <td class=\"text-left\" hidden=\"true\"> {{ inv.Invoicekey }}</td>\r\n                        <td>\r\n                            <span class=\"font-weight-bold\">\r\n                                #{{ inv.InvoiceNo }} &nbsp;\r\n                                <span><i class=\"fa fa-calendar\" aria-hidden=\"true\"></i>\r\n                                    <small> <b> {{inv.InvoiceDate  | date}}</b></small>\r\n                                </span>\r\n                            </span>\r\n                        </td>\r\n\r\n                        <td>\r\n                            <span> <b> {{ inv.CustName }}</b> <br>\r\n                                <!-- <small style=\"color: cornflowerblue;\">\r\n                            {{ inv.BillToAddressBO.Address1 }},{{ inv.BillToAddressBO.Address2 }}<br>\r\n                            {{ inv.BillToAddressBO.City }} {{ inv.BillToAddressBO.State}} {{ inv.BillToAddressBO.Zip}}\r\n                          </small> -->\r\n                            </span>\r\n                        </td>\r\n\r\n                        <td class=\"text-left\"> ${{ inv.InvoiceAmt |number: '1.1-2'}}</td>\r\n                        <td class=\"text-left\"> {{ inv.DueDate |date}}</td>\r\n                        <td class=\"text-left\"> </td>\r\n                        <td>\r\n                            <strong> <i class=\"cil-chevron-circle-right-alt\" style=\"color: yellowgreen;\"></i></strong>\r\n                            &nbsp;\r\n                            <small *ngIf=\"inv.StatusDesc == 'Schedule onhold'\" class=\"font-weight-normal\" style=\"color: orange;\">\r\n                              {{inv.nextaction}} </small>\r\n                            <small *ngIf=\"inv.StatusDesc == 'Schedule inprogress'\" class=\"font-weight-normal\" style=\"color: green;\">\r\n                              {{inv.nextaction}} </small>\r\n                            &nbsp;\r\n                            <button type=\"button\" class=\"btn btn-info btn-sm\" style=\"border-radius: 1rem;\"\r\n                              (click)=\"load_invoiceHeaderandDetailData(inv)\">\r\n                              <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n                            </button>\r\n                        </td>\r\n                    </tr>\r\n                    <tr *ngIf=\"invoiceHeaderList.length===0\">\r\n                        <td colspan=\"3\">\r\n                          <h4 style=\"color: darkorange;\">No records found! </h4>\r\n                        </td>\r\n                      </tr>\r\n                </tbody>\r\n            </table>\r\n            <div class=\"container text-right\"> \r\n                <pagination-controls \r\n                (pageChange)=\"p=$event\"\r\n                autoHide=\"true\"\r\n                responsive=\"true\"> </pagination-controls>     \r\n              </div>\r\n    </div>\r\n</div>\r\n<div class=\"row\" *ngIf=\"showInvoice\">\r\n    <div class=\"col-sm-12 col-md-12 col-lg-12 \">\r\n        <div >\r\n            <div class=\"row\">\r\n                <div class=\"col-sm-6 col-md-6 col-lg-6 border-right\">\r\n                    <h4>Invoice #<b>{{InvoiceNo}}</b></h4>\r\n                    <br>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                            <div class=\"input-group input-group-sm\">\r\n                                <div class=\"input-group-prepend\">\r\n                                    <span class=\"input-group-text\"> <b>Date </b></span>\r\n                                </div>\r\n                                <input type=\"text\" name=\"invoiceDate\" [(ngModel)]=\"invoiceDate\" style=\"width:100px\"\r\n                                    class=\"form-control form-control-sm bg-secondary\" [owlDateTimeTrigger]=\"dt1\"\r\n                                    [owlDateTime]=\"dt1\" />\r\n                                <owl-date-time [pickerType]=\"'calendar'\" #dt1></owl-date-time>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                            <div class=\"input-group input-group-sm\">\r\n                                <div class=\"input-group-prepend\">\r\n                                    <span class=\"input-group-text\"> <b>Due</b></span>\r\n                                </div>\r\n                                <input type=\"text\" name=\"DueDate\" [(ngModel)]=\"dueDate\" style=\"width:100px\"\r\n                                    class=\"form-control form-control-sm bg-secondary\" [owlDateTimeTrigger]=\"dt2\"\r\n                                    [owlDateTime]=\"dt2\" />\r\n                                <owl-date-time [pickerType]=\"'calendar'\" #dt2></owl-date-time>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <br>\r\n                    <!-- <img src=\"assets/img/brand/circle-black16px.png\" /> <span> <span class=\"text-muted\"> Bill from\r\n                        </span> <b>\r\n                            {{this.invoiceModel.BillFrom[\"Name\"]}}</b></span>\r\n                    <br>\r\n                    <span> {{invoiceModel.BillFrom[\"Address1\"]}} {{invoiceModel.BillFrom[\"Address2\"]}}\r\n                        {{invoiceModel.BillFrom[\"City\"]}} {{invoiceModel.BillFrom[\"State\"]}}\r\n                        {{invoiceModel.BillFrom[\"Zip\"]}}\r\n                    </span>\r\n                    <br> -->\r\n                    <img src=\"assets/img/brand/circle-black16px.png\" /> <span><span style=\"color:  #659CEF;\"> Bill\r\n                            to </span>\r\n                        <b>{{invoiceModel.order.BillToAddr}}</b>\r\n                    </span>\r\n                    <br>\r\n                    <span>\r\n                        <!-- {{invoiceModel.BillToAddressBO[\"Address1\"]}} \r\n                         {{invoiceModel.BillToAddressBO.Address2}}\r\n                        {{invoiceModel.BillToAddressBO.City}} {{invoiceModel.BillToAddressBO.State}}\r\n                        {{invoiceModel.BillToAddressBO.Zip}} -->\r\n                    </span>\r\n                    <br>\r\n                    <br>\r\n\r\n                    <div>\r\n                        <span><b> <u> Route</u> </b></span>\r\n                        <div class=\"row\">\r\n                            <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                                <span style=\"color:  #659CEF;\">Pickup </span><br>\r\n                                <span> {{invoiceModel.order.SourceAddr}}</span>\r\n                                <br>\r\n                                <!-- <span> {{invoiceModel.Pickup[\"Address1\"]}}, {{invoiceModel.Pickup[\"Address2\"]}}\r\n                                </span>\r\n                                <br>\r\n                                <span>\r\n                                    {{invoiceModel.Pickup[\"City\"]}} - {{invoiceModel.Pickup[\"Zip\"]}}\r\n                                </span>\r\n                                <br>\r\n                                <span> {{invoiceModel.Pickup[\"State\"]}}\r\n                                </span> -->\r\n                            </div>\r\n                            <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                                <span style=\"color:  #659CEF;\">Delivery </span>\r\n                                <br>\r\n                                <span>{{invoiceModel.order.DestinationAddr}}</span>\r\n                                <br>\r\n                                <!-- <span> {{invoiceModel.Delivery[\"Address1\"]}}, {{invoiceModel.Delivery[\"Address2\"]}}\r\n                                </span>\r\n                                <br>\r\n                                <span>\r\n                                    {{invoiceModel.Delivery[\"City\"]}} - {{invoiceModel.Delivery[\"Zip\"]}}\r\n                                </span>\r\n                                <br>\r\n                                <span> {{invoiceModel.Delivery[\"State\"]}}\r\n                                </span> -->\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <br>\r\n                    <span> <b><u>Shipment</u> </b></span>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                            <span class=\"text-muted\">Carrier </span>\r\n                            <br>\r\n                        </div>\r\n                        <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                            <span class=\"text-muted\">Vessel Name </span>\r\n                            <br>\r\n                            {{invoiceModel.order.VesselName}}\r\n                        </div>\r\n                        <div class=\"col-sm-4 col-md-4 col-lg-4\"> </div>\r\n                    </div>\r\n\r\n                    <br>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                            <table class=\"table table-sm table-striped table-borderless\">\r\n                                <thead class=\"thead-light\">\r\n                                    <tr>\r\n                                        <th scope=\"col\" class=\"text-muted\">Container</th>\r\n                                        <th scope=\"col\" class=\"text-muted\">Size</th>\r\n                                        <th scope=\"col\" class=\"text-muted\">Chassis</th>\r\n                                        <th scope=\"col\" class=\"text-muted\">SealNo</th>\r\n                                        <th scope=\"col\" class=\"text-muted\">Weight</th>\r\n                                    </tr>\r\n                                </thead>\r\n                                <tbody>\r\n                                    <tr *ngFor=\"let field of invoiceModel.containers\">\r\n                                        <td> <small>{{field.ContainerNo}} </small></td>\r\n                                        <td> <small>{{field.ContainerSizeDesc}} </small> </td>\r\n                                        <td> <small>{{field.Chassis}} </small></td>\r\n                                        <td> <small>{{field.SealNo}} </small></td>\r\n                                        <td> <small>{{field.Weight}} </small></td>\r\n                                    </tr>\r\n                                </tbody>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                    <div class=\"row\">\r\n                        <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                            <div class=\"container text-left\">\r\n                                <button class=\"btn  btn-outline-secondary btn-sm small\" type=\"button\">Actions </button>\r\n                                &nbsp;\r\n                                <button class=\"btn btn-outline-secondary btn-sm small\" type=\"button\">Send</button>\r\n                                &nbsp;\r\n                                <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"createPDF()\">Export to PDF</button>\r\n                                &nbsp;\r\n                                <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"downloadPDF()\">Download PDF</button>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                            <div class=\"container text-right\">\r\n                                <button class=\"btn btn-primary btn-sm small\" type=\"button\" (click)=\"submit()\">\r\n                                    {{lblInvoice}}</button>\r\n                                &nbsp;&nbsp;&nbsp;\r\n                                <button class=\"btn btn-outline-danger btn-sm small\" type=\"button\"\r\n                                    (click)=\"CancelCreateInvoice()\">Cancel</button>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <br> <br>\r\n\r\n                    <div class=\"row\">\r\n                        <span> <b> &nbsp;&nbsp;&nbsp; <u> Invoice Details </u></b></span>\r\n                        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                            <table class=\"table table-sm table-hover table-striped\">\r\n                                <thead>\r\n                                    <tr class=\"thead-light\">\r\n                                        <th scope=\"col\" hidden=\"true\">InvoiceLineKey</th>\r\n                                        <th scope=\"col\" hidden=\"true\">InvoiceKey</th>\r\n                                        <th scope=\"col\" hidden=\"true\">Itemkey</th>\r\n                                        <th scope=\"col\" class=\"text-left text-muted\">Item</th>\r\n                                        <th scope=\"col\" class=\"text-center text-muted\">Quantity</th>\r\n                                        <th scope=\"col\" class=\"text-center text-muted\">Rate</th>\r\n                                        <th scope=\"col\" class=\"text-right text-muted\">Charge(s)</th>\r\n                                        <th scope=\"col\" class=\"text-right text-muted\">Action(s)</th>\r\n                                    </tr>\r\n                                </thead>\r\n                                <tbody>\r\n                                    <tr *ngFor=\"let Data of invoiceDetail; let i = index\">\r\n                                        <td height=\"30\" hidden=\"true\"> <span> {{Data.InvoiceLineKey}} </span></td>\r\n                                        <td height=\"30\" hidden=\"true\"> <span> {{Data.InvoiceKey}} </span></td>\r\n                                        <td height=\"30\" hidden=\"true\"> <span>{{Data.Itemkey}} </span></td>\r\n                                        <td height=\"30\" class=\"text-left \"> <span>{{Data.Description}} </span></td>\r\n                                        <td height=\"30\" class=\"text-center\">\r\n\r\n                                            <span *ngIf=\"Data.Description=='Base Rate'\"> -\r\n                                                <br> <small style=\"color: #659CEF;\"> {{Data.containerno}}</small>                                              \r\n                                            </span>\r\n\r\n                                            <span *ngIf=\"Data.Quantity > 1 && Data.Description != 'Base Rate'\"> {{Data.Quantity}} container(s) \r\n                                                <br> <small style=\"color: #659CEF;\"> {{Data.containerno}}    </small>                                              \r\n                                            </span>\r\n                                            <span *ngIf=\"Data.Quantity == 1 && Data.Description != 'Base Rate'\"> {{Data.Quantity}} container\r\n                                                <br> <small style=\"color: #659CEF;\"> {{Data.containerno}}  </small>  \r\n                                            </span>\r\n                                        </td>\r\n                                        <td height=\"30\" class=\"text-center\"> <span> ${{Data.UnitPrice|number: '1.1-2'}}</span>\r\n                                        </td>\r\n                                        <td height=\"30\" class=\"text-right\"> <span>${{Data.Price|number: '1.1-2'}} </span></td>\r\n                                        <td height=\"30\" class=\"text-right\">\r\n                                            <!-- <button class=\"btn btn-default small\" type=\"button\"\r\n                                                (click)=\"deleteItem(i)\">\r\n                                                <img src=\"assets/img/brand/trash-icon16px.png\" />\r\n                                            </button> -->\r\n                                            <a tooltip=\" file\" (click)=\"editItem(Data,i)\">\r\n                                                <i class=\"fa fa-pencil\" style=\"color: darkorange\"></i>\r\n                                            </a> &nbsp;&nbsp;\r\n\r\n                                            <!-- <a tooltip=\"Remove/Delete Container\" (click)=\"deleteItem(i)\">\r\n                                                <i class=\"fa fa-trash\" style=\"color: lightskyblue;\"></i> </a> -->\r\n                                        </td>\r\n                                    </tr>\r\n\r\n                                    <tr>\r\n                                        <td hidden=\"true\"> </td>\r\n                                        <td hidden=\"true\"> </td>\r\n                                        <td hidden=\"true\"> </td>\r\n                                        <td>\r\n                                            <span class=\"nav-link text-success\" (click)=\"showChargeDiv()\">Add new\r\n                                                charge</span>\r\n                                            <!-- <span class=\"nav-link text-success\" data-toggle=\"collapse\"\r\n                                                data-target=\"#AddNewCharge\" aria-expanded=\"false\"\r\n                                                aria-controls=\"AddNewCharge\" (click)=\"showChargeDiv()\"> Add new charge\r\n                                            </span> -->\r\n                                            <!-- <span class=\"nav-link text-success\" data-toggle=\"collapse\"\r\n                                                data-target=\"#AddNewCharge\" aria-expanded=\"false\"\r\n                                                aria-controls=\"AddNewCharge\" (click)=\"showChargeDiv()\"> Add new charge\r\n                                            </span> -->\r\n                                        </td>\r\n                                        <td> </td>\r\n\r\n                                        <td colspan=\"3\">\r\n                                            <div class=\"container text-right\">\r\n                                                <div class=\"input-group input-group-sm\">\r\n                                                    <div class=\"input-group-prepend\">\r\n                                                        <span class=\"input-group-text\"> <b>Total $ </b></span>\r\n                                                    </div>\r\n                                                    <input type=\"text\" disabled\r\n                                                        style=\"font-size: 100%;color:yellow;font-weight: bolder;\"\r\n                                                        class=\"form-control bg-secondary text-right\" name=\"InvoiceAmt\"\r\n                                                        [(ngModel)]=\"InvoiceAmt\" />\r\n                                                </div>\r\n                                            </div>\r\n                                        </td>\r\n                                    </tr>\r\n                                </tbody>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n                    <div id=\"AddNewCharge\" *ngIf=\"showAddUpdateDiv\">\r\n                        <div class=\"row\">\r\n                            <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                                <div class=\"input-group input-group-sm\">\r\n                                    <div class=\"input-group-prepend\">\r\n                                        <span class=\"input-group-text\"> <b>Item </b></span>\r\n                                    </div>\r\n                                    <select id=\"drprate\" class=\"form-control form-control-sm\" [(ngModel)]='drpCharge'\r\n                                        (change)=\"drpAddnewCharge_ChangedEvent($event.target.value)\">\r\n                                        <option [value]=\"0\"> No item selected\r\n                                        </option>\r\n                                        <option [value]=\"item.itemkey\" *ngFor=\"let item of Itemlist\">\r\n                                            {{item.description}}\r\n                                        </option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                <div class=\"input-group input-group-sm\">\r\n                                    <div class=\"input-group-prepend\">\r\n                                        <span class=\"input-group-text\"> <b>Qty </b></span>\r\n                                    </div>\r\n                                    <input type=\"text\" name=\"ContainerQuantity\" [(ngModel)]=\"ContainerQuantity\"\r\n                                        class=\"form-control form-control-sm bg-secondary\" />\r\n                                </div>\r\n                            </div>\r\n\r\n                            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                                <div class=\"input-group input-group-sm\">\r\n                                    <div class=\"input-group-prepend\">\r\n                                        <span class=\"input-group-text\"> <b>Rate($)</b></span>\r\n                                    </div>\r\n                                    <input type=\"text\" name=\"ItemRate\" [(ngModel)]=\"ItemRate\"\r\n                                        class=\"form-control form-control-sm bg-secondary\" />\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                                <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\"\r\n                                    (click)=\"addupdateItem()\">{{lblrowaddupdate}}</button>\r\n                                &nbsp; &nbsp;\r\n                                <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\"\r\n                                    (click)=\"ClearRow()\">Cancel</button>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>   \r\n    </div>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<br>\r\n<div class=\"row\" *ngIf=\"showInvoiceList\">\r\n    <div class=\"col-sm-2 col-md-2 col-lg-2 scrollbar\" id=\"style\">\r\n        <h5>&nbsp; Invoice<span class=\"badge badge-warning\"> New</span></h5>\r\n        <br>\r\n        <div class=\"form-group input-group input-group-sm\" *ngIf=\"Data.length != 0\">\r\n            <div class=\"img-group-prepend\">\r\n                <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n            </div>\r\n            <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" style=\"border-radius: 1rem;\"\r\n                type=\"text\" placeholder=\"Search..\">\r\n        </div>\r\n\r\n        <table class=\"table table-sm table-dark\">\r\n            <tbody>\r\n                <tr *ngFor=\"let field of Data; let ind=index;\">\r\n                    <td>\r\n                        <span class=\"font-weight-bold\" style=\"color:olivedrab\">\r\n                            Invoice ({{field.order.OrderNo}})\r\n                        </span>\r\n                    </td>\r\n                    <td class=\"text-right\">\r\n                        <button type=\"button\" class=\"btn btn-outline-success btn-sm\"\r\n                            (click)=\"getOrderdata(field.order.OrderKey)\"> Create</button></td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n        <div *ngIf=\"Data.length === 0\">\r\n            <h6 style=\"color: darkorange;\">No Orders for Invoice! </h6>\r\n        </div>\r\n\r\n    </div>\r\n    <div class=\"col-sm-10 col-md-10 col-lg-10 \">\r\n        <div class=\"row\">\r\n            <div class=\"col-8 col-sm-8 col-md-8\"> </div>\r\n            <div class=\"col-4 col-sm-4 col-md-4\">\r\n                <div class=\"container text-right\">\r\n                    <div class=\"form-group input-group input-group-sm\">\r\n                        <div class=\"img-group-prepend\">\r\n                            <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n                        </div>\r\n                        <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\"\r\n                            style=\"border-radius: 1rem;\" type=\"text\" placeholder=\"Search..\">\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <table class=\"table table-sm table-borderless \">\r\n            <thead class=\"thead-dark shadow\">\r\n                <tr>\r\n                    <th scope=\"col\" class=\"pointer text-muted\" hidden=\"true\">invoiceKey</th>\r\n                    <th scope=\"col\" class=\"pointer text-muted\" (click)=\"sort('InvoiceNo')\">Invoice &nbsp;<i\r\n                            class=\"fa fa-sort\" aria-hidden=\"true\"></i>\r\n                    </th>\r\n                    <th scope=\"col\" class=\"pointer text-muted\" (click)=\"sort('CustName')\">Customer &nbsp;<i\r\n                            class=\"fa fa-sort\" aria-hidden=\"true\"></i>\r\n                    </th>\r\n                    <th scope=\"col\" class=\"pointer text-muted\" (click)=\"sort('InvoiceAmt')\">Amount &nbsp;<i\r\n                            class=\"fa fa-sort\" aria-hidden=\"true\"></i>\r\n                    </th>\r\n                    <th scope=\"col\" class=\"pointer text-muted\" (click)=\"sort('DueDate')\">Duedate &nbsp;<i\r\n                            class=\"fa fa-sort\" aria-hidden=\"true\"></i>\r\n                    </th>\r\n                    <!-- <th scope=\"col\" class=\"pointer text-muted\" (click)=\"sort('StatusDesc')\">Status &nbsp;<i\r\n                            class=\"fa fa-sort\" aria-hidden=\"true\"></i>\r\n                    </th> -->\r\n                    <th scope=\"col\" class=\"pointer text-muted\">Next Action</th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let inv of invoiceHeaderList| grdFilter: {InvoiceNo: searchText,CustName: searchText\r\n                            ,InvoiceAmt: searchText,DueDate: searchText,StatusDesc: searchText}\r\n                        |paginate:{itemsPerPage:5,currentPage:p,totalItems: count}\r\n                         ; let ind=index;\">\r\n                    <td class=\"text-left\" hidden=\"true\"> {{ inv.Invoicekey }}</td>\r\n                    <td>\r\n                        <span class=\"font-weight-bold\">\r\n                            #{{ inv.InvoiceNo }} &nbsp;\r\n                            <span><i class=\"fa fa-calendar\" aria-hidden=\"true\"></i>\r\n                                <small> <b> {{inv.InvoiceDate  | date}}</b></small>\r\n                            </span>\r\n                        </span>\r\n                    </td>\r\n\r\n                    <td>\r\n                        <span> <b> {{ inv.CustName }}</b> <br>\r\n                            <!-- <small style=\"color: cornflowerblue;\">\r\n                            {{ inv.BillToAddressBO.Address1 }},{{ inv.BillToAddressBO.Address2 }}<br>\r\n                            {{ inv.BillToAddressBO.City }} {{ inv.BillToAddressBO.State}} {{ inv.BillToAddressBO.Zip}}\r\n                          </small> -->\r\n                        </span>\r\n                    </td>\r\n\r\n                    <td class=\"text-left\"> ${{ inv.InvoiceAmt |number: '1.1-2'}}</td>\r\n                    <td class=\"text-left\"> {{ inv.DueDate |date}}</td>\r\n                    <!-- <td class=\"text-left\"> </td> -->\r\n                    <td>\r\n                        <strong> <i class=\"cil-chevron-circle-right-alt\" style=\"color: yellowgreen;\"></i></strong>\r\n                        &nbsp;\r\n                        <small *ngIf=\"inv.StatusDesc == 'Schedule onhold'\" class=\"font-weight-normal\"\r\n                            style=\"color: orange;\">\r\n                           Proceed Invoice</small>\r\n                        <small *ngIf=\"inv.StatusDesc == 'Schedule inprogress'\" class=\"font-weight-normal\"\r\n                            style=\"color: green;\">\r\n                             Proceed Invoice </small> Proceed Invoice\r\n                        &nbsp;\r\n                        <button type=\"button\" class=\"btn btn-info btn-sm\" style=\"border-radius: 1rem;\"\r\n                            (click)=\"load_invoiceHeaderandDetailData(inv)\">\r\n                            <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n                        </button>\r\n                    </td>\r\n                </tr>\r\n                <tr *ngIf=\"invoiceHeaderList.length===0\">\r\n                    <td colspan=\"3\">\r\n                        <h4 style=\"color: darkorange;\">No records found! </h4>\r\n                    </td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n        <div class=\"container text-right\">\r\n            <pagination-controls (pageChange)=\"p=$event\" autoHide=\"true\" responsive=\"true\"> </pagination-controls>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"row\" *ngIf=\"showInvoice\">\r\n    <div class=\"col-sm-12 col-md-12 col-lg-12 \">\r\n        <div>\r\n            <div class=\"row\">\r\n                <div class=\"col-sm-6 col-md-6 col-lg-6 border-right\">\r\n                    <h4>Invoice #<b>{{InvoiceNo}}</b></h4>\r\n                    <br>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                            <div class=\"input-group input-group-sm\">\r\n                                <div class=\"input-group-prepend\">\r\n                                    <span class=\"input-group-text\"> <b>Date </b></span>\r\n                                </div>\r\n                                <input type=\"text\" name=\"invoiceDate\" [(ngModel)]=\"invoiceDate\" style=\"width:100px\"\r\n                                    class=\"form-control form-control-sm bg-secondary\" [owlDateTimeTrigger]=\"dt1\"\r\n                                    [owlDateTime]=\"dt1\" />\r\n                                <owl-date-time [pickerType]=\"'calendar'\" #dt1></owl-date-time>\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                            <div class=\"input-group input-group-sm\">\r\n                                <div class=\"input-group-prepend\">\r\n                                    <span class=\"input-group-text\"> <b>Due</b></span>\r\n                                </div>\r\n                                <input type=\"text\" name=\"DueDate\" [(ngModel)]=\"dueDate\" style=\"width:100px\"\r\n                                    class=\"form-control form-control-sm bg-secondary\" [owlDateTimeTrigger]=\"dt2\"\r\n                                    [owlDateTime]=\"dt2\" />\r\n                                <owl-date-time [pickerType]=\"'calendar'\" #dt2></owl-date-time>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <br>\r\n                    <!-- <img src=\"assets/img/brand/circle-black16px.png\" /> <span> <span class=\"text-muted\"> Bill from\r\n                        </span> <b>\r\n                            {{this.invoiceModel.BillFrom[\"Name\"]}}</b></span>\r\n                    <br>\r\n                    <span> {{invoiceModel.BillFrom[\"Address1\"]}} {{invoiceModel.BillFrom[\"Address2\"]}}\r\n                        {{invoiceModel.BillFrom[\"City\"]}} {{invoiceModel.BillFrom[\"State\"]}}\r\n                        {{invoiceModel.BillFrom[\"Zip\"]}}\r\n                    </span>\r\n                    <br> -->\r\n                    <img src=\"assets/img/brand/circle-black16px.png\" /> <span><span style=\"color:  #659CEF;\"> Bill\r\n                            to </span>\r\n                        <b>{{invoiceModel.order.BillToAddr}}</b>\r\n                    </span>\r\n                    <br>\r\n                    <span>\r\n                        <!-- {{invoiceModel.BillToAddressBO[\"Address1\"]}} \r\n                         {{invoiceModel.BillToAddressBO.Address2}}\r\n                        {{invoiceModel.BillToAddressBO.City}} {{invoiceModel.BillToAddressBO.State}}\r\n                        {{invoiceModel.BillToAddressBO.Zip}} -->\r\n                    </span>\r\n                    <br>\r\n                    <br>\r\n\r\n                    <div>\r\n                        <span><b> <u> Route</u> </b></span>\r\n                        <div class=\"row\">\r\n                            <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                                <span style=\"color:  #659CEF;\">Pickup </span><br>\r\n                                <span> {{invoiceModel.order.SourceAddr}}</span>\r\n                                <br>\r\n                                <!-- <span> {{invoiceModel.Pickup[\"Address1\"]}}, {{invoiceModel.Pickup[\"Address2\"]}}\r\n                                </span>\r\n                                <br>\r\n                                <span>\r\n                                    {{invoiceModel.Pickup[\"City\"]}} - {{invoiceModel.Pickup[\"Zip\"]}}\r\n                                </span>\r\n                                <br>\r\n                                <span> {{invoiceModel.Pickup[\"State\"]}}\r\n                                </span> -->\r\n                            </div>\r\n                            <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                                <span style=\"color:  #659CEF;\">Delivery </span>\r\n                                <br>\r\n                                <span>{{invoiceModel.order.DestinationAddr}}</span>\r\n                                <br>\r\n                                <!-- <span> {{invoiceModel.Delivery[\"Address1\"]}}, {{invoiceModel.Delivery[\"Address2\"]}}\r\n                                </span>\r\n                                <br>\r\n                                <span>\r\n                                    {{invoiceModel.Delivery[\"City\"]}} - {{invoiceModel.Delivery[\"Zip\"]}}\r\n                                </span>\r\n                                <br>\r\n                                <span> {{invoiceModel.Delivery[\"State\"]}}\r\n                                </span> -->\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <br>\r\n                    <span> <b><u>Shipment</u> </b></span>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                            <span class=\"text-muted\">Carrier </span>\r\n                            <br>\r\n                        </div>\r\n                        <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                            <span class=\"text-muted\">Vessel Name </span>\r\n                            <br>\r\n                            {{invoiceModel.order.VesselName}}\r\n                        </div>\r\n                        <div class=\"col-sm-4 col-md-4 col-lg-4\"> </div>\r\n                    </div>\r\n\r\n                    <br>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                            <table class=\"table table-sm table-striped table-borderless\">\r\n                                <thead class=\"thead-light\">\r\n                                    <tr>\r\n                                        <th scope=\"col\" class=\"text-muted\">Container</th>\r\n                                        <th scope=\"col\" class=\"text-muted\">Size</th>\r\n                                        <th scope=\"col\" class=\"text-muted\">Chassis</th>\r\n                                        <th scope=\"col\" class=\"text-muted\">SealNo</th>\r\n                                        <th scope=\"col\" class=\"text-muted\">Weight</th>\r\n                                        <th scope=\"col\" class=\"text-muted\">Delivery Date</th>\r\n                                    </tr>\r\n                                </thead>\r\n                                <tbody>\r\n                                    <tr *ngFor=\"let field of invoiceModel.containers\">\r\n                                        <td> <small>{{field.ContainerNo}} </small></td>\r\n                                        <td> <small>{{field.ContainerSizeDesc}} </small> </td>\r\n                                        <td> <small>{{field.Chassis}} </small></td>\r\n                                        <td> <small>{{field.SealNo}} </small></td>\r\n                                        <td> <small>{{field.Weight}} </small></td>\r\n                                        <td> <small></small></td>\r\n                                    </tr>\r\n                                </tbody>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                    <div class=\"row\">\r\n                        <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                            <div class=\"container text-left\">\r\n                                <!-- <button class=\"btn  btn-outline-secondary btn-sm small\" type=\"button\"><i\r\n                                        class=\"fa fa-bars\" aria-hidden=\"true\"></i> Actions </button>\r\n                                &nbsp; -->\r\n                                <button class=\"btn btn-outline-secondary btn-sm small\" type=\"button\"> <i\r\n                                        class=\"fa fa-envelope\" aria-hidden=\"true\"></i> Send</button>\r\n                                &nbsp;\r\n                                <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\"\r\n                                    (click)=\"createPDF()\"><i class=\"fa fa-file-pdf-o\" aria-hidden=\"true\"></i> Export to\r\n                                    PDF</button>\r\n                                &nbsp;\r\n                                <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\"\r\n                                    (click)=\"downloadPDF()\"> <i class=\"fa fa-download\" aria-hidden=\"true\"></i> Download\r\n                                    PDF</button>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                            <div class=\"container text-right\">\r\n                                <button class=\"btn btn-primary btn-sm small\" type=\"button\" (click)=\"submit()\">\r\n                                    <i class=\"fa fa-floppy-o\" aria-hidden=\"true\"></i> {{lblInvoice}}</button>\r\n                                &nbsp;&nbsp;&nbsp;\r\n                                <button class=\"btn btn-outline-danger btn-sm small\" type=\"button\"\r\n                                    (click)=\"CancelCreateInvoice()\"><i class=\"fa fa-ban\" aria-hidden=\"true\"></i>\r\n                                    Cancel</button>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <br> <br>\r\n\r\n                    <div class=\"row\">\r\n                        <span> <b> &nbsp;&nbsp;&nbsp; <u> Invoice Details </u></b></span>\r\n                        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                            <table class=\"table table-sm table-hover table-striped\">\r\n                                <thead>\r\n                                    <tr class=\"thead-light\">\r\n                                        <th scope=\"col\" hidden=\"true\">InvoiceLineKey</th>\r\n                                        <th scope=\"col\" hidden=\"true\">InvoiceKey</th>\r\n                                        <th scope=\"col\" hidden=\"true\">Itemkey</th>\r\n                                        <th scope=\"col\" class=\"text-left text-muted\">Container</th>\r\n                                        <th scope=\"col\" class=\"text-left text-muted\">Item</th>\r\n                                        <th scope=\"col\" class=\"text-left text-muted\">Quantity</th>\r\n                                        <th scope=\"col\" class=\"text-center text-muted\">Rate</th>\r\n                                        <th scope=\"col\" class=\"text-center text-muted\">Charge(s)</th>\r\n                                        <th scope=\"col\" class=\"text-right text-muted\">Action</th>\r\n                                    </tr>\r\n                                </thead>\r\n                                <tbody>\r\n                                    <tr *ngFor=\"let invDet of invoiceDetail; let i = index\">\r\n\r\n                                        <td height=\"30\" hidden=\"true\"> <span> {{invDet.InvoiceLineKey}} </span></td>\r\n                                        <td height=\"30\" hidden=\"true\"> <span> {{invDet.InvoiceKey}} </span></td>\r\n                                        <td height=\"30\" hidden=\"true\"> <span>{{invDet.Itemkey}} </span></td>\r\n                                        <td height=\"30\" class=\"text-left \"> <span><small style=\"color: #659CEF;\">\r\n                                                    {{invDet.Container}} </small> </span></td>\r\n                                        <td height=\"30\" class=\"text-left \"> <span>{{invDet.Description}} </span></td>\r\n                                        <!-- <td height=\"30\" class=\"text-center\" *ngIf=\"!item_editing ||i==rowIndex\">\r\n                                            <span *ngIf=\"Data.Quantity > 1 && Data.Description != 'Base Rate'\">\r\n                                                {{Data.Quantity}} container(s)\r\n                                                <br> <small style=\"color: #659CEF;\"> {{Data.Container}} </small>\r\n                                            </span>\r\n                                            <span *ngIf=\"Data.Quantity == 1 && Data.Description != 'Base Rate'\">\r\n                                                {{Data.Quantity}} container\r\n                                                <br> <small style=\"color: #659CEF;\"> {{Data.Container}} </small>\r\n                                            </span>\r\n                                            {{invDet.Quantity}}\r\n                                        </td> -->\r\n                                        <td height=\"30\" class=\"text-center\">\r\n                                            <span *ngIf=\"!invDet.isEditable\">{{invDet.Quantity}}</span>\r\n                                           <input type=\"text\" class=\"form-control form-control-sm bg-secondary\" style=\"width: 50%;\" \r\n                                           [(ngModel)]=\"invDet.Quantity\" \r\n                                           *ngIf=\"invDet.isEditable\"/>\r\n                                        </td>\r\n                                        <td height=\"30\" class=\"text-center\"> <span>\r\n                                                ${{invDet.UnitPrice|number: '1.1-2'}}</span>\r\n                                        </td>\r\n                                        <!-- <td height=\"30\" class=\"text-right\" *ngIf=\"!item_editing || i==rowIndex\">\r\n                                            <span>${{invDet.Price|number: '1.1-2'}}\r\n                                            </span></td> -->\r\n                                        <td height=\"30\" class=\"text-center\">\r\n                                            <span *ngIf=\"!invDet.isEditable\">${{invDet.Price|number: '1.1-2'}}</span>\r\n                                            <input type=\"number\"class=\"form-control form-control-sm bg-secondary\" style=\"width: 100%;\"  [(ngModel)]=\"invDet.Price\"  *ngIf=\"invDet.isEditable\"/>\r\n                                        </td>\r\n                                        <td height=\"30\" class=\"text-right\">\r\n                                            <div *ngIf=\"!invDet.isEditable\">\r\n                                                <!-- <a tooltip=\" file\" (click)=\"editItem(invDet,i)\">\r\n                                                    <i class=\"fa fa-pencil\" style=\"color: darkorange\"></i>\r\n                                                </a> -->\r\n                                                <a (click)=\"invDet.isEditable=!invDet.isEditable\">\r\n                                                    <i class=\"fa fa-pencil\" style=\"color: darkorange\"></i>\r\n                                                </a>\r\n                                              \r\n                                            </div>\r\n\r\n                                            <div *ngIf=\"invDet.isEditable\">\r\n                                                <a tooltip=\" file\" (click)=\"invDet.isEditable=!invDet.isEditable ; updateRow(invDet,i)\">\r\n                                                    <i class=\"fa fa-floppy-o\" aria-hidden=\"true\"\r\n                                                        style=\"color:royalblue;\"></i>\r\n                                                </a>\r\n                                                &nbsp;&nbsp;\r\n                                                <a tooltip=\" file\" (click)=\"invDet.isEditable=!invDet.isEditable\">\r\n                                                    <i class=\"fa fa-ban\" aria-hidden=\"true\" style=\"color:lightsalmon;\"></i>\r\n                                                </a>\r\n                                            </div>\r\n\r\n                                        </td>\r\n\r\n\r\n                                        <!-- <div *ngIf=\"editing\">\r\n                                            <input [required]=\"required\" (blur)=\"onBlur($event)\" [name]=\"value\"\r\n                                                [(ngModel)]=\"value\" [placeholder]=\"label\" />\r\n                                        </div> -->\r\n                                    </tr>\r\n\r\n                                    <tr>\r\n                                        <td hidden=\"true\"> </td>\r\n                                        <td hidden=\"true\"> </td>\r\n                                        <td hidden=\"true\"> </td>\r\n                                        <td>\r\n                                            <span class=\"nav-link text-success\" (click)=\"showChargeDiv()\">Add new\r\n                                                charge</span>\r\n                                            <!-- <span class=\"nav-link text-success\" data-toggle=\"collapse\"\r\n                                                data-target=\"#AddNewCharge\" aria-expanded=\"false\"\r\n                                                aria-controls=\"AddNewCharge\" (click)=\"showChargeDiv()\"> Add new charge\r\n                                            </span> -->\r\n                                            <!-- <span class=\"nav-link text-success\" data-toggle=\"collapse\"\r\n                                                data-target=\"#AddNewCharge\" aria-expanded=\"false\"\r\n                                                aria-controls=\"AddNewCharge\" (click)=\"showChargeDiv()\"> Add new charge\r\n                                            </span> -->\r\n                                        </td>\r\n                                        <td> </td>\r\n\r\n                                        <td colspan=\"3\">\r\n                                            <div class=\"container text-right\">\r\n                                                <div class=\"input-group input-group-sm\">\r\n                                                    <div class=\"input-group-prepend\">\r\n                                                        <span class=\"input-group-text\"> <b>Total $ </b></span>\r\n                                                    </div>\r\n                                                    <input type=\"text\" disabled\r\n                                                        style=\"font-size: 100%;color:yellow;font-weight: bolder;\"\r\n                                                        class=\"form-control bg-secondary text-right\" name=\"InvoiceAmt\"\r\n                                                        [(ngModel)]=\"InvoiceAmt\" />\r\n                                                </div>\r\n                                            </div>\r\n                                        </td>\r\n                                    </tr>\r\n                                </tbody>\r\n                            </table>\r\n                        </div>\r\n                    </div>\r\n                    <div id=\"AddNewCharge\" *ngIf=\"showAddUpdateDiv\">\r\n                        \r\n                        <div class=\"row\">\r\n                            <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                            <tbody>\r\n                                <tr>\r\n                                    <td>                                       \r\n                                            <div class=\"input-group input-group-sm\">\r\n                                                <div class=\"input-group-prepend\">\r\n                                                    <span class=\"input-group-text\"> <b>Item </b></span>\r\n                                                </div>\r\n                                                <select id=\"drprate\" class=\"form-control form-control-sm\" [(ngModel)]='drpCharge'\r\n                                                    (change)=\"drpAddnewCharge_ChangedEvent($event.target.value)\">\r\n                                                    <option [value]=\"0\"> No item selected\r\n                                                    </option>\r\n                                                    <option [value]=\"item.itemkey\" *ngFor=\"let item of Itemlist\">\r\n                                                        {{item.description}}\r\n                                                    </option>\r\n                                                </select>\r\n                                            </div>                                        \r\n                                    </td> &nbsp;  \r\n                                    <td style=\"width: 100px;\">\r\n                                        <div class=\"input-group input-group-sm\">\r\n                                                <div class=\"input-group-prepend\">\r\n                                                    <span class=\"input-group-text\"> <b>Qty </b></span>\r\n                                                </div>\r\n                                                <input type=\"text\" name=\"ContainerQuantity\" [(ngModel)]=\"ContainerQuantity\"\r\n                                                    class=\"form-control form-control-sm bg-secondary\" />\r\n                                            </div>\r\n                                       \r\n                                    </td> &nbsp;  \r\n                                    <td style=\"width: 150px;\">                                        \r\n                                        <div class=\"input-group input-group-sm\">\r\n                                                <div class=\"input-group-prepend\">\r\n                                                    <span class=\"input-group-text\"> <b>Rate($)</b></span>\r\n                                                </div>\r\n                                                <input type=\"number\" name=\"ItemRate\" [(ngModel)]=\"ItemRate\"\r\n                                                    class=\"form-control form-control-sm bg-secondary\" />\r\n                                            </div>                                        \r\n                                    </td>&nbsp; \r\n                                    <td> \r\n                                        <div >\r\n                                            <button class=\"btn btn-outline-secondary btn-sm\" type=\"button\"\r\n                                                (click)=\"addupdateItem()\"><i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i> &nbsp;{{lblrowaddupdate}}</button>\r\n                                            &nbsp; \r\n                                            <button class=\"btn btn-outline-secondary btn-sm\" type=\"button\"\r\n                                                (click)=\"ClearRow()\"><i class=\"fa fa-ban\" aria-hidden=\"true\"></i>&nbsp; Cancel</button>\r\n                                        </div>\r\n                                    </td>\r\n                                    \r\n                                </tr>\r\n                            </tbody>\r\n                            <!-- <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                                <div class=\"input-group input-group-sm\">\r\n                                    <div class=\"input-group-prepend\">\r\n                                        <span class=\"input-group-text\"> <b>Item </b></span>\r\n                                    </div>\r\n                                    <select id=\"drprate\" class=\"form-control form-control-sm\" [(ngModel)]='drpCharge'\r\n                                        (change)=\"drpAddnewCharge_ChangedEvent($event.target.value)\">\r\n                                        <option [value]=\"0\"> No item selected\r\n                                        </option>\r\n                                        <option [value]=\"item.itemkey\" *ngFor=\"let item of Itemlist\">\r\n                                            {{item.description}}\r\n                                        </option>\r\n                                    </select>\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n                                <div class=\"input-group input-group-sm\">\r\n                                    <div class=\"input-group-prepend\">\r\n                                        <span class=\"input-group-text\"> <b>Qty </b></span>\r\n                                    </div>\r\n                                    <input type=\"text\" name=\"ContainerQuantity\" [(ngModel)]=\"ContainerQuantity\"\r\n                                        class=\"form-control form-control-sm bg-secondary\" />\r\n                                </div>\r\n                            </div>\r\n\r\n                            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                                <div class=\"input-group input-group-sm\">\r\n                                    <div class=\"input-group-prepend\">\r\n                                        <span class=\"input-group-text\"> <b>Rate($)</b></span>\r\n                                    </div>\r\n                                    <input type=\"number\" name=\"ItemRate\" [(ngModel)]=\"ItemRate\"\r\n                                        class=\"form-control form-control-sm bg-secondary\" />\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                                <button class=\"btn btn-outline-secondary btn-sm\" type=\"button\"\r\n                                    (click)=\"addupdateItem()\"><i class=\"fa fa-plus-circle\" aria-hidden=\"true\"></i> &nbsp;{{lblrowaddupdate}}</button>\r\n                                &nbsp; &nbsp;\r\n                                <button class=\"btn btn-outline-secondary btn-sm\" type=\"button\"\r\n                                    (click)=\"ClearRow()\"><i class=\"fa fa-ban\" aria-hidden=\"true\"></i>&nbsp; Cancel</button>\r\n                            </div> -->\r\n                        </div>\r\n                    </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
     /***/
   },
 
@@ -913,7 +933,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<span class=\"border border-primary\">\r\n    <div class=\"jumbotron vertical-center\">\r\n    <div class=\"app-body\">\r\n        <main class=\"main d-flex align-items-center\" >  \r\n          <div class=\"container\">  \r\n            <div class=\"row\">  \r\n              <div class=\"col-md-8 mx-auto\" >  \r\n                <div class=\"card-group\">  \r\n                  <div class=\"card p-4\">  \r\n                    <div class=\"card-body\">  \r\n                      <form (ngSubmit) =\"onSubmit()\" novalidate>  \r\n                        <h1>Login</h1>  \r\n                        <p class=\"text-muted\">Sign In to your account</p>  \r\n                        \r\n                        <div class=\"input-group mb-3\">  \r\n                          <div class=\"input-group-prepend\">  \r\n                            <span class=\"input-group-text\"><i class=\"icon-user\"></i></span>  \r\n                          </div>  \r\n                          <input type=\"text\" class=\"form-control\" placeholder=\"UserName\" autocomplete=\"UserName \" required \r\n                                 [(ngModel)]=\"model.username\" name=\"username\" >  \r\n                                 <div class=\"invalid-feedback\">\r\n                                  Please provide a valid zip.\r\n                                </div>                            \r\n                            </div>  \r\n    \r\n                        <div class=\"input-group mb-4\">  \r\n                          <div class=\"input-group-prepend\">  \r\n                            <span class=\"input-group-text\"><i class=\"icon-lock\"></i></span>  \r\n                          </div>  \r\n                          <input type=\"password\" class=\"form-control\" placeholder=\"Password\" autocomplete=\"current-password\" required \r\n                          [(ngModel)]=\"model.password\" name=\"password\" >\r\n                          </div>\r\n    \r\n                        <div class=\"input-group mb-3\">  \r\n                            <div class=\"input-group-prepend\">  \r\n                              <span class=\"input-group-text\"><i class=\"icon-globe\"></i></span>  \r\n                            </div>  \r\n                            <input type=\"text\" class=\"form-control\" placeholder=\"Company\" autocomplete=\"current-company\" required \r\n                            [(ngModel)]=\"model.company\" name=\"company\">  \r\n                          </div>\r\n\r\n                          <div *ngIf=\"error\" class=\"alert alert-danger\">{{error}}</div>\r\n                          <!-- <div [hidden]=\"isContainerAttributeVisible\">\r\n                              <progressbar [value]=\"100\" type=\"danger\" [striped]=\"true\" [animate]=\"true\" ></progressbar>\r\n                          </div> -->\r\n                         <br>\r\n                        <div class=\"row\">  \r\n                          <div class=\"col-6\"> \r\n                            <button  class=\"btn btn-primary px-4\" type=\"submit\">Login</button>  \r\n                          </div>\r\n      \r\n                          <div class=\"col-6 text-right\">  \r\n                            <button  class=\"btn btn-link px-0\">Forgot password?</button>  \r\n                          </div>      \r\n                        </div>  \r\n                        \r\n                      </form>\r\n      \r\n                    </div>\r\n      \r\n                  </div>\r\n      \r\n                  <div class=\"card text-white bg-primary py-5 d-md-down-none\" style=\"width:20%\">  \r\n                    <div class=\"card-body text-center\">  \r\n                      <div> \r\n                      <img src=\"assets/img/brand/Group-icon.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                        <!-- <h2>Sign up</h2>  \r\n                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>  \r\n                        <button type=\"button\" class=\"btn btn-primary active mt-3\">Register Now!</button> -->  \r\n                      </div>  \r\n                    </div>  \r\n                  </div>  \r\n                </div>  \r\n              </div>  \r\n            </div>  \r\n          </div>  \r\n        </main>      \r\n      </div>\r\n    </div>\r\n    </span>";
+    __webpack_exports__["default"] = "<span class=\"border border-primary\">\r\n    <div class=\"jumbotron vertical-center\">\r\n    <div class=\"app-body\">\r\n        <main class=\"main d-flex align-items-center\" >  \r\n          <div class=\"container\">  \r\n            <div class=\"row\">  \r\n              <div class=\"col-md-8 mx-auto\" >  \r\n                <div class=\"card-group\">  \r\n                  <div class=\"card p-4\">  \r\n                    <div class=\"card-body\">  \r\n                      <form (ngSubmit) =\"onSubmit()\" novalidate>  \r\n                        <h1>Login</h1>  \r\n                        <p class=\"text-muted\">Sign In to your account</p>  \r\n                        \r\n                        <div class=\"input-group mb-3\">  \r\n                          <div class=\"input-group-prepend\">  \r\n                            <span class=\"input-group-text\"><i class=\"icon-user\"></i></span>  \r\n                          </div>  \r\n                          <input type=\"text\" class=\"form-control\" placeholder=\"UserName\" autocomplete=\"UserName \" required \r\n                                 [(ngModel)]=\"model.username\" name=\"username\" >  \r\n                                 <div class=\"invalid-feedback\">\r\n                                  Please provide a valid zip.\r\n                                </div>                            \r\n                            </div>  \r\n    \r\n                        <div class=\"input-group mb-4\">  \r\n                          <div class=\"input-group-prepend\">  \r\n                            <span class=\"input-group-text\"><i class=\"icon-lock\"></i></span>  \r\n                          </div>  \r\n                          <input type=\"password\" class=\"form-control\" placeholder=\"Password\" autocomplete=\"current-password\" required \r\n                          [(ngModel)]=\"model.password\" name=\"password\" >\r\n                          </div>\r\n    \r\n                        <!-- <div class=\"input-group mb-3\">  \r\n                            <div class=\"input-group-prepend\">  \r\n                              <span class=\"input-group-text\"><i class=\"icon-globe\"></i></span>  \r\n                            </div>  \r\n                            <input type=\"text\" class=\"form-control\" placeholder=\"Company\" autocomplete=\"current-company\" required \r\n                            [(ngModel)]=\"model.company\" name=\"company\">  \r\n                          </div> -->\r\n\r\n                          <div *ngIf=\"error\" class=\"alert alert-danger\">{{error}}</div>\r\n                          <!-- <div [hidden]=\"isContainerAttributeVisible\">\r\n                              <progressbar [value]=\"100\" type=\"danger\" [striped]=\"true\" [animate]=\"true\" ></progressbar>\r\n                          </div> -->\r\n                         <br>\r\n                        <div class=\"row\">  \r\n                          <div class=\"col-6\"> \r\n                            <button  class=\"btn btn-outline-primary\" style=\"border-radius: 1rem;\" type=\"submit\">\r\n                               <i class=\"fa fa-sign-in\"></i>\r\n                              \r\n                              Login</button>  \r\n                          </div>\r\n      \r\n                          <div class=\"col-6 text-right\">  \r\n                            <button  class=\"btn btn-link px-0\">Forgot password?</button>  \r\n                          </div>      \r\n                        </div>  \r\n                        \r\n                      </form>\r\n      \r\n                    </div>\r\n      \r\n                  </div>\r\n      \r\n                  <div class=\"card text-white bg-primary py-5 d-md-down-none\" style=\"width:20%\">  \r\n                    <div class=\"card-body text-center\">  \r\n                      <div> \r\n                      <img src=\"assets/img/brand/Group-icon.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                        <!-- <h2>Sign up</h2>  \r\n                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>  \r\n                        <button type=\"button\" class=\"btn btn-primary active mt-3\">Register Now!</button> -->  \r\n                      </div>  \r\n                    </div>  \r\n                  </div>  \r\n                </div>  \r\n              </div>  \r\n            </div>  \r\n          </div>  \r\n        </main>      \r\n      </div>\r\n    </div>\r\n    </span>";
     /***/
   },
 
@@ -953,7 +973,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\r\n<div *ngIf=\"!Orderlist\" class=\"row\">\r\n  No customer found\r\n</div>\r\n<br>\r\n<div class=\"animated fadeIn\">\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-8\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header\">\r\n          Orders\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <div *ngIf=\"Orderlist\" class=\"row\">\r\n            <div class=\"col-sm-12\">\r\n             \r\n              <table class=\"table table-sm table-hover small\">\r\n                <thead class=\"thead-light\">\r\n                  <tr>\r\n                   <th scope=\"col\" hidden=\"true\">Key</th>\r\n                    <th scope=\"col\">Status</th>\r\n                    <th scope=\"col\" hidden=\"true\">View</th>\r\n                    <th scope=\"col\">Order No</th>\r\n                    <th scope=\"col\">Date</th>\r\n                    <th scope=\"col\">Order Type</th>\r\n                    <th scope=\"col\" hidden=\"true\">Action</th>\r\n                    <th scope=\"col\" hidden=\"true\">Testing</th>\r\n                  </tr>\r\n                </thead>\r\n                <tbody>\r\n                  <!--bgcolor=\"#F8F9F9\" -->\r\n                  <tr *ngFor=\"let order of Orderlist\">\r\n                      <td hidden=\"true\">\r\n                          <span>{{ order.OrderKey}} </span>\r\n                        </td>\r\n\r\n                    <td *ngIf=\" order.statusdescription  == 'In Progress'\"><span\r\n                        class=\"badge badge-pill badge-primary\">{{ order.statusdescription }}</span></td>\r\n                    <td *ngIf=\" order.statusdescription  == 'On Hold'\"><span\r\n                        class=\"badge badge-pill badge-warning\">{{ order.statusdescription }}</span></td>\r\n                    <td *ngIf=\" order.statusdescription  == 'Completed'\"><span\r\n                        class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\"order.statusdescription  == 'Credit Denied'\"><span\r\n                        class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\" order.statusdescription  == 'Send to Scheduler'\">\r\n                      <span class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\" order.statusdescription  == 'Send to Dispatch'\">\r\n                      <span class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\" order.statusdescription  == 'Send to Billing'\"><span\r\n                        class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\"order.statusdescription  == 'Invoice Generated'\">\r\n                      <span class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\" order.statusdescription  == 'Review completed'\"><span\r\n                        class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td hidden=\"true\">\r\n\r\n\r\n                      <button type=\"button\" class=\"btn \" label=\"Click\" (click)=\"viewOrderinfo1(order.OrderKey)\"\r\n                        data-toggle=\"modal\" data-target=\"#myModal\" tooltip=\"View Order information\"> <i\r\n                          class=\"fa fa-eye fa-1x\" style=\"color:slateblue\"></i>\r\n                      </button>\r\n\r\n                      <!-- <button class=\"btn btn-lg btn-outline-primary\" (click)=\"open(order)\">Launch demo modal</button> -->\r\n\r\n                    </td>\r\n                    <td>\r\n                      <!-- <span>{{ order.OrderNo}} </span> -->\r\n                       <!-- <a [routerLink]=\"\" (click)=\"open(order.OrderKey)\">\r\n                         {{ order.OrderNo }}</a>  -->\r\n                         <!-- <a [routerLink]=\"\"  (click)=\"navigatetoTab(order.OrderKey)\" >\r\n                            {{ order.OrderNo }}</a>      -->\r\n                            {{ order.OrderNo }}\r\n                    </td>\r\n\r\n\r\n                    <td>{{ order.OrderDate |date}} </td>\r\n                    <td>{{ order.ordertypedescription}}</td>\r\n\r\n                    <td hidden=\"true\">\r\n                      <!-- <button type=\"button\" class=\"btn btn-link\" label=\"Click\"\r\n                            (click)=\"viewOrder(order.OrderKey)\">\r\n                            <i class=\"fa fa-pencil-square-o fa-2x\" ></i>            \r\n                          </button> -->\r\n                      <!-- <a [routerLink]=\"['/dointake', order.OrderKey]\" >{{ order.OrderNo }}</a>  -->\r\n\r\n                      <button type=\"button\" class=\"btn btn-link\" label=\"Click\" (click)=\"navigatetoTab(order.OrderKey)\">\r\n                        <i class=\"fa fa-pencil-square-o fa-2x\"></i>\r\n                      </button>\r\n\r\n                    </td>\r\n                    <td hidden=\"true\">\r\n                      <button type=\"button\" class=\"btn \" label=\"Click\" \r\n                      (click)=\"open(order.OrderKey,content)\"\r\n                        tooltip=\"Go to validate\"> <i\r\n                          class=\"fa fa-eye fa-1x\" style=\"color:slateblue\"></i>\r\n                      </button>\r\n\r\n                      <!-- <app-tab [orderKeyinput]= order.OrderKey></app-tab> -->\r\n                    </td>\r\n                  </tr>\r\n                  <tr *ngIf=\"Orderlist.length===0\">\r\n                    <td colspan=\"3\">\r\n                      <h4 style=\"color: darkorange;\">No records found! </h4>\r\n                    </td>\r\n                  </tr>\r\n                </tbody>\r\n              </table>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-sm-4\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header\">\r\n          Order Status\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <canvas baseChart class=\"chart\"  [data]=\"pieChartData\" [labels]=\"pieChartLabels\" [chartType]=\"pieChartType\"\r\n              (chartHover)=\"chartHovered($event)\" (chartClick)=\"chartClicked($event)\"></canvas>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card\">\r\n        <div class=\"card-header\">\r\n          Order Numbers\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <canvas baseChart class=\"chart\" [datasets]=\"barChartData\" [labels]=\"barChartLabels\"\r\n              [options]=\"barChartOptions\" [legend]=\"barChartLegend\" [chartType]=\"barChartType\"\r\n              (chartHover)=\"chartHovered($event)\" (chartClick)=\"chartClicked($event)\"></canvas>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n\r\n<!-- <div *ngIf=\"ModalOrderKey!=undefined\" class=\"modal fade\" id=\"myModaltesting\" style=\"width:100%;height: auto;\">\r\n  <div class=\"modal-dialog modal-dialog-top modal-xl\" style=\"width:100%;height: auto;\">\r\n    <div class=\"modal-content\" style=\"width:100%;height: auto;\">\r\n\r\n    \r\n      <div class=\"modal-header\" style=\"width:100%;height: auto;\">\r\n        <h4 class=\"modal-title\">Delivery Order</h4>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n      </div>\r\n\r\n     \r\n      <div class=\"modal-body\" style=\"width:100%;height: auto;\">\r\n       <app-tab [orderKeyinput] = \"ModalOrderKey\"> </app-tab>\r\n      </div>\r\n\r\n      \r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</div> -->\r\n<!-- The Modal -->\r\n<!-- <div *ngIf=\"order!=undefined\" class=\"modal fade\" id=\"myModal\" style=\"width:100%;height: auto;\">\r\n  <div class=\"modal-dialog modal-dialog-centered modal-xl\" style=\"width:100%;height: auto;\">\r\n    <div class=\"modal-content\" style=\"width:100%;height: auto;background-color: #5c6873\">\r\n\r\n     \r\n      <div class=\"modal-header\" style=\"width:100%;height: auto;\">\r\n        <h4 class=\"modal-title\">Delivery Order</h4>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n      </div>\r\n\r\n     \r\n      <div class=\"modal-body\" style=\"width:100%;height: auto;\">\r\n        <h4>\r\n          <p class=\"card-subtitle mb-2\"> Status :\r\n            <span *ngIf=\"order.statusdescription!=undefined\" style=\" font-style: oblique;color:yellowgreen\">\r\n              {{order.statusdescription}}</span> </p>\r\n        </h4>\r\n        <br>\r\n        <table class=\"table table-sm table-borderless\">\r\n          <tbody>\r\n            <tr>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\">Order No : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:white\">{{order.OrderNo}}</span> </p>\r\n\r\n              </td>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Date : <span class=\"badge badge-pill badge-danger\"\r\n                    style=\"color:white\">{{order.OrderDate}}</span></p>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> VessalName : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.VesselName}}</span></p>\r\n              </td>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Billof Lading :<span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.BillofLading}}</span></p>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Broker Name : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.BrokerName}}</span></p>\r\n              </td>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Broker Ref No : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.BrokerRefNo}}</span></p>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Booking No : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.BookingNo}}</span></p>\r\n              </td>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Cut-Off Date : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.CutOffDate}}</span></p>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n\r\n        <br>\r\n        <div class=\"row\">\r\n          <div class=\"col-md-3\">\r\n            <div class=\"card text-white bg-primary mb-3\">\r\n              <div class=\"card-header\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-md-3\">\r\n                    <img src=\"assets/img/brand/user-identity2.png\" alt=\"My Image\" class=\"img-rounded\"\r\n                      style=\"width:100%;height:auto\">\r\n                  </div>\r\n                  <div class=\"col-md-5\">\r\n                  </div>\r\n                  <div class=\"col-md-4\">\r\n                    <label>Customer</label>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"card-body\">\r\n                <h5 class=\"card-title\">Maersk Line</h5>\r\n                <label class=\"card-text\"> Milestone Buildcon</label>\r\n                <label class=\"card-text\"> bhartiya city, Chokanahalli</label>\r\n                <label class=\"card-text\"> Bengaluru, Karnataka 560064 </label>\r\n                <label class=\"card-text\"> India 560064 </label>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"col-md-3\">\r\n            <div class=\"card text-white bg-secondary mb-3\">\r\n              <div class=\"card-header\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-md-3\">\r\n                    <img src=\"assets/img/brand/user-identity2.png\" alt=\"My Image\" class=\"img-rounded\"\r\n                      style=\"width:100%;height:auto\">\r\n                  </div>\r\n                  <div class=\"col-md-5\">\r\n                  </div>\r\n                  <div class=\"col-md-4\">\r\n                    <label>Pickup</label>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"card-body\">\r\n                <h5 class=\"card-title\">Maersk Line</h5>\r\n                <label class=\"card-text\"> Milestone Buildcon</label>\r\n                <label class=\"card-text\"> bhartiya city, Chokanahalli</label>\r\n                <label class=\"card-text\"> Bengaluru, Karnataka 560064 </label>\r\n                <label class=\"card-text\"> India 560064 </label>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-md-3\">\r\n            <div class=\"card text-white bg-success  mb-3\">\r\n              <div class=\"card-header\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-md-3\">\r\n                    <img src=\"assets/img/brand/user-identity2.png\" alt=\"My Image\" class=\"img-rounded\"\r\n                      style=\"width:100%;height:auto\">\r\n                  </div>\r\n                  <div class=\"col-md-5\">\r\n                  </div>\r\n                  <div class=\"col-md-4\">\r\n                    <label>Consignee</label>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"card-body\">\r\n                <h5 class=\"card-title\">Maersk Line</h5>\r\n                <label class=\"card-text\"> Milestone Buildcon</label>\r\n                <label class=\"card-text\"> bhartiya city, Chokanahalli</label>\r\n                <label class=\"card-text\"> Bengaluru, Karnataka 560064 </label>\r\n                <label class=\"card-text\"> India 560064 </label>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-md-3\">\r\n            <div class=\"card text-white bg-info mb-3\">\r\n              <div class=\"card-header\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-md-3\">\r\n                    <img src=\"assets/img/brand/user-identity2.png\" alt=\"My Image\" class=\"img-rounded\"\r\n                      style=\"width:100%;height:auto\">\r\n                  </div>\r\n                  <div class=\"col-md-5\">\r\n                  </div>\r\n                  <div class=\"col-md-4\">\r\n                    <label>Return</label>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"card-body\">\r\n                <h5 class=\"card-title\">Maersk Line</h5>\r\n                <label class=\"card-text\"> Milestone Buildcon</label>\r\n                <label class=\"card-text\"> bhartiya city, Chokanahalli</label>\r\n                <label class=\"card-text\"> Bengaluru, Karnataka 560064 </label>\r\n                <label class=\"card-text\"> India 560064 </label>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <br>\r\n        <div class=\"card card-accent-warning bg-secondary mb-3\">\r\n          <div class=\"card-header \">\r\n            <div class=\"row\">\r\n              <div class=\"col-md-2\">\r\n                <img src=\"assets/img/brand/shipping-container.png\" alt=\"My Image\" class=\"img-rounded\"\r\n                  style=\"max-width:100%;height:auto\">\r\n              </div>\r\n\r\n              <div class=\"col-md-8\">\r\n\r\n              </div>\r\n              <div class=\"col-md-2\">\r\n                <h5> Container details</h5>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"table-responsive\" style=\"overflow-x: auto\">\r\n              <table id=\"containerAttributes\" class=\"table table-sm\" cellspacing=\"0\" width=\"100%\">\r\n                <thead>\r\n                  <tr>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Container No </label> </th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Container Size</label></th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Chassis</label></th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Seal</label> </th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Weight in lbs</label></th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Appointment From</label></th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Appointment To</label></th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Status</label></th>\r\n\r\n                  </tr>\r\n                </thead>\r\n                <tbody>\r\n                  <tr *ngFor=\"let field of orderinfo; let i = index\">\r\n                    <td>{{field.ContainerSize}} </td>\r\n                    <td>\r\n                      <select id=\"drpcontainerType\" class=\"form-control form-control-sm text-primary\"\r\n                        aria-placeholder=\"containerNo\" name=\"{{field.ContainerNo}}\" [(ngModel)]=\"field.ContainerNo\">\r\n                        <option value=1>20DRY</option>\r\n                        <option value=2>40DRY</option>\r\n                        <option value=3>40HDRY</option>\r\n                        <option value=4>45HDRY</option>\r\n                        <option value=5>20OPEN</option>\r\n                        <option value=6>40OPEN</option>\r\n                        <option value=7>20FLAT</option>\r\n                        <option value=8>40FLAT</option>\r\n                      </select>\r\n                    </td>\r\n                    <td> {{field.Chassis}}</td>\r\n                    <td> {{field.SealNo}}</td>\r\n                    <td> {{field.Weight}}</td>\r\n                    <td> {{field.AppDateFrom}}</td>\r\n                    <td> {{field.ApptDateTo}} </td>\r\n                    <td> {{field.Status}}</td>\r\n                  </tr>\r\n                </tbody>\r\n              </table>\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div  class=\"modal fade\" id=\"myModaltesting\" style=\"width:100%;height: auto;\">\r\n  <div class=\"modal-dialog modal-dialog-centered modal-xl\" style=\"width:100%;height: auto;\">\r\n    <div class=\"modal-content\" style=\"width:100%;height: auto;\">\r\n\r\n     \r\n      <div class=\"modal-header\" style=\"width:100%;height: auto;\">\r\n        <h4 class=\"modal-title\">Delivery Order</h4>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n      </div>\r\n\r\n     <app-tab [orderKey]=\"ModalOrderKey\"> </app-tab>\r\n  \r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</div> -->\r\n\r\n<router-outlet></router-outlet>";
+    __webpack_exports__["default"] = "\r\n<!-- <div *ngIf=\"!Orderlist\" class=\"row\">\r\n  No customer found\r\n</div> -->\r\n<br>\r\n<div class=\"animated fadeIn\">\r\n  <div class=\"row\">\r\n    <!-- <div class=\"col-sm-8\"> -->\r\n      <!-- <div class=\"card\">\r\n        <div class=\"card-header\">\r\n          Orders\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <div *ngIf=\"Orderlist\" class=\"row\">\r\n            <div class=\"col-sm-12\">\r\n             \r\n              <table class=\"table table-sm table-hover small\">\r\n                <thead class=\"thead-light\">\r\n                  <tr>\r\n                   <th scope=\"col\" hidden=\"true\">Key</th>\r\n                    <th scope=\"col\">Status</th>\r\n                    <th scope=\"col\" hidden=\"true\">View</th>\r\n                    <th scope=\"col\">Order No</th>\r\n                    <th scope=\"col\">Date</th>\r\n                    <th scope=\"col\">Order Type</th>\r\n                    <th scope=\"col\" hidden=\"true\">Action</th>\r\n                    <th scope=\"col\" hidden=\"true\">Testing</th>\r\n                  </tr>\r\n                </thead>\r\n                <tbody>                 \r\n                  <tr *ngFor=\"let order of Orderlist\">\r\n                      <td hidden=\"true\">\r\n                          <span>{{ order.OrderKey}} </span>\r\n                        </td>\r\n\r\n                    <td *ngIf=\" order.statusdescription  == 'In Progress'\"><span\r\n                        class=\"badge badge-pill badge-primary\">{{ order.statusdescription }}</span></td>\r\n                    <td *ngIf=\" order.statusdescription  == 'On Hold'\"><span\r\n                        class=\"badge badge-pill badge-warning\">{{ order.statusdescription }}</span></td>\r\n                    <td *ngIf=\" order.statusdescription  == 'Completed'\"><span\r\n                        class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\"order.statusdescription  == 'Credit Denied'\"><span\r\n                        class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\" order.statusdescription  == 'Send to Scheduler'\">\r\n                      <span class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\" order.statusdescription  == 'Send to Dispatch'\">\r\n                      <span class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\" order.statusdescription  == 'Send to Billing'\"><span\r\n                        class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\"order.statusdescription  == 'Invoice Generated'\">\r\n                      <span class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td *ngIf=\" order.statusdescription  == 'Review completed'\"><span\r\n                        class=\"badge badge-pill badge-success\">{{ order.statusdescription }}</span></td>\r\n\r\n                    <td hidden=\"true\">\r\n\r\n\r\n                      <button type=\"button\" class=\"btn \" label=\"Click\" (click)=\"viewOrderinfo1(order.OrderKey)\"\r\n                        data-toggle=\"modal\" data-target=\"#myModal\" tooltip=\"View Order information\"> <i\r\n                          class=\"fa fa-eye fa-1x\" style=\"color:slateblue\"></i>\r\n                      </button>\r\n                    </td>\r\n                    <td>                     \r\n                            {{ order.OrderNo }}\r\n                    </td>\r\n\r\n\r\n                    <td>{{ order.OrderDate |date}} </td>\r\n                    <td>{{ order.ordertypedescription}}</td>\r\n\r\n                    <td hidden=\"true\">\r\n                   \r\n                      <button type=\"button\" class=\"btn btn-link\" label=\"Click\" (click)=\"navigatetoTab(order.OrderKey)\">\r\n                        <i class=\"fa fa-pencil-square-o fa-2x\"></i>\r\n                      </button>\r\n\r\n                    </td>\r\n                    <td hidden=\"true\">\r\n                      <button type=\"button\" class=\"btn \" label=\"Click\" \r\n                      (click)=\"open(order.OrderKey,content)\"\r\n                        tooltip=\"Go to validate\"> <i\r\n                          class=\"fa fa-eye fa-1x\" style=\"color:slateblue\"></i>                     </button>\r\n\r\n                    \r\n                    </td>\r\n                  </tr>\r\n                  <tr *ngIf=\"Orderlist.length===0\">\r\n                    <td colspan=\"3\">\r\n                      <h4 style=\"color: darkorange;\">No records found! </h4>\r\n                    </td>\r\n                  </tr>\r\n                </tbody>\r\n              </table>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div> -->\r\n    <!-- </div> -->\r\n\r\n    <div class=\"col-sm-6\">\r\n      <div class=\"card\">\r\n        <div class=\"card-header\">\r\n          Order Status\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <canvas baseChart class=\"chart\"  [data]=\"pieChartData\" [labels]=\"pieChartLabels\" [chartType]=\"pieChartType\"\r\n              (chartHover)=\"chartHovered($event)\" (chartClick)=\"chartClicked($event)\"></canvas>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-sm-6\">     \r\n      <div class=\"card\">\r\n        <div class=\"card-header\">\r\n          Order Numbers\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <div class=\"chart-wrapper\">\r\n            <canvas baseChart class=\"chart\" [datasets]=\"barChartData\" [labels]=\"barChartLabels\"\r\n              [options]=\"barChartOptions\" [legend]=\"barChartLegend\" [chartType]=\"barChartType\"\r\n              (chartHover)=\"chartHovered($event)\" (chartClick)=\"chartClicked($event)\"></canvas>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n\r\n<!-- <div *ngIf=\"ModalOrderKey!=undefined\" class=\"modal fade\" id=\"myModaltesting\" style=\"width:100%;height: auto;\">\r\n  <div class=\"modal-dialog modal-dialog-top modal-xl\" style=\"width:100%;height: auto;\">\r\n    <div class=\"modal-content\" style=\"width:100%;height: auto;\">\r\n\r\n    \r\n      <div class=\"modal-header\" style=\"width:100%;height: auto;\">\r\n        <h4 class=\"modal-title\">Delivery Order</h4>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n      </div>\r\n\r\n     \r\n      <div class=\"modal-body\" style=\"width:100%;height: auto;\">\r\n       <app-tab [orderKeyinput] = \"ModalOrderKey\"> </app-tab>\r\n      </div>\r\n\r\n      \r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</div> -->\r\n<!-- The Modal -->\r\n<!-- <div *ngIf=\"order!=undefined\" class=\"modal fade\" id=\"myModal\" style=\"width:100%;height: auto;\">\r\n  <div class=\"modal-dialog modal-dialog-centered modal-xl\" style=\"width:100%;height: auto;\">\r\n    <div class=\"modal-content\" style=\"width:100%;height: auto;background-color: #5c6873\">\r\n\r\n     \r\n      <div class=\"modal-header\" style=\"width:100%;height: auto;\">\r\n        <h4 class=\"modal-title\">Delivery Order</h4>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n      </div>\r\n\r\n     \r\n      <div class=\"modal-body\" style=\"width:100%;height: auto;\">\r\n        <h4>\r\n          <p class=\"card-subtitle mb-2\"> Status :\r\n            <span *ngIf=\"order.statusdescription!=undefined\" style=\" font-style: oblique;color:yellowgreen\">\r\n              {{order.statusdescription}}</span> </p>\r\n        </h4>\r\n        <br>\r\n        <table class=\"table table-sm table-borderless\">\r\n          <tbody>\r\n            <tr>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\">Order No : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:white\">{{order.OrderNo}}</span> </p>\r\n\r\n              </td>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Date : <span class=\"badge badge-pill badge-danger\"\r\n                    style=\"color:white\">{{order.OrderDate}}</span></p>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> VessalName : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.VesselName}}</span></p>\r\n              </td>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Billof Lading :<span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.BillofLading}}</span></p>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Broker Name : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.BrokerName}}</span></p>\r\n              </td>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Broker Ref No : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.BrokerRefNo}}</span></p>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Booking No : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.BookingNo}}</span></p>\r\n              </td>\r\n              <td>\r\n                <p class=\"card-subtitle mb-2\" style=\"color:white\"> Cut-Off Date : <span\r\n                    class=\"badge badge-pill badge-primary\" style=\"color:black\">{{order.CutOffDate}}</span></p>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n\r\n        <br>\r\n        <div class=\"row\">\r\n          <div class=\"col-md-3\">\r\n            <div class=\"card text-white bg-primary mb-3\">\r\n              <div class=\"card-header\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-md-3\">\r\n                    <img src=\"assets/img/brand/user-identity2.png\" alt=\"My Image\" class=\"img-rounded\"\r\n                      style=\"width:100%;height:auto\">\r\n                  </div>\r\n                  <div class=\"col-md-5\">\r\n                  </div>\r\n                  <div class=\"col-md-4\">\r\n                    <label>Customer</label>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"card-body\">\r\n                <h5 class=\"card-title\">Maersk Line</h5>\r\n                <label class=\"card-text\"> Milestone Buildcon</label>\r\n                <label class=\"card-text\"> bhartiya city, Chokanahalli</label>\r\n                <label class=\"card-text\"> Bengaluru, Karnataka 560064 </label>\r\n                <label class=\"card-text\"> India 560064 </label>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"col-md-3\">\r\n            <div class=\"card text-white bg-secondary mb-3\">\r\n              <div class=\"card-header\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-md-3\">\r\n                    <img src=\"assets/img/brand/user-identity2.png\" alt=\"My Image\" class=\"img-rounded\"\r\n                      style=\"width:100%;height:auto\">\r\n                  </div>\r\n                  <div class=\"col-md-5\">\r\n                  </div>\r\n                  <div class=\"col-md-4\">\r\n                    <label>Pickup</label>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"card-body\">\r\n                <h5 class=\"card-title\">Maersk Line</h5>\r\n                <label class=\"card-text\"> Milestone Buildcon</label>\r\n                <label class=\"card-text\"> bhartiya city, Chokanahalli</label>\r\n                <label class=\"card-text\"> Bengaluru, Karnataka 560064 </label>\r\n                <label class=\"card-text\"> India 560064 </label>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-md-3\">\r\n            <div class=\"card text-white bg-success  mb-3\">\r\n              <div class=\"card-header\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-md-3\">\r\n                    <img src=\"assets/img/brand/user-identity2.png\" alt=\"My Image\" class=\"img-rounded\"\r\n                      style=\"width:100%;height:auto\">\r\n                  </div>\r\n                  <div class=\"col-md-5\">\r\n                  </div>\r\n                  <div class=\"col-md-4\">\r\n                    <label>Consignee</label>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"card-body\">\r\n                <h5 class=\"card-title\">Maersk Line</h5>\r\n                <label class=\"card-text\"> Milestone Buildcon</label>\r\n                <label class=\"card-text\"> bhartiya city, Chokanahalli</label>\r\n                <label class=\"card-text\"> Bengaluru, Karnataka 560064 </label>\r\n                <label class=\"card-text\"> India 560064 </label>\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-md-3\">\r\n            <div class=\"card text-white bg-info mb-3\">\r\n              <div class=\"card-header\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-md-3\">\r\n                    <img src=\"assets/img/brand/user-identity2.png\" alt=\"My Image\" class=\"img-rounded\"\r\n                      style=\"width:100%;height:auto\">\r\n                  </div>\r\n                  <div class=\"col-md-5\">\r\n                  </div>\r\n                  <div class=\"col-md-4\">\r\n                    <label>Return</label>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"card-body\">\r\n                <h5 class=\"card-title\">Maersk Line</h5>\r\n                <label class=\"card-text\"> Milestone Buildcon</label>\r\n                <label class=\"card-text\"> bhartiya city, Chokanahalli</label>\r\n                <label class=\"card-text\"> Bengaluru, Karnataka 560064 </label>\r\n                <label class=\"card-text\"> India 560064 </label>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <br>\r\n        <div class=\"card card-accent-warning bg-secondary mb-3\">\r\n          <div class=\"card-header \">\r\n            <div class=\"row\">\r\n              <div class=\"col-md-2\">\r\n                <img src=\"assets/img/brand/shipping-container.png\" alt=\"My Image\" class=\"img-rounded\"\r\n                  style=\"max-width:100%;height:auto\">\r\n              </div>\r\n\r\n              <div class=\"col-md-8\">\r\n\r\n              </div>\r\n              <div class=\"col-md-2\">\r\n                <h5> Container details</h5>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"table-responsive\" style=\"overflow-x: auto\">\r\n              <table id=\"containerAttributes\" class=\"table table-sm\" cellspacing=\"0\" width=\"100%\">\r\n                <thead>\r\n                  <tr>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Container No </label> </th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Container Size</label></th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Chassis</label></th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Seal</label> </th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Weight in lbs</label></th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Appointment From</label></th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Appointment To</label></th>\r\n                    <th scope=\"col\"><label style=\"text-decoration: underline;\">Status</label></th>\r\n\r\n                  </tr>\r\n                </thead>\r\n                <tbody>\r\n                  <tr *ngFor=\"let field of orderinfo; let i = index\">\r\n                    <td>{{field.ContainerSize}} </td>\r\n                    <td>\r\n                      <select id=\"drpcontainerType\" class=\"form-control form-control-sm text-primary\"\r\n                        aria-placeholder=\"containerNo\" name=\"{{field.ContainerNo}}\" [(ngModel)]=\"field.ContainerNo\">\r\n                        <option value=1>20DRY</option>\r\n                        <option value=2>40DRY</option>\r\n                        <option value=3>40HDRY</option>\r\n                        <option value=4>45HDRY</option>\r\n                        <option value=5>20OPEN</option>\r\n                        <option value=6>40OPEN</option>\r\n                        <option value=7>20FLAT</option>\r\n                        <option value=8>40FLAT</option>\r\n                      </select>\r\n                    </td>\r\n                    <td> {{field.Chassis}}</td>\r\n                    <td> {{field.SealNo}}</td>\r\n                    <td> {{field.Weight}}</td>\r\n                    <td> {{field.AppDateFrom}}</td>\r\n                    <td> {{field.ApptDateTo}} </td>\r\n                    <td> {{field.Status}}</td>\r\n                  </tr>\r\n                </tbody>\r\n              </table>\r\n            </div>\r\n          </div>\r\n\r\n        </div>\r\n\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div  class=\"modal fade\" id=\"myModaltesting\" style=\"width:100%;height: auto;\">\r\n  <div class=\"modal-dialog modal-dialog-centered modal-xl\" style=\"width:100%;height: auto;\">\r\n    <div class=\"modal-content\" style=\"width:100%;height: auto;\">\r\n\r\n     \r\n      <div class=\"modal-header\" style=\"width:100%;height: auto;\">\r\n        <h4 class=\"modal-title\">Delivery Order</h4>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\r\n      </div>\r\n\r\n     <app-tab [orderKey]=\"ModalOrderKey\"> </app-tab>\r\n  \r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">Close</button>\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</div> -->\r\n\r\n<router-outlet></router-outlet>";
     /***/
   },
 
@@ -1013,7 +1033,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<br>\r\n<div class=\"row\">\r\n  <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n\r\n    <div class=\"scrollbar\" id=\"scrollbar-style\">\r\n      <ul class=\"list-unstyled\">\r\n        <li>\r\n          <h5>Containers <span class=\"badge badge-warning\">Recent</span></h5><br>\r\n        </li>\r\n        <li>\r\n          <div class=\"container text-left\">\r\n            <div class=\"form-group input-group input-group-sm\">\r\n              <div class=\"img-group-prepend\">\r\n                <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n              </div>\r\n              <input [(ngModel)]=\"SearchRecentContainer\" class=\"form-control form-control-sm\"\r\n                style=\"border-radius: 1rem;\" type=\"text\" placeholder=\"Search..\">\r\n            </div>\r\n          </div>\r\n          <br>\r\n        </li>\r\n        \r\n        <li *ngFor=\"let data of DetailsData| grdFilter: {containerid: SearchRecentContainer,ContainerNo: SearchRecentContainer} ; let ind=index;\">\r\n          <ul class=\"list-unstyled\">\r\n            <li>\r\n              <p style=\"font-family:calibri;\">\r\n                <a [routerLink]=\"\" (click)=\"rowclickEvent(data)\">\r\n                  {{data.containerid}}<br> <small class=\"text-muted\"> {{ data.ContainerNo }} </small></a>\r\n                <span class=\"badge\" *ngIf=\"selectedKey===data.OrderDetailKey\">\r\n                  <img src=\"assets/img/brand/symbol-check16px.png\" /> </span>\r\n              </p>\r\n            </li>\r\n          </ul>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n\r\n  </div>\r\n  <div class=\"col-sm-10 col-md-10 col-lg-10\">\r\n\r\n    <div *ngIf=\"showScheduler\">\r\n      <!-- <div class=\"card card-body\"> -->\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n          <!-- <h6 class=\"card-subtitle mb-2\">\r\n            <img src=\"assets/img/brand/overtime24px.png\" style=\"color: cornflowerblue;\" /> Scheduler</h6> -->\r\n          <button class=\"btn btn-success\" type=\"button\" data-toggle=\"collapse\" data-target=\"#Orderdata\"\r\n            aria-expanded=\"false\" aria-controls=\"Orderdata\">\r\n            Order ID - <b>{{HeaderData.OrderNo}} </b>\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"col-sm-8 col-md-8 col-lg-8 text-right\">\r\n          <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"hold_Schedule()\">Hold Container</button> &nbsp;\r\n          &nbsp;\r\n          <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"onSubmit()\">Save</button> &nbsp;\r\n          &nbsp;\r\n          <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"complete_Schedule()\">Complete Schedule</button> &nbsp;\r\n          &nbsp;\r\n          <button class=\"btn btn-outline-danger btn-sm small\" type=\"button\" (click)=\"onCancel()\"> <i class=\"fa fa-ban\"\r\n              aria-hidden=\"true\"></i>&nbsp;Cancel</button>\r\n        </div>\r\n      </div>\r\n      <br>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n          <div class=\"collapse show\" id=\"Orderdata\">\r\n            <div class=\"card card-body \">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Date</span></div>\r\n                    <div class=\"col-sm-9 col-md-9 col-lg-9\"><span>{{HeaderData.OrderDate|date}} </span></div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Type</span></div>\r\n                    <div class=\"col-sm-9 col-md-9 col-lg-9\"><span> {{HeaderData.ordertypedescription}} </span></div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Broker</span></div>\r\n                    <div class=\"col-sm-9 col-md-9 col-lg-9\"><span> {{HeaderData.BrokerName}} </span></div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Broker Ref</span></div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BrokerRefNo}} </span></div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Booking No</span></div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BookingNo}} </span></div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Vessel</span></div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.VesselName}} </span></div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Bill of Lading</span></div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BillofLading}} </span></div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Cut-Off Date</span></div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.CutOffDate|date}} </span></div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <hr style=\"color: slategray;\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                      <span class=\"text-muted\">Bill to</span>\r\n                    </div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                      <div style=\"word-wrap: break-word;\">\r\n                        {{HeaderData.BillToAddressBO.Name}}\r\n                        {{HeaderData.BillToAddressBO.Address1}}, {{HeaderData.BillToAddressBO.Address2}}\r\n                        {{HeaderData.BillToAddressBO.City}} - {{HeaderData.BillToAddressBO.Zip}}\r\n                        {{HeaderData.BillToAddressBO.State}}\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                      <span class=\"text-muted\">Pickup</span>\r\n                    </div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                      <div style=\"word-wrap: break-word;\">\r\n                        {{HeaderData.SourceAddressBO.Name}}\r\n                        {{HeaderData.SourceAddressBO.Address1}} {{HeaderData.SourceAddressBO.Address2}}\r\n                        {{HeaderData.SourceAddressBO.City}} {{HeaderData.SourceAddressBO.Zip}}\r\n                        {{HeaderData.SourceAddressBO.State}}\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                      <span class=\"text-muted\">Delivery</span>\r\n                    </div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                      <div style=\"word-wrap: break-word;\">\r\n                        {{HeaderData.DestinationAddressBO.Name}}\r\n                        {{HeaderData.DestinationAddressBO.Address1}} {{HeaderData.DestinationAddressBO.Address2}}\r\n                        {{HeaderData.DestinationAddressBO.City}} {{HeaderData.DestinationAddressBO.Zip}}\r\n                        {{HeaderData.DestinationAddressBO.State}}\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                      <span class=\"text-muted\">Return</span>\r\n                    </div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                      <div style=\"word-wrap: break-word;\">\r\n                        {{HeaderData.ReturnAddressBO.Name}}\r\n                        {{HeaderData.ReturnAddressBO.Address1}} {{HeaderData.ReturnAddressBO.Address2}}\r\n                        {{HeaderData.ReturnAddressBO.City}} {{HeaderData.ReturnAddressBO.Zip}}\r\n                        {{HeaderData.ReturnAddressBO.State}}\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <hr style=\"color: slategray;\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                  <div class=\"panel panel-warning\">\r\n                    <div class=\"panel-body\">\r\n                      <h6 class=\"text-muted\">Container</h6>\r\n                      <table class=\"table table-sm small table-striped\">\r\n                        <thead class=\"thead-light\">\r\n                          <tr>\r\n                            <th scope=\"col\" class=\"text-muted\">Id</th>\r\n                            <th scope=\"col\" class=\"text-muted\">Container</th>\r\n                            <th scope=\"col\" class=\"text-muted\">Size</th>\r\n                            <th scope=\"col\" class=\"text-muted\">Seal no</th>\r\n                            <th scope=\"col\" class=\"text-muted\">Weight</th>\r\n                            <th scope=\"col\" class=\"text-muted\">Comments</th>\r\n                          </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                          <tr>\r\n                            <td>\r\n                              {{DetailData.containerid}}\r\n                            </td>\r\n                            <td>\r\n                              {{DetailData.ContainerNo}}\r\n                            </td>\r\n                            <td>\r\n                              {{DetailData.ContainerSizeDesc}}\r\n                            </td>\r\n                            <td>\r\n                              {{DetailData.SealNo}}\r\n                            </td>\r\n                            <td>\r\n                              {{DetailData.Weight}}\r\n                            </td>\r\n                            <td>\r\n                              {{DetailData.Comments}}\r\n                            </td>\r\n                          </tr>\r\n                        </tbody>\r\n                      </table>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                  <div class=\"panel-heading\">\r\n                    <h6 class=\"text-muted\">Order Comments</h6>\r\n                  </div>\r\n                  <p><small> {{HeaderData.Comment}}</small></p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card card-body\">\r\n        <div class=\"row\">\r\n          <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Last Free day </span>\r\n                  </div>\r\n                  <input class=\"form-control  form-control-sm\" type=\"text\" placeholder=\"\" name=\"LastFreeDay\"\r\n                    [(ngModel)]=\"LastFreeDay\" [owlDateTimeTrigger]=\"dt5\" [owlDateTime]=\"dt5\" />\r\n                  <owl-date-time [pickerType]=\"'calendar'\" #dt5></owl-date-time>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Leg Type </span>\r\n                  </div>\r\n                  <select id=\"drpStatus\" class=\"browser-default custom-select\" placeholder=\"Legtype\" name=\"Legtype\"\r\n                    [(ngModel)]=\"Legtype\">\r\n                    <option [value]='0' selected=\"true\">No Legtype selected</option>\r\n                    <option [value]='1'>L</option>\r\n                    <option [value]=\"2\">D</option>\r\n                    <option [value]=\"3\">D/S</option>\r\n                  </select>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <br>\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                      <h6 class=\"text-muted\">Appointment Date </h6>\r\n                      <div class=\"row\">\r\n                        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                          <tbody>\r\n                            <tr>\r\n                              <td>\r\n                                <div class=\"input-group input-group-sm\">\r\n                                  <input type=\"text\" placeholder=\"From\" class=\"form-control form-control-sm\"\r\n                                    name=\"AppDateFrom\" [(ngModel)]=\"AppDateFrom\" [owlDateTimeTrigger]=\"dt1\"\r\n                                    [owlDateTime]=\"dt1\" />\r\n                                  <owl-date-time [pickerType]=\"'calendar'\" #dt1></owl-date-time>\r\n                                </div>\r\n                              </td>\r\n                              <td> &nbsp; &nbsp;</td>\r\n                              <td>\r\n                                <div class=\"input-group input-group-sm\">\r\n                                  <input type=\"text\" placeholder=\"To\" class=\"form-control form-control-sm\"\r\n                                    name=\"AppDateTo\" [(ngModel)]=\"AppDateTo\" [owlDateTimeTrigger]=\"dt2\"\r\n                                    [owlDateTime]=\"dt2\" />\r\n                                  <owl-date-time [pickerType]=\"'calendar'\" #dt2></owl-date-time>\r\n                                </div>\r\n                              </td>\r\n                            </tr>\r\n                          </tbody>\r\n                        </div>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n                <!-- \r\n          <div class=\"row\">\r\n            <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n              <div class=\"input-group input-group-sm mb-3\">\r\n                <div class=\"input-group-prepend\">\r\n                  <span class=\"input-group-text\">Status</span>\r\n                </div>\r\n                <select id=\"drpStatus\" class=\"form-control form-control-sm\" placeholder=\"Status\" name=\"status\"\r\n                  [(ngModel)]=\"status\">\r\n                  <option [(value)]=\"status.Value\" *ngFor=\"let status of statuslist\">{{status.Name}}</option>\r\n                </select>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-6 col-md-6 col-lg-6\">             \r\n            </div>\r\n          </div> -->\r\n              </div>\r\n              <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                      <h6 class=\"text-muted\">Pickup/Delivery DateTime </h6>\r\n                      <div class=\"row\">\r\n                        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                          <tbody>\r\n                            <tr>\r\n                              <td>\r\n                                <div class=\"input-group input-group-sm\">\r\n                                  <input class=\"form-control form-control-sm\" placeholder=\"Pickup \" type=\"text\"\r\n                                    name=\"PickupDateTime\" [(ngModel)]=\"PickupDateTime\" [owlDateTimeTrigger]=\"dt3\"\r\n                                    [owlDateTime]=\"dt3\" required />\r\n                                  <owl-date-time [pickerType]=\"'both'\" #dt3 [hour12Timer]=\"false\"></owl-date-time>\r\n                                </div>\r\n                              </td>\r\n                              <td> &nbsp; &nbsp;</td>\r\n                              <td>\r\n                                <div class=\"input-group input-group-sm\">\r\n                                  <input class=\"form-control  form-control-sm\" type=\"text\" placeholder=\"Delivery\"\r\n                                    name=\"DropOffDateTime\" [(ngModel)]=\"DropOffDateTime\" [owlDateTimeTrigger]=\"dt4\"\r\n                                    [owlDateTime]=\"dt4\" />\r\n                                  <owl-date-time [pickerType]=\"'both'\" #dt4></owl-date-time>\r\n                                </div>\r\n                              </td>\r\n                            </tr>\r\n                          </tbody>\r\n                        </div>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                <div class=\"form-group\">\r\n                  <label class=\"text-muted\">Driver Notes</label>\r\n\r\n                  <textarea class=\"form-control\" id=\"DriverNotes\" placeholder=\"Driver Notes\" [(ngModel)]=\"DriverNotes\"\r\n                    name=\"DriverNotes\"></textarea>\r\n                </div>\r\n\r\n                <!-- <div class=\"input-group input-group-sm mb-3\">\r\n              <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\"> Driver Notes</span>\r\n              </div>\r\n              <input class=\"form-control form-control-sm\" placeholder=\"DriverNotes\" type=\"text\" name=\"DriverNotes\"\r\n                [(ngModel)]=\"DriverNotes\" />\r\n            </div> -->\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                <div class=\"form-group\">\r\n                  <label class=\"text-muted\">Scheduler Notes</label>\r\n                  <textarea class=\"form-control\" id=\"SchedulerNotes\" placeholder=\"Scheduler Notes\"\r\n                    [(ngModel)]=\"SchedulerNotes\" name=\"SchedulerNotes\"></textarea>\r\n                </div>\r\n                <!-- <div class=\"input-group input-group-sm mb-3\">\r\n              <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\"> Scheduler Notes</span>\r\n              </div>\r\n              <input class=\"form-control form-control-sm\" placeholder=\"SchedulerNotes\" type=\"text\"\r\n                name=\"SchedulerNotes\" [(ngModel)]=\"SchedulerNotes\" />\r\n            </div> -->\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n            <!-- <div class=\"row\">\r\n            <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n              <label for=\"SealNo\"> <b> Accounting Options:</b></label>\r\n              <div *ngFor=\"let list of itemlist\">\r\n                <label class=\"checkbox-inline\">\r\n                  <input type=\"checkbox\" value=\"{{list.itemkey}}\" (change)=\"onCheckboxChange(list,$event)\">\r\n                  {{list.itemid}} </label>\r\n              </div>\r\n            </div>\r\n          </div> -->\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                <label class=\"text-muted\"> <b> Accounting Options</b></label>\r\n                <div class=\"card card-body\">\r\n                  <!-- <table class=\"table table-sm table-borderless\">\r\n                    <tbody>\r\n                      <tr *ngFor=\"let list of itemlist; let i =index;let even = even;let odd = odd;\">\r\n\r\n                        <div *ngIf=\"i==0\">\r\n                          <td style=\"width: max-content;\">\r\n                            <div>\r\n                              <span class=\"checkbox-inline\">\r\n                                <input type=\"checkbox\" value=\"{{list.itemkey}}\"\r\n                                  (change)=\"onCheckboxChange(list,$event)\">\r\n                                {{list.itemid}} </span>\r\n                            </div>\r\n                          </td>\r\n                          <td>\r\n\r\n                          </td>\r\n                        </div>\r\n                        <div *ngIf=\"odd\">\r\n                      <tr>\r\n                        <td style=\"width: 150px;\">\r\n                          <div>\r\n                            <span class=\"checkbox-inline\">\r\n                              <input type=\"checkbox\" value=\"{{list.itemkey}}\" (change)=\"onCheckboxChange(list,$event)\">\r\n                              {{list.itemid}} </span>\r\n                          </div>\r\n                        </td>\r\n                        <td style=\"width: 150px;\">\r\n                          <div>\r\n                            <span class=\"checkbox-inline\">\r\n                              <input type=\"checkbox\" value=\"{{itemlist[i+1].itemkey}}\"\r\n                                (change)=\"onCheckboxChange(itemlist[i+1],$event)\">\r\n                              {{itemlist[i+1].itemid}} </span>\r\n                          </div>\r\n                        </td>\r\n                      </tr>\r\n                </div>\r\n               \r\n                </tr>\r\n                </tbody>\r\n                </table> -->\r\n                <div *ngFor=\"let list of itemlist\">\r\n                    <input  type=\"checkbox\"  [(ngModel)]=\"list.isChecked\" value=\"{{list.itemkey}}\"\r\n                    [ngModelOptions]=\"{standalone: true}\" (change)=\"onCheckboxChange(list,$event)\" />\r\n                  <small style=\"color:wheat;\"> &nbsp;{{list.itemid}} </small>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <!-- </div> -->\r\n  </div>\r\n\r\n\r\n  <div *ngIf=\"showScheduledContainerList\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8 col-sm-8 col-md-8\"> </div>\r\n      <div class=\"col-4 col-sm-4 col-md-4\">\r\n        <div class=\"container text-right\">\r\n          <div class=\"form-group input-group input-group-sm\">\r\n            <div class=\"img-group-prepend\">\r\n              <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n            </div>\r\n            <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" style=\"border-radius: 1rem;\"\r\n              type=\"text\" placeholder=\"Search..\">\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <table class=\"table table-sm table-borderless \">\r\n        <thead class=\"thead-dark shadow\">\r\n          <tr>\r\n            <th scope=\"col\" (click)=\"sort('containerid')\" class=\" pointer text-muted\">ID &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\"(click)=\"sort('ContainerNo')\" class=\" pointer text-muted\">Container &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\" (click)=\"sort('ContainerSizeDesc')\" class=\" pointer text-muted\">Size &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>         \r\n            <th scope=\"col\" (click)=\"sort('LastFreeDay')\" class=\" pointer text-muted\">Last free day &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\" (click)=\"sort('PickupDateTime')\" class=\" pointer text-muted\">Pickup &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\" (click)=\"sort('DropOffDateTime')\" class=\" pointer text-muted\">Delivery &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\"  class=\"text-muted\">Scheduler notes</th>\r\n            <th scope=\"col\" (click)=\"sort('StatusDesc')\" class=\" pointer text-muted\">Status &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\" class=\"text-muted\">Next Action</th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let order of scheduledContainerList| \r\n            grdFilter: {containerid: searchText,ContainerNo: searchText,ContainerSizeDesc: searchText\r\n              ,LastFreeDay: searchText\r\n              ,PickupDateTime: searchText\r\n              ,DropOffDateTime: searchText\r\n              ,StatusDesc: searchText} |paginate:{itemsPerPage:10,currentPage:p,totalItems: count}; let ind=index;\">\r\n            <td>\r\n              <small class=\"font-weight-bold\">\r\n                {{order.containerid}}\r\n              </small>\r\n            </td>\r\n            <td> <small class=\"font-weight-normal\" style=\"color: cornflowerblue;\">\r\n                {{order.ContainerNo}} </small></td>\r\n            <td> <small class=\"font-weight-normal\">\r\n                {{order.ContainerSizeDesc}} </small></td>           \r\n            <td> <small class=\"font-weight-normal\">\r\n                {{order.LastFreeDay|date}} </small></td>\r\n            <td> <small class=\"font-weight-normal\">\r\n                {{order.PickupDateTime|date: 'dd/MM/yyyy hh:mm a'}} </small></td>\r\n            <td> <small class=\"font-weight-normal\">\r\n                {{order.DropOffDateTime|date: 'dd/MM/yyyy hh:mm a'}} </small></td>\r\n                <td> <small class=\"font-weight-normal\">\r\n                  {{order.SchedulerNotes}} </small></td>\r\n            <td> <small *ngIf=\"order.StatusDesc == 'Schedule onhold'\" class=\"font-weight-normal\" style=\"color: orange;\">\r\n                on Hold </small>\r\n              <small *ngIf=\"order.StatusDesc == 'Schedule inprogress'\" class=\"font-weight-normal\" style=\"color: green;\">\r\n                In progress </small>\r\n\r\n            </td>\r\n            <td>\r\n              <strong> <i class=\"cil-chevron-circle-right-alt\" style=\"color: yellowgreen;\"></i></strong>\r\n              &nbsp;\r\n              <small *ngIf=\"order.StatusDesc == 'Schedule onhold'\" class=\"font-weight-normal\" style=\"color: orange;\">\r\n                {{order.nextaction}} </small>\r\n              <small *ngIf=\"order.StatusDesc == 'Schedule inprogress'\" class=\"font-weight-normal\" style=\"color: green;\">\r\n                {{order.nextaction}} </small>\r\n              &nbsp;\r\n              <button type=\"button\" class=\"btn btn-info btn-sm\" style=\"border-radius: 1rem;\"\r\n                (click)=\"loaddata_forEdit(order)\">\r\n                <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n              </button>\r\n              <!-- <span class=\"fa fa-pencil-square-o\" (click)=\"update(order.OrderKey)\"></span> <br>\r\n                              <small>update</small> -->\r\n            </td>\r\n          </tr>\r\n          <tr *ngIf=\"scheduledContainerList.length===0\">\r\n            <td colspan=\"3\">\r\n              <h4 style=\"color: darkorange;\">No records found! </h4>\r\n            </td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n      <div class=\"container text-right\"> \r\n        <pagination-controls \r\n        (pageChange)=\"p=$event\"\r\n        autoHide=\"true\"\r\n        responsive=\"true\"> </pagination-controls>     \r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div *ngIf=\"showImage\">\r\n    <div class=\"row \"> </div>\r\n    <div class=\"row \"> </div>\r\n    <div class=\"row \">\r\n      <div class=\"col-md-4\"> </div>\r\n      <!-- <div class=\"col-md-4\"> <img src=\"assets/img/brand/Actions-gear-icon128px.png\" /></div> -->\r\n      <div class=\"col-md-4\"> </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n</div>\r\n<!-- \r\n<div class=\"row\">\r\n  <div class=\"col-md-4\">\r\n    <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" type=\"text\" placeholder=\"Search..\">\r\n  </div>\r\n</div>\r\n<div class=\"table-responsive small\" *ngIf=\"DetailsData.length > 0\">\r\n  <table id=\"containerAttributes\" class=\"table table-sm table-hover\">\r\n    <thead class=\"thead-light\">\r\n      <tr>\r\n        <th>View_Detail</th>\r\n        <th>Container#</th>\r\n        <th>Size</th>\r\n        <th>Chassis#</th>\r\n        <th>Seal#</th>\r\n        <th>Weight</th>\r\n        <th>Appt_DateFrom</th>\r\n        <th>Appt_DateTo</th>\r\n        <th>Pickup_DateTime</th>\r\n        <th>DropOff_DateTime</th>\r\n        <th>Status</th>\r\n        <th>Action</th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr\r\n        *ngFor=\"let field of DetailsData | grdFilter: {Chassis: searchText,SealNo: searchText, blog: searchText}; let i = index\">\r\n       \r\n        <td>\r\n          <a class=\"btn btn-link\" role=\"button\" (click)=\"rowclickEvent(field)\">\r\n            <img src=\"assets/img/brand/DataViewDetails24px.png\" />\r\n            <span class=\"badge\" *ngIf=\"selectedKey===field.OrderKey\">\r\n              <img src=\"assets/img/brand/symbol-check16px.png\" /> </span>\r\n          </a>\r\n        </td>\r\n        <td>\r\n          {{field.ContainerNo}}\r\n        </td>\r\n        <td>\r\n          {{field.ContainerSizeDesc}}\r\n        </td>\r\n\r\n        <td>\r\n          {{field.Chassis}}\r\n        </td>\r\n        <td>\r\n\r\n          {{field.SealNo}}\r\n        </td>\r\n        <td>\r\n\r\n          {{field.Weight}}\r\n        </td>\r\n        <td>\r\n          <input type=\"text\" #model=\"ngModel\" [(ngModel)]=\"field.AppDateFrom\"\r\n            class=\"form-control form-control-sm bg-dark\" [owlDateTimeTrigger]=\"dt1\" [owlDateTime]=\"dt1\" />\r\n          <owl-date-time [pickerType]=\"'calendar'\" #dt1></owl-date-time>\r\n        </td>\r\n        <td>\r\n          <input type=\"text\" #model=\"ngModel\" [(ngModel)]=\"field.AppDateTo\" class=\"form-control form-control-sm bg-dark\"\r\n            [owlDateTimeTrigger]=\"dt2\" [owlDateTime]=\"dt2\" />\r\n          <owl-date-time [pickerType]=\"'calendar'\" #dt2></owl-date-time>\r\n\r\n        </td>\r\n        <td>\r\n          <input class=\"form-control form-control-sm\" type=\"text\" #model=\"ngModel\" [(ngModel)]=\"field.PickupDateTime\"\r\n            [owlDateTimeTrigger]=\"dt3\" [owlDateTime]=\"dt3\" required />\r\n          <owl-date-time [pickerType]=\"'both'\" #dt3 [hour12Timer]=\"false\"></owl-date-time>\r\n        </td>\r\n\r\n        <td>\r\n          <input class=\"form-control form-control-sm\" type=\"text\" #model=\"ngModel\" [(ngModel)]=\"field.DropOffDateTime\"\r\n            [owlDateTimeTrigger]=\"dt4\" [owlDateTime]=\"dt4\" />\r\n          <owl-date-time [pickerType]=\"'both'\" #dt4></owl-date-time>\r\n        </td>\r\n\r\n        <td>\r\n          <select id=\"drpStatus\" class=\"form-control form-control-sm bg-dark\" #model=\"ngModel\"\r\n            [(ngModel)]=\"field.status\">\r\n            <option [(value)]=\"status.Value\" *ngFor=\"let status of statuslist\">{{status.Name}}</option>\r\n          </select>\r\n        </td>\r\n\r\n        <td>\r\n          <button class=\"btn btn-primary btn-sm small\" type=\"button\" (click)=\"onSubmit(field)\">Schedule</button>\r\n        </td>      \r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n</div> -->";
+    __webpack_exports__["default"] = "<br>\r\n<div class=\"row\">\r\n  <div class=\"col-sm-2 col-md-2 col-lg-2\">\r\n\r\n    <div class=\"scrollbar\" id=\"scrollbar-style\">\r\n      <ul class=\"list-unstyled\">\r\n        <li>\r\n          <h5>Containers <span class=\"badge badge-warning\">Recent</span></h5><br>\r\n        </li>\r\n        <li>\r\n          <div class=\"container text-left\">\r\n            <div class=\"form-group input-group input-group-sm\">\r\n              <div class=\"img-group-prepend\">\r\n                <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n              </div>\r\n              <input [(ngModel)]=\"SearchRecentContainer\" class=\"form-control form-control-sm\"\r\n                style=\"border-radius: 1rem;\" type=\"text\" placeholder=\"Search..\">\r\n            </div>\r\n          </div>\r\n          <br>\r\n        </li>\r\n        \r\n        <li *ngFor=\"let data of DetailsData| grdFilter: {containerid: SearchRecentContainer,ContainerNo: SearchRecentContainer} ; let ind=index;\">\r\n          <ul class=\"list-unstyled\">\r\n            <li>\r\n              <p style=\"font-family:calibri;\">\r\n                <a [routerLink]=\"\" (click)=\"rowclickEvent(data)\">\r\n                  {{data.containerid}}<br> <small class=\"text-muted\"> {{ data.ContainerNo }} </small></a>\r\n                <span class=\"badge\" *ngIf=\"selectedKey===data.OrderDetailKey\">\r\n                  <img src=\"assets/img/brand/symbol-check16px.png\" /> </span>\r\n              </p>\r\n            </li>\r\n          </ul>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n\r\n  </div>\r\n  <div class=\"col-sm-10 col-md-10 col-lg-10\">\r\n\r\n    <div *ngIf=\"showScheduler\">\r\n      <!-- <div class=\"card card-body\"> -->\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n          <!-- <h6 class=\"card-subtitle mb-2\">\r\n            <img src=\"assets/img/brand/overtime24px.png\" style=\"color: cornflowerblue;\" /> Scheduler</h6> -->\r\n          <button class=\"btn btn-success\" type=\"button\" data-toggle=\"collapse\" data-target=\"#Orderdata\"\r\n            aria-expanded=\"false\" aria-controls=\"Orderdata\">\r\n            Order ID - <b>{{HeaderData.OrderNo}} </b>\r\n          </button>\r\n        </div>\r\n\r\n        <div class=\"col-sm-8 col-md-8 col-lg-8 text-right\">\r\n          <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"hold_Schedule()\"> <i class=\"fa fa-pause-circle-o\" aria-hidden=\"true\"></i> Hold Container</button> &nbsp;\r\n          &nbsp;\r\n          <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"onSubmit()\"><i class=\"fa fa-floppy-o\" aria-hidden=\"true\"></i> Save</button> &nbsp;\r\n          &nbsp;\r\n          <button class=\"btn btn-outline-primary btn-sm small\" type=\"button\" (click)=\"complete_Schedule()\" [disabled]=\"btnCompleteScheduleDisabled\"> <i class=\"fa fa-check-circle-o\" aria-hidden=\"true\"></i> Complete Schedule</button> &nbsp;\r\n          &nbsp;\r\n          <button class=\"btn btn-outline-danger btn-sm small\" type=\"button\" (click)=\"onCancel()\"> <i class=\"fa fa-ban\"\r\n              aria-hidden=\"true\"></i>&nbsp;Cancel</button>\r\n        </div>\r\n      </div>\r\n      <br>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n          <div class=\"collapse show\" id=\"Orderdata\">\r\n            <div class=\"card card-body \">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Date</span></div>\r\n                    <div class=\"col-sm-9 col-md-9 col-lg-9\"><span>{{HeaderData.OrderDate|date}} </span></div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Type</span></div>\r\n                    <div class=\"col-sm-9 col-md-9 col-lg-9\"><span> {{HeaderData.ordertypedescription}} </span></div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-3 col-md-3 col-lg-3\"> <span class=\"text-muted\">Broker</span></div>\r\n                    <div class=\"col-sm-9 col-md-9 col-lg-9\"><span> {{HeaderData.BrokerName}} </span></div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Broker Ref</span></div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BrokerRefNo}} </span></div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Booking No</span></div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BookingNo}} </span></div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Vessel</span></div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.VesselName}} </span></div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Bill of Lading</span></div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.BillofLading}} </span></div>\r\n                  </div>\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\"> <span class=\"text-muted\">Cut-Off Date</span></div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\"><span> {{HeaderData.CutOffDate|date}} </span></div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <hr style=\"color: slategray;\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                      <span class=\"text-muted\">Bill to</span>\r\n                    </div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                      <div style=\"word-wrap: break-word;\">\r\n                        {{HeaderData.BillToAddressBO.Name}}\r\n                        {{HeaderData.BillToAddressBO.Address1}}, {{HeaderData.BillToAddressBO.Address2}}\r\n                        {{HeaderData.BillToAddressBO.City}} - {{HeaderData.BillToAddressBO.Zip}}\r\n                        {{HeaderData.BillToAddressBO.State}}\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                      <span class=\"text-muted\">Pickup</span>\r\n                    </div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                      <div style=\"word-wrap: break-word;\">\r\n                        {{HeaderData.SourceAddressBO.Name}}\r\n                        {{HeaderData.SourceAddressBO.Address1}} {{HeaderData.SourceAddressBO.Address2}}\r\n                        {{HeaderData.SourceAddressBO.City}} {{HeaderData.SourceAddressBO.Zip}}\r\n                        {{HeaderData.SourceAddressBO.State}}\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                      <span class=\"text-muted\">Delivery</span>\r\n                    </div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                      <div style=\"word-wrap: break-word;\">\r\n                        {{HeaderData.DestinationAddressBO.Name}}\r\n                        {{HeaderData.DestinationAddressBO.Address1}} {{HeaderData.DestinationAddressBO.Address2}}\r\n                        {{HeaderData.DestinationAddressBO.City}} {{HeaderData.DestinationAddressBO.Zip}}\r\n                        {{HeaderData.DestinationAddressBO.State}}\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n                <div class=\"col-sm-3 col-md-3 col-lg-3\">\r\n                  <div class=\"row\">\r\n                    <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                      <span class=\"text-muted\">Return</span>\r\n                    </div>\r\n                    <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n                      <div style=\"word-wrap: break-word;\">\r\n                        {{HeaderData.ReturnAddressBO.Name}}\r\n                        {{HeaderData.ReturnAddressBO.Address1}} {{HeaderData.ReturnAddressBO.Address2}}\r\n                        {{HeaderData.ReturnAddressBO.City}} {{HeaderData.ReturnAddressBO.Zip}}\r\n                        {{HeaderData.ReturnAddressBO.State}}\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <hr style=\"color: slategray;\">\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                  <div class=\"panel panel-warning\">\r\n                    <div class=\"panel-body\">\r\n                      <h6 class=\"text-muted\">Container</h6>\r\n                      <table class=\"table table-sm small table-striped\">\r\n                        <thead class=\"thead-light\">\r\n                          <tr>\r\n                            <th scope=\"col\" class=\"text-muted\">Id</th>\r\n                            <th scope=\"col\" class=\"text-muted\">Container</th>\r\n                            <th scope=\"col\" class=\"text-muted\">Size</th>\r\n                            <th scope=\"col\" class=\"text-muted\">Seal no</th>\r\n                            <th scope=\"col\" class=\"text-muted\">Weight</th>\r\n                            <th scope=\"col\" class=\"text-muted\">Comments</th>\r\n                          </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                          <tr>\r\n                            <td>\r\n                              {{DetailData.containerid}}\r\n                            </td>\r\n                            <td>\r\n                              {{DetailData.ContainerNo}}\r\n                            </td>\r\n                            <td>\r\n                              {{DetailData.ContainerSizeDesc}}\r\n                            </td>\r\n                            <td>\r\n                              {{DetailData.SealNo}}\r\n                            </td>\r\n                            <td>\r\n                              {{DetailData.Weight}}\r\n                            </td>\r\n                            <td>\r\n                              {{DetailData.Comments}}\r\n                            </td>\r\n                          </tr>\r\n                        </tbody>\r\n                      </table>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                  <div class=\"panel-heading\">\r\n                    <h6 class=\"text-muted\">Order Comments</h6>\r\n                  </div>\r\n                  <p><small> {{HeaderData.Comment}}</small></p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card card-body\">\r\n        <div class=\"row\">\r\n          <div class=\"col-sm-8 col-md-8 col-lg-8\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Last Free day </span>\r\n                  </div>\r\n                  <input class=\"form-control  form-control-sm\" type=\"text\" placeholder=\"\" name=\"LastFreeDay\"\r\n                    [(ngModel)]=\"LastFreeDay\" [owlDateTimeTrigger]=\"dt5\" [owlDateTime]=\"dt5\" />\r\n                  <owl-date-time [pickerType]=\"'calendar'\" #dt5></owl-date-time>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n                <div class=\"input-group input-group-sm\">\r\n                  <div class=\"input-group-prepend\">\r\n                    <span class=\"input-group-text\">Leg Type </span>\r\n                  </div>\r\n                  <select id=\"drpStatus\" class=\"browser-default custom-select\" placeholder=\"Legtype\" name=\"Legtype\"\r\n                    [(ngModel)]=\"Legtype\">\r\n                    <option [value]='0' selected=\"true\">No Legtype selected</option>\r\n                    <option [value]='1'>L</option>\r\n                    <option [value]=\"2\">D</option>\r\n                    <option [value]=\"3\">D/S</option>\r\n                  </select>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <br>\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                      <h6 class=\"text-muted\">Appointment Date </h6>\r\n                      <div class=\"row\">\r\n                        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                          <tbody>\r\n                            <tr>\r\n                              <td>\r\n                                <div class=\"input-group input-group-sm\">\r\n                                  <input type=\"text\" placeholder=\"From\" class=\"form-control form-control-sm\"\r\n                                    name=\"AppDateFrom\" [(ngModel)]=\"AppDateFrom\" [owlDateTimeTrigger]=\"dt1\"\r\n                                    [owlDateTime]=\"dt1\" />\r\n                                  <owl-date-time [pickerType]=\"'calendar'\" #dt1></owl-date-time>\r\n                                </div>\r\n                              </td>\r\n                              <td> &nbsp; &nbsp;</td>\r\n                              <td>\r\n                                <div class=\"input-group input-group-sm\">\r\n                                  <input type=\"text\" placeholder=\"To\" class=\"form-control form-control-sm\"\r\n                                    name=\"AppDateTo\" [(ngModel)]=\"AppDateTo\" [owlDateTimeTrigger]=\"dt2\"\r\n                                    [owlDateTime]=\"dt2\" />\r\n                                  <owl-date-time [pickerType]=\"'calendar'\" #dt2></owl-date-time>\r\n                                </div>\r\n                              </td>\r\n                            </tr>\r\n                          </tbody>\r\n                        </div>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n                <!-- \r\n          <div class=\"row\">\r\n            <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n              <div class=\"input-group input-group-sm mb-3\">\r\n                <div class=\"input-group-prepend\">\r\n                  <span class=\"input-group-text\">Status</span>\r\n                </div>\r\n                <select id=\"drpStatus\" class=\"form-control form-control-sm\" placeholder=\"Status\" name=\"status\"\r\n                  [(ngModel)]=\"status\">\r\n                  <option [(value)]=\"status.Value\" *ngFor=\"let status of statuslist\">{{status.Name}}</option>\r\n                </select>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-sm-6 col-md-6 col-lg-6\">             \r\n            </div>\r\n          </div> -->\r\n              </div>\r\n              <div class=\"col-sm-6 col-md-6 col-lg-6\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                    <div class=\"form-group\">\r\n                      <h6 class=\"text-muted\">Pickup/Delivery DateTime </h6>\r\n                      <div class=\"row\">\r\n                        <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                          <tbody>\r\n                            <tr>\r\n                              <td>\r\n                                <div class=\"input-group input-group-sm\">\r\n                                  <input class=\"form-control form-control-sm\" placeholder=\"Pickup \" type=\"text\"\r\n                                    name=\"PickupDateTime\" [(ngModel)]=\"PickupDateTime\" [owlDateTimeTrigger]=\"dt3\"\r\n                                    [owlDateTime]=\"dt3\" required />\r\n                                  <owl-date-time [pickerType]=\"'both'\" #dt3 [hour12Timer]=\"false\"></owl-date-time>\r\n                                </div>\r\n                              </td>\r\n                              <td> &nbsp; &nbsp;</td>\r\n                              <td>\r\n                                <div class=\"input-group input-group-sm\">\r\n                                  <input class=\"form-control  form-control-sm\" type=\"text\" placeholder=\"Delivery\"\r\n                                    name=\"DropOffDateTime\" [(ngModel)]=\"DropOffDateTime\" [owlDateTimeTrigger]=\"dt4\"\r\n                                    [owlDateTime]=\"dt4\" />\r\n                                  <owl-date-time [pickerType]=\"'both'\" #dt4></owl-date-time>\r\n                                </div>\r\n                              </td>\r\n                            </tr>\r\n                          </tbody>\r\n                        </div>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                <div class=\"form-group\">\r\n                  <label class=\"text-muted\">Driver Notes</label>\r\n\r\n                  <textarea class=\"form-control\" id=\"DriverNotes\" placeholder=\"Driver Notes\" [(ngModel)]=\"DriverNotes\"\r\n                    name=\"DriverNotes\"></textarea>\r\n                </div>\r\n\r\n                <!-- <div class=\"input-group input-group-sm mb-3\">\r\n              <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\"> Driver Notes</span>\r\n              </div>\r\n              <input class=\"form-control form-control-sm\" placeholder=\"DriverNotes\" type=\"text\" name=\"DriverNotes\"\r\n                [(ngModel)]=\"DriverNotes\" />\r\n            </div> -->\r\n              </div>\r\n            </div>\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                <div class=\"form-group\">\r\n                  <label class=\"text-muted\">Scheduler Notes</label>\r\n                  <textarea class=\"form-control\" id=\"SchedulerNotes\" placeholder=\"Scheduler Notes\"\r\n                    [(ngModel)]=\"SchedulerNotes\" name=\"SchedulerNotes\"></textarea>\r\n                </div>\r\n                <!-- <div class=\"input-group input-group-sm mb-3\">\r\n              <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\"> Scheduler Notes</span>\r\n              </div>\r\n              <input class=\"form-control form-control-sm\" placeholder=\"SchedulerNotes\" type=\"text\"\r\n                name=\"SchedulerNotes\" [(ngModel)]=\"SchedulerNotes\" />\r\n            </div> -->\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-sm-4 col-md-4 col-lg-4\">\r\n            <!-- <div class=\"row\">\r\n            <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n              <label for=\"SealNo\"> <b> Accounting Options:</b></label>\r\n              <div *ngFor=\"let list of itemlist\">\r\n                <label class=\"checkbox-inline\">\r\n                  <input type=\"checkbox\" value=\"{{list.itemkey}}\" (change)=\"onCheckboxChange(list,$event)\">\r\n                  {{list.itemid}} </label>\r\n              </div>\r\n            </div>\r\n          </div> -->\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-12 col-md-12 col-lg-12\">\r\n                <label class=\"text-muted\"> <b> Accounting Options</b></label>\r\n                <div class=\"card card-body\">\r\n                  <!-- <table class=\"table table-sm table-borderless\">\r\n                    <tbody>\r\n                      <tr *ngFor=\"let list of itemlist; let i =index;let even = even;let odd = odd;\">\r\n\r\n                        <div *ngIf=\"i==0\">\r\n                          <td style=\"width: max-content;\">\r\n                            <div>\r\n                              <span class=\"checkbox-inline\">\r\n                                <input type=\"checkbox\" value=\"{{list.itemkey}}\"\r\n                                  (change)=\"onCheckboxChange(list,$event)\">\r\n                                {{list.itemid}} </span>\r\n                            </div>\r\n                          </td>\r\n                          <td>\r\n\r\n                          </td>\r\n                        </div>\r\n                        <div *ngIf=\"odd\">\r\n                      <tr>\r\n                        <td style=\"width: 150px;\">\r\n                          <div>\r\n                            <span class=\"checkbox-inline\">\r\n                              <input type=\"checkbox\" value=\"{{list.itemkey}}\" (change)=\"onCheckboxChange(list,$event)\">\r\n                              {{list.itemid}} </span>\r\n                          </div>\r\n                        </td>\r\n                        <td style=\"width: 150px;\">\r\n                          <div>\r\n                            <span class=\"checkbox-inline\">\r\n                              <input type=\"checkbox\" value=\"{{itemlist[i+1].itemkey}}\"\r\n                                (change)=\"onCheckboxChange(itemlist[i+1],$event)\">\r\n                              {{itemlist[i+1].itemid}} </span>\r\n                          </div>\r\n                        </td>\r\n                      </tr>\r\n                </div>\r\n               \r\n                </tr>\r\n                </tbody>\r\n                </table> -->\r\n                <div *ngFor=\"let list of itemlist\">\r\n                    <input  type=\"checkbox\"  [(ngModel)]=\"list.isChecked\" value=\"{{list.itemkey}}\"\r\n                    [ngModelOptions]=\"{standalone: true}\" (change)=\"onCheckboxChange(list,$event)\" />\r\n                  <small style=\"color:wheat;\"> &nbsp;{{list.itemid}} </small>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <!-- </div> -->\r\n  </div>\r\n\r\n\r\n  <div *ngIf=\"showScheduledContainerList\">\r\n    <div class=\"row\">\r\n      <div class=\"col-8 col-sm-8 col-md-8\"> </div>\r\n      <div class=\"col-4 col-sm-4 col-md-4\">\r\n        <div class=\"container text-right\">\r\n          <div class=\"form-group input-group input-group-sm\">\r\n            <div class=\"img-group-prepend\">\r\n              <img src=\"assets/img/brand/search16px.png\" /> &nbsp;\r\n            </div>\r\n            <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" style=\"border-radius: 1rem;\"\r\n              type=\"text\" placeholder=\"Search..\">\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row\">\r\n      <table class=\"table table-sm table-borderless \">\r\n        <thead class=\"thead-dark shadow\">\r\n          <tr>\r\n            <th scope=\"col\" (click)=\"sort('containerid')\" class=\" pointer text-muted\">ID &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\"(click)=\"sort('ContainerNo')\" class=\" pointer text-muted\">Container &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\" (click)=\"sort('ContainerSizeDesc')\" class=\" pointer text-muted\">Size &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>         \r\n            <th scope=\"col\" (click)=\"sort('LastFreeDay')\" class=\" pointer text-muted\">Last free day &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\" (click)=\"sort('PickupDateTime')\" class=\" pointer text-muted\">Pickup &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\" (click)=\"sort('DropOffDateTime')\" class=\" pointer text-muted\">Delivery &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\"  class=\"text-muted\">Scheduler notes</th>\r\n            <th scope=\"col\" (click)=\"sort('StatusDesc')\" class=\" pointer text-muted\">Status &nbsp;<i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th>\r\n            <th scope=\"col\" class=\"text-muted\">Next Action</th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let order of scheduledContainerList| \r\n            grdFilter: {containerid: searchText,ContainerNo: searchText,ContainerSizeDesc: searchText\r\n              ,LastFreeDay: searchText\r\n              ,PickupDateTime: searchText\r\n              ,DropOffDateTime: searchText\r\n              ,StatusDesc: searchText} |paginate:{itemsPerPage:10,currentPage:p,totalItems: count}; let ind=index;\">\r\n            <td>\r\n              <small class=\"font-weight-bold\">\r\n                {{order.containerid}}\r\n              </small>\r\n            </td>\r\n            <td> <small class=\"font-weight-normal\" style=\"color: cornflowerblue;\">\r\n                {{order.ContainerNo}} </small></td>\r\n            <td> <small class=\"font-weight-normal\">\r\n                {{order.ContainerSizeDesc}} </small></td>           \r\n            <td> <small class=\"font-weight-normal\">\r\n                {{order.LastFreeDay|date}} </small></td>\r\n            <td> <small class=\"font-weight-normal\">\r\n                {{order.PickupDateTime|date: 'dd/MM/yyyy hh:mm a'}} </small></td>\r\n            <td> <small class=\"font-weight-normal\">\r\n                {{order.DropOffDateTime|date: 'dd/MM/yyyy hh:mm a'}} </small></td>\r\n                <td> <small class=\"font-weight-normal\">\r\n                  {{order.SchedulerNotes}} </small></td>\r\n            <td> <small *ngIf=\"order.StatusDesc == 'Schedule onhold'\" class=\"font-weight-normal\" style=\"color: orange;\">\r\n                on Hold </small>\r\n              <small *ngIf=\"order.StatusDesc == 'Schedule inprogress'\" class=\"font-weight-normal\" style=\"color: green;\">\r\n                In progress </small>\r\n\r\n            </td>\r\n            <td>\r\n              <strong> <i class=\"cil-chevron-circle-right-alt\" style=\"color: yellowgreen;\"></i></strong>\r\n              &nbsp;\r\n              <small *ngIf=\"order.StatusDesc == 'Schedule onhold'\" class=\"font-weight-normal\" style=\"color: orange;\">\r\n                {{order.nextaction}} </small>\r\n              <small *ngIf=\"order.StatusDesc == 'Schedule inprogress'\" class=\"font-weight-normal\" style=\"color: green;\">\r\n                {{order.nextaction}} </small>\r\n              &nbsp;\r\n              <button type=\"button\" class=\"btn btn-info btn-sm\" style=\"border-radius: 1rem;\"\r\n                (click)=\"loaddata_forEdit(order)\">\r\n                <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>\r\n              </button>\r\n              <!-- <span class=\"fa fa-pencil-square-o\" (click)=\"update(order.OrderKey)\"></span> <br>\r\n                              <small>update</small> -->\r\n            </td>\r\n          </tr>\r\n          <tr *ngIf=\"scheduledContainerList.length===0\">\r\n            <td colspan=\"3\">\r\n              <h4 style=\"color: darkorange;\">No records found! </h4>\r\n            </td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n      <div class=\"container text-right\"> \r\n        <pagination-controls \r\n        (pageChange)=\"p=$event\"\r\n        autoHide=\"true\"\r\n        responsive=\"true\"> </pagination-controls>     \r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div *ngIf=\"showImage\">\r\n    <div class=\"row \"> </div>\r\n    <div class=\"row \"> </div>\r\n    <div class=\"row \">\r\n      <div class=\"col-md-4\"> </div>\r\n      <!-- <div class=\"col-md-4\"> <img src=\"assets/img/brand/Actions-gear-icon128px.png\" /></div> -->\r\n      <div class=\"col-md-4\"> </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n</div>\r\n<!-- \r\n<div class=\"row\">\r\n  <div class=\"col-md-4\">\r\n    <input [(ngModel)]=\"searchText\" class=\"form-control form-control-sm\" type=\"text\" placeholder=\"Search..\">\r\n  </div>\r\n</div>\r\n<div class=\"table-responsive small\" *ngIf=\"DetailsData.length > 0\">\r\n  <table id=\"containerAttributes\" class=\"table table-sm table-hover\">\r\n    <thead class=\"thead-light\">\r\n      <tr>\r\n        <th>View_Detail</th>\r\n        <th>Container#</th>\r\n        <th>Size</th>\r\n        <th>Chassis#</th>\r\n        <th>Seal#</th>\r\n        <th>Weight</th>\r\n        <th>Appt_DateFrom</th>\r\n        <th>Appt_DateTo</th>\r\n        <th>Pickup_DateTime</th>\r\n        <th>DropOff_DateTime</th>\r\n        <th>Status</th>\r\n        <th>Action</th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr\r\n        *ngFor=\"let field of DetailsData | grdFilter: {Chassis: searchText,SealNo: searchText, blog: searchText}; let i = index\">\r\n       \r\n        <td>\r\n          <a class=\"btn btn-link\" role=\"button\" (click)=\"rowclickEvent(field)\">\r\n            <img src=\"assets/img/brand/DataViewDetails24px.png\" />\r\n            <span class=\"badge\" *ngIf=\"selectedKey===field.OrderKey\">\r\n              <img src=\"assets/img/brand/symbol-check16px.png\" /> </span>\r\n          </a>\r\n        </td>\r\n        <td>\r\n          {{field.ContainerNo}}\r\n        </td>\r\n        <td>\r\n          {{field.ContainerSizeDesc}}\r\n        </td>\r\n\r\n        <td>\r\n          {{field.Chassis}}\r\n        </td>\r\n        <td>\r\n\r\n          {{field.SealNo}}\r\n        </td>\r\n        <td>\r\n\r\n          {{field.Weight}}\r\n        </td>\r\n        <td>\r\n          <input type=\"text\" #model=\"ngModel\" [(ngModel)]=\"field.AppDateFrom\"\r\n            class=\"form-control form-control-sm bg-dark\" [owlDateTimeTrigger]=\"dt1\" [owlDateTime]=\"dt1\" />\r\n          <owl-date-time [pickerType]=\"'calendar'\" #dt1></owl-date-time>\r\n        </td>\r\n        <td>\r\n          <input type=\"text\" #model=\"ngModel\" [(ngModel)]=\"field.AppDateTo\" class=\"form-control form-control-sm bg-dark\"\r\n            [owlDateTimeTrigger]=\"dt2\" [owlDateTime]=\"dt2\" />\r\n          <owl-date-time [pickerType]=\"'calendar'\" #dt2></owl-date-time>\r\n\r\n        </td>\r\n        <td>\r\n          <input class=\"form-control form-control-sm\" type=\"text\" #model=\"ngModel\" [(ngModel)]=\"field.PickupDateTime\"\r\n            [owlDateTimeTrigger]=\"dt3\" [owlDateTime]=\"dt3\" required />\r\n          <owl-date-time [pickerType]=\"'both'\" #dt3 [hour12Timer]=\"false\"></owl-date-time>\r\n        </td>\r\n\r\n        <td>\r\n          <input class=\"form-control form-control-sm\" type=\"text\" #model=\"ngModel\" [(ngModel)]=\"field.DropOffDateTime\"\r\n            [owlDateTimeTrigger]=\"dt4\" [owlDateTime]=\"dt4\" />\r\n          <owl-date-time [pickerType]=\"'both'\" #dt4></owl-date-time>\r\n        </td>\r\n\r\n        <td>\r\n          <select id=\"drpStatus\" class=\"form-control form-control-sm bg-dark\" #model=\"ngModel\"\r\n            [(ngModel)]=\"field.status\">\r\n            <option [(value)]=\"status.Value\" *ngFor=\"let status of statuslist\">{{status.Name}}</option>\r\n          </select>\r\n        </td>\r\n\r\n        <td>\r\n          <button class=\"btn btn-primary btn-sm small\" type=\"button\" (click)=\"onSubmit(field)\">Schedule</button>\r\n        </td>      \r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n</div> -->";
     /***/
   },
 
@@ -2777,6 +2797,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _constants_appsettings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./../_constants/appsettings */
+    "./src/app/_constants/appsettings.ts");
 
     var AddressService =
     /*#__PURE__*/
@@ -2785,7 +2811,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _classCallCheck(this, AddressService);
 
         this.http = http;
-        this.baseUrl = 'http://localhost:51902/'; //http://localhost:51902/api/address/GetAllByType/1
+        this.baseUrl = _constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL; //'http://localhost:51902/';
+        //http://localhost:51902/api/address/GetAllByType/1
       }
 
       _createClass(AddressService, [{
@@ -3709,6 +3736,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             })
           };
           return this.http.get(_constants_appsettings__WEBPACK_IMPORTED_MODULE_1__["AppSettings"]._BaseURL + "GetAllDOHeaderandDetails");
+        } ///................................. Table Sorting / Pagination etc
+
+      }, {
+        key: "getorderstatusfordashboard",
+        value: function getorderstatusfordashboard() {
+          var token = JSON.parse(localStorage.getItem("currentUser"));
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token.token
+            })
+          };
+          return this.http.get(_constants_appsettings__WEBPACK_IMPORTED_MODULE_1__["AppSettings"]._BaseURL + "GetStatusforDashboard");
         }
       }]);
 
@@ -4603,6 +4643,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! rxjs/operators */
     "./node_modules/rxjs/_esm2015/operators/index.js");
+    /* harmony import */
+
+
+    var _constants_appsettings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ../_constants/appsettings */
+    "./src/app/_constants/appsettings.ts");
 
     var FileUploadService =
     /*#__PURE__*/
@@ -4611,7 +4657,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         _classCallCheck(this, FileUploadService);
 
         this.http = http;
-        this.apiUrl = "http://localhost:51902/FileUpload";
+        this.apiUrl = _constants_appsettings__WEBPACK_IMPORTED_MODULE_5__["AppSettings"]._BaseURL + "FileUpload"; //"http://localhost:51902/FileUpload";
       }
 
       _createClass(FileUploadService, [{
@@ -5795,11 +5841,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var UserService =
     /*#__PURE__*/
     function () {
+      //private baseUrl : string
       function UserService(http) {
         _classCallCheck(this, UserService);
 
-        this.http = http;
-        this.baseUrl = 'http://localhost:51902/Token/';
+        this.http = http; //this.baseUrl= 'http://localhost:51902/Token/';
       }
 
       _createClass(UserService, [{
@@ -5853,7 +5899,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               Authorization: "Bearer " + token.token
             })
           };
-          return this.http.put(_constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL + "UpdateUser", user, httpOptions);
+          return this.http.put(_constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL + "UpdateUser", user);
         }
       }]);
 
@@ -5869,6 +5915,185 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
     }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])], UserService);
+    /***/
+  },
+
+  /***/
+  "./src/app/_services/userpermission.service.ts":
+  /*!*****************************************************!*\
+    !*** ./src/app/_services/userpermission.service.ts ***!
+    \*****************************************************/
+
+  /*! exports provided: UserpermissionService */
+
+  /***/
+  function srcApp_servicesUserpermissionServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "UserpermissionService", function () {
+      return UserpermissionService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _constants_appsettings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../_constants/appsettings */
+    "./src/app/_constants/appsettings.ts");
+
+    var UserpermissionService =
+    /*#__PURE__*/
+    function () {
+      //private baseUrl : string
+      function UserpermissionService(http) {
+        _classCallCheck(this, UserpermissionService);
+
+        this.http = http; //this.baseUrl= 'http://localhost:51902/Token/';
+      }
+
+      _createClass(UserpermissionService, [{
+        key: "getpermissionsByuserkey",
+        value: function getpermissionsByuserkey(userkey) {
+          var token = JSON.parse(localStorage.getItem("currentUser"));
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token.token
+            })
+          };
+          return this.http.get(_constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL + "getUserPermissionsByUserkey" + "/" + userkey);
+        }
+      }, {
+        key: "getMenus",
+        value: function getMenus() {
+          var token = JSON.parse(localStorage.getItem("currentUser"));
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token.token
+            })
+          };
+          return this.http.get(_constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL + "getMenus");
+        }
+      }, {
+        key: "AddUserPermissions",
+        value: function AddUserPermissions(UserPermission) {
+          var token = JSON.parse(localStorage.getItem("currentUser"));
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token.token
+            })
+          };
+          return this.http.post(_constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL + "AddUserPermissions/", UserPermission);
+        }
+      }, {
+        key: "UpdateUserPermissions",
+        value: function UpdateUserPermissions(UserPermission) {
+          var token = JSON.parse(localStorage.getItem("currentUser"));
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token.token
+            })
+          };
+          return this.http.put(_constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL + "UpdateUserPermissions", UserPermission);
+        }
+      }, {
+        key: "getRoles",
+        value: function getRoles() {
+          var token = JSON.parse(localStorage.getItem("currentUser"));
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token.token
+            })
+          };
+          return this.http.get(_constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL + "getRoles");
+        }
+      }, {
+        key: "getUserRoleByRolekey",
+        value: function getUserRoleByRolekey(rolekey) {
+          var token = JSON.parse(localStorage.getItem("currentUser"));
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token.token
+            })
+          };
+          return this.http.get(_constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL + "getUserRoleByRolekey" + "/" + rolekey);
+        }
+      }, {
+        key: "getUserRoleByUserkey",
+        value: function getUserRoleByUserkey(userkey) {
+          var token = JSON.parse(localStorage.getItem("currentUser"));
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token.token
+            })
+          };
+          return this.http.get(_constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL + "getUserRoleByUserkey" + "/" + userkey);
+        }
+      }, {
+        key: "AddUserRole",
+        value: function AddUserRole(userRole) {
+          var token = JSON.parse(localStorage.getItem("currentUser"));
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token.token
+            })
+          };
+          return this.http.post(_constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL + "AddUserRole/", userRole);
+        }
+      }, {
+        key: "UpdateUserRole",
+        value: function UpdateUserRole(userRole) {
+          var token = JSON.parse(localStorage.getItem("currentUser"));
+          var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token.token
+            })
+          };
+          return this.http.put(_constants_appsettings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"]._BaseURL + "UpdateUserRole", userRole);
+        }
+      }]);
+
+      return UserpermissionService;
+    }();
+
+    UserpermissionService.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+      }];
+    };
+
+    UserpermissionService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])], UserpermissionService);
     /***/
   },
 
@@ -6507,6 +6732,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var ngx_pagination__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(
     /*! ngx-pagination */
     "./node_modules/ngx-pagination/dist/ngx-pagination.js");
+    /* harmony import */
+
+
+    var _views_master_userpermissions_userpermissions_component__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(
+    /*! ./views/_master/userpermissions/userpermissions.component */
+    "./src/app/views/_master/userpermissions/userpermissions.component.ts");
 
     var DEFAULT_PERFECT_SCROLLBAR_CONFIG = {
       suppressScrollX: true
@@ -6521,7 +6752,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
       imports: [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_29__["NgbModule"], ngx_pagination__WEBPACK_IMPORTED_MODULE_67__["NgxPaginationModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_29__["NgbAlertModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_29__["NgbPaginationModule"], ng2_pdf_viewer__WEBPACK_IMPORTED_MODULE_55__["PdfViewerModule"], ng2_pdfjs_viewer__WEBPACK_IMPORTED_MODULE_56__["PdfJsViewerModule"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["BrowserAnimationsModule"], _app_routing__WEBPACK_IMPORTED_MODULE_10__["AppRoutingModule"], _coreui_angular__WEBPACK_IMPORTED_MODULE_9__["AppAsideModule"], _coreui_angular__WEBPACK_IMPORTED_MODULE_9__["AppBreadcrumbModule"].forRoot(), _coreui_angular__WEBPACK_IMPORTED_MODULE_9__["AppFooterModule"], _coreui_angular__WEBPACK_IMPORTED_MODULE_9__["AppHeaderModule"], _coreui_angular__WEBPACK_IMPORTED_MODULE_9__["AppSidebarModule"], ngx_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_6__["PerfectScrollbarModule"], ngx_toastr__WEBPACK_IMPORTED_MODULE_27__["ToastrModule"].forRoot(), ng2_charts_ng2_charts__WEBPACK_IMPORTED_MODULE_11__["ChartsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_17__["HttpClientModule"], ng_pick_datetime__WEBPACK_IMPORTED_MODULE_37__["OwlDateTimeModule"], ng_pick_datetime__WEBPACK_IMPORTED_MODULE_37__["OwlNativeDateTimeModule"], _angular_material_form_field__WEBPACK_IMPORTED_MODULE_51__["MatFormFieldModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_52__["MatInputModule"], _angular_material_table__WEBPACK_IMPORTED_MODULE_65__["MatTableModule"], _angular_material_paginator__WEBPACK_IMPORTED_MODULE_66__["MatPaginatorModule"]],
-      declarations: [_filter_filter_pipe__WEBPACK_IMPORTED_MODULE_59__["FilterPipe"], _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]].concat(APP_CONTAINERS, [_views_login_login_component__WEBPACK_IMPORTED_MODULE_12__["LoginComponent"], _views_master_user_userlist_userlist_component__WEBPACK_IMPORTED_MODULE_46__["UserlistComponent"], _views_dointake_dointake_component__WEBPACK_IMPORTED_MODULE_13__["DOIntakeComponent"], _views_child_address_address_component__WEBPACK_IMPORTED_MODULE_14__["AddressComponent"], _views_child_address_customer_customer_component__WEBPACK_IMPORTED_MODULE_18__["CustomerComponent"], _views_master_ratesheet_ratesheetlist_ratesheetlist_component__WEBPACK_IMPORTED_MODULE_47__["RatesheetlistComponent"], _views_master_baserate_baseratelist_baseratelist_component__WEBPACK_IMPORTED_MODULE_60__["BaseratelistComponent"], _views_master_item_itemlist_itemlist_component__WEBPACK_IMPORTED_MODULE_48__["ItemlistComponent"], _views_customer_add_customer_addcustomer_addcustomer_component__WEBPACK_IMPORTED_MODULE_33__["AddcustomerComponent"], _views_customer_list_customer_listcustomer_listcustomer_component__WEBPACK_IMPORTED_MODULE_32__["ListcustomerComponent"], _views_master_city_listcity_listcity_component__WEBPACK_IMPORTED_MODULE_39__["ListcityComponent"], _views_child_company_company_company_component__WEBPACK_IMPORTED_MODULE_30__["CompanyComponent"], _views_master_company_companylist_companylist_component__WEBPACK_IMPORTED_MODULE_64__["CompanylistComponent"], _views_child_broker_broker_component__WEBPACK_IMPORTED_MODULE_21__["BrokerComponent"], _views_master_vendor_vendorlist_vendorlist_vendorlist_component__WEBPACK_IMPORTED_MODULE_42__["VendorlistComponent"], _views_master_broker_brokerlist_brokerlist_brokerlist_component__WEBPACK_IMPORTED_MODULE_43__["BrokerlistComponent"], _views_master_carrier_carrierlist_carrierlist_component__WEBPACK_IMPORTED_MODULE_44__["CarrierlistComponent"], _views_master_driver_listdriver_listdriver_component__WEBPACK_IMPORTED_MODULE_41__["ListdriverComponent"], _views_child_billingrates_billingrates_component__WEBPACK_IMPORTED_MODULE_15__["BillingratesComponent"], _views_child_container_container_component__WEBPACK_IMPORTED_MODULE_20__["ContainerComponent"], _views_orderlist_orderlist_component__WEBPACK_IMPORTED_MODULE_22__["OrderlistComponent"], _views_child_orderinfo_orderinfo_component__WEBPACK_IMPORTED_MODULE_23__["OrderinfoComponent"], _views_child_containersize_containersize_component__WEBPACK_IMPORTED_MODULE_24__["ContainersizeComponent"], _views_invoice_invoice_invoice_component__WEBPACK_IMPORTED_MODULE_45__["InvoiceComponent"], _views_tab_tab_component__WEBPACK_IMPORTED_MODULE_25__["TabComponent"], _views_container_status_container_status_component__WEBPACK_IMPORTED_MODULE_57__["ContainerStatusComponent"], _views_schedulerlist_schedulerlist_component__WEBPACK_IMPORTED_MODULE_36__["SchedulerlistComponent"], _views_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_26__["NavigationComponent"], _views_fileupload_fileupload_component__WEBPACK_IMPORTED_MODULE_28__["FileuploadComponent"], _views_dispatch_dispatch_component__WEBPACK_IMPORTED_MODULE_31__["DispatchComponent"], _views_dispatchAssignment_dispatchAssignment_component__WEBPACK_IMPORTED_MODULE_38__["DispatchAssignmentComponent"], _views_dispathdelivery_dispathdelivery_component__WEBPACK_IMPORTED_MODULE_34__["DispathdeliveryComponent"], _views_dispatchupdate_dispatchupdate_component__WEBPACK_IMPORTED_MODULE_63__["DispatchupdateComponent"], _views_file_upload_file_upload_component__WEBPACK_IMPORTED_MODULE_49__["FileUploadComponent"], _views_pdfviewcomponent_pdfviewcomponent_component__WEBPACK_IMPORTED_MODULE_54__["PdfviewcomponentComponent"], _views_scheduler_update_scheduler_update_component__WEBPACK_IMPORTED_MODULE_58__["SchedulerUpdateComponent"], _models_grd_filter_pipe__WEBPACK_IMPORTED_MODULE_35__["GrdFilterPipe"], _models_grdPipe__WEBPACK_IMPORTED_MODULE_62__["GroupByPipe"], _common_block_copy_paste__WEBPACK_IMPORTED_MODULE_40__["BlockCopyPaste"], _views_test_test_component__WEBPACK_IMPORTED_MODULE_61__["TestComponent"]]),
+      declarations: [_filter_filter_pipe__WEBPACK_IMPORTED_MODULE_59__["FilterPipe"], _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]].concat(APP_CONTAINERS, [_views_login_login_component__WEBPACK_IMPORTED_MODULE_12__["LoginComponent"], _views_master_user_userlist_userlist_component__WEBPACK_IMPORTED_MODULE_46__["UserlistComponent"], _views_dointake_dointake_component__WEBPACK_IMPORTED_MODULE_13__["DOIntakeComponent"], _views_child_address_address_component__WEBPACK_IMPORTED_MODULE_14__["AddressComponent"], _views_child_address_customer_customer_component__WEBPACK_IMPORTED_MODULE_18__["CustomerComponent"], _views_master_ratesheet_ratesheetlist_ratesheetlist_component__WEBPACK_IMPORTED_MODULE_47__["RatesheetlistComponent"], _views_master_baserate_baseratelist_baseratelist_component__WEBPACK_IMPORTED_MODULE_60__["BaseratelistComponent"], _views_master_item_itemlist_itemlist_component__WEBPACK_IMPORTED_MODULE_48__["ItemlistComponent"], _views_customer_add_customer_addcustomer_addcustomer_component__WEBPACK_IMPORTED_MODULE_33__["AddcustomerComponent"], _views_customer_list_customer_listcustomer_listcustomer_component__WEBPACK_IMPORTED_MODULE_32__["ListcustomerComponent"], _views_master_city_listcity_listcity_component__WEBPACK_IMPORTED_MODULE_39__["ListcityComponent"], _views_child_company_company_company_component__WEBPACK_IMPORTED_MODULE_30__["CompanyComponent"], _views_master_company_companylist_companylist_component__WEBPACK_IMPORTED_MODULE_64__["CompanylistComponent"], _views_child_broker_broker_component__WEBPACK_IMPORTED_MODULE_21__["BrokerComponent"], _views_master_vendor_vendorlist_vendorlist_vendorlist_component__WEBPACK_IMPORTED_MODULE_42__["VendorlistComponent"], _views_master_broker_brokerlist_brokerlist_brokerlist_component__WEBPACK_IMPORTED_MODULE_43__["BrokerlistComponent"], _views_master_carrier_carrierlist_carrierlist_component__WEBPACK_IMPORTED_MODULE_44__["CarrierlistComponent"], _views_master_userpermissions_userpermissions_component__WEBPACK_IMPORTED_MODULE_68__["UserpermissionsComponent"], _views_master_driver_listdriver_listdriver_component__WEBPACK_IMPORTED_MODULE_41__["ListdriverComponent"], _views_child_billingrates_billingrates_component__WEBPACK_IMPORTED_MODULE_15__["BillingratesComponent"], _views_child_container_container_component__WEBPACK_IMPORTED_MODULE_20__["ContainerComponent"], _views_orderlist_orderlist_component__WEBPACK_IMPORTED_MODULE_22__["OrderlistComponent"], _views_child_orderinfo_orderinfo_component__WEBPACK_IMPORTED_MODULE_23__["OrderinfoComponent"], _views_child_containersize_containersize_component__WEBPACK_IMPORTED_MODULE_24__["ContainersizeComponent"], _views_invoice_invoice_invoice_component__WEBPACK_IMPORTED_MODULE_45__["InvoiceComponent"], _views_tab_tab_component__WEBPACK_IMPORTED_MODULE_25__["TabComponent"], _views_container_status_container_status_component__WEBPACK_IMPORTED_MODULE_57__["ContainerStatusComponent"], _views_schedulerlist_schedulerlist_component__WEBPACK_IMPORTED_MODULE_36__["SchedulerlistComponent"], _views_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_26__["NavigationComponent"], _views_fileupload_fileupload_component__WEBPACK_IMPORTED_MODULE_28__["FileuploadComponent"], _views_dispatch_dispatch_component__WEBPACK_IMPORTED_MODULE_31__["DispatchComponent"], _views_dispatchAssignment_dispatchAssignment_component__WEBPACK_IMPORTED_MODULE_38__["DispatchAssignmentComponent"], _views_dispathdelivery_dispathdelivery_component__WEBPACK_IMPORTED_MODULE_34__["DispathdeliveryComponent"], _views_dispatchupdate_dispatchupdate_component__WEBPACK_IMPORTED_MODULE_63__["DispatchupdateComponent"], _views_file_upload_file_upload_component__WEBPACK_IMPORTED_MODULE_49__["FileUploadComponent"], _views_pdfviewcomponent_pdfviewcomponent_component__WEBPACK_IMPORTED_MODULE_54__["PdfviewcomponentComponent"], _views_scheduler_update_scheduler_update_component__WEBPACK_IMPORTED_MODULE_58__["SchedulerUpdateComponent"], _models_grd_filter_pipe__WEBPACK_IMPORTED_MODULE_35__["GrdFilterPipe"], _models_grdPipe__WEBPACK_IMPORTED_MODULE_62__["GroupByPipe"], _common_block_copy_paste__WEBPACK_IMPORTED_MODULE_40__["BlockCopyPaste"], _views_test_test_component__WEBPACK_IMPORTED_MODULE_61__["TestComponent"]]),
       providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_16__["UserService"], _services_address_service__WEBPACK_IMPORTED_MODULE_19__["AddressService"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["DatePipe"], _services_file_uploader_service__WEBPACK_IMPORTED_MODULE_50__["FileUploaderService"], _services_filedownload_service__WEBPACK_IMPORTED_MODULE_53__["FiledownloadService"]],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
       entryComponents: [_views_tab_tab_component__WEBPACK_IMPORTED_MODULE_25__["TabComponent"], _views_scheduler_update_scheduler_update_component__WEBPACK_IMPORTED_MODULE_58__["SchedulerUpdateComponent"], _views_dispatchupdate_dispatchupdate_component__WEBPACK_IMPORTED_MODULE_63__["DispatchupdateComponent"]]
@@ -6709,7 +6940,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     var _views_master_company_companylist_companylist_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(
     /*! ./views/_master/_company/companylist/companylist.component */
-    "./src/app/views/_master/_company/companylist/companylist.component.ts"); // Import Containers
+    "./src/app/views/_master/_company/companylist/companylist.component.ts");
+    /* harmony import */
+
+
+    var _views_master_userpermissions_userpermissions_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(
+    /*! ./views/_master/userpermissions/userpermissions.component */
+    "./src/app/views/_master/userpermissions/userpermissions.component.ts"); // Import Containers
 
 
     var routes = [{
@@ -6774,6 +7011,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         path: "Users",
         component: _views_master_user_userlist_userlist_component__WEBPACK_IMPORTED_MODULE_19__["UserlistComponent"]
+      }, {
+        path: "UserPermissions",
+        component: _views_master_userpermissions_userpermissions_component__WEBPACK_IMPORTED_MODULE_26__["UserpermissionsComponent"]
       }, {
         path: "Carriers",
         component: _views_master_carrier_carrierlist_carrierlist_component__WEBPACK_IMPORTED_MODULE_17__["CarrierlistComponent"]
@@ -7078,11 +7318,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _services_user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ../../_services/user.service */
     "./src/app/_services/user.service.ts");
+    /* harmony import */
+
+
+    var _services_userpermission_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../../_services/userpermission.service */
+    "./src/app/_services/userpermission.service.ts");
 
     var DefaultLayoutComponent =
     /*#__PURE__*/
     function () {
-      function DefaultLayoutComponent(router, authenticationService, userService) {
+      function DefaultLayoutComponent(router, authenticationService, userService, userpermission) {
         var _this10 = this;
 
         _classCallCheck(this, DefaultLayoutComponent);
@@ -7090,9 +7336,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.router = router;
         this.authenticationService = authenticationService;
         this.userService = userService;
+        this.userpermission = userpermission;
         this.navItems = _nav__WEBPACK_IMPORTED_MODULE_2__["navItems"];
         this.sidebarMinimized = true;
         this.element = document.body;
+        this.Show_Dashboard = false;
+        this.Show_Orders = false;
+        this.Show_Scheduler = false;
+        this.Show_Dispatch = false;
+        this.Show_Invoice = false;
+        this.Show_Admin = false;
         this.changes = new MutationObserver(function (mutations) {
           _this10.sidebarMinimized = document.body.classList.contains("sidebar-minimized");
         });
@@ -7101,10 +7354,134 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         });
         this.authenticationService.currentUser.subscribe(function (x) {
           return _this10.currentUser = x;
-        });
+        }); // }
       }
 
       _createClass(DefaultLayoutComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.getPermissionsByUser(this.currentUser.userId);
+          console.log("current UserId:", this.currentUser.userId);
+          console.log("User Permissions:", this.UserPermissions); //if (this.UserPermissions.length > 0) {
+          //  for (var i = 0; i < this.UserPermissions.length; i++) {
+          //DASHBOARD menu show or hide
+          // if (this.UserPermissions[i].Modulename.toUpperCase() == "DASHBOARD") {
+          //   if (this.UserPermissions[i].fView == 1) {
+          //     this.Show_Dashboard = true;
+          //   } else {
+          //     this.Show_Dashboard = false;
+          //   }
+          // }
+          //ORDERS menu show or hide
+          // if (this.UserPermissions[i].Modulename.toUpperCase() == "DOINTAKE") {
+          //   if (this.UserPermissions[i].fView == 1) {
+          //     this.Show_Orders = true;
+          //   } else {
+          //     this.Show_Orders = false;
+          //   }
+          // }
+          //SHEDULER menu show or hide
+          // if (this.UserPermissions[i].Modulename.toUpperCase() == "SCHEDULING") {
+          //   if (this.UserPermissions[i].fView == 1) {
+          //     this.Show_Scheduler = true;
+          //   } else {
+          //     this.Show_Scheduler = false;
+          //   }
+          // }
+          //DISPATCH menu show or hide
+          //  if (this.UserPermissions[i].Modulename.toUpperCase() == "DISPATCHING") {
+          //   if (this.UserPermissions[i].fView == 1) {
+          //     this.Show_Dispatch = true;
+          //   } else {
+          //     this.Show_Dispatch = false;
+          //   }
+          // }
+          //ADMIN menu show or hide
+          //  if (this.UserPermissions[i].Modulename.toUpperCase() == "INVOICE") {
+          //   if (this.UserPermissions[i].fView == 1) {
+          //     this.Show_Invoice = true;
+          //   } else {
+          //     this.Show_Invoice = false;
+          //   }
+          // }
+          //ADMIN menu show or hide
+          //  if (this.UserPermissions[i].Modulename.toUpperCase() == "ADMIN") {
+          //   if (this.UserPermissions[i].fView == 1) {
+          //     this.Show_Admin = true;
+          //   } else {
+          //     this.Show_Admin = false;
+          //   }
+          // }
+          // }
+        }
+      }, {
+        key: "getPermissionsByUser",
+        value: function getPermissionsByUser(UserKey) {
+          var _this11 = this;
+
+          this.userpermission.getpermissionsByuserkey(UserKey).subscribe(function (data) {
+            _this11.UserPermissions = data;
+            console.log("User Permissions:", _this11.UserPermissions); //if (this.UserPermissions.length > 0) {
+
+            for (var i = 0; i < _this11.UserPermissions.length; i++) {
+              //DASHBOARD menu show or hide
+              if (_this11.UserPermissions[i].Modulename.toUpperCase() == "DASHBOARD") {
+                if (_this11.UserPermissions[i].fView == 1) {
+                  _this11.Show_Dashboard = true;
+                } else {
+                  _this11.Show_Dashboard = false;
+                }
+              } //ORDERS menu show or hide
+
+
+              if (_this11.UserPermissions[i].Modulename.toUpperCase() == "DOINTAKE") {
+                if (_this11.UserPermissions[i].fView == 1) {
+                  _this11.Show_Orders = true;
+                } else {
+                  _this11.Show_Orders = false;
+                }
+              } //SHEDULER menu show or hide
+
+
+              if (_this11.UserPermissions[i].Modulename.toUpperCase() == "SCHEDULING") {
+                if (_this11.UserPermissions[i].fView == 1) {
+                  _this11.Show_Scheduler = true;
+                } else {
+                  _this11.Show_Scheduler = false;
+                }
+              } //DISPATCH menu show or hide
+
+
+              if (_this11.UserPermissions[i].Modulename.toUpperCase() == "DISPATCHING") {
+                if (_this11.UserPermissions[i].fView == 1) {
+                  _this11.Show_Dispatch = true;
+                } else {
+                  _this11.Show_Dispatch = false;
+                }
+              } //ADMIN menu show or hide
+
+
+              if (_this11.UserPermissions[i].Modulename.toUpperCase() == "INVOICE") {
+                if (_this11.UserPermissions[i].fView == 1) {
+                  _this11.Show_Invoice = true;
+                } else {
+                  _this11.Show_Invoice = false;
+                }
+              } //ADMIN menu show or hide
+
+
+              if (_this11.UserPermissions[i].Modulename.toUpperCase() == "ADMIN") {
+                if (_this11.UserPermissions[i].fView == 1) {
+                  _this11.Show_Admin = true;
+                } else {
+                  _this11.Show_Admin = false;
+                }
+              }
+            }
+          }, function (error) {//this.showError("Error in getting user ", "Error");
+          });
+        }
+      }, {
         key: "changeColor",
         value: function changeColor(menu) {
           this.refreshColor();
@@ -7146,6 +7523,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: _services_authentication_service__WEBPACK_IMPORTED_MODULE_3__["AuthenticationService"]
       }, {
         type: _services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"]
+      }, {
+        type: _services_userpermission_service__WEBPACK_IMPORTED_MODULE_6__["UserpermissionService"]
       }];
     };
 
@@ -7154,7 +7533,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./default-layout.component.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/containers/default-layout/default-layout.component.html")).default
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], _services_authentication_service__WEBPACK_IMPORTED_MODULE_3__["AuthenticationService"], _services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"]])], DefaultLayoutComponent);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], _services_authentication_service__WEBPACK_IMPORTED_MODULE_3__["AuthenticationService"], _services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"], _services_userpermission_service__WEBPACK_IMPORTED_MODULE_6__["UserpermissionService"]])], DefaultLayoutComponent);
     /***/
   },
 
@@ -7484,10 +7863,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadAllCustomers",
         value: function loadAllCustomers() {
-          var _this11 = this;
+          var _this12 = this;
 
           this.Service.getCustomers().subscribe(function (data) {
-            return _this11.customers = data, _this11.count = _this11.customers.length;
+            return _this12.customers = data, _this12.count = _this12.customers.length;
           }, function (error) {
             return console.log(error);
           }, function () {
@@ -7499,14 +7878,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadAllCity",
         value: function loadAllCity() {
-          var _this12 = this;
+          var _this13 = this;
 
           this.cityService.GetCity().subscribe(function (data) {
-            return _this12.citylist = data;
+            return _this13.citylist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get citylist", _this12.citylist);
+            return console.log("Get citylist", _this13.citylist);
           });
         }
       }, {
@@ -7521,12 +7900,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadCustomerToEdit",
         value: function loadCustomerToEdit(customerkey) {
-          var _this13 = this;
+          var _this14 = this;
 
           this.Service.getCustomerById(customerkey).subscribe(function (customer_edit) {
-            _this13.customerUpdate = customer_edit.CustomerKey;
-            _this13.selectedCustomer = customer_edit;
-            _this13.customer = customer_edit;
+            _this14.customerUpdate = customer_edit.CustomerKey;
+            _this14.selectedCustomer = customer_edit;
+            _this14.customer = customer_edit;
           });
           this.show_customerInfo = true;
           this.show_addupdatecustomer = false;
@@ -7544,42 +7923,42 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "createCustomer",
         value: function createCustomer() {
-          var _this14 = this;
+          var _this15 = this;
 
           console.log("createCustomer", this.customer.Address);
           console.log("createCustomer", this.customer.address);
           this.customer.achrequired = this.isACHrequired;
           this.Service.createCustomer(this.customer).subscribe(function () {
-            _this14.show_addupdatecustomer = false;
-
-            _this14.showSuccess("Customer created successfully", "Create");
-
-            _this14.loadAllCustomers();
-
-            _this14.show_btnCreateCustomer = true;
-            _this14.customerUpdate = null;
-          }, function (error) {
-            _this14.showError("Error in Customer creation: " + error, "Error");
-          });
-        }
-      }, {
-        key: "updateCustomer",
-        value: function updateCustomer() {
-          var _this15 = this;
-
-          this.customer.achrequired = this.isACHrequired;
-          this.customer.CustomerKey = this.customerUpdate;
-          this.Service.updateCustomer(this.customer).subscribe(function () {
             _this15.show_addupdatecustomer = false;
 
-            _this15.showSuccess("Customer updated successfully", "Edit");
+            _this15.showSuccess("Customer created successfully", "Create");
 
             _this15.loadAllCustomers();
 
             _this15.show_btnCreateCustomer = true;
             _this15.customerUpdate = null;
           }, function (error) {
-            _this15.showError("Error in Customer update: " + error, "Error");
+            _this15.showError("Error in Customer creation: " + error, "Error");
+          });
+        }
+      }, {
+        key: "updateCustomer",
+        value: function updateCustomer() {
+          var _this16 = this;
+
+          this.customer.achrequired = this.isACHrequired;
+          this.customer.CustomerKey = this.customerUpdate;
+          this.Service.updateCustomer(this.customer).subscribe(function () {
+            _this16.show_addupdatecustomer = false;
+
+            _this16.showSuccess("Customer updated successfully", "Edit");
+
+            _this16.loadAllCustomers();
+
+            _this16.show_btnCreateCustomer = true;
+            _this16.customerUpdate = null;
+          }, function (error) {
+            _this16.showError("Error in Customer update: " + error, "Error");
           });
         }
       }, {
@@ -7664,14 +8043,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this16 = this;
+          var _this17 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.customers = _toConsumableArray(this.customers).sort(function (n1, n2) {
-            if (_this16.column == "CustId") {
+            if (_this17.column == "CustId") {
               if (n1.CustId > n2.CustId) {
                 return 1 * direction;
               } else if (n1.CustId < n2.CustId) {
@@ -7679,7 +8058,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this16.column == "CustName") {
+            if (_this17.column == "CustName") {
               if (n1.CustName > n2.CustName) {
                 return 1 * direction;
               } else if (n1.CustName < n2.CustName) {
@@ -7687,7 +8066,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this16.column == "CreditLimit") {
+            if (_this17.column == "CreditLimit") {
               if (n1.CreditLimit > n2.CreditLimit) {
                 return 1 * direction;
               } else if (n1.CreditLimit < n2.CreditLimit) {
@@ -7836,27 +8215,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadCustomers",
         value: function loadCustomers() {
-          var _this17 = this;
+          var _this18 = this;
 
           this.customerService.getCustomers().subscribe(function (data) {
-            return _this17.customers = _this17.customersFilter = data;
+            return _this18.customers = _this18.customersFilter = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get customers complete", _this17.customers);
+            return console.log("Get customers complete", _this18.customers);
           });
         }
       }, {
         key: "loadCity",
         value: function loadCity() {
-          var _this18 = this;
+          var _this19 = this;
 
           this.cityService.GetCity().subscribe(function (data) {
-            return _this18.Citylist = data;
+            return _this19.Citylist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get citylist", _this18.Citylist);
+            return console.log("Get citylist", _this19.Citylist);
           });
         }
       }, {
@@ -7884,15 +8263,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getRates",
         value: function getRates() {
-          var _this19 = this;
+          var _this20 = this;
 
           this.rateService.GetBaseRateByCustomer(this.CustomerKey).subscribe(function (data) {
-            _this19.ratesbycustomer = data;
+            _this20.ratesbycustomer = data;
 
             if (data.length > 0) {
-              _this19.btnEditShow = true, _this19.btnAddShow = false;
+              _this20.btnEditShow = true, _this20.btnAddShow = false;
             } else {
-              _this19.btnEditShow = false, _this19.btnAddShow = true;
+              _this20.btnEditShow = false, _this20.btnAddShow = true;
             }
           }, function (error) {
             return console.log(error);
@@ -7979,7 +8358,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "Submit",
         value: function Submit() {
-          var _this20 = this;
+          var _this21 = this;
 
           if (this.ratedetails.length == 0) {
             this.showWarning("No data to save!", "Base Rate");
@@ -7987,11 +8366,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }
 
           this.rateService.AddBaseRate(this.ratedetails).subscribe(function (data) {
-            _this20.showSuccess("Rate applied successfully!", "Customer Base Rate");
+            _this21.showSuccess("Rate applied successfully!", "Customer Base Rate");
 
-            _this20.getRates();
+            _this21.getRates();
 
-            _this20.clear();
+            _this21.clear();
           }, function (error) {
             return console.log(error);
           }, function () {
@@ -8040,14 +8419,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this21 = this;
+          var _this22 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.ratesbycustomer = _toConsumableArray(this.ratesbycustomer).sort(function (n1, n2) {
-            if (_this21.column == "cityname") {
+            if (_this22.column == "cityname") {
               if (n1.cityname > n2.cityname) {
                 return 1 * direction;
               } else if (n1.cityname < n2.cityname) {
@@ -8055,7 +8434,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this21.column == "unitprice") {
+            if (_this22.column == "unitprice") {
               if (n1.unitprice > n2.unitprice) {
                 return 1 * direction;
               } else if (n1.unitprice < n2.unitprice) {
@@ -8084,12 +8463,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getRatesforEdit",
         value: function getRatesforEdit() {
-          var _this22 = this;
+          var _this23 = this;
 
           this.rateService.GetBaseRateByCustomer(this.CustomerKey).subscribe(function (data) {
-            _this22.ratedetails = data;
-            _this22.showAddUpdate = true;
-            console.log("this.ratedetails", _this22.ratedetails);
+            _this23.ratedetails = data;
+            _this23.showAddUpdate = true;
+            console.log("this.ratedetails", _this23.ratedetails);
           }, function (error) {
             return console.log(error);
           }, function () {
@@ -8247,14 +8626,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadAllBrokers",
         value: function loadAllBrokers() {
-          var _this23 = this;
+          var _this24 = this;
 
           this.Service.GetBrokers().subscribe(function (data) {
-            return _this23.brokers = data;
+            return _this24.brokers = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get brokers", _this23.brokers);
+            return console.log("Get brokers", _this24.brokers);
           });
         }
       }, {
@@ -8266,13 +8645,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "EditBroker",
         value: function EditBroker(brokerKey) {
-          var _this24 = this;
+          var _this25 = this;
 
           this.Service.GetBrokerByID(brokerKey).subscribe(function (_updateVendor) {
-            _this24.dataModel = _updateVendor;
-            _this24.updateBroker = brokerKey;
-            _this24.message = null;
-            _this24.dataSaved = false;
+            _this25.dataModel = _updateVendor;
+            _this25.updateBroker = brokerKey;
+            _this25.message = null;
+            _this25.dataSaved = false;
           });
           this.isCancelbtnhidden = true;
           this.isResetbtnhidden = false;
@@ -8283,36 +8662,36 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "CreateBroker",
         value: function CreateBroker() {
-          var _this25 = this;
+          var _this26 = this;
 
           if (this.updateBroker == null) {
             this.Service.CreateBroker(this.dataModel).subscribe(function () {
-              _this25.dataSaved = true;
+              _this26.dataSaved = true;
 
-              _this25.showSuccess("saved successfully", "Create");
+              _this26.showSuccess("saved successfully", "Create");
 
-              _this25.loadAllBrokers();
+              _this26.loadAllBrokers();
 
-              _this25.updateBroker = null;
-              _this25.show_addupdateBroker = false;
-              _this25.show_btnCreateBroker = true;
+              _this26.updateBroker = null;
+              _this26.show_addupdateBroker = false;
+              _this26.show_btnCreateBroker = true;
             }, function (error) {
-              _this25.showError("Error in Creation", "Error");
+              _this26.showError("Error in Creation", "Error");
             });
           } else {
             this.dataModel.BrokerKey = this.updateBroker;
             this.Service.UpdateBroker(this.dataModel).subscribe(function () {
-              _this25.dataSaved = true;
+              _this26.dataSaved = true;
 
-              _this25.showSuccess("Updated successfully", "Update");
+              _this26.showSuccess("Updated successfully", "Update");
 
-              _this25.loadAllBrokers();
+              _this26.loadAllBrokers();
 
-              _this25.updateBroker = null;
-              _this25.show_addupdateBroker = false;
-              _this25.show_btnCreateBroker = true;
+              _this26.updateBroker = null;
+              _this26.show_addupdateBroker = false;
+              _this26.show_btnCreateBroker = true;
             }, function (error) {
-              _this25.showError("Error in Update", "Error");
+              _this26.showError("Error in Update", "Error");
             });
           }
         }
@@ -8401,14 +8780,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this26 = this;
+          var _this27 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.brokers = _toConsumableArray(this.brokers).sort(function (n1, n2) {
-            if (_this26.column == "BrokerId") {
+            if (_this27.column == "BrokerId") {
               if (n1.BrokerId > n2.BrokerId) {
                 return 1 * direction;
               } else if (n1.BrokerId < n2.BrokerId) {
@@ -8416,7 +8795,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this26.column == "BrokerName") {
+            if (_this27.column == "BrokerName") {
               if (n1.BrokerName > n2.BrokerName) {
                 return 1 * direction;
               } else if (n1.BrokerName < n2.BrokerName) {
@@ -8576,14 +8955,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadAllCarriers",
         value: function loadAllCarriers() {
-          var _this27 = this;
+          var _this28 = this;
 
           this.Service.GetCarriers().subscribe(function (data) {
-            return _this27.carriers = data;
+            return _this28.carriers = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get carriers", _this27.carriers);
+            return console.log("Get carriers", _this28.carriers);
           });
         }
       }, {
@@ -8595,13 +8974,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "EditCarrier",
         value: function EditCarrier(carrierKey) {
-          var _this28 = this;
+          var _this29 = this;
 
           this.Service.GetCarrierByID(carrierKey).subscribe(function (_updateCarrier) {
-            _this28.dataModel = _updateCarrier;
-            _this28.updateCarrier = carrierKey;
-            _this28.message = null;
-            _this28.dataSaved = false;
+            _this29.dataModel = _updateCarrier;
+            _this29.updateCarrier = carrierKey;
+            _this29.message = null;
+            _this29.dataSaved = false;
           });
           this.show_addupdateCarrier = false;
           this.show_CarrierInfo = true;
@@ -8612,34 +8991,34 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "CreateCarrier",
         value: function CreateCarrier() {
-          var _this29 = this;
+          var _this30 = this;
 
           if (this.updateCarrier == null) {
             this.Service.CreateCarrier(this.dataModel).subscribe(function () {
-              _this29.dataSaved = true;
+              _this30.dataSaved = true;
 
-              _this29.showSuccess("created successfully", "Create");
+              _this30.showSuccess("created successfully", "Create");
 
-              _this29.loadAllCarriers();
+              _this30.loadAllCarriers();
 
-              _this29.updateCarrier = null;
-              _this29.show_addupdateCarrier = false;
+              _this30.updateCarrier = null;
+              _this30.show_addupdateCarrier = false;
             }, function (error) {
-              _this29.showError("Error in Creation", "Error");
+              _this30.showError("Error in Creation", "Error");
             });
           } else {
             // this.dataModel.CarrierKey = this.updateCarrier;
             this.Service.UpdateCarrier(this.dataModel).subscribe(function () {
-              _this29.dataSaved = true;
+              _this30.dataSaved = true;
 
-              _this29.showSuccess("Updated successfully", "Updated");
+              _this30.showSuccess("Updated successfully", "Updated");
 
-              _this29.loadAllCarriers();
+              _this30.loadAllCarriers();
 
-              _this29.updateCarrier = null;
-              _this29.show_addupdateCarrier = false;
+              _this30.updateCarrier = null;
+              _this30.show_addupdateCarrier = false;
             }, function (error) {
-              _this29.showError("Error in update", "Error");
+              _this30.showError("Error in update", "Error");
             });
           }
         }
@@ -8726,14 +9105,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this30 = this;
+          var _this31 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.carriers = _toConsumableArray(this.carriers).sort(function (n1, n2) {
-            if (_this30.column == "CarrierName") {
+            if (_this31.column == "CarrierName") {
               if (n1.CarrierName > n2.CarrierName) {
                 return 1 * direction;
               } else if (n1.CarrierName < n2.CarrierName) {
@@ -8741,7 +9120,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this30.column == "ScacCode") {
+            if (_this31.column == "ScacCode") {
               if (n1.ScacCode > n2.ScacCode) {
                 return 1 * direction;
               } else if (n1.ScacCode < n2.ScacCode) {
@@ -8749,7 +9128,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this30.column == "CarrierId") {
+            if (_this31.column == "CarrierId") {
               if (n1.CarrierId > n2.CarrierId) {
                 return 1 * direction;
               } else if (n1.CarrierId < n2.CarrierId) {
@@ -8892,64 +9271,64 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadAllItems",
         value: function loadAllItems() {
-          var _this31 = this;
+          var _this32 = this;
 
           this.cityService.GetCity().subscribe(function (data) {
-            return _this31.citylist = data;
+            return _this32.citylist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get citylist", _this31.citylist);
+            return console.log("Get citylist", _this32.citylist);
           });
         }
       }, {
         key: "getcityById",
         value: function getcityById(cityKey) {
-          var _this32 = this;
+          var _this33 = this;
 
           this.cityService.GetCityByID(cityKey).subscribe(function (_userbyId) {
-            _this32.dataModel = _userbyId;
-            _this32.itemKey = cityKey;
-            _this32.show_DivInfo = true;
-            _this32.show_lblEdit = false;
-            _this32.show_lblAdd = false;
-            _this32.show_DivAddUpdate = false;
-            _this32.show_btnAdd = true;
-            console.log("user by Id", _this32.dataModel);
+            _this33.dataModel = _userbyId;
+            _this33.itemKey = cityKey;
+            _this33.show_DivInfo = true;
+            _this33.show_lblEdit = false;
+            _this33.show_lblAdd = false;
+            _this33.show_DivAddUpdate = false;
+            _this33.show_btnAdd = true;
+            console.log("user by Id", _this33.dataModel);
           }, function (error) {
-            _this32.showError("Error in getting user ", "Error");
+            _this33.showError("Error in getting user ", "Error");
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this33 = this;
+          var _this34 = this;
 
           if (this.itemKey == null) {
             this.cityService.AddCity(this.dataModel).subscribe(function () {
-              _this33.showSuccess("created successfully", "Create");
+              _this34.showSuccess("created successfully", "Create");
 
-              _this33.loadAllItems();
+              _this34.loadAllItems();
 
-              _this33.itemKey = null;
-              _this33.show_DivAddUpdate = false;
-              _this33.show_btnAdd = true;
-              _this33.show_lblAdd = false;
+              _this34.itemKey = null;
+              _this34.show_DivAddUpdate = false;
+              _this34.show_btnAdd = true;
+              _this34.show_lblAdd = false;
             }, function (error) {
-              _this33.showError("Error in Creation", "Error");
+              _this34.showError("Error in Creation", "Error");
             });
           } else {
             this.cityService.UpdateCity(this.dataModel).subscribe(function () {
-              _this33.showSuccess("Updated successfully", "Update");
+              _this34.showSuccess("Updated successfully", "Update");
 
-              _this33.loadAllItems();
+              _this34.loadAllItems();
 
-              _this33.itemKey = null;
-              _this33.show_DivAddUpdate = false;
-              _this33.show_btnAdd = true;
-              _this33.show_lblEdit = false;
+              _this34.itemKey = null;
+              _this34.show_DivAddUpdate = false;
+              _this34.show_btnAdd = true;
+              _this34.show_lblEdit = false;
             }, function (error) {
-              _this33.showError("Error in Update", "Error");
+              _this34.showError("Error in Update", "Error");
             });
           }
         }
@@ -9034,14 +9413,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this34 = this;
+          var _this35 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.citylist = _toConsumableArray(this.citylist).sort(function (n1, n2) {
-            if (_this34.column == "cityid") {
+            if (_this35.column == "cityid") {
               if (n1.cityid > n2.cityid) {
                 return 1 * direction;
               } else if (n1.cityid < n2.cityid) {
@@ -9049,7 +9428,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this34.column == "cityname") {
+            if (_this35.column == "cityname") {
               if (n1.cityname > n2.cityname) {
                 return 1 * direction;
               } else if (n1.cityname < n2.cityname) {
@@ -9216,10 +9595,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadAllCompanies",
         value: function loadAllCompanies() {
-          var _this35 = this;
+          var _this36 = this;
 
           this.Service.getCompanies().subscribe(function (data) {
-            return _this35.companies = data;
+            return _this36.companies = data;
           }, function (error) {
             return console.log(error);
           }, function () {
@@ -9229,14 +9608,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadAllCity",
         value: function loadAllCity() {
-          var _this36 = this;
+          var _this37 = this;
 
           this.cityService.GetCity().subscribe(function (data) {
-            return _this36.citylist = data;
+            return _this37.citylist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get citylist", _this36.citylist);
+            return console.log("Get citylist", _this37.citylist);
           });
         }
       }, {
@@ -9251,12 +9630,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getCompanydataToEdit",
         value: function getCompanydataToEdit(companykey) {
-          var _this37 = this;
+          var _this38 = this;
 
           this.Service.getCompanyById(companykey).subscribe(function (company_edit) {
-            _this37.companyUpdate = company_edit.compkey;
-            _this37.selectedCompany = company_edit;
-            _this37.company = company_edit;
+            _this38.companyUpdate = company_edit.compkey;
+            _this38.selectedCompany = company_edit;
+            _this38.company = company_edit;
           });
           this.show_companyInfo = true;
           this.show_addupdateCompany = false;
@@ -9274,38 +9653,38 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "createCompany",
         value: function createCompany() {
-          var _this38 = this;
-
-          this.Service.createCompany(this.company).subscribe(function () {
-            _this38.show_addupdateCompany = false;
-
-            _this38.showSuccess("Company details created successfully", "Create");
-
-            _this38.loadAllCompanies();
-
-            _this38.show_btnCreateCompany = true;
-            _this38.companyUpdate = null;
-          }, function (error) {
-            _this38.showError("Error in Company detail creation: " + error, "Error");
-          });
-        }
-      }, {
-        key: "updateCompany",
-        value: function updateCompany() {
           var _this39 = this;
 
-          this.company.compkey = this.companyUpdate;
-          this.Service.updateCompany(this.company).subscribe(function () {
+          this.Service.createCompany(this.company).subscribe(function () {
             _this39.show_addupdateCompany = false;
 
-            _this39.showSuccess("Customer updated successfully", "Edit");
+            _this39.showSuccess("Company details created successfully", "Create");
 
             _this39.loadAllCompanies();
 
             _this39.show_btnCreateCompany = true;
             _this39.companyUpdate = null;
           }, function (error) {
-            _this39.showError("Error in Customer update: " + error, "Error");
+            _this39.showError("Error in Company detail creation: " + error, "Error");
+          });
+        }
+      }, {
+        key: "updateCompany",
+        value: function updateCompany() {
+          var _this40 = this;
+
+          this.company.compkey = this.companyUpdate;
+          this.Service.updateCompany(this.company).subscribe(function () {
+            _this40.show_addupdateCompany = false;
+
+            _this40.showSuccess("Customer updated successfully", "Edit");
+
+            _this40.loadAllCompanies();
+
+            _this40.show_btnCreateCompany = true;
+            _this40.companyUpdate = null;
+          }, function (error) {
+            _this40.showError("Error in Customer update: " + error, "Error");
           });
         }
       }, {
@@ -9380,14 +9759,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this40 = this;
+          var _this41 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.companies = _toConsumableArray(this.companies).sort(function (n1, n2) {
-            if (_this40.column == "compname") {
+            if (_this41.column == "compname") {
               if (n1.compname > n2.compname) {
                 return 1 * direction;
               } else if (n1.compname < n2.compname) {
@@ -9395,7 +9774,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this40.column == "compid") {
+            if (_this41.column == "compid") {
               if (n1.compid > n2.compid) {
                 return 1 * direction;
               } else if (n1.compid < n2.compid) {
@@ -9551,30 +9930,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(ListdriverComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this41 = this;
+          var _this42 = this;
 
           // this.driverModel = new Driver();
           // this.driverModel.Address = new Address();
           this.master.getCarrierList().subscribe(function (data) {
-            return _this41.carrierlist = data;
+            return _this42.carrierlist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get carrierlist", _this41.carrierlist);
+            return console.log("Get carrierlist", _this42.carrierlist);
           });
           this.loadAlldrivers();
         }
       }, {
         key: "loadAlldrivers",
         value: function loadAlldrivers() {
-          var _this42 = this;
+          var _this43 = this;
 
           this.Service.getDrivers().subscribe(function (data) {
-            return _this42.drivers = data;
+            return _this43.drivers = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get drivers", _this42.drivers);
+            return console.log("Get drivers", _this43.drivers);
           });
         }
       }, {
@@ -9587,13 +9966,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadCustomerToEdit",
         value: function loadCustomerToEdit(driverkey) {
-          var _this43 = this;
+          var _this44 = this;
 
           this.Service.getDriverById(driverkey).subscribe(function (driver_edit) {
-            _this43.driverModel = driver_edit;
-            _this43.driverUpdate = driverkey;
-            _this43.message = null;
-            _this43.dataSaved = false;
+            _this44.driverModel = driver_edit;
+            _this44.driverUpdate = driverkey;
+            _this44.message = null;
+            _this44.dataSaved = false;
           });
           this.show_addupdatedriver = false;
           this.show_DriverInfo = true;
@@ -9604,36 +9983,36 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "CreateDriver",
         value: function CreateDriver() {
-          var _this44 = this;
+          var _this45 = this;
 
           if (this.driverUpdate == null) {
             this.Service.createDriver(this.driverModel).subscribe(function () {
-              _this44.dataSaved = true;
-              _this44.message = "Driver Record saved Successfully";
+              _this45.dataSaved = true;
+              _this45.message = "Driver Record saved Successfully";
 
-              _this44.showSuccess("created successfully", "Create");
+              _this45.showSuccess("created successfully", "Create");
 
-              _this44.loadAlldrivers();
+              _this45.loadAlldrivers();
 
-              _this44.driverUpdate = null;
-              _this44.show_addupdatedriver = false;
+              _this45.driverUpdate = null;
+              _this45.show_addupdatedriver = false;
             }, function (error) {
-              _this44.showError("Error in Creation", "Error");
+              _this45.showError("Error in Creation", "Error");
             });
           } else {
             // this.driverModel.DriverKey = this.driverUpdate;
             this.Service.updateDriver(this.driverModel).subscribe(function () {
-              _this44.dataSaved = true;
-              _this44.message = "Driver Record Updated Successfully";
+              _this45.dataSaved = true;
+              _this45.message = "Driver Record Updated Successfully";
 
-              _this44.showSuccess("Updated successfully", "Update");
+              _this45.showSuccess("Updated successfully", "Update");
 
-              _this44.loadAlldrivers();
+              _this45.loadAlldrivers();
 
-              _this44.driverUpdate = null;
-              _this44.show_addupdatedriver = false;
+              _this45.driverUpdate = null;
+              _this45.show_addupdatedriver = false;
             }, function (error) {
-              _this44.showError("Error in Update", "Error");
+              _this45.showError("Error in Update", "Error");
             });
           }
         }
@@ -9725,14 +10104,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this45 = this;
+          var _this46 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.drivers = _toConsumableArray(this.drivers).sort(function (n1, n2) {
-            if (_this45.column == "DriverId") {
+            if (_this46.column == "DriverId") {
               if (n1.DriverId > n2.DriverId) {
                 return 1 * direction;
               } else if (n1.DriverId < n2.DriverId) {
@@ -9740,7 +10119,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this45.column == "FirstName") {
+            if (_this46.column == "FirstName") {
               if (n1.FirstName > n2.FirstName) {
                 return 1 * direction;
               } else if (n1.FirstName < n2.FirstName) {
@@ -9748,7 +10127,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this45.column == "LastName") {
+            if (_this46.column == "LastName") {
               if (n1.LastName > n2.LastName) {
                 return 1 * direction;
               } else if (n1.LastName < n2.LastName) {
@@ -9756,7 +10135,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this45.column == "DriversLicenseNo") {
+            if (_this46.column == "DriversLicenseNo") {
               if (n1.DriversLicenseNo > n2.DriversLicenseNo) {
                 return 1 * direction;
               } else if (n1.DriversLicenseNo < n2.DriversLicenseNo) {
@@ -9764,7 +10143,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this45.column == "LicenseExpiryDate") {
+            if (_this46.column == "LicenseExpiryDate") {
               if (n1.LicenseExpiryDate > n2.LicenseExpiryDate) {
                 return 1 * direction;
               } else if (n1.LicenseExpiryDate < n2.LicenseExpiryDate) {
@@ -9902,78 +10281,78 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(ItemlistComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this46 = this;
+          var _this47 = this;
 
           this.itmService.GetItemTypes().subscribe(function (data) {
-            return _this46.ItemTypes = data;
+            return _this47.ItemTypes = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get ItemTypes", _this46.ItemTypes);
+            return console.log("Get ItemTypes", _this47.ItemTypes);
           });
           this.loadAllItems();
         }
       }, {
         key: "loadAllItems",
         value: function loadAllItems() {
-          var _this47 = this;
+          var _this48 = this;
 
           this.itmService.GetItems().subscribe(function (data) {
-            return _this47.Items = data;
+            return _this48.Items = data;
           }, function (error) {
-            _this47.showError("Error in getting All Items ", "Error");
+            _this48.showError("Error in getting All Items ", "Error");
           }, function () {
-            return console.log("Items list", _this47.Items);
+            return console.log("Items list", _this48.Items);
           });
         }
       }, {
         key: "getItemById",
         value: function getItemById(itemKey) {
-          var _this48 = this;
+          var _this49 = this;
 
           this.itmService.GetItemByID(itemKey).subscribe(function (_userbyId) {
-            _this48.dataModel = _userbyId;
-            _this48.itemKey = itemKey;
-            _this48.show_DivInfo = true;
-            _this48.show_lblEdit = false;
-            _this48.show_lblAdd = false;
-            _this48.show_DivAddUpdate = false;
-            _this48.show_btnAdd = true;
-            console.log("user by Id", _this48.dataModel);
+            _this49.dataModel = _userbyId;
+            _this49.itemKey = itemKey;
+            _this49.show_DivInfo = true;
+            _this49.show_lblEdit = false;
+            _this49.show_lblAdd = false;
+            _this49.show_DivAddUpdate = false;
+            _this49.show_btnAdd = true;
+            console.log("user by Id", _this49.dataModel);
           }, function (error) {
-            _this48.showError("Error in getting user ", "Error");
+            _this49.showError("Error in getting user ", "Error");
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this49 = this;
+          var _this50 = this;
 
           if (this.itemKey == null) {
             this.itmService.CreateItem(this.dataModel).subscribe(function () {
-              _this49.showSuccess("created successfully", "Create");
+              _this50.showSuccess("created successfully", "Create");
 
-              _this49.loadAllItems();
+              _this50.loadAllItems();
 
-              _this49.itemKey = null;
-              _this49.show_DivAddUpdate = false;
-              _this49.show_btnAdd = true;
-              _this49.show_lblAdd = false;
+              _this50.itemKey = null;
+              _this50.show_DivAddUpdate = false;
+              _this50.show_btnAdd = true;
+              _this50.show_lblAdd = false;
             }, function (error) {
-              _this49.showError("Error in Creation", "Error");
+              _this50.showError("Error in Creation", "Error");
             });
           } else {
             this.itmService.UpdateItem(this.dataModel).subscribe(function () {
-              _this49.showSuccess("Updated successfully", "Update");
+              _this50.showSuccess("Updated successfully", "Update");
 
-              _this49.loadAllItems();
+              _this50.loadAllItems();
 
-              _this49.itemKey = null;
-              _this49.show_DivAddUpdate = false;
-              _this49.show_btnAdd = true;
-              _this49.show_lblEdit = false;
+              _this50.itemKey = null;
+              _this50.show_DivAddUpdate = false;
+              _this50.show_btnAdd = true;
+              _this50.show_lblEdit = false;
             }, function (error) {
-              _this49.showError("Error in Update", "Error");
+              _this50.showError("Error in Update", "Error");
             });
           }
         }
@@ -10058,14 +10437,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this50 = this;
+          var _this51 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.Items = _toConsumableArray(this.Items).sort(function (n1, n2) {
-            if (_this50.column == "itemid") {
+            if (_this51.column == "itemid") {
               if (n1.itemid > n2.itemid) {
                 return 1 * direction;
               } else if (n1.itemid < n2.itemid) {
@@ -10073,7 +10452,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this50.column == "description") {
+            if (_this51.column == "description") {
               if (n1.description > n2.description) {
                 return 1 * direction;
               } else if (n1.description < n2.description) {
@@ -10238,73 +10617,71 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadAllCustomers",
         value: function loadAllCustomers() {
-          var _this51 = this;
+          var _this52 = this;
 
           this.customerService.getCustomers().subscribe(function (data) {
-            return _this51.customers = data;
+            return _this52.customers = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get customers complete", _this51.customers);
+            return console.log("Get customers complete", _this52.customers);
           });
         }
       }, {
         key: "loadAllCustomerRates",
         value: function loadAllCustomerRates() {
-          var _this52 = this;
+          var _this53 = this;
 
           this.rateService.GetRates().subscribe(function (data) {
-            return _this52.rates = data;
+            return _this53.rates = data;
           }, function (error) {
-            _this52.showError("Error in getting All Items ", "Error");
+            _this53.showError("Error in getting All Items ", "Error");
           }, function () {
-            return console.log("Rate list", _this52.rates);
+            return console.log("Rate list", _this53.rates);
           });
         }
       }, {
         key: "getItems",
         value: function getItems() {
-          var _this53 = this;
+          var _this54 = this;
 
           this.itmService.GetItems().subscribe(function (data) {
-            return _this53.item = data;
+            return _this54.item = data;
           }, function (error) {
-            _this53.showError("Error in getting All Items ", "Error");
+            _this54.showError("Error in getting All Items ", "Error");
           }, function () {
-            return console.log("Items list", _this53.ratesheet);
+            return console.log("Items list", _this54.ratesheet);
           });
         }
       }, {
         key: "GetRateByCustomer",
         value: function GetRateByCustomer() {
-          var _this54 = this;
+          var _this55 = this;
 
           if (this.CustomerKey == null || this.CustomerKey == undefined) {
             return;
           }
 
           this.rateService.GetRateByCustomer(this.CustomerKey).subscribe(function (_ratesByCustomer) {
-            _this54.dataModel = _ratesByCustomer;
-            _this54.show_DivInfo = true;
-            _this54.show_DivAddUpdate = false;
-            console.log("user by Id", _this54.dataModel);
+            _this55.dataModel = _ratesByCustomer;
+            _this55.show_DivInfo = true;
+            _this55.show_DivAddUpdate = false;
+            console.log("user by Id", _this55.dataModel);
           }, function (error) {
-            _this54.showError("Error in getting user ", "Error");
+            _this55.showError("Error in getting user ", "Error");
           });
           console.log("Rates By Customer", this.ratesbycustomer); //this.dataModel = this.ratesbycustomer
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this55 = this;
+          var _this56 = this;
 
           console.log("On Submit Data", this.item);
-          console.log("Ratesheet list", this.ratesheet);
-
-          if (this.addModel.customerkey == "0") {
-            this.showError("Please select Customer!", "Customer");
-            return;
-          }
+          console.log("Ratesheet list", this.ratesheet); // if (this.addModel.customerkey == "0") {
+          //   this.showError("Please select Customer!", "Customer");
+          //   return;
+          // }
 
           if (this.ratesheet.length == 0) {
             this.showError("No Rate-Items found to add!", "Customer");
@@ -10318,27 +10695,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           if (this.itemKey == null) {
             this.rateService.AddRate(this.addModel).subscribe(function () {
-              _this55.showSuccess("created successfully", "Create");
+              _this56.showSuccess("created successfully", "Create");
 
-              _this55.loadAllCustomerRates();
+              _this56.loadAllCustomerRates();
 
-              _this55.itemKey = null;
-              _this55.show_DivAddUpdate = false;
-              _this55.show_lblAdd = false;
+              _this56.itemKey = null;
+              _this56.show_DivAddUpdate = false;
+              _this56.show_lblAdd = false;
             }, function (error) {
-              _this55.showError("Error in Creation", "Error");
+              _this56.showError("Error in Creation", "Error");
             });
           } else {
             this.rateService.UpdateRate(this.dataModel).subscribe(function () {
-              _this55.showSuccess("Updated successfully", "Update");
+              _this56.showSuccess("Updated successfully", "Update");
 
-              _this55.loadAllCustomerRates();
+              _this56.loadAllCustomerRates();
 
-              _this55.itemKey = null;
-              _this55.show_DivAddUpdate = false;
-              _this55.show_lblEdit = false;
+              _this56.itemKey = null;
+              _this56.show_DivAddUpdate = false;
+              _this56.show_lblEdit = false;
             }, function (error) {
-              _this55.showError("Error in Update", "Error");
+              _this56.showError("Error in Update", "Error");
             });
           }
         }
@@ -10535,22 +10912,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "updateRate",
         value: function updateRate() {
-          var _this56 = this;
+          var _this57 = this;
 
           this.rateService.UpdateRate(this.dataModel).subscribe(function () {
-            _this56.showSuccess("Updated successfully", "Update");
+            _this57.showSuccess("Updated successfully", "Update");
 
-            _this56.loadAllCustomerRates();
+            _this57.loadAllCustomerRates();
 
-            _this56.show_DivInfo = false;
-            _this56.dataModel = null;
-            _this56.CustomerKey = null;
-            _this56.selectedCustomer = null;
-            _this56.itemKey = null;
-            _this56.show_DivAddUpdate = false;
-            _this56.show_lblEdit = false;
+            _this57.show_DivInfo = false;
+            _this57.dataModel = null;
+            _this57.CustomerKey = null;
+            _this57.selectedCustomer = null;
+            _this57.itemKey = null;
+            _this57.show_DivAddUpdate = false;
+            _this57.show_lblEdit = false;
           }, function (error) {
-            _this56.showError("Error in Update", "Error");
+            _this57.showError("Error in Update", "Error");
           });
         }
       }, {
@@ -10588,14 +10965,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this57 = this;
+          var _this58 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.ratesbycustomer = _toConsumableArray(this.ratesbycustomer).sort(function (n1, n2) {
-            if (_this57.column == "description") {
+            if (_this58.column == "description") {
               if (n1.description > n2.description) {
                 return 1 * direction;
               } else if (n1.description < n2.description) {
@@ -10603,7 +10980,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this57.column == "unitprice") {
+            if (_this58.column == "unitprice") {
               if (n1.unitprice > n2.unitprice) {
                 return 1 * direction;
               } else if (n1.unitprice < n2.unitprice) {
@@ -10751,38 +11128,38 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadAllUsers",
         value: function loadAllUsers() {
-          var _this58 = this;
+          var _this59 = this;
 
           this.usrService.getAll().subscribe(function (data) {
-            return _this58.Users = data;
+            return _this59.Users = data;
           }, function (error) {
-            _this58.showError("Error in getting All user ", "Error");
+            _this59.showError("Error in getting All user ", "Error");
           }, function () {
-            return console.log("Users list", _this58.Users);
+            return console.log("Users list", _this59.Users);
           });
         }
       }, {
         key: "getUserById",
         value: function getUserById(userKey) {
-          var _this59 = this;
+          var _this60 = this;
 
           this.usrService.getUserById(userKey).subscribe(function (_userbyId) {
-            _this59.dataModel = _userbyId;
-            _this59.userKey = userKey;
-            _this59.show_UserInfo = true;
-            _this59.show_lblEditUserDetail = false;
-            _this59.show_lblAddNewUser = false;
-            _this59.show_addupdateUser = false;
-            _this59.show_btnCreateUser = true;
-            console.log("user by Id", _this59.dataModel);
+            _this60.dataModel = _userbyId;
+            _this60.userKey = userKey;
+            _this60.show_UserInfo = true;
+            _this60.show_lblEditUserDetail = false;
+            _this60.show_lblAddNewUser = false;
+            _this60.show_addupdateUser = false;
+            _this60.show_btnCreateUser = true;
+            console.log("user by Id", _this60.dataModel);
           }, function (error) {
-            _this59.showError("Error in getting user ", "Error");
+            _this60.showError("Error in getting user ", "Error");
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this60 = this;
+          var _this61 = this;
 
           // if (
           //   this.dataModel.UserId == null ||
@@ -10812,29 +11189,29 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           // return;
           if (this.userKey == null) {
             this.usrService.CreateUser(this.dataModel).subscribe(function () {
-              _this60.showSuccess("created successfully", "Create");
+              _this61.showSuccess("created successfully", "Create");
 
-              _this60.loadAllUsers();
+              _this61.loadAllUsers();
 
-              _this60.userKey = null;
-              _this60.show_addupdateUser = false;
-              _this60.show_btnCreateUser = true;
-              _this60.show_lblAddNewUser = false;
+              _this61.userKey = null;
+              _this61.show_addupdateUser = false;
+              _this61.show_btnCreateUser = true;
+              _this61.show_lblAddNewUser = false;
             }, function (error) {
-              _this60.showError("Error in Creation", "Error");
+              _this61.showError("Error in Creation", "Error");
             });
           } else {
             this.usrService.UpdateUser(this.dataModel).subscribe(function () {
-              _this60.showSuccess("Updated successfully", "Update");
+              _this61.showSuccess("Updated successfully", "Update");
 
-              _this60.loadAllUsers();
+              _this61.loadAllUsers();
 
-              _this60.userKey = null;
-              _this60.show_addupdateUser = false;
-              _this60.show_btnCreateUser = true;
-              _this60.show_lblEditUserDetail = false;
+              _this61.userKey = null;
+              _this61.show_addupdateUser = false;
+              _this61.show_btnCreateUser = true;
+              _this61.show_lblEditUserDetail = false;
             }, function (error) {
-              _this60.showError("Error in Update", "Error");
+              _this61.showError("Error in Update", "Error");
             });
           }
         }
@@ -11055,14 +11432,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadAllVendors",
         value: function loadAllVendors() {
-          var _this61 = this;
+          var _this62 = this;
 
           this.Service.getVendors().subscribe(function (data) {
-            return _this61.vendors = data;
+            return _this62.vendors = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get vendors", _this61.vendors);
+            return console.log("Get vendors", _this62.vendors);
           });
         }
       }, {
@@ -11073,47 +11450,47 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getVendorById",
         value: function getVendorById(vendorkey) {
-          var _this62 = this;
+          var _this63 = this;
 
           this.Service.GetVendorByID(vendorkey).subscribe(function (_updateVendor) {
-            _this62.dataModel = _updateVendor;
-            _this62.key = vendorkey;
-            _this62.show_divAddUpdate = false;
-            _this62.show_divInfo = true;
-            _this62.isCancelbtnhidden = true;
-            _this62.isResetbtnhidden = false;
-            console.log("Vendors list", _this62.dataModel);
+            _this63.dataModel = _updateVendor;
+            _this63.key = vendorkey;
+            _this63.show_divAddUpdate = false;
+            _this63.show_divInfo = true;
+            _this63.isCancelbtnhidden = true;
+            _this63.isResetbtnhidden = false;
+            console.log("Vendors list", _this63.dataModel);
           }, function (error) {
-            _this62.showError("Error", "Error");
+            _this63.showError("Error", "Error");
           });
         }
       }, {
         key: "CreateVendor",
         value: function CreateVendor() {
-          var _this63 = this;
+          var _this64 = this;
 
           if (this.key == null) {
             this.Service.createVendor(this.dataModel).subscribe(function () {
-              _this63.loadAllVendors();
+              _this64.loadAllVendors();
 
-              _this63.showSuccess("created successfully", "Create");
+              _this64.showSuccess("created successfully", "Create");
 
-              _this63.key = null;
-              _this63.show_divAddUpdate = false;
+              _this64.key = null;
+              _this64.show_divAddUpdate = false;
             }, function (error) {
-              _this63.showError("Error in vendor creation", "Error");
+              _this64.showError("Error in vendor creation", "Error");
             });
           } else {
             this.dataModel.vendkey = this.key;
             this.Service.updateVendor(this.dataModel).subscribe(function () {
-              _this63.loadAllVendors();
+              _this64.loadAllVendors();
 
-              _this63.showSuccess("Updated successfully", "Update");
+              _this64.showSuccess("Updated successfully", "Update");
 
-              _this63.key = null;
-              _this63.show_divAddUpdate = false;
+              _this64.key = null;
+              _this64.show_divAddUpdate = false;
             }, function (error) {
-              _this63.showError("Error in vendor update", "Error");
+              _this64.showError("Error in vendor update", "Error");
             });
           }
         }
@@ -11232,6 +11609,444 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
+  "./src/app/views/_master/userpermissions/userpermissions.component.scss":
+  /*!******************************************************************************!*\
+    !*** ./src/app/views/_master/userpermissions/userpermissions.component.scss ***!
+    \******************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppViews_masterUserpermissionsUserpermissionsComponentScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3ZpZXdzL19tYXN0ZXIvdXNlcnBlcm1pc3Npb25zL3VzZXJwZXJtaXNzaW9ucy5jb21wb25lbnQuc2NzcyJ9 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/views/_master/userpermissions/userpermissions.component.ts":
+  /*!****************************************************************************!*\
+    !*** ./src/app/views/_master/userpermissions/userpermissions.component.ts ***!
+    \****************************************************************************/
+
+  /*! exports provided: UserpermissionsComponent */
+
+  /***/
+  function srcAppViews_masterUserpermissionsUserpermissionsComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "UserpermissionsComponent", function () {
+      return UserpermissionsComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _services_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../../../_services/user.service */
+    "./src/app/_services/user.service.ts");
+    /* harmony import */
+
+
+    var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ngx-toastr */
+    "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+    /* harmony import */
+
+
+    var _services_userpermission_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../../../_services/userpermission.service */
+    "./src/app/_services/userpermission.service.ts");
+
+    var UserpermissionsComponent =
+    /*#__PURE__*/
+    function () {
+      function UserpermissionsComponent(usrService, toastr, userpermission) {
+        _classCallCheck(this, UserpermissionsComponent);
+
+        this.usrService = usrService;
+        this.toastr = toastr;
+        this.userpermission = userpermission;
+        this.show_DivAddUpdate = false;
+        this.show_DivInfo = false;
+        this.show_btnAdd = false;
+        this.show_btnEdit = false;
+        this.show_AddCancel = false;
+      }
+
+      _createClass(UserpermissionsComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.loadAllUsers();
+          this.loadMenus();
+          this.loadRoles();
+        }
+      }, {
+        key: "loadAllUsers",
+        value: function loadAllUsers() {
+          var _this65 = this;
+
+          this.usrService.getAll().subscribe(function (data) {
+            return _this65.Users = data;
+          }, function (error) {
+            _this65.showError("Error in getting All user ", "Error");
+          }, function () {
+            return console.log("Users list", _this65.Users);
+          });
+        }
+      }, {
+        key: "loadMenus",
+        value: function loadMenus() {
+          var _this66 = this;
+
+          this.userpermission.getMenus().subscribe(function (data) {
+            _this66.AddUpdateUserPermissions = _this66.temp_AddUpdateUserPermissions = data;
+            console.log("AddUpdateUserPermissions ", _this66.AddUpdateUserPermissions);
+          }, function (error) {
+            _this66.showError("Error in getting user ", "Error");
+          });
+        }
+      }, {
+        key: "loadRoles",
+        value: function loadRoles() {
+          var _this67 = this;
+
+          this.userpermission.getRoles().subscribe(function (data) {
+            return _this67.roles = data;
+          }, function (error) {
+            _this67.showError("Error in getting Roles ", "Error");
+          }, function () {
+            return console.log("User roles", _this67.roles);
+          });
+        }
+      }, {
+        key: "fnNew_click",
+        value: function fnNew_click() {
+          this.IsNew = true;
+          this.show_DivAddUpdate = true;
+          this.show_DivInfo = false;
+          this.show_AddCancel = true;
+        }
+      }, {
+        key: "fnUpdate_click",
+        value: function fnUpdate_click() {
+          this.IsNew = false;
+          this.show_DivAddUpdate = true;
+          this.show_DivInfo = false;
+          this.show_AddCancel = true;
+          this.AddUpdateUserPermissions = this.UserPermissions;
+        }
+      }, {
+        key: "cancel",
+        value: function cancel() {
+          this.show_AddCancel = false;
+          this.show_DivAddUpdate = false;
+          this.show_DivInfo = true;
+          this.AddUpdateUserPermissions = null;
+          this.AddUpdateUserPermissions = new Array();
+        }
+      }, {
+        key: "clear",
+        value: function clear() {
+          this.show_btnEdit = false;
+          this.show_btnAdd = false;
+          this.show_DivAddUpdate = false;
+          this.show_DivInfo = false;
+          this.show_DivAddUpdate = false;
+          this.show_AddCancel = false;
+        }
+      }, {
+        key: "drpUsers_ChangedEvent",
+        value: function drpUsers_ChangedEvent(UserKey) {
+          if (UserKey == 0) {
+            this.clear();
+            return;
+          }
+
+          this.userKey = UserKey;
+          this.getUserRoleByUserkey(UserKey);
+          this.getPermissionsByUser(UserKey);
+        }
+      }, {
+        key: "drpRoles_ChangedEvent",
+        value: function drpRoles_ChangedEvent(RoleKey) {
+          if (RoleKey == 0) {
+            return;
+          }
+
+          this.roleKey = RoleKey;
+        }
+      }, {
+        key: "getPermissionsByUser",
+        value: function getPermissionsByUser(UserKey) {
+          var _this68 = this;
+
+          this.userpermission.getpermissionsByuserkey(UserKey).subscribe(function (data) {
+            _this68.UserPermissions = data;
+            console.log("UserPermissions ", _this68.UserPermissions);
+            _this68.show_AddCancel = false;
+
+            if (_this68.UserPermissions.length > 0) {
+              _this68.show_btnEdit = true;
+              _this68.show_btnAdd = false;
+              _this68.show_DivAddUpdate = false;
+              _this68.show_DivInfo = true;
+            }
+
+            if (_this68.UserPermissions.length == 0) {
+              _this68.show_btnEdit = false;
+              _this68.show_btnAdd = true;
+              _this68.show_DivAddUpdate = false;
+              _this68.show_DivInfo = false;
+            }
+          }, function (error) {
+            _this68.showError("Error in getting user ", "Error");
+          });
+        }
+      }, {
+        key: "getUserRoleByRolekey",
+        value: function getUserRoleByRolekey(RoleKey) {
+          var _this69 = this;
+
+          this.userpermission.getUserRoleByRolekey(RoleKey).subscribe(function (data) {
+            _this69.role = data;
+          }, function (error) {
+            _this69.showError("Error in getting role ", "Error");
+          });
+        }
+      }, {
+        key: "getUserRoleByUserkey",
+        value: function getUserRoleByUserkey(UserKey) {
+          var _this70 = this;
+
+          this.userpermission.getUserRoleByUserkey(UserKey).subscribe(function (data) {
+            _this70.role = data;
+            _this70.role.description = _this70.roles.find(function (x) {
+              return x.rolekey == _this70.role.rolekey;
+            }).description; //this.role.rolekey = test.rolekey;
+            //  this.role.description = test.description;
+
+            console.log("Get_Role_ByUserkey", _this70.role);
+          }, function (error) {
+            _this70.showError("Error in getting role ", "Error");
+          });
+        }
+      }, {
+        key: "onViewCheckboxChange",
+        value: function onViewCheckboxChange(option, event) {
+          if (event.target.checked) {
+            for (var i = 0; i < this.AddUpdateUserPermissions.length; i++) {
+              if (this.AddUpdateUserPermissions[i].Modulename == option.Modulename) {
+                this.AddUpdateUserPermissions[i].fView = 1;
+                return;
+              }
+            }
+          } else {
+            for (var i = 0; i < this.AddUpdateUserPermissions.length; i++) {
+              if (this.AddUpdateUserPermissions[i].Modulename == option.Modulename) {
+                this.AddUpdateUserPermissions[i].fView = 0;
+                return;
+              }
+            }
+          }
+        }
+      }, {
+        key: "onNewCheckboxChange",
+        value: function onNewCheckboxChange(option, event) {
+          if (event.target.checked) {
+            for (var i = 0; i < this.AddUpdateUserPermissions.length; i++) {
+              if (this.AddUpdateUserPermissions[i].Modulename == option.Modulename) {
+                this.AddUpdateUserPermissions[i].fNew = 1;
+                return;
+              }
+            }
+          } else {
+            for (var i = 0; i < this.AddUpdateUserPermissions.length; i++) {
+              if (this.AddUpdateUserPermissions[i].Modulename == option.Modulename) {
+                this.AddUpdateUserPermissions[i].fNew = 0;
+                return;
+              }
+            }
+          }
+        }
+      }, {
+        key: "onEditCheckboxChange",
+        value: function onEditCheckboxChange(option, event) {
+          if (event.target.checked) {
+            for (var i = 0; i < this.AddUpdateUserPermissions.length; i++) {
+              if (this.AddUpdateUserPermissions[i].Modulename == option.Modulename) {
+                this.AddUpdateUserPermissions[i].fEdit = 1;
+                return;
+              }
+            }
+          } else {
+            for (var i = 0; i < this.AddUpdateUserPermissions.length; i++) {
+              if (this.AddUpdateUserPermissions[i].Modulename == option.Modulename) {
+                this.AddUpdateUserPermissions[i].fEdit = 0;
+                return;
+              }
+            }
+          }
+        }
+      }, {
+        key: "onDeleteCheckboxChange",
+        value: function onDeleteCheckboxChange(option, event) {
+          if (event.target.checked) {
+            for (var i = 0; i < this.AddUpdateUserPermissions.length; i++) {
+              if (this.AddUpdateUserPermissions[i].Modulename == option.Modulename) {
+                this.AddUpdateUserPermissions[i].fDelete = 1;
+                return;
+              }
+            }
+          } else {
+            for (var i = 0; i < this.AddUpdateUserPermissions.length; i++) {
+              if (this.AddUpdateUserPermissions[i].Modulename == option.Modulename) {
+                this.AddUpdateUserPermissions[i].fDelete = 0;
+                return;
+              }
+            }
+          }
+        }
+      }, {
+        key: "onSubmit",
+        value: function onSubmit() {
+          var _this71 = this;
+
+          if (this.userKey == "0") {
+            this.showError("Please select User", "User");
+            return;
+          }
+
+          if (this.roleKey == "0" || this.roleKey == undefined) {
+            this.showError("Please select Role.", "User");
+            return;
+          }
+
+          var role = {};
+          role.userkey = this.userKey;
+          role.rolekey = this.roleKey;
+
+          if (this.IsNew) {
+            //Adding role
+            this.userpermission.AddUserRole(role).subscribe(function () {// this.showSuccess("Permissions Created", "Add Permission");
+            }, function (error) {
+              _this71.showError("Error in Creation", "Error");
+
+              return;
+            }); //adding user permissions
+
+            for (var i = 0; i < this.AddUpdateUserPermissions.length; i++) {
+              this.AddUpdateUserPermissions[i].UserKey = this.userKey;
+            }
+
+            this.userpermission.AddUserPermissions(this.AddUpdateUserPermissions).subscribe(function () {
+              _this71.AddUpdateUserPermissions = null;
+              _this71.AddUpdateUserPermissions = new Array();
+              _this71.AddUpdateUserPermissions = _this71.temp_AddUpdateUserPermissions;
+            }, function (error) {
+              _this71.showError("Error in Creation", "Error");
+
+              return;
+            });
+            this.showSuccess("Roles & Permission created.", "Roles & Permission");
+          } else {
+            //Updating User Role
+            this.userpermission.UpdateUserRole(role).subscribe(function () {// this.showSuccess("Permissions Created", "Add Permission");
+            }, function (error) {
+              _this71.showError("Error in Update", "Error");
+            });
+            this.userpermission.UpdateUserPermissions(this.AddUpdateUserPermissions).subscribe(function () {
+              _this71.AddUpdateUserPermissions = null;
+              _this71.AddUpdateUserPermissions = new Array();
+              _this71.AddUpdateUserPermissions = _this71.temp_AddUpdateUserPermissions;
+
+              _this71.getPermissionsByUser(_this71.userKey);
+            }, function (error) {
+              _this71.showError("Error in Update", "Error");
+            });
+            this.showSuccess("Permissions Updated.", "Update Permission");
+          }
+        }
+      }, {
+        key: "showSuccess",
+        value: function showSuccess(message, title) {
+          this.toastr.success(message, title, {
+            timeOut: 2000,
+            closeButton: true
+          });
+        }
+      }, {
+        key: "showError",
+        value: function showError(message, title) {
+          this.toastr.error(message, "Oops!", {
+            timeOut: 2000,
+            closeButton: true
+          });
+        }
+      }, {
+        key: "showWarning",
+        value: function showWarning(message, title) {
+          this.toastr.warning(message, title, {
+            timeOut: 2000,
+            closeButton: true
+          });
+        }
+      }, {
+        key: "showInfo",
+        value: function showInfo(message, title) {
+          this.toastr.info(message, title, {
+            timeOut: 2000,
+            closeButton: true
+          });
+        }
+      }]);
+
+      return UserpermissionsComponent;
+    }();
+
+    UserpermissionsComponent.ctorParameters = function () {
+      return [{
+        type: _services_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]
+      }, {
+        type: ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]
+      }, {
+        type: _services_userpermission_service__WEBPACK_IMPORTED_MODULE_4__["UserpermissionService"]
+      }];
+    };
+
+    UserpermissionsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-userpermissions",
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./userpermissions.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/views/_master/userpermissions/userpermissions.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./userpermissions.component.scss */
+      "./src/app/views/_master/userpermissions/userpermissions.component.scss")).default]
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"], ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"], _services_userpermission_service__WEBPACK_IMPORTED_MODULE_4__["UserpermissionService"]])], UserpermissionsComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/views/child/_address/customer/customer.component.scss":
   /*!***********************************************************************!*\
     !*** ./src/app/views/child/_address/customer/customer.component.scss ***!
@@ -11313,37 +12128,36 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.addressTobind = new _models_address__WEBPACK_IMPORTED_MODULE_2__["Address"]();
         this.CustomerSelectedOutput = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.OrdernoGenerated = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.disabled = false;
         this.creditCheck = undefined;
       }
 
       _createClass(CustomerComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this64 = this;
+          var _this72 = this;
 
           this.service.getCustomers().subscribe(function (data) {
-            return _this64.customer = _this64.customerFilter = data;
+            return _this72.customer = _this72.customerFilter = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get customer complete", _this64.customer);
+            return console.log("Get customer complete", _this72.customer);
           });
         }
       }, {
         key: "ngOnChanges",
         value: function ngOnChanges() {
-          var _this65 = this;
+          var _this73 = this;
 
           if (this.customerKeyTobind != undefined) {
             this.service.getCustomers().subscribe(function (data) {
-              _this65.customer = _this65.customerFilter = data;
+              _this73.customer = _this73.customerFilter = data;
 
-              if (_this65.customerKeyTobind) {
-                _this65.selectedCustomer = _this65.customer.find(function (x) {
-                  return x.CustomerKey === _this65.customerKeyTobind;
+              if (_this73.customerKeyTobind) {
+                _this73.selectedCustomer = _this73.customer.find(function (x) {
+                  return x.CustomerKey === _this73.customerKeyTobind;
                 });
-                _this65.billtoCustomerName = _this65.selectedCustomer.CustName;
+                _this73.billtoCustomerName = _this73.selectedCustomer.CustName;
               }
             }, function (error) {
               return console.log(error);
@@ -11355,37 +12169,37 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onSelect",
         value: function onSelect(CustomerSelected) {
-          var _this66 = this;
+          var _this74 = this;
 
           this.selectedCustomer = CustomerSelected;
           this.billtoCustomerName = this.selectedCustomer.CustName;
           this.creditCheck = this.selectedCustomer.CreditCheck;
           console.log("Customer Details with Address:", this.selectedCustomer);
           this.master.getMaxcount_Customer(this.selectedCustomer.CustName).subscribe(function (data) {
-            _this66.customercount = data;
+            _this74.customercount = data;
             var year = new Date();
 
-            var autono = _this66.pad(_this66.customercount + 1, 4);
+            var autono = _this74.pad(_this74.customercount + 1, 4);
 
-            var x = _this66.selectedCustomer.CustName.split(" ");
+            var x = _this74.selectedCustomer.CustName.split(" ");
 
             console.log("x[1].length", x.length);
 
             if (x.length == 1) {
-              _this66.Orderno = x[0].substr(0, 4).toUpperCase() + "-" + year.getUTCFullYear().toString().substr(2, 2) + autono;
+              _this74.Orderno = x[0].substr(0, 4).toUpperCase() + "-" + year.getUTCFullYear().toString().substr(2, 2) + autono;
               console.log("length is 1");
             } else {
-              _this66.Orderno = x[0].substr(0, 2).toUpperCase() + x[1].substr(0, 2).toUpperCase() + "-" + year.getUTCFullYear().toString().substr(2, 2) + autono;
+              _this74.Orderno = x[0].substr(0, 2).toUpperCase() + x[1].substr(0, 2).toUpperCase() + "-" + year.getUTCFullYear().toString().substr(2, 2) + autono;
               console.log("length is > 1");
             }
 
-            _this66.CustomerSelectedOutput.emit(_this66.selectedCustomer);
+            _this74.CustomerSelectedOutput.emit(_this74.selectedCustomer);
 
-            _this66.OrdernoGenerated.emit(_this66.Orderno);
+            _this74.OrdernoGenerated.emit(_this74.Orderno);
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get customercount", _this66.customercount);
+            return console.log("Get customercount", _this74.customercount);
           });
         }
       }, {
@@ -11402,14 +12216,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
       }, {
         key: "onEnableComponent",
-        value: function onEnableComponent() {
-          this.disabled = false;
-        } // Calling this disables the component
+        value: function onEnableComponent() {} //this.disabled = false;
+        // Calling this disables the component
 
       }, {
         key: "onDisableComponent",
-        value: function onDisableComponent() {
-          this.disabled = true;
+        value: function onDisableComponent() {// this.disabled = true;
         }
       }, {
         key: "onSearchChange",
@@ -11448,7 +12260,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)], CustomerComponent.prototype, "customerKeyTobind", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)], CustomerComponent.prototype, "CustomerSelectedOutput", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)], CustomerComponent.prototype, "OrdernoGenerated", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Boolean)], CustomerComponent.prototype, "disabled", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Boolean)], CustomerComponent.prototype, "editmode", void 0);
     CustomerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: "app-customer",
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
@@ -11533,14 +12345,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(BrokerComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this67 = this;
+          var _this75 = this;
 
           // this.broker = [{ "BrokerName": "Maersk Line",
           //   "BrokerId": "ML0023",
           //   "BrokerKey":"ae24e3ba-5aad-11e9-94fc-332aa5298740",
           //   "Status":"1"}];
           this.service.GetBrokers().subscribe(function (data) {
-            return _this67.broker = data;
+            return _this75.broker = data;
           }, function (error) {
             return console.log(error);
           }, function () {
@@ -11550,15 +12362,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "ngOnChanges",
         value: function ngOnChanges() {
-          var _this68 = this;
+          var _this76 = this;
 
           if (this.brokerKeyTobind != "") {
             this.service.GetBrokers().subscribe(function (data) {
-              _this68.broker = data;
-              _this68.selectedBroker = _this68.broker.find(function (x) {
-                return x.BrokerKey === _this68.brokerKeyTobind;
+              _this76.broker = data;
+              _this76.selectedBroker = _this76.broker.find(function (x) {
+                return x.BrokerKey === _this76.brokerKeyTobind;
               });
-              _this68.brokerName = _this68.selectedBroker.BrokerName;
+              _this76.brokerName = _this76.selectedBroker.BrokerName;
             }, function (error) {
               return console.log(error);
             });
@@ -11685,15 +12497,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(CompanyComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this69 = this;
+          var _this77 = this;
 
           // console.log(this.addressKeyTobind);
           this.service.getAddress(this.Type).subscribe(function (data) {
-            return _this69.company = _this69.companyFilter = data;
+            return _this77.company = _this77.companyFilter = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get customer complete", _this69.company);
+            return console.log("Get customer complete", _this77.company);
           }); // if (this.addressKeyTobind != undefined) {
           //   this.addressTobind = this.company.find(
           //     x => x.AddrKey === this.addressKeyTobind
@@ -11705,17 +12517,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "ngOnChanges",
         value: function ngOnChanges() {
-          var _this70 = this;
+          var _this78 = this;
 
           if (this.addressKeyTobind != "") {
             this.service.getAddress(this.Type).subscribe(function (data) {
-              _this70.company = _this70.companyFilter = data;
+              _this78.company = _this78.companyFilter = data;
 
-              if (_this70.addressKeyTobind) {
-                _this70.selectedCompany = _this70.company.find(function (x) {
-                  return x.AddrKey === _this70.addressKeyTobind;
+              if (_this78.addressKeyTobind) {
+                _this78.selectedCompany = _this78.company.find(function (x) {
+                  return x.AddrKey === _this78.addressKeyTobind;
                 });
-                _this70.billtoCompanyName = _this70.selectedCompany.Name;
+                _this78.billtoCompanyName = _this78.selectedCompany.Name;
               }
             }, function (error) {
               return console.log(error);
@@ -12064,7 +12876,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(ContainerComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this71 = this;
+          var _this79 = this;
 
           // this.bsConfig = Object.assign(
           //   {},
@@ -12072,7 +12884,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           //   { dateInputFormat: "MM/DD/YYYY" }
           // );
           this.service.getContainerSizeList().subscribe(function (data) {
-            return _this71.containersizelist = data;
+            return _this79.containersizelist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
@@ -12328,10 +13140,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(ContainersizeComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this72 = this;
+          var _this80 = this;
 
           this.service.getContainerSizeList().subscribe(function (data) {
-            return _this72.drpContainerSize = data;
+            return _this80.drpContainerSize = data;
           }, function (error) {
             return console.log(error);
           }, function () {
@@ -12458,37 +13270,37 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(OrderinfoComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this73 = this;
+          var _this81 = this;
 
           this.orderinfo = new _models_DeliveryOrderHeader__WEBPACK_IMPORTED_MODULE_2__["DeliveryOrderHeader"]();
           this.orderkey = this.route.snapshot.paramMap.get("order");
 
           if (this.orderkey != undefined) {
             this.service.GetbyKey(this.orderkey).subscribe(function (data) {
-              _this73.orderinfo = data, function (error) {
+              _this81.orderinfo = data, function (error) {
                 return console.log(error);
               };
             });
             this.service.GetOrderDetailsbyKey(this.orderkey).subscribe(function (data) {
-              return _this73.orderinfo.orderdetails = data;
+              return _this81.orderinfo.orderdetails = data;
             }, function (error) {
               return console.log(error);
             }, function () {
-              return console.log("Get OrderDetail", _this73.orderinfo.orderdetails);
+              return console.log("Get OrderDetail", _this81.orderinfo.orderdetails);
             });
           }
         }
       }, {
         key: "ngOnChange",
         value: function ngOnChange() {
-          var _this74 = this;
+          var _this82 = this;
 
           this.service.GetOrderDetailsbyKey(this.orderkey).subscribe(function (data) {
-            return _this74.orderinfo.orderdetails = data;
+            return _this82.orderinfo.orderdetails = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get OrderDetail", _this74.orderinfo.orderdetails);
+            return console.log("Get OrderDetail", _this82.orderinfo.orderdetails);
           });
         }
       }]);
@@ -12743,7 +13555,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(DispatchComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this75 = this;
+          var _this83 = this;
 
           this.collapsesign = "+"; // this.bsConfig = Object.assign(
           //   {},
@@ -12752,43 +13564,43 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           // );
 
           this.service.GetOrderDetailsbyKey(this.orderKeyinput).subscribe(function (data) {
-            return _this75.ContainerDetails = data;
+            return _this83.ContainerDetails = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get OrderDetail", _this75.ContainerDetails);
+            return console.log("Get OrderDetail", _this83.ContainerDetails);
           });
           this.driverservice.getDrivers().subscribe(function (data) {
-            return _this75.driverList = data;
+            return _this83.driverList = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get driverList", _this75.driverList);
+            return console.log("Get driverList", _this83.driverList);
           });
         }
       }, {
         key: "ScheduleFieldValue",
         value: function ScheduleFieldValue(fld) {
-          var _this76 = this;
+          var _this84 = this;
 
           this.routeservice.insertRoutesDetails(fld).subscribe(function () {
-            _this76.dataSaved = true;
-            _this76.message = "Success";
-            alert(_this76.message);
+            _this84.dataSaved = true;
+            _this84.message = "Success";
+            alert(_this84.message);
           });
         }
       }, {
         key: "ngOnChanges",
         value: function ngOnChanges() {
-          var _this77 = this;
+          var _this85 = this;
 
           // alert('Scheduler Onchange:  '+ this.orderKeyinput);
           this.service.GetOrderDetailsbyKey(this.orderKeyinput).subscribe(function (data) {
-            return _this77.ContainerDetails = data;
+            return _this85.ContainerDetails = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get OrderDetail", _this77.ContainerDetails);
+            return console.log("Get OrderDetail", _this85.ContainerDetails);
           });
         }
       }, {
@@ -12955,7 +13767,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(DispatchAssignmentComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this78 = this;
+          var _this86 = this;
 
           this.collapsesign = "+"; // this.bsConfig = Object.assign(
           //   {},
@@ -12965,17 +13777,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.loaddata();
           this.driverservice.getDrivers().subscribe(function (data) {
-            return _this78.driverList = data;
+            return _this86.driverList = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get driverList", _this78.driverList);
+            return console.log("Get driverList", _this86.driverList);
           });
         }
       }, {
         key: "update",
         value: function update() {
-          var _this79 = this;
+          var _this87 = this;
 
           if (this.driverkey == null || this.drivernotes == null) {
             this.showError("Enter the missing fields.", "Scheduler");
@@ -12988,15 +13800,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           route.driverkey = this.driverkey;
           route.drivernotes = this.drivernotes;
           this.dispatchAssignmentservice.AddDispatchAssignmentData(route).subscribe(function () {
-            _this79.dataSaved = true;
-            _this79.message = "Success"; //alert(this.message);
+            _this87.dataSaved = true;
+            _this87.message = "Success"; //alert(this.message);
 
-            _this79.showSuccess("Container sent to dispatch delivery!!", "Dispatch");
+            _this87.showSuccess("Container sent to dispatch delivery!!", "Dispatch");
 
-            _this79.loaddata();
+            _this87.loaddata();
 
-            _this79.showImage = true;
-            _this79.showDispatch = false;
+            _this87.showImage = true;
+            _this87.showDispatch = false;
           });
         }
       }, {
@@ -13016,39 +13828,39 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "rowclickEvent",
         value: function rowclickEvent(value) {
-          var _this80 = this;
+          var _this88 = this;
 
           this.selectedKey = null;
           this.orderService.GetbyKey(value.OrderKey).subscribe(function (data) {
-            _this80.HeaderData = data;
-            _this80.DetailsData = value;
-            _this80.OrderKey = value.OrderKey;
-            _this80.OrderDetailKey = value.OrderDetailKey;
-            _this80.selectedKey = value.OrderDetailKey;
-            _this80.showImage = false;
-            _this80.showDispatch = true;
-            _this80.driverkey = undefined;
-            _this80.drivernotes = undefined;
-            console.log("OrderKey ", _this80.OrderKey);
-            console.log("OrderDetailKey ", _this80.OrderDetailKey);
-            console.log("DetailsData ", _this80.DetailsData);
+            _this88.HeaderData = data;
+            _this88.DetailsData = value;
+            _this88.OrderKey = value.OrderKey;
+            _this88.OrderDetailKey = value.OrderDetailKey;
+            _this88.selectedKey = value.OrderDetailKey;
+            _this88.showImage = false;
+            _this88.showDispatch = true;
+            _this88.driverkey = undefined;
+            _this88.drivernotes = undefined;
+            console.log("OrderKey ", _this88.OrderKey);
+            console.log("OrderDetailKey ", _this88.OrderDetailKey);
+            console.log("DetailsData ", _this88.DetailsData);
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("order Header Data ", _this80.HeaderData);
+            return console.log("order Header Data ", _this88.HeaderData);
           });
         }
       }, {
         key: "loaddata",
         value: function loaddata() {
-          var _this81 = this;
+          var _this89 = this;
 
           this.dispatchAssignmentservice.GetOrderstoDispatchAssignment().subscribe(function (data) {
-            return _this81.ContainerDetails = data;
+            return _this89.ContainerDetails = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get OrderDetail", _this81.ContainerDetails);
+            return console.log("Get OrderDetail", _this89.ContainerDetails);
           });
         }
       }, {
@@ -13206,46 +14018,46 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(DispatchupdateComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this82 = this;
+          var _this90 = this;
 
           this.dispatchDeliveryService.GetDispatch_OrderandDetails(this.OrderDetailKey).subscribe(function (data) {
-            return _this82.dispatchList = data;
+            return _this90.dispatchList = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get dispatchList", _this82.dispatchList);
+            return console.log("Get dispatchList", _this90.dispatchList);
           });
           console.log("Dispatch update :", this.dispatchList);
           this.driverservice.getDrivers().subscribe(function (data) {
-            return _this82.driverList = data;
+            return _this90.driverList = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get driverList", _this82.driverList);
+            return console.log("Get driverList", _this90.driverList);
           });
           this.dispatchDeliveryService.GetDispatchItems(this.OrderDetailKey).subscribe(function (data) {
-            return _this82.dispatchDetails = data;
+            return _this90.dispatchDetails = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get dispatchDetails", _this82.dispatchDetails);
+            return console.log("Get dispatchDetails", _this90.dispatchDetails);
           });
         }
       }, {
         key: "Submit",
         value: function Submit() {
-          var _this83 = this;
+          var _this91 = this;
 
           this.dispatchDeliveryService.UpdateDispatchDeliveryData(this.dispatchDetails).subscribe(function (result) {
-            _this83.showSuccess("Container update done!!", "Dispatch");
+            _this91.showSuccess("Container update done!!", "Dispatch");
 
-            _this83.clear();
+            _this91.clear();
 
-            _this83.closeModal();
+            _this91.closeModal();
           }, function (error) {
             console.log(error);
 
-            _this83.showError("An Unexpected Error Occured.", "Dispatch");
+            _this91.showError("An Unexpected Error Occured.", "Dispatch");
 
             return;
           });
@@ -13533,7 +14345,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*#__PURE__*/
     function () {
       function DispathdeliveryComponent(_NgbModal, orderService, dispatchDeliveryService, routeservice, driverservice, router, route, toastr, cityService) {
-        var _this84 = this;
+        var _this92 = this;
 
         _classCallCheck(this, DispathdeliveryComponent);
 
@@ -13562,7 +14374,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.showaddupdatedispatchitems = false; //this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
         this.cityService.GetCity().subscribe(function (data) {
-          Object.assign(_this84.userData, data);
+          Object.assign(_this92.userData, data);
         }, function (error) {
           console.log("Something wrong here");
         });
@@ -13579,40 +14391,40 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadDrivers",
         value: function loadDrivers() {
-          var _this85 = this;
+          var _this93 = this;
 
           this.driverservice.getDrivers().subscribe(function (data) {
-            return _this85.driverList = data;
+            return _this93.driverList = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get driverList", _this85.driverList);
+            return console.log("Get driverList", _this93.driverList);
           });
         }
       }, {
         key: "GetOrderstoDispatchDelivery",
         value: function GetOrderstoDispatchDelivery() {
-          var _this86 = this;
+          var _this94 = this;
 
           this.dispatchDeliveryService.GetOrderstoDispatchDelivery().subscribe(function (data) {
-            return _this86.ContainerDetails = data;
+            return _this94.ContainerDetails = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get OrderDetail", _this86.ContainerDetails);
+            return console.log("Get OrderDetail", _this94.ContainerDetails);
           });
         }
       }, {
         key: "loadDispatchItemsList",
         value: function loadDispatchItemsList() {
-          var _this87 = this;
+          var _this95 = this;
 
           this.dispatchDeliveryService.GetDispatchItemsList().subscribe(function (data) {
-            return _this87.dispatchList = data;
+            return _this95.dispatchList = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get dispatchList", _this87.dispatchList);
+            return console.log("Get dispatchList", _this95.dispatchList);
           });
         }
       }, {
@@ -13648,7 +14460,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "rowclickEvent",
         value: function rowclickEvent(value) {
-          var _this88 = this;
+          var _this96 = this;
 
           if (this.tempOrderDetailKey == value.OrderDetailKey) {
             this.tempOrderDetailKey = null;
@@ -13662,55 +14474,55 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }
 
           this.orderService.GetbyKey(value.OrderKey).subscribe(function (data) {
-            _this88.HeaderData = data;
-            _this88.DetailsData = value;
-            _this88.showImage = false;
-            _this88.showdispatchitemlist = false;
-            _this88.showaddupdatedispatchitems = true;
-            _this88.tempOrderDetailKey = value.OrderDetailKey;
-            console.log("order Order-Header Data ", _this88.HeaderData);
-            console.log("order Order-Details Data ", _this88.DetailsData);
+            _this96.HeaderData = data;
+            _this96.DetailsData = value;
+            _this96.showImage = false;
+            _this96.showdispatchitemlist = false;
+            _this96.showaddupdatedispatchitems = true;
+            _this96.tempOrderDetailKey = value.OrderDetailKey;
+            console.log("order Order-Header Data ", _this96.HeaderData);
+            console.log("order Order-Details Data ", _this96.DetailsData);
           }, function (error) {
             console.log(error);
-            _this88.showImage = true;
+            _this96.showImage = true;
           }, function () {
-            return console.log("order Header Data ", _this88.HeaderData);
+            return console.log("order Header Data ", _this96.HeaderData);
           });
           this.selectedKey = value.OrderDetailKey;
         }
       }, {
         key: "Submit",
         value: function Submit() {
-          var _this89 = this;
+          var _this97 = this;
 
           this.dispatchDeliveryService.UpdateDispatchDeliveryData(this.dispatchDetails).subscribe(function () {
             var dispatch = new _models_dispatch__WEBPACK_IMPORTED_MODULE_9__["Dispatch"]();
-            dispatch.OrderDetailKey = _this89.DetailsData.OrderDetailKey;
+            dispatch.OrderDetailKey = _this97.DetailsData.OrderDetailKey;
             dispatch.status = 7;
 
-            _this89.dispatchDeliveryService.UpdateStatus(dispatch).subscribe(function (data) {
-              _this89.showSuccess("Dispatch data saved!", "Dispatch");
+            _this97.dispatchDeliveryService.UpdateStatus(dispatch).subscribe(function (data) {
+              _this97.showSuccess("Dispatch data saved!", "Dispatch");
 
-              _this89.GetOrderstoDispatchDelivery();
+              _this97.GetOrderstoDispatchDelivery();
 
-              _this89.loadDispatchItemsList();
+              _this97.loadDispatchItemsList();
 
-              _this89.showdispatchitemlist = true;
-              _this89.showaddupdatedispatchitems = false;
-              _this89.selectedKey = null;
-              _this89.showImage = true;
-              _this89.showDispatch = false;
+              _this97.showdispatchitemlist = true;
+              _this97.showaddupdatedispatchitems = false;
+              _this97.selectedKey = null;
+              _this97.showImage = true;
+              _this97.showDispatch = false;
 
-              _this89.clear();
+              _this97.clear();
             }, function (error) {
               return console.log(error);
             }, function () {
-              return console.log("Get dispatchList", _this89.dispatchList);
+              return console.log("Get dispatchList", _this97.dispatchList);
             });
           }, function (error) {
             console.log(error);
 
-            _this89.showError("An Unexpected Error Occured.", "Dispatch");
+            _this97.showError("An Unexpected Error Occured.", "Dispatch");
 
             return;
           });
@@ -13718,57 +14530,57 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "hold_Dispatch",
         value: function hold_Dispatch() {
-          var _this90 = this;
+          var _this98 = this;
 
           var dispatch = new _models_dispatch__WEBPACK_IMPORTED_MODULE_9__["Dispatch"]();
           dispatch.OrderDetailKey = this.OrderDetailKey;
           dispatch.status = 8;
           this.dispatchDeliveryService.UpdateStatus(dispatch).subscribe(function (data) {
-            _this90.showSuccess("Dispatch data saved!", "Dispatch");
+            _this98.showSuccess("Dispatch data saved!", "Dispatch");
 
-            _this90.GetOrderstoDispatchDelivery();
+            _this98.GetOrderstoDispatchDelivery();
 
-            _this90.loadDispatchItemsList();
+            _this98.loadDispatchItemsList();
 
-            _this90.showdispatchitemlist = true;
-            _this90.showaddupdatedispatchitems = false;
-            _this90.selectedKey = null;
-            _this90.showImage = true;
-            _this90.showDispatch = false;
+            _this98.showdispatchitemlist = true;
+            _this98.showaddupdatedispatchitems = false;
+            _this98.selectedKey = null;
+            _this98.showImage = true;
+            _this98.showDispatch = false;
 
-            _this90.clear();
+            _this98.clear();
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get dispatchList", _this90.dispatchList);
+            return console.log("Get dispatchList", _this98.dispatchList);
           });
         }
       }, {
         key: "Complete_Dispatch",
         value: function Complete_Dispatch() {
-          var _this91 = this;
+          var _this99 = this;
 
           var dispatch = new _models_dispatch__WEBPACK_IMPORTED_MODULE_9__["Dispatch"]();
           dispatch.OrderDetailKey = this.OrderDetailKey;
           dispatch.status = 9;
           this.dispatchDeliveryService.UpdateStatus(dispatch).subscribe(function (data) {
-            _this91.showSuccess("Dispatch data saved!", "Dispatch");
+            _this99.showSuccess("Dispatch data saved!", "Dispatch");
 
-            _this91.GetOrderstoDispatchDelivery();
+            _this99.GetOrderstoDispatchDelivery();
 
-            _this91.loadDispatchItemsList();
+            _this99.loadDispatchItemsList();
 
-            _this91.showdispatchitemlist = true;
-            _this91.showaddupdatedispatchitems = false;
-            _this91.selectedKey = null;
-            _this91.showImage = true;
-            _this91.showDispatch = false;
+            _this99.showdispatchitemlist = true;
+            _this99.showaddupdatedispatchitems = false;
+            _this99.selectedKey = null;
+            _this99.showImage = true;
+            _this99.showDispatch = false;
 
-            _this91.clear();
+            _this99.clear();
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get dispatchList", _this91.dispatchList);
+            return console.log("Get dispatchList", _this99.dispatchList);
           });
         }
       }, {
@@ -13919,17 +14731,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "load_DispatchForEdit",
         value: function load_DispatchForEdit(data) {
-          var _this92 = this;
+          var _this100 = this;
 
           this.showaddupdatedispatchitems = true;
           this.showdispatchitemlist = false; //this.HeaderData = new DeliveryOrderHeader();
           //this.HeaderData.orderdetails = new Array<Order_details>();
 
           this.orderService.GetbyKey(data.OrderKey).subscribe(function (data) {
-            _this92.HeaderData = data;
+            _this100.HeaderData = data;
           }, function (error) {
             console.log(error);
-            _this92.showImage = true;
+            _this100.showImage = true;
           });
           console.log("data", data);
           this.dispatchList = data; // this.dispatchDeliveryService.GetDispatch_OrderandDetails(data.OrderDetails.OrderDetailKey).subscribe(
@@ -14241,7 +15053,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this93 = this;
+          var _this101 = this;
 
           this.doHeader = null;
           this.doHeader = new _models_DeliveryOrderHeader__WEBPACK_IMPORTED_MODULE_2__["DeliveryOrderHeader"]();
@@ -14251,67 +15063,67 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.showDO = false;
           this.fileUploaderService.clearQueue();
           this.master.getContainerSizeList().subscribe(function (data) {
-            return _this93.containersizelist = data;
+            return _this101.containersizelist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get containersizelist", _this93.containersizelist);
+            return console.log("Get containersizelist", _this101.containersizelist);
           });
           this.master.getPriorityList().subscribe(function (data) {
-            return _this93.prioritylist = data;
+            return _this101.prioritylist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get prioritylist", _this93.prioritylist);
+            return console.log("Get prioritylist", _this101.prioritylist);
           });
           this.master.getOrderTypeList().subscribe(function (data) {
-            return _this93.ordertypelist = data;
+            return _this101.ordertypelist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get ordertypelist", _this93.ordertypelist);
+            return console.log("Get ordertypelist", _this101.ordertypelist);
           });
           this.master.getHoldReasonList().subscribe(function (data) {
-            return _this93.holdreasonlist = data;
+            return _this101.holdreasonlist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get holdreasonlist", _this93.holdreasonlist);
+            return console.log("Get holdreasonlist", _this101.holdreasonlist);
           });
           this.master.getStatusList().subscribe(function (data) {
-            return _this93.statuslist = data;
+            return _this101.statuslist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get statuslist", _this93.statuslist);
+            return console.log("Get statuslist", _this101.statuslist);
           });
           this.master.getSourceList().subscribe(function (data) {
-            return _this93.sourcelist = data;
+            return _this101.sourcelist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get sourcelist", _this93.sourcelist);
+            return console.log("Get sourcelist", _this101.sourcelist);
           });
           this.master.getLoadDischargePortList(3).subscribe(function (data) {
-            return _this93.LoadDischargePortList = data;
+            return _this101.LoadDischargePortList = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get LoadDischargePortList", _this93.LoadDischargePortList);
+            return console.log("Get LoadDischargePortList", _this101.LoadDischargePortList);
           });
           this.master.getCarrierList().subscribe(function (data) {
-            return _this93.carrierlist = data;
+            return _this101.carrierlist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get carrierlist", _this93.carrierlist);
+            return console.log("Get carrierlist", _this101.carrierlist);
           });
           this.service.getOrderlist().subscribe(function (data) {
-            return _this93.Orderlist = data, _this93.count = _this93.Orderlist.length;
+            return _this101.Orderlist = data, _this101.count = _this101.Orderlist.length;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get OrderList complete", _this93.Orderlist);
+            return console.log("Get OrderList complete", _this101.Orderlist);
           });
 
           if (this.orderNo != undefined) {
@@ -14319,16 +15131,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.CreateOrEditOrder = false; //getting order info from the DB..
 
             this.service.GetbyKey(this.orderNo).subscribe(function (data) {
-              (_this93.doHeader = data, _this93.service.GetOrderDetailsbyKey(_this93.orderNo).subscribe(function (data) {
-                return _this93.doHeader.orderdetails = data;
+              (_this101.doHeader = data, _this101.service.GetOrderDetailsbyKey(_this101.orderNo).subscribe(function (data) {
+                return _this101.doHeader.orderdetails = data;
               }, function (error) {
                 return console.log(error);
               }, function () {
-                return console.log("Get OrderDetail", _this93.doHeader.orderdetails);
+                return console.log("Get OrderDetail", _this101.doHeader.orderdetails);
               })), function (error) {
                 return console.log(error);
               }, function () {
-                return console.log("Get Order Detail BillToAddress", _this93.doHeader.BillToAddress);
+                return console.log("Get Order Detail BillToAddress", _this101.doHeader.BillToAddress);
               };
             });
           }
@@ -14366,7 +15178,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "OnSubmit",
         value: function OnSubmit(form) {
-          var _this94 = this;
+          var _this102 = this;
 
           if (this.doHeader.CustKey == null || this.doHeader.CustKey == undefined || this.doHeader.CustKey == "") {
             this.showError("Customer is required", "Header");
@@ -14400,32 +15212,32 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           if (!this.isEditmode) {
             this.service.saveDOHeader(form.value).subscribe(function (result) {
-              _this94.orderKey = result;
+              _this102.orderKey = result;
 
-              if (_this94.orderKey != undefined && _this94.orderKey != "") {
-                _this94.saveDeliveryDetails();
+              if (_this102.orderKey != undefined && _this102.orderKey != "") {
+                _this102.saveDeliveryDetails();
               }
             }, function (error) {
-              _this94.errorMessage = error;
+              _this102.errorMessage = error;
 
-              _this94.showError(_this94.errorMessage, "New-Order");
+              _this102.showError(_this102.errorMessage, "New-Order");
             });
           } else {
             this.service.updateDOHeader(form.value).subscribe(function (result) {
               if (result) {
-                _this94.updateDeliveryOrderDetails();
+                _this102.updateDeliveryOrderDetails();
               }
             }, function (error) {
-              _this94.errorMessage = error;
+              _this102.errorMessage = error;
 
-              _this94.showError(_this94.errorMessage, "New-Order");
+              _this102.showError(_this102.errorMessage, "New-Order");
             });
           }
         }
       }, {
         key: "updateDeliveryOrderDetails",
         value: function updateDeliveryOrderDetails() {
-          var _this95 = this;
+          var _this103 = this;
 
           var _iteratorNormalCompletion7 = true;
           var _didIteratorError7 = false;
@@ -14452,25 +15264,25 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }
 
           this.service.updateDeliveryOrderDetails(this.doHeader.orderdetails).subscribe(function (results) {
-            _this95.showSuccess("Order Updated successfully", "Order Update");
+            _this103.showSuccess("Order Updated successfully", "Order Update");
 
-            _this95.service.getOrderlist().subscribe(function (data) {
-              return _this95.Orderlist = data, _this95.count = _this95.Orderlist.length;
+            _this103.service.getOrderlist().subscribe(function (data) {
+              return _this103.Orderlist = data, _this103.count = _this103.Orderlist.length;
             }, function (error) {
               return console.log(error);
             }, function () {
-              return console.log("Get OrderList complete", _this95.Orderlist);
+              return console.log("Get OrderList complete", _this103.Orderlist);
             });
 
-            _this95.cancel();
+            _this103.cancel();
           }, function (error) {
-            return _this95.errorMessage = error;
+            return _this103.errorMessage = error;
           });
         }
       }, {
         key: "saveDeliveryDetails",
         value: function saveDeliveryDetails() {
-          var _this96 = this;
+          var _this104 = this;
 
           var _iteratorNormalCompletion8 = true;
           var _didIteratorError8 = false;
@@ -14497,22 +15309,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }
 
           this.service.saveOrderDetails(this.doHeader.orderdetails).subscribe(function (results) {
-            _this96.showSuccess("Order Created successfully", "New-Order");
+            _this104.showSuccess("Order Created successfully", "New-Order");
 
-            _this96.service.getOrderlist().subscribe(function (data) {
-              return _this96.Orderlist = data;
+            _this104.service.getOrderlist().subscribe(function (data) {
+              return _this104.Orderlist = data;
             }, function (error) {
               return console.log(error);
             }, function () {
-              return console.log("Get OrderList complete", _this96.Orderlist);
+              return console.log("Get OrderList complete", _this104.Orderlist);
             });
 
-            _this96.createNewOrder();
+            _this104.createNewOrder();
 
-            _this96.cancel(); // this.getOrderInfo(this.orderKey);
+            _this104.cancel(); // this.getOrderInfo(this.orderKey);
 
           }, function (error) {
-            return _this96.errorMessage = error;
+            return _this104.errorMessage = error;
           });
         }
       }, {
@@ -14686,7 +15498,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getOrderInfo",
         value: function getOrderInfo(inputKey) {
-          var _this97 = this;
+          var _this105 = this;
 
           this.doHeader = null;
           this.doHeader = new _models_DeliveryOrderHeader__WEBPACK_IMPORTED_MODULE_2__["DeliveryOrderHeader"]();
@@ -14694,13 +15506,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.btnShowcreateNewOrder = true;
           this.selectedKey = null;
           this.service.GetbyKey(inputKey).subscribe(function (data) {
-            _this97.doHeader = data, console.log("testing Model----", _this97.doHeader);
-            _this97.service.GetOrderDetailsbyKey(inputKey).subscribe(function (data) {
-              return _this97.doHeader.orderdetails = data;
+            _this105.doHeader = data, console.log("testing Model----", _this105.doHeader);
+            _this105.service.GetOrderDetailsbyKey(inputKey).subscribe(function (data) {
+              return _this105.doHeader.orderdetails = data;
             }, function (error) {
               return console.log(error);
             }, function () {
-              return console.log("Get OrderDetail", _this97.doHeader.orderdetails);
+              return console.log("Get OrderDetail", _this105.doHeader.orderdetails);
             }), function (error) {
               return console.log(error);
             };
@@ -14921,14 +15733,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this98 = this;
+          var _this106 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.Orderlist = _toConsumableArray(this.Orderlist).sort(function (n1, n2) {
-            if (_this98.column == "OrderNo") {
+            if (_this106.column == "OrderNo") {
               if (n1.OrderNo > n2.OrderNo) {
                 return 1 * direction;
               } else if (n1.OrderNo < n2.OrderNo) {
@@ -14936,7 +15748,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this98.column == "ordertypedescription") {
+            if (_this106.column == "ordertypedescription") {
               if (n1.ordertypedescription > n2.ordertypedescription) {
                 return 1 * direction;
               } else if (n1.ordertypedescription < n2.ordertypedescription) {
@@ -14944,7 +15756,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this98.column == "BillToAddr") {
+            if (_this106.column == "BillToAddr") {
               if (n1.BillToAddr > n2.BillToAddr) {
                 return 1 * direction;
               } else if (n1.BillToAddr < n2.BillToAddr) {
@@ -14952,7 +15764,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this98.column == "SourceAddr") {
+            if (_this106.column == "SourceAddr") {
               if (n1.SourceAddr > n2.SourceAddr) {
                 return 1 * direction;
               } else if (n1.SourceAddr < n2.SourceAddr) {
@@ -14960,7 +15772,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this98.column == "DestinationAddr") {
+            if (_this106.column == "DestinationAddr") {
               if (n1.DestinationAddr > n2.DestinationAddr) {
                 return 1 * direction;
               } else if (n1.DestinationAddr < n2.DestinationAddr) {
@@ -14968,7 +15780,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this98.column == "statusdescription") {
+            if (_this106.column == "statusdescription") {
               if (n1.statusdescription > n2.statusdescription) {
                 return 1 * direction;
               } else if (n1.statusdescription < n2.statusdescription) {
@@ -15107,7 +15919,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*#__PURE__*/
     function () {
       function FileUploadComponent(uploader, toastr, filedownloadService) {
-        var _this99 = this;
+        var _this107 = this;
 
         _classCallCheck(this, FileUploadComponent);
 
@@ -15120,7 +15932,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.display = "none";
 
         this.completeItem = function (item, response) {
-          _this99.onCompleteItem.emit({
+          _this107.onCompleteItem.emit({
             item: item,
             response: response
           });
@@ -15391,7 +16203,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this100 = this;
+          var _this108 = this;
 
           if (this.myFiles.length === 0) {
             return this.showWarning("No File(s) selected", "Upload");
@@ -15401,14 +16213,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             var frmData = new FormData();
             frmData.append("fileUpload", this.myFiles[i]);
             this.fileUploadService.upload(frmData).subscribe(function (res) {
-              _this100.fileUpload.status = res.toString(); // this.showSuccess("File(s) uploaded successfully", "Upload");
+              _this108.fileUpload.status = res.toString(); // this.showSuccess("File(s) uploaded successfully", "Upload");
 
-              _this100.fileUploadcount = _this100.fileUploadcount + 1;
-              _this100.myFiles = [];
+              _this108.fileUploadcount = _this108.fileUploadcount + 1;
+              _this108.myFiles = [];
             }, function (err) {
-              _this100.error = err;
+              _this108.error = err;
 
-              _this100.showError(_this100.error, "Upload Error");
+              _this108.showError(_this108.error, "Upload Error");
             });
           }
 
@@ -15598,6 +16410,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.showAddUpdateDiv = true;
         this.item_editing = false;
         this.showInvoiceList = true;
+        this.editing = false;
+        this.isEditable = true;
         this.isDesc = false;
         this.column = "InvoiceNo";
         this.p = 1;
@@ -15606,7 +16420,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(InvoiceComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this101 = this;
+          var _this109 = this;
 
           this.showImage = true;
           this.showAddUpdateDiv = false;
@@ -15614,11 +16428,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.invoiceModel.invoice = new _models_invoice__WEBPACK_IMPORTED_MODULE_4__["Invoice"]();
           this.rate = new Array();
           this.itemService.GetItems().subscribe(function (data) {
-            return _this101.Itemlist = data;
+            return _this109.Itemlist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get Itemlist", _this101.Itemlist);
+            return console.log("Get Itemlist", _this109.Itemlist);
           });
           this.load_NewInvoiceList();
           this.load_InvoiceList();
@@ -15626,97 +16440,97 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "load_InvoiceList",
         value: function load_InvoiceList() {
-          var _this102 = this;
+          var _this110 = this;
 
           this.invoiceService.getInvoiceHeaderList().subscribe(function (data) {
-            _this102.invoiceHeaderList = data;
+            _this110.invoiceHeaderList = data;
 
-            if (_this102.invoiceHeaderList.length > 0) {
-              _this102.showImage = false;
-              _this102.showInvoiceList = true;
+            if (_this110.invoiceHeaderList.length > 0) {
+              _this110.showImage = false;
+              _this110.showInvoiceList = true;
             }
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get invoiceHeaderList", _this102.invoiceHeaderList);
+            return console.log("Get invoiceHeaderList", _this110.invoiceHeaderList);
           });
         }
       }, {
         key: "load_NewInvoiceList",
         value: function load_NewInvoiceList() {
-          var _this103 = this;
+          var _this111 = this;
 
           this.invoiceService.GetOrderstoGenerateInvoice().subscribe(function (data) {
-            _this103.Data = data;
+            _this111.Data = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get Data", _this103.Data);
+            return console.log("Get Data", _this111.Data);
           });
         }
       }, {
         key: "getOrderdata",
         value: function getOrderdata(orderKey) {
-          var _this104 = this;
+          var _this112 = this;
 
           this.invoiceDet = null;
           this.invoiceDetail = null;
           this.invoiceDetail = new Array();
           this.invoiceService.GetInvoiceMaxcount().subscribe(function (data) {
-            _this104.InvoiceMaxcount = data;
-            _this104.InvoiceNo = _this104.InvoiceMaxcount + 1;
+            _this112.InvoiceMaxcount = data;
+            _this112.InvoiceNo = _this112.InvoiceMaxcount + 1;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get InvoiceMaxcount", _this104.InvoiceMaxcount);
+            return console.log("Get InvoiceMaxcount", _this112.InvoiceMaxcount);
           }); // this.invoiceModel = this.Data.find(x => x.order.OrderKey == orderKey);
 
           this.invoiceService.getOrderDatabyKey(orderKey).subscribe(function (data) {
-            _this104.invoiceModel = data;
-            console.log("Get invoice Model", _this104.invoiceModel);
+            _this112.invoiceModel = data;
+            console.log("Get invoice Model", _this112.invoiceModel);
           }, function (error) {
             console.log(error);
           });
           this.invoiceService.getorderratesbykey(orderKey).subscribe(function (data) {
-            _this104.rate = data;
+            _this112.rate = data;
             var _iteratorNormalCompletion9 = true;
             var _didIteratorError9 = false;
             var _iteratorError9 = undefined;
 
             try {
-              for (var _iterator9 = _this104.rate[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+              for (var _iterator9 = _this112.rate[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
                 var item = _step9.value;
                 var count = 0;
 
-                if (_this104.invoiceDetail.length == 0) {
-                  _this104.invoiceDet = new _models_invoicedetails__WEBPACK_IMPORTED_MODULE_7__["Invoicedetails"]();
-                  _this104.invoiceDet.Itemkey = item.itemkey;
-                  _this104.invoiceDet.Description = item.description;
-                  _this104.invoiceDet.Quantity = 1;
-                  _this104.invoiceDet.UnitPrice = item.unitprice;
-                  _this104.invoiceDet.Price = _this104.invoiceDet.UnitPrice;
-                  _this104.invoiceDet.InvoiceLineKey = undefined;
-                  _this104.invoiceDet.InvoiceKey = undefined;
-                  _this104.invoiceDet.InvoiceDescription = "";
-                  _this104.invoiceDet.ExcessAmount = "";
-                  _this104.invoiceDet.containerno = item.containerno;
+                if (_this112.invoiceDetail.length == 0) {
+                  _this112.invoiceDet = new _models_invoicedetails__WEBPACK_IMPORTED_MODULE_7__["Invoicedetails"]();
+                  _this112.invoiceDet.Itemkey = item.itemkey;
+                  _this112.invoiceDet.Description = item.description;
+                  _this112.invoiceDet.Quantity = 1;
+                  _this112.invoiceDet.UnitPrice = item.unitprice;
+                  _this112.invoiceDet.Price = _this112.invoiceDet.UnitPrice;
+                  _this112.invoiceDet.InvoiceLineKey = undefined;
+                  _this112.invoiceDet.InvoiceKey = undefined;
+                  _this112.invoiceDet.InvoiceDescription = "";
+                  _this112.invoiceDet.ExcessAmount = "";
+                  _this112.invoiceDet.Container = item.containerno;
 
-                  _this104.invoiceDetail.push(_this104.invoiceDet);
+                  _this112.invoiceDetail.push(_this112.invoiceDet);
 
-                  console.log("this.invoiceDetail", _this104.invoiceDetail);
+                  console.log("this.invoiceDetail", _this112.invoiceDetail);
                 } else {
                   var _iteratorNormalCompletion11 = true;
                   var _didIteratorError11 = false;
                   var _iteratorError11 = undefined;
 
                   try {
-                    for (var _iterator11 = _this104.invoiceDetail[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+                    for (var _iterator11 = _this112.invoiceDetail[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
                       var items = _step11.value;
 
                       if (items.Itemkey == item.itemkey) {
-                        _this104.invoiceDetail[count].containerno = _this104.invoiceDetail[count].containerno + ',' + items.containerno;
-                        _this104.invoiceDetail[count].Quantity = items.Quantity + 1;
-                        _this104.invoiceDetail[count].Price = _this104.invoiceDetail[count].Quantity * items.UnitPrice;
+                        _this112.invoiceDetail[count].containerno = _this112.invoiceDetail[count].containerno + ',' + items.containerno;
+                        _this112.invoiceDetail[count].Quantity = items.Quantity + 1;
+                        _this112.invoiceDetail[count].Price = _this112.invoiceDetail[count].Quantity * items.UnitPrice;
                       } else {
                         count = count + 1;
                       }
@@ -15736,22 +16550,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     }
                   }
 
-                  if (count == _this104.invoiceDetail.length) {
-                    _this104.invoiceDet = new _models_invoicedetails__WEBPACK_IMPORTED_MODULE_7__["Invoicedetails"]();
-                    _this104.invoiceDet.Itemkey = item.itemkey;
-                    _this104.invoiceDet.Description = item.description;
-                    _this104.invoiceDet.Quantity = 1;
-                    _this104.invoiceDet.containerno = item.containerno;
-                    _this104.invoiceDet.UnitPrice = item.unitprice;
-                    _this104.invoiceDet.Price = _this104.invoiceDet.UnitPrice;
-                    _this104.invoiceDet.InvoiceLineKey = undefined;
-                    _this104.invoiceDet.InvoiceKey = undefined;
-                    _this104.invoiceDet.InvoiceDescription = "";
-                    _this104.invoiceDet.ExcessAmount = "";
+                  if (count == _this112.invoiceDetail.length) {
+                    _this112.invoiceDet = new _models_invoicedetails__WEBPACK_IMPORTED_MODULE_7__["Invoicedetails"]();
+                    _this112.invoiceDet.Itemkey = item.itemkey;
+                    _this112.invoiceDet.Description = item.description;
+                    _this112.invoiceDet.Quantity = 1;
+                    _this112.invoiceDet.Container = item.containerno;
+                    _this112.invoiceDet.UnitPrice = item.unitprice;
+                    _this112.invoiceDet.Price = _this112.invoiceDet.UnitPrice;
+                    _this112.invoiceDet.InvoiceLineKey = undefined;
+                    _this112.invoiceDet.InvoiceKey = undefined;
+                    _this112.invoiceDet.InvoiceDescription = "";
+                    _this112.invoiceDet.ExcessAmount = "";
 
-                    _this104.invoiceDetail.push(_this104.invoiceDet);
+                    _this112.invoiceDetail.push(_this112.invoiceDet);
 
-                    console.log("this.invoiceDetail", _this104.invoiceDetail);
+                    console.log("this.invoiceDetail", _this112.invoiceDetail);
                     count = 0;
                   }
                 }
@@ -15771,17 +16585,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               }
             }
 
-            _this104.InvoiceAmt = 0;
-            _this104.total = 0;
+            _this112.InvoiceAmt = 0;
+            _this112.total = 0;
             var _iteratorNormalCompletion10 = true;
             var _didIteratorError10 = false;
             var _iteratorError10 = undefined;
 
             try {
-              for (var _iterator10 = _this104.invoiceDetail[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+              for (var _iterator10 = _this112.invoiceDetail[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
                 var items = _step10.value;
                 var val2 = +items.Price;
-                _this104.total = _this104.addNumbers(_this104.total, val2);
+                _this112.total = _this112.addNumbers(_this112.total, val2);
               }
             } catch (err) {
               _didIteratorError10 = true;
@@ -15798,26 +16612,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               }
             }
 
-            _this104.InvoiceAmt = +_this104.total.toFixed(2);
-            _this104.drpCharge = 0;
+            _this112.InvoiceAmt = +_this112.total.toFixed(2);
+            _this112.drpCharge = 0;
           }, function (error) {
             console.log(error);
           });
           this.showInvoice = true;
           this.showImage = false;
           this.showInvoiceList = false;
-          this.lblInvoice = "Create Invoice";
+          this.lblInvoice = "Create";
           console.log("Get invoiceModel", this.invoiceModel);
         }
       }, {
         key: "load_invoiceHeaderandDetailData",
         value: function load_invoiceHeaderandDetailData(model) {
-          var _this105 = this;
+          var _this113 = this;
 
           this.showInvoice = true;
           this.showImage = false;
           this.showInvoiceList = false;
-          this.lblInvoice = "Update Invoice";
+          this.lblInvoice = "Update";
           this.invoiceModel = new _models_invoicemodel__WEBPACK_IMPORTED_MODULE_3__["Invoicemodel"]();
           this.invoiceModel.order = new _models_DeliveryOrderHeader__WEBPACK_IMPORTED_MODULE_1__["DeliveryOrderHeader"]();
           this.invoiceModel.order.OrderKey = model.OrderKey;
@@ -15834,16 +16648,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.dueDate = model.DueDate;
           this.InvoiceAmt = +model.InvoiceAmt.toFixed(2);
           this.invoiceService.getOrderDatabyKey(model.OrderKey).subscribe(function (data) {
-            _this105.invoiceModel = data;
-            _this105.OrderNo = _this105.invoiceModel.order.OrderNo;
-            console.log("Edit for Invoice:  -- ", _this105.invoiceModel);
-            console.log("OrderNo:  -- ", _this105.invoiceModel.order.OrderNo);
+            _this113.invoiceModel = data;
+            _this113.OrderNo = _this113.invoiceModel.order.OrderNo;
+            console.log("Edit for Invoice:  -- ", _this113.invoiceModel);
+            console.log("OrderNo:  -- ", _this113.invoiceModel.order.OrderNo);
           }, function (error) {
             console.log(error);
           });
           this.invoiceService.getinvoicedetail(model.Invoicekey).subscribe(function (data) {
-            _this105.invoiceDetail = data;
-            console.log("Edit for invoice Detail:  -- ", _this105.invoiceDetail);
+            _this113.invoiceDetail = data;
+            console.log("Edit for invoice Detail:  -- ", _this113.invoiceDetail);
           }, function (error) {
             console.log(error);
           });
@@ -15855,11 +16669,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function editItem(data, index) {
           this.rowIndex = index;
           this.item_editing = true;
+          this.invDet.isEditable = true;
           this.drpCharge = data.Itemkey;
           this.ContainerQuantity = data.Quantity;
           this.ItemRate = data.UnitPrice;
           this.showAddUpdateDiv = true;
-          this.lblrowaddupdate = "Edit Item";
+          this.lblrowaddupdate = "Edit";
         }
       }, {
         key: "CancelCreateInvoice",
@@ -15881,9 +16696,65 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.ItemRate = undefined;
         }
       }, {
+        key: "editRow",
+        value: function editRow() {
+          this.isEditable = false;
+        }
+      }, {
+        key: "updateRow",
+        value: function updateRow(data, index) {
+          if (data.Price == 0) {
+            this.showInfo("Rate must be entered!", "Rate");
+            return;
+          }
+
+          if (data.Quantity == 0) {
+            this.showInfo("Quantity must be entered!", "Rate");
+            return;
+          }
+
+          if (data.Quantity > this.invoiceModel.containers.length) {
+            this.showInfo("Quantity must be within container no(s)", "Rate");
+            return;
+          }
+
+          this.invoiceDetail[index].Quantity = data.Quantity; //this.invoiceDetail[this.rowIndex].unitprice = this.ItemRate;
+
+          this.invoiceDetail[index].Price = data.Price;
+          this.InvoiceAmt = 0;
+          var _iteratorNormalCompletion12 = true;
+          var _didIteratorError12 = false;
+          var _iteratorError12 = undefined;
+
+          try {
+            for (var _iterator12 = this.invoiceDetail[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+              var item = _step12.value;
+              var val2 = +item.Price;
+              this.total = this.addNumbers(this.total, val2);
+            }
+          } catch (err) {
+            _didIteratorError12 = true;
+            _iteratorError12 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion12 && _iterator12.return != null) {
+                _iterator12.return();
+              }
+            } finally {
+              if (_didIteratorError12) {
+                throw _iteratorError12;
+              }
+            }
+          }
+
+          this.InvoiceAmt = +this.total.toFixed(2);
+          this.invDet.isEditable = false;
+          return;
+        }
+      }, {
         key: "addupdateItem",
         value: function addupdateItem() {
-          var _this106 = this;
+          var _this114 = this;
 
           if (this.drpCharge == 0) {
             this.showInfo("Item must be selected!", "Rate");
@@ -15917,13 +16788,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.showAddUpdateDiv = false;
             return;
           } else {
-            var _iteratorNormalCompletion12 = true;
-            var _didIteratorError12 = false;
-            var _iteratorError12 = undefined;
+            var _iteratorNormalCompletion13 = true;
+            var _didIteratorError13 = false;
+            var _iteratorError13 = undefined;
 
             try {
-              for (var _iterator12 = this.invoiceDetail[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                var item = _step12.value;
+              for (var _iterator13 = this.invoiceDetail[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
+                var item = _step13.value;
 
                 if (item.Itemkey == this.itemkey) {
                   this.showInfo("Item already added!", "Rate");
@@ -15931,22 +16802,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 }
               }
             } catch (err) {
-              _didIteratorError12 = true;
-              _iteratorError12 = err;
+              _didIteratorError13 = true;
+              _iteratorError13 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion12 && _iterator12.return != null) {
-                  _iterator12.return();
+                if (!_iteratorNormalCompletion13 && _iterator13.return != null) {
+                  _iterator13.return();
                 }
               } finally {
-                if (_didIteratorError12) {
-                  throw _iteratorError12;
+                if (_didIteratorError13) {
+                  throw _iteratorError13;
                 }
               }
             }
 
             var itemData = this.Itemlist.find(function (key) {
-              return key.itemkey == _this106.itemkey;
+              return key.itemkey == _this114.itemkey;
             }); //this.ItemRate = +(+itemData.unitprice).toFixed(2);
 
             this.invoiceItem.Itemkey = itemData.itemkey;
@@ -15966,27 +16837,28 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.showAddUpdateDiv = false;
           }
 
-          var _iteratorNormalCompletion13 = true;
-          var _didIteratorError13 = false;
-          var _iteratorError13 = undefined;
+          this.InvoiceAmt = 0;
+          var _iteratorNormalCompletion14 = true;
+          var _didIteratorError14 = false;
+          var _iteratorError14 = undefined;
 
           try {
-            for (var _iterator13 = this.invoiceDetail[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-              var item = _step13.value;
+            for (var _iterator14 = this.invoiceDetail[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+              var item = _step14.value;
               var val2 = +item.Price;
               this.total = this.addNumbers(this.total, val2);
             }
           } catch (err) {
-            _didIteratorError13 = true;
-            _iteratorError13 = err;
+            _didIteratorError14 = true;
+            _iteratorError14 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion13 && _iterator13.return != null) {
-                _iterator13.return();
+              if (!_iteratorNormalCompletion14 && _iterator14.return != null) {
+                _iterator14.return();
               }
             } finally {
-              if (_didIteratorError13) {
-                throw _iteratorError13;
+              if (_didIteratorError14) {
+                throw _iteratorError14;
               }
             }
           }
@@ -15997,7 +16869,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "showChargeDiv",
         value: function showChargeDiv() {
           this.showAddUpdateDiv = true;
-          this.lblrowaddupdate = "Add Item";
+          this.lblrowaddupdate = "Add";
         }
       }, {
         key: "deleteItem",
@@ -16018,13 +16890,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "drpAddnewCharge_ChangedEvent",
         value: function drpAddnewCharge_ChangedEvent(itemkey) {
-          var _iteratorNormalCompletion14 = true;
-          var _didIteratorError14 = false;
-          var _iteratorError14 = undefined;
+          var _iteratorNormalCompletion15 = true;
+          var _didIteratorError15 = false;
+          var _iteratorError15 = undefined;
 
           try {
-            for (var _iterator14 = this.invoiceDetail[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
-              var item = _step14.value;
+            for (var _iterator15 = this.invoiceDetail[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
+              var item = _step15.value;
 
               if (item.Itemkey == itemkey) {
                 this.showInfo("Item already added!", "Rate");
@@ -16032,16 +16904,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               }
             }
           } catch (err) {
-            _didIteratorError14 = true;
-            _iteratorError14 = err;
+            _didIteratorError15 = true;
+            _iteratorError15 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion14 && _iterator14.return != null) {
-                _iterator14.return();
+              if (!_iteratorNormalCompletion15 && _iterator15.return != null) {
+                _iterator15.return();
               }
             } finally {
-              if (_didIteratorError14) {
-                throw _iteratorError14;
+              if (_didIteratorError15) {
+                throw _iteratorError15;
               }
             }
           }
@@ -16066,18 +16938,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             return;
           }
 
-          if (this.lblInvoice == "Create Invoice") {
+          if (this.lblInvoice == "Create") {
             this.createInvoice();
           }
 
-          if (this.lblInvoice == "Update Invoice") {
+          if (this.lblInvoice == "Update") {
             this.updateInvoice();
           }
         }
       }, {
         key: "updateInvoice",
         value: function updateInvoice() {
-          var _this107 = this;
+          var _this115 = this;
 
           this.invoiceHeader = new _models_invoice__WEBPACK_IMPORTED_MODULE_4__["Invoice"]();
           this.invoiceHeader.Invoicekey = this.InvoiceKey;
@@ -16086,22 +16958,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.invoiceHeader.InvoiceAmt = +this.InvoiceAmt.toFixed(2);
           this.invoiceHeader.DueDate = this.dueDate;
           this.invoiceService.UpdateInvoiceHeader(this.invoiceHeader).subscribe(function (result) {}, function (error) {
-            _this107.showError(error, "Invoice Update");
+            _this115.showError(error, "Invoice Update");
 
             return;
           });
           this.invoiceService.UpdateInvoiceDetail(this.invoiceDetail).subscribe(function (res) {
             if (res) {
-              _this107.load_NewInvoiceList();
+              _this115.load_NewInvoiceList();
 
-              _this107.load_InvoiceList();
+              _this115.load_InvoiceList();
 
-              _this107.showInvoice = false;
+              _this115.showInvoice = false;
 
-              _this107.showSuccess("Invoice updated successfully", "Invoice");
+              _this115.showSuccess("Invoice updated successfully", "Invoice");
             }
           }, function (error) {
-            _this107.showError(error, "Invoice Update");
+            _this115.showError(error, "Invoice Update");
 
             return;
           });
@@ -16109,7 +16981,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "createInvoice",
         value: function createInvoice() {
-          var _this108 = this;
+          var _this116 = this;
 
           //adding header data to invoiceHeader
           this.invoiceHeader = new _models_invoice__WEBPACK_IMPORTED_MODULE_4__["Invoice"]();
@@ -16121,42 +16993,42 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.invoiceHeader.BilltoAddrKey = this.invoiceModel.order.BillToAddress;
           this.invoiceHeader.DueDate = this.dueDate;
           this.invoiceService.CreateInvoiceHeader(this.invoiceHeader).subscribe(function (result) {
-            _this108.invoiceHeaderResult = result;
+            _this116.invoiceHeaderResult = result;
 
-            if (_this108.invoiceHeaderResult.Invoicekey != undefined && _this108.invoiceHeaderResult.Invoicekey != "") {
-              for (var i = 0; i < _this108.invoiceDetail.length; i++) {
-                _this108.invoiceDetail[i].InvoiceKey = _this108.invoiceHeaderResult.Invoicekey;
+            if (_this116.invoiceHeaderResult.Invoicekey != undefined && _this116.invoiceHeaderResult.Invoicekey != "") {
+              for (var i = 0; i < _this116.invoiceDetail.length; i++) {
+                _this116.invoiceDetail[i].InvoiceKey = _this116.invoiceHeaderResult.Invoicekey;
               }
 
-              _this108.invoiceHeader.invoicedetails = _this108.invoiceDetail;
+              _this116.invoiceHeader.invoicedetails = _this116.invoiceDetail;
 
-              _this108.invoiceService.CreateInvoiceDetail(_this108.invoiceHeader.invoicedetails).subscribe(function (res) {
+              _this116.invoiceService.CreateInvoiceDetail(_this116.invoiceHeader.invoicedetails).subscribe(function (res) {
                 if (res) {
-                  _this108.load_NewInvoiceList();
+                  _this116.load_NewInvoiceList();
 
-                  _this108.load_InvoiceList();
+                  _this116.load_InvoiceList();
 
-                  _this108.showInvoice = false;
+                  _this116.showInvoice = false;
 
-                  _this108.showSuccess("Invoice Created successfully", "Invoice");
+                  _this116.showSuccess("Invoice Created successfully", "Invoice");
                 }
               });
             }
           }, function (error) {
-            _this108.showError(error, "New-Order");
+            _this116.showError(error, "New-Order");
           });
         }
       }, {
         key: "downloadPDF",
         value: function downloadPDF() {
-          var _this109 = this;
+          var _this117 = this;
 
           this.invoiceService.downloadInvoice(this.OrderNo).subscribe(function (result) {
             if (confirm("Are you sure to download the file? ")) {
-              Object(file_saver__WEBPACK_IMPORTED_MODULE_10__["saveAs"])(result, _this109.OrderNo + '.pdf');
+              Object(file_saver__WEBPACK_IMPORTED_MODULE_10__["saveAs"])(result, _this117.OrderNo + '.pdf');
             }
           }, function (error) {
-            _this109.showError(error, "Server error while downloading file.");
+            _this117.showError(error, "Server error while downloading file.");
 
             return;
           });
@@ -16164,12 +17036,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "createPDF",
         value: function createPDF() {
-          var _this110 = this;
+          var _this118 = this;
 
           this.invoiceService.createPDF(this.InvoiceKey).subscribe(function (result) {
-            _this110.showSuccess("Invoice PDF Created successfully", "Invoice PDF");
+            _this118.showSuccess("Invoice PDF Created successfully", "Invoice PDF");
           }, function (error) {
-            _this110.showError(error, "PDF Creation");
+            _this118.showError(error, "PDF Creation");
 
             return;
           });
@@ -16206,14 +17078,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this111 = this;
+          var _this119 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.invoiceHeaderList = _toConsumableArray(this.invoiceHeaderList).sort(function (n1, n2) {
-            if (_this111.column == "InvoiceNo") {
+            if (_this119.column == "InvoiceNo") {
               if (n1.InvoiceNo > n2.InvoiceNo) {
                 return 1 * direction;
               } else if (n1.InvoiceNo < n2.InvoiceNo) {
@@ -16221,7 +17093,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this111.column == "CustName") {
+            if (_this119.column == "CustName") {
               if (n1.CustName > n2.CustName) {
                 return 1 * direction;
               } else if (n1.CustName < n2.CustName) {
@@ -16229,7 +17101,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this111.column == "InvoiceAmt") {
+            if (_this119.column == "InvoiceAmt") {
               if (n1.InvoiceAmt > n2.InvoiceAmt) {
                 return 1 * direction;
               } else if (n1.InvoiceAmt < n2.InvoiceAmt) {
@@ -16237,7 +17109,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this111.column == "DueDate") {
+            if (_this119.column == "DueDate") {
               if (n1.DueDate > n2.DueDate) {
                 return 1 * direction;
               } else if (n1.DueDate < n2.DueDate) {
@@ -16245,7 +17117,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this111.column == "StatusDesc") {
+            if (_this119.column == "StatusDesc") {
               if (n1.StatusDesc > n2.StatusDesc) {
                 return 1 * direction;
               } else if (n1.StatusDesc < n2.StatusDesc) {
@@ -16373,16 +17245,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this112 = this;
+          var _this120 = this;
 
           this.loading = true;
           this.isContainerAttributeVisible = false; // stop here if form is invalid
 
           this.authenticationService.login(this.model.username, this.model.password, this.model.company).pipe().subscribe(function (data) {
-            _this112.router.navigate(["dashboard"]);
+            _this120.router.navigate(["dashboard"]);
           }, function (error) {
-            _this112.error = "Invalid Credentials!";
-            _this112.loading = false;
+            _this120.error = "Invalid Credentials!";
+            _this120.loading = false;
           });
         }
       }]);
@@ -16504,7 +17376,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*#__PURE__*/
     function () {
       function NavigationComponent(service, router, authenticationService, userService, modalService) {
-        var _this113 = this;
+        var _this121 = this;
 
         _classCallCheck(this, NavigationComponent);
 
@@ -16519,21 +17391,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.dispatchDeliverylist = [];
         this.show = true;
         this.authenticationService.currentUser.subscribe(function (x) {
-          return _this113.currentUser = x;
+          return _this121.currentUser = x;
         });
       }
 
       _createClass(NavigationComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this114 = this;
+          var _this122 = this;
 
           this.service.getOrderlist().subscribe(function (data) {
-            return _this114.Orderlist = data;
+            return _this122.Orderlist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get OrderList complete", _this114.Orderlist);
+            return console.log("Get OrderList complete", _this122.Orderlist);
           });
         }
       }, {
@@ -16675,8 +17547,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.service = service;
         this.router = router;
         this.route = route;
-        this.pieChartLabels = ["Scheduled", "Pending Verification", "Dispatched", "Completed"];
-        this.pieChartData = [30, 5, 10, 5];
+        this.pieChartLabels = ["In Progress", "Scheduled", "Dispatched", "Hold", "Completed"];
+        this.pieChartData = [30, 5, 10, 5, 89];
         this.pieChartType = "pie";
         this.barChartOptions = {
           scaleShowVerticalLines: false,
@@ -16700,15 +17572,23 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(OrderlistComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this115 = this;
+          var _this123 = this;
 
           this.service.getOrderlist().subscribe(function (data) {
-            return _this115.Orderlist = data;
+            return _this123.Orderlist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get OrderList complete", _this115.Orderlist);
+            return console.log("Get OrderList complete", _this123.Orderlist);
           });
+          this.service.getorderstatusfordashboard().subscribe(function (data) {
+            return _this123.pieChartData = data;
+          }, function (error) {
+            return console.log(error);
+          }, function () {
+            return console.log("Get pieChart Data", _this123.pieChartData);
+          });
+          console.log("Get pieChart Data", this.pieChartData);
         }
       }, {
         key: "open",
@@ -16935,7 +17815,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onFileSelected",
         value: function onFileSelected() {
-          var _this116 = this;
+          var _this124 = this;
 
           var $img = document.querySelector('#file');
 
@@ -16943,9 +17823,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             var reader = new FileReader();
 
             reader.onload = function (e) {
-              _this116.pdfSrc = e.target.result;
+              _this124.pdfSrc = e.target.result;
               console.log("e.target.result", e.target.result);
-              console.log("this.pdfSrc", _this116.pdfSrc);
+              console.log("this.pdfSrc", _this124.pdfSrc);
             };
 
             reader.readAsArrayBuffer($img.files[0]);
@@ -17113,38 +17993,38 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(SchedulerUpdateComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this117 = this;
+          var _this125 = this;
 
           this.schedulerService.GetScheduledContainer(this.OrderDetailKey).subscribe(function (data) {
-            _this117.schedulerData = data;
-            _this117.temp_AppDateFrom = _this117.AppDateFrom = new Date(_this117.schedulerData.AppDateFrom);
-            _this117.temp_AppDateTo = _this117.AppDateTo = new Date(_this117.schedulerData.AppDateTo);
-            _this117.temp_LastFreeDay = _this117.LastFreeDay = new Date(_this117.schedulerData.LastFreeDay);
-            _this117.temp_SchedulerNotes = _this117.SchedulerNotes = _this117.schedulerData.SchedulerNotes;
-            _this117.temp_Legtype = _this117.Legtype = _this117.schedulerData.LegType;
-            _this117.temp_PickupDateTime = _this117.PickupDateTime = _this117.schedulerData.ScheduleArrival;
-            _this117.temp_DropOffDateTime = _this117.DropOffDateTime = _this117.schedulerData.ScheduleDeparture;
-            _this117.temp_DriverNotes = _this117.DriverNotes = _this117.schedulerData.DriverNotes;
-            _this117.temp_AccOptionsChecked = _this117.acccountingOptions = _this117.schedulerData.accountingBO;
+            _this125.schedulerData = data;
+            _this125.temp_AppDateFrom = _this125.AppDateFrom = new Date(_this125.schedulerData.AppDateFrom);
+            _this125.temp_AppDateTo = _this125.AppDateTo = new Date(_this125.schedulerData.AppDateTo);
+            _this125.temp_LastFreeDay = _this125.LastFreeDay = new Date(_this125.schedulerData.LastFreeDay);
+            _this125.temp_SchedulerNotes = _this125.SchedulerNotes = _this125.schedulerData.SchedulerNotes;
+            _this125.temp_Legtype = _this125.Legtype = _this125.schedulerData.LegType;
+            _this125.temp_PickupDateTime = _this125.PickupDateTime = _this125.schedulerData.ScheduleArrival;
+            _this125.temp_DropOffDateTime = _this125.DropOffDateTime = _this125.schedulerData.ScheduleDeparture;
+            _this125.temp_DriverNotes = _this125.DriverNotes = _this125.schedulerData.DriverNotes;
+            _this125.temp_AccOptionsChecked = _this125.acccountingOptions = _this125.schedulerData.accountingBO;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get scheduler Data", _this117.schedulerData);
+            return console.log("Get scheduler Data", _this125.schedulerData);
           });
           this.master.getItemList(1).subscribe(function (data) {
-            _this117.itemlist = data;
+            _this125.itemlist = data;
 
-            for (var i = 0; i < _this117.schedulerData.accountingBO.length; i++) {
-              for (var j = 0; j < _this117.itemlist.length; j++) {
-                if (_this117.acccountingOptions[i].itemkey == _this117.itemlist[j].itemkey) {
-                  _this117.itemlist[j].isChecked = true;
+            for (var i = 0; i < _this125.schedulerData.accountingBO.length; i++) {
+              for (var j = 0; j < _this125.itemlist.length; j++) {
+                if (_this125.acccountingOptions[i].itemkey == _this125.itemlist[j].itemkey) {
+                  _this125.itemlist[j].isChecked = true;
                 }
               }
             }
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get itemlist", _this117.itemlist);
+            return console.log("Get itemlist", _this125.itemlist);
           }); // this.accountingoption
           //   .GetAccountingOptionsbyKey(this.OrderDetailKey)
           //   .subscribe(
@@ -17158,7 +18038,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this118 = this;
+          var _this126 = this;
 
           //Order Details
           var detail = new _models_order_details__WEBPACK_IMPORTED_MODULE_5__["Order_details"]();
@@ -17181,11 +18061,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           if (this.AppDateFrom != this.temp_AppDateFrom || this.temp_AppDateTo != this.temp_AppDateTo || this.LastFreeDay != this.temp_LastFreeDay || this.SchedulerNotes != this.temp_SchedulerNotes) {
             this.orderService.updateOrderDetails(detail).subscribe(function (result) {
-              _this118.isUpdated = true;
+              _this126.isUpdated = true;
             }, function (error) {
               console.log(error);
 
-              _this118.showError("An Unexpected Error Occured.", "Scheduler-Update");
+              _this126.showError("An Unexpected Error Occured.", "Scheduler-Update");
 
               return;
             });
@@ -17194,11 +18074,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           if (this.PickupDateTime != this.temp_PickupDateTime || this.DropOffDateTime != this.temp_DropOffDateTime || this.Legtype != this.temp_Legtype || this.DriverNotes != this.temp_DriverNotes) {
             this.routesService.insertRoutesDetails(tmsroutes).subscribe(function (result) {
-              _this118.isUpdated = true;
+              _this126.isUpdated = true;
             }, function (error) {
               console.log(error);
 
-              _this118.showError("An Unexpected Error Occured.", "Scheduler-Update");
+              _this126.showError("An Unexpected Error Occured.", "Scheduler-Update");
 
               return;
             });
@@ -17219,22 +18099,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
           this.accountingoption.UpdateAccountingOptions(this.OrderDetailKey).subscribe(function (result) {
-            _this118.isUpdated = true; //alert(result);
+            _this126.isUpdated = true; //alert(result);
           }, function (error) {
             console.log(error);
 
-            _this118.showError("An Unexpected Error Occured.", "Scheduler-Update");
+            _this126.showError("An Unexpected Error Occured.", "Scheduler-Update");
 
             return;
           });
 
           if (AccOptionsChecked.length > 0) {
             this.accountingoption.insertAccountingoptions(AccOptionsChecked).subscribe(function (result) {
-              _this118.isUpdated = true; //alert(result);
+              _this126.isUpdated = true; //alert(result);
             }, function (error) {
               console.log(error);
 
-              _this118.showError("An Unexpected Error Occured.", "Scheduler-Update");
+              _this126.showError("An Unexpected Error Occured.", "Scheduler-Update");
 
               return;
             });
@@ -17485,6 +18365,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.showScheduler = false;
         this.showImage = true;
         this.showSchedulerDiv = true;
+        this.btnCompleteScheduleDisabled = true;
         this.optionsChecked = [];
         this.isDesc = false;
         this.column = "containerid";
@@ -17495,21 +18376,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(SchedulerlistComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this119 = this;
+          var _this127 = this;
 
           this.master.getStatusList().subscribe(function (data) {
-            _this119.statuslist = data;
+            _this127.statuslist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get statuslist", _this119.statuslist);
+            return console.log("Get statuslist", _this127.statuslist);
           });
           this.master.getItemList(1).subscribe(function (data) {
-            _this119.itemlist = data;
+            _this127.itemlist = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get itemlist", _this119.itemlist);
+            return console.log("Get itemlist", _this127.itemlist);
           });
           this.loaddata();
           this.loadScheduleddata();
@@ -17526,7 +18407,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this120 = this;
+          var _this128 = this;
+
+          if (!confirm("Are you sure you want to Save? ")) {
+            return;
+          }
 
           if (this.AppDateFrom == null || this.AppDateTo == null || this.PickupDateTime == null || this.DropOffDateTime == null || this.LastFreeDay == null) {
             this.showError("Enter the missing fields.", "Scheduler");
@@ -17554,14 +18439,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.orderService.updateOrderDetails(this.DetailData).subscribe(function (result) {}, function (error) {
             console.log(error);
 
-            _this120.showError("An Unexpected Error Occured.", "Scheduler-Update");
+            _this128.showError("An Unexpected Error Occured.", "Scheduler-Update");
 
             return;
           });
           this.routesService.insertRoutesDetails(tmsroutes).subscribe(function (result) {}, function (error) {
             console.log(error);
 
-            _this120.showError("An Unexpected Error Occured.", "Scheduler-Update");
+            _this128.showError("An Unexpected Error Occured.", "Scheduler-Update");
 
             return;
           }); //deleting existing data before adding
@@ -17571,7 +18456,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }, function (error) {
             console.log(error);
 
-            _this120.showError("An Unexpected Error Occured.", "Scheduler-Update");
+            _this128.showError("An Unexpected Error Occured.", "Scheduler-Update");
 
             return;
           });
@@ -17580,7 +18465,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.accountingoptionsService.insertAccountingoptions(AccOptionsChecked).subscribe(function (result) {}, function (error) {
               console.log(error);
 
-              _this120.showError("An Unexpected Error Occured.", "Scheduler-Update");
+              _this128.showError("An Unexpected Error Occured.", "Scheduler-Update");
 
               return;
             });
@@ -17590,20 +18475,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           DOdetail.status = "3"; //In progress
 
           this.orderService.UpdateDOdetailStatus(this.DetailData).subscribe(function (result) {
-            _this120.loaddata();
+            _this128.loaddata();
 
-            _this120.loadScheduleddata();
+            _this128.loadScheduleddata();
 
-            _this120.showScheduledContainerList = true;
-            _this120.showScheduler = false;
+            _this128.showScheduledContainerList = true;
+            _this128.showScheduler = false;
 
-            _this120.showSuccess("Container - " + DOdetail.ContainerNo + " Holded!", "Scheduler-Update");
+            _this128.showSuccess("Container - " + DOdetail.ContainerNo + " Holded!", "Scheduler-Update");
 
             return;
           }, function (error) {
             console.log(error);
 
-            _this120.showError("An Unexpected Error Occured.", "Scheduler-Update");
+            _this128.showError("An Unexpected Error Occured.", "Scheduler-Update");
 
             return;
           });
@@ -17619,7 +18504,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "rowclickEvent",
         value: function rowclickEvent(value) {
-          var _this121 = this;
+          var _this129 = this;
 
           // if (this.tempOrderDetailKey == value.OrderDetailKey) {
           //   this.dataShow = false;
@@ -17634,13 +18519,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.clear();
           this.OrderDetailKey = value.OrderDetailKey;
           this.orderService.GetbyKey(value.OrderKey).subscribe(function (data) {
-            _this121.HeaderData = data;
-            _this121.dataShow = true;
-            _this121.tempOrderDetailKey = value.OrderDetailKey;
+            _this129.HeaderData = data;
+            _this129.btnCompleteScheduleDisabled = true;
+            _this129.dataShow = true;
+            _this129.tempOrderDetailKey = value.OrderDetailKey;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("order Header Data ", _this121.HeaderData);
+            return console.log("order Header Data ", _this129.HeaderData);
           });
           this.GetOrderDetailsbykey(this.OrderDetailKey);
           this.Legtype = 0;
@@ -17668,37 +18554,37 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loaddata",
         value: function loaddata() {
-          var _this122 = this;
+          var _this130 = this;
 
           this.schedulerService.GetOrderstoSchedule().subscribe(function (data) {
-            _this122.DetailsData = data;
+            _this130.DetailsData = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get OrderDetail", _this122.DetailsData);
+            return console.log("Get OrderDetail", _this130.DetailsData);
           });
         }
       }, {
         key: "loadScheduleddata",
         value: function loadScheduleddata() {
-          var _this123 = this;
+          var _this131 = this;
 
           this.schedulerService.GetScheduledContainers().subscribe(function (data) {
-            _this123.scheduledContainerList = data;
+            _this131.scheduledContainerList = data;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get OrderstoSchedule", _this123.scheduledContainerList);
+            return console.log("Get OrderstoSchedule", _this131.scheduledContainerList);
           });
           this.showScheduledContainerList = true;
         }
       }, {
         key: "GetOrderDetailsbykey",
         value: function GetOrderDetailsbykey(orderdetailkey) {
-          var _this124 = this;
+          var _this132 = this;
 
           this.schedulerService.GetOrderDetailsbykey(orderdetailkey).subscribe(function (data) {
-            _this124.DetailData = data;
+            _this132.DetailData = data;
           }, function (error) {
             return console.log(error);
           });
@@ -17725,7 +18611,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "openModal",
         value: function openModal(data) {
-          var _this125 = this;
+          var _this133 = this;
 
           this.modalRef = this._NgbModal.open(_scheduler_update_scheduler_update_component__WEBPACK_IMPORTED_MODULE_13__["SchedulerUpdateComponent"], {
             backdrop: "static",
@@ -17738,7 +18624,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.modalRef.componentInstance.OrderDetail = data;
           this.modalRef.result.then(function (result) {
             if (result === "success") {
-              _this125.loadScheduleddata(); // Refresh Data in table grid
+              _this133.loadScheduleddata(); // Refresh Data in table grid
 
 
               console.log("Refresh Data ", "success");
@@ -17748,6 +18634,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onCancel",
         value: function onCancel() {
+          if (!confirm("Are you sure you want to cancel?")) {
+            return;
+          }
+
           this.showScheduledContainerList = true;
           this.showScheduler = false;
           this.clear();
@@ -17755,56 +18645,57 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loaddata_forEdit",
         value: function loaddata_forEdit(data) {
-          var _this126 = this;
+          var _this134 = this;
 
           this.OrderDetailKey = data.OrderDetailKey;
           this.orderService.GetbyKey(data.OrderKey).subscribe(function (data) {
-            _this126.HeaderData = data;
+            _this134.HeaderData = data;
+            _this134.btnCompleteScheduleDisabled = false;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("order Header Data ", _this126.HeaderData);
+            return console.log("order Header Data ", _this134.HeaderData);
           });
           this.schedulerService.GetOrderDetailsbykey(data.OrderDetailKey).subscribe(function (data) {
-            _this126.DetailData = data;
-            console.log(" this.DetailData for edit", _this126.DetailData);
+            _this134.DetailData = data;
+            console.log(" this.DetailData for edit", _this134.DetailData);
           }, function (error) {
             return console.log(error);
           });
           this.schedulerService.GetScheduledContainer(data.OrderDetailKey).subscribe(function (data) {
-            _this126.schedulerData = data;
-            _this126.AppDateFrom = new Date(_this126.schedulerData.AppDateFrom);
-            _this126.AppDateTo = new Date(_this126.schedulerData.AppDateTo);
-            _this126.LastFreeDay = new Date(_this126.schedulerData.LastFreeDay);
-            _this126.SchedulerNotes = _this126.schedulerData.SchedulerNotes;
-            _this126.Legtype = _this126.schedulerData.LegType;
-            _this126.PickupDateTime = _this126.schedulerData.ScheduleArrival;
-            _this126.DropOffDateTime = _this126.schedulerData.ScheduleDeparture;
-            _this126.DriverNotes = _this126.schedulerData.DriverNotes;
-            _this126.optionsChecked = _this126.acccountingOptions = _this126.schedulerData.accountingBO;
-            _this126.showScheduledContainerList = false;
-            _this126.showScheduler = true;
+            _this134.schedulerData = data;
+            _this134.AppDateFrom = new Date(_this134.schedulerData.AppDateFrom);
+            _this134.AppDateTo = new Date(_this134.schedulerData.AppDateTo);
+            _this134.LastFreeDay = new Date(_this134.schedulerData.LastFreeDay);
+            _this134.SchedulerNotes = _this134.schedulerData.SchedulerNotes;
+            _this134.Legtype = _this134.schedulerData.LegType;
+            _this134.PickupDateTime = _this134.schedulerData.ScheduleArrival;
+            _this134.DropOffDateTime = _this134.schedulerData.ScheduleDeparture;
+            _this134.DriverNotes = _this134.schedulerData.DriverNotes;
+            _this134.optionsChecked = _this134.acccountingOptions = _this134.schedulerData.accountingBO;
+            _this134.showScheduledContainerList = false;
+            _this134.showScheduler = true;
           }, function (error) {
             return console.log(error);
           }, function () {
-            return console.log("Get scheduler Data", _this126.schedulerData);
+            return console.log("Get scheduler Data", _this134.schedulerData);
           });
 
           if (this.schedulerData.accountingBO.length > 0) {
             this.master.getItemList(1).subscribe(function (data) {
-              _this126.itemlist = data;
+              _this134.itemlist = data;
 
-              for (var i = 0; i < _this126.schedulerData.accountingBO.length; i++) {
-                for (var j = 0; j < _this126.itemlist.length; j++) {
-                  if (_this126.acccountingOptions[i].itemkey == _this126.itemlist[j].itemkey) {
-                    _this126.itemlist[j].isChecked = true;
+              for (var i = 0; i < _this134.schedulerData.accountingBO.length; i++) {
+                for (var j = 0; j < _this134.itemlist.length; j++) {
+                  if (_this134.acccountingOptions[i].itemkey == _this134.itemlist[j].itemkey) {
+                    _this134.itemlist[j].isChecked = true;
                   }
                 }
               }
             }, function (error) {
               return console.log(error);
             }, function () {
-              return console.log("Get itemlist", _this126.itemlist);
+              return console.log("Get itemlist", _this134.itemlist);
             });
           } // this.accountingoption
           //   .GetAccountingOptionsbyKey(this.OrderDetailKey)
@@ -17820,26 +18711,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "hold_Schedule",
         value: function hold_Schedule() {
-          var _this127 = this;
+          var _this135 = this;
+
+          if (!confirm("Are you sure you want to Hold? ")) {
+            return;
+          }
 
           var DOdetail = this.DetailData;
           DOdetail.status = "4"; //4- Hold
 
           this.orderService.UpdateDOdetailStatus(this.DetailData).subscribe(function (result) {
-            _this127.loaddata();
+            _this135.loaddata();
 
-            _this127.loadScheduleddata();
+            _this135.loadScheduleddata();
 
-            _this127.showScheduledContainerList = true;
-            _this127.showScheduler = false;
+            _this135.showScheduledContainerList = true;
+            _this135.showScheduler = false;
 
-            _this127.showSuccess("Container - " + DOdetail.ContainerNo + " Holded!", "Scheduler-Update");
+            _this135.showSuccess("Container - " + DOdetail.ContainerNo + " Holded!", "Scheduler-Update");
 
             return;
           }, function (error) {
             console.log(error);
 
-            _this127.showError("An Unexpected Error Occured.", "Scheduler-Update");
+            _this135.showError("An Unexpected Error Occured.", "Scheduler-Update");
 
             return;
           });
@@ -17847,26 +18742,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "complete_Schedule",
         value: function complete_Schedule() {
-          var _this128 = this;
+          var _this136 = this;
+
+          if (!confirm("Are you sure you want to Complete Schedule?")) {
+            return;
+          }
 
           var DOdetail = this.DetailData;
           DOdetail.status = "5"; //4- complete schedule
 
           this.orderService.UpdateDOdetailStatus(this.DetailData).subscribe(function (result) {
-            _this128.loaddata();
+            _this136.loaddata();
 
-            _this128.loadScheduleddata();
+            _this136.loadScheduleddata();
 
-            _this128.showScheduledContainerList = true;
-            _this128.showScheduler = false;
+            _this136.showScheduledContainerList = true;
+            _this136.showScheduler = false;
 
-            _this128.showSuccess("Schedule Completed for the Container :" + _this128.DetailData.ContainerNo, "Scheduler-Update");
+            _this136.showSuccess("Schedule Completed for the Container :" + _this136.DetailData.ContainerNo, "Scheduler-Update");
 
             return;
           }, function (error) {
             console.log(error);
 
-            _this128.showError("An Unexpected Error Occured.", "Scheduler-Update");
+            _this136.showError("An Unexpected Error Occured.", "Scheduler-Update");
 
             return;
           });
@@ -17874,14 +18773,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "sort",
         value: function sort(column) {
-          var _this129 = this;
+          var _this137 = this;
 
           this.isDesc = !this.isDesc; //change the direction
 
           this.column = column;
           var direction = this.isDesc ? 1 : -1;
           this.scheduledContainerList = _toConsumableArray(this.scheduledContainerList).sort(function (n1, n2) {
-            if (_this129.column == "containerid") {
+            if (_this137.column == "containerid") {
               if (n1.containerid > n2.containerid) {
                 return 1 * direction;
               } else if (n1.containerid < n2.containerid) {
@@ -17889,7 +18788,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this129.column == "ContainerNo") {
+            if (_this137.column == "ContainerNo") {
               if (n1.ContainerNo > n2.ContainerNo) {
                 return 1 * direction;
               } else if (n1.ContainerNo < n2.ContainerNo) {
@@ -17897,7 +18796,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this129.column == "ContainerSizeDesc") {
+            if (_this137.column == "ContainerSizeDesc") {
               if (n1.ContainerSizeDesc > n2.ContainerSizeDesc) {
                 return 1 * direction;
               } else if (n1.ContainerSizeDesc < n2.ContainerSizeDesc) {
@@ -17905,7 +18804,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this129.column == "LastFreeDay") {
+            if (_this137.column == "LastFreeDay") {
               if (n1.LastFreeDay > n2.LastFreeDay) {
                 return 1 * direction;
               } else if (n1.LastFreeDay < n2.LastFreeDay) {
@@ -17913,7 +18812,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this129.column == "PickupDateTime") {
+            if (_this137.column == "PickupDateTime") {
               if (n1.PickupDateTime > n2.PickupDateTime) {
                 return 1 * direction;
               } else if (n1.PickupDateTime < n2.PickupDateTime) {
@@ -17921,7 +18820,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this129.column == "DropOffDateTime") {
+            if (_this137.column == "DropOffDateTime") {
               if (n1.DropOffDateTime > n2.DropOffDateTime) {
                 return 1 * direction;
               } else if (n1.DropOffDateTime < n2.DropOffDateTime) {
@@ -17929,7 +18828,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               } else return 0;
             }
 
-            if (_this129.column == "StatusDesc") {
+            if (_this137.column == "StatusDesc") {
               if (n1.StatusDesc > n2.StatusDesc) {
                 return 1 * direction;
               } else if (n1.StatusDesc < n2.StatusDesc) {
@@ -18075,20 +18974,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(TabComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this130 = this;
+          var _this138 = this;
 
           // alert('Tab Initiate:  '+ this.orderKeyinput);
           //this.orderKeyinput = this.route.snapshot.paramMap.get("order");
           // this.orderKey ='43976812-5c31-11e9-be2a-93c1a1c5ac18';
           if (this.orderKeyinput != undefined) {
             this.service.GetbyKey(this.orderKeyinput).subscribe(function (data) {
-              _this130.order = data, console.log("testing Model----", _this130.order);
-              _this130.service.GetOrderDetailsbyKey(_this130.orderKeyinput).subscribe(function (data) {
-                return _this130.orderinfo = data;
+              _this138.order = data, console.log("testing Model----", _this138.order);
+              _this138.service.GetOrderDetailsbyKey(_this138.orderKeyinput).subscribe(function (data) {
+                return _this138.orderinfo = data;
               }, function (error) {
                 return console.log(error);
               }, function () {
-                return console.log("Get OrderDetail", _this130.orderinfo);
+                return console.log("Get OrderDetail", _this138.orderinfo);
               }), function (error) {
                 return console.log(error);
               };

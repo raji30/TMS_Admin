@@ -13,7 +13,8 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+    //[JwtAuthentication]
     public class VendorController : ApiController
     {
         VendorRepository repo = new VendorRepository();

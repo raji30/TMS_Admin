@@ -12,7 +12,8 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+   // [JwtAuthentication]
     public class CompanyController : ApiController
     {
         CompanyDL DL = new CompanyDL();

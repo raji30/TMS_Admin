@@ -26,9 +26,8 @@ using System.Net.Http.Headers;
 using TMS.BusinessLayer;
 
 namespace TMS.Api.Controllers
-{/// <summary>
-/// Not yet implemented
-/// </summary>
+{
+    [AllowAnonymous]
     public class InvoiceController : ApiController
     {
         //

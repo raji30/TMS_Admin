@@ -34,6 +34,7 @@ export class InvoiceComponent implements OnInit {
   public invoiceHeaderList: Invoice[];
   public invoiceDetails: Invoicedetails[];
   public invoiceDet: Invoicedetails;
+  public invDet: Invoicedetails;
 
   public invoiceHeaderResult: Invoice;
   public OrderKey: string;
@@ -61,6 +62,11 @@ export class InvoiceComponent implements OnInit {
   public showInvoiceList: boolean = true;
   public lblrowaddupdate: string;
   public lblInvoice: string;
+
+  
+  public editing: boolean = false;    
+  public isEditable: boolean = true;
+  
 
   isDesc: boolean = false;
   column: string = "InvoiceNo";
@@ -154,7 +160,7 @@ export class InvoiceComponent implements OnInit {
             this.invoiceDet.InvoiceKey = undefined;
             this.invoiceDet.InvoiceDescription = "";
             this.invoiceDet.ExcessAmount = "";
-            this.invoiceDet.containerno = item.containerno;
+            this.invoiceDet.Container = item.containerno;
             this.invoiceDetail.push(this.invoiceDet);
             console.log("this.invoiceDetail", this.invoiceDetail);
           } else {
@@ -174,7 +180,7 @@ export class InvoiceComponent implements OnInit {
               this.invoiceDet.Itemkey = item.itemkey;
               this.invoiceDet.Description = item.description;
               this.invoiceDet.Quantity = 1;
-              this.invoiceDet.containerno = item.containerno;
+              this.invoiceDet.Container = item.containerno;
               this.invoiceDet.UnitPrice = item.unitprice;
               this.invoiceDet.Price = this.invoiceDet.UnitPrice;
               this.invoiceDet.InvoiceLineKey = undefined;
@@ -207,7 +213,7 @@ export class InvoiceComponent implements OnInit {
     this.showInvoice = true;
     this.showImage = false;
     this.showInvoiceList = false;
-    this.lblInvoice = "Create Invoice";
+    this.lblInvoice = "Create";
     console.log("Get invoiceModel", this.invoiceModel);
   }
 
@@ -215,7 +221,7 @@ export class InvoiceComponent implements OnInit {
     this.showInvoice = true;
     this.showImage = false;
     this.showInvoiceList = false;
-    this.lblInvoice = "Update Invoice";
+    this.lblInvoice = "Update";
 
     this.invoiceModel = new Invoicemodel();
     this.invoiceModel.order = new DeliveryOrderHeader();
@@ -265,11 +271,12 @@ export class InvoiceComponent implements OnInit {
   editItem(data: any, index: number) {
     this.rowIndex = index;
     this.item_editing = true;
+    this.invDet.isEditable = true;
     this.drpCharge = data.Itemkey;
     this.ContainerQuantity = data.Quantity;
     this.ItemRate = data.UnitPrice;
     this.showAddUpdateDiv = true;
-    this.lblrowaddupdate = "Edit Item";
+    this.lblrowaddupdate = "Edit";
   }
   CancelCreateInvoice() {
     this.showInvoice = false;
@@ -286,6 +293,38 @@ export class InvoiceComponent implements OnInit {
     this.drpCharge = undefined;
     this.ContainerQuantity = undefined;
     this.ItemRate = undefined;
+  }
+  editRow()
+  {
+    this.isEditable = false;
+  }
+
+  updateRow(data: Invoicedetails, index: number)
+  {
+    if (data.Price == 0) {
+      this.showInfo("Rate must be entered!", "Rate");
+      return;
+    }
+    if (data.Quantity == 0) {
+      this.showInfo("Quantity must be entered!", "Rate");
+      return;
+    }
+    if (data.Quantity > this.invoiceModel.containers.length) {
+      this.showInfo("Quantity must be within container no(s)", "Rate");
+      return;
+    }
+
+    this.invoiceDetail[index].Quantity = data.Quantity;
+    //this.invoiceDetail[this.rowIndex].unitprice = this.ItemRate;
+    this.invoiceDetail[index].Price = data.Price;   
+    this.InvoiceAmt = 0;
+    for (var item of this.invoiceDetail) {
+      var val2 = +item.Price;
+      this.total = this.addNumbers(this.total, val2);
+    }
+    this.InvoiceAmt = +this.total.toFixed(2);
+    this.invDet.isEditable = false;
+    return;
   }
 
   addupdateItem() {
@@ -349,7 +388,7 @@ export class InvoiceComponent implements OnInit {
       this.total = 0;
       this.showAddUpdateDiv = false;
     }
-
+this.InvoiceAmt = 0;
     for (var item of this.invoiceDetail) {
       var val2 = +item.Price;
       this.total = this.addNumbers(this.total, val2);
@@ -358,7 +397,7 @@ export class InvoiceComponent implements OnInit {
   }
   showChargeDiv() {
     this.showAddUpdateDiv = true;
-    this.lblrowaddupdate = "Add Item";
+    this.lblrowaddupdate = "Add";
   }
 
   deleteItem(index) {
@@ -399,10 +438,10 @@ export class InvoiceComponent implements OnInit {
       return;
     }
 
-    if (this.lblInvoice == "Create Invoice") {
+    if (this.lblInvoice == "Create") {
       this.createInvoice();
     }
-    if (this.lblInvoice == "Update Invoice") {
+    if (this.lblInvoice == "Update") {
       this.updateInvoice();
     }
   }

@@ -10,7 +10,8 @@ using TMS.Data;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+    //[JwtAuthentication]
     public class RateSheetController : ApiController
     {
         RateSheetDL dl = new RateSheetDL();

@@ -7,10 +7,10 @@ import { AppSettings } from '../_constants/appsettings';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    private baseUrl : string
+    //private baseUrl : string
     
     constructor(private http:HttpClient) { 
-        this.baseUrl= 'http://localhost:51902/Token/';
+        //this.baseUrl= 'http://localhost:51902/Token/';
     }
     getAll() {   
         var token = JSON.parse(localStorage.getItem("currentUser"));

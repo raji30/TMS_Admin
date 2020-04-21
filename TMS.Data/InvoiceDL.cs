@@ -11,13 +11,13 @@ namespace TMS.Data
 {
    public class InvoiceDL
     {
-        string connString;//= "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";      
+        string connString = "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_model";      
         NpgsqlConnection conn;
         NpgsqlCommand cmd;
 
         public InvoiceDL()
         {
-            connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
+          //  connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
         }
         public InvoiceHeaderBO GetInvoice(string invoiceNo)
         {
@@ -207,6 +207,7 @@ namespace TMS.Data
                             {
                                 Itemkey = Utils.CustomParse<Guid>(reader["itemkey"]),
                                 Description = Utils.CustomParse<string>(reader["description"]),
+                                Container = Utils.CustomParse<string>(reader["container"]),
                                 Price = Utils.CustomParse<decimal>(reader["price"]),
                                 //ItemType = Utils.CustomParse<short>(reader["itemtype"]),
                                 Quantity = Utils.CustomParse<decimal>(reader["quantity"]),
@@ -260,6 +261,8 @@ namespace TMS.Data
                           NpgsqlTypes.NpgsqlDbType.Integer, detailBO.Quantity);
                         cmd.Parameters.AddWithValue("_extamt",
                           NpgsqlTypes.NpgsqlDbType.Numeric, detailBO.Price);
+                        cmd.Parameters.AddWithValue("_container",
+                            NpgsqlTypes.NpgsqlDbType.Varchar, detailBO.Container);
 
                         var invoicedetailkey = cmd.ExecuteScalar();
                         //detailBO.InvoiceLineKey = Guid.Parse(invoicedetailkey.ToString());
@@ -305,6 +308,9 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_extamt",
                       NpgsqlTypes.NpgsqlDbType.Numeric, detailBO.Price);
 
+                    cmd.Parameters.AddWithValue("_container",
+                          NpgsqlTypes.NpgsqlDbType.Varchar, detailBO.Container);
+
                     var invoicedetailkey = cmd.ExecuteScalar();
                     //detailBO.InvoiceLineKey = Guid.Parse(invoicedetailkey.ToString());
                     //return detailBO;
@@ -336,6 +342,7 @@ namespace TMS.Data
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("_invoicekey", NpgsqlTypes.NpgsqlDbType.Uuid, invoice.Invoicekey);
+                   
                     // cmd.Parameters.AddWithValue("_invoiceno", NpgsqlTypes.NpgsqlDbType.Integer, invoice.InvoiceNo);
                     cmd.Parameters.AddWithValue("_invoicedate", NpgsqlTypes.NpgsqlDbType.Date, Convert.ToDateTime(invoice.InvoiceDate));
                     cmd.Parameters.AddWithValue("_invoiceamount", NpgsqlTypes.NpgsqlDbType.Numeric, invoice.InvoiceAmt);
@@ -368,6 +375,7 @@ namespace TMS.Data
                     cmd.Parameters.AddWithValue("_invoicekey", NpgsqlTypes.NpgsqlDbType.Uuid, detailBO.InvoiceKey);
                     cmd.Parameters.AddWithValue("_invoicelinekey", NpgsqlTypes.NpgsqlDbType.Uuid, detailBO.InvoiceLineKey);
                     cmd.Parameters.AddWithValue("_itemkey", NpgsqlTypes.NpgsqlDbType.Uuid, detailBO.Itemkey);
+                    cmd.Parameters.AddWithValue("_container", NpgsqlTypes.NpgsqlDbType.Varchar, detailBO.Container);
                     cmd.Parameters.AddWithValue("_description", NpgsqlTypes.NpgsqlDbType.Varchar, detailBO.Description);
                     cmd.Parameters.AddWithValue("_unitprice", NpgsqlTypes.NpgsqlDbType.Numeric, detailBO.UnitPrice);
                     cmd.Parameters.AddWithValue("_qty", NpgsqlTypes.NpgsqlDbType.Integer, detailBO.Quantity);
@@ -665,6 +673,7 @@ namespace TMS.Data
                             inv.InvoiceLineKey = Utils.CustomParse<Guid>(reader["invoicelinekey"]);
                             inv.Itemkey = Utils.CustomParse<Guid>(reader["itemkey"]);
                             inv.Description = Utils.CustomParse<string>(reader["description"]);
+                            inv.Container = Utils.CustomParse<string>(reader["container"]);
                             inv.Price = Utils.CustomParse<decimal>(reader["unitprice"]);
                             inv.Quantity = Utils.CustomParse<int>(reader["quantity"]);
                             inv.UnitPrice = Utils.CustomParse<decimal>(reader["price"]);

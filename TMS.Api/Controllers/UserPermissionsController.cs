@@ -8,6 +8,7 @@ using TMS.Data;
 
 namespace TMS.Api.Controllers
 {
+    [AllowAnonymous]
     public class UserPermissionsController : ApiController
     {
 

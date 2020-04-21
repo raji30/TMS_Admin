@@ -11,13 +11,13 @@ namespace TMS.Data
 {
     public class BaseRateDL
     {
-        string connString;//= "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";      
+        string connString = "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_model";      
         NpgsqlConnection conn;
         NpgsqlCommand cmd;
 
         public BaseRateDL()
         {
-            connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
+            //connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
         }
 
         public List<BaseRateBO> GetRates()

@@ -11,7 +11,8 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+   // [JwtAuthentication]
     public class CustomerController : ApiController
     {
         CustomerDL cusObj = new CustomerDL();

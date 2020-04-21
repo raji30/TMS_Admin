@@ -12,8 +12,10 @@ using System.Web.Http.Cors;
 
 namespace TMS.Api.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    [JwtAuthentication]
+    //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    // [EnableCors(origins: "http://108.60.54.114:8080", headers: "*", methods: "*")]
+    [AllowAnonymous]
+   // [JwtAuthentication]
     public class FileDownloadController : ApiController
     {
         [HttpPost]

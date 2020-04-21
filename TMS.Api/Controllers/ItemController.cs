@@ -10,7 +10,8 @@ using TMS.Data;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+    //[JwtAuthentication]
     public class ItemController : ApiController
     {
         ItemDL dl = new ItemDL();

@@ -9,7 +9,8 @@ using TMS.BusinessObjects;
 using TMS.Data;
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+   // [JwtAuthentication]
     public class BaseRateController : ApiController
     {
         BaseRateDL dl = new BaseRateDL();
