@@ -72,16 +72,16 @@ export class UserlistComponent implements OnInit {
     //   return;
     // }
     // if (
-    //   this.dataModel.FirstName == null ||
-    //   this.dataModel.FirstName == undefined
+    //   this.dataModel.firstname == null ||
+    //   this.dataModel.firstname == undefined
     // ) {
     //  // this.showWarning("Please enter First Name.", "User");
     //   alert('Error!! \n\n' + 'Please enter First Name.');
     //   return;
     // }
     // if (
-    //   this.dataModel.Address.Address1 == null ||
-    //   this.dataModel.Address.Address1 == undefined
+    //   this.dataModel.address.Address1 == null ||
+    //   this.dataModel.address.Address1 == undefined
     // ) {
     //  // this.showWarning("Please enter Address Line 1.", "User");
     //  alert('Error!! \n\n' + 'Please enter Address Line 1.');
@@ -129,7 +129,7 @@ export class UserlistComponent implements OnInit {
   }
 
   resetForm() {
-    this.dataModel = null;
+   // this.dataModel = null;
     this.dataModel = new User();
     this.dataModel.address = new Address();
     this.userKey = null;

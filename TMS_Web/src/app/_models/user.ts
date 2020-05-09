@@ -2,6 +2,7 @@ import { Address } from "./address";
 
 export class User {
     userkey: string;
+    Userkey: string;
     UserId: string;
     username: string;
     password : string;

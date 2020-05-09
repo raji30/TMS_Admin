@@ -44,13 +44,14 @@ namespace TMS.BusinessLayer
              
         public bool Update(userinfo t)
         {
-            var existing = entity.userinfoes.Where(u => u.userid == t.userid).FirstOrDefault();
+            var existing = entity.userinfoes.Where(u => u.userkey == t.userkey).FirstOrDefault();
 
             if(existing!= null)
             {
                 existing.firstname = t.firstname;
                 existing.lastname = t.lastname;
                 existing.userid = t.userid;
+                existing.password = t.password;
 
                 if(t.addressmaster!=null)
                 {

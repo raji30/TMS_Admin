@@ -3,6 +3,7 @@ import { AuthenticationService } from "../../_services/authentication.service";
 import { OnInit, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs-compat/operator/first';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-login",
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,private SpinnerService: NgxSpinnerService
   ) {}
 
   ngOnInit() {
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.isContainerAttributeVisible = false;
     // stop here if form is invalid
-
+this.SpinnerService.show();
     this.authenticationService
       .login(this.model.username, this.model.password, this.model.company)
       .pipe()
@@ -44,9 +45,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(["dashboard"]);
         },
         error => {
-          this.error = "Invalid Credentials!";
+          this.error = "Error in Login!";
           this.loading = false;
+          console.log("LOGIN ERROR: "+ error );
         }
       );
+      this.SpinnerService.hide();
   }
 }

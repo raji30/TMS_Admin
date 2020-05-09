@@ -1,4 +1,4 @@
-<div class="form-group dropright">
+<!-- <div class="form-group dropright">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="drpBillTo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Full Name:
     </button>
@@ -29,5 +29,152 @@
       </div>
       <div class="form-group col-md-3">
        <input type="text" class="form-control" id="inputZip" placeholder="Zip">
+      </div>
+    </div> -->
+
+    <div class="form-group">    
+      <div class="row" hidden="true">
+        <div class="form-group input-group input-group-sm col-md-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Address Key</span>
+          </div>
+          <input type="text" id="AddrKey" class="form-control form-control-sm" [(ngModel)]="Address.AddrKey"
+            name="AddrKey">
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="form-group input-group input-group-sm col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Line 1</span>
+          </div>
+          <input type="text" id="Addressline1"  class="form-control form-control-sm" [(ngModel)]="Address.Address1" 
+            name="Address1" (keypress)="onAddress1KeyPress($event)">          
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group input-group input-group-sm col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Line 2</span>
+          </div>
+          <input type="text" id="Addressline2"  class="form-control form-control-sm" [(ngModel)]="Address.Address2"
+            name="Address2" (keypress)="onAddress2KeyPress($event)">
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="form-group input-group input-group-sm col-md-5">
+          <div class="input-group-prepend">
+            <span class="input-group-text">City</span>
+          </div> 
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle form-control-sm"  type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{citySelected}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="drpcompany">
+              <form class="px-4 py-2">
+                <input type="search" class="form-control  form-control-sm" placeholder="search.." autofocus="autofocus"
+                (input)="onCitySearchChange($event.target.value)">
+            </form>
+            <div class="menuItems">
+              <li *ngFor="let city of CityFilter  let ind=index;"
+                (click)="onCitySelect(city)">
+                <small class="dropdown-item">{{city.cityname}}</small>
+              </li>
+            </div>
+              <div *ngIf="IsNoEntry" class="dropdown-header dropdown_empty" style="color: chartreuse;">No entry found!</div>
+            </div>
+          </div>       
+          <!-- 
+
+          <select id="City" class="form-control form-control-sm" [(ngModel)]="Address.City"
+            name="City" (change)="drpCityChanged($event.target.value)">
+            <option *ngFor="let city of citylist" [value]="city.citykey">
+              {{city.cityname}}
+            </option>
+          </select>         -->
+        </div>
+
+        <div class="form-group input-group input-group-sm col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">State</span>
+          </div>
+          <input type="text" id="State"  class="form-control form-control-sm" [(ngModel)]="Address.State"
+            name="State" (keypress)="onStateKeyPress($event)">        
+        </div>
+        <div class="form-group input-group input-group-sm col-md-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Zip</span>
+          </div>
+          <input type="text" id="Zip"  class="form-control form-control-sm" [(ngModel)]="Address.Zip"
+            name="Zip" (keypress)="numberOnly($event);onZipKeyPress($event)" appBlockCopyPaste>         
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group input-group input-group-sm col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Country</span>
+          </div>
+          <input type="text" id="Country"  class="form-control form-control-sm" [(ngModel)]="Address.Country"
+            name="Country" (keypress)="onCountryKeyPress($event)">
+
+        </div>
+        <div class="form-group input-group input-group-sm col-md-8">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Website</span>
+          </div>
+          <input type="text" id="Website"  class="form-control form-control-sm" [(ngModel)]="Address.Website"
+            name="Website" appBlockCopyPaste (keypress)="onWebsiteKeyPress($event)">        
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group input-group input-group-sm col-md-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Primary Phone</span>
+          </div>
+          <input type="text" id="Phone1"  class="form-control form-control-sm" [(ngModel)]="Address.Phone"
+            name="Phone" (keypress)="numberOnly($event);onPhone1KeyPress($event)" appBlockCopyPaste>
+          
+        </div>
+        <div class="form-group input-group input-group-sm col-md-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Secondary Phone</span>
+          </div>
+          <input type="text" id="Phone2"  class="form-control form-control-sm" [(ngModel)]="Address.Phone2"
+            name="Phone2" (keypress)="numberOnly($event);onPhone2KeyPress($event)" appBlockCopyPaste>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="form-group input-group input-group-sm col-md-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Fax</span>
+          </div>
+          <input type="text" id="Fax"  class="form-control form-control-sm" [(ngModel)]="Address.Fax"
+            name="Fax" (keypress)="numberOnly($event);onFaxKeyPress($event)" appBlockCopyPaste>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group input-group input-group-sm col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Primary E-mail</span>
+          </div>
+          <input type="text" id="Email1"  class="form-control form-control-sm" [(ngModel)]="Address.Email"
+            name="Email" (keypress)="onEmail1KeyPress($event)" appBlockCopyPaste>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group input-group input-group-sm col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Secondary E-mail</span>
+          </div>
+          <input type="text" id="Email2"  class="form-control form-control-sm" [(ngModel)]="Address.Email2"
+            name="Email2" (keypress)="onEmail2KeyPress($event)" appBlockCopyPaste>
+        </div>
       </div>
     </div>

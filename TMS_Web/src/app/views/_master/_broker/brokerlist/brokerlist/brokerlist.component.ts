@@ -48,7 +48,10 @@ count: number;
     this.dataModel.Address = new Address();
     this.loadAllBrokers();
   }
-
+  onOutputAddressChange(addr: Address) {
+    this.dataModel.Address=addr;
+   }
+ 
   loadAllBrokers() {
     this.Service.GetBrokers().subscribe(
       data => (this.brokers = data),

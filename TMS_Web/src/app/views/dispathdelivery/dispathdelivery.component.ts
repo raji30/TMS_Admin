@@ -183,7 +183,7 @@ export class DispathdeliveryComponent implements OnInit {
     this.selectedKey = value.OrderDetailKey;
   }
 
-  Submit() {
+  onSubmit() {
     this.dispatchDeliveryService
       .UpdateDispatchDeliveryData(this.dispatchDetails)
       .subscribe(
@@ -258,6 +258,7 @@ export class DispathdeliveryComponent implements OnInit {
   }
 
   Cancel() {
+    this.dispatchDetails = [];
     this.showdispatchitemlist = true;
     this.showaddupdatedispatchitems = false;
     this.selectedKey = "";

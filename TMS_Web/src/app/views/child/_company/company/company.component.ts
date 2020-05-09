@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Input, Output } from "@angular/core";
 import { Address } from "../../../../_models/address";
 import { AddressService } from "../../../../_services/address.service";
 import { MasterService } from "../../../../_services/master.service";
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-company",
@@ -26,10 +27,11 @@ export class CompanyComponent implements OnInit {
   searchText:string;
 
   selectedCompany: Address;// = new Address();
-  constructor(private service: AddressService, private master: MasterService) {}
+  constructor(private service: AddressService, private master: MasterService,private SpinnerService: NgxSpinnerService) {}
 
   ngOnInit() {
    // console.log(this.addressKeyTobind);
+   this.SpinnerService.show();  
     this.service
       .getAddress(this.Type)
       .subscribe(
@@ -37,7 +39,7 @@ export class CompanyComponent implements OnInit {
         error => console.log(error),
         () => console.log("Get customer complete",this.company)
       );
-
+      this.SpinnerService.hide();  
     // if (this.addressKeyTobind != undefined) {
     //   this.addressTobind = this.company.find(
     //     x => x.AddrKey === this.addressKeyTobind

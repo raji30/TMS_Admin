@@ -121,7 +121,8 @@
             </div>
           </div>
           <div class="container">
-            <div class="form-group">
+            <app-address  [Address]="dataModel.Address" (AddressOut)="onOutputAddressChange($event)"> </app-address>
+            <!-- <div class="form-group">
               <label for="legno"> <b> Address </b> </label>
               <div class="row">
                 <div class="form-group input-group input-group-sm col-md-12">
@@ -202,9 +203,7 @@
                   </div>
                   <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Website"
                     name="Website" #Website="ngModel" appBlockCopyPaste>
-                  <!-- <div *ngIf="submitted && f.Address['controls'].website.errors" class="invalid-feedback">                   
-                              <div *ngIf="customerForm.controls.website.errors.pattern">website is not valid</div>                       
-                            </div> -->
+                 
                 </div>
               </div>
               <div class="row">
@@ -236,7 +235,7 @@
                 </div>
               </div>
 
-            </div>
+            </div> -->
 
             <div class="row">
               <div class="col-6 col-sm-6 col-md-6">

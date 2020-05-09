@@ -40,6 +40,7 @@ import { FileUploadService } from "../../_services/fileupload.service";
 import { findLast } from "@angular/compiler/src/directive_resolver";
 import { FileUploaderService } from "../../_services/file-uploader.service";
 import { Customer } from '../../_models/customer';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 //const URL = "https://evening-anchorage-3159.herokuapp.com/api/";
 //const URL = 'http://localhost:4200/api';
@@ -143,6 +144,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
     private route: ActivatedRoute,
     private fileUploadService: FileUploadService,
     private fileUploaderService:FileUploaderService,
+    private SpinnerService: NgxSpinnerService,
   ) {
     this.doHeader = null;
     // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -173,6 +175,7 @@ export class DOIntakeComponent implements OnInit, OnChanges, OnDestroy {
   }
   onOrdernoGenerated(newOrderno: string) {
     this.showordernodate = true;
+    this.doHeader.OrderNo = "";
     this.doHeader.OrderNo = newOrderno;
     this.doHeader.OrderDate = new Date(); //.toLocaleDateString();
   }

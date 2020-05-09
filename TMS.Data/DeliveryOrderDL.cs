@@ -13,13 +13,13 @@ namespace TMS.Data
 {
     public class DeliveryOrderDL :BaseConnection
     {
-        string connString = "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_model";      
+        string connString;// = "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_model";      
         NpgsqlConnection conn;
         NpgsqlCommand cmd;
 
         public DeliveryOrderDL()
         {
-           // connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
+           connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
         }
         public Guid CreateDeliveryOrder(DeliveryOrderBO orderBO)
         {          
@@ -100,15 +100,15 @@ namespace TMS.Data
                         cmd.Parameters.AddWithValue("_comment", NpgsqlTypes.NpgsqlDbType.Varchar, orderBO.Comment);
                     }
 
-                    if (orderBO.CutOffDate == null)
-                    {
-                        cmd.Parameters.AddWithValue("_cutoffdate", NpgsqlTypes.NpgsqlDbType.Timestamp, orderBO.CutOffDate);
+                    //if (orderBO.CutOffDate == null)
+                    //{
+                    //    cmd.Parameters.AddWithValue("_cutoffdate", NpgsqlTypes.NpgsqlDbType.Timestamp, orderBO.CutOffDate);
 
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("_cutoffdate", orderBO.CutOffDate);
-                    }
+                    //}
+                    //else
+                    //{
+                    //    cmd.Parameters.AddWithValue("_cutoffdate", orderBO.CutOffDate);
+                    //}
                     cmd.Parameters.AddWithValue("_ishazardous", NpgsqlTypes.NpgsqlDbType.Bit, orderBO.IsHazardous);
                     cmd.Parameters.AddWithValue("_priority", NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Priority);
                     cmd.Parameters.AddWithValue("_createuserkey", NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.CreatedBy);
@@ -316,7 +316,7 @@ namespace TMS.Data
                             bo.BillofLading = reader["billoflading"].ToString();
                             bo.BookingNo = reader["bookingno"].ToString();
                             //bo.CutOffDate = Utils.CustomParse<string>(reader["cutoffdate"]);
-                            bo.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);
+                           // bo.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);
                             //bo.IsHazardous = Utils.CustomParse<bool>(reader["ishazardous"]);
                             bo.Priority = Utils.CustomParse<short>(reader["priority"]);
                             bo.CreatedDate = Convert.ToDateTime(reader["createdate"]);
@@ -471,15 +471,15 @@ namespace TMS.Data
 
 
 
-                    if (orderBO.CutOffDate == null)
-                    {
-                        cmd.Parameters.AddWithValue("_cutoffdate", null);
+                    //if (orderBO.CutOffDate == null)
+                    //{
+                    //    cmd.Parameters.AddWithValue("_cutoffdate", null);
 
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("_cutoffdate", orderBO.CutOffDate);
-                    }
+                    //}
+                    //else
+                    //{
+                    //    cmd.Parameters.AddWithValue("_cutoffdate", orderBO.CutOffDate);
+                    //}
                     cmd.Parameters.AddWithValue("_ishazardous", NpgsqlTypes.NpgsqlDbType.Bit, orderBO.IsHazardous);
                     cmd.Parameters.AddWithValue("_priority", NpgsqlTypes.NpgsqlDbType.Smallint, orderBO.Priority);
                     cmd.Parameters.AddWithValue("_createuserkey", NpgsqlTypes.NpgsqlDbType.Uuid, orderBO.CreatedBy);
@@ -548,7 +548,7 @@ namespace TMS.Data
                         bo.BillofLading = reader["billoflading"].ToString();
                         bo.BookingNo = reader["bookingno"].ToString();
                         //bo.CutOffDate = Utils.CustomParse<string>(reader["cutoffdate"]);
-                        bo.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);
+                       // bo.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);
                         //bo.IsHazardous = Utils.CustomParse<bool>(reader["ishazardous"]);
                         //bo.Priority = Utils.CustomParse<short>(reader["priority"]);
                         bo.CreatedDate = Convert.ToDateTime(reader["createdate"]);
@@ -689,7 +689,7 @@ namespace TMS.Data
                             orderHeader.VesselName = reader["vesselname"].ToString();
                             orderHeader.BillofLading = reader["billoflading"].ToString();
                             orderHeader.BookingNo = reader["bookingno"].ToString();
-                            orderHeader.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);
+                           // orderHeader.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);
                             //orderHeader.IsHazardous = Utils.CustomParse<bool>(reader["ishazardous"]);
                             // orderHeader.Priority = Utils.CustomParse<short>(reader["priority"]);                         
 

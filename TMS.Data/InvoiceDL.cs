@@ -11,13 +11,13 @@ namespace TMS.Data
 {
    public class InvoiceDL
     {
-        string connString = "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_model";      
+        string connString;//= "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_model";      
         NpgsqlConnection conn;
         NpgsqlCommand cmd;
 
         public InvoiceDL()
         {
-          //  connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
+           connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
         }
         public InvoiceHeaderBO GetInvoice(string invoiceNo)
         {
@@ -518,7 +518,7 @@ namespace TMS.Data
                         bo.BillofLading = reader["billoflading"].ToString();
                         bo.BookingNo = reader["bookingno"].ToString();
                         //bo.CutOffDate = Utils.CustomParse<string>(reader["cutoffdate"]);
-                        bo.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);
+                        //bo.CutOffDate = Convert.ToDateTime(reader["cutoffdate"]);
                         //bo.IsHazardous = Utils.CustomParse<bool>(reader["ishazardous"]);
                         //bo.Priority = Utils.CustomParse<short>(reader["priority"]);
                         bo.CreatedDate = Convert.ToDateTime(reader["createdate"]);

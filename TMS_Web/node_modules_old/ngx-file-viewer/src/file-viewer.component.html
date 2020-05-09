@@ -1,0 +1,18 @@
+<div class="pan">
+    <svg attr.width={{width}} attr.height={{height}}
+     (mousemove)="moveImage($event)">
+        <image attr.xlink:href="{{src}}"
+     attr.height={{zoom*height}}
+     attr.width={{zoom*width}}
+     attr.x="{{x}}" attr.y="{{y}}"/>
+    </svg>
+</div>
+<div *ngIf="controls == 'true'">
+    <button (click)="changeZoom(.05)">Zoom+</button>
+    <button (click)="changeZoom(-.05)">Zoom-</button>
+    <button (click)="moveX(10)">Right</button>
+    <button (click)="moveX(-10)">Left</button>
+    <button (click)="moveY(10)">Down</button>
+    <button (click)="moveY(-10)">Up</button>
+    <button (click)="reset()">Reset</button>
+</div>

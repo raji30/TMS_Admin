@@ -145,7 +145,7 @@ namespace TMS.Api.Controllers
                 bo.order.VesselName = list.VesselName;
                 bo.order.BillofLading = list.BillofLading;
                 bo.order.BookingNo = list.BookingNo;
-                bo.order.CutOffDate = list.CutOffDate;
+               // bo.order.CutOffDate = list.CutOffDate;
 
                 bo.orderDetails.OrderDetailKey = list.OrderDetails.OrderDetailKey;
                 bo.orderDetails.ContainerNo = list.OrderDetails.ContainerNo;

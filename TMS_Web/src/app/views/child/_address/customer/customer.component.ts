@@ -76,39 +76,43 @@ export class CustomerComponent implements OnInit {
     this.selectedCustomer = CustomerSelected;
     this.billtoCustomerName = this.selectedCustomer.CustName;
     this.creditCheck = this.selectedCustomer.CreditCheck;
+    this.customercount = 0;
     console.log("Customer Details with Address:", this.selectedCustomer);
-
-    this.master.getMaxcount_Customer(this.selectedCustomer.CustName).subscribe(
+    
+    this.master.getMaxcount_Customer(this.selectedCustomer.CustomerKey).subscribe(
       data => {
         this.customercount = data;
 
         var year = new Date();
-        var autono = this.pad(this.customercount + 1, 4);
-
-        let x = this.selectedCustomer.CustName.split(" ");
-        console.log("x[1].length", x.length);
+        var autono = this.pad(this.customercount + 1, 2);
+    
+        let x = this.selectedCustomer.CustName.split(' ');
+        console.log("x : ", x);
+        console.log("x[1].length :", x.length);
         if (x.length == 1) {
           this.Orderno =
-            x[0].substr(0, 4).toUpperCase() +"-"+
+            x[0].substr(0, 4).toUpperCase() +
             year
               .getUTCFullYear()
               .toString()
-              .substr(2, 2) +
+               +"-"+
             autono;
           console.log("length is 1");
         } else {
           this.Orderno =
             x[0].substr(0, 2).toUpperCase() +
-            x[1].substr(0, 2).toUpperCase() +"-" +
+            x[1].substr(0, 2).toUpperCase()  +
             year
               .getUTCFullYear()
               .toString()
-              .substr(2, 2) +
+               +"-"+
             autono;
           console.log("length is > 1");
         }
-        this.CustomerSelectedOutput.emit(this.selectedCustomer);       
-        this.OrdernoGenerated.emit(this.Orderno);
+        let date = new Date(Date.now());
+        
+this.CustomerSelectedOutput.emit(this.selectedCustomer);       
+        this.OrdernoGenerated.emit(this.Orderno+"-"+date.getHours()+date.getMinutes()+date.getSeconds());
       },
       error => console.log(error),
       () => console.log("Get customercount", this.customercount)

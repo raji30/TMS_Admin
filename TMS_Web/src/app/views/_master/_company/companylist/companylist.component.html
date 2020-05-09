@@ -118,8 +118,8 @@
                       </div>
                     </div>
                   </div>
-                 
-                  <div class="form-group">
+                  <app-address  [Address]="company.Address" (AddressOut)="onOutputAddressChange($event)"> </app-address>
+                  <!-- <div class="form-group">
                     <label for="legno"> <b> Address </b> </label>
                     <div class="row" hidden="true">
                       <div class="form-group input-group input-group-sm col-md-6">
@@ -161,9 +161,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">City</span>
                         </div>
-                        <!-- <input type="text" class="form-control form-control-sm" [(ngModel)]="customer.Address.City"
-          name="City" #City="ngModel" [ngClass]="{ 'is-invalid': f.submitted && City.invalid }"
-          required> -->
+                      
                         <select id="drpSource" class="form-control form-control-sm" [(ngModel)]="company.Address.City"
                           name="City" #City="ngModel" [ngClass]="{ 'is-invalid': f.submitted && City.invalid }">
                           <option *ngFor="let city of citylist" [value]="city.citykey">
@@ -194,8 +192,7 @@
                           name="Zip" #Zip="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Zip.invalid }" required
                           (keypress)="numberOnly($event)" appBlockCopyPaste>
                         <div *ngIf="f.submitted && Zip.invalid" class="invalid-feedback">
-                          <div *ngIf="Zip.errors.required">Zip is required</div>
-                          <!-- <div *ngIf="customerForm.controls.creditlimit.errors.pattern">pattern is required</div> -->
+                          <div *ngIf="Zip.errors.required">Zip is required</div>                          
                           <div *ngIf="Zip.errors.minLength">minlength is required</div>
                         </div>
                       </div>
@@ -215,10 +212,7 @@
                           <span class="input-group-text">Website</span>
                         </div>
                         <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.Website"
-                          name="Website" appBlockCopyPaste>
-                        <!-- <div *ngIf="submitted && f.Address['controls'].website.errors" class="invalid-feedback">                   
-            <div *ngIf="customerForm.controls.website.errors.pattern">website is not valid</div>                       
-          </div> -->
+                          name="Website" appBlockCopyPaste>                       
                       </div>
                     </div>
 
@@ -272,7 +266,7 @@
                           name="Email2" appBlockCopyPaste>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                 </div>
               </div>
@@ -326,3 +320,5 @@
   </div>
   <br>
 </div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "small" color = "#fff" 
+type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

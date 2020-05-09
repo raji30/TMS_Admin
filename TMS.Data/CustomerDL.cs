@@ -12,13 +12,13 @@ namespace TMS.Data
 {
    public class CustomerDL
     {
-        string connString = "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_model";      
+        string connString;// = "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_model";      
         NpgsqlConnection conn;
         NpgsqlCommand cmd;
 
         public CustomerDL()
         {
-           // connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
+            connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
         }
         public Guid insertCustomer(CustomerBO customer)
         {
@@ -131,13 +131,13 @@ namespace TMS.Data
                             customer.CustName = Utils.CustomParse<string>(reader["custname"]);
                             customer.addrkey = Utils.CustomParse<Guid>(reader["addrkey"]);
                             // var creditchk = Utils.CustomParse<short>(["creditcheck"]);
-
                             customer.CreditCheck = reader.GetBoolean(reader.GetOrdinal("creditcheck"));
                             customer.achrequired = reader.GetBoolean(reader.GetOrdinal("ach_required"));
 
                             customer.CreditLimit = Utils.CustomParse<decimal>(reader["creditlimit"]);
                             customer.paymentterms = Utils.CustomParse<short>(reader["paymentterms"]);
                             customer.Status = Utils.CustomParse<short>(reader["status"]);
+                           
 
                             customerlist.Add(customer);
                         }
@@ -183,7 +183,9 @@ namespace TMS.Data
                             customer.CustName = Utils.CustomParse<string>(reader["custname"]);
                             customer.addrkey = Utils.CustomParse<Guid>(reader["addrkey"]);
                             customer.CreditCheck = reader.GetBoolean(reader.GetOrdinal("creditcheck"));
-                            customer.achrequired = reader.GetBoolean(reader.GetOrdinal("ach_required"));                            
+                            customer.achrequired = reader.GetBoolean(reader.GetOrdinal("ach_required"));
+                            //customer.CreditCheck = Utils.CustomParse<bool>(reader["creditcheck"]);
+                            //customer.achrequired = Utils.CustomParse<bool>(reader["ach_required"]);
                             customer.CreditLimit = Utils.CustomParse<decimal>(reader["creditlimit"]);                          
                             customer.paymentterms = Utils.CustomParse<short>(reader["paymentterms"]);
                             customer.Status = Utils.CustomParse<short>(reader["status"]);                           
@@ -246,7 +248,7 @@ namespace TMS.Data
           try
             {
                 string sql = "SELECT cnt FROM (SELECT custkey, COUNT(*) AS cnt FROM dbo.tms_orderheader  GROUP BY custkey ) AS customer" +
-                           " WHERE custkey = (select custkey from dbo.customer where custname=@custname)";
+                           " WHERE custkey = (select custkey from dbo.customer where custkey=@custname)";
 
                 conn = new NpgsqlConnection(connString);
                 conn.Open();
@@ -255,7 +257,7 @@ namespace TMS.Data
                 {
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.Parameters.AddWithValue("custname",
-                       NpgsqlTypes.NpgsqlDbType.Varchar, custname);
+                       NpgsqlTypes.NpgsqlDbType.Uuid, Guid.Parse(custname));
                     object Obj = cmd.ExecuteScalar();
                     if (Obj != null)
                     {

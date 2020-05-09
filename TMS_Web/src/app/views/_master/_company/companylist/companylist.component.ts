@@ -7,6 +7,7 @@ import { CityService } from "../../../../_services/city.service";
 import { City } from "../../../../_models/city";
 import { Company } from "../../../../_models/company";
 import { CompanyService } from '../../../../_services/company.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-companylist",
@@ -44,23 +45,25 @@ count: number;
     private Service: CompanyService,
     private router: Router,
     private cityService: CityService,
-    private toastr: ToastrService
+    private toastr: ToastrService,private SpinnerService: NgxSpinnerService
   ) {
     this.company = new Company();
     this.company.Address = new Address();
   }
 
-  ngOnInit() {
+  ngOnInit() {this.SpinnerService.show();
     this.loadAllCompanies();
-    this.loadAllCity();
+    this.loadAllCity(); this.SpinnerService.hide();
   }
 
   loadAllCompanies() {
+    
     this.Service.getCompanies().subscribe(
       data => (this.companies = data),
       error => console.log(error),
       () => console.log("get Companies complete")
     );
+   
   }
   loadAllCity() {
     this.cityService.GetCity().subscribe(
@@ -69,6 +72,10 @@ count: number;
       () => console.log("Get citylist", this.citylist)
     );
   }
+  onOutputAddressChange(addr: Address) {
+   this.company.Address=addr;
+  }
+
   onFormSubmit() {
     if (this.companyUpdate == null) {
       this.createCompany();

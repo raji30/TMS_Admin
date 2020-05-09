@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "ES5",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "declaration": true,
+        "lib" : [
+            "es2015",
+            "es2015.iterable",
+            "dom"
+        ]
+    },
+    "files": [
+        "ngx-file-viewer.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

@@ -89,9 +89,11 @@ import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UserpermissionsComponent } from './views/_master/userpermissions/userpermissions.component';
+import { NgxSpinnerModule } from "ngx-spinner";  
 
 @NgModule({
   imports: [
+    NgxSpinnerModule ,
     NgbModule,NgxPaginationModule,NgbAlertModule,NgbPaginationModule,
     PdfViewerModule,
     PdfJsViewerModule,
