@@ -183,6 +183,9 @@ namespace TMS.Data
                     while (reader.Read())
                     {
                         var orderDetail = new DeliveryOrderDetailBO();
+                        orderDetail.DOHeader = new DeliveryOrderBO();
+                        orderDetail.DOHeader.OrderDate = Utils.CustomParse<DateTime>(reader["orderdate"]);
+                        orderDetail.DOHeader.BrokerRefNo = Utils.CustomParse<string>(reader["brokerrefno"]);
                         orderDetail.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
                         orderDetail.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);
                         orderDetail.containerid = Utils.CustomParse<string>(reader["containerid"]);

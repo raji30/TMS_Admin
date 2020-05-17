@@ -1,6 +1,7 @@
 import { Time } from "@angular/common";
 import { Tms_routes } from "./tms_routes";
 import { Comments } from './comments';
+import { DeliveryOrderHeader } from './DeliveryOrderHeader';
 
 export class Order_details {
         OrderDetailKey :string;
@@ -32,4 +33,5 @@ export class Order_details {
 
         CreatedBy:string;
         createdDate:string;
+        DOHeader: DeliveryOrderHeader;
 }

@@ -1,0 +1,202 @@
+<br>
+<h5>Rate Sheet</h5>
+<div id="jumbotron">
+  <div class="row">
+    <div class="col-6 col-sm-6 col-md-6">
+      <div class="row">       
+        <div class="form-group input-group input-group-sm col-sm-6 col-md-6 col-lg-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Customer</span>
+          </div>
+          <select id="drpCustomer" class="form-control form-control-sm"
+            (change)="drpCustomer_ChangedEvent($event.target.value)">
+            <option [value]="0"> Select </option>
+            <option [value]="Customer.CustomerKey" *ngFor="let Customer of customers">
+              {{Customer.CustName}}
+            </option>
+          </select>
+        </div>
+        <div class="col-3 col-sm-3 col-md-3">
+          <div class="container text-left">
+            <button type="button" class="btn btn-outline-success btn-sm" style="border-radius: 1rem;"
+              (click)="GetRateByCustomer()" *ngIf="show_btnEdit">
+              <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+            </button>
+          </div>
+        </div>
+        <div class="col-3 col-sm-3 col-md-3">
+          <div class="container text-right">
+            <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;" (click)="toggle()"
+              *ngIf="show_btnAdd">
+              <i class="fa fa-plus-circle" aria-hidden="true"></i> New
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12">
+          <table class="table table-sm">
+            <tr ngclass="btn-primary">
+              <th scope="col" class="pointer" (click)="sort('description')">Description &nbsp;<i class="fa fa-sort"
+                  aria-hidden="true"></i></th>
+              <th scope="col" class="pointer" (click)="sort('unitprice')">Unit Price &nbsp;<i class="fa fa-sort"
+                  aria-hidden="true"></i></th>
+            </tr>
+            <tr *ngFor="let rate of ratesbycustomer | grdFilter: {description: searchText,unitprice: searchText} 
+          |paginate:{itemsPerPage:10,currentPage:p,totalItems: count};let i=index">
+              <td> {{rate.description}}</td>
+              <td> {{rate.unitprice}}</td>
+            </tr>
+            <tr *ngIf="ratesCount">
+              <td colspan="1">
+                <h4 style="color: darkorange;">No records found! </h4>
+              </td>
+            </tr>
+          </table>
+          <div class="container text-right">
+            <pagination-controls (pageChange)="p=$event" autoHide="true" responsive="true"> </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-md-6">
+      <div class="row" *ngIf="show_DivAddUpdate">
+        <div class="container">
+          <form name="form" (ngSubmit)=" f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="container">
+              <div class="form-group">
+                <br>
+                <div class="row">
+                  <div class="col-6 col-sm-6 col-md-6">
+                    <h5> <b> {{selectedCustomer.CustName}}</b></h5>
+                    <button class="btn btn-primary btn-sm">Submit</button> &nbsp;
+                    <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 col-sm-12 col-md-12">
+                    <table id="containerRatesheet" class="table table-sm table-borderless" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th hidden="true">itemkey</th>
+                          <th>Item</th>
+                          <th>Rate</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of ratesheet; let i = index">
+                          <td hidden="true">
+                            {{item.itemkey}} </td>
+                          <td>{{item.description}}</td>
+                          <td>
+                            <input [(ngModel)]="item.unitprice" class="form-control form-control-sm " type="text"
+                              name="{{item.unitprice}}" /> </td>
+                          <td>
+                            <button class="btn btn-default small" type="button" (click)="deleteFieldValue(i)">
+                              <img src="assets/img/brand/trash-icon16px.png" /></button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <select id="drpItem" class="form-control form-control-sm" [(ngModel)]="newAttribute.itemkey"
+                              name="newAttribute.itemkey" (change)="drpAddnewCharge_ChangedEvent($event.target.value)">
+                              <option [value]="0">Select</option>
+                              <option [value]="itm.itemkey" *ngFor="let itm of item">
+                                {{itm.description}}
+                              </option>
+                            </select>
+                          </td>
+                          <td>
+                            <input class="form-control form-control-sm" type="text" id="newAttributePrice"
+                              [(ngModel)]="newAttribute.unitprice" name="newAttributePrice" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" style="border-radius: 1rem;"
+                              (click)="addFieldValue()">
+                              <i class="fa fa-plus-circle" aria-hidden="true"></i> Add
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row" *ngIf="show_DivInfo">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12">
+            <h5> <b> {{selectedCustomer.CustName}}</b></h5>
+            <div class="container text-left">
+              <button class="btn btn-primary btn-sm" (click)="updateRate()">Update</button> &nbsp;
+              <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
+            </div>
+            <br>
+            <table id="container" class="table table-sm" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th hidden="true">Ratekey</th>
+                  <th hidden="true">itemkey</th>
+                  <th>Item</th>
+                  <th>Rate</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of dataModel; let i = index">
+                  <td hidden="true">{{item.ratekey}} </td>
+                  <td hidden="true">{{item.itemkey}} </td>
+                  <td>{{item.description}}</td>
+                  <td>
+                    <input [(ngModel)]="item.unitprice" class="form-control form-control-sm " type="text"
+                      name="{{item.unitprice}}" /> </td>
+                  <td *ngIf="item.ratekey == null">
+                    <button class="btn btn-default small" type="button" (click)="deleteFieldValueInRateSheet(i)">
+                      <img src="assets/img/brand/trash-icon16px.png" /></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table id="containerAttributes" class="table table-sm table-borderless" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th hidden="true">itemkey</th>
+                  <th>Description</th>
+                  <th>Unit Price</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <select class="form-control form-control-sm" [(ngModel)]="newAttributeinRate.itemkey"
+                      name="newAttributeinRate.itemkey"
+                      (change)="drpAddnewCharge_ChangedEventEdit($event.target.value)">
+                      <option [value]="0" disabled>--select-- </option>
+                      <option *ngFor="let i of item" [value]="i.itemkey">
+                        {{i.description}}
+                      </option>
+                    </select>
+                  </td>
+                  <td>
+                    <input class="form-control form-control-sm" type="text" id="newAttributeinRatePrice"
+                      [(ngModel)]="newAttributeinRate.unitprice" name="newAttributeinRatePrice" />
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-secondary" type="button"
+                      (click)="addNewRowinRateSheet()">Add</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

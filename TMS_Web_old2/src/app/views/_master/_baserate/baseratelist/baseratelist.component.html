@@ -1,0 +1,170 @@
+<br>
+<div id="jumbotron">
+  <div class="row">
+    <div class="col-6 col-sm-6 col-md-6">
+      <h5 class="card-subtitle mb-2">
+        Base Rate</h5>
+    </div>   
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-sm-6 col-md-6 ">
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-6 ">
+          <div class="btn-group">
+            <button class="btn btn-secondary btn-sm" type="button">
+              <b style="color: black;">Customer </b> &nbsp; {{CustomerName}}
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="drpcompany">
+              <form class="px-4 py-2">
+                <input type="search" class="form-control  form-control-sm" placeholder="search.." autofocus="autofocus"
+                  (input)="onSearchChange($event.target.value)">
+              </form>
+              <div class="menuItems">
+                <li *ngFor="let Customer of customersFilter  let ind=index;"
+                  [class.selected]="Customer === selectedCustomer" (click)="onSelect(Customer)">
+                  <a class="dropdown-item"> {{Customer.CustName}}</a>
+                </li>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 ">
+          <div class="container text-left ">
+            <button class="btn btn-outline-primary btn-sm" type="button" (click)="getRatesforEdit()" *ngIf="btnEditShow"> <i
+                class="fa fa-pencil" aria-hidden="true"></i>
+              <b> Edit</b>..</button>
+            &nbsp; <button type="button" class="btn btn-info btn-sm" (click)="newRate()" *ngIf="btnAddShow">Add Rate
+            </button>
+
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row" *ngIf="ratesbycustomer !=0">
+        <div class="col-6 col-sm-6 col-md-6 ">
+
+          <table class="table table-sm">
+            <tr ngclass="btn-primary">
+              <th scope="col" class="pointer" (click)="sort('cityname')">City &nbsp;<i class="fa fa-sort"
+                  aria-hidden="true"></i>
+              </th>
+              <th scope="col" class="pointer" (click)="sort('unitprice')">Rate &nbsp;<i class="fa fa-sort"
+                  aria-hidden="true"></i>
+              </th>
+            </tr>
+            <tr *ngFor="let rate of ratesbycustomer| grdFilter: {cityname: searchText,unitprice: searchText} |paginate:{itemsPerPage:20,currentPage:p,totalItems: count}
+            ;let i=index">
+              <td> {{rate.cityname}}</td>
+              <td> ${{rate.unitprice|number: '1.1-2'}}</td>
+            </tr>
+          </table>
+
+          <div class="container text-right">
+            <pagination-controls (pageChange)="p=$event" autoHide="true" responsive="true"> </pagination-controls>
+          </div>
+
+          <div class="row" *ngIf="ratesbycustomer==0">
+            <h5> No records found.</h5>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-sm-6 col-md-6">     
+      <div class="row" *ngIf="showAddUpdate">
+        <div class="table-responsive" style="overflow-x: auto">        
+       
+          <div class="container text-left">
+            <button type="button" class="btn alert-dark btn-sm" (click)="Submit()"> Submit</button>
+            &nbsp; 
+            <button type="button" class="btn alert-dark btn-sm" (click)="clear()"> Cancel</button>
+          </div>       
+          <br>
+          <div class="col-10 col-sm-10 col-md-10">  
+            <h5 style="color: white;">{{CustomerName}}</h5>  
+          <table id="containerAttributes" class="table table-custom table-sm table-hover table-striped table-warning "
+            cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th scope="col" class="text-left text-muted" hidden="true">Flag</th>
+                <th scope="col" class="text-left text-muted" hidden="true">BaseRateKey</th>
+                <th scope="col" class="text-left text-muted" hidden="true">CityKey</th>
+                <th scope="col" class="text-left text-muted">City</th>
+                <th scope="col" class="text-left text-muted"> Rate</th>
+                <th scope="col" class="text-left text-muted">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let field of ratedetails; let i = index">
+                <td class="text-left" style="color: darkslategrey;" hidden="true">
+                  {{field.Flag }}
+                </td>
+                <td class="text-left" style="color: darkslategrey;" hidden="true">
+                  {{field.BaseRateKey }}
+                </td>
+                <td class="text-left" style="color: darkslategrey;" hidden="true">
+                  {{field.citykey }}
+                </td>
+
+                <td class="text-left" style="color: darkslategrey;">
+                  {{field.cityname }}
+                </td>
+                <td class="text-left" style="color: darkslategrey;">
+                  ${{ field.unitprice|number: '1.1-2'}}
+                </td>
+                <td class="text-center" style="color: darkslategrey;">
+                  <a tooltip="Upload file" (click)="editBaseRate(field,i)">
+                    <i class="fa fa-pencil"></i>
+                  </a> &nbsp;&nbsp;
+                  <!-- <a tooltip="Remove/Delete Container" (click)="deleteFieldValue(i)">
+                    <i class="fa fa-trash"></i>
+                  </a>  -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col" class="text-left text-muted" hidden="true">BaseRateKey</th>
+                <th scope="col" class="text-left text-muted" hidden="true">City</th>
+                <th scope="col" class="text-center text-muted" hidden="true"> Rate</th>
+                <th scope="col" class="text-center text-muted" hidden="true">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+
+                <td>
+                  <input class="form-control form-control-sm " type="text" [(ngModel)]="BaseRateKey"
+                    name="BaseRateKey" hidden="true" />
+                </td>
+                <td>
+                  <select id="cboOrderType" class="form-control form-control-sm " name="citykey" [(ngModel)]="citykey"
+                  (change)="drpCityChanged($event.target.value)">
+                    <option [value]="city.citykey" *ngFor="let city of Citylist">{{city.cityname}}</option>
+                  </select>
+                </td>
+                <td>
+                  <input class="form-control form-control-sm " type="number" [(ngModel)]="UnitPrice" name="UnitPrice" />
+                </td>
+                <td>
+                  &nbsp; <button type="button" class="btn alert-dark btn-sm" style="border-radius: 1rem;"
+                    (click)="addupdateRate()"> {{btnLabel}}</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

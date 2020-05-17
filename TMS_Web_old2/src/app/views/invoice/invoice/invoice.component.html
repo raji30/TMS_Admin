@@ -1,0 +1,513 @@
+<br>
+<div class="row" *ngIf="showInvoiceList">
+    <div class="col-sm-2 col-md-2 col-lg-2 scrollbar" id="style">
+        <h5>&nbsp; Invoice<span class="badge badge-warning"> New</span></h5>
+        <br>
+        <div class="form-group input-group input-group-sm" *ngIf="Data.length != 0">
+            <div class="img-group-prepend">
+                <img src="assets/img/brand/search16px.png" /> &nbsp;
+            </div>
+            <input [(ngModel)]="searchText" class="form-control form-control-sm" style="border-radius: 1rem;"
+                type="text" placeholder="Search..">
+        </div>
+
+        <table class="table table-sm table-dark">
+            <tbody>
+                <tr *ngFor="let field of Data; let ind=index;">
+                    <td>
+                        <span class="font-weight-bold" style="color:olivedrab">
+                            Invoice ({{field.order.OrderNo}})
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <button type="button" class="btn btn-outline-success btn-sm"
+                            (click)="getOrderdata(field.order.OrderKey)"> Create</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="Data.length === 0">
+            <h6 style="color: darkorange;">No Orders for Invoice! </h6>
+        </div>
+
+    </div>
+    <div class="col-sm-10 col-md-10 col-lg-10 ">
+        <div class="row">
+            <div class="col-8 col-sm-8 col-md-8"> </div>
+            <div class="col-4 col-sm-4 col-md-4">
+                <div class="container text-right">
+                    <div class="form-group input-group input-group-sm">
+                        <div class="img-group-prepend">
+                            <img src="assets/img/brand/search16px.png" /> &nbsp;
+                        </div>
+                        <input [(ngModel)]="searchText" class="form-control form-control-sm"
+                            style="border-radius: 1rem;" type="text" placeholder="Search..">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-sm table-borderless ">
+            <thead class="thead-dark shadow">
+                <tr>
+                    <th scope="col" class="pointer text-muted" hidden="true">invoiceKey</th>
+                    <th scope="col" class="pointer text-muted" (click)="sort('InvoiceNo')">Invoice &nbsp;<i
+                            class="fa fa-sort" aria-hidden="true"></i>
+                    </th>
+                    <th scope="col" class="pointer text-muted" (click)="sort('CustName')">Customer &nbsp;<i
+                            class="fa fa-sort" aria-hidden="true"></i>
+                    </th>
+                    <th scope="col" class="pointer text-muted" (click)="sort('InvoiceAmt')">Amount &nbsp;<i
+                            class="fa fa-sort" aria-hidden="true"></i>
+                    </th>
+                    <th scope="col" class="pointer text-muted" (click)="sort('DueDate')">Duedate &nbsp;<i
+                            class="fa fa-sort" aria-hidden="true"></i>
+                    </th>
+                    <!-- <th scope="col" class="pointer text-muted" (click)="sort('StatusDesc')">Status &nbsp;<i
+                            class="fa fa-sort" aria-hidden="true"></i>
+                    </th> -->
+                    <th scope="col" class="pointer text-muted">Next Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let inv of invoiceHeaderList| grdFilter: {InvoiceNo: searchText,CustName: searchText
+                            ,InvoiceAmt: searchText,DueDate: searchText,StatusDesc: searchText}
+                        |paginate:{itemsPerPage:5,currentPage:p,totalItems: count}
+                         ; let ind=index;">
+                    <td class="text-left" hidden="true"> {{ inv.Invoicekey }}</td>
+                    <td>
+                        <span class="font-weight-bold">
+                            #{{ inv.InvoiceNo }} &nbsp;
+                            <span><i class="fa fa-calendar" aria-hidden="true"></i>
+                                <small> <b> {{inv.InvoiceDate  | date}}</b></small>
+                            </span>
+                        </span>
+                    </td>
+
+                    <td>
+                        <span> <b> {{ inv.CustName }}</b> <br>
+                            <!-- <small style="color: cornflowerblue;">
+                            {{ inv.BillToAddressBO.Address1 }},{{ inv.BillToAddressBO.Address2 }}<br>
+                            {{ inv.BillToAddressBO.City }} {{ inv.BillToAddressBO.State}} {{ inv.BillToAddressBO.Zip}}
+                          </small> -->
+                        </span>
+                    </td>
+
+                    <td class="text-left"> ${{ inv.InvoiceAmt |number: '1.1-2'}}</td>
+                    <td class="text-left"> {{ inv.DueDate |date}}</td>
+                    <!-- <td class="text-left"> </td> -->
+                    <td>
+                        <strong> <i class="cil-chevron-circle-right-alt" style="color: yellowgreen;"></i></strong>
+                        &nbsp;
+                        <small *ngIf="inv.StatusDesc == 'Schedule onhold'" class="font-weight-normal"
+                            style="color: orange;">
+                           Proceed Invoice</small>
+                        <small *ngIf="inv.StatusDesc == 'Schedule inprogress'" class="font-weight-normal"
+                            style="color: green;">
+                             Proceed Invoice </small> Proceed Invoice
+                        &nbsp;
+                        <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;"
+                            (click)="load_invoiceHeaderandDetailData(inv)">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="invoiceHeaderList.length===0">
+                    <td colspan="3">
+                        <h4 style="color: darkorange;">No records found! </h4>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="container text-right">
+            <pagination-controls (pageChange)="p=$event" autoHide="true" responsive="true"> </pagination-controls>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="showInvoice">
+    <div class="col-sm-12 col-md-12 col-lg-12 ">
+        <div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 border-right">
+                    <h4>Invoice #<b>{{InvoiceNo}}</b></h4>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <b>Date </b></span>
+                                </div>
+                                <input type="text" name="invoiceDate" [(ngModel)]="invoiceDate" style="width:100px"
+                                    class="form-control form-control-sm bg-secondary" [owlDateTimeTrigger]="dt1"
+                                    [owlDateTime]="dt1" />
+                                <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <b>Due</b></span>
+                                </div>
+                                <input type="text" name="DueDate" [(ngModel)]="dueDate" style="width:100px"
+                                    class="form-control form-control-sm bg-secondary" [owlDateTimeTrigger]="dt2"
+                                    [owlDateTime]="dt2" />
+                                <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <!-- <img src="assets/img/brand/circle-black16px.png" /> <span> <span class="text-muted"> Bill from
+                        </span> <b>
+                            {{this.invoiceModel.BillFrom["Name"]}}</b></span>
+                    <br>
+                    <span> {{invoiceModel.BillFrom["Address1"]}} {{invoiceModel.BillFrom["Address2"]}}
+                        {{invoiceModel.BillFrom["City"]}} {{invoiceModel.BillFrom["State"]}}
+                        {{invoiceModel.BillFrom["Zip"]}}
+                    </span>
+                    <br> -->
+                    <img src="assets/img/brand/circle-black16px.png" /> <span><span style="color:  #659CEF;"> Bill
+                            to </span>
+                        <b>{{invoiceModel.order.BillToAddr}}</b>
+                    </span>
+                    <br>
+                    <span>
+                        <!-- {{invoiceModel.BillToAddressBO["Address1"]}} 
+                         {{invoiceModel.BillToAddressBO.Address2}}
+                        {{invoiceModel.BillToAddressBO.City}} {{invoiceModel.BillToAddressBO.State}}
+                        {{invoiceModel.BillToAddressBO.Zip}} -->
+                    </span>
+                    <br>
+                    <br>
+
+                    <div>
+                        <span><b> <u> Route</u> </b></span>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <span style="color:  #659CEF;">Pickup </span><br>
+                                <span> {{invoiceModel.order.SourceAddr}}</span>
+                                <br>
+                                <!-- <span> {{invoiceModel.Pickup["Address1"]}}, {{invoiceModel.Pickup["Address2"]}}
+                                </span>
+                                <br>
+                                <span>
+                                    {{invoiceModel.Pickup["City"]}} - {{invoiceModel.Pickup["Zip"]}}
+                                </span>
+                                <br>
+                                <span> {{invoiceModel.Pickup["State"]}}
+                                </span> -->
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <span style="color:  #659CEF;">Delivery </span>
+                                <br>
+                                <span>{{invoiceModel.order.DestinationAddr}}</span>
+                                <br>
+                                <!-- <span> {{invoiceModel.Delivery["Address1"]}}, {{invoiceModel.Delivery["Address2"]}}
+                                </span>
+                                <br>
+                                <span>
+                                    {{invoiceModel.Delivery["City"]}} - {{invoiceModel.Delivery["Zip"]}}
+                                </span>
+                                <br>
+                                <span> {{invoiceModel.Delivery["State"]}}
+                                </span> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <span> <b><u>Shipment</u> </b></span>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <span class="text-muted">Carrier </span>
+                            <br>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <span class="text-muted">Vessel Name </span>
+                            <br>
+                            {{invoiceModel.order.VesselName}}
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4"> </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <table class="table table-sm table-striped table-borderless">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col" class="text-muted">Container</th>
+                                        <th scope="col" class="text-muted">Size</th>
+                                        <th scope="col" class="text-muted">Chassis</th>
+                                        <th scope="col" class="text-muted">SealNo</th>
+                                        <th scope="col" class="text-muted">Weight</th>
+                                        <th scope="col" class="text-muted">Delivery Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let field of invoiceModel.containers">
+                                        <td> <small>{{field.ContainerNo}} </small></td>
+                                        <td> <small>{{field.ContainerSizeDesc}} </small> </td>
+                                        <td> <small>{{field.Chassis}} </small></td>
+                                        <td> <small>{{field.SealNo}} </small></td>
+                                        <td> <small>{{field.Weight}} </small></td>
+                                        <td> <small></small></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="row">
+                        <div class="col-sm-8 col-md-8 col-lg-8">
+                            <div class="container text-left">
+                                <!-- <button class="btn  btn-outline-secondary btn-sm small" type="button"><i
+                                        class="fa fa-bars" aria-hidden="true"></i> Actions </button>
+                                &nbsp; -->
+                                <button class="btn btn-outline-secondary btn-sm small" type="button"> <i
+                                        class="fa fa-envelope" aria-hidden="true"></i> Send</button>
+                                &nbsp;
+                                <button class="btn btn-outline-primary btn-sm small" type="button"
+                                    (click)="createPDF()"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Export to
+                                    PDF</button>
+                                &nbsp;
+                                <button class="btn btn-outline-primary btn-sm small" type="button"
+                                    (click)="downloadPDF()"> <i class="fa fa-download" aria-hidden="true"></i> Download
+                                    PDF</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="container text-right">
+                                <button class="btn btn-primary btn-sm small" type="button" (click)="submit()">
+                                    <i class="fa fa-floppy-o" aria-hidden="true"></i> {{lblInvoice}}</button>
+                                &nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-outline-danger btn-sm small" type="button"
+                                    (click)="CancelCreateInvoice()"><i class="fa fa-ban" aria-hidden="true"></i>
+                                    Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br> <br>
+
+                    <div class="row">
+                        <span> <b> &nbsp;&nbsp;&nbsp; <u> Invoice Details </u></b></span>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <table class="table table-sm table-hover table-striped">
+                                <thead>
+                                    <tr class="thead-light">
+                                        <th scope="col" hidden="true">InvoiceLineKey</th>
+                                        <th scope="col" hidden="true">InvoiceKey</th>
+                                        <th scope="col" hidden="true">Itemkey</th>
+                                        <th scope="col" class="text-left text-muted">Container</th>
+                                        <th scope="col" class="text-left text-muted">Item</th>
+                                        <th scope="col" class="text-left text-muted">Quantity</th>
+                                        <th scope="col" class="text-center text-muted">Rate</th>
+                                        <th scope="col" class="text-center text-muted">Charge(s)</th>
+                                        <th scope="col" class="text-right text-muted">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let invDet of invoiceDetail; let i = index">
+
+                                        <td height="30" hidden="true"> <span> {{invDet.InvoiceLineKey}} </span></td>
+                                        <td height="30" hidden="true"> <span> {{invDet.InvoiceKey}} </span></td>
+                                        <td height="30" hidden="true"> <span>{{invDet.Itemkey}} </span></td>
+                                        <td height="30" class="text-left "> <span><small style="color: #659CEF;">
+                                                    {{invDet.Container}} </small> </span></td>
+                                        <td height="30" class="text-left "> <span>{{invDet.Description}} </span></td>
+                                        <!-- <td height="30" class="text-center" *ngIf="!item_editing ||i==rowIndex">
+                                            <span *ngIf="Data.Quantity > 1 && Data.Description != 'Base Rate'">
+                                                {{Data.Quantity}} container(s)
+                                                <br> <small style="color: #659CEF;"> {{Data.Container}} </small>
+                                            </span>
+                                            <span *ngIf="Data.Quantity == 1 && Data.Description != 'Base Rate'">
+                                                {{Data.Quantity}} container
+                                                <br> <small style="color: #659CEF;"> {{Data.Container}} </small>
+                                            </span>
+                                            {{invDet.Quantity}}
+                                        </td> -->
+                                        <td height="30" class="text-center">
+                                            <span *ngIf="!invDet.isEditable">{{invDet.Quantity}}</span>
+                                           <input type="text" class="form-control form-control-sm bg-secondary" style="width: 50%;" 
+                                           [(ngModel)]="invDet.Quantity" 
+                                           *ngIf="invDet.isEditable"/>
+                                        </td>
+                                        <td height="30" class="text-center"> <span>
+                                                ${{invDet.UnitPrice|number: '1.1-2'}}</span>
+                                        </td>
+                                        <!-- <td height="30" class="text-right" *ngIf="!item_editing || i==rowIndex">
+                                            <span>${{invDet.Price|number: '1.1-2'}}
+                                            </span></td> -->
+                                        <td height="30" class="text-center">
+                                            <span *ngIf="!invDet.isEditable">${{invDet.Price|number: '1.1-2'}}</span>
+                                            <input type="number"class="form-control form-control-sm bg-secondary" style="width: 100%;"  [(ngModel)]="invDet.Price"  *ngIf="invDet.isEditable"/>
+                                        </td>
+                                        <td height="30" class="text-right">
+                                            <div *ngIf="!invDet.isEditable">
+                                                <!-- <a tooltip=" file" (click)="editItem(invDet,i)">
+                                                    <i class="fa fa-pencil" style="color: darkorange"></i>
+                                                </a> -->
+                                                <a (click)="invDet.isEditable=!invDet.isEditable">
+                                                    <i class="fa fa-pencil" style="color: darkorange"></i>
+                                                </a>
+                                              
+                                            </div>
+
+                                            <div *ngIf="invDet.isEditable">
+                                                <a tooltip=" file" (click)="invDet.isEditable=!invDet.isEditable ; updateRow(invDet,i)">
+                                                    <i class="fa fa-floppy-o" aria-hidden="true"
+                                                        style="color:royalblue;"></i>
+                                                </a>
+                                                &nbsp;&nbsp;
+                                                <a tooltip=" file" (click)="invDet.isEditable=!invDet.isEditable">
+                                                    <i class="fa fa-ban" aria-hidden="true" style="color:lightsalmon;"></i>
+                                                </a>
+                                            </div>
+
+                                        </td>
+
+
+                                        <!-- <div *ngIf="editing">
+                                            <input [required]="required" (blur)="onBlur($event)" [name]="value"
+                                                [(ngModel)]="value" [placeholder]="label" />
+                                        </div> -->
+                                    </tr>
+
+                                    <tr>
+                                        <td hidden="true"> </td>
+                                        <td hidden="true"> </td>
+                                        <td hidden="true"> </td>
+                                        <td>
+                                            <span class="nav-link text-success" (click)="showChargeDiv()">Add new
+                                                charge</span>
+                                            <!-- <span class="nav-link text-success" data-toggle="collapse"
+                                                data-target="#AddNewCharge" aria-expanded="false"
+                                                aria-controls="AddNewCharge" (click)="showChargeDiv()"> Add new charge
+                                            </span> -->
+                                            <!-- <span class="nav-link text-success" data-toggle="collapse"
+                                                data-target="#AddNewCharge" aria-expanded="false"
+                                                aria-controls="AddNewCharge" (click)="showChargeDiv()"> Add new charge
+                                            </span> -->
+                                        </td>
+                                        <td> </td>
+
+                                        <td colspan="3">
+                                            <div class="container text-right">
+                                                <div class="input-group input-group-sm">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"> <b>Total $ </b></span>
+                                                    </div>
+                                                    <input type="text" disabled
+                                                        style="font-size: 100%;color:yellow;font-weight: bolder;"
+                                                        class="form-control bg-secondary text-right" name="InvoiceAmt"
+                                                        [(ngModel)]="InvoiceAmt" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="AddNewCharge" *ngIf="showAddUpdateDiv">
+                        
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                            <tbody>
+                                <tr>
+                                    <td>                                       
+                                            <div class="input-group input-group-sm">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <b>Item </b></span>
+                                                </div>
+                                                <select id="drprate" class="form-control form-control-sm" [(ngModel)]='drpCharge'
+                                                    (change)="drpAddnewCharge_ChangedEvent($event.target.value)">
+                                                    <option [value]="0"> No item selected
+                                                    </option>
+                                                    <option [value]="item.itemkey" *ngFor="let item of Itemlist">
+                                                        {{item.description}}
+                                                    </option>
+                                                </select>
+                                            </div>                                        
+                                    </td> &nbsp;  
+                                    <td style="width: 100px;">
+                                        <div class="input-group input-group-sm">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <b>Qty </b></span>
+                                                </div>
+                                                <input type="text" name="ContainerQuantity" [(ngModel)]="ContainerQuantity"
+                                                    class="form-control form-control-sm bg-secondary" />
+                                            </div>
+                                       
+                                    </td> &nbsp;  
+                                    <td style="width: 150px;">                                        
+                                        <div class="input-group input-group-sm">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"> <b>Rate($)</b></span>
+                                                </div>
+                                                <input type="number" name="ItemRate" [(ngModel)]="ItemRate"
+                                                    class="form-control form-control-sm bg-secondary" />
+                                            </div>                                        
+                                    </td>&nbsp; 
+                                    <td> 
+                                        <div >
+                                            <button class="btn btn-outline-secondary btn-sm" type="button"
+                                                (click)="addupdateItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;{{lblrowaddupdate}}</button>
+                                            &nbsp; 
+                                            <button class="btn btn-outline-secondary btn-sm" type="button"
+                                                (click)="ClearRow()"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp; Cancel</button>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                            </tbody>
+                            <!-- <div class="col-sm-4 col-md-4 col-lg-4">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <b>Item </b></span>
+                                    </div>
+                                    <select id="drprate" class="form-control form-control-sm" [(ngModel)]='drpCharge'
+                                        (change)="drpAddnewCharge_ChangedEvent($event.target.value)">
+                                        <option [value]="0"> No item selected
+                                        </option>
+                                        <option [value]="item.itemkey" *ngFor="let item of Itemlist">
+                                            {{item.description}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <b>Qty </b></span>
+                                    </div>
+                                    <input type="text" name="ContainerQuantity" [(ngModel)]="ContainerQuantity"
+                                        class="form-control form-control-sm bg-secondary" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <b>Rate($)</b></span>
+                                    </div>
+                                    <input type="number" name="ItemRate" [(ngModel)]="ItemRate"
+                                        class="form-control form-control-sm bg-secondary" />
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                <button class="btn btn-outline-secondary btn-sm" type="button"
+                                    (click)="addupdateItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;{{lblrowaddupdate}}</button>
+                                &nbsp; &nbsp;
+                                <button class="btn btn-outline-secondary btn-sm" type="button"
+                                    (click)="ClearRow()"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp; Cancel</button>
+                            </div> -->
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

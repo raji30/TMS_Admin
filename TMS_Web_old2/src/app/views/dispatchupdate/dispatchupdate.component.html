@@ -1,0 +1,489 @@
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">Update Dispatch</h5>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body">
+      <div *ngFor="let data of dispatchList">
+        <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-6">
+            <!-- <h5 class="card-subtitle mb-2" style="color:cornflowerblue">
+              <img src="assets/img/brand/lorry24px.png" /> Dispatch Delivery</h5> -->
+
+            <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#Orderdata"
+              aria-expanded="false" aria-controls="Orderdata">
+              Delivery ID - <b style="color: cornsilk;">{{data.OrderNo}} </b>
+            </button>
+
+            &nbsp;
+            <button id="AddDispatchEntry" class="btn btn-outline-warning btn-sm small" type="button"
+              (click)="showaddupdateEntry()">
+              Add Entry
+            </button>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="container text-right">              
+              <button class="btn btn-primary btn-sm small" type="button" (click)="Submit()">Submit</button> &nbsp;
+              <button class="btn btn-primary btn-sm small" type="button" (click)="update()">Delivery
+                complete</button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- class="collapse" -->
+        <div class="collapse show" id="Orderdata"> 
+          <div class="card card-body">
+            <div class="row">
+              <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="row">
+                  <div class="col-sm-3 col-md-3 col-lg-3"> <span class="text-muted">Date</span></div>
+                  <div class="col-sm-9 col-md-9 col-lg-9"><span style="color: cornsilk;">{{data.OrderDate|date}} </span></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3 col-md-3 col-lg-3"> <span class="text-muted">Type</span></div>
+                  <div class="col-sm-9 col-md-9 col-lg-9"><span> {{data.ordertypedescription}} </span></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3 col-md-3 col-lg-3"> <span class="text-muted">Broker</span></div>
+                  <div class="col-sm-9 col-md-9 col-lg-9"><span> {{data.BrokerName}} </span></div>
+                </div>
+              </div>
+              <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Broker Ref</span></div>
+                  <div class="col-sm-8 col-md-8 col-lg-8"><span> {{data.BrokerRefNo}} </span></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Booking No</span></div>
+                  <div class="col-sm-8 col-md-8 col-lg-8"><span> {{data.BookingNo}} </span></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Vessel</span></div>
+                  <div class="col-sm-8 col-md-8 col-lg-8"><span> {{data.VesselName}} </span></div>
+                </div>
+              </div>
+              <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Bill of Lading</span></div>
+                  <div class="col-sm-8 col-md-8 col-lg-8"><span> {{data.BillofLading}} </span></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Cut-Off Date</span></div>
+                  <div class="col-sm-8 col-md-8 col-lg-8"><span> {{data.CutOffDate|date}} </span></div>
+                </div>
+              </div>
+            </div>
+            <hr style="color: slategray;">
+            <div class="row">
+              <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4">
+                    <span class="text-muted">Bill to</span>
+                  </div>
+                  <div class="col-sm-8 col-md-8 col-lg-8">
+                    <div style="word-wrap: break-word;">
+                      {{data.BillToAddr}}
+                      {{data.BillToAddressBO.Address1}}, {{data.BillToAddressBO.Address2}}
+                      {{data.BillToAddressBO.City}} - {{data.BillToAddressBO.Zip}}
+                      {{data.BillToAddressBO.State}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4">
+                    <span class="text-muted">Pickup</span>
+                  </div>
+                  <div class="col-sm-8 col-md-8 col-lg-8">
+                    <div style="word-wrap: break-word;">
+                      {{data.SourceAddr}}
+                      {{data.SourceAddressBO.Address1}}, {{data.SourceAddressBO.Address2}}
+                      {{data.SourceAddressBO.City}} - {{data.SourceAddressBO.Zip}}
+                      {{data.SourceAddressBO.State}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4">
+                    <span class="text-muted">Delivery</span>
+                  </div>
+                  <div class="col-sm-8 col-md-8 col-lg-8">
+                    <div style="word-wrap: break-word;">
+                      {{data.DestinationAddr}}
+                      {{data.DestinationAddressBO.Address1}}, {{data.DestinationAddressBO.Address2}}
+                      {{data.DestinationAddressBO.City}} - {{data.DestinationAddressBO.Zip}}
+                      {{data.DestinationAddressBO.State}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4">
+                    <span class="text-muted">Return</span>
+                  </div>
+                  <div class="col-sm-8 col-md-8 col-lg-8">
+                    <div style="word-wrap: break-word;">                     
+                      {{data.ReturnAddressBO.Address1}}, {{data.ReturnAddressBO.Address2}}
+                      {{data.ReturnAddressBO.City}} - {{data.ReturnAddressBO.Zip}}
+                      {{data.ReturnAddressBO.State}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <hr style="color: slategray;">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="panel panel-warning">
+                  <div class="panel-body">
+                    <h6 class="text-muted">Container</h6>
+                    <table class="table table-sm small table-striped">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col" style="display:none">OrderDetailKey</th>
+                          <th scope="col" class="text-muted">Id</th>
+                          <th scope="col" class="text-muted">No</th>
+                          <th scope="col" class="text-muted">Size</th>
+                          <th scope="col" class="text-muted">Seal#</th>
+                          <th scope="col" class="text-muted">Weight</th>
+                          <th scope="col" class="text-muted">Comment</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td hidden="true" style="display:none">
+                            {{data.OrderDetails.OrderDetailKey}}
+                          </td>
+                          <td>
+                            {{data.OrderDetails.containerid}}
+                          </td>
+                          <td>
+                            {{data.OrderDetails.ContainerNo}}
+                          </td>
+                          <td>
+                            {{data.OrderDetails.ContainerSizeDesc}}
+                          </td>
+                          <td>
+                            {{data.OrderDetails.SealNo}}
+                          </td>
+                          <td>
+                            {{data.OrderDetails.Weight}}
+                          </td>
+                          <td>
+                            {{data.OrderDetails.Comments}}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div class="row">
+              <div class="col-sm-8 col-md-8 col-lg-8">
+                <h6 class="text-muted">Scheduler</h6>
+                <table class="table table-sm small table-striped">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col" class="text-muted">Appointment Date</th>
+                      <th scope="col" class="text-muted">Pickup DateTime</th>
+                      <th scope="col" class="text-muted">DropOff Date/Time</th>
+                      <th scope="col" class="text-muted">Last Free Day</th>
+                      <th scope="col" class="text-muted">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody  >
+                    <tr >
+                      <td>
+                        {{data.OrderDetails.AppDateFrom}} - {{data.OrderDetails.AppDateTo}}
+                      </td>
+                      <td>
+                        {{data.OrderDetails.PickupDateTime}}
+                      </td>
+
+                      <td>
+                        {{data.OrderDetails.DropOffDateTime}}
+                      </td>
+                      <td>
+                        {{data.OrderDetails.LastFreeDay}}
+                      </td>
+                      <td>
+                        {{data.OrderDetails.SchedulerNotes}}
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="panel-heading">
+                  <h6 class="text-muted">Comments</h6>
+                </div>
+                <p><small> {{dispatchList.Comment}}</small></p>
+              </div>
+            </div> 
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="card text-dark alert-warning">
+              <div class="card-body text-dark border-light ">
+                
+                <div class="row">   
+                                
+                    <table class="table table-custom  table-sm table-hover table-striped table-warning ">
+                      <thead>
+                        <tr>                          
+                          <th scope="col" class="text-left text-muted" hidden="true">routekey</th>
+                          <th scope="col" class="text-left text-muted" hidden="true">OrderDetailKey</th>
+                          <th scope="col" class="text-left text-muted"><small> Appointment No  </small></th>
+                          <th scope="col" class="text-left text-muted"> <small>Chassis</small></th>
+                          <th scope="col" class="text-left text-muted"><small>Legno</small></th>
+                          <th scope="col" class="text-left text-muted"><small>Leg Type</small></th>
+                          <th scope="col" class="text-left text-muted"><small>Wait From/to at Port</small></th>
+                          <th scope="col" class="text-left text-muted"><small>Wait From/to at Customer</small></th>
+                          <th scope="col" class="text-left text-muted"><small>Pickup-Drop</small></th>                         
+                          <th scope="col" class="text-left text-muted"><small>Driver</small></th>
+                          <th scope="col" class="text-left text-muted"> <small>Drivernotes</small></th>                         
+                          <th scope="col" class="text-center text-muted"></th>
+                        </tr>
+                      </thead>
+                      <tbody >
+                        <tr *ngFor="let data of dispatchDetails;let i = index">
+                        
+                          <td hidden="true" style="color: darkslategrey;">
+                            {{data.routekey}}
+                          </td>
+                          <td hidden="true" style="color: darkslategrey;">
+                            {{data.OrderDetailKey}}
+                          </td>
+                          <td class="text-center" style="color: darkslategrey;">
+                            <small> {{data.appointmentno}}</small>
+                          </td>
+
+                          <td class="text-center" style="color: darkslategrey;">
+                            <small>{{data.Chassis}}</small>
+                          </td>
+                          <td class="text-center" style="color: darkslategrey;">
+                            <small> {{data.legno}}</small>
+                          </td>
+                          <td class="text-left" style="color: darkslategrey;">
+                            <small> {{data.legtype}}</small>
+                          </td>
+                          <td class="text-left" style="color: darkslategrey;">
+                            <small> {{ data.portwaitingtimefrom}} - {{data.portwaitingtimeto}}</small>
+
+                          </td>
+                          <td class="text-left" style="color: darkslategrey;">
+                            <small> {{ data.customerwaitingtimefrom}} - {{data.customerwaitingtimeto}}</small>
+                          </td>
+                          <td class="text-left" style="color: darkslategrey;">
+                            <small> {{data.actualarrival}}-{{data.actualdeparture}}</small>
+                          </td>
+                          <td class="text-left" style="color: darkslategrey;">
+
+                          </td>
+                          <td class="text-left" style="color: darkslategrey;">
+                            <small> {{data.drivernotes}}</small>
+                          </td>
+                         
+                          <td class="text-center" style="color: darkslategrey;">
+                            <a tooltip="Upload file" (click)="editRow(data,i)">
+                              <i class="fa fa-pencil"></i>
+                            </a> &nbsp;&nbsp;
+
+                            <a tooltip="Remove/Delete Container" (click)="deleteRow(data,i)">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                 
+                  <!-- <ng-container *ngIf="dispatchList.dispatchDetails.length==0">
+                    <h5 style="color: darkred;">No records found!</h5>
+                  </ng-container> -->
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="showaddupdateEntryDiv">
+
+          <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+              <div class="form-group" hidden="true">
+                <h6 class="text-muted">Routekey </h6>
+                <input class="form-control form-control-sm" type="text" name="routekey" [(ngModel)]="routekey"
+                  placeholder="" />
+              </div>
+              <div class="form-group">
+                <h6 class="text-muted">Appointment No </h6>
+                <input class="form-control form-control-sm" type="text" name="AppointmentNo"
+                  [(ngModel)]="appointmentNo" placeholder="" />
+              </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+              <div class="form-group">
+                <h6 class="text-muted">Chassis</h6>
+                <input class="form-control form-control-sm" type="text" name="Chassis" [(ngModel)]="Chassis"
+                  placeholder="" />
+              </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+              <div class="form-group">
+                <h6 class="text-muted">Leg</h6>
+                <input class="form-control form-control-sm" type="text" name="legno" [(ngModel)]="legno"
+                  placeholder="" />
+              </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+              <div class="form-group">
+                <h6 class="text-muted">Leg Type</h6>
+                <select id="drpStatus" class="form-control form-control-sm" placeholder="Legtype" name="Legtype"
+                  [(ngModel)]="legtype">
+                  <option [value]='1'>L</option>
+                  <option [value]="2">D</option>
+                  <option [value]="3">D/S</option>
+
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+              <div class="form-group">
+                <h6 class="text-muted">Driver</h6>
+                <select id="drpdriver" class="form-control form-control-sm" name="driverkey"
+                  [(ngModel)]="driverkey">
+                  <option [value]="driver.DriverKey" *ngFor="let driver of driverList">{{driver.DriverId}}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+              <textarea class="form-control" id="txtNotes" placeholder="Driver Notes" name="drivernotes"
+                [(ngModel)]="drivernotes"></textarea>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <div class="form-group">
+                <h6 class="text-muted">Port waiting time </h6>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="input-group input-group-sm">
+                            <input class="form-control form-control-sm" type="text" name="dtPortWaitingTimeFrom"
+                              [(ngModel)]="PortWaitingTimeFrom" placeholder="From"
+                              [owlDateTimeTrigger]="dtPortWaitingTimeFrom" [owlDateTime]="dtPortWaitingTimeFrom"
+                              required />
+                            <owl-date-time [pickerType]="'both'" #dtPortWaitingTimeFrom [hour12Timer]="false">
+                            </owl-date-time>
+                          </div>
+                        </td>
+                        <td>:</td>
+                        <td>
+                          <div class="input-group input-group-sm">
+                            <input class="form-control form-control-sm" type="text" name="dtPortWaitingTimeTo"
+                              [(ngModel)]="PortWaitingTimeTo" placeholder="to"
+                              [owlDateTimeTrigger]="dtPortWaitingTimeTo" [owlDateTime]="dtPortWaitingTimeTo"
+                              required />
+                            <owl-date-time [pickerType]="'both'" #dtPortWaitingTimeTo [hour12Timer]="false">
+                            </owl-date-time>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <div class="form-group">
+                <h6 class="text-muted">Customer waiting time </h6>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="input-group input-group-sm">
+                            <input class="form-control form-control-sm" type="text" name="CustomerWaitingTimeFrom"
+                              [(ngModel)]="CustomerWaitingTimeFrom" placeholder="From"
+                              [owlDateTimeTrigger]="dtCustomerWaitingTimeFrom"
+                              [owlDateTime]="dtCustomerWaitingTimeFrom" required />
+                            <owl-date-time [pickerType]="'both'" #dtCustomerWaitingTimeFrom [hour12Timer]="false">
+                            </owl-date-time>
+                          </div>
+                        </td>
+                        <td>:</td>
+                        <td>
+                          <div class="input-group input-group-sm">
+                            <input class="form-control form-control-sm" type="text" name="dtPortWaitingTimeFrom"
+                              [(ngModel)]="CustomerWaitingTimeTo" placeholder="to"
+                              [owlDateTimeTrigger]="dtCustomerWaitingTimeTo"
+                              [owlDateTime]="dtCustomerWaitingTimeTo" required />
+                            <owl-date-time [pickerType]="'both'" #dtCustomerWaitingTimeTo [hour12Timer]="false">
+                            </owl-date-time>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <div class="form-group">
+                <h6 class="text-muted">Actual Pickup/Drop </h6>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="input-group input-group-sm">
+                            <input class="form-control form-control-sm" type="text" name="actualarrival"
+                              [(ngModel)]="actualarrival" placeholder="Pickup"
+                              [owlDateTimeTrigger]="dtactualarrival" [owlDateTime]="dtactualarrival" required />
+                            <owl-date-time [pickerType]="'both'" #dtactualarrival [hour12Timer]="false">
+                            </owl-date-time>
+                          </div>
+                        </td>
+                        <td>:</td>
+                        <td>
+                          <div class="input-group input-group-sm">
+                            <input class="form-control form-control-sm" type="text" name="actualdeparture"
+                              [(ngModel)]="actualdeparture" placeholder="Drop"
+                              [owlDateTimeTrigger]="dtactualdeparture" [owlDateTime]="dtactualdeparture"
+                              required />
+                            <owl-date-time [pickerType]="'both'" #dtactualdeparture [hour12Timer]="false">
+                            </owl-date-time>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3">
+              <div class="text-right">
+
+                <a type="button" class="btn btn-primary btn-sm" (click)="clear()">Clear</a>&nbsp;&nbsp;
+                <button type="button" class="btn alert-dark btn-sm" style="border-radius: 1rem;"
+                  (click)="addupdateDispatch()"> <i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

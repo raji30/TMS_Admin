@@ -27,7 +27,7 @@
           <ul class="list-unstyled">
             <li>
               <p style="font-family:calibri;"> <a [routerLink]="" (click)="rowclickEvent(order)">
-                  {{order.containerid}}<br> <small class="text-muted"> - {{ order.ContainerNo }} </small>
+                  {{order.ContainerNo}}/{{order.DOHeader.OrderDate|date}}/{{order.DOHeader.BrokerRefNo}}<br> <small class="text-muted"> - {{ order.containerid }} </small>
                   <span class="badge" *ngIf="selectedKey===order.OrderDetailKey">
                     <img src="assets/img/brand/symbol-check16px.png" /> </span>
                 </a> </p>

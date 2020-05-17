@@ -1,0 +1,151 @@
+<br>
+<div id="jumbotron">
+  <div class="row">
+    <div class="col-8 col-sm-8 col-md-8">
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-6">
+          <h5 class="card-subtitle mb-2" >
+           Cities</h5>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6">
+          <div class="container text-right">
+            <div class="row">
+              <div class="col-11 col-sm-11 col-md-11">
+                <div class="form-group input-group input-group-sm">
+                  <div class="img-group-prepend">
+                    <img src="assets/img/brand/search16px.png" /> &nbsp;
+                  </div>
+                  <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text"
+                    placeholder="Search..">
+                </div>
+              </div>
+              <div class="col-1 col-sm-1 col-md-1">
+                <img src="assets/img/brand/broom16px.png" (click)="clear_search()" tooltip="clear" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 col-sm-4 col-md-4 text-right">
+      <button type="button" class="btn btn-info btn-sm" (click)="toggle()" *ngIf="show_btnAdd">Create New
+        City</button>
+      <h5 for="new" *ngIf="show_lblAdd"> Add City </h5>
+      <h5 for="edit" *ngIf="show_lblEdit"> Edit City </h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8 col-md-8 col-lg-8 ScrollStyle">
+      <table class="table table-sm">
+        <tr ngclass="btn-primary">
+          <th hidden="true">itemkey</th>
+          <th scope="col" class="pointer"  (click)="sort('cityid')" >ID &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer"  (click)="sort('cityname')" >City &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>
+          </th>
+
+        </tr>
+        <tr *ngFor="let city of citylist | grdFilter: {cityid: searchText,cityname: searchText}
+        |paginate:{itemsPerPage:15,currentPage:p,totalItems: count}">
+          <td hidden="true">{{city.citykey}}</td>
+          <td> <a [routerLink]="" (click)="getcityById(city.citykey)">{{city.cityid}}</a> </td>
+          <td>{{city.cityname}}</td>
+        </tr>
+      </table>
+      <div class="container text-right"> 
+        <pagination-controls 
+        (pageChange)="p=$event"
+        autoHide="true"
+        responsive="true"> </pagination-controls>     
+      </div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <div class="row" *ngIf="show_DivAddUpdate">
+        <div class="container bg-dark" >
+          <form name="form" (ngSubmit)=" f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="container bg-dark">
+              <div class="form-group">
+                <br>
+                <label for="user"> <b> City Detail </b> </label>
+                <div class="row" hidden="true">
+                  <div class="form-group input-group input-group-sm col-md-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">citykey</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.citykey" id="citykey"
+                      name="citykey" #citykey="ngModel">
+                  </div>
+
+
+                </div>
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Id</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" name="cityid" [(ngModel)]="dataModel.cityid"
+                      #cityid="ngModel" [ngClass]="{ 'is-invalid': f.submitted && cityid.invalid }" required
+                      minlength="2" />
+
+                    <div *ngIf="f.submitted && cityid.invalid" class="invalid-feedback">
+                      <div *ngIf="cityid.errors.required"> Id is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">City</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.cityname"
+                      id="cityname" name="cityname" #cityname="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && cityname.invalid }" required>
+                    <div *ngIf="f.submitted && cityname.invalid" class="invalid-feedback">
+                      <div *ngIf="cityname.errors.required"> city is required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6 col-sm-6 col-md-6">
+
+                  </div>
+                  <div class="col-1 col-sm-1 col-md-1 text-left">
+                    <!-- <button type="reset" *ngIf="isResetbtnhidden" class="btn btn-primary btn-sm"
+                      (click)="resetForm()">Clear</button> -->
+                  </div>
+                  <div class="col-2 col-sm-2 col-md-2 text-right">
+                    <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
+                  </div>
+                  <div class="col-1 col-sm-1 col-md-1 text-right">
+                    <button class="btn btn-primary btn-sm">Submit</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="row" *ngIf="show_DivInfo">
+        <div class="container text-right">
+          <span style="color:green;" (click)="bindFormControls()"> <i class="fa fa-pencil" aria-hidden="true"></i>
+            <b> edit</b>..</span>
+        </div>
+        <div class="container ml-2">
+
+          <h5> {{dataModel.cityid}} </h5>
+
+          <span class="text-muted">cityname </span> <br>
+          <span><b> {{dataModel.cityname}} </b></span> <br>
+
+          <br><br>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

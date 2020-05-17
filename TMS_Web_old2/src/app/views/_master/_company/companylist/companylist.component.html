@@ -1,0 +1,324 @@
+<div id="accordion">
+  <br>
+  <div class="row">
+    <div class="col-8 col-sm-8 col-md-8">
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-6">
+          <h5 class="card-subtitle mb-2">
+          Companies</h5>
+        </div>
+        <div class="col-4 col-sm-4 col-md-4">
+          <div class="container text-right">
+            <div class="row">
+              <div class="col-11 col-sm-11 col-md-11">
+                <div class="form-group input-group input-group-sm">
+                  <div class="img-group-prepend">
+                    <img src="assets/img/brand/search16px.png" /> &nbsp;
+                  </div>
+                  <input [(ngModel)]="searchText" class="form-control form-control-sm" style="border-radius: 1rem;"
+                    type="text" placeholder="Search..">
+                </div>
+              </div>
+              <!-- <div class="col-1 col-sm-1 col-md-1">
+                <img src="assets/img/brand/broom16px.png" (click)="clear_search()" tooltip="clear" />
+              </div> -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-4 col-sm-4 col-md-4 text-right">
+      <button type="button" class="btn btn-info btn-sm" (click)="clear()" *ngIf="show_btnCreateCompany">Create New
+        Company</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-7 col-md-7 col-lg-7  scrollbar" id="style-10">
+      <table class="table table-sm">
+        <tr ngclass="btn-primary">
+          <th hidden="true">compkey</th>
+          <th scope="col" class="pointer"  (click)="sort('compname')" >ID &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+          <th scope="col" class="pointer"  (click)="sort('compid')" >Company &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>         
+        </tr>
+        <tr *ngFor="let comp of companies | grdFilter: {compname: searchText,compid: searchText}|paginate:{itemsPerPage:20,currentPage:p,totalItems: count}
+        ">
+          <td hidden="true">{{comp.compkey}}</td>
+          <td>{{comp.compid}}</td>
+          <td> <a [routerLink]="" (click)="getCompanydataToEdit(comp.compkey)">
+              {{comp.compname}}</a>
+          </td>
+        </tr>
+      </table>
+      
+ <div class="container text-right"> 
+  <pagination-controls 
+  (pageChange)="p=$event"
+  autoHide="true"
+  responsive="true"> </pagination-controls>     
+</div>
+    </div>
+
+    <div class="col-sm-5 col-md-5 col-lg-5">
+      <div class="row" *ngIf="show_addupdateCompany">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <form (ngSubmit)=" f.form.valid && onFormSubmit()" #f="ngForm">
+            <div class="container">
+              <div class="row" hidden="true">
+                <div class="form-group input-group input-group-sm col-md-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">compkey</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="company.compkey"
+                    name="compkey">
+                </div>
+              </div>
+
+              <div class="card text-white bg-dark">
+                <div class="card-header" style="height: 50px;">
+                  <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6"> <label> <b> Company </b> </label> </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-6 text-right">
+                      <button type="reset" class="btn btn-info btn-sm" (click)="cancel()">Cancel</button> &nbsp;&nbsp;
+                      <button type="submit" class="btn btn-info btn-sm">Submit</button>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="form-group input-group input-group-sm col-md-8">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Id</span>
+                      </div>
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="company.compid"
+                        name="compid" #compid="ngModel" [ngClass]="{ 'is-invalid': f.submitted && compid.invalid }"
+                        required maxlength="20">
+
+                      <div *ngIf="f.submitted && compid.invalid" class="invalid-feedback">
+                        <div *ngIf="compid.errors.required">Id is required</div>
+                      </div>
+
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                     
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group input-group input-group-sm col-md-12">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Company</span>
+                      </div>
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="company.compname"
+                        name="compname" #compname="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && compname.invalid }" required>
+                      <div *ngIf="f.submitted && compname.invalid" class="invalid-feedback">
+                        <div *ngIf="compname.errors.required">Company is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <app-address  [Address]="company.Address" (AddressOut)="onOutputAddressChange($event)"> </app-address>
+                  <!-- <div class="form-group">
+                    <label for="legno"> <b> Address </b> </label>
+                    <div class="row" hidden="true">
+                      <div class="form-group input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Address Key</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.AddrKey"
+                          name="AddrKey">
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="form-group input-group input-group-sm col-md-12">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Line 1</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.Address1"
+                          name="Address1" #Address1="ngModel"
+                          [ngClass]="{ 'is-invalid': f.submitted && Address1.invalid }" required>
+                        <div *ngIf="f.submitted && Address1.invalid" class="invalid-feedback">
+                          <div *ngIf="Address1.errors.required">Address line is required</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group input-group input-group-sm col-md-12">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Line 2</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.Address2"
+                          name="Address2">
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                      <div class="form-group input-group input-group-sm col-md-5">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">City</span>
+                        </div>
+                      
+                        <select id="drpSource" class="form-control form-control-sm" [(ngModel)]="company.Address.City"
+                          name="City" #City="ngModel" [ngClass]="{ 'is-invalid': f.submitted && City.invalid }">
+                          <option *ngFor="let city of citylist" [value]="city.citykey">
+                            {{city.cityname}}
+                          </option>
+                        </select>
+                        <div *ngIf="f.submitted && City.invalid" class="invalid-feedback">
+                          <div *ngIf="City.errors.required">City is required</div>
+                        </div>
+                      </div>
+
+                      <div class="form-group input-group input-group-sm col-md-4">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">State</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.State"
+                          name="State" #State="ngModel" [ngClass]="{ 'is-invalid': f.submitted && State.invalid }"
+                          required>
+                        <div *ngIf="f.submitted && State.invalid" class="invalid-feedback">
+                          <div *ngIf="State.errors.required">State is required</div>
+                        </div>
+                      </div>
+                      <div class="form-group input-group input-group-sm col-md-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Zip</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.Zip"
+                          name="Zip" #Zip="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Zip.invalid }" required
+                          (keypress)="numberOnly($event)" appBlockCopyPaste>
+                        <div *ngIf="f.submitted && Zip.invalid" class="invalid-feedback">
+                          <div *ngIf="Zip.errors.required">Zip is required</div>                          
+                          <div *ngIf="Zip.errors.minLength">minlength is required</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group input-group input-group-sm col-md-4">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Country</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.Country"
+                          name="Country" #CustId="ngModel">
+
+                      </div>
+                      <div class="form-group input-group input-group-sm col-md-8">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Website</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.Website"
+                          name="Website" appBlockCopyPaste>                       
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Primary Phone</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.Phone"
+                          name="Phone" #Phone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Phone.invalid }"
+                          required (keypress)="numberOnly($event)" appBlockCopyPaste minLength=10 maxLength=10>
+                        <div *ngIf="f.submitted && Phone.invalid" class="invalid-feedback">
+                          <div *ngIf="Phone.errors.required">Phone is required</div>
+                          <div *ngIf="Phone.errors.minLength">minlength is required</div>
+                        </div>
+                      </div>
+                      <div class="form-group input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Secondary Phone</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.Phone2"
+                          name="Phone2" (keypress)="numberOnly($event)" appBlockCopyPaste>
+                      </div>
+                    </div>
+                    <div class="row">
+
+                      <div class="form-group input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Fax</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.Fax"
+                          name="Fax" (keypress)="numberOnly($event)" appBlockCopyPaste>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group input-group input-group-sm col-md-12">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Primary E-mail</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.Email"
+                          name="Email" appBlockCopyPaste>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group input-group input-group-sm col-md-12">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Secondary E-mail</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="company.Address.Email2"
+                          name="Email2" appBlockCopyPaste>
+                      </div>
+                    </div>
+                  </div> -->
+
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row" *ngIf="show_companyInfo">
+        <div class="container text-right">
+          <span style="color:chocolate;" (click)="edit_click()"> <i class="fa fa-pencil" aria-hidden="true"></i>
+            <b> edit</b>..</span>
+        </div>
+        <div class="container ml-2">
+          <h5> {{selectedCompany.compname}}</h5>
+
+          <span class="text-muted">ID:- <b>{{selectedCompany.compid}}</b> </span>
+          <hr style="background-color:lightslategray;">          
+          <br><br>
+          <span class="text" style="color:cornflowerblue;">
+            <h5> <u>Address</u> </h5>
+          </span>
+          <span class="text-muted">Line 1 :<b> {{selectedCompany.Address.Address1}}</b> </span><br>
+          <span class="text-muted">Line 2 :<b> {{selectedCompany.Address.Address2}}</b> </span> <br>
+          <span class="text-muted">City :<b> {{selectedCompany.Address.City}} </b></span> <br>
+          <span class="text-muted">State :<b> {{selectedCompany.Address.State}} </b></span> <br>
+          <span class="text-muted">Zip :<b> {{selectedCompany.Address.Zip}} </b></span> <br>
+          <span class="text-muted">Country: <b> {{selectedCompany.Address.Country}} </b></span> <br><br>
+          <span class="text-muted">Website <b> {{selectedCompany.Address.Website}} </b></span> <br><br>
+          <span class="text-muted">Email (Primary) </span><br>
+          <span><b> {{selectedCompany.Address.Email}} </b></span> <br><br>
+          <span class="text-muted">Email (Secondary) </span><br>
+          <span><b> {{selectedCompany.Address.Email2}} </b></span> <br><br>
+
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <span class="text-muted">Fax </span><br>
+              <span><b> {{selectedCompany.Address.Fax}} </b></span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <span class="text-muted">Mobile (Primary) </span><br>
+              <span><b> {{selectedCompany.Address.Phone}} </b></span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <span class="text-muted">Mobile (Secondary) </span><br>
+              <span><b> {{selectedCompany.Address.Phone2}} </b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "small" color = "#fff" 
+type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

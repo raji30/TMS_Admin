@@ -39,5 +39,7 @@ namespace TMS.BusinessObjects
         public Guid CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string nextaction { get; set; }
+
+        public DeliveryOrderBO DOHeader { get; set; }
     }
 }

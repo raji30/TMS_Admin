@@ -1,0 +1,262 @@
+<br>
+<div id="jumbotron">
+  <div class="row">
+    <div class="col-8 col-sm-8 col-md-8">
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-6">
+          <h5 class="card-subtitle mb-2" style="color: black">
+            <img src="assets/img/brand/user-identity4.png" /> Vendors</h5>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6">
+          <div class="container text-right">
+            <div class="row">
+              <div class="col-11 col-sm-11 col-md-11">
+                <div class="form-group input-group input-group-sm">
+                  <div class="img-group-prepend">
+                    <img src="assets/img/brand/search16px.png" /> &nbsp;
+                  </div>
+                  <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text"
+                    placeholder="Search..">
+                </div>
+              </div>
+              <div class="col-1 col-sm-1 col-md-1">
+                <img src="assets/img/brand/broom16px.png" (click)="clear_search()" tooltip="clear" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 col-sm-4 col-md-4 text-right">
+      <button type="button" class="btn btn-info btn-sm" (click)="toggle()" *ngIf="show_btnAdd">Create New
+          Vendor</button>
+        <h5 for="new" *ngIf="show_lblAdd">  Add New Vendor  </h5>
+        <h5 for="edit" *ngIf="show_lblUpdate">  Edit Vendor  </h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8 col-md-8 col-lg-8 ScrollStyle">
+      <table class="table table-sm">
+        <tr ngclass="btn-primary">
+            <td hidden="true">vendkey</td>
+            <td>Id</td>
+            <td>Name</td>
+        </tr>
+        <tr *ngFor="let vend of vendors | grdFilter: {vendid: searchText,vendname: searchText}">
+            <td hidden="true">{{vend.vendkey}}</td>
+            <td>{{vend.vendid}}</td>            
+          <td> <a [routerLink]="" (click)="getVendorById(vend.vendkey)">{{vend.vendname}}</a> </td>          
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <div class="row" *ngIf="show_divAddUpdate">
+        <div class="container">
+          <form name="form" (ngSubmit)=" f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="container">
+              <div class="form-group">
+                <label for="user"> <b> Vendor detail </b> </label>
+                <div class="row" hidden="true">
+                    <div class="form-group input-group input-group-sm col-md-4">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">vendkey</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.vendkey"
+                          id="vendkey" name="vendkey">
+                      </div>
+
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Address Key</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.AddrKey"
+                      name="AddrKey" #AddrKey="ngModel">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text">Vendor Id</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" required [(ngModel)]="dataModel.vendid"
+                          #vendid="ngModel" name="vendid" [ngClass]="{ 'is-invalid': f.submitted && vendid.invalid }" required>
+                        <div *ngIf="f.submitted && vendid.invalid" class="invalid-feedback">
+                          <div *ngIf="vendid.errors.required"> VendorID is required</div>
+                        </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text">Name</span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" required [(ngModel)]="dataModel.vendname"
+                          id="vendname" name="vendname" #vendname="ngModel"
+                          [ngClass]="{ 'is-invalid': f.submitted && vendname.invalid }">
+                        <div *ngIf="f.submitted && vendname.invalid" class="invalid-feedback">
+                          <div *ngIf="vendname.errors.required"> Vendor name is required</div>
+                        </div>
+
+                  </div>
+                  
+                </div>               
+              </div>
+            </div>
+            <div class="container">
+              <div class="form-group">
+                <label for="legno"> <b> Address </b> </label>
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Line 1</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Address1"
+                      name="Address1" #Address1="ngModel">
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Line 2</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Address2"
+                      name="Address2">
+                  </div>
+                </div>
+
+                <div class="row">                  
+                    <div class="form-group input-group input-group-sm col-md-6">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">City</span>
+                      </div>
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.City"
+                        name="City" #City="ngModel">
+                    </div>
+                    <div class="form-group input-group input-group-sm col-md-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">State</span>
+                      </div>
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.State"
+                        name="State" #State="ngModel">
+                    </div>
+                    <div class="form-group input-group input-group-sm col-md-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Zip</span>
+                      </div>
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Zip"
+                        name="Zip" (keypress)="numberOnly($event)" appBlockCopyPaste #Zip="ngModel">
+                    </div>                 
+                </div>
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Country</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Country"
+                      name="Country" #Country="ngModel">
+                  </div>
+                  <div class="form-group input-group input-group-sm col-md-8">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Website</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Website"
+                      name="Website" #Website="ngModel" appBlockCopyPaste>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Phone</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Phone"
+                      name="Phone" #Phone="ngModel" (keypress)="numberOnly($event)" appBlockCopyPaste>
+
+                  </div>
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Fax</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Fax"
+                      name="Fax" #Fax="ngModel" (keypress)="numberOnly($event)" appBlockCopyPaste>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="form-group input-group input-group-sm col-md-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">E-mail</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="dataModel.Address.Email"
+                      name="Email" #Email="ngModel" appBlockCopyPaste>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-6 col-sm-6 col-md-6">
+
+                </div>
+                <div class="col-1 col-sm-1 col-md-1 text-left">
+                  <!-- <button type="reset" *ngIf="isResetbtnhidden" class="btn btn-primary btn-sm"
+                    (click)="resetForm()">Clear</button> -->
+                </div>
+                <div class="col-2 col-sm-2 col-md-2 text-right">
+                  <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
+                </div>
+                <div class="col-1 col-sm-1 col-md-1 text-right">
+                  <button class="btn btn-primary btn-sm">Submit</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row" *ngIf="show_divInfo">
+        <div class="container text-right">
+          <span style="color:green;" (click)="bindFormControls()"> <i class="fa fa-pencil" aria-hidden="true"></i>
+            <b> edit</b>..</span>
+        </div>
+        <div class="container ml-2">
+
+          <h5> {{dataModel.vendid}} </h5>
+
+          <span class="text-muted">Name </span> <br>
+          <span><b> {{dataModel.vendname}} </b></span> 
+
+                   <br><br>
+
+          <span class="text" style="color: chocolate;"> <b> Address </b></span><br>
+
+          <span class="text-muted">Line 1 :<b> {{dataModel.Address.Address1}}</b> </span><br>
+          <span class="text-muted">Line 2 :<b> {{dataModel.Address.Address2}}</b> </span> <br>
+          <span class="text-muted">City :<b> {{dataModel.Address.City}} </b></span> <br>
+          <span class="text-muted">State :<b> {{dataModel.Address.State}} </b></span> <br>
+          <span class="text-muted">Zip :<b> {{dataModel.Address.Zip}} </b></span> <br>
+          <span class="text-muted">Country: <b> {{dataModel.Address.Country}} </b></span> <br><br>
+          <span class="text-muted">Website <b> {{dataModel.Address.Website}} </b></span> <br><br>
+          <span class="text-muted">Email </span><br>
+          <span><b> {{dataModel.Address.Email}} </b></span> <br><br>
+
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <span class="text-muted">Fax </span><br>
+              <span><b> {{dataModel.Address.Fax}} </b></span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <span class="text-muted">Mobile </span><br>
+              <span><b> {{dataModel.Address.Phone}} </b></span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

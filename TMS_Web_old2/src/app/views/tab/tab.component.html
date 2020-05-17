@@ -1,0 +1,161 @@
+<!-- <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Modal title</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <tabset  type="tabs" (click)="onClick($event)" >
+            <tab   title="Disabled" [disabled]="false"   >
+              <ng-template tabHeading>
+                  doIntake 
+              </ng-template>
+              <app-dointake [orderKeyinput]=orderKeyinput></app-dointake>
+            </tab>
+           
+            <tab >
+              <ng-template tabHeading>
+                  Scheduler
+              </ng-template>
+              <app-scheduler [orderKeyinput]=orderKeyinput></app-scheduler>
+            </tab>
+            <tab [disabled]="true">
+              <ng-template tabHeading >
+                Despatch
+              </ng-template>
+            </tab>
+            <tab [disabled]="true">
+              <ng-template tabHeading>
+                Billing
+              </ng-template>
+            </tab>
+          </tabset>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+   -->
+
+<div class="modal-body">
+  <!-- <div class="row">
+    <div class="col-md-3">
+      <div class="card text-white">
+        <div class="card-body">
+          <h5 class="card-subtitle mb-2" style="color:black">Order# : {{order.OrderNo}} </h5>
+          <p class="card-subtitle mb-2" style="color:black"> Date: <span class="badge badge-pill badge-danger"
+              style="color:white">{{order.OrderDate}}</span></p>
+          <p class="card-subtitle mb-2" style="color:black"> Type: <span class="badge badge-pill badge-danger"
+              style="color:black">{{order.OrderTypeDescription}}</span></p>
+          <p class="card-subtitle mb-2" style="color:black"> Status: <span class="badge badge-pill badge-danger"
+              style="color:black">{{order.OrderStatusDescription}}</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-white">
+        <div class="card-body">
+          <p class="card-subtitle mb-2" style="color:black"> Customer: <span class="badge badge-pill badge-danger"
+              style="color:white"></span></p>
+          <p class="card-subtitle mb-2" style="color:black"> Broker: <span class="badge badge-pill badge-primary"
+              style="color:black">{{order.BrokerName}}</span></p>
+          <p class="card-subtitle mb-2" style="color:black"> Broker Ref#: : <span class="badge badge-pill badge-primary"
+              style="color:black">{{order.BrokerRefNo}}</span></p>
+          <p class="card-subtitle mb-2" style="color:black"> Booking# : <span class="badge badge-pill badge-primary"
+              style="color:black">{{order.BookingNo}}</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-white">
+        <div class="card-body">
+
+          <p class="card-subtitle mb-2" style="color:black"> Vessel: <span class="badge badge-pill badge-primary"
+              style="color:black">{{order.VesselName}}</span></p>
+          <p class="card-subtitle mb-2" style="color:black"> Bill of Lading :<span
+              class="badge badge-pill badge-primary" style="color:black">{{order.BillofLading}}</span></p>
+          <p class="card-subtitle mb-2" style="color:black"> Cut-Off Date : <span class="badge badge-pill badge-primary"
+              style="color:black">{{order.CutOffDate}}</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-white">
+        <div class="card-body">
+          <p class="card-subtitle mb-2" style="color:black"> Pickup : <span class="badge badge-pill badge-primary"
+              style="color:black"></span></p>
+          <p class="card-subtitle mb-2" style="color:black"> Consignee : <span class="badge badge-pill badge-primary"
+              style="color:black"></span></p>
+          <p class="card-subtitle mb-2" style="color:black"> Return : <span class="badge badge-pill badge-primary"
+              style="color:black"></span></p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="row">
+    <div class="col-md-3">
+      <h5 class="card-subtitle mb-2" style="color: white">Order# : <span style="color: #0892d0">{{order.OrderNo}} </span> </h5>
+      <p class="card-subtitle mb-2" style="color: white"> Date: <span style="color: #0892d0">{{order.OrderDate}}</span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Type: <span style="color: #0892d0">{{order.ordertypedescription}}</span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Status: <span style="color: #0892d0">{{order.statusdescription}}</span></p>
+    </div>
+
+    <div class="col-md-3">
+      <p class="card-subtitle mb-2" style="color:white"> Customer: <span class="badge badge-pill badge-danger"
+          style="color:white"></span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Broker: <span style="color: #0892d0">{{order.BrokerName}}</span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Broker Ref#: <span style="color: #0892d0">{{order.BrokerRefNo}}</span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Booking# :<span style="color: #0892d0"> {{order.BookingNo}}</span></p>
+    </div>
+
+    <div class="col-md-3">
+      <p class="card-subtitle mb-2" style="color:white"> Vessel: <span style="color: #0892d0">{{order.VesselName}}</span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Bill of Lading : <span style="color: #0892d0">{{order.BillofLading}} </span></p>
+      <p class="card-subtitle mb-2" style="color:white"> Cut-Off Date : <span style="color: #0892d0">{{order.CutOffDate|date}}</span></p>
+    </div>
+    <div class="col-md-3">
+      <p class="card-subtitle mb-2" style="color:grey"> Pickup : <span class="badge badge-pill badge-primary"
+          style="color:black"></span></p>
+      <p class="card-subtitle mb-2" style="color:grey"> Consignee : <span class="badge badge-pill badge-primary"
+          style="color:black"></span></p>
+      <p class="card-subtitle mb-2" style="color:grey"> Return : <span class="badge badge-pill badge-primary"
+          style="color:black"></span></p>
+    </div>
+  </div>
+  <hr>
+  <tabset type="tabs" (click)="onClick($event)">
+    <tab title="Disabled" [disabled]="false">
+      <ng-template tabHeading>
+        doIntake
+      </ng-template>
+      <app-dointake [orderKeyinput]=orderKeyinput></app-dointake>
+    </tab>
+
+    <tab>
+      <ng-template tabHeading>
+        Scheduler
+      </ng-template>
+      <app-scheduler [orderKeyinput]=orderKeyinput></app-scheduler>
+    </tab>
+    <tab [disabled]="false">
+      <ng-template tabHeading>
+        Dispatch Assignment
+      </ng-template>
+      <app-dispatch [orderKeyinput]=orderKeyinput></app-dispatch>
+    </tab>
+    <tab [disabled]="false">
+      <ng-template tabHeading>
+        Dispatch/Delivery
+      </ng-template>
+      <app-dispathdelivery [orderKeyinput]=orderKeyinput></app-dispathdelivery>
+    </tab>
+    <tab [disabled]="true">
+      <ng-template tabHeading>
+        Billing
+      </ng-template>
+    </tab>
+  </tabset> -->
+</div>

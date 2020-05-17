@@ -48,6 +48,10 @@ export class SchedulerlistComponent implements OnInit {
   public searchText: string;
   public SearchRecentContainer: string;
 
+  isVesselEditable: boolean = false;
+  isBookingNoEditable: boolean = false;
+  isBrokerRefEditable: boolean = false;
+
   registerForm: FormGroup;
   submitted = false;
   selectedKey: string;
@@ -99,7 +103,8 @@ export class SchedulerlistComponent implements OnInit {
     // NaviComp.test(6);
   }
 
-  ngOnInit() {
+  ngOnInit() {  
+
     this.master.getStatusList().subscribe(
       data => {
         this.statuslist = data;
@@ -221,7 +226,7 @@ export class SchedulerlistComponent implements OnInit {
         this.showScheduledContainerList = true;
         this.showScheduler = false;
         this.showSuccess(
-          "Container - " + DOdetail.ContainerNo + " Holded!",
+          "Container - " + DOdetail.ContainerNo + " updated!",
           "Scheduler-Update"
         );
         return;
@@ -285,7 +290,7 @@ export class SchedulerlistComponent implements OnInit {
   loaddata() {
     this.schedulerService.GetOrderstoSchedule().subscribe(
       data => {
-        this.DetailsData = data;
+        this.DetailsData = data;console.log("Get OrderDetail", this.DetailsData);
       },
       error => console.log(error),
       () => console.log("Get OrderDetail", this.DetailsData)
@@ -560,5 +565,86 @@ export class SchedulerlistComponent implements OnInit {
     for (var j = 0; j < this.itemlist.length; j++) {
       this.itemlist[j].isChecked = false;
     }
+  }
+
+  editVessel()
+  {
+    this.isVesselEditable= true;
+  }
+  updateVessel()
+  {
+  var orderHeader = new DeliveryOrderHeader();
+  orderHeader =  this.HeaderData;
+  ///alert("Vessel:"+ this.HeaderData.VesselName);
+  this.isVesselEditable = false;
+
+  this.orderService.updateDOHeader_Vessel(orderHeader).subscribe(
+    result => {      
+      this.showSuccess(
+        "Vessel updated.",
+        "Update"
+      );
+      return;
+    },
+    error => {
+      console.log(error);
+      this.showError("An Unexpected Error Occured.", "Scheduler-Update");
+      return;
+    }
+  );
+  }
+
+  editBookingNo()
+  {
+    this.isBookingNoEditable= true;
+  }
+  updateBookingNo()
+  {
+  var orderHeader = new DeliveryOrderHeader();
+  orderHeader =  this.HeaderData;
+  ///alert("Vessel:"+ this.HeaderData.VesselName);
+  this.isBookingNoEditable = false;
+
+  this.orderService.updateDOHeader_BookingNo(orderHeader).subscribe(
+    result => {      
+      this.showSuccess(
+        "Booking No updated.",
+        "Update"
+      );
+      return;
+    },
+    error => {
+      console.log(error);
+      this.showError("An Unexpected Error Occured.", "Scheduler-Update");
+      return;
+    }
+  );
+  }
+
+  editBrokerRefNo()
+  {
+    this.isBrokerRefEditable= true;
+  }
+  updateBrokerRefNo()
+  {
+  var orderHeader = new DeliveryOrderHeader();
+  orderHeader =  this.HeaderData;
+  ///alert("Vessel:"+ this.HeaderData.VesselName);
+  this.isBrokerRefEditable = false;
+
+  this.orderService.updateDOHeader_BrokerRefNo(orderHeader).subscribe(
+    result => {      
+      this.showSuccess(
+        "Broker Ref No updated.",
+        "Update"
+      );
+      return;
+    },
+    error => {
+      console.log(error);
+      this.showError("An Unexpected Error Occured.", "Scheduler-Update");
+      return;
+    }
+  );
   }
 }

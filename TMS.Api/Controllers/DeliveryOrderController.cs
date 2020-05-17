@@ -209,5 +209,51 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
         }
 
+        [HttpPut]
+        [Route("UpdateVessel")]
+        [SwaggerOperation("UpdateVessel")]
+        public HttpResponseMessage UpdateVessel([FromBody]DeliveryOrderBO obj)
+        {            
+            bool isUpdated = doObj.UpdateVessel(obj);    
+            
+            if(!isUpdated)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not Updated", Configuration.Formatters.JsonFormatter);
+            }           
+
+            return Request.CreateResponse(HttpStatusCode.OK, isUpdated, Configuration.Formatters.JsonFormatter);
+
+        }
+        [HttpPut]
+        [Route("UpdateBookingNo")]
+        [SwaggerOperation("UpdateBookingNo")]
+        public HttpResponseMessage UpdateBookingNo([FromBody]DeliveryOrderBO obj)
+        {
+            bool isUpdated = doObj.UpdateBookingNo(obj);
+
+            if (!isUpdated)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not Updated", Configuration.Formatters.JsonFormatter);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, isUpdated, Configuration.Formatters.JsonFormatter);
+
+        }
+        [HttpPut]
+        [Route("UpdateBrokerRefNo")]
+        [SwaggerOperation("UpdateBrokerRefNo")]
+        public HttpResponseMessage UpdateBrokerRefNo([FromBody]DeliveryOrderBO obj)
+        {
+            bool isUpdated = doObj.UpdateBrokerRefNo(obj);
+
+            if (!isUpdated)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not Updated", Configuration.Formatters.JsonFormatter);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, isUpdated, Configuration.Formatters.JsonFormatter);
+
+        }
+
     }
 }

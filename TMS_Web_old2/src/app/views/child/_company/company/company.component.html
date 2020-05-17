@@ -1,0 +1,180 @@
+<!-- <div *ngIf="selectedCustomer!=null"> -->
+<!-- <p class="card-title"  style="text-align:left">{{AddrName}}</p> -->
+<!-- <div *ngIf="selectedCustomer!=null" class="btn-group btn-group-sm" role="group"  aria-label="Button group with nested dropdown">
+  <button type="button" class="btn btn-secondary" >
+    {{AddrName}}</button>
+  <div class="btn-group" role="group">
+    <button class="btn btn-outline-secondary  dropdown-toggle form-control-sm" type="button" id="drpcompany"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{billtoCustomerName}}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="drpcompany">
+      <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer" (click)="onSelect(Address)">
+        <a class="dropdown-item">{{Address.Name}}</a>
+      </li>
+    </div>
+  </div>
+</div> -->
+<!-- <h6 class="card-title" style="text-align:left">{{AddrName}}</h6>
+<div class="btn-group" role="group">
+  <button type="button" class="btn btn-secondary dropdown-toggle form-control-sm" data-toggle="dropdown" 
+    aria-haspopup="true" aria-expanded="false">
+    {{billtoCustomerName}}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="drpcompany">
+    <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer" (click)="onSelect(Address)">
+      <a class="dropdown-item">{{Address.Name}}</a>
+    </li>
+  </div>
+</div>
+<div *ngIf="selectedCustomer!=null">
+    <small style="color: midnightblue;">{{selectedCustomer.Address1}} &nbsp; {{selectedCustomer.Address2}} </small><br>
+    <small style="color: midnightblue;"> {{selectedCustomer.City}} </small><br>
+    <small style="color: midnightblue;"> {{selectedCustomer.State}} {{selectedCustomer.Zip}}</small>
+</div> -->
+
+<!-- <div class="card">
+    <div class="card-header" style="height: 30px;">
+      <h6 class="card-title" style="text-align:left">{{AddrName}}</h6>
+    </div>
+    <div class="card-body dropdown bg-secondary" *ngIf="selectedCustomer!=null">    
+        <button class="btn btn-secondary dropdown-toggle form-control-sm btn-block" type="button" id="drpcustomer"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">          
+          {{billtoCustomerName}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="drpcompany">
+            <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer" (click)="onSelect(Address)">
+                <a class="dropdown-item">{{Address.Name}}</a>
+              </li>
+        </div><br>      
+          <small class="text-center text-capitalize" style="color:darkblue;">{{selectedCustomer.Address1}} &nbsp;{{selectedCustomer.Address2}}
+         <br>
+           {{selectedCustomer.City}}, {{selectedCustomer.State}}-{{selectedCustomer.Zip}}</small>
+      </div>   
+  </div> -->
+
+  <div>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <h6 class="card-title badge badge-pill badge-primary" style="text-align:left">{{AddrName}}</h6>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle form-control-sm btn-block" style="border-radius: 1rem; margin-top: 0px;
+              margin-bottom: 0px;
+              margin-right: 0px;
+              margin-left: 0px; max-width: 200px;
+            min-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{billtoCompanyName}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="drpcompany">
+            <form class="px-4 py-2">
+              <input type="search" class="form-control  form-control-sm" placeholder="search.." autofocus="autofocus"
+              (input)="onSearchChange($event.target.value)">
+          </form>
+          <div class="menuItems">
+            <li *ngFor="let Address of companyFilter  let ind=index;" [class.selected]="Address === selectedCompany"
+              (click)="onSelect(Address)">
+              <a class="dropdown-item">{{Address.Name}}</a>
+            </li>
+          </div>
+            <div style="display:none;" class="dropdown-header dropdown_empty">No entry found</div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr *ngIf="selectedCompany">
+      <td>
+        <div style="margin: 5px;">
+          <p class="text-left text-capitalize" >
+            <small><b style="word-wrap: break-word;color:CCCC99;" >{{billtoCompanyName}}</b></small><br>
+            {{selectedCompany.Address1}} &nbsp;{{selectedCompany.Address2}}
+            <br>
+            {{selectedCompany.City}} {{selectedCompany.State}} {{selectedCompany.Zip}}</p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+  <p style="color: white">Please Wait. </p>  
+  </ngx-spinner> 
+
+
+
+<!-- <div class="form-row "><p>{{selectedCustomer.Address1}} </p> </div> 
+          <div class="form-row "> <p> {{selectedCustomer.Address2}} ,  {{selectedCustomer.City}} </p>  </div> 
+          <div class="form-row ">  <p> {{selectedCustomer.State}} {{selectedCustomer.Zip}}</p>  </div>  -->
+
+<!-- <div class="form-row ">
+                        
+             <div class="form-group">
+              <input type="text" class="form-control form-control-sm" id="inputAddress" placeholder="Address1"
+                [(ngModel)]="selectedCustomer.Address1">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm" id="inputAddress2" placeholder="Address2"
+                [(ngModel)]="selectedCustomer.Address2">
+            </div>
+            <div class="form-row ">
+              <div class=" col-md-5">
+                <input type="text" class="form-control form-control-sm" id="inputCity" placeholder="City"
+                  [(ngModel)]="selectedCustomer.City">
+              </div>
+              <div class="col-md-4">            
+                <input type="text" class="form-control form-control-sm" name="inputState"  id="inputState" placeholder="State"
+                  [(ngModel)]="selectedCustomer.State">
+              </div>
+              <div class=" col-md-3">
+                <input type="text" class="form-control form-control-sm" id="inputZip" placeholder="Zip"
+                  [(ngModel)]="selectedCustomer.Zip">
+              </div> 
+           
+            </div> -->
+<!-- </div> -->
+
+<!-- <div class="btn-group dropdown-menu-right"> 
+
+                
+    <div *ngIf="selectedCustomer!=null">
+       
+        <div class="form-group ">
+            <button class="btn btn-secondary dropdown-toggle form-control-sm" type="button" id="drpBillTo" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+            {{billtoCustomerName}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="drpBillTo">
+                <li *ngFor="let Address of customer" [class.selected]="Address === selectedCustomer" (click)="onSelect(Address)">
+                  <a class="dropdown-item">{{Address.Name}}</a>
+                </li>
+            </div>
+      </div> 
+        <div class="form-group ">
+          <input type="text" class="form-control form-control-sm" id="inputAddress" placeholder="Address1"
+            [(ngModel)]="selectedCustomer.Address1">
+        </div>
+        <div class="form-group ">
+          <input type="text" class="form-control form-control-sm" id="inputAddress2" placeholder="Address2"
+            [(ngModel)]="selectedCustomer.Address2">
+        </div>
+        <div class="form-row">
+          <div class=" col-md-5">
+            <input type="text" class="form-control form-control-sm " id="inputCity" placeholder="City"
+              [(ngModel)]="selectedCustomer.City">
+          </div>
+          <div class="col-md-4">            
+            <input type="text" class="form-control form-control-sm " name="inputState"  id="inputState" placeholder="State"
+              [(ngModel)]="selectedCustomer.State">
+          </div>
+          <div class=" col-md-3">
+            <input type="text" class="form-control form-control-sm" id="inputZip" placeholder="Zip"
+              [(ngModel)]="selectedCustomer.Zip">
+          </div>
+        </div>
+
+    </div>
+                                              
+  </div> -->

@@ -42,6 +42,9 @@ namespace TMS.Data
                         {
                             var orderDetail = new DeliveryOrderDetailBO();
                             orderDetail.OrderKey = Utils.CustomParse<Guid>(reader["orderkey"]);
+                            orderDetail.DOHeader = new DeliveryOrderBO();
+                            orderDetail.DOHeader.OrderDate = Utils.CustomParse<DateTime>(reader["orderdate"]);
+                            orderDetail.DOHeader.BrokerRefNo = Utils.CustomParse<string>(reader["brokerrefno"]);
                             orderDetail.OrderDetailKey = Utils.CustomParse<Guid>(reader["orderdetailkey"]);
                             orderDetail.containerid = Utils.CustomParse<string>(reader["containerid"]);
                             orderDetail.ContainerNo = Utils.CustomParse<string>(reader["containerno"]);

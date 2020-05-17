@@ -1,0 +1,998 @@
+<br>
+<div id="accordion" *ngIf="ShowOrderList">
+
+  <div class="row">
+    <div class="col-7 col-sm-7 col-md-7">
+
+    </div>
+    <div class="col-3 col-sm-3 col-md-3">
+      <div class="form-group input-group input-group-sm">
+        <div class="img-group-prepend">
+          <img src="assets/img/brand/search16px.png" /> &nbsp;
+        </div>
+        <input [(ngModel)]="searchText" class="form-control form-control-sm" style="border-radius: 0.5rem;" type="text"
+          placeholder="Search..">
+      </div>
+    </div>
+    <!-- <div class="col-3 col-sm-3 col-md-3">
+      <tr>
+        <td>
+          <select id="filterOrderType" class="form-control form-control-sm text-muted">
+            <option [value]="0">Type</option>
+            <option [value]="otype.Value" *ngFor="let otype of ordertypelist">{{otype.Name}}</option>
+          </select>
+        </td>
+        &nbsp;
+        <td>
+          <select id="filterPriority" class="form-control form-control-sm text-muted">
+            <option [value]="0">Priority</option>
+            <option [value]="priority.Value" *ngFor="let priority of prioritylist">{{priority.Name}}
+            </option>
+          </select>
+          &nbsp;
+        <td>
+          <select id="filterStatus" class="form-control form-control-sm text-muted">
+            <option [value]="0">Status</option>
+            <option [value]="status.status" *ngFor="let status of statuslist">{{status.description}}</option>
+          </select>
+        </td>
+      </tr>
+      
+    </div> -->
+
+    <div class="col-2 col-sm-2 col-md-2">
+      <button type="button" class="btn btn-sm btn-primary " style="border-radius: 1rem;" (click)="createNewOrder()"> <i
+          class="fa fa-plus-circle" aria-hidden="true"></i> New </button>
+    </div>
+
+  </div>
+
+  <div class="row" id="style-10">
+    <!-- <div class="col-sm-2 col-md-2 col-lg-2 scrollbar" id="style-10">
+      <table class="table table-sm table-striped  table-dark">
+        <tbody>
+          <tr>
+            <br>
+            <h5>&nbsp; Delivery Orders <span class="badge badge-warning">Recent</span></h5>
+          </tr>
+          <tr
+            *ngFor="let order of Orderlist| grdFilter: {OrderNo: searchText,ordertypedescription: searchText} ; let ind=index;">
+
+            <td>
+              <br>
+              <span class="font-weight-bold" style="color:olivedrab">
+                {{ order.OrderNo }} <br>
+                <small style="color:lightslategray"> <i class="fa fa-commenting-o"></i> {{order.ordertypedescription}}
+                </small>
+              </span>
+            </td>
+            <td class="text-right" style="width: 40%;">
+              <br>
+              <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                data-target=".bd-example-modal-lg" (click)="view(order.OrderKey)"> <i class="fa fa-bullseye"
+                  aria-hidden="true"></i> View</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div> -->
+    <!-- <div class="col-sm-10 col-md-10 col-lg-10  scrollbar" id="style-10"> -->
+    <table class="table table-sm table-borderless">
+      <thead class="thead-dark shadow">
+        <tr style="border: 2px;">
+          <th scope="col" scope="col"  (click)="sort('OrderNo')"  class="pointer text-muted text-left border-right">Order &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>          
+          </th>
+          <th scope="col" scope="col"  (click)="sort('ordertypedescription')"  class=" pointertext-muted text-left">Type  &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>          
+          </th>
+          <th scope="col" scope="col"  (click)="sort('BillToAddr')"      class=" pointer text-muted text-left">Customer &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>          
+          </th>
+          <th scope="col" scope="col"  (click)="sort('SourceAddr')"    class="pointer text-muted text-left">Pickup &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th> 
+          
+          <th scope="col" scope="col"  (click)="sort('DestinationAddr')"    class=" pointer text-muted text-left">Delivery &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+          <th scope="col"  scope="col" (click)="sort('statusdescription')"  class=" pointer text-muted text-left" >Status &nbsp;<i class="fa fa-sort" aria-hidden="true"></i>           
+          </th>
+          <th scope="col" class="text-muted text-left">Edit/View</th>
+          <!-- <th scope="col" class="text-muted text-left border-left">Next Action</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr style=" height: 10px">
+          <td colspan="8"></td>
+        </tr>
+        <tr
+          *ngFor="let order of Orderlist| grdFilter: {OrderNo: searchText,ordertypedescription: searchText,statusdescription:searchText 
+            ,BillToAddr: searchText,
+            SourceAddr: searchText,
+            DestinationAddr: searchText}|paginate:{itemsPerPage:4,currentPage:p,totalItems: count} ; let ind=index;">
+          <td scope="row" class="text-left border-right">
+            <small class="font-weight-bold">
+              {{ order.OrderNo }} <br>
+              <span class="badge badge-pill badge-primary"><i class="fa fa-calendar" aria-hidden="true"></i>
+                <small> <b> {{order.OrderDate  | date}}</b></small>
+              </span>
+            </small>
+          </td>
+
+          <td scope="row" class="text-left">
+            <small class="font-weight-normal">
+              {{order.ordertypedescription}} </small>
+          </td>
+          <td class="text-left">
+            <small> {{ order.BillToAddr }}</small> <br>
+            <small style="color: cornflowerblue;">
+              {{ order.BillToAddressBO.Address1 }},{{ order.BillToAddressBO.Address2 }}<br>
+              {{ order.BillToAddressBO.City }}, {{ order.BillToAddressBO.State}}-{{ order.BillToAddressBO.Zip}}
+            </small>
+          </td>
+          <td>
+            <small> {{ order.SourceAddr }}</small> <br>
+            <small style="color: cornflowerblue;">
+              {{ order.SourceAddressBO.Address1 }},{{ order.SourceAddressBO.Address2 }}<br>
+              {{ order.SourceAddressBO.City }}, {{ order.SourceAddressBO.State}}-{{ order.SourceAddressBO.Zip}}
+            </small>
+          </td>
+          <td>
+            <span> <small> {{ order.DestinationAddr }}</small> <br>
+              <small style="color: cornflowerblue;">
+                {{ order.DestinationAddressBO.Address1 }},{{ order.DestinationAddressBO.Address2 }} <br>
+                {{ order.DestinationAddressBO.City }},
+                {{ order.DestinationAddressBO.State}}-{{ order.DestinationAddressBO.Zip}} </small> </span>
+          </td>
+          <td> <small> {{ order.statusdescription }} </small></td>
+          <td>
+            <button type="button" class="btn btn-outline-info btn-sm" style="border-radius: 0.5rem;"
+              (click)="update(order.OrderKey)">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              Update
+            </button>
+            &nbsp; &nbsp;
+            <button type="button" class="btn btn-outline-info btn-sm" style="border-radius: 0.5rem;" data-toggle="modal"
+              data-target=".bd-example-modal-lg" (click)="view(order.OrderKey)"> <i class="fa fa-bullseye"
+                aria-hidden="true"></i> View</button>
+          </td>
+          <!-- <td class="border-left">
+            <div *ngIf="order.nextaction == '! '">
+              <i class="cil-chevron-circle-right-alt"></i>
+              &nbsp;         <small > {{ order.nextaction }}</small> &nbsp;
+              <button type="button" class="btn btn-outline-success btn-sm" style="border-radius: 1rem;"
+                data-toggle="modal" data-target=".bd-example-modal-lg" (click)="view(order.OrderKey)" > Submit </button>  
+            </div>          
+          </td> -->
+        </tr>
+        <tr *ngIf="Orderlist.length===0">
+          <td colspan="3">
+            <h4 style="color: darkorange;">No records found! </h4>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="container text-right"> 
+      <pagination-controls 
+      (pageChange)="p=$event"
+      autoHide="true"
+      responsive="true"> </pagination-controls>     
+    </div>
+    <!-- </div> -->
+  </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true" data-keyboard="false" data-backdrop="static" [ngStyle]="{'display':display}" style="width:90%">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModalDialog()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="card ">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <!-- <span style="color: white">Order no </span><br> -->
+                    <div class="panel-heading">
+                      <span class="panel-title" style="color:black">Order No :</span>
+                      <span style="color:black"> <b> {{doHeader.OrderNo}}</b> </span>
+                    </div>
+
+                    <!-- <span style="color:white"> Date </span><br> -->
+                    <div class="panel-heading">
+                      <span class="panel-title" style="color:black">Date :</span>
+                      <span style="color:black"> <b> {{doHeader.OrderDate|date}}</b></span>
+                    </div>
+                    <!-- <span style="color: white"> Type </span><br> -->
+                    <div class="panel-heading">
+                      <span class="panel-title" style="color:black">Type :</span>
+                      <span style="color: black"> <b> {{doHeader.ordertypedescription}}</b></span>
+                    </div>
+
+                  </div>
+                  <div class="col-sm-3">
+                    <!-- <span style="color:white"> Broker </span><br> -->
+                    <div class="panel-heading">
+                      <span class="panel-title" style="color:black">Broker :</span>
+                      <span style="color: black"> <b> {{doHeader.BrokerName}} </b></span>
+                    </div>
+                    <!-- <span style="color:white"> Broker Ref# </span><br> -->
+                    <div class="panel-heading">
+                      <span class="panel-title" style="color:black">Broker Reference :</span>
+                      <span style="color: black"> <b> {{doHeader.BrokerRefNo}} </b></span>
+                    </div>
+                    <!-- <span style="color:white"> Booking# </span><br> -->
+                    <div class="panel-heading">
+                      <span class="panel-title" style="color:black">Booking No :</span>
+                      <span style="color: black"> <b> {{doHeader.BookingNo}} </b></span>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <!-- <span style="color:white"> Vessel </span><br> -->
+                    <div class="panel-heading">
+                      <span class="panel-title" style="color:black">Vessel :</span>
+                      <span> <b> {{doHeader.VesselName}} </b></span>
+                    </div>
+                    <!-- <span style="color:white"> Bill of Lading </span><br> -->
+                    <div class="panel-heading">
+                      <span class="panel-title">Bill of Lading : </span>
+                      <span> <b> {{doHeader.BillofLading}} </b></span>
+                    </div>
+                    <!-- <span style="color:white"> Cut-Off Date </span><br> -->
+                    <!-- <div class="panel-heading">
+                      <span class="panel-title" style="color:black">Cut-Off Date :</span>
+                      <span> <b> {{doHeader.CutOffDate|date}} </b></span>
+                    </div> -->
+                  </div>
+                  <div class="col-sm-3 text-right">
+
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+
+                  <div class="col-sm-3 col-md-3 col-lg-3">
+                    <!-- <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                       <div class="card-header">BillTo</div>
+                      <div class="card-body">
+                         <span> {{doHeader.BillToAddr}}</span> 
+                        <br>
+                        <span> {{doHeader.BillToAddressBO.Address1}}, {{doHeader.BillToAddressBO.Address2}} </span>
+                        <br>
+                        <span> {{doHeader.BillToAddressBO.City}} - {{doHeader.BillToAddressBO.Zip}} </span>
+                        <br>
+                        <span> {{doHeader.BillToAddressBO.State}}</span>
+                      </div>
+                    </div> -->
+
+
+                    <div class="panel-heading">
+                      <h6 class="panel-title">BillTo</h6>
+                    </div>
+                    <div class="card alert-secondary text-center p-3">
+                      <!-- <blockquote class="blockquote mb-0"> -->
+                      <!-- <span> {{doHeader.BillToAddressBO.Name}}</span> -->
+                      <!-- <span> {{doHeader.BillToAddressBO.Address1}}, {{doHeader.BillToAddressBO.Address2}} </span>
+                      <span> {{doHeader.BillToAddressBO.City}} - {{doHeader.BillToAddressBO.Zip}} </span>
+                      <span> {{doHeader.BillToAddressBO.State}}</span> -->
+                      <!-- </blockquote> -->
+                    </div>
+                  </div>
+                  <div class="col-sm-3 col-md-3 col-lg-3">
+                    <!-- <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                      <div class="card-header">Pickup</div>
+                      <div class="card-body">
+                        <span> {{doHeader.SourceAddressBO.Name}}</span>
+                        <br>
+                        <span> {{doHeader.SourceAddressBO.Address1}}, {{doHeader.SourceAddressBO.Address2}} </span>
+                        <br>
+                        <span> {{doHeader.SourceAddressBO.City}} - {{doHeader.SourceAddressBO.Zip}} </span>
+                        <br>
+                        <span> {{doHeader.SourceAddressBO.State}}</span>
+                      </div>
+                    </div> -->
+                    <div class="panel-heading">
+                      <h6 class="panel-title" style=color:black>Pickup</h6>
+                    </div>
+                    <div class="card alert-primary text-center p-3">
+                      <!-- <blockquote class="blockquote mb-0"> -->
+                      <!-- <span> {{doHeader.SourceAddressBO.Name}}</span>
+                      <span> {{doHeader.SourceAddressBO.Address1}}, {{doHeader.SourceAddressBO.Address2}} </span>
+                      <span> {{doHeader.SourceAddressBO.City}} - {{doHeader.SourceAddressBO.Zip}} </span>
+                      <span> {{doHeader.SourceAddressBO.State}}</span> -->
+                      <!-- </blockquote> -->
+                    </div>
+                  </div>
+                  <div class="col-sm-3 col-md-3 col-lg-3">
+                    <!-- <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                      <div class="card-header">Delivery</div>
+                      <div class="card-body">
+                        <span> {{doHeader.DestinationAddressBO.Name}}</span>
+                        <br>
+                        <span> {{doHeader.DestinationAddressBO.Address1}}, {{doHeader.DestinationAddressBO.Address2}}
+                        </span>
+                        <br>
+                        <span> {{doHeader.DestinationAddressBO.City}} - {{doHeader.DestinationAddressBO.Zip}} </span>
+                        <br>
+                        <span> {{doHeader.DestinationAddressBO.State}}</span>
+                      </div>
+                    </div> -->
+                    <div class="panel-heading">
+                      <h6 class="panel-title" style=color:black>Delivery</h6>
+                    </div>
+                    <div class="card alert-secondary text-center p-3">
+                      <!-- <blockquote class="blockquote mb-0"> -->
+                      <!-- <span> {{doHeader.DestinationAddressBO.Name}}</span>
+                      <span> {{doHeader.DestinationAddressBO.Address1}}, {{doHeader.DestinationAddressBO.Address2}}
+                      </span>
+                      <span> {{doHeader.DestinationAddressBO.City}} - {{doHeader.DestinationAddressBO.Zip}} </span>
+                      <span> {{doHeader.DestinationAddressBO.State}}</span> -->
+                      <!-- </blockquote> -->
+                    </div>
+                  </div>
+                  <div class="col-sm-3 col-md-3 col-lg-3">
+                    <!-- <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                      <div class="card-header">Return</div>
+                      <div class="card-body">
+
+                        <span> {{doHeader.ReturnAddressBO.Name}}</span>
+                        <br>
+                        <span> {{doHeader.ReturnAddressBO.Address1}}, {{doHeader.ReturnAddressBO.Address2}} </span>
+                        <br>
+                        <span> {{doHeader.ReturnAddressBO.City}} - {{doHeader.ReturnAddressBO.Zip}} </span>
+                        <br>
+                        <span> {{doHeader.ReturnAddressBO.State}}</span>
+                      </div>
+                    </div> -->
+                    <div class="panel-heading">
+                      <h5 class="panel-title" style=color:black>Return</h5>
+                    </div>
+                    <div class="card alert-primary text-center p-3">
+                      <!-- <blockquote class="blockquote mb-0"> -->
+                      <!-- <span> {{doHeader.ReturnAddressBO.Name}}</span>
+                      <span> {{doHeader.ReturnAddressBO.Address1}}, {{doHeader.ReturnAddressBO.Address2}} </span>
+                      <span> {{doHeader.ReturnAddressBO.City}} - {{doHeader.ReturnAddressBO.Zip}} </span>
+                      <span> {{doHeader.ReturnAddressBO.State}}</span> -->
+                      <!-- </blockquote> -->
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="panel panel-warning">
+                  <div class="panel-heading">
+                    <h6 class="panel-title" style=color:black>Container(s)</h6>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-sm-10 col-md-10 col-lg-10">
+                        <!-- <div class="card bg-success text-white text-center p-3">
+                                    <blockquote class="blockquote mb-0">
+              
+                                      <span class="badge badge-pill badge-secondary">Container Detail</span> <br><br>
+              
+                                      <div class="row">
+                                        <div class="col-sm-2 col-md-2 col-lg-2">
+                                          <span class="text-muted"> Container </span><br>
+                                        </div>
+              
+                                        <div class="col-sm-2 col-md-2 col-lg-2">
+                                          <span class="text-muted"> Size </span><br>
+                                        </div>
+              
+                                        <div class="col-sm-2 col-md-2 col-lg-2">
+                                          <span class="text-muted"> Chassis </span><br>
+                                        </div>
+              
+                                        <div class="col-sm-2 col-md-2 col-lg-2">
+                                          <span class="text-muted"> Seal# </span><br>
+                                        </div>
+              
+                                        <div class="col-sm-2 col-md-2 col-lg-2">
+                                          <span class="text-muted"> Weight </span><br>
+                                        </div>
+                                      </div>
+                                      <ng-container *ngFor="let field of doHeader.orderdetails; index as i">
+              
+                                        <div class="row">
+                                          <div class="col-sm-2 col-md-2 col-lg-2">
+                                            <span><b>{{field.ContainerNo}}</b></span>
+                                          </div>
+              
+                                          <div class="col-sm-2 col-md-2 col-lg-2">
+                                            <span><b>{{field.ContainerSizeDesc}} </b></span>
+                                          </div>
+              
+                                          <div class="col-sm-2 col-md-2 col-lg-2">
+                                            <span><b>{{field.Chassis}}</b></span>
+                                          </div>
+              
+                                          <div class="col-sm-2 col-md-2 col-lg-2">
+                                            <span><b>{{field.SealNo}} </b></span>
+                                          </div>
+              
+                                          <div class="col-sm-2 col-md-2 col-lg-2">
+                                            <span><b> {{field.Weight}}</b></span>
+                                          </div>
+                                        </div>
+                                      </ng-container>
+              
+                                    </blockquote>
+                                  </div> -->
+
+                        <!-- <div class="card bg-secondary text-center p-3"> -->
+                        <table class="table table-sm alert-warning">
+                          <thead>
+                            <tr>
+                              <th scope="col">Container</th>
+                              <th scope="col">Size</th>
+                              <th scope="col">Chassis</th>
+                              <th scope="col">SealNo</th>
+                              <th scope="col">Weight</th>
+                              <th scope="col">Comments</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let field of doHeader.orderdetails; index as i">
+                              <td>{{field.ContainerNo}}</td>
+                              <td>{{field.ContainerSizeDesc}} </td>
+                              <td>{{field.Chassis}}</td>
+                              <td>{{field.SealNo}}</td>
+                              <td>{{field.Weight}}</td>
+                              <td>{{field.Comments}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <!-- </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <span style="color:black"> Comments </span><br> -->
+                <div class="panel-heading">
+                  <h6 class="panel-title" style=color:black>Comments</h6>
+                </div>
+                <div class="card alert-success text-center p-3">
+                  <blockquote class="blockquote mb-0">
+                    <small>{{doHeader.Comment}}</small>
+                    <!-- <footer class="blockquote-footer">
+                      <small>
+                        Someone famous in <cite title="Source Title">Source Title</cite>
+                      </small>
+                    </footer> -->
+                  </blockquote>
+                </div>
+                <!-- <div class="card-columns">
+                  <div class="card bg-primary text-white text-center p-3">
+                    <blockquote class="blockquote mb-0">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+                      <footer class="blockquote-footer text-white">
+                        <small>
+                          Someone famous in <cite title="Source Title">Source Title</cite>
+                        </small>
+                      </footer>
+                    </blockquote>
+                  </div>
+
+                  <div class="card bg-primary text-white text-center p-3">
+                    <blockquote class="blockquote mb-0">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+                      <footer class="blockquote-footer text-white">
+                        <small>
+                          Someone famous in <cite title="Source Title">Source Title</cite>
+                        </small>
+                      </footer>
+                    </blockquote>
+                  </div>
+
+                  <div class="card bg-primary text-white text-center p-3">
+                    <blockquote class="blockquote mb-0">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+                      <footer class="blockquote-footer text-white">
+                        <small>
+                          Someone famous in <cite title="Source Title">Source Title</cite>
+                        </small>
+                      </footer>
+                    </blockquote>
+                  </div>
+                </div> -->
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeModalDialog()">Close</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row" *ngIf="CreateOrEditOrder">
+  <!-- [class.disabled]="editmode" -->
+  <div class="card card-body">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+
+      <form (ngSubmit)="f.form.valid && OnSubmit(f)" #f="ngForm" novalidate>
+        <!-- <hr style="border: none; border-bottom: 3px solid slategray;"> -->
+        <div class="row ">
+          <div class="col-sm-4 col-md-4 col-lg-4">          
+              <h4 style="color: yellowgreen;"><b >Order</b>  <span *ngIf="!doHeader.OrderNo==' '"> <b> #{{doHeader.OrderNo}}</b>
+                <span class="badge badge-pill badge-success"><i class="fa fa-calendar" aria-hidden="true"></i>
+                  <small style="color:black"> <b> {{doHeader.OrderDate | date}}</b></small>
+                </span>
+              </span>
+              </h4>             
+             
+
+            <input type="text" id="OrderKey" readonly class="form-control" name="OrderKey" tooltip="OrderKey"
+              [(ngModel)]="doHeader.OrderKey" #OrderKey="ngModel" hidden="true" />
+            <input type="text" id="OrderNo" readonly class="form-control" name="OrderNo" tooltip="Order No"
+              [(ngModel)]="doHeader.OrderNo" #OrderNo="ngModel" hidden="true" />
+            <input type="text" class="form-control " name="OrderDate" id="OrderDate" readonly [owlDateTimeTrigger]="dt3"
+              [owlDateTime]="dt3" placeholder="Order Date" [(ngModel)]="doHeader.OrderDate" #OrderDate="ngModel"
+              hidden="true" />
+            <owl-date-time [pickerType]="'calendar'" #dt3 [hour12Timer]="false"></owl-date-time>
+
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2">
+
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2 text-right">
+            <!-- <div class="container text-right"> -->
+            <button class="btn btn-primary btn-sm" type="submit">
+              <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp; {{lblCreateOrEdit}}</button>
+            &nbsp;&nbsp;
+            <button class="btn btn-primary btn-sm" (click)="cancel()">
+              <i class="fa fa-ban" aria-hidden="true"></i>&nbsp; Cancel</button>
+            <!-- </div> -->
+          </div>
+        </div>
+        <!-- <div class="row ">  
+        <div class="col-sm-12 col-md-12 col-lg-12">
+
+        </div>
+
+      </div> -->
+        <div class="row">
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <app-customer name="CustKey" [(ngModel)]="doHeader.CustKey" #CustKey="ngModel"
+              (CustomerSelectedOutput)="onSelectedCustKeyAddress($event)" [Type]=1 [AddressType]=1
+              [customerKeyTobind]="doHeader.CustKey" (OrdernoGenerated)="onOrdernoGenerated($event)" [editmode]="editmode">
+            </app-customer>
+          </div>
+          <!-- <div class="col-sm-3 col-md-3 col-lg-3">
+          <app-company id="BillToAddress" name="BillToAddress" [(ngModel)]="doHeader.BillToAddress"
+            #BillToAddress="ngModel" (CustomerSelectedOutput)="onSelectedBilltoAddress($event)" [Type]=2
+            [AddressType]=1 [addressKeyTobind]="doHeader.BillToAddress">
+          </app-company>
+         
+        </div> -->
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <app-company id="SourceAddress" name="SourceAddress" [(ngModel)]="doHeader.SourceAddress"
+              (CustomerSelectedOutput)="onSelectedPickupAddress($event)" [Type]=2 [AddressType]=2
+              [addressKeyTobind]="doHeader.SourceAddress">
+            </app-company>
+          </div>
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <app-company id="DestinationAddress" name="DestinationAddress" [(ngModel)]="doHeader.DestinationAddress"
+              (CustomerSelectedOutput)="onSelectedConsigneeAddress($event)" [Type]=2 [AddressType]=3
+              [addressKeyTobind]="doHeader.DestinationAddress">
+            </app-company>
+          </div>
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <app-company id="ReturnAddress" name="ReturnAddress" [(ngModel)]="doHeader.ReturnAddress"
+              (CustomerSelectedOutput)="onSelectedReturnAddress($event)" [Type]=2 [AddressType]=4
+              [addressKeyTobind]="doHeader.ReturnAddress">
+            </app-company>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="card-body text-dark">
+              <div class="row">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Type </span>
+                  </div>
+                  <select id="cboOrderType" class="form-control" name="OrderType" [(ngModel)]="doHeader.OrderType"
+                    #OrderType="ngModel" [ngClass]="{ 'is-invalid': f.submitted && OrderType.invalid }" required>
+                    <option [value]="otype.Value" *ngFor="let otype of ordertypelist">{{otype.Name}}</option>
+                  </select>
+                  <div *ngIf="f.submitted && OrderType.invalid" class="invalid-feedback">
+                    <div *ngIf="OrderType.errors.required"> Order Type is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-group input-group-sm ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Priority</span>
+                  </div>
+                  <select id="drpPriority" class="form-control form-control-sm" name="Priority"
+                    [(ngModel)]="doHeader.Priority" #Priority="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && Priority.invalid }" required>
+                    <option [value]="priority.Value" *ngFor="let priority of prioritylist">{{priority.Name}}
+                    </option>
+                  </select>
+
+                  <div *ngIf="f.submitted && Priority.invalid" class="invalid-feedback">
+                    <div *ngIf="Priority.errors.required"> Priority is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Status</span>
+                  </div>
+                  <select id="drpStatus" class="form-control form-control-sm" name="Status"
+                    (change)="StatusDropDownChanged($event.target.value)" [(ngModel)]="doHeader.Status"
+                    #Status="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Status.invalid }" required>
+                    <option [value]="status.status" *ngFor="let status of statuslist">{{status.description}}</option>
+                  </select>
+                  <div *ngIf="f.submitted && Status.invalid" class="invalid-feedback">
+                    <div *ngIf="Status.errors.required"> Status is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-group input-group-sm mb-3" *ngIf="HolddropdownVisible">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Reason</span>
+                  </div>
+                  <select id="drpHoldReason" class="form-control form-control-sm" name="HoldReason"
+                    [(ngModel)]="doHeader.HoldReason">
+                    <option [value]="reason.Value" *ngFor="let reason of holdreasonlist">{{reason.Name}}</option>
+                  </select>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> Booking</span>
+                  </div>
+                  <input type="text" id="txtBookingNumBooking #" class="form-control form-control-sm" name="BookingNo"
+                    [(ngModel)]="doHeader.BookingNo" #BookingNo="ngModel">
+                  <!-- [ngClass]="{ 'is-invalid': f.submitted && BookingNo.invalid }" required />
+
+                      <div *ngIf="f.submitted && BookingNo.invalid" class="invalid-feedback">
+                        <div *ngIf="BookingNo.errors.required"> Booking No is required</div>
+                      </div> -->
+                </div>
+              </div>
+              <!-- <div class="row">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Cut-off Date</span>
+                  </div>
+
+                  <input type="text" class="form-control form-control-sm" name="CutOffDate"
+                    [(ngModel)]="doHeader.CutOffDate" #CutOffDate="ngModel" placeholder="Cut-Off Date"
+                    [ngClass]="{ 'is-invalid': f.submitted && CutOffDate.invalid }" [owlDateTimeTrigger]="dt1"
+                    [owlDateTime]="dt1" required/>
+                  <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                  <div *ngIf="f.submitted && CutOffDate.invalid" class="invalid-feedback">
+                          <div *ngIf="CutOffDate.errors.required"> Cut-Off Date is required</div>
+                        </div>
+                </div>
+              </div> -->
+              <div class="row">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Load Port</span>
+                  </div>
+                  <select id="drpSource" class="form-control form-control-sm" name="PortofOriginKey"
+                    [(ngModel)]="doHeader.PortofOriginKey" #PortofOriginKey="ngModel">
+                    <option [value]="src.AddrKey" *ngFor="let src of LoadDischargePortList">{{src.Name}}
+                    </option>
+                  </select>
+                  <!-- [ngClass]="{ 'is-invalid': f.submitted && PortofOriginKey.invalid }" > required
+                          
+                          <div *ngIf="f.submitted && PortofOriginKey.invalid" class="invalid-feedback">
+                          <div *ngIf="PortofOriginKey.errors.required">Load Port is required</div>
+                        </div> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Dis Port</span>
+                  </div>
+                  <select id="drpPortofDestinationKey" class="form-control form-control-sm" name="PortofDestinationKey"
+                    [(ngModel)]="doHeader.PortofDestinationKey" #PortofDestinationKey="ngModel">
+                    <option [value]="dest.AddrKey" *ngFor="let dest of LoadDischargePortList">{{dest.Name}}
+                    </option>
+                  </select>
+
+                  <!-- [ngClass]="{ 'is-invalid': f.submitted && PortofDestinationKey.invalid }" required
+                        <div *ngIf="f.submitted && PortofDestinationKey.invalid" class="invalid-feedback">
+                          <div *ngIf="PortofDestinationKey.errors.required"> Port of Destination is required</div>
+                        </div> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Bill of lading</span>
+                  </div>
+                  <input type="text" id="txtBLNo" class="form-control form-control-sm" name="BillofLading"
+                    [(ngModel)]="doHeader.BillofLading" #BillofLading="ngModel">
+                  <!-- [ngClass]="{ 'is-invalid': f.submitted && BillofLading.invalid }" required />
+  
+                        <div *ngIf="f.submitted && BillofLading.invalid" class="invalid-feedback">
+                          <div *ngIf="BillofLading.errors.required"> Bill of Loading is required</div>
+                        </div> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Carrier</span>
+                  </div>
+                  <select id="drpCarrier" class="form-control form-control-sm" name="CarrierKey"
+                    [(ngModel)]="doHeader.CarrierKey" #CarrierKey="ngModel">
+                    <option [value]="carrier.CarrierKey" *ngFor="let carrier of carrierlist">
+                      {{carrier.CarrierId}}
+                    </option>
+                  </select>
+
+                  <!-- [ngClass]="{ 'is-invalid': f.submitted && CarrierKey.invalid }" required
+                        <div *ngIf="f.submitted && CarrierKey.invalid" class="invalid-feedback">
+                          <div *ngIf="CarrierKey.errors.required"> Carrier is required</div>
+                        </div> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> Vessel</span>
+                  </div>
+                  <input type="text" id="txtVesselName" class="form-control form-control-sm" name="VesselName"
+                    [(ngModel)]="doHeader.VesselName" #VesselName="ngModel">
+                  <!-- [ngClass]="{ 'is-invalid': f.submitted && VesselName.invalid }" required />
+  
+                        <div *ngIf="f.submitted && VesselName.invalid" class="invalid-feedback">
+                          <div *ngIf="VesselName.errors.required">Vessel Name is required</div>
+                        </div> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Broker Ref</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" id="txtBrokerRefNo" name="BrokerRefNo"
+                    placeholder="Broker Ref no" #BrokerRefNo="ngModel" [(ngModel)]="doHeader.BrokerRefNo">
+                  <!-- [ngClass]="{ 'is-invalid': f.submitted && BrokerRefNo.invalid }" required />
+                          <div *ngIf="f.submitted && BrokerRefNo.invalid" class="invalid-feedback">
+                            <div *ngIf="BrokerRefNo.errors.required">Broker Ref No is required</div>
+                          </div> -->
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <app-broker id="Brokerkey" name="Brokerkey" [(ngModel)]="doHeader.Brokerkey" #Brokerkey="ngModel"
+                  (BrokerSelectedOutput)="onSelectedBroker($event)" [brokerKeyTobind]="doHeader.Brokerkey">
+                </app-broker>
+              </div>
+              <br><br>
+              <div class="row">
+                <label>Comment</label>
+                <textarea class="form-control" rows="6" id="txtcomment" placeholder="Comment"
+                  [(ngModel)]="doHeader.Comment" name="Comment" #Comment="ngModel"></textarea>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-sm-9 col-md-9 col-lg-9"> <br>
+            <div class="row">
+              <div class="card text-dark alert-warning">
+                <div class="card-body text-dark border-light ">
+                  <h5>Containers </h5>
+                  <div class="row">
+                    <div class="table-responsive" style="overflow-x: auto">
+                      <table id="containerAttributes"
+                        class="table table-custom table-sm table-hover table-striped table-warning " cellspacing="0"
+                        width="100%">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="text-left text-muted" hidden="true">OrderDetailKey</th>
+                            <th scope="col" class="text-left text-muted">Id</th>
+                            <th scope="col" class="text-left text-muted">Container</th>
+                            <th scope="col" class="text-center text-muted" hidden="true"> Size</th>
+                            <th scope="col" class="text-center text-muted"> Size</th>
+                            <th scope="col" class="text-center text-muted" hidden="true">Chassis</th>
+                            <th scope="col" class="text-center text-muted">Seal</th>
+                            <th scope="col" class="text-center text-muted">Weight</th>
+                            <th scope="col" class="text-left text-muted">Comment</th>
+                            <th scope="col" class="text-center text-muted">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let field of doHeader.orderdetails; let i = index">
+                            <td class="text-left" style="color: darkslategrey;">
+                              {{field.containerid}}
+                            </td>
+                            <td class="text-left" style="color: darkslategrey;">
+                              <!-- <input [(ngModel)]="field.ContainerNo" class="form-control form-control-sm " type="text"
+                        name="{{field.ContainerNo}}" /> -->
+                              {{field.ContainerNo}} </td>
+                            <td hidden="true" style="color: darkslategrey;">
+
+                              <!-- <input [(ngModel)]="field.ContainerSize" class="form-control form-control-sm" type="text"
+                        name="{{field.ContainerSize}}" /> -->
+                              {{field.ContainerSize}}
+                            </td>
+                            <td class="text-center" style="color: darkslategrey;">
+                              <!-- <input [(ngModel)]="field.containerSizeDesc" class="form-control form-control-sm" type="text"
+                        name="{{field.containerSizeDesc}}" /> -->
+                              {{field.ContainerSizeDesc}}
+                            </td>
+                            <td hidden="true" style="color: darkslategrey;">
+                              <!--  <input [(ngModel)]="field.Chassis" class="form-control form-control-sm" type="text"
+                        name="{{field.Chassis}}" /> -->
+                              {{field.Chassis}}</td>
+                            <td class="text-center" style="color: darkslategrey;">
+                              <!-- <input [(ngModel)]="field.SealNo" class="form-control form-control-sm " type="text"
+                        name="{{field.SealNo}}" /> -->
+                              {{field.SealNo}}</td>
+                            <td class="text-center" style="color: darkslategrey;">
+                              <!-- <input [(ngModel)]="field.Weight" class="form-control form-control-sm " type="text"
+                        name="{{field.Weight}}" /> -->
+                              {{field.Weight}}</td>
+                            <td class="text-left" style="color: darkslategrey;">
+                              <!-- <input [(ngModel)]="field.Comments" class="form-control form-control-sm " type="text"
+                        name="{{field.Comments}}" /> -->
+                              {{field.Comments}}
+                            </td>
+                            <td class="text-center" style="color: darkslategrey;">
+                              <a tooltip="Upload file" (click)="edit(field,i)">
+                                <i class="fa fa-pencil"></i>
+                              </a> &nbsp;&nbsp;
+
+                              <a tooltip="Remove/Delete Container" (click)="deleteFieldValue(i)">
+                                <i class="fa fa-trash"></i>
+                              </a>
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th scope="col" class="text-left" hidden="true">OrderDetailKey</th>
+                            <th scope="col" class="text-left" hidden="true">Id</th>
+                            <th scope="col" class="text-left" hidden="true">Container</th>
+                            <th scope="col" class="text-center" hidden="true"> Size</th>
+                            <th scope="col" class="text-center" hidden="true"> Size</th>
+                            <th scope="col" class="text-center" hidden="true">Chassis</th>
+                            <th scope="col" class="text-center" hidden="true">Seal</th>
+                            <th scope="col" class="text-center" hidden="true">Weight</th>
+                            <th scope="col" class="text-left" hidden="true">Comment</th>
+                            <th scope="col" class="text-right" hidden="true">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td hidden="true">
+                              <input class="form-control form-control-sm " type="text" placeholder="OrderDetailKey"
+                                [(ngModel)]="OrderDetailKey" name="OrderDetailKey" />
+                            </td>
+                            <td hidden="true">
+                              <input class="form-control form-control-sm " type="text" placeholder="containerid"
+                                [(ngModel)]="containerid" name="containerid" />
+                            </td>
+                            <td>
+                              <input class="form-control form-control-sm " type="text" placeholder="Container"
+                                [(ngModel)]="ContainerNo" name="ContainerNo" />
+                            </td>
+                            <td>
+                              <select id="drpcontainerType" class="form-control form-control-sm "
+                                aria-placeholder="ContainerSize" [(ngModel)]="ContainerSize" name="ContainerSize"
+                                (change)="drpcontainersizeChanged($event.target.value)">
+                                <option [value]="container.containersize" *ngFor="let container of containersizelist">
+                                  {{container.description}}</option>
+                              </select>
+
+                            </td>
+                            <td hidden="true">
+                              <input class="form-control form-control-sm" type="text" placeholder="Chassis"
+                                [(ngModel)]="Chassis" name="Chassis" />
+                            </td>
+                            <td>
+                              <input class="form-control form-control-sm " type="text" placeholder="SealNo"
+                                [(ngModel)]="SealNo" name="SealNo" />
+                            </td>
+                            <td>
+                              <input class="form-control form-control-sm " type="number" placeholder="Weight"
+                                [(ngModel)]="Weight" name="Weight" />
+                            </td>
+                            <td colspan="5">
+                              &nbsp; <input type="checkbox" [(ngModel)]="IsHazardChecked"
+                                [ngModelOptions]="{standalone: true}" (change)="Checkbox1_Change($event)" />
+                              <small class="badge badge-pill badge-secondary">Hazard</small>
+
+                              &nbsp;<input type="checkbox" value="Over weight" [(ngModel)]="IsOverweightChecked"
+                                [ngModelOptions]="{standalone: true}" (change)="Checkbox2_Change($event)" />
+                              <small class="badge badge-pill badge-secondary">Over weight</small>
+
+                              &nbsp;<input type="checkbox" value="Triaxle" [(ngModel)]="IsTrixaleChecked"
+                                [ngModelOptions]="{standalone: true}" (change)="Checkbox3_Change($event)" />
+                              <small class="badge badge-pill badge-secondary">Triaxle</small>
+
+                              &nbsp;<input type="checkbox" value="Needs to be scaled"
+                                [(ngModel)]="IsNeedstobescaledChecked" [ngModelOptions]="{standalone: true}"
+                                (change)="Checkbox4_Change($event)" />
+                              <small class="badge badge-pill badge-secondary">Needs to be scaled</small>
+                            </td>
+                            <td>
+                              <button type="button" class="btn alert-dark btn-sm" style="border-radius: 1rem;"
+                                (click)="add()"> <i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="card text-dark alert-primary">
+                <div class="card-body text-dark border-light">
+                  <app-file-upload (onCompleteItem)="onCompleteItem($event)" [orderno]="doHeader.OrderNo"
+                    [queue]="doHeader.file" [CreatedBy]="doHeader.CreatedBy"></app-file-upload>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- 
+    <div class="row">
+      <div class="col-sm-4 col-md-4 col-lg-4 ">
+        <label>Comment</label>
+        <textarea class="form-control" rows="5" id="txtcomment" placeholder="Comment" [(ngModel)]="doHeader.Comment"
+          name="Comment" #Comment="ngModel"></textarea>
+      </div>
+      <div class="col-sm-8 col-md-8 col-lg-8">
+        <div class="card text-dark alert-primary">
+          <div class="card-body text-dark border-light">
+            <app-file-upload (onCompleteItem)="onCompleteItem($event)" [orderno]="doHeader.OrderNo"
+              [queue]="doHeader.file" [CreatedBy]="doHeader.CreatedBy"></app-file-upload>
+          </div>
+        </div>
+      </div>
+
+    </div> -->
+    </div>
+  </div>
+</div>
+<div *ngIf="showImage">
+  <div class="row "> </div>
+  <div class="row "> </div>
+  <div class="row ">
+    <div class="col-md-4"> </div>
+    <div class="col-md-4">
+      <!-- <img src="assets/img/brand/Actions-gear-icon128px.png" /> -->
+    </div>
+    <div class="col-md-4"> </div>
+  </div>
+</div>

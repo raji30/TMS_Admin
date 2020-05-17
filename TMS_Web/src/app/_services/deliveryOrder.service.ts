@@ -221,6 +221,61 @@ public getorderstatusfordashboard(): Observable<number[]> {
   );
 }
 
+public updateDOHeader_Vessel(OrderHeader: DeliveryOrderHeader) {
+  OrderHeader.orderdetails = [];
+  OrderHeader.CreatedBy = "";
+
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+  OrderHeader.CreatedBy = token.userId;
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+
+  return this.http.put<any>(
+    AppSettings._BaseURL + "UpdateVessel/",
+    OrderHeader
+  );
+}
+
+public updateDOHeader_BookingNo(OrderHeader: DeliveryOrderHeader) {
+  OrderHeader.orderdetails = [];
+  OrderHeader.CreatedBy = "";
+
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+  OrderHeader.CreatedBy = token.userId;
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+
+  return this.http.put<any>(
+    AppSettings._BaseURL + "UpdateBookingNo/",
+    OrderHeader
+  );
+}
+public updateDOHeader_BrokerRefNo(OrderHeader: DeliveryOrderHeader) {
+  OrderHeader.orderdetails = [];
+  OrderHeader.CreatedBy = "";
+
+  var token = JSON.parse(localStorage.getItem("currentUser"));
+  OrderHeader.CreatedBy = token.userId;
+  const httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.token
+    })
+  };
+
+  return this.http.put<any>(
+    AppSettings._BaseURL + "UpdateBrokerRefNo/",
+    OrderHeader
+  );
+}
 
 
 

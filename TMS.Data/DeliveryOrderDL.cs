@@ -1248,8 +1248,7 @@ namespace TMS.Data
 
 
         }
-
-
+        
         public List<DeliveryOrderDetailBO> GetContainerList()
         {            
             try
@@ -1304,6 +1303,131 @@ namespace TMS.Data
                 conn.Close();
             }
         }
+
+        public bool UpdateVessel(DeliveryOrderBO order)
+        {
+
+            try
+            {
+                string sql = "update dbo.tms_orderheader set vesselname=@vessel, lastupdatedate = NOW(), lastupdateuserkey =" +
+               "@userkey  where orderkey = @orderkey";
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("orderkey",
+                       NpgsqlTypes.NpgsqlDbType.Uuid, order.OrderKey);
+
+                    cmd.Parameters.AddWithValue("vessel",
+                       NpgsqlTypes.NpgsqlDbType.Varchar, order.VesselName);
+
+                    cmd.Parameters.AddWithValue("userkey",
+                       NpgsqlTypes.NpgsqlDbType.Uuid, order.CreatedBy);
+
+                    int returnvalue = cmd.ExecuteNonQuery();
+
+                    if (returnvalue < 0)
+                    {
+                        return false;
+                    }
+                    else return true;
+                }
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool UpdateBookingNo(DeliveryOrderBO order)
+        {
+
+            try
+            {
+                string sql = "update dbo.tms_orderheader set bookingno=@bookingno, lastupdatedate = NOW(), lastupdateuserkey =" +
+               "@userkey  where orderkey = @orderkey";
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("orderkey",
+                       NpgsqlTypes.NpgsqlDbType.Uuid, order.OrderKey);
+
+                    cmd.Parameters.AddWithValue("bookingno",
+                       NpgsqlTypes.NpgsqlDbType.Varchar, order.BookingNo);
+
+                    cmd.Parameters.AddWithValue("userkey",
+                       NpgsqlTypes.NpgsqlDbType.Uuid, order.CreatedBy);
+
+                    int returnvalue = cmd.ExecuteNonQuery();
+
+                    if (returnvalue < 0)
+                    {
+                        return false;
+                    }
+                    else return true;
+                }
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public bool UpdateBrokerRefNo(DeliveryOrderBO order)
+        {
+
+            try
+            {
+                string sql = "update dbo.tms_orderheader set brokerrefno=@brokerrefno, lastupdatedate = NOW(), lastupdateuserkey =" +
+               "@userkey  where orderkey = @orderkey";
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.Parameters.AddWithValue("orderkey",
+                       NpgsqlTypes.NpgsqlDbType.Uuid, order.OrderKey);
+
+                    cmd.Parameters.AddWithValue("brokerrefno",
+                       NpgsqlTypes.NpgsqlDbType.Varchar, order.BrokerRefNo);
+
+                    cmd.Parameters.AddWithValue("userkey",
+                       NpgsqlTypes.NpgsqlDbType.Uuid, order.CreatedBy);
+
+                    int returnvalue = cmd.ExecuteNonQuery();
+
+                    if (returnvalue < 0)
+                    {
+                        return false;
+                    }
+                    else return true;
+                }
+            }
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
-    
+
 }

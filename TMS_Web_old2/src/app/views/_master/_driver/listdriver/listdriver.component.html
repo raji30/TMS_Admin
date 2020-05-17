@@ -1,0 +1,340 @@
+<br>
+<div id="accordion">
+  <div class="row">
+    <div class="col-8 col-sm-8 col-md-8">
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-6">
+          <h5 class="card-subtitle mb-2">
+            Drivers</h5>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6">
+          <div class="container text-right">
+            <div class="row">
+              <div class="col-11 col-sm-11 col-md-11">
+                <div class="form-group input-group input-group-sm">
+                  <div class="img-group-prepend">
+                    <img src="assets/img/brand/search16px.png" /> &nbsp;
+                  </div>
+                  <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text"
+                    style="border-radius: 1rem;" placeholder="Search..">
+                </div>
+              </div>
+              <!-- <div class="col-1 col-sm-1 col-md-1">
+                <img src="assets/img/brand/broom16px.png" (click)="clear_search()" tooltip="clear" />
+              </div> -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-4 col-sm-4 col-md-4 text-right">
+      <button type="button" class="btn btn-info btn-sm" (click)="toggle()" *ngIf="show_btnCreatedriver">Create New
+        Driver</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8 col-md-8 col-lg-8 border-right">
+      <table class="table table-sm">
+        <tr ngclass="btn-primary">
+          <th hidden="true">Driverkey</th>
+          <th scope="col" class="pointer" (click)="sort('DriverId')">ID &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer" (click)="sort('FirstName')">First Name &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer" (click)="sort('LastName')">Last Name &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer" (click)="sort('DriversLicenseNo')">License No &nbsp;<i class="fa fa-sort"
+              aria-hidden="true"></i>
+          </th>
+          <th scope="col" class="pointer" (click)="sort('LicenseExpiryDate')">License Expiry Date &nbsp;<i
+              class="fa fa-sort" aria-hidden="true"></i>
+          </th>
+        </tr>
+        <tr *ngFor="let driv of drivers | grdFilter: {DriverId: searchText,FirstName: searchText, LastName: searchText,
+          DriversLicenseNo: searchText, LicenseExpiryDate: searchText}|paginate:{itemsPerPage:10,currentPage:p,totalItems: count}
+          ">
+          <td hidden="true">{{driv.DriverKey}}</td>
+          <td>{{driv.DriverId}}</td>
+          <td> <a [routerLink]="" (click)="loadCustomerToEdit(driv.DriverKey)">
+              {{driv.FirstName}}</a> </td>
+          <td>{{driv.LastName}}</td>
+          <td>{{driv.DriversLicenseNo}}</td>
+          <td>{{driv.LicenseExpiryDate|date}} </td>        
+        </tr>
+      </table>
+      <div class="container text-right">
+        <pagination-controls (pageChange)="p=$event" autoHide="true" responsive="true"> </pagination-controls>
+      </div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <div class="row" *ngIf="show_addupdatedriver">
+        <form (ngSubmit)=" f.form.valid && onFormSubmit()" #f="ngForm" novalidate>
+          <div class="container">
+            <div class="form-group">
+              <label for="legno"> <b> Driver detail </b> </label>
+              <div class="row" hidden="true">
+                <div class="form-group input-group input-group-sm col-md-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">DriverKey</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.DriverKey"
+                    id="DriverKey" name="DriverKey">
+                </div>
+
+                <div class="form-group input-group input-group-sm col-md-6">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Address Key</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.Address.AddrKey"
+                    name="AddrKey">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-6">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Id</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" required [(ngModel)]="driverModel.DriverId"
+                    #DriverId="ngModel" name="DriverId" [ngClass]="{ 'is-invalid': f.submitted && DriverId.invalid }"
+                    required autofocus minlength="6">
+                  <div *ngIf="f.submitted && DriverId.invalid" class="invalid-feedback">
+                    <div *ngIf="DriverId.errors.required"> DriverId is required</div>
+                    <div *ngIf="DriverId.errors.minlength"> ID must be at least 6 characters</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-6">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">First Name</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" required [(ngModel)]="driverModel.FirstName"
+                    id="FirstName" name="FirstName" #FirstName="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && FirstName.invalid }">
+                  <div *ngIf="f.submitted && FirstName.invalid" class="invalid-feedback">
+                    <div *ngIf="FirstName.errors.required"> FirstName is required</div>
+                  </div>
+                </div>
+                <div class="form-group input-group input-group-sm col-md-6">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Last Name</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" required [(ngModel)]="driverModel.LastName"
+                    name="LastName">
+                  <div *ngIf="f.submitted && FirstName.invalid" class="invalid-feedback">
+                    <div *ngIf="FirstName.errors.required"> FirstName is required</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-6">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">License No</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.DriversLicenseNo"
+                    name="DriversLicenseNo">
+                </div>
+
+                <div class="form-group input-group input-group-sm col-md-6">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Expiry Date</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [owlDateTimeTrigger]="dtactualdeparture"
+                    [owlDateTime]="dtactualdeparture" [(ngModel)]="driverModel.LicenseExpiryDate"
+                    name="LicenseExpiryDate">
+                  <owl-date-time [pickerType]="'calendar'" #dtactualdeparture [hour12Timer]="false"></owl-date-time>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="form-group">
+              <label for="legno"> <b> Address </b> </label>
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-12">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Line 1</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" required
+                    [(ngModel)]="driverModel.Address.Address1" name="Address1" #Address1="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && Address1.invalid }">
+
+                  <div *ngIf="f.submitted && Address1.invalid" class="invalid-feedback">
+                    <div *ngIf="Address1.errors.required"> Address1 is required</div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-12">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Line 2</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" required
+                    [(ngModel)]="driverModel.Address.Address2" name="Address2">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-row col-md-12">
+                  <div class="form-group input-group input-group-sm col-md-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">City</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" required
+                      [(ngModel)]="driverModel.Address.City" name="City" #City="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && City.invalid }">
+                    <div *ngIf="f.submitted && City.invalid" class="invalid-feedback">
+                      <div *ngIf="City.errors.required"> City is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group input-group input-group-sm col-md-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">State</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" required
+                      [(ngModel)]="driverModel.Address.State" name="State" #State="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && State.invalid }">
+                    <div *ngIf="f.submitted && State.invalid" class="invalid-feedback">
+                      <div *ngIf="State.errors.required"> State is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group input-group input-group-sm col-md-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Zip</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" required
+                      [(ngModel)]="driverModel.Address.Zip" name="Zip" (keypress)="numberOnly($event)" appBlockCopyPaste
+                      #Zip="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Zip.invalid }">
+                    <div *ngIf="f.submitted && Zip.invalid" class="invalid-feedback">
+                      <div *ngIf="Zip.errors.required"> Zip is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Country</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.Address.Country"
+                    name="Country" #Country="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Country.invalid }">
+                  <div *ngIf="f.submitted && Country.invalid" class="invalid-feedback">
+                    <div *ngIf="Country.errors.required"> Country is required</div>
+                  </div>
+                </div>
+                <div class="form-group input-group input-group-sm col-md-8">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Website</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.Address.Website"
+                    name="Website" #Website="ngModel" appBlockCopyPaste>
+                  <!-- <div *ngIf="submitted && f.Address['controls'].website.errors" class="invalid-feedback">                   
+                              <div *ngIf="customerForm.controls.website.errors.pattern">website is not valid</div>                       
+                            </div> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-6">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Phone</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.Address.Phone"
+                    name="Phone" #Phone="ngModel" (keypress)="numberOnly($event)" appBlockCopyPaste>
+
+                </div>
+                <div class="form-group input-group input-group-sm col-md-6">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Fax</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.Address.Fax"
+                    name="Fax" #Fax="ngModel" (keypress)="numberOnly($event)" appBlockCopyPaste>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="form-group input-group input-group-sm col-md-12">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">E-mail</span>
+                  </div>
+                  <input type="text" class="form-control form-control-sm" [(ngModel)]="driverModel.Address.Email"
+                    name="Email" #Email="ngModel" appBlockCopyPaste>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-6 col-sm-6 col-md-6">
+
+              </div>
+              <div class="col-1 col-sm-1 col-md-1 text-left">
+                <button type="reset" *ngIf="isResetbtnhidden" class="btn btn-primary btn-sm"
+                  (click)="resetForm()">Clear</button>
+              </div>
+              <div class="col-2 col-sm-2 col-md-2 text-right">
+                <button type="reset" class="btn btn-primary btn-sm" (click)="cancel()">Cancel</button>
+              </div>
+              <div class="col-1 col-sm-1 col-md-1 text-left">
+                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row" *ngIf="show_DriverInfo">
+        <div class="container text-right">
+          <span style="color:green;" (click)="bindFormControls()"> <i class="fa fa-pencil" aria-hidden="true"></i>
+            <b> edit</b>..</span>
+        </div>
+        <div class="container ml-2">
+
+          <h5> {{driverModel.FirstName}} {{driverModel.LastName}}
+          </h5>
+
+          <span class="text-muted">Id <b>{{driverModel.DriverId}}</b> </span><br>
+          <span class="text-muted">License no </span> <br>
+          <span><b> {{driverModel.DriversLicenseNo}} </b>
+          </span>
+          <br><br>
+          <span class="text-muted"> Expiry Date </span><br>
+          <span><b> {{driverModel.LicenseExpiryDate|date}} </b>
+          </span>
+
+          <br><br>
+          <span class="text" style="color: chocolate;"> <b> Address </b></span><br>
+
+          <span class="text-muted">Line 1 :<b> {{driverModel.Address.Address1}}</b> </span><br>
+          <span class="text-muted">Line 2 :<b> {{driverModel.Address.Address2}}</b> </span> <br>
+          <span class="text-muted">City :<b> {{driverModel.Address.City}} </b></span> <br>
+          <span class="text-muted">State :<b> {{driverModel.Address.State}} </b></span> <br>
+          <span class="text-muted">Zip :<b> {{driverModel.Address.Zip}} </b></span> <br>
+          <span class="text-muted">Country: <b> {{driverModel.Address.Country}} </b></span> <br><br>
+          <span class="text-muted">Website <b> {{driverModel.Address.Website}} </b></span> <br><br>
+          <span class="text-muted">Email </span><br>
+          <span><b> {{driverModel.Address.Email}} </b></span> <br><br>
+
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <span class="text-muted">Fax </span><br>
+              <span><b> {{driverModel.Address.Fax}} </b></span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <span class="text-muted">Mobile </span><br>
+              <span><b> {{driverModel.Address.Phone}} </b></span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
