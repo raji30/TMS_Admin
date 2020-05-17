@@ -28,7 +28,7 @@ namespace TMS.Data.TableOperations
 
         public IEnumerable<customer> GetAll()
         {
-           return entity.customers.ToList();
+           return entity.customers.OrderBy(s=>s.custname).ToList();
         }
 
         public customer GetbyField(object t)

@@ -24,7 +24,8 @@ namespace TMS.Api.Controllers
         {
             UserAccessDL userAccessDL = new UserAccessDL();
             var result = new LoginResult();
-              var isauth = userAccessDL.isAuthorized(loginRequest.UserName, loginRequest.Company);
+            //var isauth = userAccessDL.isAuthorized(loginRequest.UserName, loginRequest.Company);
+            var isauth = true;
             if (isauth) {
                 var userInfo = userAccessDL.Login(loginRequest.UserName, loginRequest.Password);
                 if (userInfo == null)
@@ -40,7 +41,7 @@ namespace TMS.Api.Controllers
                 {
                     result.message = "success";
                     result.token = JwtManager.GenerateToken(loginRequest.UserName);
-                    result.loggedinTime = Convert.ToString(userInfo.lastlogindate.Value);
+                   // result.loggedinTime = Convert.ToString(userInfo.lastlogindate.Value);
                     result.isLoggedIn = true;
                     result.userId = Convert.ToString(userInfo.userkey);
                     result.firstname = userInfo.firstname;

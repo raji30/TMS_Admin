@@ -1,0 +1,260 @@
+<br>
+
+<div id="accordion">
+  <div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2 border-right ScrollStyle">
+      <ul class="list-unstyled">
+        <li><h5>Containers <span class="badge badge-dark">Recent</span></h5><br></li>
+        <li *ngFor="let order of ContainerDetails; let ind=index;">
+          <ul>
+            <li> <p style="font-family:calibri;">  <a [routerLink]="" (click)="rowclickEvent(order)">{{order.ContainerNo}}
+                <span class="badge" *ngIf="selectedKey===order.OrderDetailKey">
+                    <img src="assets/img/brand/symbol-check16px.png" /> </span> </a> </p> </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-10 col-md-10 col-lg-10">
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <h5 class="card-subtitle mb-2" style="color: black">
+            <img src="assets/img/brand/text-padding16px.png" /> Dispatch Assignment</h5>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6" *ngIf="showDispatch">
+          <div class="container text-right">
+            <button class="btn btn-primary btn-sm small" type="button" (click)="update()">Send to Dispatch
+              Delivery</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="showDispatch">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Driver</span>
+                        </div>
+                        <select id="drpdriver" class="form-control form-control-sm" name="driverkey"
+                          [(ngModel)]="driverkey">
+                          <option [value]="driver.DriverKey" *ngFor="let driver of driverList">{{driver.DriverId}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="txtNotes" placeholder="Notes" name="drivernotes"
+                        [(ngModel)]="drivernotes"></textarea>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- <span style="color: white">Order no </span><br> -->
+                      <div class="panel-heading">
+                        <span class="panel-title" style="color:black">Order No :</span>
+                        <span style="color:black"> <b> {{HeaderData.OrderNo}}</b> </span>
+                      </div>
+
+                      <!-- <span style="color:white"> Date </span><br> -->
+                      <div class="panel-heading">
+                        <span class="panel-title" style="color:black">Date :</span>
+                        <span style="color:black"> <b> {{HeaderData.OrderDate|date}}</b></span>
+                      </div>
+                      <!-- <span style="color: white"> Type </span><br> -->
+                      <div class="panel-heading">
+                        <span class="panel-title" style="color:black">Type :</span>
+                        <span style="color: black"> <b> {{HeaderData.ordertypedescription}}</b></span>
+                      </div>
+
+                    </div>
+                    <div class="col-sm-4">
+                      <!-- <span style="color:white"> Broker </span><br> -->
+                      <div class="panel-heading">
+                        <span class="panel-title" style="color:black">Broker :</span>
+                        <span style="color: black"> <b> {{HeaderData.BrokerName}} </b></span>
+                      </div>
+                      <!-- <span style="color:white"> Broker Ref# </span><br> -->
+                      <div class="panel-heading">
+                        <span class="panel-title" style="color:black">Broker Reference :</span>
+                        <span style="color: black"> <b> {{HeaderData.BrokerRefNo}} </b></span>
+                      </div>
+                      <!-- <span style="color:white"> Booking# </span><br> -->
+                      <div class="panel-heading">
+                        <span class="panel-title" style="color:black">Booking No :</span>
+                        <span style="color: black"> <b> {{HeaderData.BookingNo}} </b></span>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <!-- <span style="color:white"> Vessel </span><br> -->
+                      <div class="panel-heading">
+                        <span class="panel-title" style="color:black">Vessel :</span>
+                        <span style="color: black"> <b> {{HeaderData.VesselName}} </b></span>
+                      </div>
+                      <!-- <span style="color:white"> Bill of Lading </span><br> -->
+                      <div class="panel-heading">
+                        <span class="panel-title" style="color:black">Bill of Lading : </span>
+                        <span style="color: black"> <b> {{HeaderData.BillofLading}} </b></span>
+                      </div>
+                      <!-- <span style="color:white"> Cut-Off Date </span><br> -->
+                      <div class="panel-heading">
+                        <span class="panel-title" style="color:black">Cut-Off Date :</span>
+                        <span style="color:black"> <b> {{HeaderData.CutOffDate|date}} </b></span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+
+                      <div class="panel-heading">
+                        <h6 class="panel-title">BillTo</h6>
+                      </div>
+                      <div class="card alert-secondary text-center p-3">
+                        <!-- <blockquote class="blockquote mb-0"> -->
+                        <span> {{HeaderData.BillToAddressBO.Name}}</span>
+                        <span> {{HeaderData.BillToAddressBO.Address1}}, {{HeaderData.BillToAddressBO.Address2}} </span>
+                        <span> {{HeaderData.BillToAddressBO.City}} - {{HeaderData.BillToAddressBO.Zip}} </span>
+                        <span> {{HeaderData.BillToAddressBO.State}}</span>
+                        <!-- </blockquote> -->
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+
+                      <div class="panel-heading">
+                        <h6 class="panel-title">Pickup</h6>
+                      </div>
+                      <div class="card alert-primary text-center p-3">
+                        <!-- <blockquote class="blockquote mb-0"> -->
+                        <span> {{HeaderData.SourceAddressBO.Name}}</span>
+                        <span> {{HeaderData.SourceAddressBO.Address1}}, {{HeaderData.SourceAddressBO.Address2}} </span>
+                        <span> {{HeaderData.SourceAddressBO.City}} - {{HeaderData.SourceAddressBO.Zip}} </span>
+                        <span> {{HeaderData.SourceAddressBO.State}}</span>
+                        <!-- </blockquote> -->
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+
+                      <div class="panel-heading">
+                        <h6 class="panel-title">Delivery</h6>
+                      </div>
+                      <div class="card alert-secondary text-center p-3">
+                        <!-- <blockquote class="blockquote mb-0"> -->
+                        <span> {{HeaderData.DestinationAddressBO.Name}}</span>
+                        <span> {{HeaderData.DestinationAddressBO.Address1}},
+                          {{HeaderData.DestinationAddressBO.Address2}}
+                        </span>
+                        <span> {{HeaderData.DestinationAddressBO.City}} - {{HeaderData.DestinationAddressBO.Zip}}
+                        </span>
+                        <span> {{HeaderData.DestinationAddressBO.State}}</span>
+                        <!-- </blockquote> -->
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+
+                      <div class="panel-heading">
+                        <h6 class="panel-title">Return</h6>
+                      </div>
+                      <div class="card alert-primary text-center p-3">
+                        <!-- <blockquote class="blockquote mb-0"> -->
+                        <span> {{HeaderData.ReturnAddressBO.Name}}</span>
+                        <span> {{HeaderData.ReturnAddressBO.Address1}}, {{HeaderData.ReturnAddressBO.Address2}} </span>
+                        <span> {{HeaderData.ReturnAddressBO.City}} - {{HeaderData.ReturnAddressBO.Zip}} </span>
+                        <span> {{HeaderData.ReturnAddressBO.State}}</span>
+                        <!-- </blockquote> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-warning">
+                    <div class="panel-heading">
+                      <h6 class="panel-title">Container Detail</h6>
+                    </div>
+                    <div class="panel-body">
+                      <table class="table table-sm small alert-warning">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col" style="display:none">OrderDetailKey</th>
+                            <th scope="col">ContainerSize</th>
+                            <th scope="col">Seal#</th>
+                            <th scope="col">Weight</th>
+                            <th scope="col">ApptDate_From</th>
+                            <th scope="col">ApptDate_To</th>
+                            <th scope="col">PickupDate/Time</th>
+                            <th scope="col">DropOffDate/Time</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+
+                            <td hidden="true" style="display:none">
+                              {{DetailsData.OrderDetailKey}}
+                            </td>
+                            <td>
+                              {{DetailsData.ContainerSizeDesc}}
+                            </td>
+                            <td>
+                              {{DetailsData.SealNo}}
+                            </td>
+                            <td>
+                              {{DetailsData.Weight}}
+                            </td>
+                            <td>
+                              {{DetailsData.AppDateFrom}}
+                            </td>
+                            <td>
+                              {{DetailsData.AppDateTo}}
+                            </td>
+                            <td>
+                              {{DetailsData.PickupDateTime}}
+                            </td>
+
+                            <td>
+                              {{DetailsData.DropOffDateTime}}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                      <!-- <span style="color:black"> Comments </span><br> -->
+                      <div class="panel-heading">
+                        <h6 class="panel-title">Comments</h6>
+                      </div>
+                      <div class="card text-center p-3">
+                        <small>
+                          <p>{{HeaderData.Comment}}</p>
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div *ngIf="showImage">
+        <div class="row "> </div>
+        <div class="row "> </div>
+        <div class="row ">
+          <div class="col-md-4"> </div>
+          <div class="col-md-4"> <img src="assets/img/brand/Actions-gear-icon128px.png" /></div>
+          <div class="col-md-4"> </div>
+        </div>
+      </div>
+    </div>

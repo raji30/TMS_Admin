@@ -8,9 +8,12 @@ namespace TMS.BusinessObjects
 {
    public class CompanyDetailBO
     {
-        public Guid CompanyKey { get; set; }
-        public string CompanyName { get; set; }
+        public Guid compkey { get; set; }
+        public string compid { get; set; }
+        public string compname { get; set; }
         public Guid? ParentCompanyKey { get; set; }
-        public AddressBO address { get; set; }
+        public int status { get; set; }
+        public Guid addrkey { get; set; }
+        public AddressBO Address { get; set; }
     }
 }

@@ -1,0 +1,642 @@
+<br>
+<div class="row">
+  <div class="col-sm-2 col-md-2 col-lg-2">
+
+    <div class="scrollbar" id="scrollbar-style">
+      <ul class="list-unstyled">
+        <li>
+          <h5>Containers <span class="badge badge-warning">Recent</span></h5><br>
+        </li>
+        <li>
+          <div class="container text-left">
+            <div class="form-group input-group input-group-sm">
+              <div class="img-group-prepend">
+                <img src="assets/img/brand/search16px.png" /> &nbsp;
+              </div>
+              <input [(ngModel)]="SearchRecentContainer" class="form-control form-control-sm"
+                style="border-radius: 1rem;" type="text" placeholder="Search..">
+            </div>
+          </div>
+          <br>
+        </li>
+        
+        <li *ngFor="let data of DetailsData| grdFilter: {containerid: SearchRecentContainer,ContainerNo: SearchRecentContainer} ; let ind=index;">
+          <ul class="list-unstyled">
+            <li>
+              <p style="font-family:calibri;">
+                <a [routerLink]="" (click)="rowclickEvent(data)">
+                  {{data.containerid}}<br> <small class="text-muted"> {{ data.ContainerNo }} </small></a>
+                <span class="badge" *ngIf="selectedKey===data.OrderDetailKey">
+                  <img src="assets/img/brand/symbol-check16px.png" /> </span>
+              </p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="col-sm-10 col-md-10 col-lg-10">
+
+    <div *ngIf="showScheduler">
+      <!-- <div class="card card-body"> -->
+      <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <!-- <h6 class="card-subtitle mb-2">
+            <img src="assets/img/brand/overtime24px.png" style="color: cornflowerblue;" /> Scheduler</h6> -->
+          <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#Orderdata"
+            aria-expanded="false" aria-controls="Orderdata">
+            Order ID - <b>{{HeaderData.OrderNo}} </b>
+          </button>
+        </div>
+
+        <div class="col-sm-8 col-md-8 col-lg-8 text-right">
+          <button class="btn btn-outline-primary btn-sm small" type="button" (click)="hold_Schedule()"> <i class="fa fa-pause-circle-o" aria-hidden="true"></i> Hold Container</button> &nbsp;
+          &nbsp;
+          <button class="btn btn-outline-primary btn-sm small" type="button" (click)="onSubmit()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button> &nbsp;
+          &nbsp;
+          <button class="btn btn-outline-primary btn-sm small" type="button" (click)="complete_Schedule()" [disabled]="btnCompleteScheduleDisabled"> <i class="fa fa-check-circle-o" aria-hidden="true"></i> Complete Schedule</button> &nbsp;
+          &nbsp;
+          <button class="btn btn-outline-danger btn-sm small" type="button" (click)="onCancel()"> <i class="fa fa-ban"
+              aria-hidden="true"></i>&nbsp;Cancel</button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="collapse show" id="Orderdata">
+            <div class="card card-body ">
+              <div class="row">
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                  <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3"> <span class="text-muted">Date</span></div>
+                    <div class="col-sm-9 col-md-9 col-lg-9"><span>{{HeaderData.OrderDate|date}} </span></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3"> <span class="text-muted">Type</span></div>
+                    <div class="col-sm-9 col-md-9 col-lg-9"><span> {{HeaderData.ordertypedescription}} </span></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3"> <span class="text-muted">Broker</span></div>
+                    <div class="col-sm-9 col-md-9 col-lg-9"><span> {{HeaderData.BrokerName}} </span></div>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Broker Ref</span></div>
+                    <div class="col-sm-8 col-md-8 col-lg-8"><span> {{HeaderData.BrokerRefNo}} </span></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Booking No</span></div>
+                    <div class="col-sm-8 col-md-8 col-lg-8"><span> {{HeaderData.BookingNo}} </span></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Vessel</span></div>
+                    <div class="col-sm-8 col-md-8 col-lg-8"><span> {{HeaderData.VesselName}} </span></div>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Bill of Lading</span></div>
+                    <div class="col-sm-8 col-md-8 col-lg-8"><span> {{HeaderData.BillofLading}} </span></div>
+                  </div>
+                  <!-- <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4"> <span class="text-muted">Cut-Off Date</span></div>
+                    <div class="col-sm-8 col-md-8 col-lg-8"><span> {{HeaderData.CutOffDate|date}} </span></div>
+                  </div> -->
+                </div>
+              </div>
+              <hr style="color: slategray;">
+              <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <span class="text-muted">Bill to</span>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <div style="word-wrap: break-word;">
+                        {{HeaderData.BillToAddressBO.Name}}
+                        {{HeaderData.BillToAddressBO.Address1}}, {{HeaderData.BillToAddressBO.Address2}}
+                        {{HeaderData.BillToAddressBO.City}} - {{HeaderData.BillToAddressBO.Zip}}
+                        {{HeaderData.BillToAddressBO.State}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <span class="text-muted">Pickup</span>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <div style="word-wrap: break-word;">
+                        {{HeaderData.SourceAddressBO.Name}}
+                        {{HeaderData.SourceAddressBO.Address1}} {{HeaderData.SourceAddressBO.Address2}}
+                        {{HeaderData.SourceAddressBO.City}} {{HeaderData.SourceAddressBO.Zip}}
+                        {{HeaderData.SourceAddressBO.State}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <span class="text-muted">Delivery</span>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <div style="word-wrap: break-word;">
+                        {{HeaderData.DestinationAddressBO.Name}}
+                        {{HeaderData.DestinationAddressBO.Address1}} {{HeaderData.DestinationAddressBO.Address2}}
+                        {{HeaderData.DestinationAddressBO.City}} {{HeaderData.DestinationAddressBO.Zip}}
+                        {{HeaderData.DestinationAddressBO.State}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                  <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                      <span class="text-muted">Return</span>
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                      <div style="word-wrap: break-word;">
+                        {{HeaderData.ReturnAddressBO.Name}}
+                        {{HeaderData.ReturnAddressBO.Address1}} {{HeaderData.ReturnAddressBO.Address2}}
+                        {{HeaderData.ReturnAddressBO.City}} {{HeaderData.ReturnAddressBO.Zip}}
+                        {{HeaderData.ReturnAddressBO.State}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr style="color: slategray;">
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <div class="panel panel-warning">
+                    <div class="panel-body">
+                      <h6 class="text-muted">Container</h6>
+                      <table class="table table-sm small table-striped">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col" class="text-muted">Id</th>
+                            <th scope="col" class="text-muted">Container</th>
+                            <th scope="col" class="text-muted">Size</th>
+                            <th scope="col" class="text-muted">Seal no</th>
+                            <th scope="col" class="text-muted">Weight</th>
+                            <th scope="col" class="text-muted">Comments</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              {{DetailData.containerid}}
+                            </td>
+                            <td>
+                              {{DetailData.ContainerNo}}
+                            </td>
+                            <td>
+                              {{DetailData.ContainerSizeDesc}}
+                            </td>
+                            <td>
+                              {{DetailData.SealNo}}
+                            </td>
+                            <td>
+                              {{DetailData.Weight}}
+                            </td>
+                            <td>
+                              {{DetailData.Comments}}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <div class="panel-heading">
+                    <h6 class="text-muted">Order Comments</h6>
+                  </div>
+                  <p><small> {{HeaderData.Comment}}</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-body">
+        <div class="row">
+          <div class="col-sm-8 col-md-8 col-lg-8">
+            <div class="row">
+              <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Last Free day </span>
+                  </div>
+                  <input class="form-control  form-control-sm" type="text" placeholder="" name="LastFreeDay"
+                    [(ngModel)]="LastFreeDay" [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" />
+                  <owl-date-time [pickerType]="'calendar'" #dt5></owl-date-time>
+                </div>
+              </div>
+
+              <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="input-group input-group-sm">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Leg Type </span>
+                  </div>
+                  <select id="drpStatus" class="browser-default custom-select" placeholder="Legtype" name="Legtype"
+                    [(ngModel)]="Legtype">
+                    <option [value]='0' selected="true">No Legtype selected</option>
+                    <option [value]='1'>L</option>
+                    <option [value]="2">D</option>
+                    <option [value]="3">D/S</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                      <h6 class="text-muted">Appointment Date </h6>
+                      <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <div class="input-group input-group-sm">
+                                  <input type="text" placeholder="From" class="form-control form-control-sm"
+                                    name="AppDateFrom" [(ngModel)]="AppDateFrom" [owlDateTimeTrigger]="dt1"
+                                    [owlDateTime]="dt1" />
+                                  <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                                </div>
+                              </td>
+                              <td> &nbsp; &nbsp;</td>
+                              <td>
+                                <div class="input-group input-group-sm">
+                                  <input type="text" placeholder="To" class="form-control form-control-sm"
+                                    name="AppDateTo" [(ngModel)]="AppDateTo" [owlDateTimeTrigger]="dt2"
+                                    [owlDateTime]="dt2" />
+                                  <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 
+          <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Status</span>
+                </div>
+                <select id="drpStatus" class="form-control form-control-sm" placeholder="Status" name="status"
+                  [(ngModel)]="status">
+                  <option [(value)]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">             
+            </div>
+          </div> -->
+              </div>
+              <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                      <h6 class="text-muted">Pickup/Delivery DateTime </h6>
+                      <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <div class="input-group input-group-sm">
+                                  <input class="form-control form-control-sm" placeholder="Pickup " type="text"
+                                    name="PickupDateTime" [(ngModel)]="PickupDateTime" [owlDateTimeTrigger]="dt3"
+                                    [owlDateTime]="dt3" required />
+                                  <owl-date-time [pickerType]="'both'" #dt3 [hour12Timer]="false"></owl-date-time>
+                                </div>
+                              </td>
+                              <td> &nbsp; &nbsp;</td>
+                              <td>
+                                <div class="input-group input-group-sm">
+                                  <input class="form-control  form-control-sm" type="text" placeholder="Delivery"
+                                    name="DropOffDateTime" [(ngModel)]="DropOffDateTime" [owlDateTimeTrigger]="dt4"
+                                    [owlDateTime]="dt4" />
+                                  <owl-date-time [pickerType]="'both'" #dt4></owl-date-time>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label class="text-muted">Driver Notes</label>
+
+                  <textarea class="form-control" id="DriverNotes" placeholder="Driver Notes" [(ngModel)]="DriverNotes"
+                    name="DriverNotes"></textarea>
+                </div>
+
+                <!-- <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> Driver Notes</span>
+              </div>
+              <input class="form-control form-control-sm" placeholder="DriverNotes" type="text" name="DriverNotes"
+                [(ngModel)]="DriverNotes" />
+            </div> -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label class="text-muted">Scheduler Notes</label>
+                  <textarea class="form-control" id="SchedulerNotes" placeholder="Scheduler Notes"
+                    [(ngModel)]="SchedulerNotes" name="SchedulerNotes"></textarea>
+                </div>
+                <!-- <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> Scheduler Notes</span>
+              </div>
+              <input class="form-control form-control-sm" placeholder="SchedulerNotes" type="text"
+                name="SchedulerNotes" [(ngModel)]="SchedulerNotes" />
+            </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-4 col-lg-4">
+            <!-- <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <label for="SealNo"> <b> Accounting Options:</b></label>
+              <div *ngFor="let list of itemlist">
+                <label class="checkbox-inline">
+                  <input type="checkbox" value="{{list.itemkey}}" (change)="onCheckboxChange(list,$event)">
+                  {{list.itemid}} </label>
+              </div>
+            </div>
+          </div> -->
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <label class="text-muted"> <b> Accounting Options</b></label>
+                <div class="card card-body">
+                  <!-- <table class="table table-sm table-borderless">
+                    <tbody>
+                      <tr *ngFor="let list of itemlist; let i =index;let even = even;let odd = odd;">
+
+                        <div *ngIf="i==0">
+                          <td style="width: max-content;">
+                            <div>
+                              <span class="checkbox-inline">
+                                <input type="checkbox" value="{{list.itemkey}}"
+                                  (change)="onCheckboxChange(list,$event)">
+                                {{list.itemid}} </span>
+                            </div>
+                          </td>
+                          <td>
+
+                          </td>
+                        </div>
+                        <div *ngIf="odd">
+                      <tr>
+                        <td style="width: 150px;">
+                          <div>
+                            <span class="checkbox-inline">
+                              <input type="checkbox" value="{{list.itemkey}}" (change)="onCheckboxChange(list,$event)">
+                              {{list.itemid}} </span>
+                          </div>
+                        </td>
+                        <td style="width: 150px;">
+                          <div>
+                            <span class="checkbox-inline">
+                              <input type="checkbox" value="{{itemlist[i+1].itemkey}}"
+                                (change)="onCheckboxChange(itemlist[i+1],$event)">
+                              {{itemlist[i+1].itemid}} </span>
+                          </div>
+                        </td>
+                      </tr>
+                </div>
+               
+                </tr>
+                </tbody>
+                </table> -->
+                <div *ngFor="let list of itemlist">
+                    <input  type="checkbox"  [(ngModel)]="list.isChecked" value="{{list.itemkey}}"
+                    [ngModelOptions]="{standalone: true}" (change)="onCheckboxChange(list,$event)" />
+                  <small style="color:wheat;"> &nbsp;{{list.itemid}} </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+
+
+  <div *ngIf="showScheduledContainerList">
+    <div class="row">
+      <div class="col-8 col-sm-8 col-md-8"> </div>
+      <div class="col-4 col-sm-4 col-md-4">
+        <div class="container text-right">
+          <div class="form-group input-group input-group-sm">
+            <div class="img-group-prepend">
+              <img src="assets/img/brand/search16px.png" /> &nbsp;
+            </div>
+            <input [(ngModel)]="searchText" class="form-control form-control-sm" style="border-radius: 1rem;"
+              type="text" placeholder="Search..">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <table class="table table-sm table-borderless ">
+        <thead class="thead-dark shadow">
+          <tr>
+            <th scope="col" (click)="sort('containerid')" class=" pointer text-muted">ID &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+            <th scope="col"(click)="sort('ContainerNo')" class=" pointer text-muted">Container &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+            <th scope="col" (click)="sort('ContainerSizeDesc')" class=" pointer text-muted">Size &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>         
+            <th scope="col" (click)="sort('LastFreeDay')" class=" pointer text-muted">Last free day &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+            <th scope="col" (click)="sort('PickupDateTime')" class=" pointer text-muted">Pickup &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+            <th scope="col" (click)="sort('DropOffDateTime')" class=" pointer text-muted">Delivery &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+            <th scope="col"  class="text-muted">Scheduler notes</th>
+            <th scope="col" (click)="sort('StatusDesc')" class=" pointer text-muted">Status &nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+            <th scope="col" class="text-muted">Next Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of scheduledContainerList| 
+            grdFilter: {containerid: searchText,ContainerNo: searchText,ContainerSizeDesc: searchText
+              ,LastFreeDay: searchText
+              ,PickupDateTime: searchText
+              ,DropOffDateTime: searchText
+              ,StatusDesc: searchText} |paginate:{itemsPerPage:10,currentPage:p,totalItems: count}; let ind=index;">
+            <td>
+              <small class="font-weight-bold">
+                {{order.containerid}}
+              </small>
+            </td>
+            <td> <small class="font-weight-normal" style="color: cornflowerblue;">
+                {{order.ContainerNo}} </small></td>
+            <td> <small class="font-weight-normal">
+                {{order.ContainerSizeDesc}} </small></td>           
+            <td> <small class="font-weight-normal">
+                {{order.LastFreeDay|date}} </small></td>
+            <td> <small class="font-weight-normal">
+                {{order.PickupDateTime|date: 'dd/MM/yyyy hh:mm a'}} </small></td>
+            <td> <small class="font-weight-normal">
+                {{order.DropOffDateTime|date: 'dd/MM/yyyy hh:mm a'}} </small></td>
+                <td> <small class="font-weight-normal">
+                  {{order.SchedulerNotes}} </small></td>
+            <td> <small *ngIf="order.StatusDesc == 'Schedule onhold'" class="font-weight-normal" style="color: orange;">
+                on Hold </small>
+              <small *ngIf="order.StatusDesc == 'Schedule inprogress'" class="font-weight-normal" style="color: green;">
+                In progress </small>
+
+            </td>
+            <td>
+              <strong> <i class="cil-chevron-circle-right-alt" style="color: yellowgreen;"></i></strong>
+              &nbsp;
+              <small *ngIf="order.StatusDesc == 'Schedule onhold'" class="font-weight-normal" style="color: orange;">
+                {{order.nextaction}} </small>
+              <small *ngIf="order.StatusDesc == 'Schedule inprogress'" class="font-weight-normal" style="color: green;">
+                {{order.nextaction}} </small>
+              &nbsp;
+              <button type="button" class="btn btn-info btn-sm" style="border-radius: 1rem;"
+                (click)="loaddata_forEdit(order)">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+              <!-- <span class="fa fa-pencil-square-o" (click)="update(order.OrderKey)"></span> <br>
+                              <small>update</small> -->
+            </td>
+          </tr>
+          <tr *ngIf="scheduledContainerList.length===0">
+            <td colspan="3">
+              <h4 style="color: darkorange;">No records found! </h4>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="container text-right"> 
+        <pagination-controls 
+        (pageChange)="p=$event"
+        autoHide="true"
+        responsive="true"> </pagination-controls>     
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showImage">
+    <div class="row "> </div>
+    <div class="row "> </div>
+    <div class="row ">
+      <div class="col-md-4"> </div>
+      <!-- <div class="col-md-4"> <img src="assets/img/brand/Actions-gear-icon128px.png" /></div> -->
+      <div class="col-md-4"> </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- 
+<div class="row">
+  <div class="col-md-4">
+    <input [(ngModel)]="searchText" class="form-control form-control-sm" type="text" placeholder="Search..">
+  </div>
+</div>
+<div class="table-responsive small" *ngIf="DetailsData.length > 0">
+  <table id="containerAttributes" class="table table-sm table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>View_Detail</th>
+        <th>Container#</th>
+        <th>Size</th>
+        <th>Chassis#</th>
+        <th>Seal#</th>
+        <th>Weight</th>
+        <th>Appt_DateFrom</th>
+        <th>Appt_DateTo</th>
+        <th>Pickup_DateTime</th>
+        <th>DropOff_DateTime</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let field of DetailsData | grdFilter: {Chassis: searchText,SealNo: searchText, blog: searchText}; let i = index">
+       
+        <td>
+          <a class="btn btn-link" role="button" (click)="rowclickEvent(field)">
+            <img src="assets/img/brand/DataViewDetails24px.png" />
+            <span class="badge" *ngIf="selectedKey===field.OrderKey">
+              <img src="assets/img/brand/symbol-check16px.png" /> </span>
+          </a>
+        </td>
+        <td>
+          {{field.ContainerNo}}
+        </td>
+        <td>
+          {{field.ContainerSizeDesc}}
+        </td>
+
+        <td>
+          {{field.Chassis}}
+        </td>
+        <td>
+
+          {{field.SealNo}}
+        </td>
+        <td>
+
+          {{field.Weight}}
+        </td>
+        <td>
+          <input type="text" #model="ngModel" [(ngModel)]="field.AppDateFrom"
+            class="form-control form-control-sm bg-dark" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" />
+          <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+        </td>
+        <td>
+          <input type="text" #model="ngModel" [(ngModel)]="field.AppDateTo" class="form-control form-control-sm bg-dark"
+            [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" />
+          <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+
+        </td>
+        <td>
+          <input class="form-control form-control-sm" type="text" #model="ngModel" [(ngModel)]="field.PickupDateTime"
+            [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" required />
+          <owl-date-time [pickerType]="'both'" #dt3 [hour12Timer]="false"></owl-date-time>
+        </td>
+
+        <td>
+          <input class="form-control form-control-sm" type="text" #model="ngModel" [(ngModel)]="field.DropOffDateTime"
+            [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" />
+          <owl-date-time [pickerType]="'both'" #dt4></owl-date-time>
+        </td>
+
+        <td>
+          <select id="drpStatus" class="form-control form-control-sm bg-dark" #model="ngModel"
+            [(ngModel)]="field.status">
+            <option [(value)]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>
+          </select>
+        </td>
+
+        <td>
+          <button class="btn btn-primary btn-sm small" type="button" (click)="onSubmit(field)">Schedule</button>
+        </td>      
+      </tr>
+    </tbody>
+  </table>
+</div> -->

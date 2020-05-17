@@ -11,7 +11,8 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+   // [JwtAuthentication]
     public class DriverController : ApiController
     {
         DriverDL routes = new DriverDL();

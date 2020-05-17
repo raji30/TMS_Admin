@@ -15,14 +15,23 @@ using TMS.Api.Models;
 using TMS.BusinessObjects;
 using TMS.Data;
 using TMS.Data.TableOperations;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using System.Reflection;
+using System.IO;
+using System.Web;
+using System.Net.Http.Headers;
+using TMS.BusinessLayer;
 
 namespace TMS.Api.Controllers
-{/// <summary>
-/// Not yet implemented
-/// </summary>
+{
+    [AllowAnonymous]
     public class InvoiceController : ApiController
     {
         //
+        InvoiceBL bl = new InvoiceBL();
         InvoiceDL dl = new InvoiceDL();
         [HttpGet]
         [Route("Get/{InvoiceNo}")]
@@ -62,10 +71,46 @@ namespace TMS.Api.Controllers
         [HttpPost]
         [Route("CreateInvoiceDetail")]
         [SwaggerOperation("CreateInvoiceDetail")]
-        public HttpResponseMessage CreateInvoiceDetail([FromBody]InvoiceDetailBO invoiceDetail)
+        public HttpResponseMessage CreateInvoiceDetail([FromBody]InvoiceDetailBO[] invoiceDetail)
         {
             var invoiceDtl = dl.PostInvoiceDetail(invoiceDetail);
             return Request.CreateResponse(HttpStatusCode.OK, invoiceDtl, Configuration.Formatters.JsonFormatter);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="invoiceDetail"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("UpdateInvoiceDetail")]
+        [SwaggerOperation("UpdateInvoiceDetail")]
+        public HttpResponseMessage UpdateInvoiceDetail([FromBody]InvoiceDetailBO[] invoiceDetail)
+        {
+
+            foreach(var inv in invoiceDetail)
+            {
+                if(inv.InvoiceLineKey==null)
+                {
+                    var invoiceDtl = dl.PostInvoiceDetail(inv);
+                }
+                else
+                {
+                    var invoiceDtl = dl.UpdateInvoiceDetail(inv);
+                }
+            }
+          
+            return Request.CreateResponse(HttpStatusCode.OK, true, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpPut]
+        [Route("UpdateInvoiceHeader")]
+        [SwaggerOperation("UpdateInvoiceHeader")]
+        public HttpResponseMessage UpdateInvoiceHeader([FromBody]InvoiceHeaderBO InvoiceHeader)
+        {
+            var invoiceDtl = dl.UpdateInvoice(InvoiceHeader);            
+
+            return Request.CreateResponse(HttpStatusCode.OK, true, Configuration.Formatters.JsonFormatter);
         }
 
 
@@ -100,7 +145,7 @@ namespace TMS.Api.Controllers
                 bo.order.VesselName = list.VesselName;
                 bo.order.BillofLading = list.BillofLading;
                 bo.order.BookingNo = list.BookingNo;
-                bo.order.CutOffDate = list.CutOffDate;
+               // bo.order.CutOffDate = list.CutOffDate;
 
                 bo.orderDetails.OrderDetailKey = list.OrderDetails.OrderDetailKey;
                 bo.orderDetails.ContainerNo = list.OrderDetails.ContainerNo;
@@ -200,6 +245,63 @@ namespace TMS.Api.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, orders, Configuration.Formatters.JsonFormatter);
         }
 
+
+
+        [HttpGet]
+        [Route("getOrderDatabyKey/{orderkey}")]
+        [SwaggerOperation("getOrderDatabyKey")]
+        public HttpResponseMessage getOrderDatabyKey(string orderkey)
+        {
+            InvoiceBO invoiceBO = new InvoiceBO();
+            var orderdata = bl.getOrderDatabyKey(orderkey);
+                invoiceBO.order = orderdata;
+
+           var containerdata = dl.GetContainers(orderkey);
+
+            if (containerdata != null)
+            {
+                invoiceBO.containers = containerdata;
+            }
+
+            if (invoiceBO != null)
+                return Request.CreateResponse(HttpStatusCode.OK, invoiceBO, Configuration.Formatters.JsonFormatter);
+            else
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+        }
+
+        [HttpGet]
+        [Route("getorderratesbykey/{orderkey}")]
+        [SwaggerOperation("getorderratesbykey")]
+        public HttpResponseMessage getorderratesbykey(string orderkey)
+        {
+            var rates = bl.getorderratesbykey(orderkey);
+
+            if (rates != null)
+                return Request.CreateResponse(HttpStatusCode.OK, rates, Configuration.Formatters.JsonFormatter);
+            else
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+        }
+
+
+        [HttpGet]
+        [Route("GetInvoiceHeaderList")]
+        [SwaggerOperation("GetInvoiceHeaderList")]
+        public HttpResponseMessage GetInvoiceHeaderList()
+        {           
+            List<InvoiceHeaderBO> dorder = dl.GetInvoiceHeaderList();
+            return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
+        }
+
+
+        [HttpGet]
+        [Route("getinvoicedetail/{invoicekey}")]
+        [SwaggerOperation("getinvoicedetail")]
+        public HttpResponseMessage getinvoicedetail(string invoicekey)
+        {
+            List<InvoiceDetailBO> dorder = dl.getinvoicedetail(invoicekey);
+            return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -233,7 +335,7 @@ namespace TMS.Api.Controllers
         /// <param name="custname"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("CreateInvoicePDF")]
+        [Route("CreateInvoicePDF/{orderkey}")]
         [SwaggerOperation("CreateInvoicePDF")]
         public HttpResponseMessage CreateInvoicePDF(string orderkey)
         {
@@ -277,8 +379,8 @@ namespace TMS.Api.Controllers
            
         }
 
-        [HttpPost]
-        [Route("DownloadInvoice")]
+        [HttpGet]
+        [Route("DownloadInvoice/{orderno}")]
         [SwaggerOperation("DownloadInvoice")]
         public HttpResponseMessage DownloadInvoice(string orderno)
         {
@@ -296,7 +398,86 @@ namespace TMS.Api.Controllers
             }
             return Request.CreateResponse(HttpStatusCode.InternalServerError, "File Not found", Configuration.Formatters.JsonFormatter);
         }
-        
+
+
+        [HttpGet]
+        [Route("CreatePDFforInvoice/{invoicekey}")]
+        [SwaggerOperation("CreateInvoicePDF")]
+        public HttpResponseMessage CreatePDFforInvoice(string invoicekey)
+        {
+            var viewmodel = new InvoiceViewModel();   
+            DeliveryOrderDL orderDl = new DeliveryOrderDL();
+            InvoiceDL dl = new InvoiceDL();
+
+            string orderkey = dl.getOrderkeybyInvoicekey(invoicekey);
+
+            if(!string.IsNullOrEmpty(orderkey))
+            {
+                var orderBO = orderDl.GetDeliveryOrder(orderkey);
+                viewmodel.Order = orderBO;
+                viewmodel.InvoiceHeader = dl.GetInvoicebyinvoiceKey(invoicekey);
+                viewmodel.InvoiceDetail = dl.GetInvoiceDetail(invoicekey);
+
+                var orderdetailBO = orderDl.GetOrderDetailsByKey(orderkey);
+
+                if (orderdetailBO != null && orderdetailBO.Count > 0)
+                {
+                    var orderdtlList = new List<ThinOrderDetailViewModel>();
+                    orderdetailBO.ForEach(d =>
+                    {
+                        orderdtlList.Add(new ThinOrderDetailViewModel()
+                        {
+                            Chassis = d.Chassis,
+                            ContainerNo = d.ContainerNo,
+                            OrderDetailKey = d.OrderDetailKey,
+                            //InvoiceHeader = d.OrderDetailKey != null ? dl.GetInvoicebyinvoiceKey(Convert.ToString(invoicekey)) : null,
+                            //InvoiceDetail = d.OrderDetailKey != null ? dl.GetInvoiceDetail(invoicekey) : null,
+
+                        });
+                    });
+                    viewmodel.OrderDtl = orderdtlList;
+                }
+            }            
+            //if (orderdetailBO != null && orderdetailBO.Count > 0)
+            //{
+            //    var orderdtlList = new List<ThinOrderDetailViewModel>();
+            //    orderdetailBO.ForEach(d =>
+            //    {
+            //        orderdtlList.Add(new ThinOrderDetailViewModel()
+            //        {
+            //            Chassis = d.Chassis,
+            //            ContainerNo = d.ContainerNo,
+            //            OrderDetailKey = d.OrderDetailKey,
+            //            InvoiceHeader = d.OrderDetailKey != null ? dl.GetInvoicebyOrderDetailKey(Convert.ToString(d.OrderDetailKey)) : null,
+            //            InvoiceDetail = d.OrderDetailKey != null ? dl.GetInvoiceDetail(Convert.ToString(d.OrderDetailKey)) : null,
+
+            //        });
+            //    });
+            //    viewmodel.OrderDtl = orderdtlList;
+            //}
+            //else
+            //{
+            //    return Request.CreateResponse(HttpStatusCode.InternalServerError, "Order not found", Configuration.Formatters.JsonFormatter);
+            //}
+
+            if(viewmodel==null)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Order not found", Configuration.Formatters.JsonFormatter);
+            }
+
+            var stringified = new InvoiceViewController().RenderRazorViewToString("~/Views/InvoiceView/Invoice.cshtml", viewmodel);
+            var pdf = IronPdf.HtmlToPdf.StaticRenderHtmlAsPdf(stringified);
+            var basepath = HttpContext.Current.Server.MapPath("~/App_Data/Files/");
+            var doccreated = pdf.SaveAs(Path.Combine(basepath, $"{viewmodel.Order.OrderNo}.pdf"));
+            if (doccreated.PageCount > 0)
+                return Request.CreateResponse(HttpStatusCode.OK, "Invoice generated", Configuration.Formatters.JsonFormatter);
+            else
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Error occurred while creating Invoice", Configuration.Formatters.JsonFormatter);
+
+        }
+
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -379,7 +560,7 @@ namespace TMS.Api.Controllers
                     table.AddCell(new Cell().Add(new Paragraph(invoiceline.Quantity.ToString())));
                     table.AddCell(new Cell().Add(new Paragraph(invoiceline.UnitPrice.ToString())));
                     table.AddCell(new Cell().Add(new Paragraph(invoiceline.ExcessAmount.ToString())));
-                   
+                    runningtotal += (double)invoiceline.Price * (double) invoiceline.Quantity;
                 }
 
                 invoiceItem.Add(new Paragraph("Detailed Breakup:").SetFirstLineIndent(25).Add(table));

@@ -1,0 +1,190 @@
+<div class="modal-header">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+  <div class="row">
+    <div class="col-sm-8 col-md-8 col-lg-8">
+      <h4 class="modal-title">{{OrderDetail.containerid}}</h4>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <div class="container text-right">
+        <button class="btn btn-info btn-sm small" type="button" style="border-radius: 1rem;"
+          (click)="onSubmit()">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update</button>
+        &nbsp; <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span> </button>
+
+          <!-- <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span> </button> -->
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+<div class="modal-body">
+  <div class="row">
+    
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <!-- <div class="form-group">
+            <label for="SealNo">Appointment date</label>
+           
+        </div>  -->
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">From</span>
+            </div>
+            <input type="text" placeholder="ApptDate From" class="form-control form-control-sm" name="AppDateFrom"
+              [(ngModel)]="AppDateFrom" [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" />
+            <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+          </div>
+
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">To</span>
+            </div>
+            <input type="text" placeholder="ApptDate To" class="form-control form-control-sm" name="AppDateTo"
+              [(ngModel)]="AppDateTo" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" />
+            <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Pickup</span>
+            </div>
+            <input class="form-control form-control-sm" placeholder="Pickup DateTime" type="text" name="PickupDateTime"
+              [(ngModel)]="PickupDateTime" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" required />
+            <owl-date-time [pickerType]="'both'" #dt3 [hour12Timer]="false"></owl-date-time>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Drop</span>
+            </div>
+            <input class="form-control  form-control-sm" type="text" placeholder="DropOff DateTime"
+              name="DropOffDateTime" [(ngModel)]="DropOffDateTime" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" />
+            <owl-date-time [pickerType]="'both'" #dt4></owl-date-time>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Last Free day </span>
+            </div>
+            <input class="form-control  form-control-sm" type="text" placeholder="Last free day" name="LastFreeDay"
+              [(ngModel)]="LastFreeDay" [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" />
+            <owl-date-time [pickerType]="'calendar'" #dt5></owl-date-time>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Leg Type</span>
+            </div>
+            <!-- <select id="drpStatus" class="form-control form-control-sm" placeholder="legtype" name="legtype"
+                  [(ngModel)]="legtype">
+                  <option [(value)]="leg.Value" *ngFor="let leg of statuslist">{{leg.Name}}</option>
+                </select> -->
+
+            <select id="drpStatus" class="browser-default custom-select" placeholder="Legtype" name="Legtype"
+              [(ngModel)]="Legtype">
+              <!-- <option [(value)]="f8ddd2e8-f6f4-11e9-95f6-dbd2245f3061">L</option>
+                  <option [(value)]="fa3dbfb8-f6f4-11e9-95f7-978271f9febc">D</option>
+                  <option [(value)]="fb93dc9e-f6f4-11e9-95f8-0f4bc41ca26f">D/S</option> -->
+              <option [value]='1'>L</option>
+              <option [value]="2">D</option>
+              <option [value]="3">D/S</option>
+
+            </select>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="form-group">
+            <label for="SealNo">Driver Notes</label>
+
+            <textarea class="form-control" rows="3" id="DriverNotes" placeholder="Driver Notes"
+              [(ngModel)]="DriverNotes" name="DriverNotes"></textarea>
+          </div>
+
+          <!-- <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> Driver Notes</span>
+            </div>
+            <input class="form-control form-control-sm" placeholder="DriverNotes" type="text" name="DriverNotes"
+              [(ngModel)]="DriverNotes" />
+          </div> -->
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="form-group">
+            <label for="SealNo">Scheduler Notes</label>
+            <textarea class="form-control" rows="3" id="SchedulerNotes" placeholder="Scheduler Notes"
+              [(ngModel)]="SchedulerNotes" name="SchedulerNotes"></textarea>
+          </div>
+          <!-- <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> Scheduler Notes</span>
+            </div>
+            <input class="form-control form-control-sm" placeholder="SchedulerNotes" type="text"
+              name="SchedulerNotes" [(ngModel)]="SchedulerNotes" />
+          </div> -->
+        </div>
+      </div>
+      <!-- 
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Status</span>
+            </div>
+            <select id="drpStatus" class="form-control form-control-sm" placeholder="Status" name="status"
+              [(ngModel)]="status">
+              <option [(value)]="status.Value" *ngFor="let status of statuslist">{{status.Name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">             
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6"></div>
+        <div class="col-sm-6 col-md-6 col-lg-6"></div>
+      </div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <div class="row">
+
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <label for="SealNo"> <b> Accounting Options:</b></label>
+          <div *ngFor="let list of itemlist ; let i = index" style="height: 30px;">
+            <!-- <label class="checkbox-inline">
+              <input type="checkbox" value="{{list.itemkey}}"  (change)="onCheckboxChange(list,$event)">
+              {{list.itemid}} </label> -->
+
+            <input  type="checkbox" [(ngModel)]="list.isChecked" value="{{list.itemkey}}"
+              [ngModelOptions]="{standalone: true}" (change)="onCheckboxChange(list,$event)" />
+            <small> &nbsp;{{list.itemid}} </small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,11 +24,12 @@ namespace TMS.BusinessObjects
        public enum AddressType
         {
             Customer = 1,
-            Vendor = 2,
-            ShippingPort = 3,
-            Terminal = 4,
-            Driver = 5,
-            Warehouse = 6
+            Company = 2,
+            Vendor = 3,
+            ShippingPort = 4,
+            Terminal = 5,
+            Driver = 6,
+            Warehouse = 7
         }
         public enum ContainerSize
         {

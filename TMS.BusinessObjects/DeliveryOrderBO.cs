@@ -15,11 +15,14 @@ namespace TMS.BusinessObjects
         public Guid BillToAddress { get; set; }
         public Guid SourceAddress { get; set; }
         public Guid DestinationAddress { get; set; }
+        public string BillToAddr { get; set; }
+        public string SourceAddr { get; set; }
+        public string DestinationAddr { get; set; }
         public Guid ReturnAddress { get; set; }
         public short Source { get; set; }
         public short OrderType { get; set; }
         public short Status { get; set; }
-        public DateTime StatusDate { get; set; }
+        public DateTime? StatusDate { get; set; }
         public short HoldReason { get; set; }
         public string HoldDate { get; set; }
         public string BrokerName { get; set; }
@@ -35,18 +38,20 @@ namespace TMS.BusinessObjects
         public string VesselName { get; set; }
         public string BillofLading { get; set; }
         public string BookingNo { get; set; }
-        public DateTime CutOffDate { get; set; }
+        public DateTime? CutOffDate { get; set; }
         public short Priority { get; set; }
         public bool IsHazardous { get; set; }
         public Guid CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
         public string Comment { get; set; }
 
         public string ordertypedescription{ get; set; }
         public string statusdescription{ get; set; }
+        public string nextaction { get; set; }
 
         public CommentBO commentBO { get; set; }
+        public List<DocumentBO> file { get; set; }
         public AddressBO BillToAddressBO { get; set; }
         public AddressBO SourceAddressBO { get; set; }
         public AddressBO DestinationAddressBO { get; set; }
@@ -54,5 +59,6 @@ namespace TMS.BusinessObjects
         public AddressBO BrokerAddressBO { get; set; }
 
         public DeliveryOrderDetailBO OrderDetails { get; set; }
+        public List<DispatchBO> dispatchdetails { get; set; }
     }
 }

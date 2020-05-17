@@ -43,15 +43,18 @@
   <ItemGroup>
     <Compile Include="AccountingBO.cs" />
     <Compile Include="AddressBO.cs" />
+    <Compile Include="BaseRateBO.cs" />
     <Compile Include="BrokerBO.cs" />
     <Compile Include="CarrierBO.cs" />
     <Compile Include="CityBO.cs" />
     <Compile Include="CommentBO.cs" />
     <Compile Include="CompanyDetailBO.cs" />
+    <Compile Include="ContainerBO.cs" />
     <Compile Include="ContainerSizeBO.cs" />
     <Compile Include="CustomerBO.cs" />
     <Compile Include="DeliveryOrderBO.cs" />
     <Compile Include="DeliveryOrderDetailBO.cs" />
+    <Compile Include="DispatchBO.cs" />
     <Compile Include="DocumentBO.cs" />
     <Compile Include="DriverBO.cs" />
     <Compile Include="Enums.cs" />
@@ -63,14 +66,19 @@
     <Compile Include="ItemTypeBO.cs" />
     <Compile Include="LoginResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RateBO.cs" />
     <Compile Include="RateSheetBO.cs" />
     <Compile Include="RoutesBO.cs" />
     <Compile Include="ScheduleOrderBO.cs" />
+    <Compile Include="SchedulerBO.cs" />
     <Compile Include="StateBO.cs" />
+    <Compile Include="StatusBO.cs" />
     <Compile Include="ThinInvoiceBO.cs" />
     <Compile Include="ThinOrderDO.cs" />
     <Compile Include="LoginRequest.cs" />
     <Compile Include="UserDetailsBO.cs" />
+    <Compile Include="UserPermissionsBO.cs" />
+    <Compile Include="UserRoleBO.cs" />
     <Compile Include="VendorBO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

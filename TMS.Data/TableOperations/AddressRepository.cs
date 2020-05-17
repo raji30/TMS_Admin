@@ -55,6 +55,8 @@ namespace TMS.Data.TableOperations
             addresstoUpdate.addrname = t.addrname;
             addresstoUpdate.state = t.state;
             addresstoUpdate.email = t.email;
+            addresstoUpdate.email2 = t.email2;
+            addresstoUpdate.phone2 = t.phone2;
             addresstoUpdate.fax = t.fax;
             addresstoUpdate.phone = t.phone;
             addresstoUpdate.website = t.website;

@@ -10,7 +10,8 @@ using TMS.Data;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+    //[JwtAuthentication]
     public class RateSheetController : ApiController
     {
         RateSheetDL dl = new RateSheetDL();
@@ -74,7 +75,7 @@ namespace TMS.Api.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("UpdateRate")]
-        public HttpResponseMessage UpdateRate([FromBody]RateSheetBO rate)
+        public HttpResponseMessage UpdateRate([FromBody]RateSheetBO[] rate)
         {
 
             bool result = dl.UpdateRate(rate);

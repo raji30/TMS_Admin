@@ -7,7 +7,8 @@ using TMS.BusinessObjects;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+    //[JwtAuthentication]
     public class UserController : ApiController
     {
         // GET: api/User/5

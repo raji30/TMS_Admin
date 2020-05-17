@@ -13,7 +13,8 @@ using TMS.Data.TableOperations;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+ //   [JwtAuthentication]
     public class BrokerController : ApiController
     {
         BrokerBL brokerBL = new BrokerBL();
@@ -76,7 +77,7 @@ namespace TMS.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, brokerBOList, Configuration.Formatters.JsonFormatter);
             }
             else
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not found", Configuration.Formatters.JsonFormatter);
+                return Request.CreateResponse(HttpStatusCode.NoContent, "Not found", Configuration.Formatters.JsonFormatter);
         }
 
         /// <summary>

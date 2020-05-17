@@ -71,6 +71,7 @@
     <Compile Include="address.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="AddressDL.cs" />
     <Compile Include="addressmaster.cs">
       <DependentUpon>App_Security.tt</DependentUpon>
     </Compile>
@@ -111,6 +112,7 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="BaseConnection.cs" />
+    <Compile Include="BaseRateDL.cs" />
     <Compile Include="broker.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
@@ -128,6 +130,7 @@
     <Compile Include="companyapp.cs">
       <DependentUpon>App_Security.tt</DependentUpon>
     </Compile>
+    <Compile Include="CompanyDL.cs" />
     <Compile Include="contact.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
@@ -176,6 +179,7 @@
     <Compile Include="shippingportterminal.cs">
       <DependentUpon>App_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="StatusDL.cs" />
     <Compile Include="TableOperations\AddressMasterRepository.cs" />
     <Compile Include="TableOperations\AddressRepository.cs" />
     <Compile Include="TableOperations\AppRepository.cs" />
@@ -235,6 +239,7 @@
     <Compile Include="userinfo.cs">
       <DependentUpon>App_Security.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserRoleAndPermissionsDL.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="vendor.cs">
       <DependentUpon>App_model.tt</DependentUpon>
@@ -251,7 +256,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

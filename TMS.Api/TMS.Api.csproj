@@ -477,6 +477,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountingController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\BaseRateController.cs" />
     <Compile Include="Controllers\BrokerController.cs" />
     <Compile Include="Controllers\CarrierController.cs" />
     <Compile Include="Controllers\CityController.cs" />
@@ -488,6 +489,7 @@
     <Compile Include="Controllers\DispatchDeliveryController.cs" />
     <Compile Include="Controllers\DocumentsUploadController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
+    <Compile Include="Controllers\FileDownloadController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\InvoiceViewController.cs" />
@@ -499,6 +501,7 @@
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserPermissionsController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Filters\AddChallengeOnUnauthorizedResult.cs" />
     <Compile Include="Filters\AuthenticationFailureResult.cs" />
@@ -567,6 +570,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\InvoiceView\Index.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\InvoiceView\Invoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Files\" />

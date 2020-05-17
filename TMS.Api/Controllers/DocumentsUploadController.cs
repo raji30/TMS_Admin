@@ -10,10 +10,15 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using TMS.BusinessObjects;
+using TMS.Data;
+using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [AllowAnonymous]
+   // [JwtAuthentication]
     public class DocumentsUploadController : ApiController
     {
         [HttpPost]
@@ -127,24 +132,73 @@ namespace TMS.Api.Controllers
                 string DO = provider.FormData[0];
                     string CreatedBy = provider.FormData[1];
 
-                //renaming the random file to Original file name
-                string uploadingFileName = provider.FileData.Select(x => x.LocalFileName).FirstOrDefault();
-                string originalFileName = String.Concat(fileuploadPath, "\\" + (provider.Contents[0].Headers.ContentDisposition.FileName).Trim(new Char[] { '"' }));
+                ////renaming the random file to Original file name
+                //string uploadingFileName = provider.FileData.Select(x => x.LocalFileName).FirstOrDefault();
+                //string originalFileName = String.Concat(fileuploadPath, "\\" + (provider.Contents[0].Headers.ContentDisposition.FileName).Trim(new Char[] { '"' }));
 
-                if (File.Exists(originalFileName))
+                //if (File.Exists(originalFileName))
+                //{
+                //    File.Delete(originalFileName);
+                //}
+
+                //File.Move(uploadingFileName, originalFileName);
+
+                foreach (var file in provider.FileData)
                 {
-                    File.Delete(originalFileName);
-                }
+                    //renaming the random file to Original file name
+                    string uploadingFile = file.LocalFileName;
+                    string originalFile = String.Concat(fileuploadPath,DO + "\\" + (file.Headers.ContentDisposition.FileName).Trim(new Char[] { '"' }));
+                    string strFileName = file.Headers.ContentDisposition.FileName.Replace('"',' ').Trim();
+                    if (File.Exists(originalFile))
+                    {
+                        File.Delete(originalFile);
+                    }
 
-                File.Move(uploadingFileName, originalFileName);
+                    if(!Directory.Exists(String.Concat(fileuploadPath, DO)))
+                    {
+                        Directory.CreateDirectory(String.Concat(fileuploadPath, DO));
+                    }
+
+                    File.Move(uploadingFile, originalFile);
+
+                    FileInfo finfo = new FileInfo(originalFile);
+                    DocumentBO documentBO = new DocumentBO()
+                    {
+                        Dockey = Guid.NewGuid(),
+                        DocType = (DocType)Enum.Parse(typeof(DocType), finfo.Extension.Replace('.', ' ').Trim().ToUpper()),
+                        CreatedBy = Guid.Parse(CreatedBy),
+                        FileSizeInMB = (int)finfo.Length / 1024,
+                        FileType = finfo.Extension.Replace('.', ' ').Trim().ToUpper(), //not sure
+                        name = strFileName
+                    };
+                 
+                    OrderHeaderDocumentBO orderBO = new OrderHeaderDocumentBO
+                    {
+                        Document = documentBO,                        
+                        OrderNo = DO
+                    };
+                                        
+                    DocumentDL dl = new DocumentDL();
+                    dl.InsertDOHeaderDocument(orderBO);
+                }
                 return Request.CreateResponse(HttpStatusCode.Created, new StringContent(" Files Uploaded Successfully"), Configuration.Formatters.JsonFormatter);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                //return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message, Configuration.Formatters.JsonFormatter);
+
                 return Request.CreateResponse(HttpStatusCode.InternalServerError,new StringContent("Upload Failed"), Configuration.Formatters.JsonFormatter);
             }
 
+        }
+
+        public List<DocumentBO> GetDocNames(string DO)
+        {
+            DocumentDL dl = new DocumentDL();
+            List<DocumentBO> list = dl.GetSupportingDocuments(DO).ToList();
+            return list;
+           // List<string> FileNames = list.Select(y => y.FileName).ToList();
         }
     }
 

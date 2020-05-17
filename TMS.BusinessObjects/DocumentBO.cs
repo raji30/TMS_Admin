@@ -12,10 +12,13 @@ namespace TMS.BusinessObjects
         public Guid Dockey { get; set; }
         public Guid CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
-        public string FileName { get; set; }
+        public string name { get; set; }
         public string FileType { get; set; }
         public DocType DocType { get; set; }
         public int FileSizeInMB { get; set; }
+        public int size { get; set; }
+        public string type { get; set; }
+
     }
 
     public class OrderHeaderDocumentBO

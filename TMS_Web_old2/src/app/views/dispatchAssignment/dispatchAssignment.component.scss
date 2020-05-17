@@ -1,0 +1,13 @@
+// .table-hover tbody tr:hover td {
+//     background: steelblue;
+// }
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: steelblue;
+}
+
+.ScrollStyle {
+    max-height: 600px;
+    overflow-y: scroll;
+  }
+  

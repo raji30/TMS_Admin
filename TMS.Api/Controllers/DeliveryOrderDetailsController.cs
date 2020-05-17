@@ -13,7 +13,8 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-   // [JwtAuthentication]
+    [AllowAnonymous]
+    //[JwtAuthentication]
     public class DeliveryOrderDetailsController : ApiController
     {
         DeliveryOrderDL doObj = new DeliveryOrderDL();
@@ -60,10 +61,20 @@ namespace TMS.Api.Controllers
         [HttpPut]
         [Route("UpdateDeliveryOrderDetails")]
         [SwaggerOperation("UpdateDeliveryOrderDetails")]
-        public HttpResponseMessage Put([FromBody]DeliveryOrderDetailBO objList)
+        public HttpResponseMessage Put([FromBody]DeliveryOrderDetailBO[] objList)
         {
-            var orderdetailCollection = doObj.UpdateOrderDetails(objList);
-            return Request.CreateResponse(HttpStatusCode.OK, orderdetailCollection, Configuration.Formatters.JsonFormatter);
+            foreach (var detail in objList)
+            {
+                if(detail.OrderDetailKey==Guid.Empty)
+                {
+                    var orderdetailCollection = doObj.InsertOrderDetail(detail);
+                }
+                else
+                {
+                    var orderdetailCollection = doObj.updateDeliveryOrderDetails(detail);
+                }                
+            }                
+            return Request.CreateResponse(HttpStatusCode.OK, true, Configuration.Formatters.JsonFormatter);
         }
 
         [HttpPut]
@@ -74,6 +85,7 @@ namespace TMS.Api.Controllers
             var orderdetailCollection = doObj.UpdateDeliveryOrderDetailsStatus(objList);
             return Request.CreateResponse(HttpStatusCode.OK, orderdetailCollection, Configuration.Formatters.JsonFormatter);
         }
+
 
         //[HttpGet]
         //[Route("GetDrivers")]

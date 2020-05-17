@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,21 +11,25 @@ namespace TMS.Data
 {
     public class DispatchAssignmentDL
     {
-        string connString = "host=localhost;Username=postgres;Password=TMS@123;Database=App_model";
-        NpgsqlConnection connection;
+        string connString;// = "host=localhost;port=5432;Username=postgres;Password=TMS@123;Database=App_model";      
+        NpgsqlConnection conn;
+        NpgsqlCommand cmd;
+
         public DispatchAssignmentDL()
         {
-            connection = new NpgsqlConnection(connString);
-            connection.Open();
+            connString = ConfigurationManager.ConnectionStrings["App_model"].ConnectionString;
         }
-       
+
         public List<DeliveryOrderDetailBO> GetOrderstoDispatchAssignment()
-        {
-            string sql = "dbo.fn_get_orders_to_dispatch_assignment";
-            List<DeliveryOrderDetailBO> orderDetails = new List<DeliveryOrderDetailBO>();
-            using (connection)
+        {           
+           try
             {
-                using (var cmd = new NpgsqlCommand(sql, connection))
+                string sql = "dbo.fn_get_orders_to_dispatch_assignment";
+                List<DeliveryOrderDetailBO> orderDetails = new List<DeliveryOrderDetailBO>();
+
+                conn = new NpgsqlConnection(connString);
+                conn.Open();
+                using (var cmd = new NpgsqlCommand(sql, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -42,18 +47,28 @@ namespace TMS.Data
                             orderDetail.Chassis = Utils.CustomParse<string>(reader["chassis"]);
                             orderDetail.SealNo = Utils.CustomParse<string>(reader["sealno"]);
                             orderDetail.Weight = Utils.CustomParse<string>(reader["weight"]);
-                            orderDetail.AppDateFrom = Utils.CustomParse<string>(reader["apptdatefrom"]);
-                            orderDetail.AppDateTo = Utils.CustomParse<string>(reader["apptdateto"]);
-                            orderDetail.PickupDateTime = Utils.CustomParse<string>(reader["scheduledarrival"]);
-                            orderDetail.DropOffDateTime = Utils.CustomParse<string>(reader["scheduleddeparture"]);
+                            orderDetail.AppDateFrom = Utils.CustomParse<DateTime>(reader["apptdatefrom"]);
+                            orderDetail.AppDateTo = Utils.CustomParse<DateTime>(reader["apptdateto"]);
+                            orderDetail.PickupDateTime = Utils.CustomParse<DateTime>(reader["scheduledarrival"]);
+                            orderDetail.DropOffDateTime = Utils.CustomParse<DateTime>(reader["scheduleddeparture"]);
 
                             orderDetails.Add(orderDetail);
                         }
                     }
                     while (reader.NextResult());
+                    reader.Close();
                 }
+
+                return orderDetails;
             }
-            return orderDetails;
+            catch (Exception msg)
+            {
+                throw msg;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
     }

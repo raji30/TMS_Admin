@@ -14,7 +14,8 @@ using static TMS.BusinessObjects.Enums;
 
 namespace TMS.Api.Controllers
 {
-    [JwtAuthentication]
+    [AllowAnonymous]
+   // [JwtAuthentication]
     public class DeliveryOrderController : ApiController
     {
         DeliveryOrderDL doObj = new DeliveryOrderDL();
@@ -28,8 +29,16 @@ namespace TMS.Api.Controllers
         [SwaggerOperation("GetbyKey")]
        
         public HttpResponseMessage GetbyKey(string OrderKey)
-        {           
-            DeliveryOrderBO dorder= doObj.GetDeliveryOrder(OrderKey);
+        {
+            DeliveryOrderBO dorder = new DeliveryOrderBO();           
+            DocumentDL dl = new DocumentDL();
+            dorder = doObj.GetDeliveryOrder(OrderKey);
+            if (dorder.OrderNo.ToString().Trim() != string.Empty)
+            {
+                List<DocumentBO> list = dl.GetSupportingDocuments(dorder.OrderNo).ToList();
+                dorder.file = list;
+            }          
+
             return Request.CreateResponse(HttpStatusCode.OK, dorder, Configuration.Formatters.JsonFormatter);
         }
         /// <summary>
@@ -79,9 +88,9 @@ namespace TMS.Api.Controllers
         [SwaggerOperation("GetAllDOStatus")]
         public HttpResponseMessage GetallDOStatus()
         {
-
-          List<EnumValue> values=  EnumExtensions.GetEnumValues<DOStatus>();
-            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+            //List<EnumValue> values=  EnumExtensions.GetEnumValues<DOStatus>();
+            var values = new StatusDL().getOrderStatus();
+          return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
         }
         /// <summary>
         /// 
@@ -113,12 +122,22 @@ namespace TMS.Api.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, orderid, Configuration.Formatters.JsonFormatter);
         }
+
         [HttpPost]
         [Route("UpdateDeliveryOrderStatus")]
         [SwaggerOperation("UpdateDeliveryOrderStatus")]
         public HttpResponseMessage UpdateOrderStatus(string OrderKey, int Status)
         {           
             bool result=  doObj.UpdateDOStatus(OrderKey, Status, HttpContext.Current.User.Identity.Name);
+            return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpPut]
+        [Route("UpdateOrder")]
+        [SwaggerOperation("UpdateOrder")]
+        public HttpResponseMessage UpdateOrder([FromBody]DeliveryOrderBO obj)
+        {
+            bool result = doObj.UpdateOrderHeader(obj);
             return Request.CreateResponse(HttpStatusCode.OK, result, Configuration.Formatters.JsonFormatter);
         }
 
@@ -170,6 +189,71 @@ namespace TMS.Api.Controllers
         //    List<EnumValue> values = EnumExtensions.GetEnumValues<Carrier>();
         //    return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
         //}
+                       
+        [HttpGet]
+        [Route("GetOrderStatus")]
+        [SwaggerOperation("GetOrderStatus")]
+        public HttpResponseMessage GetOrderStatus()
+        {
+            List<EnumValue> values = EnumExtensions.GetEnumValues<Source>();
+            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpGet]
+        [Route("GetStatusforDashboard")]
+        [SwaggerOperation("GetStatusforDashboard")]
+        public HttpResponseMessage GetStatusforDashboard()
+        {
+            //List<EnumValue> values=  EnumExtensions.GetEnumValues<DOStatus>();
+            var values = new StatusDL().fn_get_orderstatusfordashboard();
+            return Request.CreateResponse(HttpStatusCode.OK, values, Configuration.Formatters.JsonFormatter);
+        }
+
+        [HttpPut]
+        [Route("UpdateVessel")]
+        [SwaggerOperation("UpdateVessel")]
+        public HttpResponseMessage UpdateVessel([FromBody]DeliveryOrderBO obj)
+        {            
+            bool isUpdated = doObj.UpdateVessel(obj);    
+            
+            if(!isUpdated)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not Updated", Configuration.Formatters.JsonFormatter);
+            }           
+
+            return Request.CreateResponse(HttpStatusCode.OK, isUpdated, Configuration.Formatters.JsonFormatter);
+
+        }
+        [HttpPut]
+        [Route("UpdateBookingNo")]
+        [SwaggerOperation("UpdateBookingNo")]
+        public HttpResponseMessage UpdateBookingNo([FromBody]DeliveryOrderBO obj)
+        {
+            bool isUpdated = doObj.UpdateBookingNo(obj);
+
+            if (!isUpdated)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not Updated", Configuration.Formatters.JsonFormatter);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, isUpdated, Configuration.Formatters.JsonFormatter);
+
+        }
+        [HttpPut]
+        [Route("UpdateBrokerRefNo")]
+        [SwaggerOperation("UpdateBrokerRefNo")]
+        public HttpResponseMessage UpdateBrokerRefNo([FromBody]DeliveryOrderBO obj)
+        {
+            bool isUpdated = doObj.UpdateBrokerRefNo(obj);
+
+            if (!isUpdated)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "Not Updated", Configuration.Formatters.JsonFormatter);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, isUpdated, Configuration.Formatters.JsonFormatter);
+
+        }
 
     }
 }

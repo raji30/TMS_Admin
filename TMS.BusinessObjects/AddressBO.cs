@@ -14,8 +14,10 @@ namespace TMS.BusinessObjects
         public string State { get; set; }
         public string Zip { get; set; }
         public string Phone { get; set; }
+        public string Phone2 { get; set; }
         public string Fax { get; set; }
         public string Email { get; set; }
+        public string Email2 { get; set; }
         public string Country { get; set; }
         public string Website { get; set; }
         public Guid AddrKey { get; set; }

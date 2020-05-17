@@ -16,28 +16,47 @@ namespace TMS.BusinessLayer
         App_modelEntities entities = new App_modelEntities();
         public IEnumerable<AddressBO> GetAddressesByType(int addressType)
         {
+            DeliveryOrderDL dl = new DeliveryOrderDL();
+
             var list = EnumExtensions.GetEnumValues<AddressType>();
             List<AddressBO> returnList = new List<AddressBO>();
-            DeliveryOrderDL dl = new DeliveryOrderDL();
-           var specifiedType= list.FirstOrDefault(a => a.Value == addressType);
+
+            var specifiedType = list.FirstOrDefault(a => a.Value == addressType);
             AddressType addType;
             Enum.TryParse(specifiedType.Name, out addType);
-           switch(addType)
+
+            switch (addType)
             {
                 case AddressType.Customer:
                     {
-                        var CustomerRepository  = new CustomerRepository();
-                      var allcustomers=  CustomerRepository.GetAll();
-                      
-                        foreach(var customer in allcustomers)
+                        var CustomerRepository = new CustomerRepository();
+                        var allcustomers = CustomerRepository.GetAll();
+
+                        foreach (var customer in allcustomers)
                         {
-                          var addressBO=  dl.GetAddress(customer.addrkey);
+                            var addressBO = dl.GetAddress(customer.addrkey);
                             addressBO.AddrKey = customer.addrkey;
                             addressBO.Name = customer.custname;
                             returnList.Add(addressBO);
                         }
                     }
                     break;
+
+                case AddressType.Company:
+                    {
+                        var DL = new CompanyDL();
+                        var companies = DL.GetCompanies();
+
+                        foreach (var company in companies)
+                        {                          
+                            var addressBO = DL.GetAddress(company.addrkey);
+                            addressBO.AddrKey = company.addrkey;
+                            addressBO.Name = company.compname;
+                            returnList.Add(addressBO);
+                        }
+                    }
+                    break;
+
                 case AddressType.ShippingPort:
                     {
                         var shippingRepo = new ShippingPortRepository();
