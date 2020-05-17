@@ -1,5 +1,0 @@
-import { ModuleWithProviders } from '@angular/core';
-import { LaddaConfigArgs } from './ladda-config';
-export declare class LaddaModule {
-    static forRoot(config: LaddaConfigArgs): ModuleWithProviders;
-}
